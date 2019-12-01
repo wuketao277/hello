@@ -34,11 +34,4 @@
     </template>
   </div>
 </template>
-<style>
-.toolbardiv {
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-</style>
 <script src="./clientlist.js"></script>

@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      today: new Date()
+      calendar: new Date()
     }
   },
   methods: {
