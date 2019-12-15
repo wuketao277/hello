@@ -4,7 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>客户列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <div class="toolbardiv">
+    <div class="toolbar">
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addClient">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit">修改</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete">删除</el-button>
@@ -25,7 +25,7 @@
       </el-form-item>
     </el-form>
     <template>
-      <el-table :data="clientlist" border="true" highlight-current-row="true" style="width: 100%">
+      <el-table :data="clientlist" border="true" highlight-current-row="true" @current-change="handleCurrentChange" style="width: 100%">
         <el-table-column type="index" width="50" label="序号"></el-table-column>
         <el-table-column prop="chinesename" label="中文名称" width="180"></el-table-column>
         <el-table-column prop="englishname" label="英文名称" width="180"></el-table-column>

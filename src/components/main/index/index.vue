@@ -55,6 +55,15 @@
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
+              <i class="el-icon-bell"></i>
+              <span slot="title">权限</span>
+            </template>
+            <el-menu-item index="/role/rolelist">角色</el-menu-item>
+            <el-menu-item index="/resource/resourcelist">资源</el-menu-item>
+            <el-menu-item index="/user/userlist">用户</el-menu-item>
+          </el-submenu>
+          <el-submenu index="5">
+            <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
             </template>

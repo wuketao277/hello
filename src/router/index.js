@@ -11,6 +11,8 @@ import NewsList from '@/components/main/my/mynews/newslist/newslist.vue'
 import News from '@/components/main/my/mynews/news/news.vue'
 import MyTask from '@/components/main/my/mytask/mytask.vue'
 import MyPlan from '@/components/main/my/myplan/myplan.vue'
+import Role from '@/components/main/role/role/role.vue'
+import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 
 Vue.use(Router)
 
@@ -76,6 +78,18 @@ export default new Router({
           path: '/my/myplan',
           name: 'myplan',
           component: MyPlan
+        },
+        {
+          // 角色
+          path: '/role/role',
+          name: 'role',
+          component: Role
+        },
+        {
+          // 角色列表
+          path: '/role/rolelist',
+          name: 'rolelist',
+          component: RoleList
         }
       ]
     },
