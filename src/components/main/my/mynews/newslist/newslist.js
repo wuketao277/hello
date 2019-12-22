@@ -3,8 +3,10 @@ import mynewsApi from '@/api/mynews'
 export default {
   data () {
     return {
+      showSearchDialog: false,
       table: {
         content: [],
+        totalElements: 0,
         pageable: {
           pageNumber: 1,
           pageSize: 10
@@ -14,10 +16,7 @@ export default {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: {
-        title: '',
-        content: ''
-      }
+      search: ''
     }
   },
   methods: {
@@ -58,14 +57,17 @@ export default {
           query: {mode: 'detail', news: this.currentRow}})
       }
     },
+    // 搜索按钮
+    queryNews () {
+      this.showSearchDialog = true
+    },
     // 查询后台数据
     query () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': ''
+        'search': this.search
       }
-      debugger
       mynewsApi.queryNewsPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
@@ -73,13 +75,43 @@ export default {
           })
           return
         }
-        debugger
         this.table = res.data
+        this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
       })
     },
     // 处理选中行时间
     handleCurrentChange (val) {
       this.currentRow = val
+    },
+    sizeChange (val) {
+      this.table.pageable.pageSize = val
+      this.query()
+    },
+    currentChange (val) {
+      this.table.pageable.pageNumber = val
+      this.query()
+    },
+    prevClick (val) {
+      this.table.pageable.pageNumber = val
+      this.query()
+    },
+    nextClick (val) {
+      this.table.pageable.pageNumber = val
+      this.query()
+    },
+    switchSearchDialog () {
+      this.showSearchDialog = !this.showSearchDialog
+    },
+    // 搜索对话框，取消按钮
+    cancelSearchDialog () {
+      this.showSearchDialog = false
+      this.search = ''
+    },
+    // 搜索对话框，确定按钮
+    sureSearchDialog () {
+      this.showSearchDialog = false
+      this.query()
+      this.search = ''
     }
   },
   computed: {},

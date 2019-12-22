@@ -11,20 +11,6 @@
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteNews">删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-search" @click="queryNews">搜索</el-button>
     </div>
-    <el-form
-      v-if="search.show"
-      style="border:1px solid black;"
-      ref="form"
-      :model="search"
-      label-width="80px"
-    >
-      <el-form-item label="新闻标题">
-        <el-input v-model="search.title"></el-input>
-      </el-form-item>
-      <el-form-item label="新闻内容">
-        <el-input v-model="search.content"></el-input>
-      </el-form-item>
-    </el-form>
     <el-table
       :data="table.content"
       border="true"
@@ -41,11 +27,27 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="table.content.length"
+      :total="table.totalElements"
       :current-page="table.pageable.pageNumber"
       :page-sizes="page.pageSizes"
       :page-size="table.pageable.pageSize"
+      @size-change="sizeChange"
+      @current-change="currentChange"
+      @prev-click="prevClick"
+      @next-click="nextClick"
     ></el-pagination>
+    <!--搜索对话框-->
+    <el-dialog title="搜索" :visible.sync="showSearchDialog">
+      <el-form>
+        <el-form-item label="搜索内容">
+          <el-input v-model="search" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancelSearchDialog">取 消</el-button>
+        <el-button type="primary" @click="sureSearchDialog">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script src="./newslist.js"></script>

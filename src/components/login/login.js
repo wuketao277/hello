@@ -1,4 +1,4 @@
-// import basic from '@/api/basic.js'
+import basic from '@/api/basic'
 
 export default {
   name: 'login',
@@ -52,29 +52,24 @@ export default {
           message: '请输入密码！',
           type: 'warning'
         })
-        return
       }
       // 调用后台登录接口
-      // let resData = await basic.login(this.loginUser)
-      let resData = {
-        status: true,
-        loginInfo: {
-          userInfo: {},
-          menus: []
+      basic.login(this.loginUser).then(res => {
+        debugger
+        let resData = res.data
+        if (resData['status']) {
+          // 保存信息
+          window.localStorage['loginInfo'] = JSON.stringify(resData)
+          // 菜单保存后，刷新页面
+          // window.location.reload()
+          this.jump('/')
+        } else {
+          this.$message({
+            message: '登录失败！',
+            type: 'warning'
+          })
         }
-      }
-      if (resData['status']) {
-        // 保存信息
-        window.localStorage['loginInfo'] = JSON.stringify(resData)
-        // 菜单保存后，刷新页面
-        // window.location.reload()
-        this.jump('/')
-      } else {
-        this.$message({
-          message: '登录失败！',
-          type: 'warning'
-        })
-      }
+      })
     },
     // 取消登录
     logincancel () {

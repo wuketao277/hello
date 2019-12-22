@@ -23,7 +23,7 @@ export default {
     // 添加候选人
     addNews () {
       this.$router.push({
-        path: '/candidate/addcandidate'
+        path: '/candidate/candidate'
       })
     },
     // 检查是否选择了一条记录
@@ -42,7 +42,7 @@ export default {
     detailCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/addcandidate',
+          path: '/candidate/candidate',
           query: {
             mode: 'detail',
             candidate: this.currentRow
@@ -54,7 +54,7 @@ export default {
     modifyCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/addcandidate',
+          path: '/candidate/candidate',
           query: {
             mode: 'modify',
             candidate: this.currentRow

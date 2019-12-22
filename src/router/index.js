@@ -5,7 +5,7 @@ import Index from '@/components/main/index/index.vue'
 import ClientList from '@/components/main/client/clientlist/clientlist.vue'
 import AddClient from '@/components/main/client/addclient/addclient.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
-import AddCandidate from '@/components/main/candidate/addcandidate/addcandidate.vue'
+import Candidate from '@/components/main/candidate/candidate/candidate.vue'
 import Summary from '@/components/main/summary/summary.vue'
 import NewsList from '@/components/main/my/mynews/newslist/newslist.vue'
 import News from '@/components/main/my/mynews/news/news.vue'
@@ -51,9 +51,9 @@ export default new Router({
         },
         {
           // 新增候选人
-          path: '/candidate/addcandidate',
-          name: 'addcandidate',
-          component: AddCandidate
+          path: '/candidate/candidate',
+          name: 'candidate',
+          component: Candidate
         },
         {
           // 我的新闻列表
