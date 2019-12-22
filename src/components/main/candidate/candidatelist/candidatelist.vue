@@ -5,8 +5,9 @@
       <el-breadcrumb-item>候选人列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addClient">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit">修改</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addCandidate">新增</el-button>
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyCandidate">修改</el-button>
+      <el-button type="primary" size="small" icon="el-icon-delete" @click="detailCandidate">查看</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteCandidate">删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-search" @click="switchSearchDialog">搜索</el-button>
       <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="query">刷新</el-button>

@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     // 添加候选人
-    addNews () {
+    addCandidate () {
       this.$router.push({
         path: '/candidate/candidate'
       })
@@ -77,6 +77,11 @@ export default {
                   message: '删除失败，请联系管理员！'
                 })
               } else {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
                 this.query()
               }
             })

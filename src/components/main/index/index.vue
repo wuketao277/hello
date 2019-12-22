@@ -42,7 +42,7 @@
               <span slot="title">候选人</span>
             </template>
             <el-menu-item index="/candidate/candidatelist">候选人列表</el-menu-item>
-            <el-menu-item index="/candidate/addcandidate">新增候选人</el-menu-item>
+            <el-menu-item index="/candidate/candidate">新增候选人</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">

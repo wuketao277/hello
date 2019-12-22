@@ -16,11 +16,10 @@ import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
-      // 主页框架
       path: '/',
       name: 'index',
       component: Index,
@@ -101,3 +100,17 @@ export default new Router({
     }
   ]
 })
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  debugger
+  if (to.name !== 'login') {
+    const loginInfo = window.localStorage['loginInfo']
+    // 未登录状态；当路由到 nextRoute 指定页时，跳转至 UserLogIn
+    if (typeof (loginInfo) === 'undefined') { // 检测是否登录的页面
+      next('/login')
+      return
+    }
+  }
+  next() // 必须使用 next ,执行效果依赖 next 方法的调用参数
+})
+export default router

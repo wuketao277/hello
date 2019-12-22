@@ -40,6 +40,7 @@ export default {
     },
     // 登录函数，获取用户菜单保存到localStorage中
     async login () {
+      debugger
       if (this.loginUser.loginName.length === 0) {
         this.$message({
           message: '请输入用户名！',
@@ -59,7 +60,7 @@ export default {
         let resData = res.data
         if (resData['status']) {
           // 保存信息
-          window.localStorage['loginInfo'] = JSON.stringify(resData)
+          window.localStorage['loginInfo'] = JSON.stringify(resData['data'])
           // 菜单保存后，刷新页面
           // window.location.reload()
           this.jump('/')
