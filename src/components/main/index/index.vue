@@ -2,11 +2,13 @@
   <el-container style="height:100%;">
     <el-header style="background-color:#565C5F;height:50px;padding:0px;text-align:left;">
       <div style="float:left;width:50%;text-align:left;">
-        <img src="../../../assets/logo2.png" style="height:50px;width:80px;">
         <span style="font-size:30px;vertical-align:top;color:#ffffff;">Hello人才管理系统</span>
       </div>
-      <div style="float:right;width:50%;text-align:right;">
-        <span style="font-size:30px;vertical-align:top;">退出</span>
+      <div style="float:right;width:50%;text-align:right;height:25px;">
+        <span style="color:#67C23A;">欢迎，{{realname}}</span>&nbsp;&nbsp;
+        <el-tooltip class="item" effect="dark" content="退出系统" placement="bottom-end">
+          <el-button type="danger" icon="el-icon-delete" circle @click="logout"></el-button>
+        </el-tooltip>
       </div>
     </el-header>
     <el-container>
@@ -34,7 +36,7 @@
               <span slot="title">客户</span>
             </template>
             <el-menu-item index="/client/clientlist">客户列表</el-menu-item>
-            <el-menu-item index="/client/addclient">新增客户</el-menu-item>
+            <el-menu-item index="/client/client">新增客户</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">

@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/login/login.vue'
 import Index from '@/components/main/index/index.vue'
 import ClientList from '@/components/main/client/clientlist/clientlist.vue'
-import AddClient from '@/components/main/client/addclient/addclient.vue'
+import Client from '@/components/main/client/client/client.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
 import Candidate from '@/components/main/candidate/candidate/candidate.vue'
 import Summary from '@/components/main/summary/summary.vue'
@@ -38,9 +38,9 @@ const router = new Router({
         },
         {
           // 新增客户
-          path: '/client/addclient',
-          name: 'addclient',
-          component: AddClient
+          path: '/client/client',
+          name: 'client',
+          component: Client
         },
         {
           // 候选人列表页
@@ -102,11 +102,10 @@ const router = new Router({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
-  debugger
   if (to.name !== 'login') {
     const loginInfo = window.localStorage['loginInfo']
     // 未登录状态；当路由到 nextRoute 指定页时，跳转至 UserLogIn
-    if (typeof (loginInfo) === 'undefined') { // 检测是否登录的页面
+    if (loginInfo === 'null') { // 检测是否登录的页面
       next('/login')
       return
     }
