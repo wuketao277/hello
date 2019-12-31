@@ -1,3 +1,5 @@
+import clientApi from '@/api/client'
+
 export default {
   data () {
     return {
@@ -5,15 +7,8 @@ export default {
       form: {
         id: null,
         chineseName: '',
-        englishName: '',
-        address: ''
+        englishName: ''
       },
-      // 新评论
-      newComment: {
-        content: ''
-      },
-      // 历史评论
-      comments: [],
       rules: {
         chineseName: [
           {
@@ -22,52 +17,96 @@ export default {
             trigger: 'blur'
           },
           {
-            max: 25,
-            message: '中文名长度不能大于25个字符',
+            max: 200,
+            message: '中文名长度不能大于200个字符',
             trigger: 'blur'
           }
         ],
         englishName: [{
-          max: 100,
-          message: '英文名长度不能大于100个字符',
-          trigger: 'blur'
-        }],
-        age: [{
-          max: 2,
-          message: '年龄不正确',
-          trigger: 'blur'
-        }],
-        phoneNo: [{
-          max: 20,
-          message: '电话号码长度不能大于20个字符',
-          trigger: 'blur'
-        }],
-        email: [{
           max: 200,
-          message: '邮箱长度不能大于200个字符',
-          trigger: 'blur'
-        }],
-        companyName: [{
-          max: 200,
-          message: '公司名称长度不能大于200个字符',
-          trigger: 'blur'
-        }],
-        department: [{
-          max: 200,
-          message: '部门名称长度不能大于200个字符',
-          trigger: 'blur'
-        }],
-        title: [{
-          max: 200,
-          message: '职位名称长度不能大于200个字符',
+          message: '英文名长度不能大于200个字符',
           trigger: 'blur'
         }]
-      }
+      },
+      // 联系人表格
+      clientLinkManTable: [],
+      // 联系人表格 当前行
+      clientLinkManTableCurRow: null
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!')
+    // 取消
+    cancel () {
+      if (typeof (this.$route.query.mode) !== 'undefined') {
+        this.mode = this.$route.query.mode
+        this.form = this.$route.query.client
+      } else {
+        this.form.id = ''
+        this.form.chineseName = ''
+        this.form.englishName = ''
+      }
+    },
+    // 保存
+    save () {
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          // 如果校验通过就调用后端接口
+          clientApi.save(this.form).then(
+            res => {
+              debugger
+              if (res.status === 200) {
+                // 将从服务端获取的id赋值给前端显示
+                this.form.id = res.data.id
+                this.$message({
+                  message: '保存成功！',
+                  type: 'success',
+                  showClose: true
+                })
+              }
+            })
+        } else {
+          // 如果检查不通过就给出提示
+          this.$message({
+            message: '有错误，请检查！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
+    },
+    // 联系人表格行变化
+    rowChange (val) {
+      this.clientLinkManTableCurRow = val
+    },
+    // 添加联系人
+    addLinkMan () {
+      this.$router.push({
+        path: '/client/clientlinkman',
+        query: {
+          mode: 'add',
+          clientid: this.form.id
+        }
+      })
+    },
+    // 修改联系人
+    modifyLinkMan () {
+      this.$router.push({
+        path: '/client/clientlinkman',
+        query: {
+          mode: 'modify',
+          clientlinkman: this.clientLinkManTableCurRow
+        }
+      })
+    },
+    // 查看联系人
+    detailLinkMan () {
+      this.$router.push({
+        path: '/client/clientlinkman',
+        query: {
+          mode: 'detail',
+          clientlinkman: this.clientLinkManTableCurRow
+        }
+      })
     }
   },
   created () {

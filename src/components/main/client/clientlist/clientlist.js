@@ -1,4 +1,4 @@
-import client from '@/api/client'
+import clientApi from '@/api/client'
 
 export default {
   data () {
@@ -21,11 +21,7 @@ export default {
   },
   methods: {
     switchSearch () {
-      if (this.$data.search.show) {
-        this.$data.search.show = false
-      } else {
-        this.$data.search.show = true
-      }
+      this.showSearchDialog = !this.showSearchDialog
     },
     // 检查是否选择了一条记录
     checkSelectRow () {
@@ -46,11 +42,25 @@ export default {
     // 修改
     modify () {
       if (this.checkSelectRow()) {
+        this.$router.push({
+          path: '/client/client',
+          query: {
+            mode: 'modify',
+            client: this.currentRow
+          }
+        })
       }
     },
-    // 删除
-    del () {
+    // 查看
+    detail () {
       if (this.checkSelectRow()) {
+        this.$router.push({
+          path: '/client/client',
+          query: {
+            mode: 'detail',
+            client: this.currentRow
+          }
+        })
       }
     },
     // 查询后台数据
@@ -60,7 +70,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      client.queryClientPage(query).then(res => {
+      clientApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
@@ -69,47 +79,31 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-        debugger
       })
     },
-    // 处理选中行时间
-    handleCurrentChange (val) {
+    // 行变化
+    rowChange (val) {
       this.currentRow = val
     },
-    uploadFileSuccess (response, file, fileList) {
-      if (response.flag) {
-        this.$message({
-          message: '文件' + file.name + '上传成功',
-          type: 'success',
-          showClose: true
-        })
-        // 刷新列表
-        this.query()
-      } else {
-        this.$message({
-          message: response.msg,
-          showClose: true
-        })
-      }
-    },
-    sizeChange (val) {
+    // 页尺寸变化
+    sizePageChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
-    currentChange (val) {
+    // 当前页变化
+    currentPageChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    prevClick (val) {
+    // 上一页 点击
+    prevPageClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
+    // 下一页 点击
     nextClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
-    },
-    switchSearchDialog () {
-      this.showSearchDialog = !this.showSearchDialog
     },
     // 搜索对话框，取消按钮
     cancelSearchDialog () {
@@ -122,5 +116,8 @@ export default {
       this.query()
       this.search = ''
     }
+  },
+  created () {
+    this.query()
   }
 }
