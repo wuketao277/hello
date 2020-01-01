@@ -13,6 +13,7 @@ import MyTask from '@/components/main/my/mytask/mytask.vue'
 import MyPlan from '@/components/main/my/myplan/myplan.vue'
 import Role from '@/components/main/role/role/role.vue'
 import RoleList from '@/components/main/role/rolelist/rolelist.vue'
+import ClientLinkMan from '@/components/main/client/clientlinkman/clientlinkman.vue'
 
 Vue.use(Router)
 
@@ -89,6 +90,12 @@ const router = new Router({
           path: '/role/rolelist',
           name: 'rolelist',
           component: RoleList
+        },
+        {
+          // 客户联系人
+          path: '/client/clientlinkman',
+          name: 'clientlinkman',
+          component: ClientLinkMan
         }
       ]
     },

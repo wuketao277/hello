@@ -1,5 +1,10 @@
 <template>
   <div>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/client/clientlist'}">客户列表</el-breadcrumb-item>
+      <el-breadcrumb-item>联系人</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-form
       ref="form"
       :model="form"
@@ -9,6 +14,9 @@
     >
       <el-form-item label="id">
         <span>{{form.id}}</span>
+      </el-form-item>
+      <el-form-item label="客户id">
+        <el-input v-model="form.clientId"></el-input>
       </el-form-item>
       <el-form-item label="中文名">
         <el-input v-model="form.chineseName"></el-input>
@@ -30,9 +38,10 @@
       </el-form-item>
     </el-form>
     <!--工具栏，只有模式为新增或修改时才显示-->
-    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+    <div class="toolbar">
+      <el-button v-show="(mode === 'add' || mode === 'modify')" type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
+      <el-button v-show="(mode === 'add' || mode === 'modify')" type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+      <el-button type="primary" size="small" icon="el-icon-back" @click="returnClient">返回</el-button>
     </div>
   </div>
 </template>

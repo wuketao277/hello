@@ -1,4 +1,5 @@
 import clientApi from '@/api/client'
+import clientLinkManApi from '@/api/clientlinkman'
 
 export default {
   data () {
@@ -78,43 +79,77 @@ export default {
     rowChange (val) {
       this.clientLinkManTableCurRow = val
     },
+    // 检查id
+    checkId () {
+      if (typeof (this.form.id) !== 'undefined' && this.form.id !== null) {
+        return true
+      } else {
+        this.$message({
+          message: '请先保存客户信息',
+          type: 'warning'
+        })
+        return false
+      }
+    },
     // 添加联系人
     addLinkMan () {
-      this.$router.push({
-        path: '/client/clientlinkman',
-        query: {
-          mode: 'add',
-          clientid: this.form.id
-        }
-      })
+      if (this.checkId()) {
+        this.$router.push({
+          path: '/client/clientlinkman',
+          query: {
+            mode: 'add',
+            clientId: this.form.id
+          }
+        })
+      }
     },
     // 修改联系人
     modifyLinkMan () {
-      this.$router.push({
-        path: '/client/clientlinkman',
-        query: {
-          mode: 'modify',
-          clientlinkman: this.clientLinkManTableCurRow
-        }
-      })
+      if (this.checkId()) {
+        this.$router.push({
+          path: '/client/clientlinkman',
+          query: {
+            mode: 'modify',
+            clientLinkMan: this.clientLinkManTableCurRow
+          }
+        })
+      }
     },
     // 查看联系人
     detailLinkMan () {
-      this.$router.push({
-        path: '/client/clientlinkman',
-        query: {
-          mode: 'detail',
-          clientlinkman: this.clientLinkManTableCurRow
-        }
-      })
+      if (this.checkId()) {
+        this.$router.push({
+          path: '/client/clientlinkman',
+          query: {
+            mode: 'detail',
+            clientLinkMan: this.clientLinkManTableCurRow
+          }
+        })
+      }
+    },
+    // 查询联系人信息
+    queryLinkMan () {
+      debugger
+      let params = {
+        'clientId': this.form.id
+      }
+      clientLinkManApi.queryByClientId(params).then(
+        res => {
+          if (res.status === 200) {
+            this.clientLinkManTable = res.data
+          }
+        })
     }
   },
   created () {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
+      debugger
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.client
+      // 对于非新增操作，需要在创建时查询“联系人”信息
+      this.queryLinkMan()
     }
   }
 }

@@ -22,7 +22,7 @@
       <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
     </div>
     <hr style="background-color:#409EFF;height:1px;">
-    <div class="toolbar">
+    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addLinkMan">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyLinkMan">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detailLinkMan">查看</el-button>

@@ -1,3 +1,6 @@
+import clientLinkManApi from '@/api/clientlinkman'
+import clientApi from '@/api/client'
+
 export default {
   data () {
     return {
@@ -64,75 +67,26 @@ export default {
     }
   },
   methods: {
-    // 保存 新评论
-    saveComment() {
-      if (this.newComment.content.length !== 0) {
-        // 组装数据
-        let comment = this.newComment
-        comment['candidateId'] = this.form.id
-        // 调用接口
-        commentApi.save(comment).then(res => {
-          if (res.status === 200) {
-            // 保存成功
-            this.$message({
-              message: '保存成功！',
-              type: 'success',
-              showClose: true
-            })
-            // 重新查询全部评论
-            this.queryComment()
-          } else {
-            this.$message({
-              message: '保存异常，请联系管理员！',
-              type: 'warning',
-              showClose: true
-            })
-          }
-        })
-      } else {
-        this.$message({
-          message: '请填写评论内容',
-          type: 'warning',
-          showClose: true
-        })
-      }
-    },
-    // 查询所有评论
-    queryComment() {
-      if (this.form.id.length !== 0) {
-        commentApi.findAllByCandidateId({
-          'candidateId': this.form.id
-        }).then(res => {
-          debugger
-          if (res.status === 200) {
-            this.comments = res.data
-          }
-        })
-      }
-    },
     // 取消
-    cancel() {
-      if (typeof (this.$route.query.mode) !== 'undefined') {
-        this.mode = this.$route.query.mode
-        this.form = this.$route.query.candidate
+    cancel () {
+      if (this.$route.query.mode === 'modify' || this.$route.query.mode === 'detail') {
+        this.form = this.$route.query.clientLinkMan
       } else {
         this.form.id = ''
         this.form.chineseName = ''
         this.form.englishName = ''
-        this.form.age = 0
+        this.form.address = ''
         this.form.phoneNo = ''
+        this.form.mobileNo = ''
         this.form.email = ''
-        this.form.companyName = ''
-        this.form.department = ''
-        this.form.title = ''
       }
     },
-    // 保存新闻
-    save() {
+    // 保存
+    save () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           // 如果校验通过就调用后端接口
-          candidateApi.save(this.form).then(
+          clientLinkManApi.save(this.form).then(
             res => {
               debugger
               if (res.status === 200) {
@@ -154,17 +108,40 @@ export default {
           })
         }
       })
+    },
+    // 返回客户详情页
+    returnClient () {
+      let params = {
+        id: this.form.clientId
+      }
+      clientApi.queryById(params).then(
+        res => {
+          if (res.status === 200) {
+            debugger
+            let client = res.data
+            this.$router.push({
+              path: '/client/client',
+              query: {
+                mode: 'modify',
+                client: client
+              }
+            })
+          }
+        }
+      )
     }
   },
   computed: {},
   created () {
+    debugger
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
-      // 接收list传入的参数
       this.mode = this.$route.query.mode
-      this.form = this.$route.query.candidate
-      // 查询comment
-      this.queryComment()
+      if (this.$route.query.mode === 'add') {
+        this.form.clientId = this.$route.query.clientId
+      } else if (this.$route.query.mode === 'modify' || this.$route.query.mode === 'detail') {
+        this.form = this.$route.query.clientLinkMan
+      }
     }
   }
 }
