@@ -40,7 +40,6 @@ export default {
     },
     // 登录函数，获取用户菜单保存到localStorage中
     async login () {
-      debugger
       if (this.loginUser.loginName.length === 0) {
         this.$message({
           message: '请输入用户名！',
@@ -56,7 +55,6 @@ export default {
       }
       // 调用后台登录接口
       basic.login(this.loginUser).then(res => {
-        debugger
         let resData = res.data
         if (resData['status']) {
           // 保存信息

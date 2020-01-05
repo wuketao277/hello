@@ -16,7 +16,8 @@ export default {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: ''
+      search: '',
+      fileList: []
     }
   },
   methods: {
@@ -104,7 +105,6 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-        debugger
       })
     },
     // 处理选中行时间
@@ -127,6 +127,9 @@ export default {
         })
       }
     },
+    handlePreview () {},
+    handleRemove () {},
+    beforeRemove () {},
     sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()

@@ -13,13 +13,12 @@
     <template>
       <el-table
         :data="table.content"
-        border="true"
-        highlight-current-row="true"
+        :border="true"
+        :highlight-current-row="true"
         style="width: 100%"
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="id" label="编号" width="180"></el-table-column>
         <el-table-column prop="clientName" label="客户名称"></el-table-column>
         <el-table-column prop="title" label="职位名称"></el-table-column>
         <el-table-column prop="status" label="状态"></el-table-column>
@@ -32,10 +31,10 @@
         :current-page="table.pageable.pageNumber"
         :page-sizes="page.pageSizes"
         :page-size="table.pageable.pageSize"
-        @size-change="pageSizeChange"
-        @current-change="currentPageChange"
-        @prev-click="prevPageClick"
-        @next-click="nextPageClick"
+        @size-change="sizeChange"
+        @current-change="currentChange"
+        @prev-click="prevClick"
+        @next-click="nextClick"
       ></el-pagination>
     </template>
     <!--搜索对话框-->

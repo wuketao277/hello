@@ -8,6 +8,7 @@ export default {
       form: {
         id: null,
         clientId: '',
+        clientName: '',
         chineseName: '',
         englishName: '',
         address: '',
@@ -88,7 +89,6 @@ export default {
           // 如果校验通过就调用后端接口
           clientLinkManApi.save(this.form).then(
             res => {
-              debugger
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
                 this.form.id = res.data.id
@@ -117,7 +117,6 @@ export default {
       clientApi.queryById(params).then(
         res => {
           if (res.status === 200) {
-            debugger
             let client = res.data
             this.$router.push({
               path: '/client/client',
@@ -133,14 +132,15 @@ export default {
   },
   computed: {},
   created () {
-    debugger
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       this.mode = this.$route.query.mode
       if (this.$route.query.mode === 'add') {
         this.form.clientId = this.$route.query.clientId
+        this.form.clientName = this.$route.query.clientName
       } else if (this.$route.query.mode === 'modify' || this.$route.query.mode === 'detail') {
         this.form = this.$route.query.clientLinkMan
+        this.form.clientName = this.$route.query.clientName
       }
     }
   }

@@ -1,7 +1,7 @@
 import roleApi from '@/api/role'
 
 export default {
-  data() {
+  data () {
     return {
       table: {
         content: [],
@@ -14,10 +14,8 @@ export default {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: {
-        name: '',
-        description: ''
-      }
+      search: '',
+      showSearchDialog: false
     }
   },
   methods: {
@@ -72,7 +70,6 @@ export default {
         }
         roleApi.deleteRole(params).then(
           res => {
-            debugger
             if (res.status === 200 && res.data === true) {
               this.$message({
                 message: '删除成功！',
@@ -87,12 +84,16 @@ export default {
           })
       }
     },
+    switchSearchDialog () {
+      this.showSearchDialog = !this.showSearchDialog
+    },
     // 查询后台数据
     query () {
+      this.showSearchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': ''
+        'search': this.search
       }
       roleApi.queryRolePage(query).then(res => {
         if (res.status !== 200) {
@@ -101,9 +102,12 @@ export default {
           })
           return
         }
-        debugger
         this.table = res.data
       })
+    },
+    // 取消搜索
+    cancelSearchDialog () {
+      this.showSearchDialog = false
     },
     // 处理选中行时间
     handleCurrentChange (val) {

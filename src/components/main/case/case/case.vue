@@ -12,9 +12,6 @@
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-form-item label="id">
-        <span>{{form.id}}</span>
-      </el-form-item>
       <el-form-item label="客户">
         <el-select v-model="form.clientId" placeholder="请选择客户">
           <el-option

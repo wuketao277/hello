@@ -58,7 +58,6 @@ export default {
     save () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          debugger
           // 如果校验通过就调用后端接口
           caseApi.save(this.form).then(
             res => {
@@ -88,13 +87,11 @@ export default {
   created () {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
-      debugger
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.case
     }
     clientApi.findAll().then(res => {
-      debugger
       if (res.status === 200) {
         this.clients = res.data
       }

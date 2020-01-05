@@ -22,7 +22,7 @@
           text-color="#fff"
           active-text-color="#ffd04b"
           style="width:100%;height:100%;text-align:left;"
-          router="true"
+          :router="true"
         >
           <el-menu-item index="/">
             <template slot="title">

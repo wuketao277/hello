@@ -12,11 +12,7 @@
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-form-item label="id">
-        <span>{{form.id}}</span>
-      </el-form-item>
-      <el-form-item label="客户id">
-        <el-input v-model="form.clientId"></el-input>
+      <el-form-item label="客户名称">{{form.clientName}}
       </el-form-item>
       <el-form-item label="中文名">
         <el-input v-model="form.chineseName"></el-input>

@@ -70,7 +70,6 @@ export default {
     if (typeof (this.$route.query.mode) !== 'undefined') {
       this.mode = this.$route.query.mode
       this.form = this.$route.query.news
-      debugger
     }
   }
 }

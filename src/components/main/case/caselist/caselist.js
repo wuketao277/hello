@@ -86,17 +86,17 @@ export default {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizePageChange (val) {
+    sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentPageChange (val) {
+    currentChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevPageClick (val) {
+    prevClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },

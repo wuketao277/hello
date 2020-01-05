@@ -6,7 +6,6 @@ export default {
   },
   methods: {
     openView (path) {
-      debugger
       this.$router.push({
         path: path,
         query: {}

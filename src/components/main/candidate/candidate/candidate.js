@@ -113,7 +113,6 @@ export default {
         commentApi.findAllByCandidateId({
           'candidateId': this.form.id
         }).then(res => {
-          debugger
           if (res.status === 200) {
             this.comments = res.data
           }
@@ -144,7 +143,6 @@ export default {
           // 如果校验通过就调用后端接口
           candidateApi.save(this.form).then(
             res => {
-              debugger
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
                 this.form.id = res.data.id

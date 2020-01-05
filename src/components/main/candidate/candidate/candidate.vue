@@ -14,9 +14,6 @@
       style="text-align:left;"
       :rules="rules"
     >
-      <el-form-item label="id">
-        <span>{{form.id}}</span>
-      </el-form-item>
       <el-form-item label="中文名" prop="chineseName">
         <el-input v-model="form.chineseName"></el-input>
       </el-form-item>

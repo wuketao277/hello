@@ -51,11 +51,9 @@ export default {
     save () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          debugger
           // 如果校验通过就调用后端接口
           clientApi.save(this.form).then(
             res => {
-              debugger
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
                 this.form.id = res.data.id
@@ -99,7 +97,8 @@ export default {
           path: '/client/clientlinkman',
           query: {
             mode: 'add',
-            clientId: this.form.id
+            clientId: this.form.id,
+            clientName: this.form.chineseName
           }
         })
       }
@@ -111,7 +110,8 @@ export default {
           path: '/client/clientlinkman',
           query: {
             mode: 'modify',
-            clientLinkMan: this.clientLinkManTableCurRow
+            clientLinkMan: this.clientLinkManTableCurRow,
+            clientName: this.form.chineseName
           }
         })
       }
@@ -123,14 +123,14 @@ export default {
           path: '/client/clientlinkman',
           query: {
             mode: 'detail',
-            clientLinkMan: this.clientLinkManTableCurRow
+            clientLinkMan: this.clientLinkManTableCurRow,
+            clientName: this.form.chineseName
           }
         })
       }
     },
     // 查询联系人信息
     queryLinkMan () {
-      debugger
       let params = {
         'clientId': this.form.id
       }
@@ -145,7 +145,6 @@ export default {
   created () {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
-      debugger
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.client

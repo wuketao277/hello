@@ -13,8 +13,8 @@
     </div>
     <el-table
       :data="table.content"
-      border="true"
-      highlight-current-row="true"
+      :border="true"
+      :highlight-current-row="true"
       @current-change="handleCurrentChange"
       style="width: 100%"
     >

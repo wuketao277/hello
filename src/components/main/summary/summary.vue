@@ -45,8 +45,6 @@
     <div class="blockdiv">
       <el-card class="box-card">
         <div>
-          <el-calendar v-model="calendar">
-          </el-calendar>
         </div>
       </el-card>
     </div>

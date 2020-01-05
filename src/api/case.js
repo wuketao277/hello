@@ -3,7 +3,6 @@ import axios from 'axios'
 export default {
   // 保存
   save (params) {
-    debugger
     return axios.post('/case/save', params)
   },
   // 删除

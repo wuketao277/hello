@@ -6,9 +6,6 @@
       <el-breadcrumb-item>客户</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form ref="form" :model="form" label-width="80px" size="small" style="margin-top:10px;text-align:left;">
-      <el-form-item label="id">
-        <span>{{form.id}}</span>
-      </el-form-item>
       <el-form-item label="中文名">
         <el-input v-model="form.chineseName"></el-input>
       </el-form-item>
@@ -30,13 +27,11 @@
     <template>
       <el-table
         :data="clientLinkManTable"
-        border="true"
-        highlight-current-row="true"
+        :border="true"
         style="width: 100%"
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="id" label="编号" width="180"></el-table-column>
         <el-table-column prop="chineseName" label="联系人中文名"></el-table-column>
         <el-table-column prop="englishName" label="联系人英文名"></el-table-column>
         <el-table-column prop="mobileNo" label="手机号"></el-table-column>
