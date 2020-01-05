@@ -40,13 +40,21 @@
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span slot="title">职位</span>
+            </template>
+            <el-menu-item index="/case/caselist">职位列表</el-menu-item>
+            <el-menu-item index="/case/case">新增职位</el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
               <i class="el-icon-document"></i>
               <span slot="title">候选人</span>
             </template>
             <el-menu-item index="/candidate/candidatelist">候选人列表</el-menu-item>
             <el-menu-item index="/candidate/candidate">新增候选人</el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
+          <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-edit"></i>
               <span slot="title">我的</span>
@@ -55,7 +63,7 @@
             <el-menu-item index="/my/mytask/tasklist">我的任务</el-menu-item>
             <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item>
           </el-submenu>
-          <el-submenu index="4">
+          <el-submenu index="5">
             <template slot="title">
               <i class="el-icon-bell"></i>
               <span slot="title">权限</span>
@@ -64,7 +72,7 @@
             <el-menu-item index="/resource/resourcelist">资源</el-menu-item>
             <el-menu-item index="/user/userlist">用户</el-menu-item>
           </el-submenu>
-          <el-submenu index="5">
+          <el-submenu index="6">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>

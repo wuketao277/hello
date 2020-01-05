@@ -14,6 +14,8 @@ import MyPlan from '@/components/main/my/myplan/myplan.vue'
 import Role from '@/components/main/role/role/role.vue'
 import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 import ClientLinkMan from '@/components/main/client/clientlinkman/clientlinkman.vue'
+import Case from '@/components/main/case/case/case.vue'
+import CaseList from '@/components/main/case/caselist/caselist.vue'
 
 Vue.use(Router)
 
@@ -96,6 +98,18 @@ const router = new Router({
           path: '/client/clientlinkman',
           name: 'clientlinkman',
           component: ClientLinkMan
+        },
+        {
+          // 职位列表
+          path: '/case/caselist',
+          name: 'caselist',
+          component: CaseList
+        },
+        {
+          // 职位
+          path: '/case/case',
+          name: 'case',
+          component: Case
         }
       ]
     },

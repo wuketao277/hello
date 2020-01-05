@@ -51,6 +51,7 @@ export default {
     save () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          debugger
           // 如果校验通过就调用后端接口
           clientApi.save(this.form).then(
             res => {

@@ -16,5 +16,9 @@ export default {
   // 通过id查询
   queryById (params) {
     return axios.get('/client/queryById', {params: params})
+  },
+  // 查找所有
+  findAll () {
+    return axios.get('/client/findAll')
   }
 }
