@@ -1,7 +1,12 @@
 import caseApi from '@/api/case'
 import clientApi from '@/api/client'
+import candidateForCaseApi from '@/api/candidateForCase'
+import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 
 export default {
+  components: {
+    'selectCandidate': selectCandidate
+  },
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
@@ -36,7 +41,13 @@ export default {
           trigger: 'blur'
         }]
       },
-      clients: []
+      clients: [],
+      // 职位候选人集合
+      candidateForCase: [],
+      // 当前选中职位对应候选人
+      curCandidateForCase: null,
+      // 选择候选人对话框是否显示
+      selectCandidateDialogShow: false
     }
   },
   methods: {
@@ -82,6 +93,67 @@ export default {
           })
         }
       })
+    },
+    // 为Case添加候选人
+    addCandidateForCase () {
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存职位信息！',
+          type: 'warning',
+          showClose: true
+        })
+      }
+    },
+    // 职位候选人变化
+    rowChange (val) {
+      this.curCandidateForCase = val
+    },
+    // “选择后续人”对话框返回
+    sureSelectCandidateDialog (val) {
+      debugger
+      // 首先关闭对话框
+      this.selectCandidateDialogShow = false
+      // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的后续人列表中
+      let include = false
+      for (let index in this.candidateForCase) {
+        if (this.candidateForCase[index].candidateId === val) {
+          include = true
+          break
+        }
+      }
+      if (include) {
+        // 如果选中的候选人重复，就给出提示
+        this.$message({
+          message: '该候选人已在该职位上！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        // 添加候选人到职位
+        let candidate = {'candidateId': val, 'caseId': this.form.id, 'clientId': this.form.clientId, 'title': this.form.title}
+        candidateForCaseApi.save(candidate).then(res => {
+          if (res.status === 200) {
+            // 获取该职位所有候选人信息
+            candidateForCaseApi.findByCaseId(this.form.id).then(res => {
+              if (res.status === 200) {
+                this.candidateForCase = res.data
+              }
+            })
+          }
+        })
+      }
+    },
+    // 打开选择候选人对话框
+    openSelectCandidateDialog () {
+      if (this.form.id === null) {
+        this.$message({
+          message: '请先保存职位信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.selectCandidateDialogShow = true
+      }
     }
   },
   created () {
@@ -90,7 +162,14 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.case
+      // 获取该职位所有候选人信息
+      candidateForCaseApi.findByCaseId(this.form.id).then(res => {
+        if (res.status === 200) {
+          this.candidateForCase = res.data
+        }
+      })
     }
+    // 获取所有“客户”信息
     clientApi.findAll().then(res => {
       if (res.status === 200) {
         this.clients = res.data
