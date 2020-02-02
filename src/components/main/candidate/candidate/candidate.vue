@@ -14,30 +14,53 @@
       style="text-align:left;"
       :rules="rules"
     >
-      <el-form-item label="中文名" prop="chineseName">
-        <el-input v-model="form.chineseName"></el-input>
-      </el-form-item>
-      <el-form-item label="英文名" prop="englishName">
-        <el-input v-model="form.englishName"></el-input>
-      </el-form-item>
-      <el-form-item label="年龄" prop="age">
-        <el-input v-model="form.age"></el-input>
-      </el-form-item>
-      <el-form-item label="手机号" prop="phoneNo">
-        <el-input v-model="form.phoneNo"></el-input>
-      </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input v-model="form.email"></el-input>
-      </el-form-item>
-      <el-form-item label="公司名称" prop="companyName">
-        <el-input v-model="form.companyName"></el-input>
-      </el-form-item>
-      <el-form-item label="部门" prop="department">
-        <el-input v-model="form.department"></el-input>
-      </el-form-item>
-      <el-form-item label="职位" prop="title">
-        <el-input v-model="form.title"></el-input>
-      </el-form-item>
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <el-form-item label="中文名" prop="chineseName">
+            <el-input v-model="form.chineseName"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="英文名" prop="englishName">
+            <el-input v-model="form.englishName"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="年龄" prop="age">
+            <el-input v-model="form.age"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <el-form-item label="手机号" prop="phoneNo">
+            <el-input v-model="form.phoneNo"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="form.email"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="公司名称" prop="companyName">
+            <el-input v-model="form.companyName"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <el-form-item label="部门" prop="department">
+            <el-input v-model="form.department"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="职位" prop="title">
+            <el-input v-model="form.title"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8"></el-col>
+      </el-row>
     </el-form>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
@@ -63,13 +86,83 @@
       size="small"
       :model="form"
       label-width="80px"
-      style="text-align:left;">
-      <el-form-item label="新评论" prop="content"  v-show="(mode === 'add' || mode === 'modify')">
+      style="text-align:left;"
+    >
+      <el-form-item label="新评论" prop="content" v-show="(mode === 'add' || mode === 'modify')">
         <el-input type="textarea" v-model="newComment.content"></el-input>
       </el-form-item>
     </el-form>
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
       <el-button type="success" size="small" icon="el-icon-circle-check" @click="saveComment">保存评论</el-button>
+    </div>
+    <hr style="background-color:#409EFF;height:1px;">
+    <!--添加任务-->
+    <div v-show="tasks.length > 0">
+      <el-row style="text-align:left;">
+        <el-col :span="2">
+          <span>任务人</span>
+        </el-col>
+        <el-col :span="4">
+          <span>执行时间</span>
+        </el-col>
+        <el-col :span="6">
+          <span>任务标题</span>
+        </el-col>
+        <el-col :span="12">
+          <span>任务内容</span>
+        </el-col>
+      </el-row>
+      <el-row v-for="task in tasks" :key="task" style="text-align:left;">
+        <el-col :span="2">
+          <div class="grid-content bg-purple">{{task.executeUserId}}</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content bg-purple">{{task.executeDate.substr(0,10)}}</div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple">{{task.taskTitle}}</div>
+        </el-col>
+        <el-col :span="12">
+          <div class="grid-content bg-purple">{{task.taskContent}}</div>
+        </el-col>
+      </el-row>
+    </div>
+    <el-form
+      ref="newTask"
+      label-position="left"
+      size="small"
+      :model="form"
+      label-width="80px"
+      style="text-align:left;"
+      v-show="(mode === 'add' || mode === 'modify')"
+    >
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="执行时间" prop="executeDate">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="newTask.executeDate"
+              style="width: 100%;"
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="18">
+          <el-form-item label="任务标题" prop="taskTitle">
+            <el-input v-model="newTask.taskTitle"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="24">
+          <el-form-item label="任务内容" prop="taskContent">
+            <el-input type="textarea" v-model="newTask.taskContent"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
+    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
+      <el-button type="success" size="small" icon="el-icon-circle-check" @click="saveTask">保存任务</el-button>
     </div>
   </div>
 </template>

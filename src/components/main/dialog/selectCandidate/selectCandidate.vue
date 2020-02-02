@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="toolbar">
-        <el-button type="primary" @click="cancelDialog">取 消</el-button>
-        <el-button type="primary" @click="sureDialog">确 定</el-button>
+        <el-button type="primary" size="small" @click="cancelDialog">取 消</el-button>
+        <el-button type="primary" size="small" @click="sureDialog">确 定</el-button>
       <el-button type="primary" size="small" icon="el-icon-search" @click="showSearchDialog = true">搜索</el-button>
     </div>
     <el-table

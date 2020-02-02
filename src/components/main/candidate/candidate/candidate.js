@@ -1,5 +1,6 @@
 import candidateApi from '@/api/candidate'
 import commentApi from '@/api/comment'
+import myTaskApi from '@/api/myTask'
 
 export default {
   data () {
@@ -70,6 +71,42 @@ export default {
           message: '职位名称长度不能大于200个字符',
           trigger: 'blur'
         }]
+      },
+      // 任务集合
+      tasks: [],
+      // 新任务
+      newTask: {
+        executeDate: null,
+        taskTitle: '',
+        taskContent: '',
+        relativeCandidateId: null
+      },
+      rulesTask: {
+        executeDateTime: {
+          required: true,
+          message: '执行时间必填',
+          trigger: 'blur'
+        },
+        taskTitle: [{
+          required: true,
+          message: '任务标题必填',
+          trigger: 'blur'
+        },
+        {
+          max: 200,
+          message: '任务标题长度不能大于200个字符',
+          trigger: 'blur'
+        }],
+        taskContent: [{
+          required: true,
+          message: '任务内容必填',
+          trigger: 'blur'
+        },
+        {
+          max: 2000,
+          message: '任务内容长度不能大于2000个字符',
+          trigger: 'blur'
+        }]
       }
     }
   },
@@ -109,7 +146,7 @@ export default {
     },
     // 查询所有评论
     queryComment () {
-      if (this.form.id.length !== 0) {
+      if (this.form.id !== null) {
         commentApi.findAllByCandidateId({
           'candidateId': this.form.id
         }).then(res => {
@@ -162,6 +199,49 @@ export default {
           })
         }
       })
+    },
+    // 查询当前候选人相关的任务
+    queryTask () {
+      debugger
+      if (this.form.id !== null) {
+        myTaskApi.findByRelativeCandidateId(this.form.id).then(res => {
+          if (res.status === 200) {
+            this.tasks = res.data
+          }
+        })
+      }
+    },
+    // 保存任务
+    saveTask () {
+      debugger
+      this.newTask.relativeCandidateId = this.form.id
+      myTaskApi.saveTaskToSelf(this.newTask).then(
+        res => {
+          if (res.status === 200) {
+            // 重新获取任务列表
+            this.queryTask()
+          }
+        })
+      // this.$refs['newTask'].validate((valid) => {
+      //   if (valid) {
+      //     // 如果校验通过就调用后端接口
+      //     this.newTask.relativeCandidateId = this.form.id
+      //     myTaskApi.saveTaskToSelf(this.newTask).then(
+      //       res => {
+      //         if (res.status === 200) {
+      //           // 重新获取任务列表
+      //           this.queryTask()
+      //         }
+      //       })
+      //   } else {
+      //     // 如果检查不通过就给出提示
+      //     this.$message({
+      //       message: '有错误，请检查！',
+      //       type: 'warning',
+      //       showClose: true
+      //     })
+      //   }
+      // })
     }
   },
   computed: {},
@@ -171,8 +251,10 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.candidate
-      // 查询comment
-      this.queryComment()
     }
+    // 查询comment
+    this.queryComment()
+    // 查询任务
+    this.queryTask()
   }
 }
