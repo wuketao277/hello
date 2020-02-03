@@ -33,6 +33,12 @@ export default {
       }
       return true
     },
+    // 新增任务
+    addTask () {
+      this.$router.push({
+        path: '/mytask/mytask'
+      })
+    },
     // 查看任务
     detailTask () {
       if (this.checkSelectRow()) {
@@ -85,6 +91,7 @@ export default {
     },
     // 查询后台数据
     query () {
+      debugger
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,

@@ -22,7 +22,7 @@
             size="mini"
             icon="el-icon-edit"
             circle
-            @click="openView('/my/mytask/tasklist')"
+            @click="openView('/mytask/mytasklist')"
           ></el-button>
         </div>
         <div v-for="task in myTasks" :key="task">

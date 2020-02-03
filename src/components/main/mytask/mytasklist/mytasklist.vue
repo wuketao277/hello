@@ -5,10 +5,10 @@
       <el-breadcrumb-item>任务列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addCandidate">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyCandidate">修改</el-button>
-      <el-button type="primary" size="small" icon="el-icon-share" @click="detailCandidate">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteCandidate">删除</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addTask">新增</el-button>
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyTask">修改</el-button>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="detailTask">查看</el-button>
+      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteTask">删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-search" @click="switchSearchDialog">搜索</el-button>
     </div>
     <el-table
@@ -22,11 +22,11 @@
       <el-table-column prop="id" label="id" width="50"></el-table-column>
       <el-table-column prop="taskTitle" label="任务的标题" width="200"></el-table-column>
       <el-table-column prop="taskContent" label="任务内容" width="360"></el-table-column>
-      <el-table-column prop="executeRealName" label="执行人"></el-table-column>
-      <el-table-column prop="executeDate" label="执行日期"></el-table-column>
-      <el-table-column prop="createRealName" label="创建人"></el-table-column>
+      <el-table-column prop="executeRealName" label="执行人" width="80"></el-table-column>
+      <el-table-column prop="executeDate" label="执行日期" width="100"></el-table-column>
+      <el-table-column prop="createRealName" label="创建人" width="80"></el-table-column>
       <el-table-column prop="createDateTime" label="创建时间"></el-table-column>
-      <el-table-column prop="relativeCandidateId" label="关联候选人id" width="80"></el-table-column>
+      <el-table-column prop="relativeCandidateId" label="候选人id" width="80"></el-table-column>
     </el-table>
     <el-pagination
       background
