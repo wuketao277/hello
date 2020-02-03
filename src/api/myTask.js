@@ -12,5 +12,13 @@ export default {
   // 通过后续人id查询
   findByRelativeCandidateId (params) {
     return axios.get('/myTask/findByRelativeCandidateId?relativeCandidateId=' + params)
+  },
+  // 查询本人今日任务
+  queryTodayTaskForMe () {
+    return axios.get('/myTask/queryTodayTaskForMe')
+  },
+  // 查找后台数据
+  queryMyTaskPage (params) {
+    return axios.get('/myTask/queryMyTaskPage', {params: params})
   }
 }

@@ -25,7 +25,14 @@
             @click="openView('/my/mytask/tasklist')"
           ></el-button>
         </div>
-        <div v-for="o in 4" :key="o" class="text item">{{'任务内容 ' + o }}</div>
+        <div v-for="task in myTasks" :key="task">
+          <el-row style="padding-bottom:5px;">
+            <el-col :span="18">{{task.taskTitle}}</el-col>
+            <el-col :span="6">
+              <el-button type="success" size="mini" icon="el-icon-circle-check" @click="viewCandidate(task)">查看详情</el-button>
+            </el-col>
+          </el-row>
+        </div>
       </el-card>
     </div>
     <div class="blockdiv">
@@ -44,8 +51,7 @@
     </div>
     <div class="blockdiv">
       <el-card class="box-card">
-        <div>
-        </div>
+        <div></div>
       </el-card>
     </div>
   </div>

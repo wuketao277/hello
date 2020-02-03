@@ -9,7 +9,8 @@ import Candidate from '@/components/main/candidate/candidate/candidate.vue'
 import Summary from '@/components/main/summary/summary.vue'
 import NewsList from '@/components/main/my/mynews/newslist/newslist.vue'
 import News from '@/components/main/my/mynews/news/news.vue'
-import MyTask from '@/components/main/my/mytask/mytask.vue'
+import MyTask from '@/components/main/mytask/mytask/mytask.vue'
+import MyTaskList from '@/components/main/mytask/mytasklist/mytasklist.vue'
 import MyPlan from '@/components/main/my/myplan/myplan.vue'
 import Role from '@/components/main/role/role/role.vue'
 import RoleList from '@/components/main/role/rolelist/rolelist.vue'
@@ -71,9 +72,15 @@ const router = new Router({
         },
         {
           // 我的任务
-          path: '/my/mytask',
+          path: '/mytask/mytask',
           name: 'mytask',
           component: MyTask
+        },
+        {
+          // 我的任务列表
+          path: '/mytask/mytasklist',
+          name: 'mytasklist',
+          component: MyTaskList
         },
         {
           // 我的计划

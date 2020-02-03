@@ -213,7 +213,6 @@ export default {
     },
     // 保存任务
     saveTask () {
-      debugger
       this.newTask.relativeCandidateId = this.form.id
       myTaskApi.saveTaskToSelf(this.newTask).then(
         res => {

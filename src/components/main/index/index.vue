@@ -60,7 +60,7 @@
               <span slot="title">我的</span>
             </template>
             <el-menu-item index="/my/mynews/newslist">我的新闻</el-menu-item>
-            <el-menu-item index="/my/mytask/tasklist">我的任务</el-menu-item>
+            <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
             <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item>
           </el-submenu>
           <el-submenu index="5">

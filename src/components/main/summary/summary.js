@@ -1,7 +1,11 @@
+import myTaskApi from '@/api/myTask'
+import candidateApi from '@/api/candidate'
+
 export default {
   data () {
     return {
-      calendar: new Date()
+      calendar: new Date(),
+      myTasks: []
     }
   },
   methods: {
@@ -10,6 +14,31 @@ export default {
         path: path,
         query: {}
       })
+    },
+    viewCandidate (task) {
+      // 如果关联候选人id不为空，就调用后台查询候选人信息，并跳转到候选人页面
+      if (task.relativeCandidateId !== null) {
+        candidateApi.findById(task.relativeCandidateId).then(res => {
+          if (res.status === 200) {
+            this.$router.push({
+              path: '/candidate/candidate',
+              query: {
+                mode: 'modify',
+                candidate: res.data
+              }
+            })
+          }
+        })
+      }
     }
+  },
+  created () {
+    // 获取今日任务
+    myTaskApi.queryTodayTaskForMe().then(res => {
+      if (res.status === 200) {
+        this.myTasks = res.data
+        debugger
+      }
+    })
   }
 }
