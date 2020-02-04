@@ -15,9 +15,10 @@ export default {
         query: {}
       })
     },
-    viewCandidate (task) {
-      // 如果关联候选人id不为空，就调用后台查询候选人信息，并跳转到候选人页面
+    // 查看详情
+    viewDetail (task) {
       if (task.relativeCandidateId !== null) {
+        // 如果关联候选人id不为空，就调用后台查询候选人信息，并跳转到候选人页面
         candidateApi.findById(task.relativeCandidateId).then(res => {
           if (res.status === 200) {
             this.$router.push({
@@ -27,6 +28,15 @@ export default {
                 candidate: res.data
               }
             })
+          }
+        })
+      } else {
+        // 否则就跳转到任务详情页
+        this.$router.push({
+          path: '/mytask/mytask',
+          query: {
+            mode: 'detail',
+            task: task
           }
         })
       }

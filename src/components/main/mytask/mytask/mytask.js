@@ -5,13 +5,13 @@ export default {
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
+      saved: false, // 界面的数据是否保存过
       selectUsers: [], // 任务执行人集合
       users: [],
       form: {
-        id: null,
         taskTitle: '',
-        executeDate: '',
         taskContent: '',
+        executeDate: '',
         executeUserName: '',
         executeRealName: ''
       },
@@ -39,7 +39,12 @@ export default {
             message: '任务内容长度不能大于2000个字符',
             trigger: 'blur'
           }
-        ]
+        ],
+        executeDate: [{
+          required: true,
+          message: '执行日期必填',
+          trigger: 'blur'
+        }]
       }
     }
   },
@@ -60,19 +65,32 @@ export default {
     save () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          // 如果校验通过就调用后端接口
-          myTaskApi.save(this.form).then(
-            res => {
-              if (res.status === 200) {
-                // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
-                this.$message({
-                  message: '保存成功！',
-                  type: 'success',
-                  showClose: true
-                })
-              }
+          if (this.selectUsers.length === 0) {
+            this.$message({
+              message: '请选择任务执行人！',
+              type: 'warning',
+              showClose: true
             })
+            return
+          }
+          // 如果校验通过就调用后端接口
+          for (let index in this.selectUsers) {
+            let task = JSON.parse(JSON.stringify(this.form))
+            task.executeUserName = this.selectUsers[index]['username']
+            task.executeRealName = this.selectUsers[index]['realname']
+            myTaskApi.save(task).then(
+              res => {
+                if (res.status === 200) {
+                  this.$message({
+                    message: '保存成功！',
+                    type: 'success',
+                    showClose: true
+                  })
+                }
+              })
+          }
+          // 修改保证状态标志
+          this.saved = true
         } else {
           // 如果检查不通过就给出提示
           this.$message({

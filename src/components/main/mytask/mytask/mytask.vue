@@ -49,7 +49,7 @@
       </el-row>
     </el-form>
     <!--工具栏，只有模式为新增或修改时才显示-->
-    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
+    <div class="toolbar" v-show="mode === 'add' && !saved">
       <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
     </div>

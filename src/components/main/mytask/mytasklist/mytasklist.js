@@ -51,18 +51,6 @@ export default {
         })
       }
     },
-    // 修改任务
-    modifyTask () {
-      if (this.checkSelectRow()) {
-        this.$router.push({
-          path: '/mytask/mytask',
-          query: {
-            mode: 'modify',
-            task: this.currentRow
-          }
-        })
-      }
-    },
     // 删除任务
     deleteTask () {
       if (this.checkSelectRow()) {

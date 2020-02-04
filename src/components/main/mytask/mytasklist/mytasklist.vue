@@ -6,9 +6,8 @@
     </el-breadcrumb>
     <div class="toolbar">
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addTask">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyTask">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detailTask">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteTask">删除</el-button>
+      <!-- <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteTask">删除</el-button> -->
       <el-button type="primary" size="small" icon="el-icon-search" @click="switchSearchDialog">搜索</el-button>
     </div>
     <el-table

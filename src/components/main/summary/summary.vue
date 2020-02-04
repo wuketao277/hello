@@ -27,9 +27,9 @@
         </div>
         <div v-for="task in myTasks" :key="task">
           <el-row style="padding-bottom:5px;">
-            <el-col :span="18">{{task.taskTitle}}</el-col>
-            <el-col :span="6">
-              <el-button type="success" size="mini" icon="el-icon-circle-check" @click="viewCandidate(task)">查看详情</el-button>
+            <el-col :span="20">{{task.taskTitle}}</el-col>
+            <el-col :span="4">
+              <el-button type="success" size="mini" icon="el-icon-circle-check" @click="viewDetail(task)">查看</el-button>
             </el-col>
           </el-row>
         </div>
