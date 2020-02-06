@@ -1,7 +1,14 @@
 import clientApi from '@/api/client'
 import clientLinkManApi from '@/api/clientlinkman'
+import uploadFileApi from '@/api/uploadFile'
+import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
+import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 
 export default {
+  components: {
+    'uploadFile': uploadFile,
+    'downloadFile': downloadFile
+  },
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
@@ -32,7 +39,10 @@ export default {
       // 联系人表格
       clientLinkManTable: [],
       // 联系人表格 当前行
-      clientLinkManTableCurRow: null
+      clientLinkManTableCurRow: null,
+      showUploadFileDialog: false, // 上传文件对话框
+      uploadFileData: null, // 上传文件附加数据
+      uploadFiles: [] // 上传文件集合
     }
   },
   methods: {
@@ -140,6 +150,30 @@ export default {
             this.clientLinkManTable = res.data
           }
         })
+    },
+    // 打开上次文件对话框
+    openUploadFileDialog () {
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存客户信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'client'}
+        this.showUploadFileDialog = true
+      }
+    },
+    // 查询上传文件集合
+    queryUploadFiles () {
+      if (this.form.id !== null) {
+        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'client'}
+        uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
+          if (res.status === 200) {
+            this.uploadFiles = res.data
+          }
+        })
+      }
     }
   },
   created () {
@@ -151,5 +185,7 @@ export default {
       // 对于非新增操作，需要在创建时查询“联系人”信息
       this.queryLinkMan()
     }
+    // 查询上传文件
+    this.queryUploadFiles()
   }
 }

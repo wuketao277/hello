@@ -42,7 +42,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       changeOrigin: true,
       context: ["/mynews/**","/myTask/**","/myplan/**","/role/**","/user/**"
         ,"/resource/**","/candidate/**","/comment/**","/security/**"
-        ,"/client/**","/clientlinkman/**","/case/**","/candidateForCase/**"],
+        ,"/client/**","/clientlinkman/**","/case/**","/candidateForCase/**","/uploadFile/**"],
       target: "http://localhost"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin

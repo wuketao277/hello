@@ -1,14 +1,12 @@
 <template>
   <el-container style="height:100%;">
-    <el-header style="background-color:#565C5F;height:50px;padding:0px;text-align:left;">
+    <el-header style="background-color:#565C5F;height:50px;padding:0px;text-align:left;font-size:25px;">
       <div style="float:left;width:50%;text-align:left;">
-        <span style="font-size:30px;vertical-align:top;color:#ffffff;">Hello人才管理系统</span>
+        <span style="vertical-align:top;color:#ffffff;">Hello人才管理系统</span>
       </div>
-      <div style="float:right;width:50%;text-align:right;height:25px;">
+      <div style="float:right;width:50%;text-align:right;">
         <span style="color:#67C23A;">欢迎，{{realname}}</span>&nbsp;&nbsp;
-        <el-tooltip class="item" effect="dark" content="退出系统" placement="bottom-end">
-          <el-button type="danger" icon="el-icon-delete" circle @click="logout"></el-button>
-        </el-tooltip>
+        <span @click="logout" style="cursor:pointer">退出系统</span>
       </div>
     </el-header>
     <el-container>

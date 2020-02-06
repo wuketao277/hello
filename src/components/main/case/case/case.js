@@ -2,10 +2,15 @@ import caseApi from '@/api/case'
 import clientApi from '@/api/client'
 import candidateForCaseApi from '@/api/candidateForCase'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
+import uploadFileApi from '@/api/uploadFile'
+import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
+import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 
 export default {
   components: {
-    'selectCandidate': selectCandidate
+    'selectCandidate': selectCandidate,
+    'uploadFile': uploadFile,
+    'downloadFile': downloadFile
   },
   data () {
     return {
@@ -47,7 +52,10 @@ export default {
       // 当前选中职位对应候选人
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
-      selectCandidateDialogShow: false
+      selectCandidateDialogShow: false,
+      showUploadFileDialog: false, // 上传文件对话框
+      uploadFileData: null, // 上传文件附加数据
+      uploadFiles: [] // 上传文件集合
     }
   },
   methods: {
@@ -154,6 +162,30 @@ export default {
       } else {
         this.selectCandidateDialogShow = true
       }
+    },
+    // 打开上次文件对话框
+    openUploadFileDialog () {
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存职位信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'case'}
+        this.showUploadFileDialog = true
+      }
+    },
+    // 查询上传文件集合
+    queryUploadFiles () {
+      if (this.form.id !== null) {
+        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'case'}
+        uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
+          if (res.status === 200) {
+            this.uploadFiles = res.data
+          }
+        })
+      }
     }
   },
   created () {
@@ -175,5 +207,7 @@ export default {
         this.clients = res.data
       }
     })
+    // 查询上传文件
+    this.queryUploadFiles()
   }
 }

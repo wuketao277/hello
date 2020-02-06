@@ -65,7 +65,13 @@
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
       <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存候选人</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+      <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        icon="el-icon-upload"
+        @click="openUploadFileDialog"
+      >上传文件</el-button>
     </div>
     <el-tabs type="border-card">
       <el-tab-pane label="评论">
@@ -187,7 +193,16 @@
         </div>
         <!--任务结束-->
       </el-tab-pane>
+      <el-tab-pane label="文件">
+        <!--附件开始-->
+        <downloadFile :files="uploadFiles" v-on:delete-file-success="queryUploadFiles"></downloadFile>
+        <!--附件结束-->
+      </el-tab-pane>
     </el-tabs>
+    <!--上传文件对话框-->
+    <el-dialog title="上传文件" :visible.sync="showUploadFileDialog">
+      <uploadFile :uploadFileData="uploadFileData" v-on:upload_file_success="queryUploadFiles"></uploadFile>
+    </el-dialog>
   </div>
 </template>
 <script src="./candidate.js"></script>

@@ -1,8 +1,15 @@
 import candidateApi from '@/api/candidate'
 import commentApi from '@/api/comment'
 import myTaskApi from '@/api/myTask'
+import uploadFileApi from '@/api/uploadFile'
+import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
+import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 
 export default {
+  components: {
+    'uploadFile': uploadFile,
+    'downloadFile': downloadFile
+  },
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
@@ -107,7 +114,10 @@ export default {
           message: '任务内容长度不能大于2000个字符',
           trigger: 'blur'
         }]
-      }
+      },
+      showUploadFileDialog: false, // 上传文件对话框
+      uploadFileData: null, // 上传文件附加数据
+      uploadFiles: [] // 上传文件集合
     }
   },
   methods: {
@@ -221,26 +231,30 @@ export default {
             this.queryTask()
           }
         })
-      // this.$refs['newTask'].validate((valid) => {
-      //   if (valid) {
-      //     // 如果校验通过就调用后端接口
-      //     this.newTask.relativeCandidateId = this.form.id
-      //     myTaskApi.saveTaskToSelf(this.newTask).then(
-      //       res => {
-      //         if (res.status === 200) {
-      //           // 重新获取任务列表
-      //           this.queryTask()
-      //         }
-      //       })
-      //   } else {
-      //     // 如果检查不通过就给出提示
-      //     this.$message({
-      //       message: '有错误，请检查！',
-      //       type: 'warning',
-      //       showClose: true
-      //     })
-      //   }
-      // })
+    },
+    // 打开上次文件对话框
+    openUploadFileDialog () {
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存候选人信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'candidate'}
+        this.showUploadFileDialog = true
+      }
+    },
+    // 查询上传文件集合
+    queryUploadFiles () {
+      if (this.form.id !== null) {
+        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'candidate'}
+        uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
+          if (res.status === 200) {
+            this.uploadFiles = res.data
+          }
+        })
+      }
     }
   },
   computed: {},
@@ -255,5 +269,7 @@ export default {
     this.queryComment()
     // 查询任务
     this.queryTask()
+    // 查询上传文件
+    this.queryUploadFiles()
   }
 }

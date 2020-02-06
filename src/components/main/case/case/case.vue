@@ -47,7 +47,13 @@
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
       <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+      <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        icon="el-icon-upload"
+        @click="openUploadFileDialog"
+      >上传文件</el-button>
     </div>
     <el-tabs type="border-card">
       <el-tab-pane label="候选人">
@@ -75,15 +81,24 @@
           <el-table-column prop="createTime" label="创建时间"></el-table-column>
           <el-table-column prop="createUserName" label="创建人id"></el-table-column>
         </el-table>
-        <el-dialog title="选择候选人" :visible.sync="selectCandidateDialogShow">
-          <selectCandidate
-            v-on:cancel-dialog="selectCandidateDialogShow = false"
-            v-on:sure-dialog="sureSelectCandidateDialog"
-          ></selectCandidate>
-        </el-dialog>
         <!--候选人结束-->
       </el-tab-pane>
+      <el-tab-pane label="文件">
+        <!--附件开始-->
+        <downloadFile :files="uploadFiles" v-on:delete-file-success="queryUploadFiles"></downloadFile>
+        <!--附件结束-->
+      </el-tab-pane>
     </el-tabs>
+    <el-dialog title="选择候选人" :visible.sync="selectCandidateDialogShow">
+      <selectCandidate
+        v-on:cancel-dialog="selectCandidateDialogShow = false"
+        v-on:sure-dialog="sureSelectCandidateDialog"
+      ></selectCandidate>
+    </el-dialog>
+    <!--上传文件对话框-->
+    <el-dialog title="上传文件" :visible.sync="showUploadFileDialog">
+      <uploadFile :uploadFileData="uploadFileData" v-on:upload_file_success="queryUploadFiles"></uploadFile>
+    </el-dialog>
   </div>
 </template>
 <script src="./case.js"></script>
