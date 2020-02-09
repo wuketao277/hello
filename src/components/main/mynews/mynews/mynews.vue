@@ -2,7 +2,7 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/my/mynews/newslist' }">我的新闻</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/mynews/mynewslist' }">我的新闻</el-breadcrumb-item>
       <el-breadcrumb-item>新闻</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form
@@ -14,9 +14,6 @@
       style="text-align:left;"
       :rules="rules"
     >
-      <el-form-item label="id">
-        <span>{{form.id}}</span>
-      </el-form-item>
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title"></el-input>
       </el-form-item>
@@ -43,7 +40,24 @@
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
       <el-button type="success" size="small" icon="el-icon-circle-check" @click="saveNews">保存</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        icon="el-icon-upload"
+        @click="openUploadFileDialog"
+      >上传文件</el-button>
     </div>
+    <el-tabs type="border-card">
+      <el-tab-pane label="文件">
+        <!--附件开始-->
+        <downloadFile :files="uploadFiles" v-on:delete-file-success="queryUploadFiles"></downloadFile>
+        <!--附件结束-->
+      </el-tab-pane>
+    </el-tabs>
+    <!--上传文件对话框-->
+    <el-dialog title="上传文件" :visible.sync="showUploadFileDialog">
+      <uploadFile :uploadFileData="uploadFileData" v-on:upload_file_success="queryUploadFiles"></uploadFile>
+    </el-dialog>
   </div>
 </template>
-<script src="./news.js"></script>
+<script src="./mynews.js"></script>

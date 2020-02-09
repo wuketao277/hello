@@ -22,7 +22,7 @@ export default {
   methods: {
     // 添加新闻
     addNews () {
-      this.$router.push({path: '/my/mynews/news'})
+      this.$router.push({path: '/mynews/mynews'})
     },
     // 检查是否选择了一条记录
     checkSelectRow () {
@@ -39,21 +39,21 @@ export default {
     // 查看新闻
     detailNews () {
       if (this.checkSelectRow()) {
-        this.$router.push({path: '/my/mynews/news',
+        this.$router.push({path: '/mynews/mynews',
           query: {mode: 'detail', news: this.currentRow}})
       }
     },
     // 修改新闻
     modifyNews () {
       if (this.checkSelectRow()) {
-        this.$router.push({path: '/my/mynews/news',
+        this.$router.push({path: '/mynews/mynews',
           query: {mode: 'modify', news: this.currentRow}})
       }
     },
     // 删除新闻
     deleteNews () {
       if (this.checkSelectRow()) {
-        this.$router.push({path: '/my/mynews/news',
+        this.$router.push({path: '/mynews/mynews',
           query: {mode: 'detail', news: this.currentRow}})
       }
     },

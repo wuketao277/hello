@@ -232,7 +232,7 @@ export default {
           }
         })
     },
-    // 打开上次文件对话框
+    // 打开上传文件对话框
     openUploadFileDialog () {
       if (this.form.id == null) {
         this.$message({

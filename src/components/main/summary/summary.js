@@ -1,11 +1,13 @@
 import myTaskApi from '@/api/myTask'
+import myNewsApi from '@/api/mynews'
 import candidateApi from '@/api/candidate'
 
 export default {
   data () {
     return {
       calendar: new Date(),
-      myTasks: []
+      myTasks: [],
+      myNewsList: []
     }
   },
   methods: {
@@ -15,8 +17,8 @@ export default {
         query: {}
       })
     },
-    // 查看详情
-    viewDetail (task) {
+    // 查看任务详情
+    viewMyTaskDetail (task) {
       if (task.relativeCandidateId !== null) {
         // 如果关联候选人id不为空，就调用后台查询候选人信息，并跳转到候选人页面
         candidateApi.findById(task.relativeCandidateId).then(res => {
@@ -40,6 +42,17 @@ export default {
           }
         })
       }
+    },
+    // 查看新闻详情
+    viewMyNewsDetail (myNews) {
+      // 否则就跳转到任务详情页
+      this.$router.push({
+        path: '/mynews/mynews',
+        query: {
+          mode: 'detail',
+          news: myNews
+        }
+      })
     }
   },
   created () {
@@ -47,7 +60,12 @@ export default {
     myTaskApi.queryTodayTaskForMe().then(res => {
       if (res.status === 200) {
         this.myTasks = res.data
-        debugger
+      }
+    })
+    // 获取新闻
+    myNewsApi.findTop10().then(res => {
+      if (res.status === 200) {
+        this.myNewsList = res.data
       }
     })
   }

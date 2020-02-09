@@ -1,6 +1,13 @@
 import mynews from '@/api/mynews'
+import uploadFileApi from '@/api/uploadFile'
+import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
+import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 
 export default {
+  components: {
+    'uploadFile': uploadFile,
+    'downloadFile': downloadFile
+  },
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
@@ -23,7 +30,10 @@ export default {
         content: [
           {max: 2000, message: '长度不能大于2000个字符', trigger: 'blur'}
         ]
-      }
+      },
+      showUploadFileDialog: false, // 上传文件对话框
+      uploadFileData: null, // 上传文件附加数据
+      uploadFiles: [] // 上传文件集合
     }
   },
   methods: {
@@ -62,6 +72,30 @@ export default {
           })
         }
       })
+    },
+    // 打开上传文件对话框
+    openUploadFileDialog () {
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存新闻信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'mynews'}
+        this.showUploadFileDialog = true
+      }
+    },
+    // 查询上传文件集合
+    queryUploadFiles () {
+      if (this.form.id !== null) {
+        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'mynews'}
+        uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
+          if (res.status === 200) {
+            this.uploadFiles = res.data
+          }
+        })
+      }
     }
   },
   computed: {},
@@ -71,5 +105,7 @@ export default {
       this.mode = this.$route.query.mode
       this.form = this.$route.query.news
     }
+    // 查询上传文件
+    this.queryUploadFiles()
   }
 }

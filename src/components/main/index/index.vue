@@ -57,20 +57,11 @@
               <i class="el-icon-edit"></i>
               <span slot="title">我的</span>
             </template>
-            <el-menu-item index="/my/mynews/newslist">我的新闻</el-menu-item>
+            <el-menu-item index="/mynews/mynewslist">我的新闻</el-menu-item>
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
             <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item>
           </el-submenu>
           <el-submenu index="5">
-            <template slot="title">
-              <i class="el-icon-bell"></i>
-              <span slot="title">权限</span>
-            </template>
-            <el-menu-item index="/role/rolelist">角色</el-menu-item>
-            <el-menu-item index="/resource/resourcelist">资源</el-menu-item>
-            <el-menu-item index="/user/userlist">用户</el-menu-item>
-          </el-submenu>
-          <el-submenu index="6">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>

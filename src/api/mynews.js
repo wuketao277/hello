@@ -8,5 +8,9 @@ export default {
   // 查找后台数据
   queryNewsPage (params) {
     return axios.get('/mynews/queryNewsPage', {params: params})
+  },
+  // 获取前10条新闻
+  findTop10 () {
+    return axios.get('/mynews/findTop10')
   }
 }

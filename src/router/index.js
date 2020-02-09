@@ -7,8 +7,8 @@ import Client from '@/components/main/client/client/client.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
 import Candidate from '@/components/main/candidate/candidate/candidate.vue'
 import Summary from '@/components/main/summary/summary.vue'
-import NewsList from '@/components/main/my/mynews/newslist/newslist.vue'
-import News from '@/components/main/my/mynews/news/news.vue'
+import MyNewsList from '@/components/main/mynews/mynewslist/mynewslist.vue'
+import MyNews from '@/components/main/mynews/mynews/mynews.vue'
 import MyTask from '@/components/main/mytask/mytask/mytask.vue'
 import MyTaskList from '@/components/main/mytask/mytasklist/mytasklist.vue'
 import MyPlan from '@/components/main/my/myplan/myplan.vue'
@@ -17,6 +17,7 @@ import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 import ClientLinkMan from '@/components/main/client/clientlinkman/clientlinkman.vue'
 import Case from '@/components/main/case/case/case.vue'
 import CaseList from '@/components/main/case/caselist/caselist.vue'
+import SecurityApi from '@/api/security'
 
 Vue.use(Router)
 
@@ -60,15 +61,15 @@ const router = new Router({
         },
         {
           // 我的新闻列表
-          path: '/my/mynews/newslist',
+          path: '/mynews/mynewslist',
           name: 'newslist',
-          component: NewsList
+          component: MyNewsList
         },
         {
           // 我的新闻
-          path: '/my/mynews/news',
+          path: '/mynews/mynews',
           name: 'news',
-          component: News
+          component: MyNews
         },
         {
           // 我的任务
@@ -130,13 +131,22 @@ const router = new Router({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
+  debugger
   if (to.name !== 'login') {
-    const loginInfo = window.localStorage['loginInfo']
-    // 未登录状态；当路由到 nextRoute 指定页时，跳转至 UserLogIn
-    if (loginInfo === 'null') { // 检测是否登录的页面
-      next('/login')
-      return
-    }
+    // 如果访问的不是登录页面，就通过接口检查服务器登录状态
+    SecurityApi.checkLogin().then(res => {
+      if (res.status === 200 && res.data) {
+        // 如果服务器登录状态为true，就检查本地数据
+        const loginInfo = window.localStorage['loginInfo']
+        // 未登录状态；当路由到 nextRoute 指定页时，跳转至 UserLogIn
+        if (loginInfo === 'null') { // 检测是否登录的页面
+          next('/login')
+        }
+      } else {
+        // 如果服务器登录状态为false，就跳转到登录业务
+        next('/login')
+      }
+    })
   }
   next() // 必须使用 next ,执行效果依赖 next 方法的调用参数
 })

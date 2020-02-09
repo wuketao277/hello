@@ -8,10 +8,17 @@
             size="mini"
             icon="el-icon-edit"
             circle
-            @click="openView('/my/mynews/newslist')"
+            @click="openView('/mynews/mynewslist')"
           ></el-button>
         </div>
-        <div v-for="o in 4" :key="o" class="text item">{{'列表内容 ' + o }}</div>
+        <div v-for="myNews in myNewsList" :key="myNews">
+          <el-row style="padding-bottom:5px;">
+            <el-col :span="20">{{myNews.title}}</el-col>
+            <el-col :span="4">
+              <el-button type="success" size="mini" icon="el-icon-circle-check" @click="viewMyNewsDetail(myNews)">查看</el-button>
+            </el-col>
+          </el-row>
+        </div>
       </el-card>
     </div>
     <div class="blockdiv">
@@ -29,7 +36,7 @@
           <el-row style="padding-bottom:5px;">
             <el-col :span="20">{{task.taskTitle}}</el-col>
             <el-col :span="4">
-              <el-button type="success" size="mini" icon="el-icon-circle-check" @click="viewDetail(task)">查看</el-button>
+              <el-button type="success" size="mini" icon="el-icon-circle-check" @click="viewMyTaskDetail(task)">查看</el-button>
             </el-col>
           </el-row>
         </div>
