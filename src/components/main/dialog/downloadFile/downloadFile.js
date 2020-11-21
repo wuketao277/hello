@@ -17,7 +17,6 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        debugger
         uploadFileApi.deleteById(file.id).then(res => {
           if (res.status === 200) {
             this.$message({

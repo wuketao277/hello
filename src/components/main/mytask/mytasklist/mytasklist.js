@@ -79,7 +79,6 @@ export default {
     },
     // 查询后台数据
     query () {
-      debugger
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -93,7 +92,6 @@ export default {
           return
         }
         this.table = res.data
-        debugger
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
       })
     },

@@ -43,7 +43,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       context: ["/mynews/**","/myTask/**","/myplan/**","/role/**","/user/**"
         ,"/resource/**","/candidate/**","/comment/**","/security/**"
         ,"/client/**","/clientlinkman/**","/case/**","/candidateForCase/**","/uploadFile/**"],
-      target: "http://localhost"
+      target: "http://localhost:8000"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {

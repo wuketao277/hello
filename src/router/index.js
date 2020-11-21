@@ -131,7 +131,6 @@ const router = new Router({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
-  debugger
   if (to.name !== 'login') {
     // 如果访问的不是登录页面，就通过接口检查服务器登录状态
     SecurityApi.checkLogin().then(res => {

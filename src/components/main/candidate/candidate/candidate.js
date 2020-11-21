@@ -212,7 +212,6 @@ export default {
     },
     // 查询当前候选人相关的任务
     queryTask () {
-      debugger
       if (this.form.id !== null) {
         myTaskApi.findByRelativeCandidateId(this.form.id).then(res => {
           if (res.status === 200) {
