@@ -3,6 +3,7 @@ import axios from 'axios'
 export default {
   // 保存候选人接口
   save (params) {
+    debugger
     return axios.post('/candidate/save', params)
   },
   // 通过主键查找候选人信息

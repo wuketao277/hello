@@ -16,6 +16,11 @@
     >
       <el-row :gutter="20">
         <el-col :span="8">
+          <el-form-item label="日期" prop="date">
+            <el-input v-model="form.date"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
           <el-form-item label="中文名" prop="chineseName">
             <el-input v-model="form.chineseName"></el-input>
           </el-form-item>
@@ -25,13 +30,13 @@
             <el-input v-model="form.englishName"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item label="年龄" prop="age">
             <el-input v-model="form.age"></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item label="手机号" prop="phoneNo">
             <el-input v-model="form.phoneNo"></el-input>
@@ -42,13 +47,13 @@
             <el-input v-model="form.email"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item label="公司名称" prop="companyName">
             <el-input v-model="form.companyName"></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item label="部门" prop="department">
             <el-input v-model="form.department"></el-input>
@@ -59,7 +64,44 @@
             <el-input v-model="form.title"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8"></el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <el-form-item label="学校" prop="schoolName">
+            <el-input v-model="form.schoolName"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="现地" prop="currentAddress">
+            <el-input v-model="form.currentAddress"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="期地" prop="futureAddress">
+            <el-input v-model="form.futureAddress"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <el-form-item label="现薪" prop="currentMoney">
+            <el-input v-model="form.currentMoney"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="期薪" prop="futureMoney">
+            <el-input v-model="form.futureMoney"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="24">
+          <el-form-item label="备注" prop="remark">
+            <el-input v-model="form.remark"  type="textarea" :rows="2"></el-input>
+          </el-form-item>
+        </el-col>
       </el-row>
     </el-form>
     <!--工具栏，只有模式为新增或修改时才显示-->

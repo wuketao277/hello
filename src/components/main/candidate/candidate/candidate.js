@@ -15,6 +15,7 @@ export default {
       mode: 'add', // 默认操作模式为新建
       form: {
         id: null,
+        date: '',
         chineseName: '',
         englishName: '',
         age: 0,
@@ -22,7 +23,13 @@ export default {
         email: '',
         companyName: '',
         department: '',
-        title: ''
+        title: '',
+        schoolName: '',
+        currentAddress: '',
+        futureAddress: '',
+        currentMoney: '',
+        futureMoney: '',
+        remark: ''
       },
       // 新评论
       newComment: {
@@ -46,11 +53,6 @@ export default {
         englishName: [{
           max: 100,
           message: '英文名长度不能大于100个字符',
-          trigger: 'blur'
-        }],
-        age: [{
-          max: 2,
-          message: '年龄不正确',
           trigger: 'blur'
         }],
         phoneNo: [{
@@ -173,6 +175,7 @@ export default {
         this.form = this.$route.query.candidate
       } else {
         this.form.id = ''
+        this.form.date = ''
         this.form.chineseName = ''
         this.form.englishName = ''
         this.form.age = 0
@@ -181,6 +184,12 @@ export default {
         this.form.companyName = ''
         this.form.department = ''
         this.form.title = ''
+        this.form.schoolName = ''
+        this.form.currentAddress = ''
+        this.form.futureAddress = ''
+        this.form.currentMoney = ''
+        this.form.futureMoney = ''
+        this.form.remark = ''
       }
     },
     // 保存新闻
