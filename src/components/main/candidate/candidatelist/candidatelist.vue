@@ -63,7 +63,6 @@
       <el-table-column prop="futureAddress" label="期望地址"></el-table-column>
       <el-table-column prop="currentMoney" label="现薪资"></el-table-column>
       <el-table-column prop="futureMoney" label="期望薪资"></el-table-column>
-      <el-table-column prop="remark" label="备注"></el-table-column>
     </el-table>
     <el-pagination
       background
