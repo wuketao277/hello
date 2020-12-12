@@ -99,7 +99,7 @@
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="备注" prop="remark">
-            <el-input v-model="form.remark"  type="textarea" :rows="2"></el-input>
+            <el-input v-model="form.remark"  type="textarea" :rows="6"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
