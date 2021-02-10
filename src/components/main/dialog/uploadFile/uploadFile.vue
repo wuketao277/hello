@@ -2,7 +2,7 @@
   <div>
     <el-upload
       class="upload-demo"
-      action="http://localhost:8080/uploadFile/uploadFile"
+      action="http://47.101.176.70/uploadFile/uploadFile"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"

@@ -13,7 +13,7 @@
       <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="query">刷新</el-button>
       <el-upload
         class="upload-demo"
-        action="http://hello/candidate/uploadFile"
+        action="http://47.101.176.70/candidate/uploadFile"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"

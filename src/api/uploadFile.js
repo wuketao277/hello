@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
   // 下载文件
   download (uuid) {
-    let urls = 'http://hello/uploadFile/download?uuid=' + uuid
+    let urls = 'http://47.101.176.70/uploadFile/download?uuid=' + uuid
     window.open(urls, '_blank')
   },
   // 通过关联表id和关联表名称查询数据
