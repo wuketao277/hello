@@ -2,7 +2,7 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>客户列表</el-breadcrumb-item>
+      <el-breadcrumb-item>职位列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>

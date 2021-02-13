@@ -42,7 +42,7 @@
         </div>
       </el-card>
     </div>
-    <div class="blockdiv">
+    <!-- <div class="blockdiv">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>我的计划</span>
@@ -55,17 +55,24 @@
         </div>
         <div v-for="o in 4" :key="o" class="text item">{{'任务内容 ' + o }}</div>
       </el-card>
-    </div>
-    <div class="blockdiv">
+    </div> -->
+    <div class="blockdiv2">
       <el-card class="box-card">
-        <div></div>
+        <el-calendar v-model="calendarValue">
+        </el-calendar>
       </el-card>
     </div>
   </div>
 </template>
 <style>
 .blockdiv {
-  height: 50%;
+  height: 30%;
+  width: 49%;
+  margin: 2px;
+  float: left;
+}
+.blockdiv2 {
+  height: 70%;
   width: 49%;
   margin: 2px;
   float: left;

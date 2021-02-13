@@ -30,7 +30,7 @@
           </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
-              <i class="el-icon-menu"></i>
+              <i class="el-icon-user"></i>
               <span slot="title">客户</span>
             </template>
             <el-menu-item index="/client/clientlist">客户列表</el-menu-item>
@@ -38,7 +38,7 @@
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
-              <i class="el-icon-menu"></i>
+              <i class="el-icon-star-off"></i>
               <span slot="title">职位</span>
             </template>
             <el-menu-item index="/case/caselist">职位列表</el-menu-item>
@@ -59,7 +59,7 @@
             </template>
             <el-menu-item index="/mynews/mynewslist">我的新闻</el-menu-item>
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
-            <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item>
+            <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
           <el-submenu index="5">
             <template slot="title">

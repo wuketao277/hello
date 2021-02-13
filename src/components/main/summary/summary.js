@@ -5,7 +5,7 @@ import candidateApi from '@/api/candidate'
 export default {
   data () {
     return {
-      calendar: new Date(),
+      calendarValue: new Date(),
       myTasks: [],
       myNewsList: []
     }
