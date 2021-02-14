@@ -263,6 +263,14 @@ export default {
           }
         })
       }
+    },
+    queryOthers () {
+      // 查询comment
+      this.queryComment()
+      // 查询任务
+      this.queryTask()
+      // 查询上传文件
+      this.queryUploadFiles()
     }
   },
   computed: {},
@@ -281,17 +289,13 @@ export default {
           res => {
             if (res.status === 200) {
               this.form = res.data
+              this.queryOthers()
             }
           })
       } else {
         this.form = this.$route.query.candidate
+        this.queryOthers()
       }
     }
-    // 查询comment
-    this.queryComment()
-    // 查询任务
-    this.queryTask()
-    // 查询上传文件
-    this.queryUploadFiles()
   }
 }
