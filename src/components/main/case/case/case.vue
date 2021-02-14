@@ -73,13 +73,19 @@
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column prop="id" label="主键id"></el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
+            </template>
+          </el-table-column>
           <el-table-column prop="candidateId" label="候选人id"></el-table-column>
           <el-table-column prop="chineseName" label="联系人中文名"></el-table-column>
           <el-table-column prop="englishName" label="联系人英文名"></el-table-column>
           <el-table-column prop="status" label="状态"></el-table-column>
           <el-table-column prop="createTime" label="创建时间"></el-table-column>
-          <el-table-column prop="createUserName" label="创建人id"></el-table-column>
         </el-table>
         <!--候选人结束-->
       </el-tab-pane>

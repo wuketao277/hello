@@ -15,6 +15,8 @@
         :data="table.content"
         :border="true"
         :highlight-current-row="true"
+        :stripe="true"
+        :row-class-name="rowStyle"
         style="width: 100%"
         @current-change="rowChange"
       >
@@ -50,3 +52,11 @@
   </div>
 </template>
 <script src="./clientlist.js"></script>
+<style>
+.selectedRow {
+  background-color:yellow;
+}
+.unselectedRow {
+  background-color:red;
+}
+</style>

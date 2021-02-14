@@ -20,6 +20,15 @@ export default {
     }
   },
   methods: {
+    rowStyle (row, rowIndex) {
+      if (this.currentRow === null) {
+        return 'unselectedRow'
+      }
+      if (this.currentRow['chineseName'] === row['row']['chineseName']) {
+        // alert('selectedRow')
+        return 'selectedRow'
+      }
+    },
     switchSearch () {
       this.showSearchDialog = !this.showSearchDialog
     },

@@ -59,6 +59,17 @@ export default {
     }
   },
   methods: {
+    // 编辑候选人
+    editCandidate (index, row) {
+      console.log(row.candidateId)
+      this.$router.push({
+        path: '/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: row.candidateId
+        }
+      })
+    },
     // 取消
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {

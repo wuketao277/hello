@@ -271,7 +271,21 @@ export default {
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
-      this.form = this.$route.query.candidate
+      // 获取候选人数据
+      // 如果没有候选人对象，就获取候选人id然后从数据库中查询候选人对象
+      if (typeof (this.$route.query.candidate) === 'undefined') {
+        let params = {
+          'id': this.$route.query.candidateId
+        }
+        candidateApi.findById(params).then(
+          res => {
+            if (res.status === 200) {
+              this.form = res.data
+            }
+          })
+      } else {
+        this.form = this.$route.query.candidate
+      }
     }
     // 查询comment
     this.queryComment()

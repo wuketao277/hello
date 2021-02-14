@@ -8,7 +8,7 @@ export default {
   },
   // 通过主键查找候选人信息
   findById (params) {
-    return axios.get('/candidate/findById?id=' + params)
+    return axios.get('/candidate/findById', {params: params})
   },
   // 删除候选人接口
   deleteById (params) {
