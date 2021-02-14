@@ -126,7 +126,10 @@
             <el-col :span="4">
               <span>评论时间</span>
             </el-col>
-            <el-col :span="18">
+            <el-col :span="2">
+              <span>评论阶段</span>
+            </el-col>
+            <el-col :span="16">
               <span>评论内容</span>
             </el-col>
           </el-row>
@@ -137,7 +140,10 @@
             <el-col :span="4">
               <div class="grid-content bg-purple">{{comment.inputTime.replace('T',' ')}}</div>
             </el-col>
-            <el-col :span="18">
+            <el-col :span="2">
+              <div class="grid-content bg-purple">{{comment.phase}}</div>
+            </el-col>
+            <el-col :span="16">
               <div class="grid-content bg-purple">{{comment.content}}</div>
             </el-col>
           </el-row>
@@ -150,9 +156,25 @@
           label-width="80px"
           style="text-align:left;"
         >
-          <el-form-item label="新评论" prop="content" v-show="(mode === 'add' || mode === 'modify')">
-            <el-input type="textarea" v-model="newComment.content"></el-input>
-          </el-form-item>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="评论阶段" prop="phase" v-show="(mode === 'add' || mode === 'modify')">
+                <el-select v-model="newComment.phase" placeholder="请选择">
+                  <el-option
+                    v-for="item in phaseOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="16">
+              <el-form-item label="评论内容" prop="content" v-show="(mode === 'add' || mode === 'modify')">
+                <el-input type="textarea" v-model="newComment.content"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
           <el-button

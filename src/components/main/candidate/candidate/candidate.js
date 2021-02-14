@@ -31,8 +31,15 @@ export default {
         futureMoney: '',
         remark: ''
       },
+      phaseOptions: [
+        {value: 'list', lable: 'list'},
+        {value: '猎聘', lable: '猎聘'},
+        {value: '智联', lable: '智联'},
+        {value: '其他', lable: '其他'}
+      ],
       // 新评论
       newComment: {
+        phase: 'list',
         content: ''
       },
       // 历史评论
