@@ -32,10 +32,27 @@ export default {
         remark: ''
       },
       phaseOptions: [
-        {value: 'list', lable: 'list'},
-        {value: '猎聘', lable: '猎聘'},
-        {value: '智联', lable: '智联'},
-        {value: '其他', lable: '其他'}
+        {value: 'SL', lable: 'SL'},
+        {value: 'TI', lable: 'TI'},
+        {value: 'VI', lable: 'VI'},
+        {value: 'IOI', lable: 'IOI'},
+        {value: 'CVO', lable: 'CVO'},
+        {value: '1st Interview', lable: '1st Interview'},
+        {value: '2nd Interview', lable: '2nd Interview'},
+        {value: '3rd Interview', lable: '3rd Interview'},
+        {value: '4th Interview', lable: '4th Interview'},
+        {value: 'Final Interview', lable: 'Final Interview'},
+        {value: 'Offer Nego', lable: 'Offer Nego'},
+        {value: 'On Board', lable: 'On Board'},
+        {value: 'Pre. Service', lable: 'Pre. Service'},
+        {value: 'On Service', lable: 'On Service'},
+        {value: 'Week Service', lable: 'Week Service'},
+        {value: 'Month Service', lable: 'Month Service'},
+        {value: '2Month Service', lable: '2Month Service'},
+        {value: '3Month Service', lable: '3Month Service'},
+        {value: '4Month Service', lable: '4Month Service'},
+        {value: '5Month Service', lable: '5Month Service'},
+        {value: '6Month Service', lable: '6Month Service'}
       ],
       // 新评论
       newComment: {
