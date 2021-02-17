@@ -20,6 +20,22 @@ export default {
     }
   },
   methods: {
+    // 获取状态名称
+    getStatusName (row, column) {
+      if (row.status === 'PREPARE') {
+        return '准备'
+      } else if (row.status === 'DOING') {
+        return '进行中'
+      } else if (row.status === 'FINISH') {
+        return '完成'
+      } else if (row.status === 'PAUSE') {
+        return '暂停'
+      } else if (row.status === 'CLOSE') {
+        return '关闭'
+      } else {
+        return ''
+      }
+    },
     switchSearch () {
       this.showSearchDialog = !this.showSearchDialog
     },

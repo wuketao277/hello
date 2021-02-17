@@ -19,9 +19,10 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="clientName" label="客户名称"></el-table-column>
-        <el-table-column prop="title" label="职位名称"></el-table-column>
-        <el-table-column prop="status" label="状态"></el-table-column>
+        <el-table-column prop="id" width="100" label="职位id"></el-table-column>
+        <el-table-column prop="clientName" width="200" label="客户名称"></el-table-column>
+        <el-table-column prop="title" width="200" label="职位名称"></el-table-column>
+        <el-table-column prop="status" width="100" :formatter="this.getStatusName" label="状态"></el-table-column>
         <el-table-column prop="description" label="描述"></el-table-column>
       </el-table>
       <el-pagination

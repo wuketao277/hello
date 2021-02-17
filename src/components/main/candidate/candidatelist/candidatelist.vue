@@ -8,12 +8,12 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addCandidate">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyCandidate">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detailCandidate">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteCandidate">删除</el-button>
+      <!-- <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteCandidate">删除</el-button> -->
       <el-button type="primary" size="small" icon="el-icon-search" @click="switchSearchDialog">搜索</el-button>
       <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="query">刷新</el-button>
       <el-upload
         class="upload-demo"
-        action="http://47.101.176.70/candidate/uploadFile"
+        action="http://localhost:8080/candidate/uploadFile"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"

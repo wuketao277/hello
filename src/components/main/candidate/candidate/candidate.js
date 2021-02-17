@@ -13,6 +13,7 @@ export default {
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
+      resume: '', // 简历
       form: {
         id: null,
         date: '',
@@ -56,7 +57,7 @@ export default {
       ],
       // 新评论
       newComment: {
-        phase: 'list',
+        phase: 'SL',
         content: ''
       },
       // 历史评论
@@ -149,36 +150,42 @@ export default {
   methods: {
     // 保存 新评论
     saveComment () {
-      if (this.newComment.content.length !== 0) {
-        // 组装数据
-        let comment = this.newComment
-        comment['candidateId'] = this.form.id
-        // 调用接口
-        commentApi.save(comment).then(res => {
-          if (res.status === 200) {
-            // 保存成功
-            this.$message({
-              message: '保存成功！',
-              type: 'success',
-              showClose: true
-            })
-            // 重新查询全部评论
-            this.queryComment()
-          } else {
-            this.$message({
-              message: '保存异常，请联系管理员！',
-              type: 'warning',
-              showClose: true
-            })
-          }
-        })
-      } else {
+      if (this.newComment.content === null || this.newComment.content.length === 0) {
         this.$message({
-          message: '请填写评论内容',
-          type: 'warning',
-          showClose: true
+          message: '请填写评论内容！',
+          type: 'warning'
         })
+        return
       }
+      if (this.form.id === null || this.form.id.length === 0) {
+        this.$message({
+          message: '请先保存候选人！',
+          type: 'warning'
+        })
+        return
+      }
+      // 组装数据
+      let comment = this.newComment
+      comment['candidateId'] = this.form.id
+      // 调用接口
+      commentApi.save(comment).then(res => {
+        if (res.status === 200) {
+          // 保存成功
+          this.$message({
+            message: '保存成功！',
+            type: 'success',
+            showClose: true
+          })
+          // 重新查询全部评论
+          this.queryComment()
+        } else {
+          this.$message({
+            message: '保存异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
     },
     // 查询所有评论
     queryComment () {
@@ -226,11 +233,28 @@ export default {
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
                 this.form.id = res.data.id
-                this.$message({
-                  message: '保存成功！',
-                  type: 'success',
-                  showClose: true
-                })
+                if (this.resume.length === 0) {
+                  // 如果简历栏中没有内容，就直接返回保存成功
+                  this.$message({
+                    message: '保存成功！',
+                    type: 'success',
+                    showClose: true
+                  })
+                } else {
+                  // 如果简历栏中有内容，就保存简历内容
+                  let resumeObj = {'candidateId': this.form.id, 'content': this.resume}
+                  candidateApi.saveResume(resumeObj).then(
+                    res => {
+                      if (res.status === 200) {
+                        this.$message({
+                          message: '保存成功！',
+                          type: 'success',
+                          showClose: true
+                        })
+                      }
+                    }
+                  )
+                }
               }
             })
         } else {
@@ -249,6 +273,19 @@ export default {
         myTaskApi.findByRelativeCandidateId(this.form.id).then(res => {
           if (res.status === 200) {
             this.tasks = res.data
+          }
+        })
+      }
+    },
+    // 查询当前候选人简历信息
+    queryResume () {
+      if (this.form.id !== null) {
+        let params = {
+          'candidateId': this.form.id
+        }
+        candidateApi.findResumeByCandidateId(params).then(res => {
+          if (res.status === 200) {
+            this.resume = res.data
           }
         })
       }
@@ -295,6 +332,8 @@ export default {
       this.queryTask()
       // 查询上传文件
       this.queryUploadFiles()
+      // 查询简历信息
+      this.queryResume()
     }
   },
   computed: {},

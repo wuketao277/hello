@@ -6,7 +6,7 @@
       <el-button type="primary" size="small" icon="el-icon-search" @click="showSearchDialog = true">搜索</el-button>
     </div>
     <el-table
-      :data="table.content"
+      :data="candidateList"
       @current-change="handleCurrentChange"
       :border="true"
       :highlight-current-row="true"
@@ -22,7 +22,7 @@
       <el-table-column prop="department" label="部门"></el-table-column>
       <el-table-column prop="title" label="职位"></el-table-column>
     </el-table>
-    <el-pagination
+    <!-- <el-pagination
       background
       layout="prev, pager, next"
       :total="table.totalElements"
@@ -33,7 +33,7 @@
       @current-change="currentChange"
       @prev-click="prevClick"
       @next-click="nextClick"
-    ></el-pagination>
+    ></el-pagination> -->
     <!--搜索对话框-->
     <el-dialog title="搜索" :visible.sync="showSearchDialog">
       <el-form>

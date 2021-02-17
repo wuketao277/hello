@@ -105,6 +105,10 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
+        this.$message({
+          type: 'success',
+          message: '查询完成！'
+        })
       })
     },
     // 处理选中行时间

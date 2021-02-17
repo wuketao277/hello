@@ -23,12 +23,21 @@
         </el-select>
       </el-form-item>
       <el-row>
-        <el-col :span="12">
+        <el-col>
+          <el-form-item label="职位id">
+            <span>{{form.id}}</span>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col>
           <el-form-item label="职位名称">
             <el-input v-model="form.title"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+      </el-row>
+      <el-row>
+        <el-col>
           <el-form-item label="职位状态">
             <el-radio-group v-model="form.status">
               <el-radio label="PREPARE">准备</el-radio>

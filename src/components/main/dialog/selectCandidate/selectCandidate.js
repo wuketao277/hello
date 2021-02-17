@@ -4,17 +4,18 @@ export default {
   data () {
     return {
       showSearchDialog: false,
-      table: {
-        content: [],
-        totalElements: 0,
-        pageable: {
-          pageNumber: 1,
-          pageSize: 10
-        }
-      },
-      page: {
-        pageSizes: [10, 20, 30, 40, 50]
-      },
+      candidateList: [],
+      // table: {
+      //   content: [],
+      //   totalElements: 0,
+      //   pageable: {
+      //     pageNumber: 1,
+      //     pageSize: 10
+      //   }
+      // },
+      // page: {
+      //   pageSizes: [10, 20, 30, 40, 50]
+      // },
       currentRow: null,
       search: ''
     }
@@ -34,20 +35,32 @@ export default {
     },
     // 查询后台数据
     query () {
+      if (this.search.length === 0) {
+        this.$message({
+          message: '请输入搜索条件！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
       let query = {
-        'currentPage': this.table.pageable.pageNumber,
-        'pageSize': this.table.pageable.pageSize,
+        // 'currentPage': this.table.pageable.pageNumber,
+        // 'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      candidate.queryCandidatePage(query).then(res => {
+      candidate.queryCandidate(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
           })
           return
         }
-        this.table = res.data
-        this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
+        this.candidateList = res.data
+        this.$message({
+          message: '查询完成！',
+          type: 'success',
+          showClose: true
+        })
       })
     },
     // 处理选中行时间
@@ -94,6 +107,6 @@ export default {
   },
   computed: {},
   created () {
-    this.query()
+    // this.query()
   }
 }
