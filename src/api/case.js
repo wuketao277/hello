@@ -13,6 +13,10 @@ export default {
   queryPage (params) {
     return axios.get('/case/queryPage', {params: params})
   },
+  // 查找后台数据
+  query (params) {
+    return axios.get('/case/query', {params: params})
+  },
   // 通过id查询
   queryById (params) {
     return axios.get('/case/queryById', {params: params})

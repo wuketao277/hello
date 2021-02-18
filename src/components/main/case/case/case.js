@@ -61,7 +61,6 @@ export default {
   methods: {
     // 编辑候选人
     editCandidate (index, row) {
-      console.log(row.candidateId)
       this.$router.push({
         path: '/candidate/candidate',
         query: {
@@ -196,6 +195,22 @@ export default {
           }
         })
       }
+    },
+    // 查询推荐候选人列表
+    queryCandidateForCase () {
+      // 获取该职位所有候选人信息
+      if (this.form.id !== null) {
+        candidateForCaseApi.findByCaseId(this.form.id).then(res => {
+          if (res.status === 200) {
+            this.candidateForCase = res.data
+          }
+        })
+      }
+    },
+    // 查询其他数据
+    queryOthers () {
+      // 查询推荐候选人列表
+      this.queryCandidateForCase()
     }
   },
   created () {
@@ -203,13 +218,20 @@ export default {
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
-      this.form = this.$route.query.case
-      // 获取该职位所有候选人信息
-      candidateForCaseApi.findByCaseId(this.form.id).then(res => {
-        if (res.status === 200) {
-          this.candidateForCase = res.data
+      if (typeof (this.$route.query.case) !== 'undefined') {
+        this.form = this.$route.query.case
+        this.queryOthers()
+      } else if (typeof (this.$route.query.caseId) !== 'undefined') {
+        let params = {
+          'id': this.$route.query.caseId
         }
-      })
+        caseApi.queryById(params).then(res => {
+          if (res.status === 200) {
+            this.form = res.data
+            this.queryOthers()
+          }
+        })
+      }
     }
     // 获取所有“客户”信息
     clientApi.findAll().then(res => {

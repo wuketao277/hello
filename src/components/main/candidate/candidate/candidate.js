@@ -1,17 +1,22 @@
 import candidateApi from '@/api/candidate'
+import candidateForCaseApi from '@/api/candidateForCase'
 import commentApi from '@/api/comment'
 import myTaskApi from '@/api/myTask'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
+import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 
 export default {
   components: {
-    'uploadFile': uploadFile,
-    'downloadFile': downloadFile
+    uploadFile,
+    downloadFile,
+    selectCase
   },
   data () {
     return {
+      selectCaseDialogShow: false, // 选择职位对话框
+      candidateForCaseList: [], // 候选人推荐职位列表
       mode: 'add', // 默认操作模式为新建
       resume: '', // 简历
       form: {
@@ -148,6 +153,28 @@ export default {
     }
   },
   methods: {
+    // 编辑职位
+    editCase (index, row) {
+      this.$router.push({
+        path: '/case/case',
+        query: {
+          mode: 'modify',
+          caseId: row.caseId
+        }
+      })
+    },
+    // 打开职位选择对话框
+    openSelectCaseDialog () {
+      // 候选人必须先保存
+      if (this.form.id === null) {
+        this.$message({
+          message: '请先保存候选人！',
+          type: 'warning'
+        })
+        return
+      }
+      this.selectCaseDialogShow = true
+    },
     // 保存 新评论
     saveComment () {
       if (this.newComment.content === null || this.newComment.content.length === 0) {
@@ -290,6 +317,19 @@ export default {
         })
       }
     },
+    // 查询当前候选人推荐职位信息
+    queryCandidateForCaseList () {
+      if (this.form.id !== null) {
+        let params = {
+          'candidateId': this.form.id
+        }
+        candidateForCaseApi.findByCandidateId(params).then(res => {
+          if (res.status === 200) {
+            this.candidateForCaseList = res.data
+          }
+        })
+      }
+    },
     // 保存任务
     saveTask () {
       this.newTask.relativeCandidateId = this.form.id
@@ -334,6 +374,25 @@ export default {
       this.queryUploadFiles()
       // 查询简历信息
       this.queryResume()
+      // 查询当前候选人推荐职位信息
+      this.queryCandidateForCaseList()
+    },
+    // “推荐职位”对话框返回
+    sureSelectCaseDialog (val) {
+      // 首先关闭对话框
+      debugger
+      this.selectCaseDialogShow = false
+      let params = {
+        candidateId: this.form.id,
+        caseId: val
+      }
+      candidateForCaseApi.saveSimple(params).then(
+        res => {
+          if (res.status === 200) {
+            // 重新获取推荐列表
+            this.queryCandidateForCaseList()
+          }
+        })
     }
   },
   computed: {},

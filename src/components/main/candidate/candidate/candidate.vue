@@ -123,6 +123,35 @@
       >上传文件</el-button>
     </div>
     <el-tabs type="border-card">
+      <el-tab-pane label="推荐职位">
+        <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-share"
+            @click="openSelectCaseDialog"
+          >推荐职位</el-button>
+        </div>
+        <el-table
+          :data="candidateForCaseList"
+          :border="true"
+          style="width: 100%"
+          @current-change="rowChange"
+        >
+          <el-table-column type="index" width="50" label="序号"></el-table-column>
+          <el-table-column width="150" label="操作">
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="editCase(scope.$index, scope.row)">编辑职位</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column width="100" prop="id" label="职位id"></el-table-column>
+          <el-table-column prop="clientName" label="公司名称"></el-table-column>
+          <el-table-column prop="title" label="职位名称"></el-table-column>
+        </el-table>
+      </el-tab-pane>
       <el-tab-pane label="评论">
         <!--评论开始-->
         <div v-show="comments.length > 0" style="margin-bottom:20px;">
@@ -270,6 +299,12 @@
         <!--附件结束-->
       </el-tab-pane>
     </el-tabs>
+    <el-dialog title="推荐职位" :visible.sync="selectCaseDialogShow">
+      <selectCase
+        v-on:cancel-dialog="selectCaseDialogShow = false"
+        v-on:sure-dialog="sureSelectCaseDialog"
+      ></selectCase>
+    </el-dialog>
     <!--上传文件对话框-->
     <el-dialog title="上传文件" :visible.sync="showUploadFileDialog">
       <uploadFile :uploadFileData="uploadFileData" v-on:upload_file_success="queryUploadFiles"></uploadFile>
