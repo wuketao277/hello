@@ -24,4 +24,7 @@ export default {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.el-table__body tr.current-row>td {
+  background: rgb(241, 219, 119) !important;
+}
 </style>

@@ -3,7 +3,10 @@ import candidate from '@/api/candidate'
 export default {
   data () {
     return {
+      // 显示搜索对话框
       showSearchDialog: false,
+      // 显示的是搜索后的结果
+      showSearchResult: false,
       table: {
         content: [],
         totalElements: 0,
@@ -90,7 +93,12 @@ export default {
       }
     },
     // 查询后台数据
-    query () {
+    query (showDialog = false) {
+      if (this.search === '') {
+        this.showSearchResult = false
+      } else {
+        this.showSearchResult = true
+      }
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -105,10 +113,12 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-        this.$message({
-          type: 'success',
-          message: '查询完成！'
-        })
+        if (showDialog) {
+          this.$message({
+            type: 'success',
+            message: '查询完成！'
+          })
+        }
       })
     },
     // 处理选中行时间
@@ -152,6 +162,7 @@ export default {
     },
     switchSearchDialog () {
       this.showSearchDialog = !this.showSearchDialog
+      this.$refs['search'].focus()
     },
     // 搜索对话框，取消按钮
     cancelSearchDialog () {

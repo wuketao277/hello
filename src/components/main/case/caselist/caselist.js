@@ -3,7 +3,10 @@ import caseApi from '@/api/case'
 export default {
   data () {
     return {
+      // 显示搜索对话框
       showSearchDialog: false,
+      // 显示搜索结果
+      showSearchResult: false,
       table: {
         content: [],
         totalElements: 0,
@@ -81,6 +84,11 @@ export default {
     },
     // 查询后台数据
     query () {
+      if (this.search === '') {
+        this.showSearchResult = false
+      } else {
+        this.showSearchResult = true
+      }
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,

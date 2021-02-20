@@ -39,7 +39,7 @@ export default {
       return true
     },
     // 查询后台数据
-    query () {
+    query (showDialog = false) {
       if (this.search.length === 0) {
         this.$message({
           message: '请输入搜索条件！',
@@ -59,11 +59,13 @@ export default {
           return
         }
         this.caseList = res.data
-        this.$message({
-          message: '查询完成！',
-          type: 'success',
-          showClose: true
-        })
+        if (showDialog) {
+          this.$message({
+            message: '查询完成！',
+            type: 'success',
+            showClose: true
+          })
+        }
       })
     },
     // 处理选中行时间
@@ -104,7 +106,6 @@ export default {
     // 点击“确定”按钮，触发自定义事件
     sureDialog () {
       if (this.checkSelectRow()) {
-        debugger
         this.$emit('sure-dialog', this.currentRow.id)
       }
     }

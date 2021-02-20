@@ -10,7 +10,8 @@
       <el-button type="primary" size="small" icon="el-icon-share" @click="detailCandidate">查看</el-button>
       <!-- <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteCandidate">删除</el-button> -->
       <el-button type="primary" size="small" icon="el-icon-search" @click="switchSearchDialog">搜索</el-button>
-      <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="query">刷新</el-button>
+      <el-button type="primary" size="small" icon="el-icon-search" v-if="showSearchResult" @click="query">取消搜索</el-button>
+      <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="query(true)">刷新</el-button>
       <el-upload
         class="upload-demo"
         action="http://47.101.176.70/candidate/uploadFile"
@@ -78,9 +79,9 @@
     ></el-pagination>
     <!--搜索对话框-->
     <el-dialog title="搜索" :visible.sync="showSearchDialog">
-      <el-form>
+      <el-form @submit.native.prevent>
         <el-form-item label="搜索内容">
-          <el-input v-model="search" autocomplete="off"></el-input>
+          <el-input v-model="search" autocomplete="off" ref="search" @keyup.enter.native="sureSearchDialog"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

@@ -3,6 +3,7 @@ import candidate from '@/api/candidate'
 export default {
   data () {
     return {
+      // 显示搜索对话框
       showSearchDialog: false,
       candidateList: [],
       // table: {
@@ -34,7 +35,7 @@ export default {
       return true
     },
     // 查询后台数据
-    query () {
+    query (showDialog = false) {
       if (this.search.length === 0) {
         this.$message({
           message: '请输入搜索条件！',
@@ -56,11 +57,13 @@ export default {
           return
         }
         this.candidateList = res.data
-        this.$message({
-          message: '查询完成！',
-          type: 'success',
-          showClose: true
-        })
+        if (showDialog) {
+          this.$message({
+            message: '查询完成！',
+            type: 'success',
+            showClose: true
+          })
+        }
       })
     },
     // 处理选中行时间

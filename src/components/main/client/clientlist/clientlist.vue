@@ -9,6 +9,7 @@
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
       <el-button type="primary" size="small" icon="el-icon-search" @click="switchSearch">搜索</el-button>
+      <el-button type="primary" size="small" icon="el-icon-search" v-if="showSearchResult" @click="query(true)">取消搜索</el-button>
     </div>
     <template>
       <el-table
@@ -39,9 +40,9 @@
     </template>
     <!--搜索对话框-->
     <el-dialog title="搜索" :visible.sync="showSearchDialog">
-      <el-form>
+      <el-form @submit.native.prevent>
         <el-form-item label="搜索内容">
-          <el-input v-model="search" autocomplete="off"></el-input>
+          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
