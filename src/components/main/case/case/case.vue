@@ -68,12 +68,22 @@
       <el-tab-pane label="候选人">
         <!--候选人开始-->
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-          <el-button
+          <el-tooltip class="item" effect="dark" content="给职位添加候选人" placement="top">
+            <el-button
             type="primary"
             size="small"
             icon="el-icon-share"
             @click="openSelectCandidateDialog"
-          >添加候选人</el-button>
+            >添加候选人</el-button>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="从一个旧职位上拷贝候选人到当前职位" placement="top">
+            <el-button
+              type="primary"
+              size="small"
+              icon="el-icon-document-copy"
+              @click="openSelectCaseDialog"
+            >拷贝候选人</el-button>
+          </el-tooltip>
         </div>
         <el-table
           :data="candidateForCase"
@@ -109,6 +119,12 @@
         v-on:cancel-dialog="selectCandidateDialogShow = false"
         v-on:sure-dialog="sureSelectCandidateDialog"
       ></selectCandidate>
+    </el-dialog>
+    <el-dialog title="选择职位" :visible.sync="selectCaseDialogShow">
+      <selectCase
+        v-on:cancel-dialog="selectCaseDialogShow = false"
+        v-on:sure-dialog="sureSelectCaseDialog"
+      ></selectCase>
     </el-dialog>
     <!--上传文件对话框-->
     <el-dialog title="上传文件" :visible.sync="showUploadFileDialog">

@@ -16,8 +16,8 @@
     >
       <el-row :gutter="20">
         <el-col :span="8">
-          <el-form-item label="日期" prop="date">
-            <el-input v-model="form.date"></el-input>
+          <el-form-item label="候选人id">
+            <span>{{form.id}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -94,6 +94,9 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
+          <el-form-item label="日期">
+            <el-input v-model="form.date"></el-input>
+          </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
@@ -125,12 +128,14 @@
     <el-tabs type="border-card">
       <el-tab-pane label="推荐职位">
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-          <el-button
-            type="primary"
-            size="small"
-            icon="el-icon-share"
-            @click="openSelectCaseDialog"
-          >推荐职位</el-button>
+          <el-tooltip class="item" effect="dark" content="将后续人推荐到职位" placement="top">
+            <el-button
+              type="primary"
+              size="small"
+              icon="el-icon-share"
+              @click="openSelectCaseDialog"
+            >推荐职位</el-button>
+          </el-tooltip>
         </div>
         <el-table
           :data="candidateForCaseList"

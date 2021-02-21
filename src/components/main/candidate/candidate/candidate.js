@@ -118,7 +118,9 @@ export default {
         executeDate: null,
         taskTitle: '',
         taskContent: '',
-        relativeCandidateId: null
+        relativeCandidateId: null,
+        finished: false,
+        executeResult: ''
       },
       rulesTask: {
         executeDateTime: {

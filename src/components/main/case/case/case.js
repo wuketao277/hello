@@ -1,6 +1,7 @@
 import caseApi from '@/api/case'
 import clientApi from '@/api/client'
 import candidateForCaseApi from '@/api/candidateForCase'
+import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
@@ -9,6 +10,7 @@ import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue
 export default {
   components: {
     'selectCandidate': selectCandidate,
+    'selectCase': selectCase,
     'uploadFile': uploadFile,
     'downloadFile': downloadFile
   },
@@ -53,6 +55,8 @@ export default {
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
       selectCandidateDialogShow: false,
+      // 选择职位对话框是否显示
+      selectCaseDialogShow: false,
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [] // 上传文件集合
@@ -160,6 +164,23 @@ export default {
         })
       }
     },
+    // “选择职位”对话框返回
+    sureSelectCaseDialog (val) {
+      // 首先关闭对话框
+      this.selectCaseDialogShow = false
+      // 添加候选人到职位
+      let o = {'curCaseId': this.form.id, 'oldCaseId': val}
+      candidateForCaseApi.copyFromOldCase(o).then(res => {
+        if (res.status === 200) {
+          // 获取该职位所有候选人信息
+          candidateForCaseApi.findByCaseId(this.form.id).then(res => {
+            if (res.status === 200) {
+              this.candidateForCase = res.data
+            }
+          })
+        }
+      })
+    },
     // 打开选择候选人对话框
     openSelectCandidateDialog () {
       if (this.form.id === null) {
@@ -170,6 +191,18 @@ export default {
         })
       } else {
         this.selectCandidateDialogShow = true
+      }
+    },
+    // 打开选择职位对话框
+    openSelectCaseDialog () {
+      if (this.form.id === null) {
+        this.$message({
+          message: '请先保存职位信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.selectCaseDialogShow = true
       }
     },
     // 打开上次文件对话框

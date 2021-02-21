@@ -9,6 +9,10 @@ export default {
   saveSimple (params) {
     return axios.post('/candidateForCase/saveSimple', params)
   },
+  // 从旧职位上拷贝候选人到当前职位
+  copyFromOldCase (params) {
+    return axios.post('/candidateForCase/copyFromOldCase', params)
+  },
   // 更新状态
   updateStatus (params) {
     return axios.get('/candidateForCase/updateStatus', {
