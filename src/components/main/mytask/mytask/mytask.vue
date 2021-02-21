@@ -31,7 +31,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="20" v-show="mode === 'add'">
         <el-col :span="24">
           <el-form-item label="执行人">
             <el-checkbox-group v-model="selectUsers">
@@ -42,16 +42,31 @@
       </el-row>
       <el-row :gutter="20">
         <el-col :span="24">
-          <el-form-item label="任务内容" prop="taskContent">
+          <el-form-item label="任务内容">
             <el-input type="textarea" v-model="form.taskContent"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" v-show="mode === 'modify'">
+        <el-col :span="24">
+          <el-form-item label="完成状态">
+            <el-switch v-model="form.finished" active-color="#13ce66" inactive-color="#999999"></el-switch>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" v-show="mode === 'modify'">
+        <el-col :span="24">
+          <el-form-item label="执行结果">
+            <el-input type="textarea" v-model="form.executeResult"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
     </el-form>
     <!--工具栏，只有模式为新增或修改时才显示-->
-    <div class="toolbar" v-show="mode === 'add' && !saved">
-      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+    <div class="toolbar">
+      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'add' && !saved" @click="save">保存</el-button>
+      <el-button type="danger" size="small" icon="el-icon-delete" v-show="mode === 'add' && !saved" @click="cancel">取消</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'modify'" @click="update">完成</el-button>
     </div>
   </div>
 </template>

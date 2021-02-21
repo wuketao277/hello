@@ -5,6 +5,10 @@ export default {
   save (params) {
     return axios.post('/myTask/save', params)
   },
+  // 更新接口
+  update (params) {
+    return axios.post('/myTask/update', params)
+  },
   // 保存接口
   saveTaskToSelf (params) {
     return axios.post('/myTask/saveTaskToSelf', params)

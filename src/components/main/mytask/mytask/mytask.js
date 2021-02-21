@@ -9,11 +9,14 @@ export default {
       selectUsers: [], // 任务执行人集合
       users: [],
       form: {
+        id: null,
         taskTitle: '',
         taskContent: '',
         executeDate: '',
         executeUserName: '',
-        executeRealName: ''
+        executeRealName: '',
+        finished: false,
+        executeResult: ''
       },
       rules: {
         taskTitle: [
@@ -100,6 +103,28 @@ export default {
           })
         }
       })
+    },
+    // 更新
+    update () {
+      if (this.form.executeResult === '') {
+        this.$message({
+          message: '请输入执行结果！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      let task = {'id': this.form.id, 'finished': this.form.finished, 'executeResult': this.form.executeResult}
+      myTaskApi.update(task).then(
+        res => {
+          if (res.status === 200) {
+            this.$message({
+              message: '保存成功！',
+              type: 'success',
+              showClose: true
+            })
+          }
+        })
     }
   },
   computed: {},

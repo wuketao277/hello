@@ -21,6 +21,14 @@ export default {
     }
   },
   methods: {
+    // 获取状态名称
+    getFinishedName (row, column) {
+      if (row.finished) {
+        return '已完成'
+      } else {
+        return '未完成'
+      }
+    },
     // 检查是否选择了一条记录
     checkSelectRow () {
       if (this.currentRow === null) {
@@ -45,7 +53,7 @@ export default {
         this.$router.push({
           path: '/mytask/mytask',
           query: {
-            mode: 'detail',
+            mode: 'view',
             task: this.currentRow
           }
         })

@@ -37,7 +37,7 @@ export default {
         this.$router.push({
           path: '/mytask/mytask',
           query: {
-            mode: 'detail',
+            mode: 'modify',
             task: task
           }
         })

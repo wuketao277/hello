@@ -23,6 +23,7 @@
       <el-table-column prop="taskContent" label="任务内容" width="360"></el-table-column>
       <el-table-column prop="executeRealName" label="执行人" width="80"></el-table-column>
       <el-table-column prop="executeDate" label="执行日期" width="100"></el-table-column>
+      <el-table-column prop="finished" :formatter="getFinishedName" label="状态" width="100"></el-table-column>
       <el-table-column prop="createRealName" label="创建人" width="80"></el-table-column>
       <el-table-column prop="createDateTime" label="创建时间"></el-table-column>
       <el-table-column prop="relativeCandidateId" label="候选人id" width="80"></el-table-column>
