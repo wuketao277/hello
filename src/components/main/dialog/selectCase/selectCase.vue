@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="toolbar">
-        <el-button type="primary" size="small" @click="cancelDialog">取 消</el-button>
-        <el-button type="primary" size="small" @click="sureDialog">确 定</el-button>
-      <el-button type="primary" size="small" icon="el-icon-search" @click="showSearchDialog = true">搜索</el-button>
+      <el-button type="primary" size="small" @click="cancelDialog">取 消</el-button>
+      <el-button type="primary" size="small" @click="sureDialog">确 定</el-button>
+      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
+        <el-form-item label="" style="mergin-bottom:0px;">
+          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
+        </el-form-item>
+      </el-form>
     </div>
     <el-table
       :data="caseList"
@@ -18,18 +22,6 @@
       <el-table-column prop="title" label="职位名称"></el-table-column>
       <el-table-column prop="status" width="100" :formatter="this.getStatusName" label="状态"></el-table-column>
     </el-table>
-    <!--搜索对话框-->
-    <el-dialog title="搜索" :visible.sync="showSearchDialog">
-      <el-form @submit.native.prevent>
-        <el-form-item label="搜索内容">
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="cancelSearchDialog">取 消</el-button>
-        <el-button type="primary" @click="sureSearchDialog">确 定</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 <script src="./selectCase.js"></script>

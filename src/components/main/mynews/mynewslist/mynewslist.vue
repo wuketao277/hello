@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
+    <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>我的新闻</el-breadcrumb-item>
     </el-breadcrumb>
@@ -9,7 +9,12 @@
       <el-button type="primary" size="small" icon="el-icon-zoom-in" @click="detailNews">查看</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyNews">修改</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteNews">删除</el-button>
-      <el-button type="primary" size="small" icon="el-icon-search" @click="queryNews">搜索</el-button>
+      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
+        <el-form-item label="" style="mergin-bottom:0px;">
+          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-button type="primary" size="small" icon="el-icon-search" v-if="showSearchResult" @click="query()">取消搜索</el-button>
     </div>
     <el-table
       :data="table.content"
@@ -35,18 +40,12 @@
       @prev-click="prevClick"
       @next-click="nextClick"
     ></el-pagination>
-    <!--搜索对话框-->
-    <el-dialog title="搜索" :visible.sync="showSearchDialog">
-      <el-form @submit.native.prevent>
-        <el-form-item label="搜索内容">
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="cancelSearchDialog">取 消</el-button>
-        <el-button type="primary" @click="sureSearchDialog">确 定</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 <script src="./mynewslist.js"></script>
+<style>
+.el-form-item {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+</style>

@@ -3,7 +3,8 @@ import myTaskApi from '@/api/myTask'
 export default {
   data () {
     return {
-      showSearchDialog: false,
+      // 显示搜索结果
+      showSearchResult: false,
       table: {
         content: [],
         totalElements: 0,
@@ -87,6 +88,11 @@ export default {
     },
     // 查询后台数据
     query () {
+      if (this.search === '') {
+        this.showSearchResult = false
+      } else {
+        this.showSearchResult = true
+      }
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -127,16 +133,13 @@ export default {
       this.query()
     },
     switchSearchDialog () {
-      this.showSearchDialog = !this.showSearchDialog
     },
     // 搜索对话框，取消按钮
     cancelSearchDialog () {
-      this.showSearchDialog = false
       this.search = ''
     },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
-      this.showSearchDialog = false
       this.query()
       this.search = ''
     }

@@ -3,8 +3,6 @@ import caseApi from '@/api/case'
 export default {
   data () {
     return {
-      // 显示搜索对话框
-      showSearchDialog: false,
       // 显示搜索结果
       showSearchResult: false,
       table: {
@@ -131,12 +129,10 @@ export default {
     },
     // 搜索对话框，取消按钮
     cancelSearchDialog () {
-      this.showSearchDialog = false
       this.search = ''
     },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
-      this.showSearchDialog = false
       this.query()
       this.search = ''
     }
