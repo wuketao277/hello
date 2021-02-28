@@ -17,6 +17,7 @@ import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 import ClientLinkMan from '@/components/main/client/clientlinkman/clientlinkman.vue'
 import Case from '@/components/main/case/case/case.vue'
 import CaseList from '@/components/main/case/caselist/caselist.vue'
+import FileList from '@/components/main/file/filelist.vue'
 import SecurityApi from '@/api/security'
 
 Vue.use(Router)
@@ -118,6 +119,12 @@ const router = new Router({
           path: '/case/case',
           name: 'case',
           component: Case
+        },
+        {
+          // 文件
+          path: '/filelist',
+          name: 'filelist',
+          component: FileList
         }
       ]
     },

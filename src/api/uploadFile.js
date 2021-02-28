@@ -13,5 +13,9 @@ export default {
   // 通过id删除
   deleteById (id) {
     return axios.get('/uploadFile/deleteById?Id=' + id)
+  },
+  // 通过id删除
+  findByOriginalFileName (params) {
+    return axios.get('/uploadFile/findByOriginalFileName', {params: params})
   }
 }

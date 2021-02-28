@@ -1,8 +1,7 @@
 <template>
   <div style="text-align:left;">
     <div
-      v-for="file in files"
-      :key="file"
+      v-for="file in files" :key="file"
       style="display:inline-block;margin:5px;text-align:center;"
     >
       <el-card shadow="always" style="width:200px;padding:0px;font-size:20px;">

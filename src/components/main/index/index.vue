@@ -46,7 +46,7 @@
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
-              <i class="el-icon-document"></i>
+              <i class="el-icon-user-solid"></i>
               <span slot="title">候选人</span>
             </template>
             <el-menu-item index="/candidate/candidatelist">候选人列表</el-menu-item>
@@ -61,7 +61,13 @@
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
             <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
-          <el-submenu index="5">
+          <el-menu-item index="/filelist">
+            <template slot="title">
+              <i class="el-icon-document"></i>
+              <span slot="title">文件管理</span>
+            </template>
+          </el-menu-item>
+          <el-submenu index="6">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
