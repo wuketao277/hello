@@ -134,12 +134,10 @@ export default {
     },
     switchSearchDialog () {
     },
-    // 搜索对话框，取消按钮
-    cancelSearchDialog () {
-      this.search = ''
-    },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
+      this.table.pageable.pageNumber = 1
+      this.table.pageable.pageSize = 10
       this.query()
       this.search = ''
     }

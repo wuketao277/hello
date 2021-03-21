@@ -3,8 +3,6 @@ import candidate from '@/api/candidate'
 export default {
   data () {
     return {
-      // 显示搜索对话框
-      showSearchDialog: false,
       // 显示的是搜索后的结果
       showSearchResult: false,
       table: {
@@ -161,17 +159,12 @@ export default {
       this.query()
     },
     switchSearchDialog () {
-      this.showSearchDialog = !this.showSearchDialog
       this.$refs['search'].focus()
-    },
-    // 搜索对话框，取消按钮
-    cancelSearchDialog () {
-      this.showSearchDialog = false
-      this.search = ''
     },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
-      this.showSearchDialog = false
+      this.table.pageable.pageNumber = 1
+      this.table.pageable.pageSize = 10
       this.query()
       this.search = ''
     }
