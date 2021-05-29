@@ -14,10 +14,9 @@
           <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" size="small" icon="el-icon-search" v-if="showSearchResult" @click="query">取消搜索</el-button>
       <el-upload
         class="upload-demo"
-        action="http://47.101.176.70/candidate/uploadFile"
+        action="http://localhost:8080/candidate/uploadFile"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"
@@ -58,6 +57,7 @@
       <el-table-column prop="englishName" label="英文名称" width="80"></el-table-column>
       <el-table-column prop="phoneNo" label="手机" width="120"></el-table-column>
       <el-table-column prop="email" label="邮箱" width="120"></el-table-column>
+      <el-table-column prop="birthDay" label="生日" width="60"></el-table-column>
       <el-table-column prop="age" label="年龄" width="60"></el-table-column>
       <el-table-column prop="companyName" label="公司" width="120"></el-table-column>
       <el-table-column prop="department" label="部门" width="120"></el-table-column>

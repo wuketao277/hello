@@ -25,6 +25,7 @@ export default {
         chineseName: '',
         englishName: '',
         age: 0,
+        birthDay: '',
         phoneNo: '',
         email: '',
         companyName: '',

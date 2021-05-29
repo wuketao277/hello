@@ -127,7 +127,6 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
-      this.search = ''
     }
   },
   created () {

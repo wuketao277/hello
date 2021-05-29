@@ -32,9 +32,14 @@
         </el-col>
       </el-row>
       <el-row :gutter="20">
-        <el-col :span="8">
+        <el-col :span="3">
           <el-form-item label="年龄" prop="age">
-            <el-input v-model="form.age"></el-input>
+            <span>{{form.age}}</span>
+          </el-form-item>
+        </el-col>
+        <el-col :span="5">
+          <el-form-item label="生日" prop="birthDay">
+            <el-input v-model="form.birthDay" placeholder="例如：1999-01-01"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">

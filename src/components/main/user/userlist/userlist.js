@@ -1,4 +1,4 @@
-import candidate from '@/api/candidate'
+import user from '@/api/user'
 
 export default {
   data () {
@@ -22,10 +22,10 @@ export default {
     }
   },
   methods: {
-    // 添加候选人
-    addCandidate () {
+    // 添加用户
+    addUser () {
       this.$router.push({
-        path: '/candidate/candidate'
+        path: '/user/user'
       })
     },
     // 检查是否选择了一条记录
@@ -40,32 +40,32 @@ export default {
       }
       return true
     },
-    // 查看候选人
-    detailCandidate () {
+    // 查看用户
+    detailUser () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/candidate',
+          path: '/user/user',
           query: {
             mode: 'detail',
-            candidate: this.currentRow
+            user: this.currentRow
           }
         })
       }
     },
-    // 修改候选人
-    modifyCandidate () {
+    // 修改用户
+    modifyUser () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/candidate',
+          path: '/user/user',
           query: {
             mode: 'modify',
-            candidate: this.currentRow
+            user: this.currentRow
           }
         })
       }
     },
-    // 删除候选人
-    deleteCandidate () {
+    // 删除用户
+    deleteUser () {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除该记录吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -73,7 +73,7 @@ export default {
           cancelButtonText: '放弃'
         })
           .then(() => {
-            candidate.deleteById(this.currentRow.id).then(res => {
+            user.deleteById(this.currentRow.id).then(res => {
               if (res.status !== 200) {
                 this.$message.error({
                   message: '删除失败，请联系管理员！'
@@ -102,7 +102,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      candidate.queryCandidatePage(query).then(res => {
+      user.queryUserPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
@@ -166,6 +166,7 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
+      this.search = ''
     }
   },
   computed: {},

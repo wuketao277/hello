@@ -61,17 +61,20 @@
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
             <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
-          <el-menu-item index="/filelist">
+          <el-submenu index="5">
             <template slot="title">
               <i class="el-icon-document"></i>
               <span slot="title">文件管理</span>
             </template>
-          </el-menu-item>
+            <el-menu-item index="/file/filelist">文件管理</el-menu-item>
+          </el-submenu>
           <el-submenu index="6">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
             </template>
+            <el-menu-item index="/user/userlist">用户列表</el-menu-item>
+            <!-- <el-menu-item index="/role/rolelist">角色列表</el-menu-item> -->
           </el-submenu>
         </el-menu>
       </el-aside>

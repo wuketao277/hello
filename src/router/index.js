@@ -122,7 +122,7 @@ const router = new Router({
         },
         {
           // 文件
-          path: '/filelist',
+          path: '/file/filelist',
           name: 'filelist',
           component: FileList
         }

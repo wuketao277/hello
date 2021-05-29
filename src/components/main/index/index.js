@@ -8,6 +8,19 @@ export default {
     }
   },
   methods: {
+    // 检查菜单角色配置
+    checkRole (menuName) {
+      let loginInfo = window.localStorage['loginInfo']
+      let roleList = JSON.parse(loginInfo)['roleList']
+      if (menuName === 'filelist') {
+        if (roleList.indexOf('admin') > -1) {
+          return true
+        } else {
+          return false
+        }
+      }
+      return true
+    },
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },
