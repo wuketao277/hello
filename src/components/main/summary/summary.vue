@@ -42,38 +42,62 @@
         </div>
       </el-card>
     </div>
-    <!-- <div class="blockdiv">
+    <div class="blockdiv2">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>我的计划</span>
-          <el-button
-            size="mini"
-            icon="el-icon-edit"
-            circle
-            @click="openView('/my/myplan/planlist')"
-          ></el-button>
+          <span>KPI看板</span>
         </div>
-        <div v-for="o in 4" :key="o" class="text item">{{'任务内容 ' + o }}</div>
+        <div>
+          <el-date-picker
+            v-model="KPIDate"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期">
+          </el-date-picker>
+          <el-button type="success" size="mini" icon="el-icon-setting" @click="calcKPI()">计算KPI</el-button>
+        </div>
+        <div>
+          <el-table
+            :data="KPIDashboard"
+            :border="true"
+            :highlight-current-row="true"
+            :stripe="true"
+            :row-class-name="rowStyle"
+            style="width: 100%"
+            @current-change="rowChange"
+          >
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="ti" label="TI"></el-table-column>
+            <el-table-column prop="vi" label="VI"></el-table-column>
+            <el-table-column prop="ioi" label="IOI"></el-table-column>
+            <el-table-column prop="viioi" label="VI+IOI"></el-table-column>
+            <el-table-column prop="cvo" label="CVO"></el-table-column>
+            <el-table-column prop="interview1st" label="1st Interview"></el-table-column>
+            <el-table-column prop="offerSigned" label="Offer Signed"></el-table-column>
+            <el-table-column prop="onBoard" label="On Board"></el-table-column>
+          </el-table>
+        </div>
       </el-card>
-    </div> -->
-    <div class="blockdiv2">
+    </div>
+    <!-- <div class="blockdiv2">
       <el-card class="box-card">
         <el-calendar v-model="calendarValue">
         </el-calendar>
       </el-card>
-    </div>
+    </div> -->
   </div>
 </template>
 <style>
 .blockdiv {
-  height: 30%;
+  height: 300px;
   width: 49%;
   margin: 2px;
   float: left;
 }
 .blockdiv2 {
-  height: 70%;
-  width: 49%;
+  height: 500px;
+  width: 98%;
   margin: 2px;
   float: left;
 }

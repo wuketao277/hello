@@ -49,7 +49,7 @@ export default {
         {value: '3rd Interview', lable: '3rd Interview'},
         {value: '4th Interview', lable: '4th Interview'},
         {value: 'Final Interview', lable: 'Final Interview'},
-        {value: 'Offer Nego', lable: 'Offer Nego'},
+        {value: 'Offer Signed', lable: 'Offer Signed'},
         {value: 'On Board', lable: 'On Board'},
         {value: 'Pre. Service', lable: 'Pre. Service'},
         {value: 'On Service', lable: 'On Service'},

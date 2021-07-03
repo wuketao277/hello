@@ -1,5 +1,6 @@
 import myTaskApi from '@/api/myTask'
 import myNewsApi from '@/api/mynews'
+import commentApi from '@/api/comment'
 // import candidateApi from '@/api/candidate'
 
 export default {
@@ -7,7 +8,9 @@ export default {
     return {
       calendarValue: new Date(),
       myTasks: [],
-      myNewsList: []
+      myNewsList: [],
+      KPIDate: '',
+      KPIDashboard: []
     }
   },
   methods: {
@@ -15,6 +18,28 @@ export default {
       this.$router.push({
         path: path,
         query: {}
+      })
+    },
+    // 计算KPI
+    calcKPI () {
+      if (this.KPIDate === '') {
+        this.$message.error('请先选择要计算的日期')
+        return
+      }
+      let request = {
+        'dates': this.KPIDate
+      }
+      commentApi.calcKPI(request).then(res => {
+        if (res.status === 200) {
+          // 重新查询全部评论
+          this.KPIDashboard = res.data
+        } else {
+          this.$message({
+            message: '保存异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
       })
     },
     // 查看任务详情
