@@ -130,14 +130,16 @@ export default {
           type: 'success',
           showClose: true
         })
-        // 刷新列表
-        this.query()
       } else {
         this.$message({
           message: response.msg,
-          showClose: true
+          type: 'error',
+          showClose: true,
+          duration: 0
         })
       }
+      // 刷新列表
+      this.query()
     },
     handlePreview () {},
     handleRemove () {},
