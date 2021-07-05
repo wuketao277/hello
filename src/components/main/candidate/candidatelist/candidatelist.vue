@@ -16,7 +16,7 @@
       </el-form>
       <el-upload
         class="upload-demo"
-        action="http://localhost:8080/candidate/uploadFile"
+        action="http://47.101.176.70/candidate/uploadFile"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"
