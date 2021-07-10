@@ -92,7 +92,7 @@
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" width="150" >
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -100,11 +100,11 @@
                 @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="candidateId" label="候选人id"></el-table-column>
-          <el-table-column prop="chineseName" label="联系人中文名"></el-table-column>
-          <el-table-column prop="englishName" label="联系人英文名"></el-table-column>
-          <el-table-column prop="status" label="状态"></el-table-column>
-          <el-table-column prop="createTime" label="创建时间"></el-table-column>
+          <el-table-column prop="chineseName" width="120" label="中文名"></el-table-column>
+          <el-table-column prop="englishName" width="120" label="英文名"></el-table-column>
+          <el-table-column prop="latestCommentUsername" width="120" label="评论人"></el-table-column>
+          <el-table-column prop="latestCommentContent" label="最后评论内容"></el-table-column>
+          <el-table-column prop="latestCommentInputtime" width="160" label="最后评论时间"></el-table-column>
         </el-table>
         <!--候选人结束-->
       </el-tab-pane>

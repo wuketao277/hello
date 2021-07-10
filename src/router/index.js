@@ -4,6 +4,8 @@ import Login from '@/components/login/login.vue'
 import Index from '@/components/main/index/index.vue'
 import ClientList from '@/components/main/client/clientlist/clientlist.vue'
 import Client from '@/components/main/client/client/client.vue'
+import UserList from '@/components/main/user/userlist/userlist.vue'
+import User from '@/components/main/user/user/user.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
 import Candidate from '@/components/main/candidate/candidate/candidate.vue'
 import Summary from '@/components/main/summary/summary.vue'
@@ -47,6 +49,18 @@ const router = new Router({
           path: '/client/client',
           name: 'client',
           component: Client
+        },
+        {
+          // 用户列表页
+          path: '/user/userlist',
+          name: 'userlist',
+          component: UserList
+        },
+        {
+          // 新增用户
+          path: '/user/user',
+          name: 'user',
+          component: User
         },
         {
           // 候选人列表页

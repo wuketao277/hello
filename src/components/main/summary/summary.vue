@@ -65,6 +65,7 @@
             :stripe="true"
             :row-class-name="rowStyle"
             style="width: 100%"
+            max-height="500"
             @current-change="rowChange"
           >
             <el-table-column prop="name" label="姓名"></el-table-column>
@@ -96,7 +97,7 @@
   float: left;
 }
 .blockdiv2 {
-  height: 500px;
+  /* height: 500px; */
   width: 98%;
   margin: 2px;
   float: left;

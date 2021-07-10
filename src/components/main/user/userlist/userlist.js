@@ -1,4 +1,4 @@
-import user from '@/api/user'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -64,34 +64,8 @@ export default {
         })
       }
     },
-    // 删除用户
-    deleteUser () {
-      if (this.checkSelectRow()) {
-        this.$confirm('确认要删除该记录吗？', '确认信息', {
-          distinguishCancelAndClose: true,
-          confirmButtonText: '确定',
-          cancelButtonText: '放弃'
-        })
-          .then(() => {
-            user.deleteById(this.currentRow.id).then(res => {
-              if (res.status !== 200) {
-                this.$message.error({
-                  message: '删除失败，请联系管理员！'
-                })
-              } else {
-                this.$message({
-                  message: '删除成功！',
-                  type: 'success',
-                  showClose: true
-                })
-                this.query()
-              }
-            })
-          })
-      }
-    },
     // 查询后台数据
-    query (showDialog = false) {
+    query () {
       if (this.search === '') {
         this.showSearchResult = false
       } else {
@@ -102,7 +76,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      user.queryUserPage(query).then(res => {
+      userApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
@@ -111,12 +85,6 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-        if (showDialog) {
-          this.$message({
-            type: 'success',
-            message: '查询完成！'
-          })
-        }
       })
     },
     // 处理选中行时间

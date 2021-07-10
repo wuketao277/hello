@@ -5,6 +5,17 @@
       <el-breadcrumb-item :to="{ path: '/candidate/candidatelist' }">候选人列表</el-breadcrumb-item>
       <el-breadcrumb-item>候选人</el-breadcrumb-item>
     </el-breadcrumb>
+    <!--工具栏，只有模式为新增或修改时才显示-->
+    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
+      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存候选人</el-button>
+      <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        icon="el-icon-upload"
+        @click="openUploadFileDialog"
+      >上传文件</el-button>
+    </div>
     <el-form
       ref="form"
       label-position="left"
@@ -119,17 +130,6 @@
         </el-col>
       </el-row>
     </el-form>
-    <!--工具栏，只有模式为新增或修改时才显示-->
-    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存候选人</el-button>
-      <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
-      <el-button
-        type="primary"
-        size="small"
-        icon="el-icon-upload"
-        @click="openUploadFileDialog"
-      >上传文件</el-button>
-    </div>
     <el-tabs type="border-card">
       <el-tab-pane label="推荐职位">
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
