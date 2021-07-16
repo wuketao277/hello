@@ -68,7 +68,14 @@
             max-height="500"
             @current-change="rowChange"
           >
-            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  @click="kpiDetail(scope.$index, scope.row)">详情</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="realName" label="姓名"></el-table-column>
             <el-table-column prop="ti" label="TI"></el-table-column>
             <el-table-column prop="vi" label="VI"></el-table-column>
             <el-table-column prop="ioi" label="IOI"></el-table-column>
@@ -81,12 +88,14 @@
         </div>
       </el-card>
     </div>
-    <!-- <div class="blockdiv2">
-      <el-card class="box-card">
-        <el-calendar v-model="calendarValue">
-        </el-calendar>
-      </el-card>
-    </div> -->
+    <el-dialog title="评论详情" :visible.sync="commentsDetailTableVisible">
+      <el-table :data="commentsDetailTable" max-height="500">
+        <el-table-column property="chineseName" label="候选人姓名" width="100"></el-table-column>
+        <el-table-column property="phase" label="阶段" width="80"></el-table-column>
+        <el-table-column property="content" label="内容"></el-table-column>
+        <el-table-column property="inputTime" label="录入时间" width="180"></el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 <style>

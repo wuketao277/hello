@@ -12,5 +12,9 @@ export default {
   // 计算KPI
   calcKPI (params) {
     return axios.post('/comment/calcKPI', params)
+  },
+  // 通过开始时间、结束时间、录入人 查找评论
+  findCommentsByTimeAndUsername (params) {
+    return axios.get('/comment/findCommentsByTimeAndUsername', {params: params})
   }
 }

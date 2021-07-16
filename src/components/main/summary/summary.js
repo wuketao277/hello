@@ -10,10 +10,36 @@ export default {
       myTasks: [],
       myNewsList: [],
       KPIDate: '',
-      KPIDashboard: []
+      KPIDashboard: [],
+      commentsDetailTableVisible: false,
+      commentsDetailTable: []
     }
   },
   methods: {
+    kpiDetail (index, row) {
+      if (this.KPIDate === '') {
+        this.$message.error('请先选择要计算的日期')
+        return
+      }
+      let request = {
+        'beginDate': this.KPIDate[0],
+        'endDate': this.KPIDate[1],
+        'userName': row['userName']
+      }
+      commentApi.findCommentsByTimeAndUsername(request).then(res => {
+        if (res.status === 200) {
+          // 评论详情
+          this.commentsDetailTableVisible = true
+          this.commentsDetailTable = res.data
+        } else {
+          this.$message({
+            message: '查询异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
+    },
     openView (path) {
       this.$router.push({
         path: path,
