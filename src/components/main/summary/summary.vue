@@ -88,10 +88,18 @@
         </div>
       </el-card>
     </div>
-    <el-dialog title="评论详情" :visible.sync="commentsDetailTableVisible">
+    <el-dialog title="评论详情" :visible.sync="commentsDetailTableVisible" width="70%">
       <el-table :data="commentsDetailTable" max-height="500">
+        <el-table-column label="操作" width="130" >
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="primary"
+              @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
+          </template>
+        </el-table-column>
         <el-table-column property="chineseName" label="候选人姓名" width="100"></el-table-column>
-        <el-table-column property="phase" label="阶段" width="80"></el-table-column>
+        <el-table-column property="phase" label="阶段" width="100"></el-table-column>
         <el-table-column property="content" label="内容"></el-table-column>
         <el-table-column property="inputTime" label="录入时间" width="180"></el-table-column>
       </el-table>

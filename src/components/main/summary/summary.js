@@ -16,6 +16,16 @@ export default {
     }
   },
   methods: {
+    // 编辑候选人
+    editCandidate (index, row) {
+      this.$router.push({
+        path: '/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: row.candidateId
+        }
+      })
+    },
     kpiDetail (index, row) {
       if (this.KPIDate === '') {
         this.$message.error('请先选择要计算的日期')

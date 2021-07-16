@@ -41,7 +41,6 @@
       <el-table-column prop="id" label="用户id" width="80"></el-table-column>
       <el-table-column prop="username" label="登录名"></el-table-column>
       <el-table-column prop="realname" label="真实名称"></el-table-column>
-      <el-table-column prop="password" label="密码"></el-table-column>
       <el-table-column prop="enabledName" label="状态"></el-table-column>
     </el-table>
     <el-pagination
