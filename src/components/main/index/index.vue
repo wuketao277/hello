@@ -73,7 +73,7 @@
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
             </template>
-            <el-menu-item index="/user/userlist">用户列表</el-menu-item>
+            <el-menu-item index="/user/userlist" v-show="showControl('/user/userlist')">用户列表</el-menu-item>
             <!-- <el-menu-item index="/role/rolelist">角色列表</el-menu-item> -->
           </el-submenu>
         </el-menu>

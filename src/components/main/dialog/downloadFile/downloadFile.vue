@@ -27,6 +27,7 @@
               circle
               title="删除文件"
               @click="deleteFile(file)"
+              v-show="showControl()"
             ></el-button>
           </el-col>
         </el-row>

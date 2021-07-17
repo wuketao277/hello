@@ -1,4 +1,5 @@
 import uploadFileApi from '@/api/uploadFile'
+import commonJS from '@/common/common'
 
 export default {
   data () {
@@ -6,6 +7,10 @@ export default {
   },
   props: ['files'],
   methods: {
+    // 删除按钮显示控制
+    showControl () {
+      return commonJS.hasRole('admin')
+    },
     // 下载文件
     downloadFile (file) {
       uploadFileApi.download(file.uuid)

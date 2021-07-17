@@ -1,4 +1,5 @@
 import basic from '@/api/basic'
+import commonJS from '@/common/common'
 
 export default {
   data () {
@@ -8,6 +9,14 @@ export default {
     }
   },
   methods: {
+    // 菜单显示控制
+    showControl (url) {
+      if (url === '/user/userlist') {
+        return commonJS.hasRole('admin')
+      }
+      // 没有特殊要求的菜单不需要角色
+      return true
+    },
     // 检查菜单角色配置
     checkRole (menuName) {
       let loginInfo = window.localStorage['loginInfo']
