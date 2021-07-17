@@ -1,4 +1,5 @@
 import mynewsApi from '@/api/mynews'
+import commonJS from '@/common/common'
 
 export default {
   data () {
@@ -21,6 +22,10 @@ export default {
     }
   },
   methods: {
+    // 显示控制
+    showControl () {
+      return commonJS.hasRole('admin')
+    },
     // 添加新闻
     addNews () {
       this.$router.push({path: '/mynews/mynews'})

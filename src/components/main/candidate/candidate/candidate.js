@@ -383,7 +383,6 @@ export default {
     // “推荐职位”对话框返回
     sureSelectCaseDialog (val) {
       // 首先关闭对话框
-      debugger
       this.selectCaseDialogShow = false
       let params = {
         candidateId: this.form.id,
