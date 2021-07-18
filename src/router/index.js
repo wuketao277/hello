@@ -21,6 +21,7 @@ import Case from '@/components/main/case/case/case.vue'
 import CaseList from '@/components/main/case/caselist/caselist.vue'
 import FileList from '@/components/main/file/filelist.vue'
 import SecurityApi from '@/api/security'
+import PersonalInfo from '@/components/main/personalInfo/personalInfo.vue'
 
 Vue.use(Router)
 
@@ -139,6 +140,12 @@ const router = new Router({
           path: '/file/filelist',
           name: 'filelist',
           component: FileList
+        },
+        {
+          // 个人信息
+          path: '/personalInfo',
+          name: 'personalInfo',
+          component: PersonalInfo
         }
       ]
     },

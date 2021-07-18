@@ -26,9 +26,6 @@
       <el-form-item label="登录名">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="form.password"></el-input>
-      </el-form-item>
       <el-form-item label="状态">
         <el-switch v-model="form.enabled" active-color="#13ce66" inactive-color="#ff4949" active-text="正常" inactive-text="停用"></el-switch>
       </el-form-item>

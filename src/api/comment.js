@@ -16,5 +16,9 @@ export default {
   // 通过开始时间、结束时间、录入人 查找评论
   findCommentsByTimeAndUsername (params) {
     return axios.get('/comment/findCommentsByTimeAndUsername', {params: params})
+  },
+  // 通过评论查找候选人
+  queryCandidateByCommentLimit100 (params) {
+    return axios.get('/comment/queryCandidateByCommentLimit100', {params: params})
   }
 }

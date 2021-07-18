@@ -1,10 +1,10 @@
 import candidate from '@/api/candidate'
+import comment from '@/api/comment'
 
 export default {
   data () {
     return {
-      // 显示的是搜索后的结果
-      showSearchResult: false,
+      contentFromComment: [],
       table: {
         content: [],
         totalElements: 0,
@@ -91,12 +91,7 @@ export default {
       }
     },
     // 查询后台数据
-    query (showDialog = false) {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+    query () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -111,16 +106,35 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-        if (showDialog) {
-          this.$message({
-            type: 'success',
-            message: '查询完成！'
-          })
-        }
+        this.$message({
+          type: 'success',
+          message: '查询完成！'
+        })
       })
+      debugger
+      // 如果存在查询条件就通过查询条件从评论中搜索候选人
+      if (this.search !== '') {
+        let query = {'search': this.search}
+        comment.queryCandidateByCommentLimit100(query).then(res => {
+          if (res.status !== 200) {
+            this.$message.error({
+              message: '通过评论查询候选人失败，请联系管理员！'
+            })
+            return
+          }
+          this.contentFromComment = res.data
+        })
+      } else {
+        // 清空查询数据
+        this.contentFromComment = []
+      }
     },
-    // 处理选中行时间
+    // 处理选中行
     handleCurrentChange (val) {
+      this.currentRow = val
+    },
+    // 处理选中行
+    handleCurrentChangeFromComment (val) {
       this.currentRow = val
     },
     uploadFileSuccess (response, file, fileList) {
@@ -163,8 +177,8 @@ export default {
     switchSearchDialog () {
       this.$refs['search'].focus()
     },
-    // 搜索对话框，确定按钮
-    sureSearchDialog () {
+    // 按照条件搜索
+    searchCandidate () {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
