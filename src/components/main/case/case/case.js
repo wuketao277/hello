@@ -137,7 +137,7 @@ export default {
       // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的后续人列表中
       let include = false
       for (let index in this.candidateForCase) {
-        if (this.candidateForCase[index].candidateId === val) {
+        if (this.candidateForCase[index].candidateId === val.id) {
           include = true
           break
         }
@@ -169,7 +169,7 @@ export default {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       // 添加候选人到职位
-      let o = {'curCaseId': this.form.id, 'oldCaseId': val}
+      let o = {'curCaseId': this.form.id, 'oldCaseId': val.id}
       candidateForCaseApi.copyFromOldCase(o).then(res => {
         if (res.status === 200) {
           // 获取该职位所有候选人信息

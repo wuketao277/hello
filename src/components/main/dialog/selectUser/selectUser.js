@@ -1,31 +1,14 @@
-import caseApi from '@/api/case'
+import userApi from '@/api/user'
 
 export default {
   data () {
     return {
-      showSearchDialog: false,
-      caseList: [],
+      userList: [],
       currentRow: null,
       search: ''
     }
   },
   methods: {
-    // 获取状态名称
-    getStatusName (row, column) {
-      if (row.status === 'PREPARE') {
-        return '准备'
-      } else if (row.status === 'DOING') {
-        return '进行中'
-      } else if (row.status === 'FINISH') {
-        return '完成'
-      } else if (row.status === 'PAUSE') {
-        return '暂停'
-      } else if (row.status === 'CLOSE') {
-        return '关闭'
-      } else {
-        return ''
-      }
-    },
     // 检查是否选择了一条记录
     checkSelectRow () {
       if (this.currentRow === null) {
@@ -39,33 +22,19 @@ export default {
       return true
     },
     // 查询后台数据
-    query (showDialog = false) {
-      if (this.search.length === 0) {
-        this.$message({
-          message: '请输入搜索条件！',
-          type: 'warning',
-          showClose: true
-        })
-        return
-      }
+    query () {
+      debugger
       let query = {
         'search': this.search
       }
-      caseApi.query(query).then(res => {
+      userApi.query(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
           })
           return
         }
-        this.caseList = res.data
-        if (showDialog) {
-          this.$message({
-            message: '查询完成！',
-            type: 'success',
-            showClose: true
-          })
-        }
+        this.userList = res.data
       })
     },
     // 处理选中行时间
@@ -90,12 +59,10 @@ export default {
     },
     // 搜索对话框，取消按钮
     cancelSearchDialog () {
-      this.showSearchDialog = false
       this.search = ''
     },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
-      this.showSearchDialog = false
       this.query()
       this.search = ''
     },
@@ -112,6 +79,7 @@ export default {
   },
   computed: {},
   created () {
-    // this.query()
+    debugger
+    this.query()
   }
 }

@@ -386,7 +386,7 @@ export default {
       this.selectCaseDialogShow = false
       let params = {
         candidateId: this.form.id,
-        caseId: val
+        caseId: val.id
       }
       candidateForCaseApi.saveSimple(params).then(
         res => {

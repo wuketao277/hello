@@ -104,7 +104,7 @@ export default {
     // 点击“确定”按钮，触发自定义事件
     sureDialog () {
       if (this.checkSelectRow()) {
-        this.$emit('sure-dialog', this.currentRow.id)
+        this.$emit('sure-dialog', this.currentRow)
       }
     }
   },

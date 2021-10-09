@@ -7,7 +7,7 @@
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存候选人</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
       <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
       <el-button
         type="primary"
@@ -309,6 +309,7 @@
         <!--附件结束-->
       </el-tab-pane>
     </el-tabs>
+    <!--推荐职位对话框-->
     <el-dialog title="推荐职位" :visible.sync="selectCaseDialogShow">
       <selectCase
         v-on:cancel-dialog="selectCaseDialogShow = false"

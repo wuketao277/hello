@@ -10,23 +10,17 @@
       </el-form>
     </div>
     <el-table
-      :data="candidateList"
+      :data="userList"
       @current-change="handleCurrentChange"
       :border="true"
       :highlight-current-row="true"
       style="width: 100%"
     >
       <el-table-column type="index" width="50" label="序号"></el-table-column>
-      <el-table-column prop="id" label="后续人id" width="80"></el-table-column>
-      <el-table-column prop="chineseName" label="中文名称" width="80"></el-table-column>
-      <el-table-column prop="englishName" label="英文名称" width="80"></el-table-column>
-      <el-table-column prop="phoneNo" label="手机"></el-table-column>
-      <el-table-column prop="email" label="邮箱"></el-table-column>
-      <el-table-column prop="age" label="年龄" width="60"></el-table-column>
-      <el-table-column prop="companyName" label="公司"></el-table-column>
-      <el-table-column prop="department" label="部门"></el-table-column>
-      <el-table-column prop="title" label="职位"></el-table-column>
+      <el-table-column prop="id" label="用户id" width="80"></el-table-column>
+      <el-table-column prop="username" label="登录名"></el-table-column>
+      <el-table-column prop="realname" label="真实名称"></el-table-column>
     </el-table>
   </div>
 </template>
-<script src="./selectCandidate.js"></script>
+<script src="./selectUser.js"></script>

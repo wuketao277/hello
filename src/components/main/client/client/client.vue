@@ -1,10 +1,21 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/client/clientlist'}">客户列表</el-breadcrumb-item>
       <el-breadcrumb-item>客户</el-breadcrumb-item>
     </el-breadcrumb>
+    <!--工具栏，只有模式为新增或修改时才显示-->
+    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
+      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
+      <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        icon="el-icon-upload"
+        @click="openUploadFileDialog"
+      >上传文件</el-button>
+    </div>
     <el-form
       ref="form"
       :model="form"
@@ -19,17 +30,6 @@
         <el-input v-model="form.englishName"></el-input>
       </el-form-item>
     </el-form>
-    <!--工具栏，只有模式为新增或修改时才显示-->
-    <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-      <el-button type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-circle-close" @click="cancel">取消</el-button>
-      <el-button
-        type="primary"
-        size="small"
-        icon="el-icon-upload"
-        @click="openUploadFileDialog"
-      >上传文件</el-button>
-    </div>
     <el-tabs type="border-card">
       <el-tab-pane label="评论">
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">

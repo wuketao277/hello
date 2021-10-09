@@ -22,6 +22,8 @@ import CaseList from '@/components/main/case/caselist/caselist.vue'
 import FileList from '@/components/main/file/filelist.vue'
 import SecurityApi from '@/api/security'
 import PersonalInfo from '@/components/main/personalInfo/personalInfo.vue'
+import SuccessfulPermList from '@/components/main/case/successfulPermList/successfulPermList.vue'
+import SuccessfulPerm from '@/components/main/case/successfulPerm/successfulPerm.vue'
 
 Vue.use(Router)
 
@@ -134,6 +136,18 @@ const router = new Router({
           path: '/case/case',
           name: 'case',
           component: Case
+        },
+        {
+          // 成功职位列表
+          path: '/case/successfulPermList',
+          name: 'successfulPermList',
+          component: SuccessfulPermList
+        },
+        {
+          // 成功职位
+          path: '/case/successfulPerm',
+          name: 'successfulPerm',
+          component: SuccessfulPerm
         },
         {
           // 文件

@@ -41,7 +41,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     proxy: [{
       changeOrigin: true,
       context: ["/mynews/**","/myTask/**","/myplan/**","/role/**","/user/**"
-        ,"/resource/**","/candidate/**","/comment/**","/security/**"
+        ,"/resource/**","/candidate/**","/comment/**","/security/**","/successfulPerm/**"
         ,"/client/**","/clientlinkman/**","/case/**","/candidateForCase/**","/uploadFile/**"],
       target: "http://localhost:8000"
     }],

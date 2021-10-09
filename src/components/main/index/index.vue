@@ -43,6 +43,8 @@
             </template>
             <el-menu-item index="/case/caselist">职位列表</el-menu-item>
             <el-menu-item index="/case/case">新增职位</el-menu-item>
+            <el-menu-item index="/case/successfulPermList">成功职位列表</el-menu-item>
+            <el-menu-item index="/case/successfulPerm">成功职位</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
