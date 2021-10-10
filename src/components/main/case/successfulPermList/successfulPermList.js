@@ -1,4 +1,4 @@
-import caseApi from '@/api/case'
+import successfulPermApi from '@/api/successfulPerm'
 import commonJS from '@/common/common'
 
 export default {
@@ -22,6 +22,12 @@ export default {
     }
   },
   methods: {
+    formatDate (row, column, cellvalue, index) {
+      if (typeof (cellvalue) !== 'undefined') {
+        return cellvalue.substr(0, 10)
+      }
+      return ''
+    },
     // 显示控制
     showControl (key) {
       if (key === 'add' || key === 'edit') {
@@ -44,16 +50,16 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/case/case')
+      this.$router.push('/case/successfulPerm')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/case',
+          path: '/case/successfulPerm',
           query: {
             mode: 'modify',
-            case: this.currentRow
+            successfulPerm: this.currentRow
           }
         })
       }
@@ -62,10 +68,10 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/case',
+          path: '/case/successfulPerm',
           query: {
             mode: 'detail',
-            case: this.currentRow
+            successfulPerm: this.currentRow
           }
         })
       }
@@ -83,7 +89,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      caseApi.queryPage(query).then(res => {
+      successfulPermApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'

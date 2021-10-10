@@ -1,9 +1,8 @@
-import caseApi from '@/api/case'
 import successfulPermApi from '@/api/successfulPerm'
-import clientApi from '@/api/client'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
+import clientApi from '@/api/client'
 
 export default {
   components: {
@@ -25,12 +24,15 @@ export default {
         consultantId: '', // 顾问id
         consultantUserName: '', // 顾问登录名
         consultantRealName: '', // 顾问真实姓名
+        consultantCommissionPercent: '', // 顾问提成比例
         cwId: '', // CWid
         cwUserName: '', // CW登录名
         cwRealName: '', // CW真实姓名
+        cwCommissionPercent: '', // CW提成比例
         bdId: '', // BDid
         bdUserName: '', // BD登录名
         bdRealName: '', // BD真实姓名
+        bdCommissionPercent: '', // BD提成比例
         location: '', // 地点
         base: 0,
         gp: 0,
@@ -98,14 +100,40 @@ export default {
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {
         this.mode = this.$route.query.mode
-        this.form = this.$route.query.client
+        this.form = this.$route.query.successfulPerm
       } else {
-        this.form.id = ''
-        this.form.clientId = ''
-        this.form.clientName = ''
-        this.form.title = ''
-        this.form.status = ''
-        this.form.description = ''
+        this.form.id = null
+        this.form.clientId = '' // 公司id
+        this.form.caseId = '' // 职位id
+        this.form.title = '' // 职位名称
+        this.form.candidateId = '' // 候选人id
+        this.form.candidateEnglishName = '' // 候选人英文名字
+        this.form.candidateChineseName = '' // 候选人中文名字
+        this.form.consultantId = '' // 顾问id
+        this.form.consultantUserName = '' // 顾问登录名
+        this.form.consultantRealName = '' // 顾问真实姓名
+        this.form.consultantCommissionPercent = '' // 顾问提成比例
+        this.form.cwId = '' // CWid
+        this.form.cwUserName = '' // CW登录名
+        this.form.cwRealName = '' // CW真实姓名
+        this.form.cwCommissionPercent = '' // CW提成比例
+        this.form.bdId = '' // BDid
+        this.form.bdUserName = '' // BD登录名
+        this.form.bdRealName = '' // BD真实姓名
+        this.form.bdCommissionPercent = '' // BD提成比例
+        this.form.location = '' // 地点
+        this.form.base = 0
+        this.form.gp = 0
+        this.form.billing = 0
+        this.form.onBoardDate = ''
+        this.form.offerDate = ''
+        this.form.paymentDate = ''
+        this.form.invoiceDate = ''
+        this.form.po = ''
+        this.form.invoiceNo = ''
+        this.form.channel = ''
+        this.form.actualAcceptDate = '' // 实际收款日期
+        this.form.bonusPaymentDate = '' // 奖金发放日期
       }
     },
     // 保存
@@ -207,28 +235,16 @@ export default {
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
-      if (typeof (this.$route.query.case) !== 'undefined') {
-        this.form = this.$route.query.case
-        this.queryOthers()
-      } else if (typeof (this.$route.query.caseId) !== 'undefined') {
-        let params = {
-          'id': this.$route.query.caseId
-        }
-        caseApi.queryById(params).then(res => {
-          if (res.status === 200) {
-            this.form = res.data
-            this.queryOthers()
-          }
-        })
+      if (typeof (this.$route.query.successfulPerm) !== 'undefined') {
+        this.form = this.$route.query.successfulPerm
       }
     }
-    // 获取所有“客户”信息
-    clientApi.findAll().then(res => {
-      if (res.status === 200) {
-        this.clients = res.data
-      }
-    })
-    // 查询上传文件
-    this.queryUploadFiles()
+    clientApi.findAll().then(
+      res => {
+        if (res.status === 200) {
+          // 将从服务端获取的id赋值给前端显示
+          this.clients = res.data
+        }
+      })
   }
 }

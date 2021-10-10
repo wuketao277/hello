@@ -23,31 +23,26 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="clientName" width="200" label="客户名称"></el-table-column>
-        <el-table-column prop="caseId" width="100" label="职位id"></el-table-column>
-        <el-table-column prop="title" width="200" label="职位名称"></el-table-column>
-        <el-table-column prop="candidateId" width="200" label="候选人id"></el-table-column>
-        <el-table-column prop="candidateName" width="200" label="候选人姓名"></el-table-column>
-        <el-table-column prop="location" width="200" label="Location"></el-table-column>
-        <el-table-column prop="base" width="200" label="Base"></el-table-column>
-        <el-table-column prop="gp" width="200" label="GP"></el-table-column>
-        <el-table-column prop="billing" width="200" label="Billing"></el-table-column>
-        <el-table-column prop="onBoardDate" width="200" label="On Board Date"></el-table-column>
-        <el-table-column prop="offerDate" width="200" label="Offer Date"></el-table-column>
-        <el-table-column prop="paymentDate" width="200" label="Payment Date"></el-table-column>
-        <el-table-column prop="consulant" width="200" label="Consulant"></el-table-column>
-        <el-table-column prop="commission" width="200" label="Commission"></el-table-column>
-        <el-table-column prop="contact" width="200" label="Contact"></el-table-column>
-        <el-table-column prop="cwCommission" width="200" label="CW Commission"></el-table-column>
-        <el-table-column prop="bd" width="200" label="BD"></el-table-column>
-        <el-table-column prop="po" width="200" label="PO"></el-table-column>
-        <el-table-column prop="invoiceDate" width="200" label="Invoice Date"></el-table-column>
+        <el-table-column prop="clientName" width="120" label="客户名称"></el-table-column>
+        <el-table-column prop="title" width="150" label="职位名称"></el-table-column>
+        <el-table-column prop="candidateChineseName" width="120" label="候选人姓名"></el-table-column>
+        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent" width="120" label="顾问提成比例"></el-table-column>
+        <el-table-column prop="cwRealName" width="100" label="CW姓名"></el-table-column>
+        <el-table-column prop="cwCommissionPercent" width="120" label="CW提成比例"></el-table-column>
+        <el-table-column prop="bdRealName" width="100" label="BD姓名"></el-table-column>
+        <el-table-column prop="bdCommissionPercent" width="120" label="BD提成比例"></el-table-column>
+        <el-table-column prop="base" width="100" label="Base"></el-table-column>
+        <el-table-column prop="gp" width="100" label="GP"></el-table-column>
+        <el-table-column prop="billing" width="100" label="Billing"></el-table-column>
+        <el-table-column prop="onBoardDate" :formatter="formatDate" width="120" label="On Board Date"></el-table-column>
+        <el-table-column prop="offerDate" :formatter="formatDate" width="120" label="Offer Date"></el-table-column>
+        <el-table-column prop="paymentDate" :formatter="formatDate" width="120" label="Payment Date"></el-table-column>
+        <el-table-column prop="invoiceDate" :formatter="formatDate" width="120" label="Invoice Date"></el-table-column>
         <el-table-column prop="invoiceNo" width="200" label="Invoice No."></el-table-column>
-        <el-table-column prop="successfulChannel" width="200" label="Successful Channel"></el-table-column>
-        <el-table-column prop="actualDateOfCollection" width="200" label="实际收款日期"></el-table-column>
-        <el-table-column prop="aonusPaymentDate" width="200" label="奖金发放日期"></el-table-column>
-        <el-table-column prop="status" width="100" :formatter="this.getStatusName" label="状态"></el-table-column>
-        <el-table-column prop="description" label="描述"></el-table-column>
+        <el-table-column prop="po" width="200" label="PO"></el-table-column>
+        <el-table-column prop="actualAcceptDate" :formatter="formatDate" width="120" label="实际收款日期"></el-table-column>
+        <el-table-column prop="bonusPaymentDate" :formatter="formatDate" width="120" label="奖金发放日期"></el-table-column>
       </el-table>
       <el-pagination
         background
