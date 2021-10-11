@@ -72,6 +72,14 @@
           </el-submenu>
           <el-submenu index="6">
             <template slot="title">
+              <i class="el-icon-money"></i>
+              <span slot="title">工资</span>
+            </template>
+            <el-menu-item index="/salary/salarySpecialItemList">工资特殊项列表</el-menu-item>
+            <el-menu-item index="/salary/salarySpecialItem">工资特殊项</el-menu-item>
+          </el-submenu>
+          <el-submenu index="7">
+            <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
             </template>

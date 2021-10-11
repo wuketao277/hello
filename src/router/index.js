@@ -24,6 +24,8 @@ import SecurityApi from '@/api/security'
 import PersonalInfo from '@/components/main/personalInfo/personalInfo.vue'
 import SuccessfulPermList from '@/components/main/case/successfulPermList/successfulPermList.vue'
 import SuccessfulPerm from '@/components/main/case/successfulPerm/successfulPerm.vue'
+import SalarySpecialItem from '@/components/main/salary/salarySpecialItem/salarySpecialItem.vue'
+import SalarySpecialItemList from '@/components/main/salary/salarySpecialItemList/salarySpecialItemList.vue'
 
 Vue.use(Router)
 
@@ -160,6 +162,18 @@ const router = new Router({
           path: '/personalInfo',
           name: 'personalInfo',
           component: PersonalInfo
+        },
+        {
+          // 工资特殊项
+          path: '/salary/salarySpecialItem',
+          name: 'salarySpecialItem',
+          component: SalarySpecialItem
+        },
+        {
+          // 工资特殊项集合
+          path: '/salary/salarySpecialItemList',
+          name: 'salarySpecialItemList',
+          component: SalarySpecialItemList
         }
       ]
     },
