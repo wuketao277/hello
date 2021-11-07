@@ -12,5 +12,9 @@ export default {
   // 查找后台数据
   queryPage (params) {
     return axios.get('/salary/queryPage', {params: params})
+  },
+  // 更新
+  update (params) {
+    return axios.post('/salary/update', params)
   }
 }

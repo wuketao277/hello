@@ -22,9 +22,33 @@ export default {
     }
   },
   methods: {
+    // 查看
+    detail () {
+      if (this.checkSelectRow()) {
+        this.$router.push({
+          path: '/salary/salary',
+          query: {
+            mode: 'detail',
+            salary: this.currentRow
+          }
+        })
+      }
+    },
+    // 修改
+    modify () {
+      if (this.checkSelectRow()) {
+        this.$router.push({
+          path: '/salary/salary',
+          query: {
+            mode: 'modify',
+            salary: this.currentRow
+          }
+        })
+      }
+    },
     // 显示控制
     showControl (key) {
-      if (key === 'generateSalary' || key === 'search') {
+      if (key === 'generateSalary' || key === 'search' || key === 'modifySalary') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -41,18 +65,6 @@ export default {
         return false
       }
       return true
-    },
-    // 查看
-    detail () {
-      if (this.checkSelectRow()) {
-        this.$router.push({
-          path: '/salary/salary',
-          query: {
-            mode: 'detail',
-            salary: this.currentRow
-          }
-        })
-      }
     },
     // 生成工资
     generateSalary () {

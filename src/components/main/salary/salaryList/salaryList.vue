@@ -5,6 +5,8 @@
       <el-breadcrumb-item>薪资列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-show="showControl('modifySalary')">修改</el-button>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
       <el-button type="danger" size="small" icon="el-icon-share" @click="generateSalary" v-show="showControl('generateSalary')">生成工资</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;" v-show="showControl('search')">
         <el-form-item>
@@ -24,8 +26,12 @@
         <el-table-column prop="consultantUserName" width="100" label="登录名"></el-table-column>
         <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
         <el-table-column prop="month" width="100" label="月份"></el-table-column>
-        <el-table-column prop="sum" width="120" label="税前工资"></el-table-column>
         <el-table-column prop="historyDebt" width="120" label="历史负债"></el-table-column>
+        <el-table-column prop="sum" width="120" label="税前工资"></el-table-column>
+        <el-table-column prop="finalSum" width="120" label="税后工资"></el-table-column>
+        <el-table-column prop="personalTax" width="120" label="所得税"></el-table-column>
+        <el-table-column prop="insurance" width="120" label="保险"></el-table-column>
+        <el-table-column prop="gongjijin" width="120" label="公积金"></el-table-column>
       </el-table>
       <el-pagination
         background

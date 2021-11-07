@@ -9,15 +9,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: this.getPageNumber(),
+          pageSize: this.getPageSize()
         }
       },
       page: {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: '',
+      search: this.getSearchContent(),
       fileList: []
     }
   },
@@ -92,6 +92,9 @@ export default {
     },
     // 查询后台数据
     query () {
+      window.localStorage['candidatelist.search'] = this.search
+      window.localStorage['candidatelist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['candidatelist.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -111,7 +114,6 @@ export default {
           message: '查询完成！'
         })
       })
-      debugger
       // 如果存在查询条件就通过查询条件从评论中搜索候选人
       if (this.search !== '') {
         let query = {'search': this.search}
@@ -182,6 +184,27 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
+    },
+    getSearchContent () {
+      if (typeof (window.localStorage['candidatelist.search']) === 'undefined') {
+        return ''
+      } else {
+        return window.localStorage['candidatelist.search']
+      }
+    },
+    getPageNumber () {
+      if (typeof (window.localStorage['candidatelist.pageNumber']) === 'undefined') {
+        return 1
+      } else {
+        return window.localStorage['candidatelist.pageNumber']
+      }
+    },
+    getPageSize () {
+      if (typeof (window.localStorage['candidatelist.pageSize']) === 'undefined') {
+        return 10
+      } else {
+        return window.localStorage['candidatelist.pageSize']
+      }
     }
   },
   computed: {},

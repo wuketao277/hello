@@ -72,7 +72,6 @@ export default {
     },
     // 查询后台数据
     query () {
-      debugger
       if (this.search === '') {
         this.showSearchResult = false
       } else {

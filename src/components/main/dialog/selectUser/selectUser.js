@@ -23,7 +23,6 @@ export default {
     },
     // 查询后台数据
     query () {
-      debugger
       let query = {
         'search': this.search
       }
@@ -79,7 +78,6 @@ export default {
   },
   computed: {},
   created () {
-    debugger
     this.query()
   }
 }
