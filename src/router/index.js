@@ -26,6 +26,7 @@ import SuccessfulPermList from '@/components/main/case/successfulPermList/succes
 import SuccessfulPerm from '@/components/main/case/successfulPerm/successfulPerm.vue'
 import SalarySpecialItem from '@/components/main/salary/salarySpecialItem/salarySpecialItem.vue'
 import SalarySpecialItemList from '@/components/main/salary/salarySpecialItemList/salarySpecialItemList.vue'
+import SalaryList from '@/components/main/salary/salaryList/salaryList.vue'
 
 Vue.use(Router)
 
@@ -174,6 +175,12 @@ const router = new Router({
           path: '/salary/salarySpecialItemList',
           name: 'salarySpecialItemList',
           component: SalarySpecialItemList
+        },
+        {
+          // 工资集合
+          path: '/salary/salaryList',
+          name: 'salaryList',
+          component: SalaryList
         }
       ]
     },

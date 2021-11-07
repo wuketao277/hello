@@ -42,7 +42,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       changeOrigin: true,
       context: ["/mynews/**","/myTask/**","/myplan/**","/role/**","/user/**"
         ,"/resource/**","/candidate/**","/comment/**","/security/**","/successfulPerm/**"
-        ,"/salarySpecialItem/**"
+        ,"/salarySpecialItem/**","/salary/**"
         ,"/client/**","/clientlinkman/**","/case/**","/candidateForCase/**","/uploadFile/**"],
       target: "http://localhost:8000"
     }],

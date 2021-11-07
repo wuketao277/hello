@@ -75,8 +75,9 @@
               <i class="el-icon-money"></i>
               <span slot="title">工资</span>
             </template>
+            <el-menu-item index="/salary/salaryList">工资列表</el-menu-item>
             <el-menu-item index="/salary/salarySpecialItemList">工资特殊项列表</el-menu-item>
-            <el-menu-item index="/salary/salarySpecialItem">工资特殊项</el-menu-item>
+            <el-menu-item index="/salary/salarySpecialItem" v-show="showControl('/salary/salarySpecialItem')">工资特殊项</el-menu-item>
           </el-submenu>
           <el-submenu index="7">
             <template slot="title">

@@ -20,6 +20,7 @@
       <el-row>
         <el-col :span="6">
           <el-form-item label="客户" label-width="120px">
+            <span style="color:red;">*</span>
             <el-select v-model="form.clientId" placeholder="请选择客户" style="width:160px;">
               <el-option
                 v-for="client in clients"
@@ -30,25 +31,69 @@
             </el-select>
           </el-form-item>
         </el-col>
+        <el-col :span="6">
+          <el-form-item label="审批状态" label-width="120px" v-show="showControl('approveStatus')">
+            <el-select v-model="form.approveStatus" placeholder="审批状态" style="width:160px;">
+              <el-option
+                v-for="approveStatus in approveStatusList"
+                :key="approveStatus.id"
+                :value="approveStatus.id"
+                :label="approveStatus.name"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
       </el-row>
       <el-row>
-        <el-col :span="8">
+        <el-col :span="6">
           <el-button
             type="primary"
             size="small"
             icon="el-icon-share"
             @click="openSelectCaseDialog"
+            style="width:85px;"
             >职位</el-button>
+            <span style="color:red;">*</span>
             <span>{{form.title}}</span>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="6">
           <el-button
             type="primary"
             size="small"
             icon="el-icon-share"
             @click="openSelectCandidateDialog"
+            style="width:85px;"
             >候选人</el-button>
+            <span style="color:red;">*</span>
             <span>{{form.candidateChineseName}}</span>
+        </el-col><el-col :span="3">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-share"
+            @click="openSelectCWDialog"
+            style="width:85px;"
+            >CW</el-button>
+            <span>{{form.cwRealName}}</span>
+        </el-col>
+        <el-col :span="2">
+          <el-input v-model="form.cwCommissionPercent" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
+        </el-col>
+        <el-col :span="1">
+          &nbsp;
+        </el-col>
+        <el-col :span="3">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-share"
+            @click="openSelectBDDialog"
+            style="width:85px;"
+            >BD</el-button>
+            <span>{{form.bdRealName}}</span>
+        </el-col>
+        <el-col :span="2">
+          <el-input v-model="form.bdCommissionPercent" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
         </el-col>
       </el-row>
       <br/>
@@ -58,36 +103,79 @@
             type="primary"
             size="small"
             icon="el-icon-share"
-            @click="openSelectConsultantDialog"
+            @click="openSelectConsultantDialog('1')"
+            style="width:85px;"
             >顾问</el-button>
             <span>{{form.consultantRealName}}</span>
         </el-col>
-        <el-col :span="5">
-          <el-input v-model="form.consultantCommissionPercent" size="small" clearable style="width:100px;" placeholder="提成比例"></el-input><span>%</span>
+        <el-col :span="2">
+          <el-input v-model="form.consultantCommissionPercent" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
+        </el-col>
+        <el-col :span="1">
+          &nbsp;
         </el-col>
         <el-col :span="3">
           <el-button
             type="primary"
             size="small"
             icon="el-icon-share"
-            @click="openSelectCWDialog"
-            >CW</el-button>
-            <span>{{form.cwRealName}}</span>
+            @click="openSelectConsultantDialog('2')"
+            style="width:85px;"
+            >顾问2</el-button>
+            <span>{{form.consultantRealName2}}</span>
         </el-col>
-        <el-col :span="5">
-          <el-input v-model="form.cwCommissionPercent" size="small" clearable style="width:100px;" placeholder="提成比例"></el-input><span>%</span>
+        <el-col :span="2">
+          <el-input v-model="form.consultantCommissionPercent2" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
+        </el-col>
+        <el-col :span="1">
+          &nbsp;
         </el-col>
         <el-col :span="3">
           <el-button
             type="primary"
             size="small"
             icon="el-icon-share"
-            @click="openSelectBDDialog"
-            >BD</el-button>
-            <span>{{form.bdRealName}}</span>
+            @click="openSelectConsultantDialog('3')"
+            style="width:85px;"
+            >顾问3</el-button>
+            <span>{{form.consultantRealName3}}</span>
         </el-col>
-        <el-col :span="5">
-          <el-input v-model="form.bdCommissionPercent" size="small" clearable style="width:100px;" placeholder="提成比例"></el-input><span>%</span>
+        <el-col :span="2">
+          <el-input v-model="form.consultantCommissionPercent3" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
+        </el-col>
+        <el-col :span="1">
+          &nbsp;
+        </el-col>
+        <el-col :span="3">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-share"
+            @click="openSelectConsultantDialog('4')"
+            style="width:85px;"
+            >顾问4</el-button>
+            <span>{{form.consultantRealName4}}</span>
+        </el-col>
+        <el-col :span="2">
+          <el-input v-model="form.consultantCommissionPercent4" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
+        </el-col>
+      </el-row>
+      <br/>
+      <el-row>
+        <el-col :span="3">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-share"
+            @click="openSelectConsultantDialog('5')"
+            style="width:85px;"
+            >顾问5</el-button>
+            <span>{{form.consultantRealName5}}</span>
+        </el-col>
+        <el-col :span="2">
+          <el-input v-model="form.consultantCommissionPercent5" size="small" clearable style="width:75px;" placeholder="提成"></el-input><span>%</span>
+        </el-col>
+        <el-col :span="1">
         </el-col>
       </el-row>
       <br/>
@@ -99,17 +187,20 @@
         </el-col>
         <el-col :span="6">
            <el-form-item label="Base" label-width="120px">
-            <el-input v-model="form.base" clearable style="width:160px;"></el-input>
+            <el-input v-model="form.base" clearable style="width:100px;"></el-input>
+            <span>{{formatBase}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="6">
            <el-form-item label="GP" label-width="120px">
-            <el-input v-model="form.gp" clearable style="width:160px;"></el-input>
+            <el-input v-model="form.gp" clearable style="width:100px;"></el-input>
+            <span>{{formatGp}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="6">
            <el-form-item label="Billing" label-width="120px">
-            <el-input v-model="form.billing" clearable style="width:160px;"></el-input>
+            <el-input v-model="form.billing" clearable style="width:100px;"></el-input>
+            <span>{{formatBilling}}</span>
           </el-form-item>
         </el-col>
       </el-row>
@@ -119,7 +210,8 @@
             <el-date-picker
               v-model="form.onBoardDate"
               type="date"
-              placeholder="选择日期" style="width:160px;">
+              placeholder="选择日期" style="width:160px;"
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -128,7 +220,8 @@
             <el-date-picker
               v-model="form.offerDate"
               type="date"
-              placeholder="选择日期" style="width:160px;">
+              placeholder="选择日期" style="width:160px;"
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -137,7 +230,8 @@
             <el-date-picker
               v-model="form.paymentDate"
               type="date"
-              placeholder="选择日期" style="width:160px;">
+              placeholder="选择日期" style="width:160px;"
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -146,7 +240,8 @@
             <el-date-picker
               v-model="form.invoiceDate"
               type="date"
-              placeholder="选择日期" style="width:160px;">
+              placeholder="选择日期" style="width:160px;"
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -172,7 +267,8 @@
             <el-date-picker
               v-model="form.actualAcceptDate"
               type="date"
-              placeholder="选择日期" style="width:160px;">
+              placeholder="选择日期" style="width:160px;"
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -183,7 +279,8 @@
             <el-date-picker
               v-model="form.bonusPaymentDate"
               type="date"
-              placeholder="选择日期" style="width:160px;">
+              placeholder="选择日期" style="width:160px;"
+              value-format="yyyy-MM-dd">
             </el-date-picker>
           </el-form-item>
         </el-col>

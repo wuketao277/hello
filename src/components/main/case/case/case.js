@@ -130,8 +130,9 @@ export default {
     rowChange (val) {
       this.curCandidateForCase = val
     },
-    // “选择后续人”对话框返回
+    // “选择候选人”对话框返回
     sureSelectCandidateDialog (val) {
+      debugger
       // 首先关闭对话框
       this.selectCandidateDialogShow = false
       // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的后续人列表中
@@ -151,7 +152,7 @@ export default {
         })
       } else {
         // 添加候选人到职位
-        let candidate = {'candidateId': val, 'caseId': this.form.id, 'clientId': this.form.clientId, 'title': this.form.title}
+        let candidate = {'candidateId': val.id, 'caseId': this.form.id, 'clientId': this.form.clientId, 'title': this.form.title}
         candidateForCaseApi.save(candidate).then(res => {
           if (res.status === 200) {
             // 获取该职位所有候选人信息

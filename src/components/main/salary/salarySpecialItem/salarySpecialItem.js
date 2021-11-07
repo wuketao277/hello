@@ -78,6 +78,13 @@ export default {
       this.form.consultantRealName = val.realname
     }
   },
+  computed: {
+    formatSum: function () {
+      if (this.form.sum !== '') {
+        return this.form.sum / 1000 + 'k'
+      }
+    }
+  },
   created () {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {

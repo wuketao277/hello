@@ -26,9 +26,26 @@
       <el-form-item label="登录名">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
-      <el-form-item label="状态">
-        <el-switch v-model="form.enabled" active-color="#13ce66" inactive-color="#ff4949" active-text="正常" inactive-text="停用"></el-switch>
-      </el-form-item>
+      <el-row>
+        <el-col :span="6">
+          <el-form-item label="状态">
+            <el-switch v-model="form.enabled" active-color="#13ce66" inactive-color="#ff4949" active-text="正常" inactive-text="停用"></el-switch>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="底薪">
+            <el-input v-model="form.salarybase" style="width:100px;"></el-input>
+            <span>元</span>
+            &nbsp;&nbsp;
+            <span>{{formatSalarybase}}</span>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="cover base" label-width="150px">
+            <el-switch v-model="form.coverbase" active-color="#13ce66" inactive-color="#ff4949" active-text="cover" inactive-text="不cover"></el-switch>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
   </div>
 </template>

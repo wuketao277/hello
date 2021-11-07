@@ -5,8 +5,8 @@
       <el-breadcrumb-item>成功职位列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add" v-show="showControl('add')">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-show="showControl('edit')">修改</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item>
@@ -26,12 +26,20 @@
         <el-table-column prop="clientName" width="120" label="客户名称"></el-table-column>
         <el-table-column prop="title" width="150" label="职位名称"></el-table-column>
         <el-table-column prop="candidateChineseName" width="120" label="候选人姓名"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
-        <el-table-column prop="consultantCommissionPercent" width="120" label="顾问提成比例"></el-table-column>
         <el-table-column prop="cwRealName" width="100" label="CW姓名"></el-table-column>
         <el-table-column prop="cwCommissionPercent" width="120" label="CW提成比例"></el-table-column>
         <el-table-column prop="bdRealName" width="100" label="BD姓名"></el-table-column>
         <el-table-column prop="bdCommissionPercent" width="120" label="BD提成比例"></el-table-column>
+        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent" width="120" label="顾问提成比例"></el-table-column>
+        <el-table-column prop="consultantRealName2" width="100" label="顾问2姓名"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent2" width="120" label="顾问2提成比例"></el-table-column>
+        <el-table-column prop="consultantRealName3" width="100" label="顾问3姓名"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent3" width="120" label="顾问3提成比例"></el-table-column>
+        <el-table-column prop="consultantRealName4" width="100" label="顾问4姓名"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent4" width="120" label="顾问4提成比例"></el-table-column>
+        <el-table-column prop="consultantRealName5" width="100" label="顾问5姓名"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent5" width="120" label="顾问5提成比例"></el-table-column>
         <el-table-column prop="base" width="100" label="Base"></el-table-column>
         <el-table-column prop="gp" width="100" label="GP"></el-table-column>
         <el-table-column prop="billing" width="100" label="Billing"></el-table-column>
@@ -43,6 +51,7 @@
         <el-table-column prop="po" width="200" label="PO"></el-table-column>
         <el-table-column prop="actualAcceptDate" :formatter="formatDate" width="120" label="实际收款日期"></el-table-column>
         <el-table-column prop="bonusPaymentDate" :formatter="formatDate" width="120" label="奖金发放日期"></el-table-column>
+        <el-table-column prop="approveStatus" :formatter="formatApproveStatus" width="100" label="审批状态"></el-table-column>
       </el-table>
       <el-pagination
         background

@@ -9,6 +9,8 @@ export default {
         realName: '',
         userName: '',
         password: '',
+        salarybase: '',
+        coverbase: false,
         enabled: false
       },
       rules: {}
@@ -22,10 +24,12 @@ export default {
         this.form = this.$route.query.user
       } else {
         this.form.id = ''
-        this.form.realName = ''
-        this.form.userName = ''
+        this.form.realname = ''
+        this.form.username = ''
         this.form.password = ''
-        this.enabled = false
+        this.form.salarybase = ''
+        this.form.coverbase = false
+        this.form.enabled = false
       }
     },
     // 保存
@@ -54,6 +58,13 @@ export default {
           })
         }
       })
+    }
+  },
+  computed: {
+    formatSalarybase: function () {
+      if (this.form.salarybase !== '') {
+        return this.form.salarybase / 1000 + 'k'
+      }
     }
   },
   created () {

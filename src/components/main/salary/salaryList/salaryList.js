@@ -1,4 +1,4 @@
-import successfulPermApi from '@/api/successfulPerm'
+import salaryApi from '@/api/salary'
 import commonJS from '@/common/common'
 
 export default {
@@ -22,25 +22,9 @@ export default {
     }
   },
   methods: {
-    formatApproveStatus (row, column, cellvalue, index) {
-      if (typeof (cellvalue) !== 'undefined') {
-        if (cellvalue === 'approved') {
-          return '审批通过'
-        } else if (cellvalue === 'denied') {
-          return '审批否决'
-        }
-      }
-      return '申请中'
-    },
-    formatDate (row, column, cellvalue, index) {
-      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
-        return cellvalue.substr(0, 10)
-      }
-      return ''
-    },
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit') {
+      if (key === 'generateSalary' || key === 'search') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -58,33 +42,41 @@ export default {
       }
       return true
     },
-    // 新增
-    add () {
-      this.$router.push('/case/successfulPerm')
-    },
-    // 修改
-    modify () {
-      if (this.checkSelectRow()) {
-        this.$router.push({
-          path: '/case/successfulPerm',
-          query: {
-            mode: 'modify',
-            successfulPerm: this.currentRow
-          }
-        })
-      }
-    },
     // 查看
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/successfulPerm',
+          path: '/salary/salary',
           query: {
             mode: 'detail',
-            successfulPerm: this.currentRow
+            salary: this.currentRow
           }
         })
       }
+    },
+    // 生成工资
+    generateSalary () {
+      this.$confirm('确定要生成当月工资吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+      }).then(() => {
+        let month = {}
+        salaryApi.generateSalary(month).then(
+          res => {
+            if (res.status === 200) {
+              this.$message({
+                message: '生成成功！',
+                type: 'success',
+                showClose: true
+              })
+              this.query()
+            } else {
+              this.$message.error('生成失败！')
+            }
+          })
+      })
     },
     // 查询后台数据
     query () {
@@ -98,7 +90,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      successfulPermApi.queryPage(query).then(res => {
+      salaryApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
