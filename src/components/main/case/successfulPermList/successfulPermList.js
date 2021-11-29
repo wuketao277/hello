@@ -1,4 +1,6 @@
 import successfulPermApi from '@/api/successfulPerm'
+import clientApi from '@/api/client'
+import userApi from '@/api/user'
 import commonJS from '@/common/common'
 
 export default {
@@ -10,15 +12,21 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: this.getPageNumber(),
+          pageSize: this.getPageSize()
         }
       },
       page: {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: ''
+      searchDialog: false,
+      clients: [],
+      consultants: [],
+      bds: [],
+      cws: [],
+      approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}],
+      search: this.getSearchContent()
     }
   },
   methods: {
@@ -30,7 +38,7 @@ export default {
           return '审批否决'
         }
       }
-      return '申请中'
+      return '申请状态'
     },
     formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
@@ -88,11 +96,10 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['successfulPermList.search'] = JSON.stringify(this.search)
+      window.localStorage['successfulPermList.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['successfulPermList.pageSize'] = this.table.pageable.pageSize
+      this.searchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -138,9 +145,43 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
+    },
+    getSearchContent () {
+      if (typeof (window.localStorage['successfulPermList.search']) === 'undefined') {
+        return {}
+      } else {
+        return JSON.parse(window.localStorage['successfulPermList.search'])
+      }
+    },
+    getPageNumber () {
+      if (typeof (window.localStorage['successfulPermList.pageNumber']) === 'undefined') {
+        return 1
+      } else {
+        return window.localStorage['successfulPermList.pageNumber']
+      }
+    },
+    getPageSize () {
+      if (typeof (window.localStorage['successfulPermList.pageSize']) === 'undefined') {
+        return 10
+      } else {
+        return window.localStorage['successfulPermList.pageSize']
+      }
     }
   },
   created () {
+    // 获取所有“客户”信息
+    clientApi.findAll().then(res => {
+      if (res.status === 200) {
+        this.clients = res.data
+      }
+    })
+    userApi.findAllEnabled().then(res => {
+      if (res.status === 200) {
+        this.consultants = res.data
+        this.cws = res.data
+        this.bds = res.data
+      }
+    })
     this.query()
   }
 }

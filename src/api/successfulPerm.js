@@ -11,7 +11,7 @@ export default {
   },
   // 查找后台数据
   queryPage (params) {
-    return axios.get('/successfulPerm/queryPage', {params: params})
+    return axios.post('/successfulPerm/queryPage', params)
   },
   // 查找后台数据
   query (params) {

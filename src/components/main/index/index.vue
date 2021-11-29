@@ -78,6 +78,9 @@
             <el-menu-item index="/salary/salaryList">工资列表</el-menu-item>
             <el-menu-item index="/salary/salarySpecialItemList">工资特殊项列表</el-menu-item>
             <el-menu-item index="/salary/salarySpecialItem" v-show="showControl('/salary/salarySpecialItem')">工资特殊项</el-menu-item>
+            <el-menu-item index="/salary/reimbursementSummaryList">报销发放列表</el-menu-item>
+            <el-menu-item index="/salary/reimbursementItemList">报销项详情列表</el-menu-item>
+            <el-menu-item index="/salary/reimbursementItem">报销项</el-menu-item>
           </el-submenu>
           <el-submenu index="7">
             <template slot="title">

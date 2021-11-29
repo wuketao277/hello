@@ -8,11 +8,7 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
-        <el-form-item>
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
-        </el-form-item>
-      </el-form>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="searchDialog = true">搜索</el-button>
     </div>
     <template>
       <el-table
@@ -22,36 +18,61 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="clientName" width="120" label="客户名称"></el-table-column>
-        <el-table-column prop="title" width="150" label="职位名称"></el-table-column>
-        <el-table-column prop="candidateChineseName" width="120" label="候选人姓名"></el-table-column>
-        <el-table-column prop="cwRealName" width="100" label="CW姓名"></el-table-column>
-        <el-table-column prop="cwCommissionPercent" width="120" label="CW提成比例"></el-table-column>
-        <el-table-column prop="bdRealName" width="100" label="BD姓名"></el-table-column>
-        <el-table-column prop="bdCommissionPercent" width="120" label="BD提成比例"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
-        <el-table-column prop="consultantCommissionPercent" width="120" label="顾问提成比例"></el-table-column>
-        <el-table-column prop="consultantRealName2" width="100" label="顾问2姓名"></el-table-column>
-        <el-table-column prop="consultantCommissionPercent2" width="120" label="顾问2提成比例"></el-table-column>
-        <el-table-column prop="consultantRealName3" width="100" label="顾问3姓名"></el-table-column>
-        <el-table-column prop="consultantCommissionPercent3" width="120" label="顾问3提成比例"></el-table-column>
-        <el-table-column prop="consultantRealName4" width="100" label="顾问4姓名"></el-table-column>
-        <el-table-column prop="consultantCommissionPercent4" width="120" label="顾问4提成比例"></el-table-column>
-        <el-table-column prop="consultantRealName5" width="100" label="顾问5姓名"></el-table-column>
-        <el-table-column prop="consultantCommissionPercent5" width="120" label="顾问5提成比例"></el-table-column>
+        <el-table-column type="index" width="50" label="No."></el-table-column>
+        <el-table-column prop="clientName" width="120" label="Client"></el-table-column>
+        <el-table-column prop="title" width="150" label="Job"></el-table-column>
+        <el-table-column prop="candidateChineseName" width="120" label="Candidate"></el-table-column>
+        <el-table-column prop="cwUserName" width="100" label="CW"></el-table-column>
+        <el-table-column prop="cwCommissionPercent" width="120" label="CW Rate"></el-table-column>
+        <el-table-column prop="bdUserName" width="100" label="BD"></el-table-column>
+        <el-table-column prop="bdCommissionPercent" width="120" label="BD Rate"></el-table-column>
+        <el-table-column prop="consultantUserName" width="100" label="AM"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent" width="120" label="AM Rate"></el-table-column>
+        <el-table-column prop="consultantUserName2" width="100" label="R2"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent2" width="120" label="R2 Rate"></el-table-column>
+        <el-table-column prop="consultantUserName3" width="100" label="R3"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent3" width="120" label="R3 Rate"></el-table-column>
+        <el-table-column prop="consultantUserName4" width="100" label="R4"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent4" width="120" label="R4 Rate"></el-table-column>
+        <el-table-column prop="consultantUserName5" width="100" label="R5"></el-table-column>
+        <el-table-column prop="consultantCommissionPercent5" width="120" label="R5 Rate"></el-table-column>
         <el-table-column prop="base" width="100" label="Base"></el-table-column>
         <el-table-column prop="gp" width="100" label="GP"></el-table-column>
         <el-table-column prop="billing" width="100" label="Billing"></el-table-column>
-        <el-table-column prop="onBoardDate" :formatter="formatDate" width="120" label="On Board Date"></el-table-column>
         <el-table-column prop="offerDate" :formatter="formatDate" width="120" label="Offer Date"></el-table-column>
-        <el-table-column prop="paymentDate" :formatter="formatDate" width="120" label="Payment Date"></el-table-column>
-        <el-table-column prop="invoiceDate" :formatter="formatDate" width="120" label="Invoice Date"></el-table-column>
+        <el-table-column
+          prop="onBoardDate"
+          :formatter="formatDate"
+          width="120"
+          label="On Board Date"
+        ></el-table-column>
+        <el-table-column
+          prop="paymentDate"
+          :formatter="formatDate"
+          width="120"
+          label="Payment Date"
+        ></el-table-column>
+        <el-table-column
+          prop="actualPaymentDate"
+          :formatter="formatDate"
+          width="200"
+          label="Actual Payment Date"
+        ></el-table-column>
+        <el-table-column
+          prop="invoiceDate"
+          :formatter="formatDate"
+          width="120"
+          label="Invoice Date"
+        ></el-table-column>
+        <el-table-column prop="commissionDate" :formatter="formatDate" width="150" label="Commission Date"></el-table-column>
         <el-table-column prop="invoiceNo" width="200" label="Invoice No."></el-table-column>
         <el-table-column prop="po" width="200" label="PO"></el-table-column>
-        <el-table-column prop="actualAcceptDate" :formatter="formatDate" width="120" label="实际收款日期"></el-table-column>
-        <el-table-column prop="bonusPaymentDate" :formatter="formatDate" width="120" label="奖金发放日期"></el-table-column>
-        <el-table-column prop="approveStatus" :formatter="formatApproveStatus" width="100" label="审批状态"></el-table-column>
+        <el-table-column
+          prop="approveStatus"
+          :formatter="formatApproveStatus"
+          width="100"
+          label="审批状态"
+        ></el-table-column>
       </el-table>
       <el-pagination
         background
@@ -66,6 +87,195 @@
         @next-click="nextClick"
       ></el-pagination>
     </template>
+    <el-dialog title="搜索" :visible="searchDialog" :show-close="false" width="80%">
+      <div>
+        <el-form label-position="left" label-width="160px">
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Client" label-width="80px">
+                <el-select v-model="search.clientId" placeholder="请选择客户" clearable>
+                  <el-option
+                    v-for="client in clients"
+                    :key="client.id"
+                    :value="client.id"
+                    :label="client.chineseName"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="Consultant" label-width="80px">
+                <el-select v-model="search.consultantId" placeholder="请选择顾问" clearable>
+                  <el-option
+                    v-for="consultant in consultants"
+                    :key="consultant.id"
+                    :value="consultant.id"
+                    :label="consultant.username"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="CW" label-width="80px">
+                <el-select v-model="search.cwId" placeholder="请选择CW" clearable>
+                  <el-option v-for="cw in cws" :key="cw.id" :value="cw.id" :label="cw.username"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="BD" label-width="80px">
+                <el-select v-model="search.bdId" placeholder="请选择BD" clearable>
+                  <el-option v-for="bd in bds" :key="bd.id" :value="bd.id" :label="bd.username"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="Offer Date">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="search.offerDateStart"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+                <span>-</span>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束日期"
+                  v-model="search.offerDateEnd"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="On Board Date">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="search.onBoardDateStart"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+                <span>-</span>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束日期"
+                  v-model="search.onBoardDateEnd"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="Payment Date">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="search.paymentDateStart"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+                <span>-</span>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束日期"
+                  v-model="search.paymentDateEnd"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="Actual Payment Date">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="search.actualPaymentDateStart"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+                <span>-</span>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束日期"
+                  v-model="search.actualPaymentDateEnd"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="Invoice Date">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="search.invoiceDateStart"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+                <span>-</span>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束日期"
+                  v-model="search.invoiceDateEnd"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="Commission Date">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="search.commissionDateStart"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+                <span>-</span>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束日期"
+                  v-model="search.commissionDateEnd"
+                  style="width: 160px;"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Channel" label-width="80px">
+                <el-input v-model="search.channel" style="width:180px;" clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="审批状态" label-width="80px">
+                <el-select v-model="search.approveStatus" placeholder="审批状态" clearable="">
+                  <el-option
+                    v-for="approveStatus in approveStatusList"
+                    :key="approveStatus.id"
+                    :value="approveStatus.id"
+                    :label="approveStatus.name"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="searchDialog = false">取 消</el-button>
+          <el-button type="primary" @click="query">确 定</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script src="./successfulPermList.js"></script>

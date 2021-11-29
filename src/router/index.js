@@ -28,6 +28,9 @@ import SalarySpecialItem from '@/components/main/salary/salarySpecialItem/salary
 import SalarySpecialItemList from '@/components/main/salary/salarySpecialItemList/salarySpecialItemList.vue'
 import SalaryList from '@/components/main/salary/salaryList/salaryList.vue'
 import Salary from '@/components/main/salary/salary/salary.vue'
+import ReimbursementItem from '@/components/main/salary/reimbursementItem/reimbursementItem.vue'
+import ReimbursementItemList from '@/components/main/salary/reimbursementItemList/reimbursementItemList.vue'
+import ReimbursementSummaryList from '@/components/main/salary/reimbursementSummaryList/reimbursementSummaryList.vue'
 
 Vue.use(Router)
 
@@ -188,6 +191,24 @@ const router = new Router({
           path: '/salary/salary',
           name: 'salary',
           component: Salary
+        },
+        {
+          // 报销项
+          path: '/salary/reimbursementItem',
+          name: 'reimbursementItem',
+          component: ReimbursementItem
+        },
+        {
+          // 报销列表
+          path: '/salary/reimbursementItemList',
+          name: 'reimbursementItemList',
+          component: ReimbursementItemList
+        },
+        {
+          // 报销汇总列表
+          path: '/salary/reimbursementSummaryList',
+          name: 'reimbursementSummaryList',
+          component: ReimbursementSummaryList
         }
       ]
     },

@@ -63,8 +63,8 @@ export default {
         po: '',
         invoiceNo: '',
         channel: '',
-        actualAcceptDate: '', // 实际收款日期
-        bonusPaymentDate: '' // 奖金发放日期
+        actualPaymentDate: '', // 实际收款日期
+        commissionDate: '' // 奖金发放日期
       },
       clients: [],
       // 职位候选人集合
@@ -82,9 +82,16 @@ export default {
     }
   },
   methods: {
+    // 获取日期部分
+    getDateStr (dateStr) {
+      if (typeof (dateStr) !== 'undefined' && dateStr !== null && dateStr.length > 10) {
+        return dateStr.substr(0, 10)
+      }
+      return dateStr
+    },
     // 显示控制
     showControl (key) {
-      if (key === 'approveStatus') {
+      if (key === 'approveStatus' || key === 'commissionDate') {
         return commonJS.hasRole('admin')
       }
     },
@@ -151,8 +158,8 @@ export default {
         this.form.po = ''
         this.form.invoiceNo = ''
         this.form.channel = ''
-        this.form.actualAcceptDate = '' // 实际收款日期
-        this.form.bonusPaymentDate = '' // 奖金发放日期
+        this.form.actualPaymentDate = '' // 实际收款日期
+        this.form.commissionDate = '' // 奖金发放日期
       }
     },
     // 保存
@@ -302,17 +309,17 @@ export default {
   computed: {
     formatBase: function () {
       if (this.form.base !== '') {
-        return this.form.base / 1000 + 'k'
+        return parseInt(this.form.base / 10000) + 'w'
       }
     },
     formatGp: function () {
       if (this.form.gp !== '') {
-        return this.form.gp / 1000 + 'k'
+        return parseInt(this.form.gp / 10000) + 'w'
       }
     },
     formatBilling: function () {
       if (this.form.billing !== '') {
-        return this.form.billing / 1000 + 'k'
+        return parseInt(this.form.billing / 10000) + 'w'
       }
     }
   },
