@@ -26,7 +26,7 @@
             size="small"
             icon="el-icon-share"
             @click="openSelectUserDialog"
-          >name</el-button>
+          >user</el-button>
           <span>{{form.userName}}</span>
         </el-col>
         <el-col :span="6">
@@ -42,7 +42,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="paymentMonth" v-show="showControl('approveStatus')">
+          <el-form-item label="payment month" v-show="showControl('approveStatus')">
             <el-date-picker
               v-model="form.paymentMonth"
               type="month"

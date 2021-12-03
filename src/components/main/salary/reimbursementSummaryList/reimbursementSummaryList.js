@@ -1,4 +1,4 @@
-import salarySpecialItemApi from '@/api/salarySpecialItem'
+import reimbursementApi from '@/api/reimbursement'
 import commonJS from '@/common/common'
 
 export default {
@@ -82,7 +82,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      salarySpecialItemApi.queryPage(query).then(res => {
+      reimbursementApi.querySummaryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'

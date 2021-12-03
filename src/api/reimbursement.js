@@ -16,5 +16,9 @@ export default {
   // 查找后台数据
   query (params) {
     return axios.get('/reimbursement/query', {params: params})
+  },
+  // 查找后台数据
+  querySummaryPage (params) {
+    return axios.get('/reimbursement/querySummaryPage', {params: params})
   }
 }

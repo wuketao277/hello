@@ -22,11 +22,14 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
-        <el-table-column prop="month" width="100" label="月份"></el-table-column>
-        <el-table-column prop="sum" width="120" label="金额"></el-table-column>
-        <el-table-column prop="description" label="描述"></el-table-column>
+        <el-table-column type="index" width="80" label="index"></el-table-column>
+        <el-table-column prop="userName" width="100" label="user name"></el-table-column>
+        <el-table-column prop="type" width="100" label="type"></el-table-column>
+        <el-table-column prop="happenDate" width="150" label="happen date"></el-table-column>
+        <el-table-column prop="sum" width="100" label="sum"></el-table-column>
+        <el-table-column prop="paymentMonth" width="150" label="payment month"></el-table-column>
+        <el-table-column prop="approveStatus" width="150" label="approve status"></el-table-column>
+        <el-table-column prop="description" label="description"></el-table-column>
       </el-table>
       <el-pagination
         background

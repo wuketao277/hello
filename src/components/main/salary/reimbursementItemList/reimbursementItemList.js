@@ -1,4 +1,4 @@
-import salarySpecialItemApi from '@/api/salarySpecialItem'
+import reimbursementApi from '@/api/reimbursement'
 import commonJS from '@/common/common'
 
 export default {
@@ -24,7 +24,7 @@ export default {
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit') {
+      if (key === 'generateReimbursementSummary') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -44,16 +44,16 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/salary/salarySpecialItem')
+      this.$router.push('/salary/reimbursementItem')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/salarySpecialItem',
+          path: '/salary/reimbursementItem',
           query: {
             mode: 'modify',
-            salarySpecialItem: this.currentRow
+            reimbursementItem: this.currentRow
           }
         })
       }
@@ -62,10 +62,10 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/salarySpecialItem',
+          path: '/salary/reimbursementItem',
           query: {
             mode: 'detail',
-            salarySpecialItem: this.currentRow
+            reimbursementItem: this.currentRow
           }
         })
       }
@@ -82,7 +82,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      salarySpecialItemApi.queryPage(query).then(res => {
+      reimbursementApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'

@@ -22,8 +22,29 @@ export default {
         approveStatus: 'applied' // 审批状态
       },
       selectUserDialogShow: false,
-      approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}],
-      typeList: [{'id': 'phone', 'name': '电话费'}, {'id': 'transport', 'name': '交通费'}, {'id': 'eat', 'name': '餐饮费'}, {'id': 'other', 'name': '其他'}]
+      approveStatusList: [{
+        'id': 'apply',
+        'name': 'apply'
+      }, {
+        'id': 'approved',
+        'name': 'approved'
+      }, {
+        'id': 'denied',
+        'name': 'denied'
+      }],
+      typeList: [{
+        'id': 'phone',
+        'name': 'phone'
+      }, {
+        'id': 'transport',
+        'name': 'transport'
+      }, {
+        'id': 'eat',
+        'name': 'eat'
+      }, {
+        'id': 'other',
+        'name': 'other'
+      }]
     }
   },
   methods: {
@@ -53,6 +74,10 @@ export default {
     },
     // 保存
     save () {
+      if (this.form.userId === '') {
+        this.$message.error('user 必选')
+        return
+      }
       this.$refs['form'].validate((valid) => {
         if (valid) {
           // 如果校验通过就调用后端接口
