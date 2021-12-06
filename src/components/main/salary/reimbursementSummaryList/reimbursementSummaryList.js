@@ -24,51 +24,34 @@ export default {
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit') {
+      if (key === 'generateReimbursementSummary' || key === 'edit') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
       return true
     },
-    // 检查是否选择了一条记录
-    checkSelectRow () {
-      if (this.currentRow === null) {
-        this.$message({
-          message: '请选择一条记录！',
-          type: 'info',
-          showClose: true
-        })
-        return false
-      }
-      return true
-    },
-    // 新增
-    add () {
-      this.$router.push('/salary/salarySpecialItem')
-    },
-    // 修改
-    modify () {
-      if (this.checkSelectRow()) {
-        this.$router.push({
-          path: '/salary/salarySpecialItem',
-          query: {
-            mode: 'modify',
-            salarySpecialItem: this.currentRow
-          }
-        })
-      }
-    },
-    // 查看
-    detail () {
-      if (this.checkSelectRow()) {
-        this.$router.push({
-          path: '/salary/salarySpecialItem',
-          query: {
-            mode: 'detail',
-            salarySpecialItem: this.currentRow
-          }
-        })
-      }
+    // 生成报销摘要
+    generateReimbursementSummary () {
+      this.$confirm('确定要生成报销摘要吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+      }).then(() => {
+        reimbursementApi.generateReimbursementSummary().then(
+          res => {
+            if (res.status === 200) {
+              this.$message({
+                message: '生成成功！',
+                type: 'success',
+                showClose: true
+              })
+              this.query()
+            } else {
+              this.$message.error('生成失败！')
+            }
+          })
+      })
     },
     // 查询后台数据
     query () {

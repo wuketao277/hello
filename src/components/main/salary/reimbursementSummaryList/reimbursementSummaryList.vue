@@ -5,10 +5,21 @@
       <el-breadcrumb-item>报销列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="danger" size="small" icon="el-icon-share" @click="generateSalary" v-show="showControl('generateSalary')">生成报销</el-button>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-share"
+        @click="generateReimbursementSummary"
+        v-show="showControl('generateReimbursementSummary')"
+      >生成报销</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item>
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
+          <el-input
+            v-model="search"
+            autocomplete="off"
+            @keyup.enter.native="sureSearchDialog"
+            placeholder="输入关键字后，回车即可搜索。"
+          ></el-input>
         </el-form-item>
       </el-form>
     </div>
@@ -21,10 +32,9 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
-        <el-table-column prop="month" width="100" label="月份"></el-table-column>
-        <el-table-column prop="sum" width="120" label="金额"></el-table-column>
-        <el-table-column prop="description" label="描述"></el-table-column>
+        <el-table-column prop="userName" label="顾问姓名"></el-table-column>
+        <el-table-column prop="paymentMonth" label="月份"></el-table-column>
+        <el-table-column prop="sum" label="金额"></el-table-column>
       </el-table>
       <el-pagination
         background

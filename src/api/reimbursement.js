@@ -20,5 +20,9 @@ export default {
   // 查找后台数据
   querySummaryPage (params) {
     return axios.get('/reimbursement/querySummaryPage', {params: params})
+  },
+  // 生成报销摘要
+  generateReimbursementSummary () {
+    return axios.post('/reimbursement/generateReimbursementSummary')
   }
 }

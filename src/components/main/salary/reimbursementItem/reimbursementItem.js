@@ -19,7 +19,7 @@ export default {
         sum: 0, // 报销金额
         description: '', // 说明
         paymentMonth: '', // 报销发放月份
-        approveStatus: 'applied' // 审批状态
+        approveStatus: 'apply' // 审批状态
       },
       selectUserDialogShow: false,
       approveStatusList: [{
