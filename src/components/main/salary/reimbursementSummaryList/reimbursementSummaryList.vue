@@ -12,16 +12,6 @@
         @click="generateReimbursementSummary"
         v-show="showControl('generateReimbursementSummary')"
       >生成报销</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
-        <el-form-item>
-          <el-input
-            v-model="search"
-            autocomplete="off"
-            @keyup.enter.native="sureSearchDialog"
-            placeholder="输入关键字后，回车即可搜索。"
-          ></el-input>
-        </el-form-item>
-      </el-form>
     </div>
     <template>
       <el-table
@@ -31,10 +21,10 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="userName" label="顾问姓名"></el-table-column>
-        <el-table-column prop="paymentMonth" label="月份"></el-table-column>
-        <el-table-column prop="sum" label="金额"></el-table-column>
+        <el-table-column type="index" width="50" label="NO."></el-table-column>
+        <el-table-column prop="userName" label="NAME"></el-table-column>
+        <el-table-column prop="paymentMonth" label="PAYMENT MONTH"></el-table-column>
+        <el-table-column prop="sum" label="SUM"></el-table-column>
       </el-table>
       <el-pagination
         background

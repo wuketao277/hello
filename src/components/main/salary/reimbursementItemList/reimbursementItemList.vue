@@ -22,14 +22,14 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="80" label="index"></el-table-column>
-        <el-table-column prop="userName" width="100" label="user name"></el-table-column>
-        <el-table-column prop="type" width="100" label="type"></el-table-column>
-        <el-table-column prop="happenDate" width="150" label="happen date"></el-table-column>
-        <el-table-column prop="sum" width="100" label="sum"></el-table-column>
-        <el-table-column prop="paymentMonth" width="150" label="payment month"></el-table-column>
-        <el-table-column prop="approveStatus" width="150" label="approve status"></el-table-column>
-        <el-table-column prop="description" label="description"></el-table-column>
+        <el-table-column type="index" width="80" label="NO."></el-table-column>
+        <el-table-column prop="userName" width="100" label="NAME"></el-table-column>
+        <el-table-column prop="type" width="150" label="TYPE"></el-table-column>
+        <el-table-column prop="date" width="120" label="DATE"></el-table-column>
+        <el-table-column prop="sum" width="100" label="SUM"></el-table-column>
+        <el-table-column prop="paymentMonth" width="150" label="PAYMENT MONTH"></el-table-column>
+        <el-table-column prop="approveStatus" width="120" label="STATUS"></el-table-column>
+        <el-table-column prop="description" label="DESCRIPTION"></el-table-column>
       </el-table>
       <el-pagination
         background

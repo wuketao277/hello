@@ -15,35 +15,60 @@ export default {
         userName: '', // 报销人登录名
         realName: '', // 报销人真实姓名
         type: '', // 报销类型
-        happenDate: '', // 发生日期
+        date: '', // 日期
         sum: 0, // 报销金额
+        invoiceNo: '', // 发票号
         description: '', // 说明
         paymentMonth: '', // 报销发放月份
-        approveStatus: 'apply' // 审批状态
+        approveStatus: 'Apply' // 审批状态
       },
       selectUserDialogShow: false,
       approveStatusList: [{
-        'id': 'apply',
-        'name': 'apply'
+        'id': 'Apply',
+        'name': 'Apply'
       }, {
-        'id': 'approved',
-        'name': 'approved'
+        'id': 'Approved',
+        'name': 'Approved'
       }, {
-        'id': 'denied',
-        'name': 'denied'
+        'id': 'Denied',
+        'name': 'Denied'
       }],
       typeList: [{
-        'id': 'phone',
-        'name': 'phone'
+        'id': 'Phone',
+        'name': 'Phone'
       }, {
-        'id': 'transport',
-        'name': 'transport'
+        'id': 'Office Supplier',
+        'name': 'Office Supplier'
       }, {
-        'id': 'eat',
-        'name': 'eat'
+        'id': 'Postage',
+        'name': 'Postage'
       }, {
-        'id': 'other',
-        'name': 'other'
+        'id': 'Transportation',
+        'name': 'Transportation'
+      }, {
+        'id': 'Meals',
+        'name': 'Meals'
+      }, {
+        'id': 'Airfare',
+        'name': 'Airfare'
+      }, {
+        'id': 'Hotel/Lodging',
+        'name': 'Hotel/ Lodging'
+      }, {
+        'id': 'Entertainment',
+        'name': 'Entertainment'
+      }, {
+        'id': 'Employee Activities',
+        'name': 'Employee Activities'
+      }, {
+        'id': 'Vehicle',
+        'name': 'Vehicle'
+      }, {
+        'id': 'IT Support Services',
+        'name': 'IT Support Services'
+      }, {
+        'id': 'Other',
+        'name': 'Other'
       }]
     }
   },
@@ -65,8 +90,9 @@ export default {
         this.form.userName = '' // 报销人登录名
         this.form.realName = '' // 报销人真实姓名
         this.form.type = '' // 报销类型
-        this.form.happenDate = '' // 发生日期
+        this.form.date = '' // 日期
         this.form.sum = 0 // 报销金额
+        this.form.invoiceNo = '' // 发票号
         this.form.description = '' // 说明
         this.paymentMonth = '' // 报销发放月份
         this.status = '' // 状态
@@ -74,8 +100,24 @@ export default {
     },
     // 保存
     save () {
-      if (this.form.userId === '') {
-        this.$message.error('user 必选')
+      if (this.form.userId === '' || this.form.userId === null) {
+        this.$message.error('NAME 必选')
+        return
+      }
+      if (this.form.type === '' || this.form.type === null) {
+        this.$message.error('TYPE 必选')
+        return
+      }
+      if (this.form.date === '' || this.form.date === null) {
+        this.$message.error('DATE 必选')
+        return
+      }
+      if (this.form.sum === null || isNaN(this.form.sum)) {
+        this.$message.error('SUM 必选，且必须是数字')
+        return
+      }
+      if (this.form.invoiceNo === '') {
+        this.$message.error('INVOICE NO 必选')
         return
       }
       this.$refs['form'].validate((valid) => {
@@ -133,6 +175,12 @@ export default {
       if (typeof (this.$route.query.reimbursementItem) !== 'undefined') {
         this.form = this.$route.query.reimbursementItem
       }
+    }
+    if (this.mode === 'add') {
+      let user = commonJS.getUser()
+      this.form.userId = user.id
+      this.form.userName = user.userName
+      this.form.realName = user.realName
     }
   }
 }

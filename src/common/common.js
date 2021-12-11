@@ -10,5 +10,11 @@ export default {
       }
     }
     return false
+  },
+  // 获取当前登录用户
+  getUser () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    let user = {'id': loginInfo.id, 'userName': loginInfo.username, 'realName': loginInfo.realname}
+    return user
   }
 }

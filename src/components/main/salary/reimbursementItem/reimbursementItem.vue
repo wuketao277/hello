@@ -13,7 +13,7 @@
     <el-form
       ref="form"
       :model="form"
-      label-width="120px"
+      label-width="140px"
       label-position="left"
       size="small"
       style="margin-top:10px;text-align:left;"
@@ -26,12 +26,12 @@
             size="small"
             icon="el-icon-share"
             @click="openSelectUserDialog"
-          >user</el-button>
+          >NAME</el-button>
           <span>{{form.userName}}</span>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="approve status" v-show="showControl('approveStatus')">
-            <el-select v-model="form.approveStatus" placeholder="审批状态" style="width:160px;">
+          <el-form-item label="STATUS" v-show="showControl('approveStatus')">
+            <el-select v-model="form.approveStatus" placeholder="STATUS" style="width:160px;">
               <el-option
                 v-for="status in approveStatusList"
                 :key="status.id"
@@ -42,7 +42,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="payment month" v-show="showControl('approveStatus')">
+          <el-form-item label="PAYMENT MONTH" v-show="showControl('approveStatus')">
             <el-date-picker
               v-model="form.paymentMonth"
               type="month"
@@ -56,7 +56,7 @@
       </el-row>
       <el-row gutter="20">
         <el-col :span="6">
-          <el-form-item label="type" required>
+          <el-form-item label="TYPE" required>
             <el-select v-model="form.type" placeholder="报销类型" style="width:160px;">
               <el-option
                 v-for="type in typeList"
@@ -68,9 +68,9 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="happen date" required>
+          <el-form-item label="DATE" required>
             <el-date-picker
-              v-model="form.happenDate"
+              v-model="form.date"
               type="date"
               placeholder="选择发生日期"
               value-format="yyyy-MM-dd"
@@ -79,7 +79,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="sum" required>
+          <el-form-item label="SUM" required>
             <el-input
               v-model="form.sum"
               size="small"
@@ -89,10 +89,21 @@
             ></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="6">
+          <el-form-item label="INVOICE NO." required>
+            <el-input
+              v-model="form.invoiceNo"
+              size="small"
+              clearable
+              placeholder="发票号"
+              style="width:160px;"
+            ></el-input>
+          </el-form-item>
+        </el-col>
       </el-row>
       <el-row gutter="20">
-        <el-col :span="18">
-          <el-form-item label="description">
+        <el-col :span="24">
+          <el-form-item label="DESCRIPTION">
             <el-input v-model="form.description" size="small" clearable placeholder="描述"></el-input>
           </el-form-item>
         </el-col>
