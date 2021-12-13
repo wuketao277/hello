@@ -24,6 +24,7 @@
             <el-button
               type="danger"
               icon="el-icon-delete"
+              size="mini"
               circle
               title="删除文件"
               @click="deleteFile(file)"

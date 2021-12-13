@@ -257,7 +257,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="审批状态" label-width="80px">
+              <el-form-item label="Status" label-width="80px">
                 <el-select v-model="search.approveStatus" placeholder="审批状态" clearable="">
                   <el-option
                     v-for="approveStatus in approveStatusList"
@@ -266,6 +266,11 @@
                     :label="approveStatus.name"
                   ></el-option>
                 </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="Candidate" label-width="80px">
+                <el-input v-model="search.candidateChineseName" style="width:180px;" clearable></el-input>
               </el-form-item>
             </el-col>
           </el-row>
