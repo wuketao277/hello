@@ -8,10 +8,35 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
-        <el-form-item>
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
-        </el-form-item>
+    </div>
+    <div>
+      <el-form @submit.native.prevent>
+        <el-row :gutter="40">
+          <el-col :span="8">
+            <el-form-item>
+              <el-input
+                v-model="search"
+                autocomplete="off"
+                @keyup.enter.native="sureSearchDialog"
+                placeholder="输入关键字后，回车即可搜索。"
+                clearable
+              ></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="职位状态">
+              <el-radio-group v-model="searchStatus"
+                @change="sureSearchDialog">
+                <el-radio label="ALL">全部</el-radio>
+                <el-radio label="PREPARE">准备</el-radio>
+                <el-radio label="DOING">进行中</el-radio>
+                <el-radio label="FINISH">完成</el-radio>
+                <el-radio label="PAUSE">暂停</el-radio>
+                <el-radio label="CLOSE">关闭</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
     </div>
     <template>

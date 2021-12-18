@@ -9,15 +9,16 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: this.getPageNumber(),
+          pageSize: this.getPageSize()
         }
       },
       page: {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: ''
+      search: this.getSearchContent(),
+      searchStatus: this.getSearchStatusContent()
     }
   },
   methods: {
@@ -82,15 +83,15 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['caselist.search'] = this.search
+      window.localStorage['caselist.searchStatus'] = this.searchStatus
+      window.localStorage['caselist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['caselist.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'search': this.search,
+        'searchStatus': this.searchStatus
       }
       caseApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -132,6 +133,34 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
+    },
+    getSearchContent () {
+      if (typeof (window.localStorage['caselist.search']) === 'undefined') {
+        return ''
+      } else {
+        return window.localStorage['caselist.search']
+      }
+    },
+    getSearchStatusContent () {
+      if (typeof (window.localStorage['caselist.searchStatus']) === 'undefined') {
+        return 'ALL'
+      } else {
+        return window.localStorage['caselist.searchStatus']
+      }
+    },
+    getPageNumber () {
+      if (typeof (window.localStorage['caselist.pageNumber']) === 'undefined') {
+        return 1
+      } else {
+        return window.localStorage['caselist.pageNumber']
+      }
+    },
+    getPageSize () {
+      if (typeof (window.localStorage['caselist.pageSize']) === 'undefined') {
+        return 10
+      } else {
+        return window.localStorage['caselist.pageSize']
+      }
     }
   },
   created () {
