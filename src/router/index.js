@@ -31,6 +31,7 @@ import Salary from '@/components/main/salary/salary/salary.vue'
 import ReimbursementItem from '@/components/main/salary/reimbursementItem/reimbursementItem.vue'
 import ReimbursementItemList from '@/components/main/salary/reimbursementItemList/reimbursementItemList.vue'
 import ReimbursementSummaryList from '@/components/main/salary/reimbursementSummaryList/reimbursementSummaryList.vue'
+import GeneralReport from '@/components/main/report/general/general.vue'
 
 Vue.use(Router)
 
@@ -47,6 +48,12 @@ const router = new Router({
           path: '/',
           name: 'summary',
           component: Summary
+        },
+        {
+          // 总报表
+          path: '/report/general',
+          name: 'GeneralReport',
+          component: GeneralReport
         },
         {
           // 客户列表页

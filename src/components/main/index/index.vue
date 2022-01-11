@@ -1,16 +1,28 @@
 <template>
   <el-container style="height:100%;">
-    <el-header style="background-color:#565C5F;height:40px;padding:0px;text-align:left;font-size:25px;color:#fff;">
-      <div style="float:left;height:100%;text-align:left;">
-        &nbsp;<span>Hello人才系统</span>
+    <el-header
+      style="background-color:#545c64;height:40px;padding:0px;text-align:left;font-size:25px;color:#fff;"
+    >
+      <div style="float:left;height:100%;text-align:left;padding-left:20px;">
+        <span>Hello人才系统</span>
       </div>
-      <div style="float:right;width:50%;text-align:right;">
-        <span>欢迎，{{realname}}</span>&nbsp;&nbsp;
-        <span @click="logout" style="cursor:pointer">退出</span>
+      <div
+        style="float:right;width:50%;text-align:right;font-size:18px;padding-top:4px;padding-right:20px;"
+      >
+        <span>{{realname}}</span>&nbsp;&nbsp;
+        <el-button
+          circle
+          title="退出系统"
+          type="danger"
+          icon="el-icon-switch-button"
+          size="mini"
+          @click="logout"
+          style="cursor:pointer;"
+        ></el-button>
       </div>
     </el-header>
     <el-container>
-      <el-aside style="width:200px;">
+      <el-aside style="width:180px;">
         <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
@@ -30,13 +42,20 @@
           </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
+              <i class="el-icon-s-data"></i>
+              <span slot="title">报表</span>
+            </template>
+            <el-menu-item index="/report/general">总报表</el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
               <i class="el-icon-user"></i>
               <span slot="title">客户</span>
             </template>
             <el-menu-item index="/client/clientlist">客户列表</el-menu-item>
             <el-menu-item index="/client/client">新增客户</el-menu-item>
           </el-submenu>
-          <el-submenu index="2">
+          <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-star-off"></i>
               <span slot="title">职位</span>
@@ -46,7 +65,7 @@
             <el-menu-item index="/case/successfulPermList">成功职位列表</el-menu-item>
             <el-menu-item index="/case/successfulPerm">成功职位</el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
+          <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-user-solid"></i>
               <span slot="title">候选人</span>
@@ -54,7 +73,7 @@
             <el-menu-item index="/candidate/candidatelist">候选人列表</el-menu-item>
             <el-menu-item index="/candidate/candidate">新增候选人</el-menu-item>
           </el-submenu>
-          <el-submenu index="4">
+          <el-submenu index="5">
             <template slot="title">
               <i class="el-icon-edit"></i>
               <span slot="title">我的</span>
@@ -63,26 +82,29 @@
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
             <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
-          <el-submenu index="5">
+          <el-submenu index="6">
             <template slot="title">
               <i class="el-icon-document"></i>
               <span slot="title">文件管理</span>
             </template>
             <el-menu-item index="/file/filelist">文件管理</el-menu-item>
           </el-submenu>
-          <el-submenu index="6">
+          <el-submenu index="7">
             <template slot="title">
               <i class="el-icon-money"></i>
               <span slot="title">工资</span>
             </template>
             <el-menu-item index="/salary/salaryList">工资列表</el-menu-item>
             <el-menu-item index="/salary/salarySpecialItemList">工资特殊项列表</el-menu-item>
-            <el-menu-item index="/salary/salarySpecialItem" v-show="showControl('/salary/salarySpecialItem')">工资特殊项</el-menu-item>
+            <el-menu-item
+              index="/salary/salarySpecialItem"
+              v-show="showControl('/salary/salarySpecialItem')"
+            >工资特殊项</el-menu-item>
             <el-menu-item index="/salary/reimbursementSummaryList">报销发放列表</el-menu-item>
             <el-menu-item index="/salary/reimbursementItemList">报销项详情列表</el-menu-item>
             <el-menu-item index="/salary/reimbursementItem">报销项</el-menu-item>
           </el-submenu>
-          <el-submenu index="7">
+          <el-submenu index="8">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
