@@ -4,15 +4,12 @@ export default {
   name: 'hello',
   data () {
     return {
-      yearlyGP: 1000,
-      yearlyBilling: 1000,
-      monthlyGP: 200,
-      monthlyBilling: 200,
-      // 多页签选择项
-      tabsChoice4YTGP: '1',
-      tabsChoice4YTB: '1',
-      tabsChoice4MGP: '1',
-      tabsChoice4MB: '1',
+      form: {
+        startDate: null,
+        endDate: null
+      },
+      GP: 1001,
+      Billing: 1000,
       chartCommon: {
         tooltip: {
           trigger: 'item'
@@ -36,129 +33,55 @@ export default {
           }
         }
       },
-      // 年度总GP个人占比数据
-      yearlyGPPersonalRateOptionData: [
-        { value: 104, name: 'Leon' },
-        { value: 735, name: 'Arran' },
-        { value: 580, name: 'Ellen' },
-        { value: 484, name: 'Daisy' },
-        { value: 300, name: 'Jova' },
-        { value: 300, name: 'Howard' }
-      ],
-      // 年度总GP个人占比
-      yearlyGPPersonalRateOption: {
+      // GP个人占比数据
+      personalRateOptionDataX: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      personalRateOptionDataY: [120, 150, 80, 70, 110, 132],
+      // GP个人占比
+      personalRateOption: {
         title: {
-          text: 'Personal Rate',
-          left: 'center'
+          text: 'PERSONAL RATE'
         },
-        legend: {},
+        xAxis: {
+          type: 'category',
+          data: {}
+        },
+        yAxis: {
+          type: 'value'
+        },
         series: [
           {
-            name: 'Personal Rate',
-            type: 'pie',
-            radius: '60%',
-            label: {},
+            label: {
+              show: true,
+              position: 'top'
+            },
             data: {},
-            emphasis: {}
+            type: 'bar'
           }
         ]
       },
-      // 年度总GP客户占比数据
-      yearlyGPClientRateOptionData: [
-        { value: 104, name: 'BBA' },
-        { value: 735, name: 'SF' },
-        { value: 580, name: 'VOLVO' }
-      ],
-      // 年度总GP客户占比
-      yearlyGPClientRateOption: {
+      // GP客户占比数据
+      clientRateOptionDataX: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      clientRateOptionDataY: [120, 150, 80, 70, 110, 132],
+      // GP客户占比
+      clientRateOption: {
         title: {
-          text: 'Client Rate',
-          left: 'center'
+          text: 'CLIENT RATE'
         },
-        legend: {},
+        xAxis: {
+          type: 'category',
+          data: {}
+        },
+        yAxis: {
+          type: 'value'
+        },
         series: [
           {
-            name: 'Client Rate',
-            type: 'pie',
-            radius: '60%',
-            label: {},
+            label: {
+              show: true,
+              position: 'top'
+            },
             data: {},
-            emphasis: {}
-          }
-        ]
-      },
-      // 年度总GP月占比数据
-      yearlyGPMonthlyRateOptionData: [
-        { value: 104, name: 'BBA' },
-        { value: 735, name: 'SF' },
-        { value: 580, name: 'VOLVO' }
-      ],
-      // 年度总GP月占比
-      yearlyGPMonthlyRateOption: {
-        title: {
-          text: 'Monthly Rate',
-          left: 'center'
-        },
-        legend: {},
-        series: [
-          {
-            name: 'Monthly Rate',
-            type: 'pie',
-            radius: '60%',
-            label: {},
-            data: {},
-            emphasis: {}
-          }
-        ]
-      },
-      // 月GP个人占比数据
-      monthlyGPPersonalRateOptionData: [
-        { value: 10, name: 'Leon' },
-        { value: 75, name: 'Arran' },
-        { value: 50, name: 'Ellen' },
-        { value: 44, name: 'Daisy' },
-        { value: 30, name: 'Jova' },
-        { value: 30, name: 'Howard' }
-      ],
-      // 月GP个人占比
-      monthlyGPPersonalRateOption: {
-        title: {
-          text: 'Personal Rate',
-          left: 'center'
-        },
-        legend: {},
-        series: [
-          {
-            name: 'Personal Rate',
-            type: 'pie',
-            radius: '60%',
-            label: {},
-            data: {},
-            emphasis: {}
-          }
-        ]
-      },
-      // 月GP客户占比数据
-      monthlyGPClientRateOptionData: [
-        { value: 104, name: 'BBA' },
-        { value: 735, name: 'SF' },
-        { value: 580, name: 'VOLVO' }
-      ],
-      // 月GP客户占比
-      monthlyGPClientRateOption: {
-        title: {
-          text: 'Client Rate',
-          left: 'center'
-        },
-        legend: {},
-        series: [
-          {
-            name: 'Client Rate',
-            type: 'pie',
-            radius: '60%',
-            label: {},
-            data: {},
-            emphasis: {}
+            type: 'bar'
           }
         ]
       }
@@ -168,58 +91,66 @@ export default {
     this.drawChart()
   },
   methods: {
+    // 计算开始日期和结束日期
+    calcDate (type) {
+      if (type === 'week') {
+        let endDate = new Date()
+        let startDate = new Date(endDate.getTime() - (endDate.getDay() - 1) * 24 * 60 * 60 * 1000)
+        this.form.startDate = startDate
+        this.form.endDate = endDate
+      } else if (type === 'month') {
+        let endDate = new Date()
+        let startDate = new Date(endDate.getTime() - (endDate.getDate() - 1) * 24 * 60 * 60 * 1000)
+        this.form.startDate = startDate
+        this.form.endDate = endDate
+      } else if (type === 'season') {
+        debugger
+        let endDate = new Date()
+        let monthInt = endDate.getMonth()
+        let monthStr = '01'
+        if (monthInt > 2 && monthInt <= 5) {
+          monthStr = '04'
+        } else if (monthInt > 5 && monthInt <= 8) {
+          monthStr = '07'
+        } else if (monthInt > 8 && monthInt <= 11) {
+          monthStr = '09'
+        }
+        let startDateStr = endDate.getFullYear() + '-' + monthStr + '-01'
+        let startDate = new Date(Date.parse(startDateStr, 'yyyy-MM-dd'))
+        this.form.startDate = startDate
+        this.form.endDate = endDate
+      } else if (type === 'year') {
+        let endDate = new Date()
+        let startDateStr = endDate.getFullYear() + '-01-01'
+        let startDate = new Date(Date.parse(startDateStr, 'yyyy-MM-dd'))
+        this.form.startDate = startDate
+        this.form.endDate = endDate
+      }
+      // 绘制图表
+      this.drawChart()
+    },
     // 绘制图表
     drawChart () {
-      report.getGeneralReport().then(
+      report.queryGeneral(this.form).then(
         res => {
           if (res.status === 200) {
-            this.yearlyGPPersonalRateOptionData = res.data.yearlyGPPersonalRateOptionData
-            this.yearlyGPClientRateOptionData = res.data.yearlyGPClientRateOptionData
-            this.yearlyGPMothlyRateOptionData = res.data.yearlyGPMothlyRateOptionData
-            this.monthlyGPPersonalRateOptionData = res.data.monthlyGPPersonalRateOptionData
-            this.monthlyGPClientRateOptionData = res.data.monthlyGPClientRateOptionData
+            debugger
+            this.personalRateOptionDataX = res.data.personalRateOptionDataX
+            this.personalRateOptionDataY = res.data.personalRateOptionDataY
+            this.clientRateOptionDataX = res.data.clientRateOptionDataX
+            this.clientRateOptionDataY = res.data.clientRateOptionDataY
+            // 全年GP，每人占比
+            let personalRate = this.$echarts.init(document.getElementById('personalRate'))
+            this.personalRateOption.xAxis.data = this.personalRateOptionDataX
+            this.personalRateOption.series[0].data = this.personalRateOptionDataY
+            personalRate.setOption(this.personalRateOption)
+            // 全年GP，每人占比
+            let clientRate = this.$echarts.init(document.getElementById('clientRate'))
+            this.clientRateOption.xAxis.data = this.clientRateOptionDataX
+            this.clientRateOption.series[0].data = this.clientRateOptionDataY
+            clientRate.setOption(this.clientRateOption)
           }
         })
-      // 全年GP，每人占比
-      let yearlyGPPersonalRate = this.$echarts.init(document.getElementById('yearlyGPPersonalRate'))
-      this.yearlyGPPersonalRateOption.legend = this.chartCommon.legend
-      this.yearlyGPPersonalRateOption.tooltip = this.chartCommon.tooltip
-      this.yearlyGPPersonalRateOption.series[0].label = this.chartCommon.series.label
-      this.yearlyGPPersonalRateOption.series[0].emphasis = this.chartCommon.series.emphasis
-      this.yearlyGPPersonalRateOption.series[0].data = this.yearlyGPPersonalRateOptionData
-      yearlyGPPersonalRate.setOption(this.yearlyGPPersonalRateOption)
-      // 全年GP，每人占比
-      let yearlyGPClientRate = this.$echarts.init(document.getElementById('yearlyGPClientRate'))
-      this.yearlyGPClientRateOption.legend = this.chartCommon.legend
-      this.yearlyGPClientRateOption.tooltip = this.chartCommon.tooltip
-      this.yearlyGPClientRateOption.series[0].label = this.chartCommon.series.label
-      this.yearlyGPClientRateOption.series[0].emphasis = this.chartCommon.series.emphasis
-      this.yearlyGPClientRateOption.series[0].data = this.yearlyGPClientRateOptionData
-      yearlyGPClientRate.setOption(this.yearlyGPClientRateOption)
-      // 全年GP，月占比
-      let yearlyGPMonthlyRate = this.$echarts.init(document.getElementById('yearlyGPMonthlyRate'))
-      this.yearlyGPMonthlyRateOption.legend = this.chartCommon.legend
-      this.yearlyGPMonthlyRateOption.tooltip = this.chartCommon.tooltip
-      this.yearlyGPMonthlyRateOption.series[0].label = this.chartCommon.series.label
-      this.yearlyGPMonthlyRateOption.series[0].emphasis = this.chartCommon.series.emphasis
-      this.yearlyGPMonthlyRateOption.series[0].data = this.yearlyGPMonthlyRateOptionData
-      yearlyGPMonthlyRate.setOption(this.yearlyGPMonthlyRateOption)
-      // 全年GP，每人占比
-      let monthlyGPPersonalRate = this.$echarts.init(document.getElementById('monthlyGPPersonalRate'))
-      this.monthlyGPPersonalRateOption.legend = this.chartCommon.legend
-      this.monthlyGPPersonalRateOption.tooltip = this.chartCommon.tooltip
-      this.monthlyGPPersonalRateOption.series[0].label = this.chartCommon.series.label
-      this.monthlyGPPersonalRateOption.series[0].emphasis = this.chartCommon.series.emphasis
-      this.monthlyGPPersonalRateOption.series[0].data = this.monthlyGPPersonalRateOptionData
-      monthlyGPPersonalRate.setOption(this.monthlyGPPersonalRateOption)
-      // 全年GP，每人占比
-      let monthlyGPClientRate = this.$echarts.init(document.getElementById('monthlyGPClientRate'))
-      this.monthlyGPClientRateOption.legend = this.chartCommon.legend
-      this.monthlyGPClientRateOption.tooltip = this.chartCommon.tooltip
-      this.monthlyGPClientRateOption.series[0].label = this.chartCommon.series.label
-      this.monthlyGPClientRateOption.series[0].emphasis = this.chartCommon.series.emphasis
-      this.monthlyGPClientRateOption.series[0].data = this.monthlyGPClientRateOptionData
-      monthlyGPClientRate.setOption(this.monthlyGPClientRateOption)
     }
   }
 }

@@ -40,7 +40,7 @@
               <span slot="title">主页</span>
             </template>
           </el-menu-item>
-          <el-submenu index="1">
+          <el-submenu index="1" v-if="false">
             <template slot="title">
               <i class="el-icon-s-data"></i>
               <span slot="title">报表</span>
