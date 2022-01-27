@@ -61,6 +61,13 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="详情">
+            <el-input readonly type="textarea" :rows="10" v-model="form.description"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
   </div>
 </template>

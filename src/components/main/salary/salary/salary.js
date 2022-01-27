@@ -13,7 +13,8 @@ export default {
         sum: '',
         personalTax: '',
         insurance: '',
-        gongjijin: ''
+        gongjijin: '',
+        description: ''
       }
     }
   },
@@ -33,6 +34,7 @@ export default {
         this.form.personalTax = ''
         this.form.insurance = ''
         this.form.gongjijin = ''
+        this.form.description = ''
       }
     },
     // 保存
