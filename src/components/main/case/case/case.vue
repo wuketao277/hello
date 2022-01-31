@@ -61,7 +61,7 @@
         </el-col>
       </el-row>
       <el-form-item label="职位描述">
-        <el-input type="textarea" v-model="form.description"></el-input>
+        <el-input type="textarea" v-model="form.description" :autosize="{ minRows: 2, maxRows: 10}"></el-input>
       </el-form-item>
     </el-form>
     <el-tabs type="border-card">

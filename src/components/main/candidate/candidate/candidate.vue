@@ -118,14 +118,14 @@
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="备注" prop="remark">
-            <el-input v-model="form.remark"  type="textarea" :rows="3"></el-input>
+            <el-input v-model="form.remark"  type="textarea" :rows="3" :autosize="{ minRows: 2, maxRows: 10}"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="简历" prop="resume">
-            <el-input v-model="resume"  type="textarea" :rows="5"></el-input>
+            <el-input v-model="resume"  type="textarea" :rows="5" :autosize="{ minRows: 2, maxRows: 10}"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
