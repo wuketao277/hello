@@ -21,7 +21,7 @@
         <el-input v-model="form.link"></el-input>
       </el-form-item>
       <el-form-item label="内容" prop="content">
-        <el-input type="textarea" v-model="form.content"></el-input>
+        <el-input type="textarea" v-model="form.content" :autosize="{ minRows: 2, maxRows: 100}"></el-input>
       </el-form-item>
       <el-form-item label="优先级" style="text-align:left;">
         <template>
