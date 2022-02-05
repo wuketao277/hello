@@ -22,7 +22,8 @@ export default {
         clientId: '',
         title: '',
         status: '',
-        description: ''
+        description: '',
+        salaryScope: ''
       },
       rules: {
         clientId: [{
@@ -85,6 +86,7 @@ export default {
         this.form.title = ''
         this.form.status = ''
         this.form.description = ''
+        this.form.salaryScope = ''
       }
     },
     // 保存

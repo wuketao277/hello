@@ -19,20 +19,11 @@
     <el-form
       ref="form"
       :model="form"
+      :rules="rules"
       label-width="80px"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-form-item label="客户">
-        <el-select v-model="form.clientId" placeholder="请选择客户">
-          <el-option
-            v-for="client in clients"
-            :key="client.id"
-            :value="client.id"
-            :label="client.chineseName"
-          ></el-option>
-        </el-select>
-      </el-form-item>
       <el-row>
         <el-col>
           <el-form-item label="职位id">
@@ -41,15 +32,32 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col>
-          <el-form-item label="职位名称">
-            <el-input v-model="form.title"></el-input>
+        <el-col :span="8">
+          <el-form-item label="客户" prop="clientId">
+            <el-select v-model="form.clientId" placeholder="请选择客户">
+              <el-option
+                v-for="client in clients"
+                :key="client.id"
+                :value="client.id"
+                :label="client.chineseName"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="16">
+          <el-form-item label="职位名称" prop="title">
+            <el-input v-model="form.title" clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row>
-        <el-col>
-          <el-form-item label="职位状态">
+        <el-col :span="8">
+          <el-form-item label="薪资范围">
+            <el-input v-model="form.salaryScope" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="16">
+          <el-form-item label="职位状态" prop="status">
             <el-radio-group v-model="form.status">
               <el-radio label="PREPARE">准备</el-radio>
               <el-radio label="DOING">进行中</el-radio>
@@ -61,7 +69,7 @@
         </el-col>
       </el-row>
       <el-form-item label="职位描述">
-        <el-input type="textarea" v-model="form.description" :autosize="{ minRows: 2, maxRows: 10}"></el-input>
+        <el-input type="textarea" v-model="form.description" :autosize="{ minRows: 2, maxRows: 10}" clearable></el-input>
       </el-form-item>
     </el-form>
     <el-tabs type="border-card">
