@@ -5,6 +5,12 @@
       <el-breadcrumb-item :to="{ path: '/mytask/mytasklist' }">任务列表</el-breadcrumb-item>
       <el-breadcrumb-item>我的任务</el-breadcrumb-item>
     </el-breadcrumb>
+    <!--工具栏，只有模式为新增或修改时才显示-->
+    <div class="toolbar">
+      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'add' && !saved" @click="save">保存</el-button>
+      <el-button type="danger" size="small" icon="el-icon-delete" v-show="mode === 'add' && !saved" @click="cancel">取消</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'modify'" @click="update">完成</el-button>
+    </div>
     <el-form
       ref="form"
       label-position="left"
@@ -62,12 +68,6 @@
         </el-col>
       </el-row>
     </el-form>
-    <!--工具栏，只有模式为新增或修改时才显示-->
-    <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'add' && !saved" @click="save">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" v-show="mode === 'add' && !saved" @click="cancel">取消</el-button>
-      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'modify'" @click="update">完成</el-button>
-    </div>
   </div>
 </template>
 <script src="./mytask.js"></script>

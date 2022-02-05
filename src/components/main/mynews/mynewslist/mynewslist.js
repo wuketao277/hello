@@ -56,13 +56,6 @@ export default {
           query: {mode: 'modify', news: this.currentRow}})
       }
     },
-    // 删除新闻
-    deleteNews () {
-      if (this.checkSelectRow()) {
-        this.$router.push({path: '/mynews/mynews',
-          query: {mode: 'detail', news: this.currentRow}})
-      }
-    },
     // 搜索按钮
     queryNews () {
       this.showSearchDialog = true
