@@ -15,7 +15,8 @@ export default {
       form: {
         id: null,
         chineseName: '',
-        englishName: ''
+        englishName: '',
+        remark: ''
       },
       rules: {
         chineseName: [
@@ -55,6 +56,7 @@ export default {
         this.form.id = ''
         this.form.chineseName = ''
         this.form.englishName = ''
+        this.form.rules = ''
       }
     },
     // 保存

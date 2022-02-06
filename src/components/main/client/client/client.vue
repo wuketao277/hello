@@ -19,16 +19,30 @@
     <el-form
       ref="form"
       :model="form"
+      :rules="rules"
       label-width="80px"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-form-item label="中文名">
-        <el-input v-model="form.chineseName"></el-input>
-      </el-form-item>
-      <el-form-item label="英文名">
-        <el-input v-model="form.englishName"></el-input>
-      </el-form-item>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="中文名" prop="chineseName">
+            <el-input v-model="form.chineseName"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="英文名">
+            <el-input v-model="form.englishName"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col>
+          <el-form-item label="备注">
+            <el-input type="textarea" v-model="form.remark" :autosize="{ minRows: 2, maxRows: 30}" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-tabs type="border-card">
       <el-tab-pane label="评论">
