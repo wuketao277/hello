@@ -21,7 +21,7 @@ export default {
         id: null,
         clientId: '',
         title: '',
-        status: '',
+        status: 'PREPARE',
         description: '',
         salaryScope: ''
       },

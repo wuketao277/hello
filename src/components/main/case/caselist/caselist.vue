@@ -48,7 +48,7 @@
       >
         <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
         <el-table-column prop="id" width="100" label="职位id" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="clientName" width="200" label="客户名称" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="clientChineseName" width="200" label="客户名称" show-overflow-tooltip></el-table-column>
         <el-table-column prop="title" width="200" label="职位名称" show-overflow-tooltip></el-table-column>
         <el-table-column prop="status" width="100" :formatter="this.getStatusName" label="状态" show-overflow-tooltip></el-table-column>
         <el-table-column prop="description" label="描述" show-overflow-tooltip></el-table-column>
