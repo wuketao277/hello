@@ -13,7 +13,7 @@
       <el-button type="primary" size="small" icon="el-icon-search" v-if="showSearchResult" @click="query(true)">取消搜索</el-button>
       <el-upload
         class="upload-demo"
-        action="http://47.101.176.70/uploadFile/uploadFile"
+        action="http://www.helloapplicant.com/uploadFile/uploadFile"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"

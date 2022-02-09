@@ -16,7 +16,7 @@
       </el-form>
       <el-upload
         class="upload-demo"
-        action="http://47.101.176.70/candidate/uploadFile"
+        action="http://www.helloapplicant.com/candidate/uploadFile"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"

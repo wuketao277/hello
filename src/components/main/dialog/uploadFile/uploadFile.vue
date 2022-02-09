@@ -2,7 +2,7 @@
   <div>
     <el-upload
       class="upload-demo"
-      action="http://47.101.176.70/uploadFile/uploadFile"
+      action="http://www.helloapplicant.com/uploadFile/uploadFile"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
