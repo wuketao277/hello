@@ -25,35 +25,9 @@
       style="margin-top:10px;text-align:left;"
     >
       <el-row>
-        <el-col>
+        <el-col :span="8">
           <el-form-item label="职位id">
             <span>{{form.id}}</span>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8">
-          <el-form-item label="客户" prop="clientId">
-            <el-select v-model="form.clientId" placeholder="请选择客户">
-              <el-option
-                v-for="client in clients"
-                :key="client.id"
-                :value="client.id"
-                :label="client.chineseName"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="16">
-          <el-form-item label="职位名称" prop="title">
-            <el-input v-model="form.title" clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8">
-          <el-form-item label="薪资范围">
-            <el-input v-model="form.salaryScope" clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="16">
@@ -68,8 +42,83 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="8">
+          <el-form-item label="客户" prop="clientId">
+            <el-select v-model="form.clientId" placeholder="请选择客户" style="width:100%">
+              <el-option
+                v-for="client in clients"
+                :key="client.id"
+                :value="client.id"
+                :label="client.chineseName"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="职位名称" prop="title">
+            <el-input v-model="form.title" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="职级">
+            <el-input v-model="form.level" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="8">
+          <el-form-item label="部门">
+            <el-input v-model="form.department" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="汇报对象">
+            <el-input v-model="form.lineManager" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="是否带人">
+            <el-input v-model="form.subordinates" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="8">
+          <el-form-item label="英语要求">
+            <el-input v-model="form.english" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="年龄要求">
+            <el-input v-model="form.age" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="工作经验">
+            <el-input v-model="form.experience" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="8">
+          <el-form-item label="学历要求">
+            <el-input v-model="form.school" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="薪资范围">
+            <el-input v-model="form.salaryScope" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-form-item label="职位描述">
-        <el-input type="textarea" v-model="form.description" :autosize="{ minRows: 2, maxRows: 10}" clearable></el-input>
+        <el-input
+          type="textarea"
+          v-model="form.description"
+          :autosize="{ minRows: 2, maxRows: 20}"
+          clearable
+        ></el-input>
       </el-form-item>
     </el-form>
     <el-tabs type="border-card">
@@ -78,10 +127,10 @@
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
           <el-tooltip class="item" effect="dark" content="给职位添加候选人" placement="top">
             <el-button
-            type="primary"
-            size="small"
-            icon="el-icon-share"
-            @click="openSelectCandidateDialog"
+              type="primary"
+              size="small"
+              icon="el-icon-share"
+              @click="openSelectCandidateDialog"
             >添加候选人</el-button>
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="从一个旧职位上拷贝候选人到当前职位" placement="top">
@@ -100,12 +149,13 @@
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column label="操作" width="150" >
+          <el-table-column label="操作" width="150">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="primary"
-                @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
+                @click="editCandidate(scope.$index, scope.row)"
+              >编辑候选人</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="chineseName" width="120" label="中文名"></el-table-column>

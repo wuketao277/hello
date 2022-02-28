@@ -21,6 +21,14 @@ export default {
         id: null,
         clientId: '',
         title: '',
+        level: '',
+        department: '',
+        lineManager: '',
+        subordinates: '',
+        english: '',
+        age: '',
+        experience: '',
+        school: '',
         status: 'PREPARE',
         description: '',
         salaryScope: ''
@@ -46,6 +54,46 @@ export default {
         status: [{
           required: true,
           message: '职位状态必填',
+          trigger: 'blur'
+        }],
+        level: [{
+          max: 50,
+          message: '职级长度不能大于25',
+          trigger: 'blur'
+        }],
+        department: [{
+          max: 50,
+          message: '部门长度不能大于25',
+          trigger: 'blur'
+        }],
+        lineManager: [{
+          max: 50,
+          message: '汇报对象长度不能大于25',
+          trigger: 'blur'
+        }],
+        subordinates: [{
+          max: 50,
+          message: '是否带人长度不能大于25',
+          trigger: 'blur'
+        }],
+        english: [{
+          max: 50,
+          message: '英语要求长度不能大于25',
+          trigger: 'blur'
+        }],
+        age: [{
+          max: 50,
+          message: '年龄要求长度不能大于25',
+          trigger: 'blur'
+        }],
+        school: [{
+          max: 50,
+          message: '学历要求长度不能大于25',
+          trigger: 'blur'
+        }],
+        experience: [{
+          max: 50,
+          message: '经验要求长度不能大于25',
           trigger: 'blur'
         }]
       },
@@ -84,6 +132,14 @@ export default {
         this.form.clientId = ''
         this.form.clientName = ''
         this.form.title = ''
+        this.form.level = ''
+        this.form.department = ''
+        this.form.lineManager = ''
+        this.form.subordinates = ''
+        this.form.english = ''
+        this.form.age = ''
+        this.form.experience = ''
+        this.form.school = ''
         this.form.status = ''
         this.form.description = ''
         this.form.salaryScope = ''
