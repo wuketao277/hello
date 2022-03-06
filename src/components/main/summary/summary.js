@@ -12,7 +12,8 @@ export default {
       KPIDate: '',
       KPIDashboard: [],
       commentsDetailTableVisible: false,
-      commentsDetailTable: []
+      commentsDetailTable: [],
+      activeNames: ['1']
     }
   },
   methods: {

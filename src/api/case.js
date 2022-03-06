@@ -20,5 +20,13 @@ export default {
   // 通过id查询
   queryById (params) {
     return axios.get('/case/queryById', {params: params})
+  },
+  // 更新关注
+  updateCaseAttention (params) {
+    return axios.post('/case/updateCaseAttention', params)
+  },
+  // 查询关注信息
+  queryCaseAttentionByCaseId (params) {
+    return axios.get('/case/queryCaseAttentionByCaseId?caseId=' + params)
   }
 }

@@ -34,6 +34,7 @@ export default {
         location: '',
         salaryScope: ''
       },
+      attention: false,
       rules: {
         clientId: [{
           required: true,
@@ -118,6 +119,26 @@ export default {
     }
   },
   methods: {
+    // 更新关注列表
+    updateCaseAttention () {
+      let params = {
+        attention: this.attention,
+        caseId: this.form.id
+      }
+      caseApi.updateCaseAttention(params).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '系统异常，请联系管理员！'
+          })
+        } else {
+          this.$message({
+            message: '更新成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
+    },
     // 编辑候选人
     editCandidate (index, row) {
       this.$router.push({
@@ -333,9 +354,21 @@ export default {
     queryOthers () {
       // 查询推荐候选人列表
       this.queryCandidateForCase()
+    },
+    // 查询职位关注情况
+    queryCaseAttentionByCaseId () {
+      debugger
+      if (this.form.id !== null) {
+        caseApi.queryCaseAttentionByCaseId(this.form.id).then(res => {
+          if (res.status === 200) {
+            this.attention = res.data
+          }
+        })
+      }
     }
   },
   created () {
+    debugger
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
@@ -343,6 +376,7 @@ export default {
       if (typeof (this.$route.query.case) !== 'undefined') {
         this.form = this.$route.query.case
         this.queryOthers()
+        this.queryCaseAttentionByCaseId()
       } else if (typeof (this.$route.query.caseId) !== 'undefined') {
         let params = {
           'id': this.$route.query.caseId
@@ -351,6 +385,7 @@ export default {
           if (res.status === 200) {
             this.form = res.data
             this.queryOthers()
+            this.queryCaseAttentionByCaseId()
           }
         })
       }

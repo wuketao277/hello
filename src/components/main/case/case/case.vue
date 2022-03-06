@@ -15,6 +15,7 @@
         icon="el-icon-upload"
         @click="openUploadFileDialog"
       >上传文件</el-button>
+      <el-switch v-model="attention" inactive-text="不关注" active-text="关注" active-color="#13ce66" @change="updateCaseAttention"></el-switch>
     </div>
     <el-form
       ref="form"
@@ -169,10 +170,14 @@
             </template>
           </el-table-column>
           <el-table-column prop="chineseName" width="120" label="中文名"></el-table-column>
-          <el-table-column prop="englishName" width="120" label="英文名"></el-table-column>
           <el-table-column prop="latestCommentUsername" width="120" label="评论人"></el-table-column>
-          <el-table-column prop="latestCommentContent" label="最后评论内容"></el-table-column>
-          <el-table-column prop="latestCommentInputtime" width="160" label="最后评论时间"></el-table-column>
+          <el-table-column prop="latestCommentContent" label="最后评论内容" show-overflow-tooltip></el-table-column>
+          <el-table-column
+            prop="latestCommentInputtime"
+            width="160"
+            label="最后评论时间"
+            show-overflow-tooltip
+          ></el-table-column>
         </el-table>
         <!--候选人结束-->
       </el-tab-pane>
