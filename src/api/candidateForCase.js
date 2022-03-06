@@ -28,5 +28,9 @@ export default {
     return axios.get('/candidateForCase/findByCandidateId', {
       params: params
     })
+  },
+  // 通过id删除
+  deleteById (params) {
+    return axios.get('/candidateForCase/deleteById?id=' + params)
   }
 }

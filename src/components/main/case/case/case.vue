@@ -107,6 +107,11 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
+          <el-form-item label="工作地点">
+            <el-input v-model="form.location" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
           <el-form-item label="薪资范围">
             <el-input v-model="form.salaryScope" clearable></el-input>
           </el-form-item>
@@ -149,13 +154,18 @@
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column label="操作" width="150">
+          <el-table-column label="操作" width="250">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="primary"
                 @click="editCandidate(scope.$index, scope.row)"
               >编辑候选人</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="deleteRecommend(scope.$index, scope.row)"
+              >删除推荐</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="chineseName" width="120" label="中文名"></el-table-column>

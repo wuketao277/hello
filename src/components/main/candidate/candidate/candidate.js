@@ -156,6 +156,30 @@ export default {
     }
   },
   methods: {
+    // 删除推荐
+    deleteRecommend (index, row) {
+      this.$confirm('确认要删除推荐吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(() => {
+          candidateForCaseApi.deleteById(row.id).then(res => {
+            if (res.status !== 200) {
+              this.$message.error({
+                message: '删除失败，请联系管理员！'
+              })
+            } else {
+              this.$message({
+                message: '删除成功！',
+                type: 'success',
+                showClose: true
+              })
+              this.queryCandidateForCaseList()
+            }
+          })
+        })
+    },
     // 编辑职位
     editCase (index, row) {
       this.$router.push({

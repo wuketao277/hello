@@ -118,14 +118,24 @@
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="备注" prop="remark">
-            <el-input v-model="form.remark"  type="textarea" :rows="3" :autosize="{ minRows: 2, maxRows: 10}"></el-input>
+            <el-input
+              v-model="form.remark"
+              type="textarea"
+              :rows="3"
+              :autosize="{ minRows: 2, maxRows: 10}"
+            ></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="简历" prop="resume">
-            <el-input v-model="resume"  type="textarea" :rows="5" :autosize="{ minRows: 2, maxRows: 10}"></el-input>
+            <el-input
+              v-model="resume"
+              type="textarea"
+              :rows="5"
+              :autosize="{ minRows: 2, maxRows: 10}"
+            ></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -149,12 +159,14 @@
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column width="150" label="操作">
+          <el-table-column width="200" label="操作">
             <template slot-scope="scope">
+              <el-button size="mini" type="primary" @click="editCase(scope.$index, scope.row)">编辑职位</el-button>
               <el-button
                 size="mini"
-                type="primary"
-                @click="editCase(scope.$index, scope.row)">编辑职位</el-button>
+                type="danger"
+                @click="deleteRecommend(scope.$index, scope.row)"
+              >删除推荐</el-button>
             </template>
           </el-table-column>
           <el-table-column width="100" prop="id" label="职位id"></el-table-column>
@@ -204,19 +216,27 @@
         >
           <el-row :gutter="20">
             <el-col :span="8">
-              <el-form-item label="评论阶段" prop="phase" v-show="(mode === 'add' || mode === 'modify')">
+              <el-form-item
+                label="评论阶段"
+                prop="phase"
+                v-show="(mode === 'add' || mode === 'modify')"
+              >
                 <el-select v-model="newComment.phase" placeholder="请选择">
                   <el-option
                     v-for="item in phaseOptions"
                     :key="item.value"
                     :label="item.label"
-                    :value="item.value">
-                  </el-option>
+                    :value="item.value"
+                  ></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="16">
-              <el-form-item label="评论内容" prop="content" v-show="(mode === 'add' || mode === 'modify')">
+              <el-form-item
+                label="评论内容"
+                prop="content"
+                v-show="(mode === 'add' || mode === 'modify')"
+              >
                 <el-input type="textarea" v-model="newComment.content"></el-input>
               </el-form-item>
             </el-col>

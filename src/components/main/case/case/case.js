@@ -31,6 +31,7 @@ export default {
         school: '',
         status: 'PREPARE',
         description: '',
+        location: '',
         salaryScope: ''
       },
       rules: {
@@ -95,6 +96,11 @@ export default {
           max: 50,
           message: '经验要求长度不能大于25',
           trigger: 'blur'
+        }],
+        location: [{
+          max: 200,
+          message: '工作地点长度不能大于100',
+          trigger: 'blur'
         }]
       },
       clients: [],
@@ -122,6 +128,30 @@ export default {
         }
       })
     },
+    // 删除推荐
+    deleteRecommend (index, row) {
+      this.$confirm('确认要删除推荐吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(() => {
+          candidateForCaseApi.deleteById(row.id).then(res => {
+            if (res.status !== 200) {
+              this.$message.error({
+                message: '删除失败，请联系管理员！'
+              })
+            } else {
+              this.$message({
+                message: '删除成功！',
+                type: 'success',
+                showClose: true
+              })
+              this.queryCandidateForCase()
+            }
+          })
+        })
+    },
     // 取消
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {
@@ -143,6 +173,7 @@ export default {
         this.form.status = ''
         this.form.description = ''
         this.form.salaryScope = ''
+        this.form.location = ''
       }
     },
     // 保存
