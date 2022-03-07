@@ -183,11 +183,23 @@ export default {
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
-      this.form = this.$route.query.client
-      // 对于非新增操作，需要在创建时查询“联系人”信息
-      this.queryLinkMan()
+      if (typeof (this.$route.query.client) !== 'undefined') {
+        this.form = this.$route.query.client
+        // 对于非新增操作，需要在创建时查询“联系人”信息
+        this.queryLinkMan()
+        // 查询上传文件
+        this.queryUploadFiles()
+      } else if (typeof (this.$route.query.clientId) !== 'undefined') {
+        clientApi.queryById(this.$route.query.clientId).then(res => {
+          if (res.status === 200) {
+            this.form = res.data
+            // 对于非新增操作，需要在创建时查询“联系人”信息
+            this.queryLinkMan()
+            // 查询上传文件
+            this.queryUploadFiles()
+          }
+        })
+      }
     }
-    // 查询上传文件
-    this.queryUploadFiles()
   }
 }

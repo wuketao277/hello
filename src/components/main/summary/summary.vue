@@ -1,5 +1,28 @@
 <template>
   <div style="height:100%;">
+    <div class="blockdiv2">
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>关注职位</span>
+        </div>
+        <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
+          <el-button type="text" @click="toClient(client.clientId)" style="font-size:22px;padding-top:0px;padding-bottom:0px;">{{client.clientChineseName}}</el-button>
+          <div style="margin-left:30px;">
+            <div v-for="(clientCase,index2) in client.caseList" :key="index2">
+              <el-button type="text" @click="toCase(clientCase.caseId)" style="font-size:18px;padding-top:0px;padding-bottom:0px;color:#67C23A;">{{clientCase.caseTitle}}</el-button>
+              <div style="margin-left:30px;">
+                <div v-for="(candidate,index3) in clientCase.candidateList" :key="index3">
+                  <el-button type="text" @click="toCandidate(candidate.candidateId)" style="font-size:16px;padding-top:0px;padding-bottom:0px;color:#303133;">{{candidate.candidateChineseName}}</el-button>
+                  <span>{{candidate.latestCommentUsername}}</span> &nbsp;&nbsp;
+                  <span>{{candidate.latestCommentInputtime}}</span> &nbsp;&nbsp;
+                  <span>{{candidate.latestCommentContent}}</span> &nbsp;&nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </el-card>
+    </div>
     <div class="blockdiv">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
@@ -109,11 +132,10 @@
 .blockdiv {
   height: 300px;
   width: 49%;
-  margin: 2px;
+  padding: 2px;
   float: left;
 }
 .blockdiv2 {
-  /* height: 500px; */
   width: 98%;
   margin: 2px;
   float: left;

@@ -1,7 +1,7 @@
 import myTaskApi from '@/api/myTask'
 import myNewsApi from '@/api/mynews'
 import commentApi from '@/api/comment'
-// import candidateApi from '@/api/candidate'
+import caseApi from '@/api/case'
 
 export default {
   data () {
@@ -13,10 +13,41 @@ export default {
       KPIDashboard: [],
       commentsDetailTableVisible: false,
       commentsDetailTable: [],
-      activeNames: ['1']
+      activeNames: ['1'],
+      caseAttention4ClientVOArray: []
     }
   },
   methods: {
+    // 跳转到客户
+    toClient (id) {
+      this.$router.push({
+        path: '/client/client',
+        query: {
+          mode: 'modify',
+          clientId: id
+        }
+      })
+    },
+    // 跳转到职位
+    toCase (id) {
+      this.$router.push({
+        path: '/case/case',
+        query: {
+          mode: 'modify',
+          caseId: id
+        }
+      })
+    },
+    // 跳转到候选人
+    toCandidate (id) {
+      this.$router.push({
+        path: '/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: id
+        }
+      })
+    },
     // 编辑候选人
     editCandidate (index, row) {
       this.$router.push({
@@ -115,6 +146,20 @@ export default {
           news: myNews
         }
       })
+    },
+    // 查询当前用户所有职位关注
+    queryAllCaseAttention () {
+      caseApi.queryAllCaseAttention().then(res => {
+        if (res.status === 200) {
+          this.caseAttention4ClientVOArray = res.data
+        } else {
+          this.$message({
+            message: '查询异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
     }
   },
   created () {
@@ -130,5 +175,7 @@ export default {
         this.myNewsList = res.data
       }
     })
+    // 查询当前用户所有职位关注
+    this.queryAllCaseAttention()
   }
 }

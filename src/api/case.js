@@ -28,5 +28,9 @@ export default {
   // 查询关注信息
   queryCaseAttentionByCaseId (params) {
     return axios.get('/case/queryCaseAttentionByCaseId?caseId=' + params)
+  },
+  // 查询当前用户的所有关注信息
+  queryAllCaseAttention () {
+    return axios.get('/case/queryAllCaseAttention')
   }
 }
