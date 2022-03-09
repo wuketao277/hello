@@ -36,6 +36,7 @@ export default {
         futureAddress: '',
         currentMoney: '',
         futureMoney: '',
+        englishLevel: '',
         remark: ''
       },
       phaseOptions: [
@@ -109,6 +110,11 @@ export default {
         title: [{
           max: 200,
           message: '职位名称长度不能大于200个字符',
+          trigger: 'blur'
+        }],
+        englishLevel: [{
+          max: 200,
+          message: '英文水平长度不能大于100个字符',
           trigger: 'blur'
         }]
       },
@@ -274,6 +280,7 @@ export default {
         this.form.futureAddress = ''
         this.form.currentMoney = ''
         this.form.futureMoney = ''
+        this.form.englishLevel = ''
         this.form.remark = ''
       }
     },

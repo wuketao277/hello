@@ -116,6 +116,13 @@
         </el-col>
       </el-row>
       <el-row :gutter="20">
+        <el-col :span="8">
+          <el-form-item label="英文水平" prop="englishLevel">
+            <el-input v-model="form.englishLevel"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="备注" prop="remark">
             <el-input
