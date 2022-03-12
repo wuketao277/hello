@@ -32,5 +32,9 @@ export default {
   // 通过id删除
   deleteById (params) {
     return axios.get('/candidateForCase/deleteById?id=' + params)
+  },
+  // 更新关注
+  updateAttention (params) {
+    return axios.post('/candidateForCase/updateAttention', params)
   }
 }

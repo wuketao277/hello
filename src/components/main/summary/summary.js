@@ -18,6 +18,7 @@ export default {
     }
   },
   methods: {
+    rowChange () {},
     // 跳转到客户
     toClient (id) {
       this.$router.push({

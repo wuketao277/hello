@@ -45,7 +45,6 @@ export default {
           salaryApi.update(this.form).then(
             res => {
               if (res.status === 200) {
-                debugger
                 // 将从服务端获取的id赋值给前端显示
                 if (res.data) {
                   this.$message({

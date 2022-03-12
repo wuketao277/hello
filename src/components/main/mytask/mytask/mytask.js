@@ -4,6 +4,7 @@ import userApi from '@/api/user'
 export default {
   data () {
     return {
+      isIndeterminate: true,
       mode: 'add', // 默认操作模式为新建
       saved: false, // 界面的数据是否保存过
       selectUsers: [], // 任务执行人集合
@@ -52,6 +53,11 @@ export default {
     }
   },
   methods: {
+    // 处理全选事件
+    handleCheckAllChange (val) {
+      this.selectUsers = val ? this.users : []
+      this.isIndeterminate = false
+    },
     // 取消
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {

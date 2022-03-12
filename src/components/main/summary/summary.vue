@@ -29,7 +29,7 @@
           <span>我的新闻</span>
           <el-button size="mini" icon="el-icon-edit" circle @click="openView('/mynews/mynewslist')"></el-button>
         </div>
-        <div v-for="myNews in myNewsList" :key="myNews">
+        <div v-for="(myNews,index) in myNewsList" :key="index">
           <el-row style="padding-bottom:5px;">
             <el-col :span="20">{{myNews.title}}</el-col>
             <el-col :span="4">
@@ -50,7 +50,7 @@
           <span>我的任务</span>
           <el-button size="mini" icon="el-icon-edit" circle @click="openView('/mytask/mytasklist')"></el-button>
         </div>
-        <div v-for="task in myTasks" :key="task">
+        <div v-for="(task,index) in myTasks" :key="index">
           <el-row style="padding-bottom:5px;">
             <el-col :span="20">{{task.taskTitle}}</el-col>
             <el-col :span="4">
@@ -86,7 +86,6 @@
             :border="true"
             :highlight-current-row="true"
             :stripe="true"
-            :row-class-name="rowStyle"
             style="width: 100%"
             max-height="500"
             @current-change="rowChange"

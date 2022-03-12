@@ -15,7 +15,13 @@
         icon="el-icon-upload"
         @click="openUploadFileDialog"
       >上传文件</el-button>
-      <el-switch v-model="attention" inactive-text="不关注" active-text="关注" active-color="#13ce66" @change="updateCaseAttention"></el-switch>
+      <el-switch
+        v-model="attention"
+        inactive-text="不关注"
+        active-text="关注"
+        active-color="#13ce66"
+        @change="updateCaseAttention"
+      ></el-switch>
     </div>
     <el-form
       ref="form"
@@ -149,19 +155,31 @@
           </el-tooltip>
         </div>
         <el-table
-          :data="candidateForCase"
+          :data="candidateForCaseList"
           :border="true"
           style="width: 100%"
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column label="操作" width="250">
+          <el-table-column label="操作" width="320">
             <template slot-scope="scope">
               <el-button
                 size="mini"
                 type="primary"
                 @click="editCandidate(scope.$index, scope.row)"
               >编辑候选人</el-button>
+              <el-button
+                v-if="!isAttention(scope.row)"
+                size="mini"
+                type="success"
+                @click="updateCandidateForCaseAttention(scope.row, true)"
+              >添加关注</el-button>
+              <el-button
+                v-if="isAttention(scope.row)"
+                size="mini"
+                type="warning"
+                @click="updateCandidateForCaseAttention(scope.row, false)"
+              >取消关注</el-button>
               <el-button
                 size="mini"
                 type="danger"

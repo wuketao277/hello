@@ -166,9 +166,21 @@
           @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
-          <el-table-column width="200" label="操作">
+          <el-table-column width="320" label="操作">
             <template slot-scope="scope">
               <el-button size="mini" type="primary" @click="editCase(scope.$index, scope.row)">编辑职位</el-button>
+              <el-button
+                v-if="!isAttention(scope.row)"
+                size="mini"
+                type="success"
+                @click="updateCandidateForCaseAttention(scope.row, true)"
+              >添加关注</el-button>
+              <el-button
+                v-if="isAttention(scope.row)"
+                size="mini"
+                type="warning"
+                @click="updateCandidateForCaseAttention(scope.row, false)"
+              >取消关注</el-button>
               <el-button
                 size="mini"
                 type="danger"
@@ -176,7 +188,6 @@
               >删除推荐</el-button>
             </template>
           </el-table-column>
-          <el-table-column width="100" prop="id" label="职位id"></el-table-column>
           <el-table-column prop="clientName" label="公司名称"></el-table-column>
           <el-table-column prop="title" label="职位名称"></el-table-column>
         </el-table>

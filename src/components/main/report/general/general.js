@@ -104,7 +104,6 @@ export default {
         this.form.startDate = startDate
         this.form.endDate = endDate
       } else if (type === 'season') {
-        debugger
         let endDate = new Date()
         let monthInt = endDate.getMonth()
         let monthStr = '01'
@@ -134,7 +133,6 @@ export default {
       report.queryGeneral(this.form).then(
         res => {
           if (res.status === 200) {
-            debugger
             this.personalRateOptionDataX = res.data.personalRateOptionDataX
             this.personalRateOptionDataY = res.data.personalRateOptionDataY
             this.clientRateOptionDataX = res.data.clientRateOptionDataX

@@ -7,9 +7,27 @@
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'add' && !saved" @click="save">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" v-show="mode === 'add' && !saved" @click="cancel">取消</el-button>
-      <el-button type="success" size="small" icon="el-icon-circle-check" v-show="mode === 'modify'" @click="update">完成</el-button>
+      <el-button
+        type="success"
+        size="small"
+        icon="el-icon-circle-check"
+        v-show="mode === 'add' && !saved"
+        @click="save"
+      >保存</el-button>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-delete"
+        v-show="mode === 'add' && !saved"
+        @click="cancel"
+      >取消</el-button>
+      <el-button
+        type="success"
+        size="small"
+        icon="el-icon-circle-check"
+        v-show="mode === 'modify'"
+        @click="update"
+      >完成</el-button>
     </div>
     <el-form
       ref="form"
@@ -40,8 +58,13 @@
       <el-row :gutter="20" v-show="mode === 'add'">
         <el-col :span="24">
           <el-form-item label="执行人">
+            <el-checkbox
+              :indeterminate="isIndeterminate"
+              v-model="checkAll"
+              @change="handleCheckAllChange"
+            >全选</el-checkbox>
             <el-checkbox-group v-model="selectUsers">
-              <el-checkbox v-for="user in users" :key="user" :label="user">{{user.realname}}</el-checkbox>
+              <el-checkbox v-for="user in users" :key="user" :label="user">{{user.username}}</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
         </el-col>

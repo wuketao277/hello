@@ -106,7 +106,7 @@ export default {
       },
       clients: [],
       // 职位候选人集合
-      candidateForCase: [],
+      candidateForCaseList: [],
       // 当前选中职位对应候选人
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
@@ -119,6 +119,32 @@ export default {
     }
   },
   methods: {
+    // 是否关注
+    isAttention (row) {
+      return row.attention
+    },
+    // 更新候选人职位关注信息
+    updateCandidateForCaseAttention (row, attention) {
+      let params = {
+        id: row.id,
+        attention: attention
+      }
+      candidateForCaseApi.updateAttention(params).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '系统异常，请联系管理员！'
+          })
+        } else {
+          this.$message({
+            message: '更新成功！',
+            type: 'success',
+            showClose: true
+          })
+          // 刷新推荐列表
+          this.queryCandidateForCaseList()
+        }
+      })
+    },
     // 更新关注列表
     updateCaseAttention () {
       let params = {
@@ -168,7 +194,7 @@ export default {
                 type: 'success',
                 showClose: true
               })
-              this.queryCandidateForCase()
+              this.queryCandidateForCaseList()
             }
           })
         })
@@ -246,8 +272,8 @@ export default {
       this.selectCandidateDialogShow = false
       // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的后续人列表中
       let include = false
-      for (let index in this.candidateForCase) {
-        if (this.candidateForCase[index].candidateId === val.id) {
+      for (let index in this.candidateForCaseList) {
+        if (this.candidateForCaseList[index].candidateId === val.id) {
           include = true
           break
         }
@@ -267,7 +293,7 @@ export default {
             // 获取该职位所有候选人信息
             candidateForCaseApi.findByCaseId(this.form.id).then(res => {
               if (res.status === 200) {
-                this.candidateForCase = res.data
+                this.candidateForCaseList = res.data
               }
             })
           }
@@ -340,12 +366,12 @@ export default {
       }
     },
     // 查询推荐候选人列表
-    queryCandidateForCase () {
+    queryCandidateForCaseList () {
       // 获取该职位所有候选人信息
       if (this.form.id !== null) {
         candidateForCaseApi.findByCaseId(this.form.id).then(res => {
           if (res.status === 200) {
-            this.candidateForCase = res.data
+            this.candidateForCaseList = res.data
           }
         })
       }
@@ -353,11 +379,10 @@ export default {
     // 查询其他数据
     queryOthers () {
       // 查询推荐候选人列表
-      this.queryCandidateForCase()
+      this.queryCandidateForCaseList()
     },
     // 查询职位关注情况
     queryCaseAttentionByCaseId () {
-      debugger
       if (this.form.id !== null) {
         caseApi.queryCaseAttentionByCaseId(this.form.id).then(res => {
           if (res.status === 200) {
@@ -368,7 +393,6 @@ export default {
     }
   },
   created () {
-    debugger
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

@@ -162,6 +162,32 @@ export default {
     }
   },
   methods: {
+    // 是否关注
+    isAttention (row) {
+      return row.attention
+    },
+    // 更新候选人职位关注信息
+    updateCandidateForCaseAttention (row, attention) {
+      let params = {
+        id: row.id,
+        attention: attention
+      }
+      candidateForCaseApi.updateAttention(params).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '系统异常，请联系管理员！'
+          })
+        } else {
+          this.$message({
+            message: '更新成功！',
+            type: 'success',
+            showClose: true
+          })
+          // 刷新推荐列表
+          this.queryCandidateForCaseList()
+        }
+      })
+    },
     // 删除推荐
     deleteRecommend (index, row) {
       this.$confirm('确认要删除推荐吗？', '确认信息', {
