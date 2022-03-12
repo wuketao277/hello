@@ -184,6 +184,7 @@
                 size="mini"
                 type="danger"
                 @click="deleteRecommend(scope.$index, scope.row)"
+                v-show="showControl('deleteRecommend')"
               >删除推荐</el-button>
             </template>
           </el-table-column>

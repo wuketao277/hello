@@ -1,5 +1,6 @@
 import caseApi from '@/api/case'
 import clientApi from '@/api/client'
+import commonJS from '@/common/common'
 import candidateForCaseApi from '@/api/candidateForCase'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
@@ -119,6 +120,14 @@ export default {
     }
   },
   methods: {
+    // 显示控制
+    showControl (key) {
+      if (key === 'deleteRecommend') {
+        return commonJS.hasRole('admin')
+      }
+      // 没有特殊要求的不需要角色
+      return true
+    },
     // 是否关注
     isAttention (row) {
       return row.attention

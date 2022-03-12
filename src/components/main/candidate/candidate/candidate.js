@@ -6,6 +6,7 @@ import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
+import commonJS from '@/common/common'
 
 export default {
   components: {
@@ -162,6 +163,14 @@ export default {
     }
   },
   methods: {
+    // 显示控制
+    showControl (key) {
+      if (key === 'deleteRecommend') {
+        return commonJS.hasRole('admin')
+      }
+      // 没有特殊要求的不需要角色
+      return true
+    },
     // 是否关注
     isAttention (row) {
       return row.attention
