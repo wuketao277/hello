@@ -6,16 +6,38 @@
           <span>关注职位</span>
         </div>
         <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
-          <el-button type="text" @click="toClient(client.clientId)" style="font-size:22px;padding-top:0px;padding-bottom:0px;">{{client.clientChineseName}}</el-button>
+          <el-button
+            type="text"
+            @click="toClient(client.clientId)"
+            style="font-size:22px;padding-top:0px;padding-bottom:0px;"
+          >{{client.clientChineseName}}</el-button>
           <div style="margin-left:30px;">
             <div v-for="(clientCase,index2) in client.caseList" :key="index2">
-              <el-button type="text" @click="toCase(clientCase.caseId)" style="font-size:18px;padding-top:0px;padding-bottom:0px;color:#67C23A;">{{clientCase.caseTitle}}</el-button>
+              <el-button
+                type="text"
+                @click="toCase(clientCase.caseId)"
+                style="font-size:18px;padding-top:0px;padding-bottom:0px;color:#67C23A;"
+              >{{clientCase.caseTitle}}</el-button>
               <div style="margin-left:30px;">
                 <div v-for="(candidate,index3) in clientCase.candidateList" :key="index3">
-                  <el-button type="text" @click="toCandidate(candidate.candidateId)" style="font-size:16px;padding-top:0px;padding-bottom:0px;color:#303133;">{{candidate.candidateChineseName}}</el-button>
-                  <span>{{candidate.latestCommentUsername}}</span> &nbsp;&nbsp;
-                  <span>{{candidate.latestCommentInputtime}}</span> &nbsp;&nbsp;
-                  <span>{{candidate.latestCommentContent}}</span> &nbsp;&nbsp;
+                  <el-row>
+                    <el-col :span="2">
+                      <el-button
+                        type="text"
+                        @click="toCandidate(candidate.candidateId)"
+                        style="font-size:16px;padding-top:0px;padding-bottom:0px;color:#303133;"
+                      >{{candidate.candidateChineseName}}</el-button>
+                    </el-col>
+                    <el-col :span="2">
+                      <span>{{candidate.latestCommentUsername}}</span>
+                    </el-col>
+                    <el-col :span="4">
+                      <span>{{candidate.latestCommentInputtime}}</span>
+                    </el-col>
+                    <el-col :span="16">
+                      <span>{{candidate.latestCommentContent}}</span>
+                    </el-col>
+                  </el-row>
                 </div>
               </div>
             </div>
