@@ -12,25 +12,23 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: this.getPageNumber(),
+          pageSize: this.getPageSize()
         }
       },
       page: {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: ''
+      search: this.getSearchContent()
     }
   },
   methods: {
     // 查询后台数据
-    query (showDialog = false) {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+    query () {
+      window.localStorage['filelist.search'] = this.search
+      window.localStorage['filelist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['filelist.pageSize'] = this.table.pageable.pageSize
       let params = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -45,12 +43,10 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-        if (showDialog) {
-          this.$message({
-            type: 'success',
-            message: '查询完成！'
-          })
-        }
+        this.$message({
+          type: 'success',
+          message: '查询完成！'
+        })
       })
     },
     // 处理选中行时间
@@ -94,10 +90,26 @@ export default {
     },
     switchSearchDialog () {
     },
-    // 搜索对话框，确定按钮
-    sureSearchDialog () {
-      this.query()
-      this.search = ''
+    getSearchContent () {
+      if (typeof (window.localStorage['filelist.search']) === 'undefined') {
+        return ''
+      } else {
+        return window.localStorage['filelist.search']
+      }
+    },
+    getPageNumber () {
+      if (typeof (window.localStorage['filelist.pageNumber']) === 'undefined') {
+        return 1
+      } else {
+        return window.localStorage['filelist.pageNumber']
+      }
+    },
+    getPageSize () {
+      if (typeof (window.localStorage['filelist.pageSize']) === 'undefined') {
+        return 10
+      } else {
+        return window.localStorage['filelist.pageSize']
+      }
     }
   },
   computed: {},
