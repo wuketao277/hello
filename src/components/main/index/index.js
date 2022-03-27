@@ -5,7 +5,8 @@ export default {
   data () {
     return {
       isCollapse: true,
-      realname: ''
+      realname: '',
+      username: ''
     }
   },
   methods: {
@@ -67,5 +68,6 @@ export default {
   created () {
     const loginInfo = JSON.parse(window.localStorage['loginInfo'])
     this.realname = loginInfo['realname']
+    this.username = loginInfo['username']
   }
 }

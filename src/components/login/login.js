@@ -12,7 +12,8 @@ export default {
         loginName: '',
         password: ''
       },
-      userInfo: undefined // 用户信息
+      userInfo: undefined, // 用户信息
+      backgroundImage: require('../../assets/background-1.jpeg')
     }
   },
   methods: {

@@ -4,12 +4,12 @@
       style="background-color:#545c64;height:40px;padding:0px;text-align:left;font-size:25px;color:#fff;"
     >
       <div style="float:left;height:100%;text-align:left;padding-left:20px;">
-        <span>Hello人才系统</span>
+        <span>Hello System</span>
       </div>
       <div
         style="float:right;width:50%;text-align:right;font-size:18px;padding-top:4px;padding-right:20px;"
       >
-        <span>{{realname}}</span>&nbsp;&nbsp;
+        <span>{{username}}</span>&nbsp;&nbsp;
         <el-button
           circle
           title="退出系统"
@@ -22,7 +22,7 @@
       </div>
     </el-header>
     <el-container>
-      <el-aside style="width:180px;">
+      <el-aside style="width:160px;">
         <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
