@@ -7,18 +7,15 @@
         <span>Hello System</span>
       </div>
       <div
-        style="float:right;width:50%;text-align:right;font-size:18px;padding-top:4px;padding-right:20px;"
+        style="float:right;width:50%;text-align:right;padding-top:4px;padding-right:20px;"
       >
-        <span>{{username}}</span>&nbsp;&nbsp;
+        <span>Hi {{username}}</span>
         <el-button
-          circle
+          type="text"
           title="退出系统"
-          type="danger"
-          icon="el-icon-switch-button"
-          size="mini"
           @click="logout"
-          style="cursor:pointer;"
-        ></el-button>
+          style="cursor:pointer;color:white;"
+        >Logout</el-button>
       </div>
     </el-header>
     <el-container>
