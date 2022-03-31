@@ -14,7 +14,8 @@ export default {
       commentsDetailTableVisible: false,
       commentsDetailTable: [],
       activeNames: ['1'],
-      caseAttention4ClientVOArray: []
+      caseAttention4ClientVOArray: [],
+      cwCaseArray: []
     }
   },
   methods: {
@@ -40,12 +41,12 @@ export default {
       })
     },
     // 跳转到候选人
-    toCandidate (id) {
+    toCandidate (row) {
       this.$router.push({
         path: '/candidate/candidate',
         query: {
           mode: 'modify',
-          candidateId: id
+          candidateId: row.candidateId
         }
       })
     },
@@ -161,6 +162,20 @@ export default {
           })
         }
       })
+    },
+    // 查询当前用户所有对接的职位
+    queryCWCaseArray () {
+      caseApi.queryAllCWCase().then(res => {
+        if (res.status === 200) {
+          this.cwCaseArray = res.data
+        } else {
+          this.$message({
+            message: '查询异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
     }
   },
   created () {
@@ -178,5 +193,7 @@ export default {
     })
     // 查询当前用户所有职位关注
     this.queryAllCaseAttention()
+    // 查询当前用户所有对接的职位
+    this.queryCWCaseArray()
   }
 }

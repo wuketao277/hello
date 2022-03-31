@@ -31,13 +31,13 @@
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-row>
+      <el-row :gutter="8">
         <el-col :span="8">
           <el-form-item label="职位id">
             <span>{{form.id}}</span>
           </el-form-item>
         </el-col>
-        <el-col :span="16">
+        <el-col :span="10">
           <el-form-item label="职位状态" prop="status">
             <el-radio-group v-model="form.status">
               <el-radio label="PREPARE">准备</el-radio>
@@ -48,8 +48,18 @@
             </el-radio-group>
           </el-form-item>
         </el-col>
+        <el-col :span="6">
+          <el-button
+            type="primary"
+            size="small"
+            icon="el-icon-share"
+            @click="openSelectCWDialog"
+            style="width:85px;"
+          >CW</el-button>
+          <span>{{form.cwUserName}}</span>
+        </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="8">
         <el-col :span="8">
           <el-form-item label="客户" prop="clientId">
             <el-select v-model="form.clientId" placeholder="请选择客户" style="width:100%">
@@ -73,7 +83,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="8">
         <el-col :span="8">
           <el-form-item label="部门">
             <el-input v-model="form.department" clearable></el-input>
@@ -85,32 +95,15 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
+          <el-form-item label="薪资范围">
+            <el-input v-model="form.salaryScope" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="8">
+        <el-col :span="8">
           <el-form-item label="是否带人">
             <el-input v-model="form.subordinates" clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8">
-          <el-form-item label="英语要求">
-            <el-input v-model="form.english" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="年龄要求">
-            <el-input v-model="form.age" clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="工作经验">
-            <el-input v-model="form.experience" clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8">
-          <el-form-item label="学历要求">
-            <el-input v-model="form.school" clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -119,19 +112,45 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="薪资范围">
-            <el-input v-model="form.salaryScope" clearable></el-input>
+          <el-form-item label="工作经验">
+            <el-input v-model="form.experience" clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item label="职位描述">
-        <el-input
-          type="textarea"
-          v-model="form.description"
-          :autosize="{ minRows: 2, maxRows: 20}"
-          clearable
-        ></el-input>
-      </el-form-item>
+      <el-row :gutter="8">
+        <el-col :span="8">
+          <el-form-item label="年龄要求">
+            <el-input v-model="form.age" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="英语要求">
+            <el-input v-model="form.english" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="学历要求">
+            <el-input v-model="form.school" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="8">
+        <el-col>
+          <el-form-item label="面试流程">
+            <el-input v-model="form.interviewProcess" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="8">
+        <el-form-item label="职位描述">
+          <el-input
+            type="textarea"
+            v-model="form.description"
+            :autosize="{ minRows: 2, maxRows: 20}"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-row>
     </el-form>
     <el-tabs type="border-card">
       <el-tab-pane label="候选人">
@@ -221,6 +240,12 @@
     <!--上传文件对话框-->
     <el-dialog title="上传文件" :visible.sync="showUploadFileDialog">
       <uploadFile :uploadFileData="uploadFileData" v-on:upload_file_success="queryUploadFiles"></uploadFile>
+    </el-dialog>
+    <el-dialog title="选择CW" :visible.sync="selectCWDialogShow">
+      <selectUser
+        v-on:cancel-dialog="selectCWDialogShow = false"
+        v-on:sure-dialog="sureSelectCWDialog"
+      ></selectUser>
     </el-dialog>
   </div>
 </template>

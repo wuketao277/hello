@@ -4,6 +4,7 @@ import commonJS from '@/common/common'
 import candidateForCaseApi from '@/api/candidateForCase'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
+import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
@@ -13,7 +14,8 @@ export default {
     'selectCandidate': selectCandidate,
     'selectCase': selectCase,
     'uploadFile': uploadFile,
-    'downloadFile': downloadFile
+    'downloadFile': downloadFile,
+    'selectUser': selectUser
   },
   data () {
     return {
@@ -33,7 +35,8 @@ export default {
         status: 'PREPARE',
         description: '',
         location: '',
-        salaryScope: ''
+        salaryScope: '',
+        cwUserName: ''
       },
       attention: false,
       rules: {
@@ -116,10 +119,14 @@ export default {
       selectCaseDialogShow: false,
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
-      uploadFiles: [] // 上传文件集合
+      uploadFiles: [], // 上传文件集合
+      selectCWDialogShow: false
     }
   },
   methods: {
+    openSelectCWDialog () {
+      this.selectCWDialogShow = true
+    },
     // 显示控制
     showControl (key) {
       if (key === 'deleteRecommend') {
@@ -212,7 +219,9 @@ export default {
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {
         this.mode = this.$route.query.mode
-        this.form = this.$route.query.client
+        if (typeof (this.$route.query.case) !== 'undefined') {
+          this.form = this.$route.query.case
+        }
       } else {
         this.form.id = ''
         this.form.clientId = ''
@@ -230,6 +239,7 @@ export default {
         this.form.description = ''
         this.form.salaryScope = ''
         this.form.location = ''
+        this.form.cwUserName = ''
       }
     },
     // 保存
@@ -399,6 +409,12 @@ export default {
           }
         })
       }
+    },
+    // “选择CW”对话框返回
+    sureSelectCWDialog (val) {
+      // 首先关闭对话框
+      this.selectCWDialogShow = false
+      this.form.cwUserName = val.username
     }
   },
   created () {

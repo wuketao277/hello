@@ -212,7 +212,7 @@
           </el-row>
           <el-row v-for="comment in comments" :key="comment" style="text-align:left;">
             <el-col :span="2">
-              <div class="grid-content bg-purple">{{comment.realname}}</div>
+              <div class="grid-content bg-purple">{{comment.username}}</div>
             </el-col>
             <el-col :span="4">
               <div class="grid-content bg-purple">{{comment.inputTime.replace('T',' ')}}</div>
