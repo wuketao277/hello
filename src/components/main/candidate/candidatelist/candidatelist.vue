@@ -8,27 +8,11 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addCandidate">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyCandidate">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detailCandidate">查看</el-button>
-      <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="query(true)">刷新</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label="" style="margin-bottom:0px;">
           <el-input v-model="search" autocomplete="off" @keyup.enter.native="searchCandidate" placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
       </el-form>
-      <el-upload
-        class="upload-demo"
-        action="http://www.helloapplicant.com/candidate/uploadFile"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :before-remove="beforeRemove"
-        :accept="xlsx"
-        multiple
-        :limit="3"
-        :file-list="fileList"
-        :on-success="uploadFileSuccess"
-        style="display:inline;"
-      >
-        <el-button size="small" type="primary">点击上传</el-button>
-      </el-upload>
     </div>
     <el-table
       :data="table.content"

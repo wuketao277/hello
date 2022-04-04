@@ -13,7 +13,19 @@ export default {
     },
     // 下载文件
     downloadFile (file) {
-      uploadFileApi.download(file.uuid)
+      uploadFileApi.downloadPreCheck(file.uuid).then(res => {
+        if (res.status === 200) {
+          if (res.data.length === 0) {
+            // 返回空表示可以下载
+            uploadFileApi.download(file.uuid)
+          } else {
+            this.$message({
+              type: 'warning',
+              message: res.data
+            })
+          }
+        }
+      })
     },
     // 删除文件
     deleteFile (file) {
@@ -24,12 +36,19 @@ export default {
       }).then(() => {
         uploadFileApi.deleteById(file.id).then(res => {
           if (res.status === 200) {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
-            // 触发更新文件操作
-            this.$emit('delete-file-success')
+            if (res.data.length === 0) {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+              // 触发更新文件操作
+              this.$emit('delete-file-success')
+            } else {
+              this.$message({
+                type: 'warning',
+                message: res.data
+              })
+            }
           }
         })
       }).catch(() => {})

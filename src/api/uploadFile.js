@@ -1,6 +1,10 @@
 import axios from 'axios'
 
 export default {
+  // 下载前检查
+  downloadPreCheck (uuid) {
+    return axios.get('/uploadFile/downloadPreCheck?uuid=' + uuid)
+  },
   // 下载文件
   download (uuid) {
     let urls = 'http://www.helloapplicant.com/uploadFile/download?uuid=' + uuid
@@ -12,7 +16,7 @@ export default {
   },
   // 通过id删除
   deleteById (id) {
-    return axios.get('/uploadFile/deleteById?Id=' + id)
+    return axios.get('/uploadFile/deleteById?id=' + id)
   },
   // 通过id删除
   findByOriginalFileName (params) {

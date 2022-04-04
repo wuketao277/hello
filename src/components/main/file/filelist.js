@@ -1,9 +1,11 @@
-import uploadFile from '@/api/uploadFile'
+import uploadFileApi from '@/api/uploadFile'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
+import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 
 export default {
   components: {
-    downloadFile
+    downloadFile,
+    uploadFile
   },
   data () {
     return {
@@ -20,12 +22,19 @@ export default {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: this.getSearchContent()
+      search: this.getSearchContent(),
+      showUploadFileDialog: false,
+      uploadFileData: {}
     }
   },
   methods: {
+    // 打开上传文件对话框
+    openUploadFileDialog () {
+      this.showUploadFileDialog = true
+    },
     // 查询后台数据
     query () {
+      debugger
       window.localStorage['filelist.search'] = this.search
       window.localStorage['filelist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['filelist.pageSize'] = this.table.pageable.pageSize
@@ -34,7 +43,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      uploadFile.findByOriginalFileName(params).then(res => {
+      uploadFileApi.findByOriginalFileName(params).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
@@ -53,21 +62,9 @@ export default {
     handleCurrentChange (val) {
       this.currentRow = val
     },
-    uploadFileSuccess (response, file, fileList) {
-      if (response.flag) {
-        this.$message({
-          message: '文件' + file.name + '上传成功',
-          type: 'success',
-          showClose: true
-        })
-        // 刷新列表
-        this.query()
-      } else {
-        this.$message({
-          message: response.msg,
-          showClose: true
-        })
-      }
+    queryUploadFiles () {
+      // 刷新列表
+      this.query()
     },
     handlePreview () {},
     handleRemove () {},
