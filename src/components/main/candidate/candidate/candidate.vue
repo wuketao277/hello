@@ -25,7 +25,7 @@
       style="text-align:left;"
       :rules="rules"
     >
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="候选人id">
             <span>{{form.id}}</span>
@@ -42,7 +42,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="3">
           <el-form-item label="年龄" prop="age">
             <span>{{form.age}}</span>
@@ -64,7 +64,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="公司名称" prop="companyName">
             <el-input v-model="form.companyName"></el-input>
@@ -81,7 +81,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="学校" prop="schoolName">
             <el-input v-model="form.schoolName"></el-input>
@@ -98,7 +98,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="现薪" prop="currentMoney">
             <el-input v-model="form.currentMoney"></el-input>
@@ -115,14 +115,14 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="英文水平" prop="englishLevel">
             <el-input v-model="form.englishLevel"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="24">
           <el-form-item label="备注" prop="remark">
             <el-input
@@ -134,7 +134,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="12">
         <el-col :span="24">
           <el-form-item label="简历" prop="resume">
             <el-input

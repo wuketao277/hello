@@ -13,11 +13,12 @@
     <el-form
       ref="form"
       :model="form"
-      label-width="80px"
+      label-position="left"
+      label-width="60px"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="4">
           <el-button
             type="primary"
@@ -27,29 +28,30 @@
             >顾问</el-button>
             <span>{{form.consultantRealName}}</span>
         </el-col>
-        <el-col :span="8">
-          <el-form-item label="月份" label-width="60px">
+        <el-col :span="6">
+          <el-form-item label="月份">
            <el-date-picker
               v-model="form.month"
               type="month"
               placeholder="选择月"
               format="yyyy-MM"
-              value-format="yyyy-MM">
+              value-format="yyyy-MM"
+              style="width:150px;">
             </el-date-picker>
           </el-form-item>
         </el-col>
-        <el-col :span="5">
-          <el-form-item label="金额" label-width="40px">
+        <el-col :span="6">
+          <el-form-item label="金额">
             <el-input v-model="form.sum" size="small" clearable style="width:150px;" placeholder="特殊项金额"></el-input>
             &nbsp;
             <span>{{formatSum}}</span>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="24">
-          <el-form-item label="描述" label-width="40px">
-            <el-input v-model="form.description" size="small" clearable style="width:500px;" placeholder="特殊项描述"></el-input>
+          <el-form-item label="描述">
+            <el-input v-model="form.description" size="small" clearable style="width:100%;" placeholder="特殊项描述"></el-input>
           </el-form-item>
         </el-col>
       </el-row>

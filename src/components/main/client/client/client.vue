@@ -20,11 +20,12 @@
       ref="form"
       :model="form"
       :rules="rules"
+      label-position="left"
       label-width="80px"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="12">
           <el-form-item label="中文名" prop="chineseName">
             <el-input v-model="form.chineseName"></el-input>
@@ -36,7 +37,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col>
           <el-form-item label="备注">
             <el-input type="textarea" v-model="form.remark" :autosize="{ minRows: 2, maxRows: 30}" clearable></el-input>
