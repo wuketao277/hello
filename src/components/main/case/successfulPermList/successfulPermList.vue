@@ -20,65 +20,16 @@
       >
         <el-table-column type="index" width="50" label="No." show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientName" width="120" label="Client" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="title" width="150" label="Job" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="title" width="120" label="Job" show-overflow-tooltip></el-table-column>
         <el-table-column
           prop="candidateChineseName"
-          width="120"
+          width="100"
           label="Candidate"
           show-overflow-tooltip
         ></el-table-column>
-        <el-table-column prop="cwUserName" width="100" label="CW" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="cwCommissionPercent"
-          width="120"
-          label="CW Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="bdUserName" width="100" label="BD" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="bdCommissionPercent"
-          width="120"
-          label="BD Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="consultantUserName" width="100" label="AM" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="consultantCommissionPercent"
-          width="120"
-          label="AM Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="consultantUserName2" width="100" label="R2" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="consultantCommissionPercent2"
-          width="120"
-          label="R2 Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="consultantUserName3" width="100" label="R3" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="consultantCommissionPercent3"
-          width="120"
-          label="R3 Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="consultantUserName4" width="100" label="R4" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="consultantCommissionPercent4"
-          width="120"
-          label="R4 Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="consultantUserName5" width="100" label="R5" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="consultantCommissionPercent5"
-          width="120"
-          label="R5 Rate"
-          show-overflow-tooltip
-        ></el-table-column>
-        <el-table-column prop="base" width="100" label="Base" show-overflow-tooltip></el-table-column>
         <el-table-column prop="gp" width="100" label="GP" show-overflow-tooltip></el-table-column>
         <el-table-column prop="billing" width="100" label="Billing" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="base" width="100" label="Base" show-overflow-tooltip></el-table-column>
         <el-table-column
           prop="offerDate"
           :formatter="formatDate"
@@ -105,6 +56,55 @@
           :formatter="formatDate"
           width="200"
           label="Actual Payment Date"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="consultantUserName" width="100" label="AM" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="consultantCommissionPercent"
+          width="80"
+          label="AM Rate"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="consultantUserName2" width="100" label="R2" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="consultantCommissionPercent2"
+          width="80"
+          label="R2 Rate"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="cwUserName" width="100" label="CW" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="cwCommissionPercent"
+          width="80"
+          label="CW Rate"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="bdUserName" width="100" label="BD" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="bdCommissionPercent"
+          width="120"
+          label="BD Rate"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="consultantUserName3" width="100" label="R3" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="consultantCommissionPercent3"
+          width="120"
+          label="R3 Rate"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="consultantUserName4" width="100" label="R4" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="consultantCommissionPercent4"
+          width="120"
+          label="R4 Rate"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="consultantUserName5" width="100" label="R5" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="consultantCommissionPercent5"
+          width="120"
+          label="R5 Rate"
           show-overflow-tooltip
         ></el-table-column>
         <el-table-column

@@ -321,6 +321,16 @@ export default {
       if (this.form.billing !== '') {
         return parseInt(this.form.billing / 10000) + 'w'
       }
+    },
+    getGP: function () {
+      debugger
+      if (typeof (this.form.billing) === 'undefined') {
+        this.form.gp = 0
+      }
+      if (this.form.billing === 0) {
+        this.form.gp = 0
+      }
+      this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
     }
   },
   created () {

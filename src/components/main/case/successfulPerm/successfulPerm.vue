@@ -233,15 +233,15 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="GP">
-            <el-input v-model="form.gp" clearable style="width:100px;"></el-input>
-            <span>{{formatGp}}</span>
+          <el-form-item label="Billing">
+            <el-input v-model="form.billing" clearable style="width:100px;" @change="getGP"></el-input>
+            <span>{{formatBilling}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="Billing">
-            <el-input v-model="form.billing" clearable style="width:100px;"></el-input>
-            <span>{{formatBilling}}</span>
+          <el-form-item label="GP">
+            <el-input v-model="form.gp" clearable readonly style="width:100px;"></el-input>
+            <span>{{formatGp}}</span>
           </el-form-item>
         </el-col>
       </el-row>
