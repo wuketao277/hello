@@ -8,86 +8,12 @@ export default {
         startDate: null,
         endDate: null
       },
-      GP: 1001,
-      Billing: 1000,
-      chartCommon: {
-        tooltip: {
-          trigger: 'item'
-        },
-        legend: {
-          orient: 'vertical',
-          left: 'left'
-        },
-        series: {
-          label: {
-            normal: {
-              formatter: '{b}:{d}%'
-            }
-          },
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      },
-      // GP个人占比数据
-      personalRateOptionDataX: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      personalRateOptionDataY: [120, 150, 80, 70, 110, 132],
-      // GP个人占比
-      personalRateOption: {
-        title: {
-          text: 'PERSONAL RATE'
-        },
-        xAxis: {
-          type: 'category',
-          data: {}
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-          {
-            label: {
-              show: true,
-              position: 'top'
-            },
-            data: {},
-            type: 'bar'
-          }
-        ]
-      },
-      // GP客户占比数据
-      clientRateOptionDataX: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      clientRateOptionDataY: [120, 150, 80, 70, 110, 132],
-      // GP客户占比
-      clientRateOption: {
-        title: {
-          text: 'CLIENT RATE'
-        },
-        xAxis: {
-          type: 'category',
-          data: {}
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-          {
-            label: {
-              show: true,
-              position: 'top'
-            },
-            data: {},
-            type: 'bar'
-          }
-        ]
-      }
+      offerDateBilling: 0,
+      paymentDateBilling: 0
     }
   },
   mounted () {
+    this.calcDate('month')
     this.drawChart()
   },
   methods: {
@@ -95,7 +21,7 @@ export default {
     calcDate (type) {
       if (type === 'week') {
         let endDate = new Date()
-        let startDate = new Date(endDate.getTime() - (endDate.getDay() - 1) * 24 * 60 * 60 * 1000)
+        let startDate = new Date(endDate.getTime() - endDate.getDay() * 24 * 60 * 60 * 1000)
         this.form.startDate = startDate
         this.form.endDate = endDate
       } else if (type === 'month') {
@@ -133,20 +59,74 @@ export default {
       report.queryGeneral(this.form).then(
         res => {
           if (res.status === 200) {
-            this.personalRateOptionDataX = res.data.personalRateOptionDataX
-            this.personalRateOptionDataY = res.data.personalRateOptionDataY
-            this.clientRateOptionDataX = res.data.clientRateOptionDataX
-            this.clientRateOptionDataY = res.data.clientRateOptionDataY
-            // 全年GP，每人占比
-            let personalRate = this.$echarts.init(document.getElementById('personalRate'))
-            this.personalRateOption.xAxis.data = this.personalRateOptionDataX
-            this.personalRateOption.series[0].data = this.personalRateOptionDataY
-            personalRate.setOption(this.personalRateOption)
-            // 全年GP，每人占比
-            let clientRate = this.$echarts.init(document.getElementById('clientRate'))
-            this.clientRateOption.xAxis.data = this.clientRateOptionDataX
-            this.clientRateOption.series[0].data = this.clientRateOptionDataY
-            clientRate.setOption(this.clientRateOption)
+            debugger
+            this.offerDateBilling = res.data.offerDateBilling
+            this.paymentDateBilling = res.data.paymentDateBilling
+            // 指定时间段内的offer signed数据
+            let offerDateChart = this.$echarts.init(document.getElementById('offerDateChart'))
+            offerDateChart.setOption({
+              title: {
+                text: 'offer signed',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '70%',
+                  data: res.data.offerDateData,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  },
+                  label: {
+                    normal: {
+                      formatter: '{b} {c}'
+                    }
+                  }
+                }
+              ]
+            })
+            let paymentDateChart = this.$echarts.init(document.getElementById('paymentDateChart'))
+            paymentDateChart.setOption({
+              title: {
+                text: 'payment',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '70%',
+                  data: [
+                    { value: 1048, name: 'Search Engine' },
+                    { value: 735, name: 'Direct' },
+                    { value: 580, name: 'Email' },
+                    { value: 484, name: 'Union Ads' },
+                    { value: 300, name: 'Video Ads' }
+                  ],
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  },
+                  label: {
+                    normal: {
+                      formatter: '{b} {c}'
+                    }
+                  }
+                }
+              ]
+            })
           }
         })
     }

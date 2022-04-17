@@ -12,7 +12,7 @@ export default {
   methods: {
     // 菜单显示控制
     showControl (url) {
-      if (url === '/user/userlist' || url === '/salary/salarySpecialItem') {
+      if (url === '/user/userlist' || url === '/salary/salarySpecialItem' || url === '/report') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的菜单不需要角色
