@@ -12,7 +12,7 @@
               <el-date-picker type="date" placeholder="开始日期" v-model="form.startDate"></el-date-picker>
               <span>-</span>
               <el-date-picker type="date" placeholder="结束日期" v-model="form.endDate"></el-date-picker>&nbsp;&nbsp;
-              <el-button type="primary" size="medium">查询</el-button>
+              <el-button type="primary" size="medium" @click="drawChart">查询</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('week')">本周</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('month')">本月</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('season')">本季度</el-button>

@@ -14,42 +14,52 @@ export default {
   },
   mounted () {
     this.calcDate('month')
-    this.drawChart()
   },
   methods: {
     // 计算开始日期和结束日期
     calcDate (type) {
       if (type === 'week') {
-        let endDate = new Date()
-        let startDate = new Date(endDate.getTime() - endDate.getDay() * 24 * 60 * 60 * 1000)
-        this.form.startDate = startDate
-        this.form.endDate = endDate
-      } else if (type === 'month') {
-        let endDate = new Date()
-        let startDate = new Date(endDate.getTime() - (endDate.getDate() - 1) * 24 * 60 * 60 * 1000)
-        this.form.startDate = startDate
-        this.form.endDate = endDate
-      } else if (type === 'season') {
-        let endDate = new Date()
-        let monthInt = endDate.getMonth()
-        let monthStr = '01'
-        if (monthInt > 2 && monthInt <= 5) {
-          monthStr = '04'
-        } else if (monthInt > 5 && monthInt <= 8) {
-          monthStr = '07'
-        } else if (monthInt > 8 && monthInt <= 11) {
-          monthStr = '09'
+        let now = new Date()
+        let startDate
+        if (now.getDay() === 0) {
+          startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000)
+        } else {
+          startDate = new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000)
         }
-        let startDateStr = endDate.getFullYear() + '-' + monthStr + '-01'
-        let startDate = new Date(Date.parse(startDateStr, 'yyyy-MM-dd'))
         this.form.startDate = startDate
-        this.form.endDate = endDate
+        this.form.endDate = new Date(startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+      } else if (type === 'month') {
+        debugger
+        let month = new Date().getMonth() + 1
+        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01', 'yyyy-MM-dd'))
+        if (month === 2) {
+          // 2 月
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28', 'yyyy-MM-dd'))
+        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+          // 1 3 5 7 8 10 12月
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31', 'yyyy-MM-dd'))
+        } else {
+          // 4 6 9 11月
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30', 'yyyy-MM-dd'))
+        }
+      } else if (type === 'season') {
+        let month = new Date().getMonth() + 1
+        if (month === 1 || month === 2 || month === 3) {
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-03-31', 'yyyy-MM-dd'))
+        } else if (month === 4 || month === 5 || month === 6) {
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-04-01', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-06-30', 'yyyy-MM-dd'))
+        } else if (month === 7 || month === 8 || month === 9) {
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-07-01', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-09-30', 'yyyy-MM-dd'))
+        } else if (month === 10 || month === 11 || month === 12) {
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-10-01', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+        }
       } else if (type === 'year') {
-        let endDate = new Date()
-        let startDateStr = endDate.getFullYear() + '-01-01'
-        let startDate = new Date(Date.parse(startDateStr, 'yyyy-MM-dd'))
-        this.form.startDate = startDate
-        this.form.endDate = endDate
+        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+        this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
       }
       // 绘制图表
       this.drawChart()
@@ -59,7 +69,6 @@ export default {
       report.queryGeneral(this.form).then(
         res => {
           if (res.status === 200) {
-            debugger
             this.offerDateBilling = res.data.offerDateBilling
             this.paymentDateBilling = res.data.paymentDateBilling
             // 指定时间段内的offer signed数据
@@ -105,13 +114,7 @@ export default {
                 {
                   type: 'pie',
                   radius: '70%',
-                  data: [
-                    { value: 1048, name: 'Search Engine' },
-                    { value: 735, name: 'Direct' },
-                    { value: 580, name: 'Email' },
-                    { value: 484, name: 'Union Ads' },
-                    { value: 300, name: 'Video Ads' }
-                  ],
+                  data: res.data.paymentDateData,
                   emphasis: {
                     itemStyle: {
                       shadowBlur: 10,
