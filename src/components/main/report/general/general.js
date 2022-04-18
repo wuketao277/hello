@@ -9,7 +9,9 @@ export default {
         endDate: null
       },
       offerDateBilling: 0,
-      paymentDateBilling: 0
+      paymentDateBilling: 0,
+      actualPaymentDateBilling: 0,
+      unactualPaymentDateBilling: 0
     }
   },
   mounted () {
@@ -71,6 +73,8 @@ export default {
           if (res.status === 200) {
             this.offerDateBilling = res.data.offerDateBilling
             this.paymentDateBilling = res.data.paymentDateBilling
+            this.actualPaymentDateBilling = res.data.actualPaymentDateBilling
+            this.unactualPaymentDateBilling = res.data.unactualPaymentDateBilling
             // 指定时间段内的offer signed数据
             let offerDateChart = this.$echarts.init(document.getElementById('offerDateChart'))
             offerDateChart.setOption({
@@ -115,6 +119,64 @@ export default {
                   type: 'pie',
                   radius: '70%',
                   data: res.data.paymentDateData,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  },
+                  label: {
+                    normal: {
+                      formatter: '{b} {c}'
+                    }
+                  }
+                }
+              ]
+            })
+            let actualPaymentDateChart = this.$echarts.init(document.getElementById('actualPaymentDateChart'))
+            actualPaymentDateChart.setOption({
+              title: {
+                text: '已付款',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '70%',
+                  data: res.data.actualPaymentDateData,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  },
+                  label: {
+                    normal: {
+                      formatter: '{b} {c}'
+                    }
+                  }
+                }
+              ]
+            })
+            let unactualPaymentDateChart = this.$echarts.init(document.getElementById('unactualPaymentDateChart'))
+            unactualPaymentDateChart.setOption({
+              title: {
+                text: '未付款',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '70%',
+                  data: res.data.unactualPaymentDateData,
                   emphasis: {
                     itemStyle: {
                       shadowBlur: 10,
