@@ -16,5 +16,9 @@ export default {
   // 查找后台数据
   query (params) {
     return axios.get('/successfulPerm/query', {params: params})
+  },
+  // 通过主键删除
+  deleteById (params) {
+    return axios.post('/successfulPerm/deleteById', params)
   }
 }

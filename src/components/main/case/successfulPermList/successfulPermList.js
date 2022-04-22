@@ -30,6 +30,35 @@ export default {
     }
   },
   methods: {
+    // 通过id删除成功case
+    deleteById () {
+      if (this.checkSelectRow()) {
+        this.$confirm('确认要删除 ' + this.currentRow.title + '-' + this.currentRow.candidateChineseName + ' 成功职位吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          let params = {'id': this.currentRow.id}
+          successfulPermApi.deleteById(params).then(res => {
+            if (res.status === 200) {
+              if (res.data.length > 0) {
+                this.$message.error(res.data)
+              } else {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                // 删除后刷新列表
+                this.query()
+              }
+            } else {
+              this.$message.error('删除失败！')
+            }
+          })
+        })
+      }
+    },
     formatApproveStatus (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined') {
         if (cellvalue === 'approved') {
@@ -48,7 +77,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit') {
+      if (key === 'add' || key === 'edit' || key === 'delete') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色

@@ -5,10 +5,6 @@ export default {
   save (params) {
     return axios.post('/case/save', params)
   },
-  // 删除
-  deleteById (params) {
-    return axios.get('/case/deleteById?id=' + params)
-  },
   // 查找后台数据
   queryPage (params) {
     return axios.get('/case/queryPage', {params: params})
@@ -36,5 +32,9 @@ export default {
   // 查询当前用户的所有对接职位
   queryAllCWCase () {
     return axios.get('/case/queryAllCWCase')
+  },
+  // 通过主键删除
+  deleteById (params) {
+    return axios.post('/case/deleteById', params)
   }
 }

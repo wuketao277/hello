@@ -8,6 +8,7 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
+      <el-button type="danger" size="small" icon="el-icon-share" @click="deleteById" v-if="showControl('delete')">删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="searchDialog = true">搜索</el-button>
     </div>
     <template>
@@ -20,7 +21,7 @@
       >
         <el-table-column type="index" width="50" label="No." show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientName" width="120" label="Client" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="title" width="120" label="Job" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="title" width="120" label="Title" show-overflow-tooltip></el-table-column>
         <el-table-column
           prop="candidateChineseName"
           width="100"

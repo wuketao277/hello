@@ -8,6 +8,13 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-share"
+        @click="deleteById"
+        v-if="showControl('delete')"
+      >删除</el-button>
     </div>
     <div>
       <el-form @submit.native.prevent>
@@ -50,7 +57,13 @@
         <el-table-column prop="id" width="100" label="职位id" show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientChineseName" width="200" label="客户名称" show-overflow-tooltip></el-table-column>
         <el-table-column prop="title" width="200" label="职位名称" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="status" width="100" :formatter="this.getStatusName" label="状态" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="status"
+          width="100"
+          :formatter="this.getStatusName"
+          label="状态"
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column prop="description" label="描述" show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination
