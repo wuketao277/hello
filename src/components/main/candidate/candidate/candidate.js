@@ -41,8 +41,8 @@ export default {
         remark: ''
       },
       phaseOptions: [
-        {value: 'SL', lable: 'SL'},
         {value: 'TI', lable: 'TI'},
+        {value: 'SL', lable: 'SL'},
         {value: 'VI', lable: 'VI'},
         {value: 'IOI', lable: 'IOI'},
         {value: 'CVO', lable: 'CVO'},
