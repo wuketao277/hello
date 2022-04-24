@@ -41,8 +41,8 @@ export default {
         remark: ''
       },
       phaseOptions: [
-        {value: 'TI', lable: 'TI'},
         {value: 'SL', lable: 'SL'},
+        {value: 'TI', lable: 'TI'},
         {value: 'VI', lable: 'VI'},
         {value: 'IOI', lable: 'IOI'},
         {value: 'CVO', lable: 'CVO'},
@@ -65,7 +65,7 @@ export default {
       ],
       // 新评论
       newComment: {
-        phase: 'SL',
+        phase: 'TI',
         content: ''
       },
       // 历史评论
