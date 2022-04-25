@@ -16,6 +16,7 @@
               <el-button type="success" plain size="medium" @click="calcDate('week')">本周</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('month')">本月</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('season')">本季度</el-button>
+              <el-button type="success" plain size="medium" @click="calcDate('tonow')">截止目前</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('year')">本年</el-button>
             </el-col>
           </el-row>

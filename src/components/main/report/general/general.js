@@ -62,6 +62,9 @@ export default {
       } else if (type === 'year') {
         this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
         this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+      } else if (type === 'tonow') {
+        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+        this.form.endDate = new Date()
       }
       // 绘制图表
       this.drawChart()
