@@ -25,25 +25,25 @@
     <div style="text-align:left;">
       <el-row>
         <el-col :span="24">
-          <div id="offerDate" :style="{width: '600px', height: '400px', float: 'left'}">
+          <div id="offerDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">offer Billing：{{offerDateBilling}}</el-col>
             </el-row>
             <div id="offerDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <div id="paymentDate" :style="{width: '600px', height: '400px', float: 'left'}">
+          <div id="paymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">payment Billing：{{paymentDateBilling}}</el-col>
             </el-row>
             <div id="paymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <div id="actualPaymentDate" :style="{width: '600px', height: '400px', float: 'left'}">
+          <div id="actualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">已付 Billing：{{actualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="actualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <div id="unactualPaymentDate" :style="{width: '600px', height: '400px', float: 'left'}">
+          <div id="unactualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">未付 Billing：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
