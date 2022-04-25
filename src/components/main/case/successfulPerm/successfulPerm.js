@@ -64,7 +64,8 @@ export default {
         invoiceNo: '',
         channel: '',
         actualPaymentDate: '', // 实际收款日期
-        commissionDate: '' // 奖金发放日期
+        commissionDate: '', // 奖金发放日期
+        comment: '' // 说明
       },
       clients: [],
       // 职位候选人集合
@@ -160,6 +161,7 @@ export default {
         this.form.channel = ''
         this.form.actualPaymentDate = '' // 实际收款日期
         this.form.commissionDate = '' // 奖金发放日期
+        this.form.comment = ''
       }
     },
     // 保存

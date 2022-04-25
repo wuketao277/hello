@@ -335,6 +335,13 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item label="comment">
+            <el-input type="textarea" v-model="form.comment" :autosize="{minRows: 1, maxRows: 10}" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-dialog title="选择候选人" :visible.sync="selectCandidateDialogShow">
       <selectCandidate
