@@ -50,6 +50,9 @@
             </el-row>
             <div id="unactualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
+          <div id="personalOfferData" :style="{width: '48%', height: '400px', float: 'left'}">
+            <div id="personalOfferDataChart" :style="{width: '100%', height: '400px'}"></div>
+          </div>
           <!-- <div id="personalRate" :style="{width: '1200px', height: '400px', float: 'left'}"></div>
           <div id="clientRate" :style="{width: '600px', height: '400px', float: 'left'}"></div>-->
         </el-col>

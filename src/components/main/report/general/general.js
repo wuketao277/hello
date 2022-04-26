@@ -195,6 +195,35 @@ export default {
                 }
               ]
             })
+            let personalOfferDataChart = this.$echarts.init(document.getElementById('personalOfferDataChart'))
+            personalOfferDataChart.setOption({
+              title: {
+                text: 'personal offer data',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '70%',
+                  data: res.data.personalOfferData,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  },
+                  label: {
+                    normal: {
+                      formatter: '{b} {c}'
+                    }
+                  }
+                }
+              ]
+            })
           }
         })
     }
