@@ -8,7 +8,7 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-share" @click="deleteById" v-if="showControl('delete')">删除</el-button>
+      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById" v-if="showControl('delete')">删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="searchDialog = true">搜索</el-button>
     </div>
     <template>

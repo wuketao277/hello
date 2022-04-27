@@ -11,7 +11,7 @@
       <el-button
         type="danger"
         size="small"
-        icon="el-icon-share"
+        icon="el-icon-delete"
         @click="deleteById"
         v-if="showControl('delete')"
       >删除</el-button>
