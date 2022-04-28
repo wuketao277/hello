@@ -8,7 +8,13 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById" v-if="showControl('delete')">删除</el-button>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-delete"
+        @click="deleteById"
+        v-if="showControl('delete')"
+      >删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="searchDialog = true">搜索</el-button>
     </div>
     <template>
@@ -55,8 +61,15 @@
         <el-table-column
           prop="actualPaymentDate"
           :formatter="formatDate"
-          width="200"
+          width="180"
           label="Actual Payment Date"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          prop="approveStatus"
+          :formatter="formatApproveStatus"
+          width="100"
+          label="审批状态"
           show-overflow-tooltip
         ></el-table-column>
         <el-table-column prop="consultantUserName" width="100" label="AM" show-overflow-tooltip></el-table-column>
@@ -124,13 +137,6 @@
         ></el-table-column>
         <el-table-column prop="invoiceNo" width="200" label="Invoice No." show-overflow-tooltip></el-table-column>
         <el-table-column prop="po" width="200" label="PO" show-overflow-tooltip></el-table-column>
-        <el-table-column
-          prop="approveStatus"
-          :formatter="formatApproveStatus"
-          width="100"
-          label="审批状态"
-          show-overflow-tooltip
-        ></el-table-column>
       </el-table>
       <el-pagination
         background
