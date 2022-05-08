@@ -182,7 +182,7 @@
               :highlight-current-row="true"
               :stripe="true"
               style="width: 100%"
-              max-height="500"
+              max-height="2000"
               @current-change="rowChange"
             >
               <el-table-column label="操作">
@@ -205,7 +205,7 @@
       </el-tabs>
     </div>
     <el-dialog title="评论详情" :visible.sync="commentsDetailTableVisible" width="70%">
-      <el-table :data="commentsDetailTable" max-height="500">
+      <el-table :data="commentsDetailTable" :highlight-current-row="true" max-height="500">
         <el-table-column label="操作" width="130">
           <template slot-scope="scope">
             <el-button
