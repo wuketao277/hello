@@ -5,12 +5,35 @@
       <el-breadcrumb-item>薪资列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-show="showControl('modifySalary')">修改</el-button>
+      <el-button
+        type="warning"
+        size="small"
+        icon="el-icon-edit"
+        @click="modify"
+        v-show="showControl('modifySalary')"
+      >修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-share" @click="generateSalary" v-show="showControl('generateSalary')">生成工资</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;" v-show="showControl('search')">
-        <el-form-item>
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="可通过登录名、姓名、月份来查询" clearable style="width:260px;"></el-input>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-share"
+        @click="generateSalary"
+        v-show="showControl('generateSalary')"
+      >生成工资</el-button>
+      <el-form
+        @submit.native.prevent
+        style="display:inline-block;width:250px;"
+        v-show="showControl('search')"
+      >
+        <el-form-item label style="margin-bottom:0px;">
+          <el-input
+            v-model="search"
+            autocomplete="off"
+            @keyup.enter.native="sureSearchDialog"
+            placeholder="可通过登录名、姓名、月份来查询"
+            clearable
+            style="width:260px;"
+          ></el-input>
         </el-form-item>
       </el-form>
     </div>
