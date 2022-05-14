@@ -4,21 +4,19 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
-      // 显示搜索结果
-      showSearchResult: false,
       table: {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: commonJS.getPageNumber('salaryList.pageNumber'),
+          pageSize: commonJS.getPageSize('salaryList.pageSize')
         }
       },
       page: {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: ''
+      search: commonJS.getSearchContent('salaryList.search')
     }
   },
   methods: {
@@ -92,11 +90,9 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['salaryList.search'] = this.search
+      window.localStorage['salaryList.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['salaryList.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,

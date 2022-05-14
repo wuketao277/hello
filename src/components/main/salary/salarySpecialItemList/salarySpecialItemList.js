@@ -4,27 +4,25 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
-      // 显示搜索结果
-      showSearchResult: false,
       table: {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: commonJS.getPageNumber('salarySpecialItemList.pageNumber'),
+          pageSize: commonJS.getPageSize('salarySpecialItemList.pageSize')
         }
       },
       page: {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: ''
+      search: commonJS.getSearchContent('salarySpecialItemList.search')
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit') {
+      if (key === 'add' || key === 'edit' || key === 'search') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -72,11 +70,9 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['salarySpecialItemList.search'] = this.search
+      window.localStorage['salarySpecialItemList.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['salarySpecialItemList.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,

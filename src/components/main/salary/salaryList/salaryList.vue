@@ -10,7 +10,7 @@
       <el-button type="danger" size="small" icon="el-icon-share" @click="generateSalary" v-show="showControl('generateSalary')">生成工资</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;" v-show="showControl('search')">
         <el-form-item>
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
+          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="可通过登录名、姓名、月份来查询" clearable style="width:260px;"></el-input>
         </el-form-item>
       </el-form>
     </div>
@@ -24,7 +24,6 @@
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
         <el-table-column prop="consultantUserName" width="100" label="登录名"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
         <el-table-column prop="month" width="100" label="月份"></el-table-column>
         <el-table-column prop="historyDebt" width="120" label="历史负债"></el-table-column>
         <el-table-column prop="sum" width="120" label="税前工资"></el-table-column>

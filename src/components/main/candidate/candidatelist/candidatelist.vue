@@ -11,7 +11,7 @@
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById" v-if="showControl('delete')">删除</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label="" style="margin-bottom:0px;">
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="searchCandidate" placeholder="输入关键字后，回车即可搜索。"></el-input>
+          <el-input v-model="search" autocomplete="off" @keyup.enter.native="searchCandidate" placeholder="输入关键字后，回车即可搜索。" clearable></el-input>
         </el-form-item>
       </el-form>
     </div>

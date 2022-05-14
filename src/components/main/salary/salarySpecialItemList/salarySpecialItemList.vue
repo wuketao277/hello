@@ -8,9 +8,9 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add" v-show="showControl('add')">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-show="showControl('edit')">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
+      <el-form @submit.native.prevent style="display:inline-block;width:250px;" v-show="showControl('search')">
         <el-form-item>
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
+          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="可通过登录名、姓名、月份来查询" clearable style="width:260px;"></el-input>
         </el-form-item>
       </el-form>
     </div>
@@ -23,7 +23,7 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="顾问姓名"></el-table-column>
+        <el-table-column prop="consultantUserName" width="100" label="登录名"></el-table-column>
         <el-table-column prop="month" width="100" label="月份"></el-table-column>
         <el-table-column prop="sum" width="120" label="金额"></el-table-column>
         <el-table-column prop="description" label="描述"></el-table-column>

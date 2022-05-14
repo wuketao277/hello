@@ -16,5 +16,26 @@ export default {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     let user = {'id': loginInfo.id, 'userName': loginInfo.username, 'realName': loginInfo.realname}
     return user
+  },
+  getSearchContent (searchContent) {
+    if (typeof (window.localStorage[searchContent]) === 'undefined') {
+      return ''
+    } else {
+      return window.localStorage[searchContent]
+    }
+  },
+  getPageNumber (pageNumber) {
+    if (typeof (window.localStorage[pageNumber]) === 'undefined') {
+      return 1
+    } else {
+      return window.localStorage[pageNumber]
+    }
+  },
+  getPageSize (pageSize) {
+    if (typeof (window.localStorage[pageSize]) === 'undefined') {
+      return 10
+    } else {
+      return window.localStorage[pageSize]
+    }
   }
 }

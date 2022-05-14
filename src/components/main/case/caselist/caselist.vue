@@ -20,7 +20,7 @@
       <el-form @submit.native.prevent>
         <el-row :gutter="40">
           <el-col :span="8">
-            <el-form-item>
+            <el-form-item label="" style="margin-bottom:0px;">
               <el-input
                 v-model="search"
                 autocomplete="off"
@@ -31,7 +31,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="职位状态">
+            <el-form-item label="职位状态" style="margin-bottom:0px;">
               <el-radio-group v-model="searchStatus" @change="sureSearchDialog">
                 <el-radio label="ALL">全部</el-radio>
                 <el-radio label="PREPARE">准备</el-radio>

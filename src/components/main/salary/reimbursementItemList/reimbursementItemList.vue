@@ -8,7 +8,7 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add" v-show="showControl('add')">新增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-show="showControl('edit')">修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
+      <el-form @submit.native.prevent style="display:inline-block;width:250px;" v-show="false">
         <el-form-item>
           <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
