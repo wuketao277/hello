@@ -21,10 +21,11 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="50" label="NO."></el-table-column>
-        <el-table-column prop="userName" label="NAME"></el-table-column>
-        <el-table-column prop="paymentMonth" label="PAYMENT MONTH"></el-table-column>
-        <el-table-column prop="sum" label="SUM"></el-table-column>
+        <el-table-column type="index" width="50" label="序号"></el-table-column>
+        <el-table-column prop="userName" label="登录名"></el-table-column>
+        <el-table-column prop="realName" label="用户姓名"></el-table-column>
+        <el-table-column prop="paymentMonth" label="报销月份"></el-table-column>
+        <el-table-column prop="sum" label="报销总金额"></el-table-column>
       </el-table>
       <el-pagination
         background

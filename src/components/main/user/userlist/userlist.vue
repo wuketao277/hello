@@ -26,7 +26,7 @@
       <el-form-item label="登录名">
         <el-input v-model="search.ussername"></el-input>
       </el-form-item>
-      <el-form-item label="真实姓名">
+      <el-form-item label="用户姓名">
         <el-input v-model="search.realname"></el-input>
       </el-form-item>
     </el-form>
@@ -40,7 +40,7 @@
       <el-table-column type="index" width="50" label="序号"></el-table-column>
       <el-table-column prop="id" label="用户id" width="80"></el-table-column>
       <el-table-column prop="username" label="登录名"></el-table-column>
-      <el-table-column prop="realname" label="真实名称"></el-table-column>
+      <el-table-column prop="realname" label="用户姓名"></el-table-column>
       <el-table-column prop="enabledName" label="状态"></el-table-column>
     </el-table>
     <el-pagination

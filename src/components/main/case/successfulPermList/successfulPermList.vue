@@ -25,13 +25,13 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="50" label="No." show-overflow-tooltip></el-table-column>
-        <el-table-column prop="clientName" width="120" label="Client" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="title" width="120" label="Title" show-overflow-tooltip></el-table-column>
+        <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="clientName" width="120" label="客户" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="title" width="120" label="职位名称" show-overflow-tooltip></el-table-column>
         <el-table-column
           prop="candidateChineseName"
           width="100"
-          label="Candidate"
+          label="候选人姓名"
           show-overflow-tooltip
         ></el-table-column>
         <el-table-column prop="gp" width="100" label="GP" show-overflow-tooltip></el-table-column>
@@ -68,8 +68,8 @@
         <el-table-column
           prop="approveStatus"
           :formatter="formatApproveStatus"
-          width="100"
-          label="审批状态"
+          width="150"
+          label="Approve Status"
           show-overflow-tooltip
         ></el-table-column>
         <el-table-column prop="consultantUserName" width="100" label="AM" show-overflow-tooltip></el-table-column>

@@ -47,6 +47,7 @@
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
         <el-table-column prop="consultantUserName" width="100" label="登录名"></el-table-column>
+        <el-table-column prop="consultantRealName" width="100" label="用户姓名"></el-table-column>
         <el-table-column prop="month" width="100" label="月份"></el-table-column>
         <el-table-column prop="sum" width="120" label="金额"></el-table-column>
         <el-table-column prop="description" label="描述"></el-table-column>

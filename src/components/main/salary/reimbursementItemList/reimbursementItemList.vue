@@ -22,14 +22,15 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="80" label="NO."></el-table-column>
-        <el-table-column prop="userName" width="100" label="NAME"></el-table-column>
-        <el-table-column prop="type" width="150" label="TYPE"></el-table-column>
-        <el-table-column prop="date" width="120" label="DATE"></el-table-column>
-        <el-table-column prop="sum" width="100" label="SUM"></el-table-column>
-        <el-table-column prop="paymentMonth" width="150" label="PAYMENT MONTH"></el-table-column>
-        <el-table-column prop="approveStatus" width="120" label="STATUS"></el-table-column>
-        <el-table-column prop="description" label="DESCRIPTION"></el-table-column>
+        <el-table-column type="index" width="80" label="序号"></el-table-column>
+        <el-table-column prop="userName" width="100" label="登录名"></el-table-column>
+        <el-table-column prop="realName" width="100" label="用户姓名"></el-table-column>
+        <el-table-column prop="type" width="150" label="类型"></el-table-column>
+        <el-table-column prop="date" width="120" label="发生日期"></el-table-column>
+        <el-table-column prop="sum" width="100" label="报销金额"></el-table-column>
+        <el-table-column prop="paymentMonth" width="150" label="报销月份"></el-table-column>
+        <el-table-column prop="approveStatus" width="120" label="审批状态"></el-table-column>
+        <el-table-column prop="description" label="描述"></el-table-column>
       </el-table>
       <el-pagination
         background
