@@ -24,7 +24,7 @@
       </el-form>
     </div>
     <div style="text-align:left;">
-      <el-row>
+      <el-row style="margin-bottom:30px;">
         <el-col :span="24">
           <div id="offerDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
@@ -38,6 +38,10 @@
             </el-row>
             <div id="paymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
+        </el-col>
+      </el-row>
+      <el-row style="margin-bottom:30px;">
+        <el-col :span="24">
           <div id="actualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">已付 Billing：{{actualPaymentDateBilling}}</el-col>
@@ -50,6 +54,10 @@
             </el-row>
             <div id="unactualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
           <div id="personalOfferData" :style="{width: '48%', height: '400px', float: 'left'}">
             <div id="personalOfferDataChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
