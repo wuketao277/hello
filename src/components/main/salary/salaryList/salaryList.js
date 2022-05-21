@@ -16,7 +16,10 @@ export default {
         pageSizes: [10, 20, 30, 40, 50]
       },
       currentRow: null,
-      search: commonJS.getSearchContent('salaryList.search')
+      search: commonJS.getSearchContent('salaryList.search'),
+      showWorkingDays: true,
+      showHistoryDebt: true,
+      showLoginName: true
     }
   },
   methods: {

@@ -35,7 +35,43 @@
             style="width:260px;"
           ></el-input>
         </el-form-item>
-      </el-form>
+      </el-form>&nbsp;&nbsp;&nbsp;
+      <el-button
+        type="primary"
+        size="small"
+        @click="showLoginName=!showLoginName"
+        v-if="!showLoginName"
+      >显示Login Name</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="showLoginName=!showLoginName"
+        v-if="showLoginName"
+      >隐藏Login Name</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="showWorkingDays=!showWorkingDays"
+        v-if="!showWorkingDays"
+      >显示Working Days</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="showWorkingDays=!showWorkingDays"
+        v-if="showWorkingDays"
+      >隐藏Working Days</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="showHistoryDebt=!showHistoryDebt"
+        v-if="!showHistoryDebt"
+      >显示History Debt</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="showHistoryDebt=!showHistoryDebt"
+        v-if="showHistoryDebt"
+      >隐藏History Debt</el-button>
     </div>
     <template>
       <el-table
@@ -45,16 +81,17 @@
         style="width: 100%"
         @current-change="rowChange"
       >
-        <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="consultantUserName" width="100" label="登录名"></el-table-column>
-        <el-table-column prop="consultantRealName" width="100" label="用户姓名"></el-table-column>
-        <el-table-column prop="month" width="100" label="月份"></el-table-column>
-        <el-table-column prop="historyDebt" width="120" label="历史负债"></el-table-column>
-        <el-table-column prop="sum" width="120" label="税前工资"></el-table-column>
-        <el-table-column prop="finalSum" width="120" label="税后工资"></el-table-column>
-        <el-table-column prop="personalTax" width="120" label="所得税"></el-table-column>
-        <el-table-column prop="insurance" width="120" label="保险"></el-table-column>
-        <el-table-column prop="gongjijin" width="120" label="公积金"></el-table-column>
+        <el-table-column type="index" width="45" label="No."></el-table-column>
+        <el-table-column prop="consultantUserName" width="110" label="Login Name" v-if="showLoginName"></el-table-column>
+        <el-table-column prop="consultantRealName" width="100" label="User Name"></el-table-column>
+        <el-table-column prop="month" width="90" label="Month"></el-table-column>
+        <el-table-column prop="workingDays" width="120" label="Working Days" v-if="showWorkingDays"></el-table-column>
+        <el-table-column prop="historyDebt" width="110" label="History Debt" v-if="showHistoryDebt"></el-table-column>
+        <el-table-column prop="sum" width="120" label="Pretax Income"></el-table-column>
+        <el-table-column prop="finalSum" width="90" label="Net Pay"></el-table-column>
+        <el-table-column prop="personalTax" width="120" label="Individual Tax"></el-table-column>
+        <el-table-column prop="insurance" width="140" label="Social Insurance"></el-table-column>
+        <el-table-column prop="gongjijin" label="Housing Provident Fund"></el-table-column>
       </el-table>
       <el-pagination
         background

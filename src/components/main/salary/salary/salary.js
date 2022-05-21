@@ -14,7 +14,8 @@ export default {
         personalTax: '',
         insurance: '',
         gongjijin: '',
-        description: ''
+        description: '',
+        workingDays: ''
       }
     }
   },
@@ -35,6 +36,7 @@ export default {
         this.form.insurance = ''
         this.form.gongjijin = ''
         this.form.description = ''
+        this.form.workingDays = ''
       }
     },
     // 保存
