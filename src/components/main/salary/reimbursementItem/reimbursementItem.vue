@@ -42,7 +42,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="PAYMENT MONTH" v-show="showControl('approveStatus')">
+          <el-form-item label="PAYMENT MONTH">
             <el-date-picker
               v-model="form.paymentMonth"
               type="month"
