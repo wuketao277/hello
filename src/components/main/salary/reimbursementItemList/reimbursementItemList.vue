@@ -5,12 +5,30 @@
       <el-breadcrumb-item>报销项列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add" v-show="showControl('add')">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-show="showControl('edit')">修改</el-button>
+      <el-button
+        type="success"
+        size="small"
+        icon="el-icon-circle-plus"
+        @click="add"
+        v-show="showControl('add')"
+      >新增</el-button>
+      <el-button
+        type="warning"
+        size="small"
+        icon="el-icon-edit"
+        @click="modify"
+        v-show="showControl('edit')"
+      >修改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item style="margin-bottom:0px;">
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="可通过登录名、姓名、月份来查询" clearable></el-input>
+          <el-input
+            v-model="search"
+            autocomplete="off"
+            @keyup.enter.native="sureSearchDialog"
+            placeholder="可通过登录名、姓名、月份来查询"
+            clearable
+          ></el-input>
         </el-form-item>
       </el-form>
     </div>
