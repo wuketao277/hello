@@ -4,6 +4,8 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
+      // 当月总报销金额
+      currentMonthSumReimbursement: 10,
       // 显示搜索结果
       showSearchResult: false,
       table: {
@@ -24,7 +26,7 @@ export default {
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'generateReimbursementSummary' || key === 'edit') {
+      if (key === 'generateReimbursementSummary' || key === 'edit' || key === 'statistics') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -47,6 +49,8 @@ export default {
                 showClose: true
               })
               this.query()
+              // 重新生成报销汇总后，再次查询当月总报销金额
+              this.getCurrentMonthSumReimbursement()
             } else {
               this.$message.error('生成失败！')
             }
@@ -105,9 +109,18 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
+    },
+    // 查询当月总报销金额
+    getCurrentMonthSumReimbursement () {
+      reimbursementApi.getCurrentMonthSumReimbursement().then(res => {
+        if (res.status === 200) {
+          this.currentMonthSumReimbursement = res.data
+        }
+      })
     }
   },
   created () {
     this.query()
+    this.getCurrentMonthSumReimbursement()
   }
 }

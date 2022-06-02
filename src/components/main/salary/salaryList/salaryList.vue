@@ -73,6 +73,10 @@
         v-if="showHistoryDebt"
       >隐藏History Debt</el-button>
     </div>
+    <div v-show="showControl('statistics')" style="text-align:left;">
+      <span>当月税前总金额：{{curMonthPreTaxSum}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span>当月税后总金额：{{curMonthAfterTaxSum}}</span>
+    </div>
     <template>
       <el-table
         :data="table.content"
@@ -82,7 +86,12 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="45" label="No."></el-table-column>
-        <el-table-column prop="consultantUserName" width="110" label="Login Name" v-if="showLoginName"></el-table-column>
+        <el-table-column
+          prop="consultantUserName"
+          width="110"
+          label="Login Name"
+          v-if="showLoginName"
+        ></el-table-column>
         <el-table-column prop="consultantRealName" width="100" label="User Name"></el-table-column>
         <el-table-column prop="month" width="90" label="Month"></el-table-column>
         <el-table-column prop="workingDays" width="120" label="Working Days" v-if="showWorkingDays"></el-table-column>

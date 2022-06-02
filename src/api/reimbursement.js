@@ -24,5 +24,9 @@ export default {
   // 生成报销摘要
   generateReimbursementSummary () {
     return axios.post('/reimbursement/generateReimbursementSummary')
+  },
+  // 获取当前月总报销金额
+  getCurrentMonthSumReimbursement () {
+    return axios.get('/reimbursement/getCurrentMonthSumReimbursement')
   }
 }

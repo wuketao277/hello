@@ -13,6 +13,9 @@
         v-show="showControl('generateReimbursementSummary')"
       >生成报销</el-button>
     </div>
+    <div v-show="showControl('statistics')" style="text-align:left;">
+      <span>当月报销总金额：{{currentMonthSumReimbursement}}</span>
+    </div>
     <template>
       <el-table
         :data="table.content"

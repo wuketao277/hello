@@ -4,6 +4,8 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
+      curMonthPreTaxSum: 0,
+      curMonthAfterTaxSum: 0,
       table: {
         content: [],
         totalElements: 0,
@@ -49,7 +51,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'generateSalary' || key === 'search' || key === 'modifySalary') {
+      if (key === 'generateSalary' || key === 'search' || key === 'modifySalary' || key === 'statistics') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -85,6 +87,7 @@ export default {
                 showClose: true
               })
               this.query()
+              this.getSalaryStatisticsInfo()
             } else {
               this.$message.error('生成失败！')
             }
@@ -141,9 +144,19 @@ export default {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
+    },
+    // 获取薪资统计信息
+    getSalaryStatisticsInfo () {
+      salaryApi.getSalaryStatisticsInfo().then(res => {
+        if (res.status === 200) {
+          this.curMonthAfterTaxSum = res.data.curMonthAfterTaxSum
+          this.curMonthPreTaxSum = res.data.curMonthPreTaxSum
+        }
+      })
     }
   },
   created () {
     this.query()
+    this.getSalaryStatisticsInfo()
   }
 }

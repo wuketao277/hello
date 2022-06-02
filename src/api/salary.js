@@ -16,5 +16,9 @@ export default {
   // 更新
   update (params) {
     return axios.post('/salary/update', params)
+  },
+  // 获取薪资统计信息
+  getSalaryStatisticsInfo (params) {
+    return axios.get('/salary/getSalaryStatisticsInfo')
   }
 }
