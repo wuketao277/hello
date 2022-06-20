@@ -67,7 +67,7 @@
           >候选人</el-button>
           <span>{{form.candidateChineseName}}</span>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -87,8 +87,7 @@
           ></el-input>
           <span>%</span>
         </el-col>
-        <el-col :span="1">&nbsp;</el-col>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -111,7 +110,7 @@
       </el-row>
       <br>
       <el-row>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -120,6 +119,13 @@
             style="width:85px;"
           >顾问</el-button>
           <span>{{form.consultantUserName}}</span>
+          <el-button
+            icon="el-icon-delete"
+            size="mini"
+            circle
+            @click="deleteConsultant('1')"
+            v-show="this.form.consultantUserName !== ''"
+          ></el-button>
         </el-col>
         <el-col :span="2">
           <el-input
@@ -131,8 +137,7 @@
           ></el-input>
           <span>%</span>
         </el-col>
-        <el-col :span="1">&nbsp;</el-col>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -141,6 +146,13 @@
             style="width:85px;"
           >顾问2</el-button>
           <span>{{form.consultantUserName2}}</span>
+          <el-button
+            icon="el-icon-delete"
+            size="mini"
+            circle
+            @click="deleteConsultant('2')"
+            v-show="this.form.consultantUserName2 !== ''"
+          ></el-button>
         </el-col>
         <el-col :span="2">
           <el-input
@@ -152,8 +164,7 @@
           ></el-input>
           <span>%</span>
         </el-col>
-        <el-col :span="1">&nbsp;</el-col>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -162,6 +173,13 @@
             style="width:85px;"
           >顾问3</el-button>
           <span>{{form.consultantUserName3}}</span>
+          <el-button
+            icon="el-icon-delete"
+            size="mini"
+            circle
+            @click="deleteConsultant('3')"
+            v-show="this.form.consultantUserName3 !== ''"
+          ></el-button>
         </el-col>
         <el-col :span="2">
           <el-input
@@ -173,8 +191,7 @@
           ></el-input>
           <span>%</span>
         </el-col>
-        <el-col :span="1">&nbsp;</el-col>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -183,6 +200,13 @@
             style="width:85px;"
           >顾问4</el-button>
           <span>{{form.consultantUserName4}}</span>
+          <el-button
+            icon="el-icon-delete"
+            size="mini"
+            circle
+            @click="deleteConsultant('4')"
+            v-show="this.form.consultantUserName4 !== ''"
+          ></el-button>
         </el-col>
         <el-col :span="2">
           <el-input
@@ -197,7 +221,7 @@
       </el-row>
       <br>
       <el-row>
-        <el-col :span="3">
+        <el-col :span="4">
           <el-button
             type="primary"
             size="small"
@@ -206,6 +230,13 @@
             style="width:85px;"
           >顾问5</el-button>
           <span>{{form.consultantUserName5}}</span>
+          <el-button
+            icon="el-icon-delete"
+            size="mini"
+            circle
+            v-show="this.form.consultantUserName5 !== ''"
+            @click="deleteConsultant('5')"
+          ></el-button>
         </el-col>
         <el-col :span="2">
           <el-input
@@ -217,7 +248,6 @@
           ></el-input>
           <span>%</span>
         </el-col>
-        <el-col :span="1"></el-col>
       </el-row>
       <br>
       <el-row>
@@ -287,6 +317,7 @@
               placeholder="选择日期"
               style="width:130px;"
               value-format="yyyy-MM-dd"
+              v-show="showControl('actualPaymentDate')"
             ></el-date-picker>
           </el-form-item>
         </el-col>
@@ -338,7 +369,12 @@
       <el-row>
         <el-col :span="24">
           <el-form-item label="comment">
-            <el-input type="textarea" v-model="form.comment" :autosize="{minRows: 1, maxRows: 10}" clearable></el-input>
+            <el-input
+              type="textarea"
+              v-model="form.comment"
+              :autosize="{minRows: 1, maxRows: 10}"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
       </el-row>

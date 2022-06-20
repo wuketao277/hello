@@ -92,7 +92,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'approveStatus' || key === 'commissionDate') {
+      if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate') {
         return commonJS.hasRole('admin')
       }
     },
@@ -256,6 +256,31 @@ export default {
     openSelectConsultantDialog (val) {
       this.consultantIndex = val
       this.selectConsultantDialogShow = true
+    },
+    // 删除“选择顾问”
+    deleteConsultant (val) {
+      debugger
+      if (val === '1') {
+        this.form.consultantId = ''
+        this.form.consultantUserName = ''
+        this.form.consultantRealName = ''
+      } else if (val === '2') {
+        this.form.consultantId2 = ''
+        this.form.consultantUserName2 = ''
+        this.form.consultantRealName2 = ''
+      } else if (val === '3') {
+        this.form.consultantId3 = ''
+        this.form.consultantUserName3 = ''
+        this.form.consultantRealName3 = ''
+      } else if (val === '4') {
+        this.form.consultantId4 = ''
+        this.form.consultantUserName4 = ''
+        this.form.consultantRealName4 = ''
+      } else if (val === '5') {
+        this.form.consultantId5 = ''
+        this.form.consultantUserName5 = ''
+        this.form.consultantRealName5 = ''
+      }
     },
     // “选择顾问”对话框返回
     sureSelectConsultantDialog (val) {
