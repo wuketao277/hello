@@ -22,7 +22,7 @@ export default {
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit' || key === 'search') {
+      if (key === 'add' || key === 'edit' || key === 'search' || key === 'delete') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
@@ -53,6 +53,30 @@ export default {
             mode: 'modify',
             salarySpecialItem: this.currentRow
           }
+        })
+      }
+    },
+    // 删除选中记录
+    deleteById () {
+      if (this.checkSelectRow()) {
+        this.$confirm('确认要删除工资特殊项吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          salarySpecialItemApi.deleteById(this.currentRow.id).then(
+            res => {
+              if (res.status === 200) {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                this.query()
+              } else {
+                this.$message.error('删除失败！')
+              }
+            })
         })
       }
     },

@@ -58,6 +58,30 @@ export default {
         })
       }
     },
+    // 删除选中记录
+    deleteById () {
+      if (this.checkSelectRow()) {
+        this.$confirm('确认要删除报销吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          reimbursementApi.deleteById(this.currentRow.id).then(
+            res => {
+              if (res.status === 200) {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                this.query()
+              } else {
+                this.$message.error('删除失败！')
+              }
+            })
+        })
+      }
+    },
     // 查看
     detail () {
       if (this.checkSelectRow()) {

@@ -28,5 +28,9 @@ export default {
   // 获取当前月总报销金额
   getCurrentMonthSumReimbursement () {
     return axios.get('/reimbursement/getCurrentMonthSumReimbursement')
+  },
+  // 通过主键删除
+  deleteById (params) {
+    return axios.delete('/reimbursement/deleteById?id=' + params)
   }
 }

@@ -19,6 +19,13 @@
         @click="modify"
         v-show="showControl('edit')"
       >修改</el-button>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-delete"
+        @click="deleteById"
+        v-show="showControl('delete')"
+      >删除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
       <el-form
         @submit.native.prevent
