@@ -11,22 +11,22 @@
         icon="el-icon-circle-plus"
         @click="add"
         v-show="showControl('add')"
-      >新增</el-button>
+      >新 增</el-button>
       <el-button
         type="warning"
         size="small"
         icon="el-icon-edit"
         @click="modify"
         v-show="showControl('edit')"
-      >修改</el-button>
+      >修 改</el-button>
       <el-button
         type="danger"
         size="small"
         icon="el-icon-delete"
         @click="deleteById"
         v-show="showControl('delete')"
-      >删除</el-button>
-      <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
+      >删 除</el-button>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
       <el-form
         @submit.native.prevent
         style="display:inline-block;width:250px;"

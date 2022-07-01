@@ -7,8 +7,8 @@
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-      <el-button type="success" size="small" icon="el-icon-circle-check" @click="saveNews">保存</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-check" @click="saveNews">保 存</el-button>
+      <el-button type="warning" size="small" icon="el-icon-delete" @click="cancel">取 消</el-button>
       <el-button
         type="primary"
         size="small"

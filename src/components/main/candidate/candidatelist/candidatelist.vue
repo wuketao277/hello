@@ -5,10 +5,10 @@
       <el-breadcrumb-item>候选人列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addCandidate">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyCandidate">修改</el-button>
-      <el-button type="primary" size="small" icon="el-icon-share" @click="detailCandidate">查看</el-button>
-      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById" v-if="showControl('delete')">删除</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addCandidate">新 增</el-button>
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyCandidate">修 改</el-button>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="detailCandidate">查 看</el-button>
+      <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById" v-if="showControl('delete')">删 除</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label="" style="margin-bottom:0px;">
           <el-input v-model="search" autocomplete="off" @keyup.enter.native="searchCandidate" placeholder="输入关键字后，回车即可搜索。" clearable></el-input>

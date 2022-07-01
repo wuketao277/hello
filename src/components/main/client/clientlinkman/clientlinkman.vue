@@ -35,8 +35,8 @@
     </el-form>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar">
-      <el-button v-show="(mode === 'add' || mode === 'modify')" type="success" size="small" icon="el-icon-circle-check" @click="save">保存</el-button>
-      <el-button v-show="(mode === 'add' || mode === 'modify')" type="danger" size="small" icon="el-icon-delete" @click="cancel">取消</el-button>
+      <el-button v-show="(mode === 'add' || mode === 'modify')" type="success" size="small" icon="el-icon-circle-check" @click="save">保 存</el-button>
+      <el-button v-show="(mode === 'add' || mode === 'modify')" type="warning" size="small" icon="el-icon-delete" @click="cancel">取 消</el-button>
       <el-button type="primary" size="small" icon="el-icon-back" @click="returnClient">返回</el-button>
     </div>
   </div>

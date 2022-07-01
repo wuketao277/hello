@@ -5,8 +5,8 @@
       <el-breadcrumb-item>任务列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addTask">新增</el-button>
-      <el-button type="primary" size="small" icon="el-icon-share" @click="detailTask">查看</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addTask">新 增</el-button>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="detailTask">查 看</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label="" style="mergin-bottom:0px;">
           <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>

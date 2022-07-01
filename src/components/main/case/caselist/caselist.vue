@@ -5,16 +5,16 @@
       <el-breadcrumb-item>职位列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修改</el-button>
-      <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查看</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新 增</el-button>
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修 改</el-button>
+      <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
       <el-button
         type="danger"
         size="small"
         icon="el-icon-delete"
         @click="deleteById"
         v-if="showControl('delete')"
-      >删除</el-button>
+      >删 除</el-button>
     </div>
     <div>
       <el-form @submit.native.prevent>

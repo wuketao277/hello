@@ -31,13 +31,13 @@
             size="small"
             icon="el-icon-circle-check"
             @click="changePasswordSubmit"
-          >提交</el-button>
+          >提 交</el-button>
           <el-button
-            type="danger"
+            type="warning"
             size="small"
             icon="el-icon-circle-close"
             @click="changePasswordCancel"
-          >取消</el-button>
+          >取 消</el-button>
         </div>
       </el-tab-pane>
     </el-tabs>

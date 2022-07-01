@@ -13,21 +13,21 @@
         icon="el-icon-circle-check"
         v-show="mode === 'add' && !saved"
         @click="save"
-      >保存</el-button>
+      >保 存</el-button>
       <el-button
-        type="danger"
+        type="warning"
         size="small"
         icon="el-icon-delete"
         v-show="mode === 'add' && !saved"
         @click="cancel"
-      >取消</el-button>
+      >取 消</el-button>
       <el-button
         type="success"
         size="small"
         icon="el-icon-circle-check"
         v-show="mode === 'modify'"
         @click="update"
-      >完成</el-button>
+      >完 成</el-button>
     </div>
     <el-form
       ref="form"
