@@ -55,8 +55,8 @@
       >
         <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
         <el-table-column prop="id" width="100" label="职位id" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="clientChineseName" width="200" label="客户名称" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="title" width="200" label="职位名称" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="clientChineseName" width="250" label="客户名称" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="title" width="400" label="职位名称" show-overflow-tooltip></el-table-column>
         <el-table-column
           prop="status"
           width="100"
