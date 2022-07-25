@@ -65,7 +65,8 @@ export default {
         channel: '',
         actualPaymentDate: '', // 实际收款日期
         commissionDate: '', // 奖金发放日期
-        comment: '' // 说明
+        comment: '', // 说明
+        type: 'perm'
       },
       clients: [],
       // 职位候选人集合
@@ -79,10 +80,15 @@ export default {
       selectConsultantDialogShow: false,
       selectCWDialogShow: false,
       selectBDDialogShow: false,
-      approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}]
+      approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}],
+      typeList: [{'id': 'perm', 'name': 'perm'}, {'id': 'contracting', 'name': 'contracting'}]
     }
   },
   methods: {
+    // 类型修改事件
+    typeChange () {
+      this.form.gp = 0
+    },
     // 获取日期部分
     getDateStr (dateStr) {
       if (typeof (dateStr) !== 'undefined' && dateStr !== null && dateStr.length > 10) {
@@ -350,14 +356,16 @@ export default {
       }
     },
     getGP: function () {
-      debugger
-      if (typeof (this.form.billing) === 'undefined') {
-        this.form.gp = 0
+      if (this.form.type === 'perm') {
+        // perm情况下，gp是通过billing计算出来的
+        if (typeof (this.form.billing) === 'undefined') {
+          this.form.gp = 0
+        }
+        if (this.form.billing === 0) {
+          this.form.gp = 0
+        }
+        this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
       }
-      if (this.form.billing === 0) {
-        this.form.gp = 0
-      }
-      this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
     }
   },
   created () {
