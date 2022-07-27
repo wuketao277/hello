@@ -15,7 +15,8 @@ export default {
         consultantRealName: '', // 顾问真实姓名
         month: '', // 所属月份
         sum: '', // 特殊项金额
-        description: '' // 特殊项说明
+        description: '', // 特殊项说明
+        isPre: 'yes' // 是否前置计算
       },
       selectConsultantDialogShow: false
     }
@@ -34,6 +35,7 @@ export default {
         this.form.month = '' // 月份
         this.form.sum = 0 // 金额
         this.form.description = '' // 说明
+        this.form.isPre = 'yes' // 是否前置计算
       }
     },
     // 保存

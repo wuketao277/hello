@@ -14,12 +14,12 @@
       ref="form"
       :model="form"
       label-position="left"
-      label-width="60px"
+      label-width="80px"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
       <el-row :gutter="12">
-        <el-col :span="4">
+        <el-col :span="6">
           <el-button
             type="primary"
             size="small"
@@ -45,6 +45,12 @@
             <el-input v-model="form.sum" size="small" clearable style="width:150px;" placeholder="特殊项金额"></el-input>
             &nbsp;
             <span>{{formatSum}}</span>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="前置计算">
+            <el-radio v-model="form.isPre" label="yes">是</el-radio>
+            <el-radio v-model="form.isPre" label="no">否</el-radio>
           </el-form-item>
         </el-col>
       </el-row>

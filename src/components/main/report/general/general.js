@@ -11,7 +11,8 @@ export default {
       offerDateBilling: 0,
       paymentDateBilling: 0,
       actualPaymentDateBilling: 0,
-      unactualPaymentDateBilling: 0
+      unactualPaymentDateBilling: 0,
+      invoiceDateBilling: 0
     }
   },
   mounted () {
@@ -31,7 +32,6 @@ export default {
         this.form.startDate = startDate
         this.form.endDate = new Date(startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
       } else if (type === 'month') {
-        debugger
         let month = new Date().getMonth() + 1
         this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01', 'yyyy-MM-dd'))
         if (month === 2) {
@@ -43,6 +43,24 @@ export default {
         } else {
           // 4 6 9 11月
           this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30', 'yyyy-MM-dd'))
+        }
+      } else if (type === 'nextmonth') {
+        let month = new Date().getMonth() + 2
+        let year = new Date().getFullYear()
+        if (month === 13) {
+          month = 1
+          year = year + 1
+        }
+        this.form.startDate = new Date(Date.parse(year + '-' + month + '-01', 'yyyy-MM-dd'))
+        if (month === 2) {
+          // 2 月
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28', 'yyyy-MM-dd'))
+        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+          // 1 3 5 7 8 10 12月
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-31', 'yyyy-MM-dd'))
+        } else {
+          // 4 6 9 11月
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-30', 'yyyy-MM-dd'))
         }
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
@@ -78,6 +96,7 @@ export default {
             this.paymentDateBilling = res.data.paymentDateBilling
             this.actualPaymentDateBilling = res.data.actualPaymentDateBilling
             this.unactualPaymentDateBilling = res.data.unactualPaymentDateBilling
+            this.invoiceDateBilling = res.data.invoiceDateBilling
             // 指定时间段内的offer signed数据
             let offerDateChart = this.$echarts.init(document.getElementById('offerDateChart'))
             offerDateChart.setOption({
@@ -209,6 +228,35 @@ export default {
                   type: 'pie',
                   radius: '70%',
                   data: res.data.personalOfferData,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  },
+                  label: {
+                    normal: {
+                      formatter: '{b} {c}'
+                    }
+                  }
+                }
+              ]
+            })
+            let invoiceDateDataChart = this.$echarts.init(document.getElementById('invoiceDateDataChart'))
+            invoiceDateDataChart.setOption({
+              title: {
+                text: 'invoice data',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '70%',
+                  data: res.data.invoiceDateData,
                   emphasis: {
                     itemStyle: {
                       shadowBlur: 10,

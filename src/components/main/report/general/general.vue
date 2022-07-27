@@ -15,6 +15,7 @@
               <el-button type="primary" size="medium" @click="drawChart">查询</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('week')">本周</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('month')">本月</el-button>
+              <el-button type="success" plain size="medium" @click="calcDate('nextmonth')">下月</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('season')">本季度</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('tonow')">截止目前</el-button>
               <el-button type="success" plain size="medium" @click="calcDate('year')">本年</el-button>
@@ -28,13 +29,13 @@
         <el-col :span="24">
           <div id="offerDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
-              <el-col :span="12">offer Billing：{{offerDateBilling}}</el-col>
+              <el-col :span="12">offer Billing Sum：{{offerDateBilling}}</el-col>
             </el-row>
             <div id="offerDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
           <div id="paymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
-              <el-col :span="12">payment Billing：{{paymentDateBilling}}</el-col>
+              <el-col :span="12">payment Billing Sum：{{paymentDateBilling}}</el-col>
             </el-row>
             <div id="paymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
@@ -44,13 +45,13 @@
         <el-col :span="24">
           <div id="actualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
-              <el-col :span="12">已付 Billing：{{actualPaymentDateBilling}}</el-col>
+              <el-col :span="12">已付 Billing Sum：{{actualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="actualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
           <div id="unactualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
-              <el-col :span="12">未付 Billing：{{unactualPaymentDateBilling}}</el-col>
+              <el-col :span="12">未付 Billing Sum：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="unactualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
@@ -61,8 +62,12 @@
           <div id="personalOfferData" :style="{width: '48%', height: '400px', float: 'left'}">
             <div id="personalOfferDataChart" :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <!-- <div id="personalRate" :style="{width: '1200px', height: '400px', float: 'left'}"></div>
-          <div id="clientRate" :style="{width: '600px', height: '400px', float: 'left'}"></div>-->
+          <div id="invoiceDateData" :style="{width: '48%', height: '400px', float: 'left'}">
+            <el-row>
+              <el-col :span="12">Invoice Sum：{{invoiceDateBilling}}</el-col>
+            </el-row>
+            <div id="invoiceDateDataChart" :style="{width: '100%', height: '400px'}"></div>
+          </div>
         </el-col>
       </el-row>
     </div>
