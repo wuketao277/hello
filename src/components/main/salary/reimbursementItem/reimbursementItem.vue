@@ -18,7 +18,7 @@
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-row gutter="12">
+      <el-row gutter="40">
         <el-col :span="6">
           <span style="color:red;">*</span>
           <el-button
@@ -42,7 +42,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="PAYMENT MONTH">
+          <el-form-item label="MONTH" required>
             <el-date-picker
               v-model="form.paymentMonth"
               type="month"
@@ -54,7 +54,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row gutter="12">
+      <el-row gutter="40">
         <el-col :span="6">
           <el-form-item label="TYPE" required>
             <el-select v-model="form.type" placeholder="报销类型" style="width:160px;">
@@ -101,7 +101,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row gutter="12">
+      <el-row gutter="40">
         <el-col :span="24">
           <el-form-item label="DESCRIPTION">
             <el-input v-model="form.description" size="small" clearable placeholder="描述"></el-input>

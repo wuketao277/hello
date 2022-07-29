@@ -44,8 +44,13 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="类型" v-show="showControl('approveStatus')">
-            <el-select v-model="form.type" placeholder="类型" style="width:130px;" @change="typeChange">
+          <el-form-item label="类型" required>
+            <el-select
+              v-model="form.type"
+              placeholder="类型"
+              style="width:130px;"
+              @change="typeChange"
+            >
               <el-option
                 v-for="type in typeList"
                 :key="type.id"
@@ -282,7 +287,12 @@
         </el-col>
         <el-col :span="6">
           <el-form-item label="GP">
-            <el-input v-model="form.gp" clearable :readonly="form.type === 'perm' ? true : false" style="width:100px;"></el-input>
+            <el-input
+              v-model="form.gp"
+              clearable
+              :readonly="form.type === 'perm' ? true : false"
+              style="width:80px;"
+            ></el-input>
             <span>{{formatGp}}</span>
           </el-form-item>
         </el-col>

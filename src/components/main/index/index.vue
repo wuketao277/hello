@@ -53,16 +53,16 @@
               <span slot="title">职位列表</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/case/successfulPermList">
-            <template slot="title">
-              <i class="el-icon-star-on"></i>
-              <span slot="title">成功列表</span>
-            </template>
-          </el-menu-item>
           <el-menu-item index="/candidate/candidatelist">
             <template slot="title">
               <i class="el-icon-user-solid"></i>
               <span slot="title">候选人</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="/case/successfulPermList">
+            <template slot="title">
+              <i class="el-icon-star-on"></i>
+              <span slot="title">成功列表</span>
             </template>
           </el-menu-item>
           <el-menu-item index="/file/filelist">

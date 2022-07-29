@@ -104,6 +104,10 @@ export default {
         this.$message.error('NAME 必选')
         return
       }
+      if (this.form.paymentMonth === '') {
+        this.$message.error('MONTH 必选')
+        return
+      }
       if (this.form.type === '' || this.form.type === null) {
         this.$message.error('TYPE 必选')
         return

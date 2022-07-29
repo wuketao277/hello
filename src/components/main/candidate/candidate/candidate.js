@@ -273,6 +273,8 @@ export default {
           })
           // 重新查询全部评论
           this.queryComment()
+          // 清空评论区
+          this.newComment.content = ''
         } else {
           this.$message({
             message: '保存异常，请联系管理员！',
