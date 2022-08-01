@@ -104,6 +104,9 @@
         <router-view></router-view>
       </el-main>
     </el-container>
+    <el-footer style="background-color:#545c64;height:30px;padding-top:5px;">
+      <el-link type="success" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2022003281号-1</el-link>
+    </el-footer>
   </el-container>
 </template>
 <style>
