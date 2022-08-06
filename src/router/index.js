@@ -32,6 +32,10 @@ import ReimbursementItem from '@/components/main/salary/reimbursementItem/reimbu
 import ReimbursementItemList from '@/components/main/salary/reimbursementItemList/reimbursementItemList.vue'
 import ReimbursementSummaryList from '@/components/main/salary/reimbursementSummaryList/reimbursementSummaryList.vue'
 import GeneralReport from '@/components/main/report/general/general.vue'
+import LessonList from '@/components/main/training/lesson/lessonlist/lessonlist.vue'
+import Lesson from '@/components/main/training/lesson/lesson/lesson.vue'
+import StudyRecordList from '@/components/main/training/studyrecord/studyrecordlist/studyrecordlist.vue'
+import StudyRecord from '@/components/main/training/studyrecord/studyrecord/studyrecord.vue'
 
 Vue.use(Router)
 
@@ -216,6 +220,30 @@ const router = new Router({
           path: '/salary/reimbursementSummaryList',
           name: 'reimbursementSummaryList',
           component: ReimbursementSummaryList
+        },
+        {
+          // 培训课程列表
+          path: '/training/lessonlist',
+          name: 'lessonlist',
+          component: LessonList
+        },
+        {
+          // 培训课程列表
+          path: '/training/lesson',
+          name: 'lesson',
+          component: Lesson
+        },
+        {
+          // 培训课程学习记录列表
+          path: '/training/studyrecordlist',
+          name: 'studyrecordlist',
+          component: StudyRecordList
+        },
+        {
+          // 培训课程学习记录
+          path: '/training/studyrecord',
+          name: 'studyrecord',
+          component: StudyRecord
         }
       ]
     },

@@ -98,6 +98,14 @@
             <el-menu-item index="/user/userlist" v-show="showControl('/user/userlist')">用户列表</el-menu-item>
             <el-menu-item index="/personalInfo">个人信息</el-menu-item>
           </el-submenu>
+          <el-submenu index="9">
+            <template slot="title">
+              <i class="el-icon-s-order"></i>
+              <span slot="title">培训与考核</span>
+            </template>
+            <el-menu-item index="/training/lessonlist">课程列表</el-menu-item>
+            <el-menu-item index="/training/studyrecordlist">培训列表</el-menu-item>
+          </el-submenu>
         </el-menu>
       </el-aside>
       <el-main>
