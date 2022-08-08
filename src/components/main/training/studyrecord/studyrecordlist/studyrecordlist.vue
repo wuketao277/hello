@@ -12,7 +12,7 @@
           <el-input
             v-model="search"
             autocomplete="off"
-            @keyup.enter.native="sureSearchDialog"
+            @keyup.enter.native="query"
             placeholder="输入关键字后，回车即可搜索。"
             clearable
           ></el-input>
@@ -30,8 +30,8 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="lessonName" label="课程名称" width="400"></el-table-column>
-        <el-table-column prop="username" width="100" label="学员名称"></el-table-column>
+        <el-table-column prop="lessonName" label="课程名称" width="300"></el-table-column>
+        <el-table-column prop="realname" width="100" label="学员名称"></el-table-column>
         <el-table-column prop="signInTime" width="200" label="签到时间"></el-table-column>
         <el-table-column prop="finishTime" width="200" label="完成时间"></el-table-column>
         <el-table-column prop="hours" width="200" label="学习时长（小时）"></el-table-column>
