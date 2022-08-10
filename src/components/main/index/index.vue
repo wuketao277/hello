@@ -71,7 +71,7 @@
               <span slot="title">文件管理</span>
             </template>
           </el-menu-item>
-          <el-submenu index="7">
+          <el-submenu index="/salary">
             <template slot="title">
               <i class="el-icon-money"></i>
               <span slot="title">工资</span>
@@ -81,7 +81,7 @@
             <el-menu-item index="/salary/reimbursementSummaryList">报销发放列表</el-menu-item>
             <el-menu-item index="/salary/reimbursementItemList">报销项详情列表</el-menu-item>
           </el-submenu>
-          <el-submenu index="5">
+          <el-submenu index="/my">
             <template slot="title">
               <i class="el-icon-edit"></i>
               <span slot="title">我的</span>
@@ -90,7 +90,7 @@
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
             <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
-          <el-submenu index="8">
+          <el-submenu index="/config">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>
@@ -98,7 +98,7 @@
             <el-menu-item index="/user/userlist" v-show="showControl('/user/userlist')">用户列表</el-menu-item>
             <el-menu-item index="/personalInfo">个人信息</el-menu-item>
           </el-submenu>
-          <el-submenu index="9">
+          <el-submenu index="/training" v-if="showControl('/report')">
             <template slot="title">
               <i class="el-icon-s-order"></i>
               <span slot="title">培训与考核</span>
