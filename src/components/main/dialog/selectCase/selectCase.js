@@ -6,7 +6,8 @@ export default {
       showSearchDialog: false,
       caseList: [],
       currentRow: null,
-      search: ''
+      search: '',
+      status: 'DOING'
     }
   },
   methods: {
@@ -49,7 +50,8 @@ export default {
         return
       }
       let query = {
-        'search': this.search
+        'search': this.search,
+        'status': this.status
       }
       caseApi.query(query).then(res => {
         if (res.status !== 200) {
@@ -91,20 +93,20 @@ export default {
     // 搜索对话框，取消按钮
     cancelSearchDialog () {
       this.showSearchDialog = false
-      this.search = ''
     },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.showSearchDialog = false
       this.query()
-      this.search = ''
     },
     // 点击“取消”按钮，触发自定义事件
     cancelDialog () {
+      this.search = ''
       this.$emit('cancel-dialog')
     },
     // 点击“确定”按钮，触发自定义事件
     sureDialog () {
+      this.search = ''
       if (this.checkSelectRow()) {
         this.$emit('sure-dialog', this.currentRow)
       }

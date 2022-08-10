@@ -1,14 +1,36 @@
 <template>
   <div>
     <div class="toolbar">
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
-        <el-form-item label="" style="mergin-bottom:0px;">
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
-        </el-form-item>
-      </el-form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <el-button type="success" size="small" @click="sureDialog" icon="el-icon-circle-check">确 定</el-button>
       <el-button type="warning" size="small" @click="cancelDialog" icon="el-icon-circle-close">取 消</el-button>
     </div>
+    <el-form @submit.native.prevent>
+      <el-row :gutter="40">
+        <el-col :span="10">
+          <el-form-item label style="mergin-bottom:0px;">
+            <el-input
+              v-model="search"
+              autocomplete="off"
+              @keyup.enter.native="sureSearchDialog"
+              placeholder="输入关键字后，回车即可搜索。"
+              clearable
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="14">
+          <el-form-item>
+            <el-radio-group v-model="status" @change="sureSearchDialog">
+              <el-radio label="ALL">全部</el-radio>
+              <el-radio label="PREPARE">准备</el-radio>
+              <el-radio label="DOING">进行中</el-radio>
+              <el-radio label="FINISH">完成</el-radio>
+              <el-radio label="PAUSE">暂停</el-radio>
+              <el-radio label="CLOSE">关闭</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
     <el-table
       :data="caseList"
       @current-change="handleCurrentChange"
