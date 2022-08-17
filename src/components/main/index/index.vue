@@ -4,7 +4,7 @@
       style="background-color:#545c64;height:40px;padding:0px;text-align:left;font-size:25px;color:#fff;"
     >
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
-        <img src="/static/Logo-2.png" style="width:100px;height:35px;"/>
+        <img src="/static/Logo-2.png" style="width:80px;height:35px;"/>
       </div>
       <div style="float:right;width:50%;text-align:right;padding-top:4px;padding-right:20px;">
         <span>Hi {{username}}</span>
