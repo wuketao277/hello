@@ -29,12 +29,12 @@
       <el-table-column prop="executeDate" label="执行日期" width="100"></el-table-column>
       <el-table-column prop="finished" :formatter="getFinishedName" label="状态" width="100"></el-table-column>
       <el-table-column prop="createRealName" label="创建人" width="80"></el-table-column>
-      <el-table-column prop="createDateTime" label="创建时间"></el-table-column>
+      <el-table-column prop="createDateTime" label="创建时间" width="180"></el-table-column>
       <el-table-column prop="relativeCandidateId" label="候选人id" width="80"></el-table-column>
     </el-table>
     <el-pagination
       background
-      layout="prev, pager, next"
+      layout="prev, pager, next, sizes"
       :total="table.totalElements"
       :current-page="table.pageable.pageNumber"
       :page-sizes="page.pageSizes"

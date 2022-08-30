@@ -17,7 +17,7 @@ export default {
         }
       },
       page: {
-        pageSizes: [10, 20, 30, 40, 50]
+        pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
       search: ''
@@ -107,7 +107,6 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
     },
     // 查询当月总报销金额

@@ -12,6 +12,17 @@
         @click="generateReimbursementSummary"
         v-show="showControl('generateReimbursementSummary')"
       >生成报销</el-button>
+      <el-form @submit.native.prevent style="display:inline-block;width:260px;">
+        <el-form-item style="margin-bottom:0px;">
+          <el-input
+            v-model="search"
+            autocomplete="off"
+            @keyup.enter.native="sureSearchDialog"
+            placeholder="可通过登录名、姓名、月份来查询"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-form>
     </div>
     <div v-show="showControl('statistics')" style="text-align:left;">
       <span>当月报销总金额：{{currentMonthSumReimbursement}}</span>
@@ -32,7 +43,7 @@
       </el-table>
       <el-pagination
         background
-        layout="prev, pager, next"
+        layout="prev, pager, next, sizes"
         :total="table.totalElements"
         :current-page="table.pageable.pageNumber"
         :page-sizes="page.pageSizes"

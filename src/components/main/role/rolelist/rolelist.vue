@@ -39,7 +39,7 @@
     </el-table>
     <el-pagination
       background
-      layout="prev, pager, next"
+      layout="prev, pager, next, sizes"
       :total="table.content.length"
       :current-page="table.pageable.pageNumber"
       :page-sizes="page.pageSizes"

@@ -15,7 +15,7 @@ export default {
         }
       },
       page: {
-        pageSizes: [10, 20, 30, 40, 50]
+        pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
       search: commonJS.getSearchContent('salaryList.search'),

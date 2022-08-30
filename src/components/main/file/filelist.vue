@@ -26,7 +26,7 @@
       <downloadFile :files="table.content" v-on:delete-file-success="query"></downloadFile>
       <el-pagination
         background
-        layout="prev, pager, next"
+        layout="prev, pager, next, sizes"
         :total="table.totalElements"
         :current-page="table.pageable.pageNumber"
         :page-sizes="page.pageSizes"

@@ -26,7 +26,7 @@
         @click="deleteById"
       >删 除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
+      <el-form @submit.native.prevent style="display:inline-block;width:260px;">
         <el-form-item style="margin-bottom:0px;">
           <el-input
             v-model="search"
@@ -58,7 +58,7 @@
       </el-table>
       <el-pagination
         background
-        layout="prev, pager, next"
+        layout="prev, pager, next, sizes"
         :total="table.totalElements"
         :current-page="table.pageable.pageNumber"
         :page-sizes="page.pageSizes"
