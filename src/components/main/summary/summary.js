@@ -90,6 +90,14 @@ export default {
         query: {}
       })
     },
+    // 下载KPI
+    downloadKPI () {
+      if (this.KPIDate === '') {
+        this.$message.error('请先选择要计算的日期')
+        return
+      }
+      commentApi.downloadKPI(this.KPIDate)
+    },
     // 计算KPI
     calcKPI () {
       if (this.KPIDate === '') {

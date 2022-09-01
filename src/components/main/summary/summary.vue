@@ -173,7 +173,13 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期"
             ></el-date-picker>
-            <el-button type="success" size="mini" icon="el-icon-setting" @click="calcKPI()">计算KPI</el-button>
+            <el-button type="success" size="medium" icon="el-icon-setting" @click="calcKPI()">计算KPI</el-button>
+            <el-button
+              type="primary"
+              size="medium"
+              icon="el-icon-download"
+              @click="downloadKPI()"
+            >下载KPI</el-button>
           </div>
           <div>
             <el-table

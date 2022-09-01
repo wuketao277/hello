@@ -37,5 +37,12 @@ export default {
     } else {
       return window.localStorage[pageSize]
     }
+  },
+  // 获取YYYY-MM-dd格式的年月日
+  getYYYY_MM_dd (d) {
+    let year = d.getFullYear()
+    let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
+    let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+    return year + '-' + month + '-' + day
   }
 }
