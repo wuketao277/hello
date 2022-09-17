@@ -1,4 +1,5 @@
 import userApi from '@/api/user'
+import commonJs from '@/common/common'
 
 export default {
   data () {
@@ -8,10 +9,53 @@ export default {
         oldPassword: '',
         newPassword: '',
         newPassword2: ''
+      },
+      // 基本信息表达
+      baseInfoForm: {
+        gender: ''
+      },
+      // 工资卡银行
+      banks: commonJs.banks,
+      // 性别
+      genders: commonJs.genders,
+      // 扩展信息表单
+      extInfoForm: {
       }
     }
   },
   methods: {
+    // 保存扩展信息
+    saveBaseInfo () {
+      userApi.saveExtInfo(this.extInfoForm).then(
+        res => {
+          if (res.status === 200) {
+            this.$message({
+              message: '保存成功！',
+              type: 'success',
+              showClose: true
+            })
+          } else {
+            this.$message({
+              message: '保存失败！',
+              type: 'warning',
+              showClose: true
+            })
+          }
+        })
+    },
+    // 取消扩展信息的更新
+    cancelChangeBaseInfo () {
+      this.queryExtInfoForm()
+    },
+    // 查询扩展信息
+    queryExtInfoForm () {
+      userApi.findSelf().then(res => {
+        if (res.status === 200) {
+          // 将从服务端获取的数据赋值给前端显示
+          this.extInfoForm = res.data
+        }
+      })
+    },
     // 修改密码动作取消
     changePasswordCancel () {
       this.changePasswordForm.oldPassword = ''
@@ -75,5 +119,7 @@ export default {
         })
     }
   },
-  created () {}
+  created () {
+    this.queryExtInfoForm()
+  }
 }

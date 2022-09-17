@@ -44,5 +44,18 @@ export default {
     let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
     let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
     return year + '-' + month + '-' + day
-  }
+  },
+  // 工资卡银行
+  banks: [
+    {code: 'ICBC', name: '工商银行'},
+    {code: 'ABC', name: '农业银行'},
+    {code: 'CMB', name: '招商银行'},
+    {code: 'CCB', name: '建设银行'},
+    {code: 'BCM', name: '交通银行'},
+    {code: 'PAB', name: '平安银行'},
+    {code: 'CEB', name: '光大银行'},
+    {code: 'BOC', name: '中国银行'}
+  ],
+  // 性别
+  genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}]
 }

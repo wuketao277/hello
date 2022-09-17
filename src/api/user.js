@@ -1,13 +1,21 @@
 import axios from 'axios'
 
 export default {
+  // 查找当前用户
+  findSelf () {
+    return axios.get('/user/findSelf')
+  },
   // 查找所有正常状态下的用户
   findAllEnabled () {
     return axios.get('/user/findAllEnabled')
   },
-  // 保存用户接口
-  save (params) {
-    return axios.post('/user/save', params)
+  // 保存用户基本信息接口
+  saveBaseInfo (params) {
+    return axios.post('/user/saveBaseInfo', params)
+  },
+  // 保存用户扩展信息接口
+  saveExtInfo (params) {
+    return axios.post('/user/saveExtInfo', params)
   },
   // 通过主键查找用户信息
   findById (params) {

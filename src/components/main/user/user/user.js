@@ -1,4 +1,5 @@
 import userApi from '@/api/user'
+import commonJs from '@/common/common'
 
 export default {
   data () {
@@ -13,7 +14,11 @@ export default {
         coverbase: false,
         enabled: false
       },
-      rules: {}
+      rules: {},
+      // 工资卡银行
+      banks: commonJs.banks,
+      // 性别
+      genders: commonJs.genders
     }
   },
   methods: {
@@ -37,7 +42,7 @@ export default {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           // 如果校验通过就调用后端接口
-          userApi.save(this.form).then(
+          userApi.saveBaseInfo(this.form).then(
             res => {
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
