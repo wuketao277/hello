@@ -196,6 +196,30 @@ export default {
         })
         return
       }
+      if (this.form.base === '') {
+        this.$message({
+          message: 'Base不能为空！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      if (this.form.billing === '') {
+        this.$message({
+          message: 'Billing不能为空！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      if (this.form.gp === '') {
+        this.$message({
+          message: 'GP不能为空！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
       if (this.form.approveStatus === 'approved' && !commonJS.hasRole('admin')) {
         this.$message({
           message: '审批通过后，只有管理员可以修改！',

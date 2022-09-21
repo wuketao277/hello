@@ -11,6 +11,10 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.sureDialog()
+    },
     // 获取状态名称
     getStatusName (row, column) {
       if (row.status === 'PREPARE') {

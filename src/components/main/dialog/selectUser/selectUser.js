@@ -9,6 +9,10 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.sureDialog()
+    },
     // 检查是否选择了一条记录
     checkSelectRow () {
       if (this.currentRow === null) {

@@ -17,6 +17,7 @@
     <el-table
       :data="userList"
       @current-change="handleCurrentChange"
+      @row-dblclick="handleRowDblClick"
       :border="true"
       :highlight-current-row="true"
       :max-height="400"
