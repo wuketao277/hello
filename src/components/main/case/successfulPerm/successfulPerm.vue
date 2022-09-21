@@ -13,7 +13,7 @@
     <el-form
       ref="form"
       :model="form"
-      label-width="160px"
+      label-width="150px"
       label-position="left"
       size="small"
       style="margin-top:10px;text-align:left;"
@@ -291,7 +291,7 @@
               v-model="form.gp"
               clearable
               :readonly="form.type === 'perm' ? true : false"
-              style="width:80px;"
+              style="width:100px;"
             ></el-input>
             <span>{{formatGp}}</span>
           </el-form-item>

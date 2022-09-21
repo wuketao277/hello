@@ -81,11 +81,6 @@ export default {
     }
   },
   computed: {
-    formatSum: function () {
-      if (this.form.sum !== '') {
-        return this.form.sum / 1000 + 'k'
-      }
-    }
   },
   created () {
     // 通过入参获取当前操作模式

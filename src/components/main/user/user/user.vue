@@ -19,24 +19,32 @@
       style="margin-top:10px;text-align:left;"
     >
       <el-row :gutter="12">
-        <el-col span="8">
+        <el-col span="6">
           <el-form-item label="序号">
             <el-input v-model="form.id" readonly></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="8">
+        <el-col span="6">
           <el-form-item label="姓名">
             <el-input v-model="form.realname"></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="8">
+        <el-col span="6">
           <el-form-item label="登录名">
             <el-input v-model="form.username"></el-input>
           </el-form-item>
         </el-col>
+        <el-col span="6">
+          <el-form-item label="底薪">
+            <el-input v-model="form.salarybase" style="width:100px;"></el-input>
+            <span>元</span>
+            &nbsp;&nbsp;
+            <span>{{formatSalarybase}}</span>
+          </el-form-item>
+        </el-col>
       </el-row>
-      <el-row>
-        <el-col :span="8">
+      <el-row :gutter="12">
+        <el-col :span="6">
           <el-form-item label="状态">
             <el-switch
               v-model="form.enabled"
@@ -47,16 +55,8 @@
             ></el-switch>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
-          <el-form-item label="底薪">
-            <el-input v-model="form.salarybase" style="width:100px;"></el-input>
-            <span>元</span>
-            &nbsp;&nbsp;
-            <span>{{formatSalarybase}}</span>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="cover base" label-width="150px">
+        <el-col :span="6">
+          <el-form-item label="cover base">
             <el-switch
               v-model="form.coverbase"
               active-color="#13ce66"
@@ -64,6 +64,28 @@
               active-text="cover"
               inactive-text="不cover"
             ></el-switch>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="入职日期">
+            <el-date-picker
+              v-model="form.onBoardDate"
+              type="date"
+              placeholder="选择日期"
+              style="width:100%"
+              value-format="yyyy-MM-dd"
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="离职日期">
+            <el-date-picker
+              v-model="form.dimissionDate"
+              type="date"
+              placeholder="选择日期"
+              style="width:100%"
+              value-format="yyyy-MM-dd"
+            ></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>

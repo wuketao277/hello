@@ -43,8 +43,6 @@
         <el-col :span="6">
           <el-form-item label="金额">
             <el-input v-model="form.sum" size="small" clearable style="width:150px;" placeholder="特殊项金额"></el-input>
-            &nbsp;
-            <span>{{formatSum}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="6">
