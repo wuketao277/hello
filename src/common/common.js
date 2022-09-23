@@ -54,7 +54,8 @@ export default {
     {code: 'BCM', name: '交通银行'},
     {code: 'PAB', name: '平安银行'},
     {code: 'CEB', name: '光大银行'},
-    {code: 'BOC', name: '中国银行'}
+    {code: 'BOC', name: '中国银行'},
+    {code: 'SPDB', name: '浦发银行'}
   ],
   // 性别
   genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}]
