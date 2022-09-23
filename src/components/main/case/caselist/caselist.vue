@@ -20,7 +20,7 @@
       <el-form @submit.native.prevent>
         <el-row :gutter="40">
           <el-col :span="8">
-            <el-form-item label="" style="margin-bottom:0px;">
+            <el-form-item label style="margin-bottom:0px;">
               <el-input
                 v-model="search"
                 autocomplete="off"
@@ -52,6 +52,7 @@
         :highlight-current-row="true"
         style="width: 100%"
         @current-change="rowChange"
+        @row-dblclick="handleRowDblClick"
       >
         <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
         <el-table-column prop="id" width="100" label="职位id" show-overflow-tooltip></el-table-column>

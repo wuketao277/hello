@@ -65,6 +65,7 @@
         :page-size="table.pageable.pageSize"
         @size-change="sizeChange"
         @current-change="currentChange"
+        @row-dblclick="handleRowDblClick"
         @prev-click="prevClick"
         @next-click="nextClick"
       ></el-pagination>

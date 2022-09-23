@@ -55,7 +55,12 @@ export default {
     {code: 'PAB', name: '平安银行'},
     {code: 'CEB', name: '光大银行'},
     {code: 'BOC', name: '中国银行'},
-    {code: 'SPDB', name: '浦发银行'}
+    {code: 'SPDB', name: '浦发银行'},
+    {code: 'CITIC', name: '中信银行'},
+    {code: 'BOS', name: '上海银行'},
+    {code: 'CMBC', name: '民生银行'},
+    {code: 'CIB', name: '兴业银行'},
+    {code: 'HB', name: '华夏银行'}
   ],
   // 性别
   genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}]

@@ -22,6 +22,10 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.detail()
+    },
     // 日期格式化
     formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
@@ -30,7 +34,7 @@ export default {
       return ''
     },
     // 添加用户
-    addUser () {
+    add () {
       this.$router.push({
         path: '/user/user'
       })
@@ -48,7 +52,7 @@ export default {
       return true
     },
     // 查看用户
-    detailUser () {
+    detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/user/user',
@@ -60,7 +64,7 @@ export default {
       }
     },
     // 修改用户
-    modifyUser () {
+    modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/user/user',

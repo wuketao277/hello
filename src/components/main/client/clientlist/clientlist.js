@@ -23,6 +23,10 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.detail()
+    },
     rowStyle (row, rowIndex) {
       if (this.currentRow === null) {
         return 'unselectedRow'

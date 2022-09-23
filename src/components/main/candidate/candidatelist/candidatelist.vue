@@ -18,6 +18,7 @@
     <el-table
       :data="table.content"
       @current-change="handleCurrentChange"
+      @row-dblclick="handleRowDblClick"
       :border="true"
       :highlight-current-row="true"
       style="width: 100%"

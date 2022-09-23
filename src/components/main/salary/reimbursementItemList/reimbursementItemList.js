@@ -22,6 +22,10 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.detail()
+    },
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary') {

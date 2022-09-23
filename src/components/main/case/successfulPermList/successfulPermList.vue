@@ -24,6 +24,7 @@
         :highlight-current-row="true"
         style="width: 100%"
         @current-change="rowChange"
+        @row-dblclick="handleRowDblClick"
       >
         <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientName" width="120" label="客户" show-overflow-tooltip></el-table-column>

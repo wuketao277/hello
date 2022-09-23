@@ -25,6 +25,10 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.detail()
+    },
     // 查看
     detail () {
       if (this.checkSelectRow()) {

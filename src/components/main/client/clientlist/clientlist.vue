@@ -9,8 +9,14 @@
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修 改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
-        <el-form-item label="" style="margin-bottom:0px;">
-          <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。" clearable></el-input>
+        <el-form-item label style="margin-bottom:0px;">
+          <el-input
+            v-model="search"
+            autocomplete="off"
+            @keyup.enter.native="sureSearchDialog"
+            placeholder="输入关键字后，回车即可搜索。"
+            clearable
+          ></el-input>
         </el-form-item>
       </el-form>
     </div>
@@ -23,6 +29,7 @@
         :row-class-name="rowStyle"
         style="width: 100%"
         @current-change="rowChange"
+        @row-dblclick="handleRowDblClick"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
         <el-table-column prop="chineseName" label="中文名称"></el-table-column>
