@@ -22,6 +22,13 @@ export default {
     }
   },
   methods: {
+    // 日期格式化
+    formatDate (row, column, cellvalue, index) {
+      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
+        return cellvalue.substr(0, 10)
+      }
+      return ''
+    },
     // 添加用户
     addUser () {
       this.$router.push({

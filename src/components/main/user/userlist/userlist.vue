@@ -14,22 +14,7 @@
           <el-input v-model="search" autocomplete="off" @keyup.enter.native="sureSearchDialog" placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" size="small" icon="el-icon-search" v-if="showSearchResult" @click="query">取消搜索</el-button>
     </div>
-    <el-form
-      v-if="search.show"
-      style="border:1px solid black;"
-      ref="form"
-      :model="search"
-      label-width="80px"
-    >
-      <el-form-item label="登录名">
-        <el-input v-model="search.ussername"></el-input>
-      </el-form-item>
-      <el-form-item label="用户姓名">
-        <el-input v-model="search.realname"></el-input>
-      </el-form-item>
-    </el-form>
     <el-table
       :data="table.content"
       @current-change="handleCurrentChange"
@@ -42,6 +27,9 @@
       <el-table-column prop="username" label="登录名"></el-table-column>
       <el-table-column prop="realname" label="用户姓名"></el-table-column>
       <el-table-column prop="enabledName" label="状态"></el-table-column>
+      <el-table-column prop="birthday" label="生日" :formatter="formatDate"></el-table-column>
+      <el-table-column prop="phoneNo" label="电话"></el-table-column>
+      <el-table-column prop="email" label="邮箱"></el-table-column>
     </el-table>
     <el-pagination
       background
