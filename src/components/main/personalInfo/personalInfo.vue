@@ -123,7 +123,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="开户行名称">
-                <el-input v-model="extInfoForm.cardBankName" clearable></el-input>
+                <el-input v-model="extInfoForm.cardBankName" clearable placeholder="例如：建设银行上海浦东崮山路支行"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -140,7 +140,7 @@
             </el-col>
             <el-col :span="16">
               <el-form-item label="教育背景">
-                <el-input v-model="extInfoForm.educationBackground" clearable></el-input>
+                <el-input v-model="extInfoForm.educationBackground" clearable  placeholder="例如：北京服装学院 自动化专业 2002.09~2006.07"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
