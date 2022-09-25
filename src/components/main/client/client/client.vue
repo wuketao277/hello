@@ -39,8 +39,22 @@
       </el-row>
       <el-row :gutter="12">
         <el-col>
-          <el-form-item label="备注">
+          <el-form-item label="客户备注">
             <el-input type="textarea" v-model="form.remark" :autosize="{ minRows: 2, maxRows: 30}" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="发票联系信息">
+            <el-input type="textarea" v-model="form.invoiceContact" :autosize="{ minRows: 2, maxRows: 30}" clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="发票备注">
+            <el-input type="textarea" v-model="form.invoiceRemark" :autosize="{ minRows: 2, maxRows: 30}" clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>

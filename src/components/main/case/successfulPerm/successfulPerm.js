@@ -289,7 +289,6 @@ export default {
     },
     // 删除“选择顾问”
     deleteConsultant (val) {
-      debugger
       if (val === '1') {
         this.form.consultantId = ''
         this.form.consultantUserName = ''

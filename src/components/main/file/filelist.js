@@ -34,7 +34,6 @@ export default {
     },
     // 查询后台数据
     query () {
-      debugger
       window.localStorage['filelist.search'] = this.search
       window.localStorage['filelist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['filelist.pageSize'] = this.table.pageable.pageSize

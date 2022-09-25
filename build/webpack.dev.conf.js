@@ -44,7 +44,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         ,"/resource/**","/candidate/**","/comment/**","/security/**","/successfulPerm/**"
         ,"/salarySpecialItem/**","/salary/**","/reimbursement/**","/report/**"
         ,"/client/**","/clientlinkman/**","/case/**","/candidateForCase/**","/uploadFile/**"
-        ,"/training/**"],
+        ,"/training/**","/invoice/**"],
       target: "http://localhost:8000"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin
