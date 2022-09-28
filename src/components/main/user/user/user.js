@@ -10,10 +10,15 @@ export default {
         realName: '',
         userName: '',
         password: '',
-        salarybase: '',
+        salarybase: 0,
         coverbase: false,
-        enabled: false
+        enabled: false,
+        checkKPI: true,
+        roles: [],
+        remainHolidayThing: 0,
+        remainHolidayIll: 0
       },
+      roleList: ['AM', 'RECRUITER'],
       rules: {},
       // 工资卡银行
       banks: commonJs.banks,
@@ -32,13 +37,26 @@ export default {
         this.form.realname = ''
         this.form.username = ''
         this.form.password = ''
-        this.form.salarybase = ''
+        this.form.salarybase = 0
         this.form.coverbase = false
         this.form.enabled = false
+        this.form.checkKPI = true
+        this.form.roles = []
+        this.form.remainHolidayThing = 0
+        this.form.remainHolidayIll = 0
       }
     },
     // 保存
     save () {
+      debugger
+      if (this.form.salarybase === '' || this.form.salarybase === null) {
+        this.$message({
+          message: '底薪不能为空！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
       this.$refs['form'].validate((valid) => {
         if (valid) {
           // 如果校验通过就调用后端接口
@@ -76,6 +94,7 @@ export default {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
+      debugger
       this.mode = this.$route.query.mode
       this.form = this.$route.query.user
     }

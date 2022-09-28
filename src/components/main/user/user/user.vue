@@ -35,7 +35,7 @@
           </el-form-item>
         </el-col>
         <el-col span="6">
-          <el-form-item label="底薪">
+          <el-form-item label="底薪" required>
             <el-input v-model="form.salarybase" style="width:100px;"></el-input>
             <span>元</span>
             &nbsp;&nbsp;
@@ -86,6 +86,36 @@
               style="width:100%"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="KPI">
+            <el-switch
+              v-model="form.checkKPI"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="考核"
+              inactive-text="不考核"
+            ></el-switch>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="角色集合">
+            <el-checkbox-group v-model="form.roles">
+              <el-checkbox v-for="role in roleList" :label="role" :key="role">{{role}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </el-col>
+        <el-col span="6">
+          <el-form-item label="剩余年假">
+            <el-input v-model="form.remainHolidayThing" style="width:100%;"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col span="6">
+          <el-form-item label="剩余病假">
+            <el-input v-model="form.remainHolidayIll" style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
       </el-row>

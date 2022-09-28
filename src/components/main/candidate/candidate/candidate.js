@@ -38,7 +38,10 @@ export default {
         currentMoney: '',
         futureMoney: '',
         englishLevel: '',
-        remark: ''
+        remark: '',
+        createUserId: null,
+        createUserName: null,
+        createRealName: null
       },
       phaseOptions: [
         {value: 'SL', lable: 'SL'},
@@ -319,6 +322,9 @@ export default {
         this.form.futureMoney = ''
         this.form.englishLevel = ''
         this.form.remark = ''
+        this.form.createUserId = null
+        this.form.createUserName = null
+        this.form.createRealName = null
       }
     },
     // 保存新闻
@@ -331,6 +337,9 @@ export default {
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
                 this.form.id = res.data.id
+                this.form.createUserId = res.data.createUserId
+                this.form.createUserName = res.data.createUserName
+                this.form.createRealName = res.data.createRealName
                 if (this.resume.length === 0) {
                   // 如果简历栏中没有内容，就直接返回保存成功
                   this.$message({

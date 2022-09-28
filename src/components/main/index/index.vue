@@ -84,6 +84,7 @@
             </template>
             <el-menu-item index="/mynews/mynewslist">我的新闻</el-menu-item>
             <el-menu-item index="/mytask/mytasklist">我的任务</el-menu-item>
+            <el-menu-item index="/holiday/holidaylist">我的假期</el-menu-item>
             <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
           <el-submenu index="/config">

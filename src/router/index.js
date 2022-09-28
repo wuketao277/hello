@@ -14,6 +14,8 @@ import MyNews from '@/components/main/mynews/mynews/mynews.vue'
 import MyTask from '@/components/main/mytask/mytask/mytask.vue'
 import MyTaskList from '@/components/main/mytask/mytasklist/mytasklist.vue'
 import MyPlan from '@/components/main/my/myplan/myplan.vue'
+import HolidayList from '@/components/main/my/holiday/holidaylist/holidaylist.vue'
+import Holiday from '@/components/main/my/holiday/holiday/holiday.vue'
 import Role from '@/components/main/role/role/role.vue'
 import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 import ClientLinkMan from '@/components/main/client/clientlinkman/clientlinkman.vue'
@@ -258,6 +260,18 @@ const router = new Router({
           path: '/training/studyrecord',
           name: 'studyrecord',
           component: StudyRecord
+        },
+        {
+          // 假期记录
+          path: '/holiday/holiday',
+          name: 'holiday',
+          component: Holiday
+        },
+        {
+          // 假期记录列表
+          path: '/holiday/holidaylist',
+          name: 'holidaylist',
+          component: HolidayList
         }
       ]
     },

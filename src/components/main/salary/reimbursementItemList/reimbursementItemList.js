@@ -4,24 +4,43 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
-      // 显示搜索结果
-      showSearchResult: false,
       table: {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: this.getPageNumber(),
+          pageSize: this.getPageSize()
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: ''
+      search: this.getSearchContent()
     }
   },
   methods: {
+    getSearchContent () {
+      if (typeof (window.localStorage['reimbursementItemList.search']) === 'undefined') {
+        return ''
+      } else {
+        return window.localStorage['reimbursementItemList.search']
+      }
+    },
+    getPageNumber () {
+      if (typeof (window.localStorage['reimbursementItemList.pageNumber']) === 'undefined') {
+        return 1
+      } else {
+        return window.localStorage['reimbursementItemList.pageNumber']
+      }
+    },
+    getPageSize () {
+      if (typeof (window.localStorage['reimbursementItemList.pageSize']) === 'undefined') {
+        return 10
+      } else {
+        return window.localStorage['reimbursementItemList.pageSize']
+      }
+    },
     // 表格双击处理
     handleRowDblClick (row, column, event) {
       this.detail()
@@ -100,11 +119,9 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['reimbursementItemList.search'] = this.search
+      window.localStorage['reimbursementItemList.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['reimbursementItemList.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,

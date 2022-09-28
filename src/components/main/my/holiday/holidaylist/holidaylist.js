@@ -1,4 +1,4 @@
-import userApi from '@/api/user'
+import holidayApi from '@/api/holiday'
 
 export default {
   data () {
@@ -7,16 +7,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: this.getPageNumber(),
+          pageSize: this.getPageSize()
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: '',
-      fileList: []
+      search: this.getSearchContent()
     }
   },
   methods: {
@@ -31,10 +30,10 @@ export default {
       }
       return ''
     },
-    // 添加用户
+    // 添加
     add () {
       this.$router.push({
-        path: '/user/user'
+        path: '/holiday/holiday'
       })
     },
     // 检查是否选择了一条记录
@@ -49,26 +48,26 @@ export default {
       }
       return true
     },
-    // 查看用户
+    // 查看
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/user/user',
+          path: '/holiday/holiday',
           query: {
             mode: 'detail',
-            user: this.currentRow
+            holiday: this.currentRow
           }
         })
       }
     },
-    // 修改用户
+    // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/user/user',
+          path: '/holiday/holiday',
           query: {
             mode: 'modify',
-            user: this.currentRow
+            holiday: this.currentRow
           }
         })
       }
@@ -80,7 +79,7 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
-      userApi.queryPage(query).then(res => {
+      holidayApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'
@@ -94,22 +93,6 @@ export default {
     // 处理选中行时间
     handleCurrentChange (val) {
       this.currentRow = val
-    },
-    uploadFileSuccess (response, file, fileList) {
-      if (response.flag) {
-        this.$message({
-          message: '文件' + file.name + '上传成功',
-          type: 'success',
-          showClose: true
-        })
-        // 刷新列表
-        this.query()
-      } else {
-        this.$message({
-          message: response.msg,
-          showClose: true
-        })
-      }
     },
     handlePreview () {},
     handleRemove () {},
@@ -133,12 +116,32 @@ export default {
     switchSearchDialog () {
       this.$refs['search'].focus()
     },
-    // 搜索对话框，确定按钮
-    sureSearchDialog () {
+    // 按照条件搜索
+    searchCandidate () {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
-      this.search = ''
+    },
+    getSearchContent () {
+      if (typeof (window.localStorage['holidaylist.search']) === 'undefined') {
+        return ''
+      } else {
+        return window.localStorage['holidaylist.search']
+      }
+    },
+    getPageNumber () {
+      if (typeof (window.localStorage['holidaylist.pageNumber']) === 'undefined') {
+        return 1
+      } else {
+        return window.localStorage['holidaylist.pageNumber']
+      }
+    },
+    getPageSize () {
+      if (typeof (window.localStorage['holidaylist.pageSize']) === 'undefined') {
+        return 10
+      } else {
+        return window.localStorage['holidaylist.pageSize']
+      }
     }
   },
   computed: {},
