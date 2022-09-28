@@ -25,8 +25,6 @@
         <el-col :span="6">
           <el-form-item label="申请人">{{form.userName}}</el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="审批状态" v-if="showControl('approve')">
             <el-select v-model="form.approveStatus" placeholder="请选择" style="width:100%;" clearable>
@@ -39,6 +37,8 @@
             </el-select>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="请假日期">
             <el-date-picker
