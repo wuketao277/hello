@@ -1,4 +1,9 @@
 export default {
+  // 获取当前用户名
+  getUserName () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.username
+  },
   // 是否拥有某个角色
   hasRole (role) {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])

@@ -206,8 +206,11 @@
             <el-col :span="2">
               <span>评论阶段</span>
             </el-col>
-            <el-col :span="16">
+            <el-col :span="15">
               <span>评论内容</span>
+            </el-col>
+            <el-col :span="1">
+              <span>操作</span>
             </el-col>
           </el-row>
           <el-row v-for="comment in comments" :key="comment" style="text-align:left;">
@@ -220,8 +223,23 @@
             <el-col :span="2">
               <div class="grid-content bg-purple">{{comment.phase}}</div>
             </el-col>
-            <el-col :span="16">
-              <div class="grid-content bg-purple">{{comment.content}}</div>
+            <el-col :span="15">
+              <el-input
+                type="textarea"
+                v-model="comment.content"
+                :autosize="{ minRows: 1, maxRows: 30}"
+                readonly
+              ></el-input>
+            </el-col>
+            <el-col :span="1">
+              <el-button
+                size="mini"
+                type="danger"
+                icon="el-icon-delete"
+                circle
+                v-if="showCommentDeleteButton(comment.username)"
+                @click="deleteComment(comment.id)"
+              ></el-button>
             </el-col>
           </el-row>
         </div>
@@ -234,7 +252,7 @@
           style="text-align:left;"
         >
           <el-row :gutter="20">
-            <el-col :span="8">
+            <el-col :span="6">
               <el-form-item
                 label="评论阶段"
                 prop="phase"
@@ -250,13 +268,17 @@
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :span="16">
+            <el-col :span="18">
               <el-form-item
                 label="评论内容"
                 prop="content"
                 v-show="(mode === 'add' || mode === 'modify')"
               >
-                <el-input type="textarea" v-model="newComment.content"></el-input>
+                <el-input
+                  type="textarea"
+                  v-model="newComment.content"
+                  :autosize="{ minRows: 1, maxRows: 30}"
+                ></el-input>
               </el-form-item>
             </el-col>
           </el-row>

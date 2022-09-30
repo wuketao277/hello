@@ -6,6 +6,9 @@ export default {
   save (params) {
     return axios.post('/comment/save', params)
   },
+  deleteById (id) {
+    return axios.get('/comment/deleteById?id=' + id)
+  },
   // 查找后台数据
   findAllByCandidateId (params) {
     return axios.get('/comment/findAllByCandidateId', {

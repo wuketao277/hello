@@ -19,6 +19,11 @@ export default {
     }
   },
   methods: {
+    // 搜索对话框，确定按钮
+    sureSearchDialog () {
+      this.table.pageable.pageNumber = 1
+      this.query()
+    },
     // 表格双击处理
     handleRowDblClick (row, column, event) {
       this.detail()

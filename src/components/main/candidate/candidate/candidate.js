@@ -166,6 +166,38 @@ export default {
     }
   },
   methods: {
+    showCommentDeleteButton (username) {
+      return commonJS.hasRole('admin') || commonJS.getUserName() === username
+    },
+    // 删除评论
+    deleteComment (id) {
+      this.$confirm('确认要评论吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(() => {
+          // 调用接口
+          commentApi.deleteById(id).then(res => {
+            if (res.status === 200) {
+              // 删除成功
+              this.$message({
+                message: '删除成功！',
+                type: 'success',
+                showClose: true
+              })
+              // 重新查询全部评论
+              this.queryComment()
+            } else {
+              this.$message({
+                message: '保存异常，请联系管理员！',
+                type: 'warning',
+                showClose: true
+              })
+            }
+          })
+        })
+    },
     // 显示控制
     showControl (key) {
       if (key === 'deleteRecommend') {
