@@ -41,36 +41,42 @@
         size="small"
         @click="showLoginName=!showLoginName"
         v-if="!showLoginName"
+        v-show="showControl('loginName')"
       >显示Login Name</el-button>
       <el-button
         type="primary"
         size="small"
         @click="showLoginName=!showLoginName"
         v-if="showLoginName"
+        v-show="showControl('loginName')"
       >隐藏Login Name</el-button>
       <el-button
         type="primary"
         size="small"
         @click="showWorkingDays=!showWorkingDays"
         v-if="!showWorkingDays"
+        v-show="showControl('workingDays')"
       >显示Working Days</el-button>
       <el-button
         type="primary"
         size="small"
         @click="showWorkingDays=!showWorkingDays"
         v-if="showWorkingDays"
+        v-show="showControl('workingDays')"
       >隐藏Working Days</el-button>
       <el-button
         type="primary"
         size="small"
         @click="showHistoryDebt=!showHistoryDebt"
         v-if="!showHistoryDebt"
+        v-show="showControl('historyDebt')"
       >显示History Debt</el-button>
       <el-button
         type="primary"
         size="small"
         @click="showHistoryDebt=!showHistoryDebt"
         v-if="showHistoryDebt"
+        v-show="showControl('historyDebt')"
       >隐藏History Debt</el-button>
     </div>
     <div v-show="showControl('statistics')" style="text-align:left;">

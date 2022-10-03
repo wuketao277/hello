@@ -10,6 +10,7 @@ export default {
         realName: '',
         userName: '',
         password: '',
+        jobType: 'FULLTIME',
         salarybase: 0,
         coverbase: false,
         enabled: false,
@@ -37,6 +38,7 @@ export default {
         this.form.realname = ''
         this.form.username = ''
         this.form.password = ''
+        this.form.jobType = 'FULLTIME'
         this.form.salarybase = 0
         this.form.coverbase = false
         this.form.enabled = false
@@ -48,7 +50,6 @@ export default {
     },
     // 保存
     save () {
-      debugger
       if (this.form.salarybase === '' || this.form.salarybase === null) {
         this.$message({
           message: '底薪不能为空！',

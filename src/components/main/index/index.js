@@ -10,9 +10,48 @@ export default {
     }
   },
   methods: {
+    // 通过工作类型控制显示
+    jobTypeControlShow (url) {
+      let jobType = commonJS.getJobType()
+      if (url === '/' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+        return true
+      }
+      if (url === '/client/clientlist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+        return true
+      }
+      if (url === '/case/caselist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+        return true
+      }
+      if (url === '/candidate/candidatelist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+        return true
+      }
+      if (url === '/case/successfulPermList' && jobType === 'FULLTIME') {
+        return true
+      }
+      if (url === '/file/filelist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+        return true
+      }
+      if (url === '/salary/salarySpecialItemList' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+        return true
+      }
+      if (url === '/my' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'CONSULTANT')) {
+        return true
+      }
+      if (url === '/mynews/mynewslist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+        return true
+      }
+      if (url === '/mytask/mytasklist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+        return true
+      }
+      if (url === '/holiday/holidaylist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'CONSULTANT')) {
+        return true
+      }
+      return false
+    },
     // 菜单显示控制
     showControl (url) {
-      if (url === '/user/userlist' || url === '/salary/salarySpecialItem' || url === '/report' || url === '/salary/invoiceList') {
+      if (url === '/user/userlist' || url === '/salary/salarySpecialItem' ||
+        url === '/report' || url === '/salary/invoiceList' || url === '/training') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的菜单不需要角色

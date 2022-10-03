@@ -1,4 +1,9 @@
 export default {
+  // 获取当前用户工作类型
+  getJobType () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.jobType
+  },
   // 获取当前用户名
   getUserName () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])

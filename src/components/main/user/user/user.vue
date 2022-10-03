@@ -20,9 +20,7 @@
     >
       <el-row :gutter="12">
         <el-col span="6">
-          <el-form-item label="序号">
-            <el-input v-model="form.id" readonly></el-input>
-          </el-form-item>
+          <el-form-item label="序号">{{form.id}}</el-form-item>
         </el-col>
         <el-col span="6">
           <el-form-item label="姓名">
@@ -40,6 +38,23 @@
             <span>元</span>
             &nbsp;&nbsp;
             <span>{{formatSalarybase}}</span>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="12">
+          <el-form-item label="工作类型">
+            <el-radio v-model="form.jobType" label="FULLTIME">全职</el-radio>
+            <el-radio v-model="form.jobType" label="PARTTIME">兼职</el-radio>
+            <el-radio v-model="form.jobType" label="INTERN">实习</el-radio>
+            <el-radio v-model="form.jobType" label="CONSULTANT">外包</el-radio>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="角色集合">
+            <el-checkbox-group v-model="form.roles">
+              <el-checkbox v-for="role in roleList" :label="role" :key="role">{{role}}</el-checkbox>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
       </el-row>
@@ -99,13 +114,6 @@
               active-text="考核"
               inactive-text="不考核"
             ></el-switch>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="角色集合">
-            <el-checkbox-group v-model="form.roles">
-              <el-checkbox v-for="role in roleList" :label="role" :key="role">{{role}}</el-checkbox>
-            </el-checkbox-group>
           </el-form-item>
         </el-col>
         <el-col span="6">

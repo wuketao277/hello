@@ -55,7 +55,9 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'generateSalary' || key === 'search' || key === 'modifySalary' || key === 'statistics') {
+      if (key === 'generateSalary' || key === 'search' ||
+        key === 'modifySalary' || key === 'statistics' ||
+        key === 'loginName' || key === 'workingDays' || key === 'historyDebt') {
         return commonJS.hasRole('admin')
       }
       // 没有特殊要求的不需要角色
