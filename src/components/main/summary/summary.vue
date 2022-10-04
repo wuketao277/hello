@@ -1,7 +1,8 @@
 <template>
   <div style="height:100%;">
     <div class="blockdiv2">
-      <el-tabs type="border-card">
+      <h3 v-if="!showControl()">欢迎使用Hello Applicant系统</h3>
+      <el-tabs type="border-card" v-if="showControl()">
         <el-tab-pane label="关注职位" style="text-align:left;">
           <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
             <el-button

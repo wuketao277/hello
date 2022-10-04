@@ -99,7 +99,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
     },
     // 编辑候选人
@@ -220,7 +220,7 @@ export default {
         })
         return
       }
-      if (this.form.approveStatus === 'approved' && !commonJS.hasRole('admin')) {
+      if (this.form.approveStatus === 'approved' && !commonJS.isAdmin()) {
         this.$message({
           message: '审批通过后，只有管理员可以修改！',
           type: 'warning',

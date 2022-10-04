@@ -1,4 +1,5 @@
 import clientApi from '@/api/client'
+import commonApi from '@/common/common'
 
 export default {
   data () {
@@ -23,6 +24,14 @@ export default {
     }
   },
   methods: {
+    // 显示控制
+    showControl (val) {
+      debugger
+      if (val === 'addClient' || val === 'modifyClient') {
+        return commonApi.isFullTimeJobType() && commonApi.isAdmin()
+      }
+      return false
+    },
     // 表格双击处理
     handleRowDblClick (row, column, event) {
       this.detail()

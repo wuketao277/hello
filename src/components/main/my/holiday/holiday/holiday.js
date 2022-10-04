@@ -25,7 +25,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'approve') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色
       return true
@@ -52,7 +52,7 @@ export default {
     // 保存
     save () {
       // 非管理员在审批后的请假不能再次修改
-      if (!commonJS.hasRole('admin') && (this.form.approveStatus === 'APPROVED' || this.form.approveStatus === 'DENY')) {
+      if (!commonJS.isAdmin() && (this.form.approveStatus === 'APPROVED' || this.form.approveStatus === 'DENY')) {
         this.$message({
           message: '假期已经被审批，不能修改！',
           type: 'warning',

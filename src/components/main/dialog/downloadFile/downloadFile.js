@@ -9,7 +9,7 @@ export default {
   methods: {
     // 删除按钮显示控制
     showControl () {
-      return commonJS.hasRole('admin')
+      return commonJS.isAdmin()
     },
     // 下载文件
     downloadFile (file) {

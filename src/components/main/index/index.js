@@ -52,7 +52,7 @@ export default {
     showControl (url) {
       if (url === '/user/userlist' || url === '/salary/salarySpecialItem' ||
         url === '/report' || url === '/salary/invoiceList' || url === '/training') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
       // 没有特殊要求的菜单不需要角色
       return true

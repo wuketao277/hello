@@ -48,7 +48,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色
       return true

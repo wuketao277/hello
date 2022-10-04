@@ -2,6 +2,7 @@ import myTaskApi from '@/api/myTask'
 import myNewsApi from '@/api/mynews'
 import commentApi from '@/api/comment'
 import caseApi from '@/api/case'
+import commonJs from '@/common/common'
 
 export default {
   data () {
@@ -19,6 +20,10 @@ export default {
     }
   },
   methods: {
+    // 显示控制
+    showControl () {
+      return !commonJs.isConsultantJobType()
+    },
     rowChange () {},
     // 跳转到客户
     toClient (id) {

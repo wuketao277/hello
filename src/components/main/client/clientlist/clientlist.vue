@@ -5,8 +5,8 @@
       <el-breadcrumb-item>客户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新 增</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修 改</el-button>
+      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add" v-if="showControl('addClient')">新 增</el-button>
+      <el-button type="warning" size="small" icon="el-icon-edit" @click="modify" v-if="showControl('modifyClient')">修 改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label style="margin-bottom:0px;">

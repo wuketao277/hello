@@ -1,4 +1,5 @@
 import userApi from '@/api/user'
+import commonApi from '@/common/common'
 
 export default {
   data () {
@@ -7,15 +8,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: commonApi.getPageNumber('userlist.pageNumber'),
+          pageSize: commonApi.getPageSize('userlist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: '',
+      search: commonApi.getSearchContent('userlist.search'),
       fileList: []
     }
   },
@@ -75,6 +76,9 @@ export default {
     },
     // 查询后台数据
     query () {
+      window.localStorage['userlist.search'] = this.search
+      window.localStorage['userlist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['userlist.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,

@@ -24,7 +24,7 @@ export default {
   methods: {
     // 显示控制
     showControl () {
-      return commonJS.hasRole('admin')
+      return commonJS.isAdmin()
     },
     // 添加新闻
     addNews () {

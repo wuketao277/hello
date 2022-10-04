@@ -58,7 +58,7 @@ export default {
       if (key === 'generateSalary' || key === 'search' ||
         key === 'modifySalary' || key === 'statistics' ||
         key === 'loginName' || key === 'workingDays' || key === 'historyDebt') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色
       return true

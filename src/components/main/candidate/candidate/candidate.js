@@ -167,7 +167,7 @@ export default {
   },
   methods: {
     showCommentDeleteButton (username) {
-      return commonJS.hasRole('admin') || commonJS.getUserName() === username
+      return commonJS.isAdmin() || commonJS.getUserName() === username
     },
     // 删除评论
     deleteComment (id) {
@@ -201,7 +201,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'deleteRecommend') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色
       return true

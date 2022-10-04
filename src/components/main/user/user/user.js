@@ -19,7 +19,7 @@ export default {
         remainHolidayThing: 0,
         remainHolidayIll: 0
       },
-      roleList: ['AM', 'RECRUITER'],
+      roleList: ['ADMIN', 'AM', 'RECRUITER'],
       rules: {},
       // 工资卡银行
       banks: commonJs.banks,

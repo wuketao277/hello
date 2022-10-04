@@ -65,7 +65,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate') {
-        return commonJS.hasRole('admin')
+        return commonJS.isAdmin()
       }
     },
     // 取消

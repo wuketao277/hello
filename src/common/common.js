@@ -1,4 +1,29 @@
 export default {
+  // 是否拥有admin角色
+  isAdmin () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.roles.includes('ADMIN', 0)
+  },
+  // 是否拥有AM角色
+  isAM () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.roles.includes('AM', 0)
+  },
+  // 是否拥有RECRUITER角色
+  isRECRUITER () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.roles.includes('RECRUITER', 0)
+  },
+  // 是否是全职员工
+  isFullTimeJobType () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.jobType === 'FULLTIME'
+  },
+  // 是否是外包员工
+  isConsultantJobType () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.jobType === 'CONSULTANT'
+  },
   // 获取当前用户工作类型
   getJobType () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
