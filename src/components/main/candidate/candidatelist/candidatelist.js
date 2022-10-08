@@ -223,7 +223,6 @@ export default {
     // 按照条件搜索
     searchCandidate () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
     },
     getSearchContent () {

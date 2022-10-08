@@ -150,7 +150,7 @@
     <el-tabs type="border-card">
       <el-tab-pane label="推荐职位">
         <div class="toolbar" v-show="(mode === 'add' || mode === 'modify')">
-          <el-tooltip class="item" effect="dark" content="将后续人推荐到职位" placement="top">
+          <el-tooltip class="item" effect="dark" content="将候选人推荐到职位" placement="top">
             <el-button
               type="primary"
               size="small"
@@ -163,7 +163,6 @@
           :data="candidateForCaseList"
           :border="true"
           style="width: 100%"
-          @current-change="rowChange"
         >
           <el-table-column type="index" width="50" label="序号"></el-table-column>
           <el-table-column width="320" label="操作">

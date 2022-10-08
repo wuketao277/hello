@@ -13,7 +13,7 @@ export default {
   saveTaskToSelf (params) {
     return axios.post('/myTask/saveTaskToSelf', params)
   },
-  // 通过后续人id查询
+  // 通过候选人id查询
   findByRelativeCandidateId (params) {
     return axios.get('/myTask/findByRelativeCandidateId?relativeCandidateId=' + params)
   },

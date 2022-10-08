@@ -13,6 +13,10 @@ export default {
   findById (params) {
     return axios.get('/candidate/findById', {params: params})
   },
+  // 通过主键查找候选人信息
+  isExist (params) {
+    return axios.get('/candidate/isExist?phoneNo=' + params)
+  },
   // 通过候选人Id，获取简历信息
   findResumeByCandidateId (params) {
     return axios.get('/candidate/findResumeByCandidateId', {params: params})

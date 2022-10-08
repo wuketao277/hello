@@ -1,5 +1,5 @@
 import clientApi from '@/api/client'
-import commonApi from '@/common/common'
+import commonJs from '@/common/common'
 
 export default {
   data () {
@@ -12,15 +12,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: commonJs.getPageNumber('clientlist.pageNumber'),
+          pageSize: commonJs.getPageSize('clientlist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: ''
+      search: commonJs.getSearchContent('clientlist.search')
     }
   },
   methods: {
@@ -28,7 +28,7 @@ export default {
     showControl (val) {
       debugger
       if (val === 'addClient' || val === 'modifyClient') {
-        return commonApi.isFullTimeJobType() && commonApi.isAdmin()
+        return commonJs.isFullTimeJobType() && commonJs.isAdmin()
       }
       return false
     },
@@ -90,11 +90,9 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['clientlist.search'] = this.search
+      window.localStorage['clientlist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['clientlist.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -138,7 +136,6 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
     }
   },

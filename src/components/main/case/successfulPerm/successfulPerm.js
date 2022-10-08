@@ -263,7 +263,7 @@ export default {
     openSelectCandidateDialog () {
       this.selectCandidateDialogShow = true
     },
-    // “选择后续人”对话框返回
+    // “选择候选人”对话框返回
     sureSelectCandidateDialog (val) {
       // 首先关闭对话框
       this.selectCandidateDialogShow = false

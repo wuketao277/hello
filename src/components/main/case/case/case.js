@@ -289,7 +289,7 @@ export default {
     sureSelectCandidateDialog (val) {
       // 首先关闭对话框
       this.selectCandidateDialogShow = false
-      // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的后续人列表中
+      // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的候选人列表中
       let include = false
       for (let index in this.candidateForCaseList) {
         if (this.candidateForCaseList[index].candidateId === val.id) {

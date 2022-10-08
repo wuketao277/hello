@@ -359,43 +359,63 @@ export default {
         this.form.createRealName = null
       }
     },
-    // 保存新闻
+    // 保存候选人-子方法
+    saveCandidate () {
+      // 如果校验通过就调用后端接口
+      candidateApi.save(this.form).then(
+        res => {
+          if (res.status === 200) {
+            // 将从服务端获取的id赋值给前端显示
+            this.form.id = res.data.id
+            this.form.createUserId = res.data.createUserId
+            this.form.createUserName = res.data.createUserName
+            this.form.createRealName = res.data.createRealName
+            if (this.resume.length === 0) {
+              // 如果简历栏中没有内容，就直接返回保存成功
+              this.$message({
+                message: '保存成功！',
+                type: 'success',
+                showClose: true
+              })
+            } else {
+              // 如果简历栏中有内容，就保存简历内容
+              let resumeObj = {'candidateId': this.form.id, 'content': this.resume}
+              candidateApi.saveResume(resumeObj).then(
+                res => {
+                  if (res.status === 200) {
+                    this.$message({
+                      message: '保存成功！',
+                      type: 'success',
+                      showClose: true
+                    })
+                  }
+                }
+              )
+            }
+          }
+        })
+    },
+    // 保存候选人
     save () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          // 如果校验通过就调用后端接口
-          candidateApi.save(this.form).then(
-            res => {
-              if (res.status === 200) {
-                // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
-                this.form.createUserId = res.data.createUserId
-                this.form.createUserName = res.data.createUserName
-                this.form.createRealName = res.data.createRealName
-                if (this.resume.length === 0) {
-                  // 如果简历栏中没有内容，就直接返回保存成功
+          if (this.form.id === null && this.form.phoneNo !== '' && this.form.phoneNo !== null) {
+            candidateApi.isExist(this.form.phoneNo).then(
+              res => {
+                if (res.status === 200 && res.data === true) {
                   this.$message({
-                    message: '保存成功！',
-                    type: 'success',
+                    message: '电话号码已存在！',
+                    type: 'warning',
                     showClose: true
                   })
                 } else {
-                  // 如果简历栏中有内容，就保存简历内容
-                  let resumeObj = {'candidateId': this.form.id, 'content': this.resume}
-                  candidateApi.saveResume(resumeObj).then(
-                    res => {
-                      if (res.status === 200) {
-                        this.$message({
-                          message: '保存成功！',
-                          type: 'success',
-                          showClose: true
-                        })
-                      }
-                    }
-                  )
+                  this.saveCandidate()
                 }
-              }
-            })
+              })
+          } else {
+            // 已存在的候选人，直接保存修改。
+            this.saveCandidate()
+          }
         } else {
           // 如果检查不通过就给出提示
           this.$message({

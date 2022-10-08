@@ -24,7 +24,7 @@
       style="width: 100%"
     >
       <el-table-column type="index" width="50" label="序号"></el-table-column>
-      <el-table-column prop="id" label="后续人id" width="80"></el-table-column>
+      <el-table-column prop="id" label="候选人id" width="80"></el-table-column>
       <el-table-column prop="chineseName" label="中文名称" width="80"></el-table-column>
       <el-table-column prop="englishName" label="英文名称" width="80"></el-table-column>
       <el-table-column prop="phoneNo" label="手机"></el-table-column>
