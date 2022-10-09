@@ -223,12 +223,7 @@
               <div class="grid-content bg-purple">{{comment.phase}}</div>
             </el-col>
             <el-col :span="15">
-              <el-input
-                type="textarea"
-                v-model="comment.content"
-                :autosize="{ minRows: 1, maxRows: 30}"
-                readonly
-              ></el-input>
+              <div class="grid-content bg-purple">{{comment.content}}</div>
             </el-col>
             <el-col :span="1">
               <el-button
