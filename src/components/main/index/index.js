@@ -13,7 +13,7 @@ export default {
     // 通过工作类型控制显示
     jobTypeControlShow (url) {
       let jobType = commonJS.getJobType()
-      if (url === '/' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+      if (url === '/') {
         return true
       }
       if (url === '/client/clientlist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {

@@ -1,14 +1,21 @@
 <template>
   <el-container style="height:100%;">
     <el-header
-      style="background-color:#545c64;height:40px;padding:0px;text-align:left;font-size:25px;color:#fff;"
+      style="background-color:#545c64;height:60px;padding:0px;text-align:left;font-size:25px;color:#fff;"
     >
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
-        <img src="/static/Logo-2.png" style="width:80px;height:35px;">
+        <img src="/static/Logo-2.png" style="width:120px;height:55px;">
       </div>
-      <div style="float:right;width:50%;text-align:right;padding-top:4px;padding-right:20px;">
-        <span>Hi {{username}}</span>
+      <div style="float:left;height:100%;text-align:left;padding-left:20px;padding-top:20px;">
+        <span>海罗人才</span>
+      </div>
+      <div style="float:right;width:40px;margin-top:10px;">
         <el-button size="mini" title="退出系统" @click="logout" icon="el-icon-switch-button" circle></el-button>
+      </div>
+      <div
+        style="float:right;width:400px;text-align:right;padding-top:8px;padding-right:10px;font-size:35px;"
+      >
+        <span>Hi {{username}}</span>
       </div>
     </el-header>
     <el-container>
