@@ -1,9 +1,9 @@
 <template>
   <div style="height:100%;">
     <div class="blockdiv2">
-      <h3 v-if="!showControl()">欢迎使用Hello Applicant系统</h3>
-      <el-tabs type="border-card" v-if="showControl()">
-        <el-tab-pane label="关注职位" style="text-align:left;">
+      <h3 v-if="!showControl('/')">欢迎使用Hello Applicant系统</h3>
+      <el-tabs type="border-card" v-if="showControl('/')">
+        <el-tab-pane label="关注职位" style="text-align:left;" v-if="showControl('/focus')">
           <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
             <el-button
               type="text"
@@ -57,7 +57,7 @@
             </div>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="对接职位">
+        <el-tab-pane label="对接职位" v-if="showControl('/cw')">
           <div v-for="(client,index) in cwCaseArray" :key="index">
             <el-button
               type="text"
@@ -111,61 +111,37 @@
             </div>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="新闻与任务">
-          <div class="blockdiv">
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>我的新闻</span>
-                <el-button
-                  size="mini"
-                  icon="el-icon-edit"
-                  circle
-                  @click="openView('/mynews/mynewslist')"
-                ></el-button>
-              </div>
-              <div v-for="(myNews,index) in myNewsList" :key="index">
-                <el-row style="padding-bottom:5px;">
-                  <el-col :span="20">{{myNews.title}}</el-col>
-                  <el-col :span="4">
-                    <el-button
-                      type="success"
-                      size="mini"
-                      icon="el-icon-circle-check"
-                      @click="viewMyNewsDetail(myNews)"
-                    >查看</el-button>
-                  </el-col>
-                </el-row>
-              </div>
-            </el-card>
-          </div>
-          <div class="blockdiv">
-            <el-card class="box-card">
-              <div slot="header" class="clearfix">
-                <span>我的任务</span>
-                <el-button
-                  size="mini"
-                  icon="el-icon-edit"
-                  circle
-                  @click="openView('/mytask/mytasklist')"
-                ></el-button>
-              </div>
-              <div v-for="(task,index) in myTasks" :key="index">
-                <el-row style="padding-bottom:5px;">
-                  <el-col :span="20">{{task.taskTitle}}</el-col>
-                  <el-col :span="4">
-                    <el-button
-                      type="success"
-                      size="mini"
-                      icon="el-icon-circle-check"
-                      @click="viewMyTaskDetail(task)"
-                    >查看</el-button>
-                  </el-col>
-                </el-row>
-              </div>
-            </el-card>
-          </div>
+        <el-tab-pane label="我的新闻" v-if="showControl('/news')">
+          <el-table
+            :data="myNewsList"
+            :border="true"
+            :highlight-current-row="true"
+            :stripe="true"
+            :show-header="false"
+            @row-dblclick="handleNewsDblClick"
+            @current-change="newsRowChange"
+            style="width: 100%"
+          >
+            <el-table-column prop="title" label="标题" width="180" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="content" label="内容" show-overflow-tooltip></el-table-column>
+          </el-table>
         </el-tab-pane>
-        <el-tab-pane label="KPI">
+        <el-tab-pane label="我的任务" v-if="showControl('/task')">
+          <el-table
+            :data="myTasks"
+            :border="true"
+            :highlight-current-row="true"
+            :stripe="true"
+            :show-header="false"
+            @row-dblclick="handleTaskDblClick"
+            @current-change="taskRowChange"
+            style="width: 100%"
+          >
+            <el-table-column prop="taskTitle" label="标题" width="180" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="taskContent" label="内容" show-overflow-tooltip></el-table-column>
+          </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="KPI" v-if="showControl('/kpi')">
           <div>
             <el-date-picker
               v-model="KPIDate"
@@ -232,7 +208,7 @@
 </template>
 <style>
 .blockdiv {
-  height: 300px;
+  min-height: 100%;
   width: 49%;
   padding: 2px;
   float: left;

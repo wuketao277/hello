@@ -84,7 +84,7 @@
             >工资特殊项列表</el-menu-item>
             <el-menu-item index="/salary/reimbursementSummaryList">报销发放列表</el-menu-item>
             <el-menu-item index="/salary/reimbursementItemList">报销项详情列表</el-menu-item>
-            <el-menu-item v-if="showControl('/salary/invoiceList')" index="/salary/invoiceList">发票列表</el-menu-item>
+            <el-menu-item v-if="showControl('/salary/invoiceList')" index="/salary/invoiceList">业务发票</el-menu-item>
           </el-submenu>
           <el-submenu index="/my" v-if="jobTypeControlShow('/my')">
             <template slot="title">

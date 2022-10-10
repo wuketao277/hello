@@ -43,6 +43,7 @@
         :data="table.content"
         :border="true"
         :highlight-current-row="true"
+        :stripe="true"
         style="width: 100%"
         @current-change="rowChange"
         @row-dblclick="handleRowDblClick"

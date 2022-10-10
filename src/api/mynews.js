@@ -9,8 +9,8 @@ export default {
   queryNewsPage (params) {
     return axios.get('/mynews/queryNewsPage', {params: params})
   },
-  // 获取前10条新闻
-  findTop10 () {
-    return axios.get('/mynews/findTop10')
+  // 获取前100条新闻
+  findTop100 () {
+    return axios.get('/mynews/findTop100')
   }
 }

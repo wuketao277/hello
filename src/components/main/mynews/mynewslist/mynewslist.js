@@ -10,15 +10,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: commonJS.getPageNumber('mynewslist.pageNumber'),
+          pageSize: commonJS.getPageSize('mynewslist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: ''
+      search: commonJS.getSearchContent('mynewslist.search')
     }
   },
   methods: {
@@ -62,11 +62,9 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['mynewslist.search'] = this.search
+      window.localStorage['mynewslist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['mynewslist.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -106,9 +104,7 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
-      this.search = ''
     }
   },
   computed: {},

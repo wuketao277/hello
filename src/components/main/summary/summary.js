@@ -16,13 +16,22 @@ export default {
       commentsDetailTable: [],
       activeNames: ['1'],
       caseAttention4ClientVOArray: [],
-      cwCaseArray: []
+      cwCaseArray: [],
+      newsCurrentRow: null
     }
   },
   methods: {
     // 显示控制
-    showControl () {
-      return !commonJs.isConsultantJobType()
+    showControl (url) {
+      if (url === '/') {
+        // 主页内容显示给非外包人员
+        return !commonJs.isConsultantJobType()
+      }
+      if (url === '/focus' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi') {
+        // 关注职位显示给非外包人员
+        return !commonJs.isConsultantJobType()
+      }
+      return false
     },
     rowChange () {},
     // 跳转到客户
@@ -151,17 +160,6 @@ export default {
       })
       // }
     },
-    // 查看新闻详情
-    viewMyNewsDetail (myNews) {
-      // 否则就跳转到任务详情页
-      this.$router.push({
-        path: '/mynews/mynews',
-        query: {
-          mode: 'detail',
-          news: myNews
-        }
-      })
-    },
     // 查询当前用户所有职位关注
     queryAllCaseAttention () {
       caseApi.queryAllCaseAttention().then(res => {
@@ -189,6 +187,34 @@ export default {
           })
         }
       })
+    },
+    // 新闻列表行变化
+    newsRowChange (val) {
+      this.newsCurrentRow = val
+    },
+    // 查看新闻详情
+    handleNewsDblClick () {
+      this.$router.push({
+        path: '/mynews/mynews',
+        query: {
+          mode: 'detail',
+          news: this.newsCurrentRow
+        }
+      })
+    },
+    // 任务列表行变化
+    taskRowChange (val) {
+      this.taskCurrentRow = val
+    },
+    // 查看任务详情
+    handleTaskDblClick () {
+      this.$router.push({
+        path: '/mytask/mytask',
+        query: {
+          mode: 'detail',
+          task: this.taskCurrentRow
+        }
+      })
     }
   },
   created () {
@@ -199,7 +225,7 @@ export default {
       }
     })
     // 获取新闻
-    myNewsApi.findTop10().then(res => {
+    myNewsApi.findTop100().then(res => {
       if (res.status === 200) {
         this.myNewsList = res.data
       }

@@ -26,6 +26,7 @@
       @row-dblclick="handleRowDblClick"
       :border="true"
       :highlight-current-row="true"
+      :stripe="true"
       style="width: 100%"
     >
       <el-table-column type="index" width="50" label="序号"></el-table-column>

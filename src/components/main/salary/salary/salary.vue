@@ -72,7 +72,6 @@
         <el-col :span="24">
           <el-form-item label="详情">
             <el-input
-              readonly
               type="textarea"
               :autosize="{ minRows: 1, maxRows: 100}"
               v-model="form.description"

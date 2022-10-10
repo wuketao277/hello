@@ -20,7 +20,7 @@ export default {
       currentRow: null,
       search: commonJS.getSearchContent('salaryList.search'),
       showWorkingDays: true,
-      showHistoryDebt: true,
+      showHistoryDebt: !commonJS.isConsultantJobType(),
       showLoginName: true
     }
   },
