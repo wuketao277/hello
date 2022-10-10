@@ -17,7 +17,8 @@ export default {
       activeNames: ['1'],
       caseAttention4ClientVOArray: [],
       cwCaseArray: [],
-      newsCurrentRow: null
+      newsCurrentRow: null,
+      backgroundImage: require('../../../assets/background-6.jpg')
     }
   },
   methods: {
