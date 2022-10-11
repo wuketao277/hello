@@ -24,6 +24,11 @@ export default {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.jobType === 'CONSULTANT'
   },
+  // 是否是体验员工
+  isExperienceJobType () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.jobType === 'EXPERIENCE'
+  },
   // 获取当前用户工作类型
   getJobType () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
@@ -98,5 +103,7 @@ export default {
     {code: 'HB', name: '华夏银行'}
   ],
   // 性别
-  genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}]
+  genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}],
+  // 是否列表
+  yesOrNoList: [{code: 'YES', name: '是'}, {code: 'NO', name: '否'}]
 }

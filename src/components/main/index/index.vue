@@ -6,7 +6,7 @@
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
         <img src="/static/Logo-2.png" style="width:120px;height:55px;">
       </div>
-      <div style="float:left;height:100%;text-align:left;padding-left:20px;padding-top:20px;">
+      <div style="float:left;height:100%;text-align:left;padding-left:30px;padding-top:20px;">
         <span>海罗人才</span>
       </div>
       <div style="float:right;width:40px;margin-top:10px;">
@@ -79,7 +79,7 @@
               <span slot="title">文件管理</span>
             </template>
           </el-menu-item>
-          <el-submenu index="/salary">
+          <el-submenu index="/salary" v-if="jobTypeControlShow('/salary')">
             <template slot="title">
               <i class="el-icon-money"></i>
               <span slot="title">工资</span>
@@ -112,7 +112,7 @@
             >我的假期</el-menu-item>
             <!-- <el-menu-item index="/my/myplan/planlist">我的计划</el-menu-item> -->
           </el-submenu>
-          <el-submenu index="/config">
+          <el-submenu index="/config" v-if="jobTypeControlShow('/config')">
             <template slot="title">
               <i class="el-icon-setting"></i>
               <span slot="title">设置</span>

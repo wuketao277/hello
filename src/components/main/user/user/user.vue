@@ -48,6 +48,7 @@
             <el-radio v-model="form.jobType" label="PARTTIME">兼职</el-radio>
             <el-radio v-model="form.jobType" label="INTERN">实习</el-radio>
             <el-radio v-model="form.jobType" label="CONSULTANT">外包</el-radio>
+            <el-radio v-model="form.jobType" label="EXPERIENCE">体验</el-radio>
           </el-form-item>
         </el-col>
         <el-col :span="12">

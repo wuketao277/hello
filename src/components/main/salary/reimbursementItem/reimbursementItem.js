@@ -10,72 +10,77 @@ export default {
     return {
       mode: 'add', // 默认操作模式为新建
       form: {
-        id: null,
+        id: null, // 序号
         userId: '', // 报销人id
         userName: '', // 报销人登录名
         realName: '', // 报销人真实姓名
-        type: '', // 报销类型
-        date: '', // 日期
-        sum: 0, // 报销金额
-        invoiceNo: '', // 发票号
-        description: '', // 说明
+        approveStatus: 'Apply', // 审批状态
+        needPay: 'NO', // 是否报销
+        date: '', // 发生日期
+        location: '', // 发生地点
+        company: '', // 报销公司
         paymentMonth: '', // 报销发放月份
-        approveStatus: 'Apply' // 审批状态
+        type: '', // 报销类别
+        kind: '', // 报销项目
+        invoiceNo: '', // 发票号
+        price: 0, // 单价
+        count: 0, // 数量
+        sum: 0, // 总金额
+        description: '' // 备注
       },
       selectUserDialogShow: false,
       approveStatusList: [{
-        'id': 'Apply',
-        'name': 'Apply'
+        code: 'Apply',
+        name: 'Apply'
       }, {
-        'id': 'Approved',
-        'name': 'Approved'
+        code: 'Approved',
+        name: 'Approved'
       }, {
-        'id': 'Denied',
-        'name': 'Denied'
-      }],
+        code: 'Denied',
+        name: 'Denied'}],
       typeList: [{
-        'id': 'Phone',
-        'name': 'Phone'
+        code: 'Transportation',
+        name: '交通'
       }, {
-        'id': 'Office Supplier',
-        'name': 'Office Supplier'
+        code: 'Travel',
+        name: '差旅'
       }, {
-        'id': 'Postage',
-        'name': 'Postage'
+        code: 'Communication',
+        name: '通讯'
       }, {
-        'id': 'Transportation',
-        'name': 'Transportation'
+        code: 'Office',
+        name: '办公'
       }, {
-        'id': 'Meals',
-        'name': 'Meals'
+        code: 'Service',
+        name: '服务'
       }, {
-        'id': 'Airfare',
-        'name': 'Airfare'
+        code: 'Recruit',
+        name: '招聘'
       }, {
-        'id': 'Hotel/Lodging',
-        'name': 'Hotel/ Lodging'
-      }, {
-        'id': 'Entertainment',
-        'name': 'Entertainment'
-      }, {
-        'id': 'Employee Activities',
-        'name': 'Employee Activities'
-      }, {
-        'id': 'Vehicle',
-        'name': 'Vehicle'
-      }, {
-        'id': 'IT Support Services',
-        'name': 'IT Support Services'
-      }, {
-        'id': 'Other',
-        'name': 'Other'
-      }]
+        code: 'Other',
+        name: '其他'
+      }],
+      transportationKindList: [{code: 'InternalAirTicket', name: '国内机票'},
+        {code: 'InternalTrainTicket', name: '国内高铁/火车'},
+        {code: 'TaxiSubway', name: '出租车/地铁/其他市内交通'}],
+      travelKindList: [{code: 'TravelHotel', name: '差旅住宿费'},
+        {code: 'TravelMeal', name: '差旅餐饭'}],
+      communicationKindList: [{code: 'Communication', name: '通讯费'}],
+      currentKindList: [],
+      locationList: [{code: 'Shanghai', name: '上海'},
+        {code: 'Beijing', name: '北京'},
+        {code: 'Shenyang', name: '沈阳'},
+        {code: 'Enshi', name: '恩施'}],
+      companyList: [{code: 'Shanghaihailuorencaifuwu', name: '上海海罗人才服务有限公司'},
+        {code: 'Shanghaihailuorencaikeji', name: '上海海罗人才科技有限公司'},
+        {code: 'Shenyanghailuorencaikeji', name: '沈阳海罗人才服务有限公司'}],
+      yesOrNoList: commonJS.yesOrNoList
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'approveStatus' || key === 'paymentMonth') {
+      if (key === 'approveStatus' || key === 'paymentMonth' || key === 'needPay') {
         return commonJS.isAdmin()
       }
     },
@@ -89,19 +94,37 @@ export default {
         this.form.userId = '' // 报销人id
         this.form.userName = '' // 报销人登录名
         this.form.realName = '' // 报销人真实姓名
-        this.form.type = '' // 报销类型
-        this.form.date = '' // 日期
-        this.form.sum = 0 // 报销金额
+        this.form.approveStatus = 'Apply' // 审批状态
+        this.form.needPay = 'NO' // 是否报销
         this.form.invoiceNo = '' // 发票号
+        this.form.paymentMonth = '' // 报销发放月份
+        this.form.date = '' // 发生日期
+        this.form.location = '' // 发生地点
+        this.form.company = '' // 报销公司
+        this.form.type = '' // 报销类型
+        this.form.kind = '' // 报销项目
+        this.form.price = 0 // 单价
+        this.form.sum = 0 // 报销金额
+        this.form.count = 0 // 数量
         this.form.description = '' // 说明
-        this.paymentMonth = '' // 报销发放月份
-        this.status = '' // 状态
       }
     },
     // 保存
     save () {
       if (this.form.userId === '' || this.form.userId === null) {
         this.$message.error('NAME 必选')
+        return
+      }
+      if (this.form.date === '' || this.form.date === null) {
+        this.$message.error('DATE 必选')
+        return
+      }
+      if (this.form.location === '' || this.form.location === null) {
+        this.$message.error('LOCATION 必选')
+        return
+      }
+      if (this.form.companyCode === '' || this.form.location === null) {
+        this.$message.error('COMPANY 必选')
         return
       }
       if (this.form.paymentMonth === '') {
@@ -112,16 +135,24 @@ export default {
         this.$message.error('TYPE 必选')
         return
       }
-      if (this.form.date === '' || this.form.date === null) {
-        this.$message.error('DATE 必选')
-        return
-      }
-      if (this.form.sum === null || isNaN(this.form.sum)) {
-        this.$message.error('SUM 必选，且必须是数字')
+      if (this.form.kind === '' || this.form.kind === null) {
+        this.$message.error('KIND 必选')
         return
       }
       if (this.form.invoiceNo === '') {
         this.$message.error('INVOICE NO 必选')
+        return
+      }
+      if (this.form.price === null || isNaN(this.form.price)) {
+        this.$message.error('PRICE 必选，且必须是数字')
+        return
+      }
+      if (this.form.count === null || isNaN(this.form.count)) {
+        this.$message.error('COUNT 必选，且必须是数字')
+        return
+      }
+      if (this.form.sum === null || isNaN(this.form.sum)) {
+        this.$message.error('SUM 必选，且必须是数字')
         return
       }
       this.$refs['form'].validate((valid) => {
@@ -162,6 +193,17 @@ export default {
       this.form.userId = val.id
       this.form.userName = val.username
       this.form.realName = val.realname
+    },
+    // 类别变更事件
+    typeChange (value) {
+      this.form.kind = ''
+      if (value === 'Transportation') {
+        this.currentKindList = this.transportationKindList
+      } else if (value === 'Travel') {
+        this.currentKindList = this.travelKindList
+      } else if (value === 'Communication') {
+        this.currentKindList = this.communicationKindList
+      }
     }
   },
   computed: {
@@ -177,12 +219,15 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       if (typeof (this.$route.query.reimbursementItem) !== 'undefined') {
+        // 先准备数据
+        this.typeChange(this.$route.query.reimbursementItem.type)
+        // 在给表单赋值
         this.form = this.$route.query.reimbursementItem
       }
     }
     if (this.mode === 'add') {
       let user = commonJS.getUser()
-      this.form.userId = user.id
+      this.form.userId = user.code
       this.form.userName = user.userName
       this.form.realName = user.realName
     }

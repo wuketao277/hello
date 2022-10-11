@@ -25,7 +25,7 @@ export default {
     showControl (url) {
       if (url === '/') {
         // 主页内容显示给非外包人员
-        return !commonJs.isConsultantJobType()
+        return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType())
       }
       if (url === '/focus' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi') {
         // 关注职位显示给非外包人员

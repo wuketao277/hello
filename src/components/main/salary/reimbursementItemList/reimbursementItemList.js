@@ -166,6 +166,70 @@ export default {
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
       this.query()
+    },
+    // 发送地点转换器
+    locationFormatter (row) {
+      if (row.location === 'Shanghai') {
+        return '上海'
+      } else if (row.location === 'Beijing') {
+        return '北京'
+      } else if (row.location === 'Shenyang') {
+        return '沈阳'
+      } else if (row.location === 'Enshi') {
+        return '恩施'
+      }
+    },
+    // 公司转换器
+    companyFormatter (row) {
+      if (row.company === 'Shanghaihailuorencaifuwu') {
+        return '上海海罗人才服务有限公司'
+      } else if (row.company === 'Shanghaihailuorencaikeji') {
+        return '上海海罗人才科技有限公司'
+      } else if (row.company === 'Shenyanghailuorencaikeji') {
+        return '沈阳海罗人才服务有限公司'
+      }
+    },
+    // 是否报销转换器
+    needPayFormatter (row) {
+      if (row.needPay === 'YES') {
+        return '是'
+      } else if (row.needPay === 'NO') {
+        return '否'
+      }
+    },
+    // 报销类别转换器
+    typeFormatter (row) {
+      if (row.type === 'Transportation') {
+        return '交通'
+      } else if (row.type === 'Travel') {
+        return '差旅'
+      } else if (row.type === 'Communication') {
+        return '通讯'
+      } else if (row.type === 'Office') {
+        return '办公'
+      } else if (row.type === 'Service') {
+        return '服务'
+      } else if (row.type === 'Recruit') {
+        return '招聘'
+      } else if (row.type === 'Other') {
+        return '其他'
+      }
+    },
+    // 报销转换器
+    kindFormatter (row) {
+      if (row.kind === 'InternalAirTicket') {
+        return '国内机票'
+      } else if (row.kind === 'InternalTrainTicket') {
+        return '国内高铁/火车'
+      } else if (row.kind === 'TaxiSubway') {
+        return '出租车/地铁/其他市内交通'
+      } else if (row.kind === 'TravelHotel') {
+        return '差旅住宿费'
+      } else if (row.kind === 'TravelMeal') {
+        return '差旅餐饭'
+      } else if (row.kind === 'Communication') {
+        return '通讯费'
+      }
     }
   },
   created () {
