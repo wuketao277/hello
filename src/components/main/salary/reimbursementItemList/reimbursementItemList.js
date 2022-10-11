@@ -229,6 +229,28 @@ export default {
         return '差旅餐饭'
       } else if (row.kind === 'Communication') {
         return '通讯费'
+      } else if (row.kind === 'Training') {
+        return '培训费'
+      } else if (row.kind === 'Print') {
+        return '打印费'
+      } else if (row.kind === 'Tool') {
+        return '文具费'
+      } else if (row.kind === 'Postage') {
+        return '快递费'
+      } else if (row.kind === 'Candidate') {
+        return '候选人招待费'
+      } else if (row.kind === 'Client') {
+        return '客户招待费'
+      } else if (row.kind === 'Employee') {
+        return '员工内部招待费'
+      } else if (row.kind === 'Consultant') {
+        return '外包员工招待费'
+      } else if (row.kind === 'BodyCheck') {
+        return '体检费'
+      } else if (row.kind === 'Recruit') {
+        return '招聘费'
+      } else if (row.kind === 'Other') {
+        return '其他'
       }
     }
   },

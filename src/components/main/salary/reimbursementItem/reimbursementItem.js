@@ -66,6 +66,13 @@ export default {
       travelKindList: [{code: 'TravelHotel', name: '差旅住宿费'},
         {code: 'TravelMeal', name: '差旅餐饭'}],
       communicationKindList: [{code: 'Communication', name: '通讯费'}],
+      officeKindList: [{code: 'Training', name: '培训费'}, {code: 'Print', name: '打印费'},
+        {code: 'Tool', name: '文具费'}, {code: 'Postage', name: '快递费'}],
+      serviceKindList: [{code: 'Candidate', name: '候选人招待费'}, {code: 'Client', name: '客户招待费'},
+        {code: 'Employee', name: '员工内部招待费'}, {code: 'Consultant', name: '外包员工招待费'},
+        {code: 'BodyCheck', name: '体检费'}],
+      recruitKindList: [{code: 'Recruit', name: '招聘费'}],
+      otherKindList: [{code: 'Other', name: '其他'}],
       currentKindList: [],
       locationList: [{code: 'Shanghai', name: '上海'},
         {code: 'Beijing', name: '北京'},
@@ -203,6 +210,14 @@ export default {
         this.currentKindList = this.travelKindList
       } else if (value === 'Communication') {
         this.currentKindList = this.communicationKindList
+      } else if (value === 'Office') {
+        this.currentKindList = this.officeKindList
+      } else if (value === 'Service') {
+        this.currentKindList = this.serviceKindList
+      } else if (value === 'Recruit') {
+        this.currentKindList = this.recruitKindList
+      } else if (value === 'Other') {
+        this.currentKindList = this.otherKindList
       }
     }
   },
