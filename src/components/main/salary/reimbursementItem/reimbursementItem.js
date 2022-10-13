@@ -80,7 +80,7 @@ export default {
         {code: 'Enshi', name: '恩施'}],
       companyList: [{code: 'Shanghaihailuorencaifuwu', name: '上海海罗人才服务有限公司'},
         {code: 'Shanghaihailuorencaikeji', name: '上海海罗人才科技有限公司'},
-        {code: 'Shenyanghailuorencaikeji', name: '沈阳海罗人才服务有限公司'}],
+        {code: 'Shenyanghailuorencaifuwu', name: '沈阳海罗人才服务有限公司'}],
       yesOrNoList: commonJS.yesOrNoList
     }
   },
@@ -234,6 +234,7 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       if (typeof (this.$route.query.reimbursementItem) !== 'undefined') {
+        debugger
         // 先准备数据
         this.typeChange(this.$route.query.reimbursementItem.type)
         // 在给表单赋值
@@ -242,7 +243,7 @@ export default {
     }
     if (this.mode === 'add') {
       let user = commonJS.getUser()
-      this.form.userId = user.code
+      this.form.userId = user.id
       this.form.userName = user.userName
       this.form.realName = user.realName
     }

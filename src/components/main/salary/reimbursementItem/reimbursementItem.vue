@@ -39,8 +39,8 @@
             >
               <el-option
                 v-for="status in approveStatusList"
-                :key="status.id"
-                :value="status.id"
+                :key="status.code"
+                :value="status.code"
                 :label="status.name"
               ></el-option>
             </el-select>

@@ -116,6 +116,24 @@ export default {
           this.currentMonthSumReimbursement = res.data
         }
       })
+    },
+    // 公司转换器
+    companyFormatter (row) {
+      if (row.company === 'Shanghaihailuorencaifuwu') {
+        return '上海海罗人才服务有限公司'
+      } else if (row.company === 'Shanghaihailuorencaikeji') {
+        return '上海海罗人才科技有限公司'
+      } else if (row.company === 'Shenyanghailuorencaifuwu') {
+        return '沈阳海罗人才服务有限公司'
+      }
+    },
+    // 设置行样式
+    setRowClassName ({row, index}) {
+      if (row.company === 'Shanghaihailuorencaikeji') {
+        return 'row1'
+      } else if (row.company === 'Shenyanghailuorencaifuwu') {
+        return 'row2'
+      }
     }
   },
   created () {

@@ -33,6 +33,7 @@
         :border="true"
         :highlight-current-row="true"
         :stripe="true"
+        :row-class-name="setRowClassName"
         style="width: 100%"
         @current-change="rowChange"
       >
@@ -40,6 +41,7 @@
         <el-table-column prop="userName" label="登录名"></el-table-column>
         <el-table-column prop="realName" label="用户姓名"></el-table-column>
         <el-table-column prop="paymentMonth" label="报销月份"></el-table-column>
+        <el-table-column prop="company" width="250" label="报销公司" :formatter="companyFormatter" show-overflow-tooltip></el-table-column>
         <el-table-column prop="sum" label="报销总金额"></el-table-column>
       </el-table>
       <el-pagination
@@ -57,4 +59,12 @@
     </template>
   </div>
 </template>
+<style>
+  .row1 {
+    color: red;
+  }
+  .row2 {
+    color: blue;
+  }
+</style>
 <script src="./reimbursementSummaryList.js"></script>

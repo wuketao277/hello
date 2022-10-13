@@ -185,7 +185,7 @@ export default {
         return '上海海罗人才服务有限公司'
       } else if (row.company === 'Shanghaihailuorencaikeji') {
         return '上海海罗人才科技有限公司'
-      } else if (row.company === 'Shenyanghailuorencaikeji') {
+      } else if (row.company === 'Shenyanghailuorencaifuwu') {
         return '沈阳海罗人才服务有限公司'
       }
     },
