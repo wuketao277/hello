@@ -1,5 +1,4 @@
 import axios from 'axios'
-import commonJS from '@/common/common'
 
 export default {
   // 保存评论接口
@@ -20,8 +19,8 @@ export default {
     return axios.post('/comment/calcKPI', params)
   },
   // 下载KPI
-  downloadKPI (params) {
-    let urls = 'http://www.helloapplicant.com/comment/downloadKPI?startDate=' + commonJS.getYYYY_MM_dd(params[0]) + '&endDate=' + commonJS.getYYYY_MM_dd(params[1])
+  downloadKPI (startDate, endDate) {
+    let urls = 'http://www.helloapplicant.com/comment/downloadKPI?startDate=' + startDate + '&endDate=' + endDate
     window.open(urls, '_blank')
   },
   // 通过开始时间、结束时间、录入人 查找评论

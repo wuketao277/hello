@@ -127,13 +127,13 @@ export default {
       })
     },
     kpiDetail (index, row) {
-      if (this.KPIDate === '') {
+      if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
         return
       }
       let request = {
-        'beginDate': this.KPIDate[0],
-        'endDate': this.KPIDate[1],
+        'beginDate': this.startDate,
+        'endDate': this.endDate,
         'userName': row['userName']
       }
       commentApi.findCommentsByTimeAndUsername(request).then(res => {
@@ -158,11 +158,11 @@ export default {
     },
     // 下载KPI
     downloadKPI () {
-      if (this.KPIDate === '') {
+      if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
         return
       }
-      commentApi.downloadKPI(this.KPIDate)
+      commentApi.downloadKPI(this.startDate, this.endDate)
     },
     // 计算KPI
     calcKPI () {
