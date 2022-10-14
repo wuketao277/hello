@@ -10,7 +10,8 @@ export default {
       calendarValue: new Date(),
       myTasks: [],
       myNewsList: [],
-      KPIDate: '',
+      startDate: null,
+      endDate: null,
       KPIDashboard: [],
       commentsDetailTableVisible: false,
       commentsDetailTable: [],
@@ -21,6 +22,57 @@ export default {
     }
   },
   methods: {
+    // 计算开始日期和结束日期
+    calcDate (type) {
+      if (type === 'today') {
+        this.startDate = new Date()
+        this.endDate = new Date()
+      } else if (type === 'week') {
+        let now = new Date()
+        if (now.getDay() === 0) {
+          this.startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000)
+        } else {
+          this.startDate = new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000)
+        }
+        this.endDate = new Date(this.startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+      } else if (type === 'month') {
+        let month = new Date().getMonth() + 1
+        this.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01', 'yyyy-MM-dd'))
+        if (month === 2) {
+          // 2 月
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28', 'yyyy-MM-dd'))
+        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+          // 1 3 5 7 8 10 12月
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31', 'yyyy-MM-dd'))
+        } else {
+          // 4 6 9 11月
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30', 'yyyy-MM-dd'))
+        }
+      } else if (type === 'season') {
+        let month = new Date().getMonth() + 1
+        if (month === 1 || month === 2 || month === 3) {
+          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-03-31', 'yyyy-MM-dd'))
+        } else if (month === 4 || month === 5 || month === 6) {
+          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-04-01', 'yyyy-MM-dd'))
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-06-30', 'yyyy-MM-dd'))
+        } else if (month === 7 || month === 8 || month === 9) {
+          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-07-01', 'yyyy-MM-dd'))
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-09-30', 'yyyy-MM-dd'))
+        } else if (month === 10 || month === 11 || month === 12) {
+          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-10-01', 'yyyy-MM-dd'))
+          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+        }
+      } else if (type === 'year') {
+        this.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+        this.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+      } else if (type === 'tonow') {
+        this.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+        this.endDate = new Date()
+      }
+      // 计算kpi
+      this.calcKPI()
+    },
     // 显示控制
     showControl (url) {
       if (url === '/') {
@@ -114,12 +166,13 @@ export default {
     },
     // 计算KPI
     calcKPI () {
-      if (this.KPIDate === '') {
+      if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
         return
       }
       let request = {
-        'dates': this.KPIDate
+        'startDate': this.startDate,
+        'endDate': this.endDate
       }
       commentApi.calcKPI(request).then(res => {
         if (res.status === 200) {

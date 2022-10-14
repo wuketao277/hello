@@ -142,14 +142,14 @@
       </el-tab-pane>
       <el-tab-pane label="KPI" v-if="showControl('/kpi')">
         <div>
-          <el-date-picker
-            v-model="KPIDate"
-            type="daterange"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
-          ></el-date-picker>
+          <el-date-picker type="date" placeholder="开始日期" v-model="startDate" style="width:180px;"></el-date-picker>
+          <span>-</span>
+          <el-date-picker type="date" placeholder="结束日期" v-model="endDate" style="width:180px;"></el-date-picker>&nbsp;&nbsp;
           <el-button type="success" size="medium" icon="el-icon-setting" @click="calcKPI()">计算KPI</el-button>
+          <el-button type="success" plain size="medium" @click="calcDate('today')">今天</el-button>
+          <el-button type="success" plain size="medium" @click="calcDate('week')">本周</el-button>
+          <el-button type="success" plain size="medium" @click="calcDate('month')">本月</el-button>
+          <el-button type="success" plain size="medium" @click="calcDate('tonow')">截止目前</el-button>
           <el-button
             type="primary"
             size="medium"
