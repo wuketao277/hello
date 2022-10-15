@@ -14,7 +14,7 @@
       ref="form"
       :model="form"
       label-position="left"
-      label-width="80px"
+      label-width="70px"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
@@ -36,13 +36,13 @@
               placeholder="选择月"
               format="yyyy-MM"
               value-format="yyyy-MM"
-              style="width:150px;">
+              style="width:100%;">
             </el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="6">
           <el-form-item label="金额">
-            <el-input v-model="form.sum" size="small" clearable style="width:150px;" placeholder="特殊项金额"></el-input>
+            <el-input v-model="form.sum" size="small" clearable style="width:100%;" placeholder="特殊项金额"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="6">

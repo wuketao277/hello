@@ -18,10 +18,10 @@
       size="small"
       style="margin-top:10px;text-align:left;"
     >
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="12">
           <el-form-item label="客户" required>
-            <el-select v-model="form.clientId" placeholder="请选择客户" style="width:200px;">
+            <el-select v-model="form.clientId" placeholder="请选择客户" style="width:100%;">
               <el-option
                 v-for="client in clients"
                 :key="client.id"
@@ -33,7 +33,7 @@
         </el-col>
         <el-col :span="6">
           <el-form-item label="审批状态" v-show="showControl('approveStatus')">
-            <el-select v-model="form.approveStatus" placeholder="审批状态" style="width:130px;">
+            <el-select v-model="form.approveStatus" placeholder="审批状态" style="width:100%;">
               <el-option
                 v-for="approveStatus in approveStatusList"
                 :key="approveStatus.id"
@@ -48,7 +48,7 @@
             <el-select
               v-model="form.type"
               placeholder="类型"
-              style="width:130px;"
+              style="width:100%;"
               @change="typeChange"
             >
               <el-option
@@ -61,7 +61,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <span style="color:red;">*</span>
           <el-button
@@ -94,12 +94,12 @@
           >CW</el-button>
           <span>{{form.cwUserName}}</span>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="2" label-suffix="%">
           <el-input
             v-model="form.cwCommissionPercent"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
@@ -119,14 +119,14 @@
             v-model="form.bdCommissionPercent"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
         </el-col>
       </el-row>
       <br>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="4">
           <el-button
             type="primary"
@@ -149,7 +149,7 @@
             v-model="form.consultantCommissionPercent"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
@@ -176,7 +176,7 @@
             v-model="form.consultantCommissionPercent2"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
@@ -203,7 +203,7 @@
             v-model="form.consultantCommissionPercent3"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
@@ -230,14 +230,14 @@
             v-model="form.consultantCommissionPercent4"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
         </el-col>
       </el-row>
       <br>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="4">
           <el-button
             type="primary"
@@ -260,28 +260,28 @@
             v-model="form.consultantCommissionPercent5"
             size="small"
             clearable
-            style="width:75px;"
+            style="width:70%;"
             placeholder="提成"
           ></el-input>
           <span>%</span>
         </el-col>
       </el-row>
       <br>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Location">
-            <el-input v-model="form.location" clearable style="width:130px;"></el-input>
+            <el-input v-model="form.location" clearable style="width:100%"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="6">
           <el-form-item label="Base" required>
-            <el-input v-model="form.base" clearable style="width:100px;"></el-input>
+            <el-input v-model="form.base" style="width:70%"></el-input>
             <span>{{formatBase}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="6">
           <el-form-item label="Billing" required>
-            <el-input v-model="form.billing" clearable style="width:100px;" @change="getGP"></el-input>
+            <el-input v-model="form.billing" style="width:70%" @change="getGP"></el-input>
             <span>{{formatBilling}}</span>
           </el-form-item>
         </el-col>
@@ -289,22 +289,21 @@
           <el-form-item label="GP" required>
             <el-input
               v-model="form.gp"
-              clearable
               :readonly="form.type === 'perm' ? true : false"
-              style="width:100px;"
+              style="width:70%"
             ></el-input>
             <span>{{formatGp}}</span>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Offer Date">
             <el-date-picker
               v-model="form.offerDate"
               type="date"
               placeholder="选择日期"
-              style="width:130px;"
+              style="width:100%;"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
           </el-form-item>
@@ -315,7 +314,7 @@
               v-model="form.onBoardDate"
               type="date"
               placeholder="选择日期"
-              style="width:130px;"
+              style="width:100%;"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
           </el-form-item>
@@ -326,7 +325,7 @@
               v-model="form.paymentDate"
               type="date"
               placeholder="选择日期"
-              style="width:130px;"
+              style="width:100%;"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
           </el-form-item>
@@ -337,21 +336,21 @@
               v-model="form.actualPaymentDate"
               type="date"
               placeholder="选择日期"
-              style="width:130px;"
+              style="width:100%;"
               value-format="yyyy-MM-dd"
               v-show="showControl('actualPaymentDate')"
             ></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Invoice Date">
             <el-date-picker
               v-model="form.invoiceDate"
               type="date"
               placeholder="选择日期"
-              style="width:130px;"
+              style="width:100%;"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
           </el-form-item>
@@ -362,7 +361,7 @@
               v-model="form.commissionDate"
               type="date"
               placeholder="选择日期"
-              style="width:130px;"
+              style="width:100%;"
               value-format="yyyy-MM-dd"
               v-show="showControl('commissionDate')"
               clearable
@@ -372,23 +371,23 @@
         </el-col>
         <el-col :span="6">
           <el-form-item label="Invoice No.">
-            <el-input v-model="form.invoiceNo" clearable style="width:130px;"></el-input>
+            <el-input v-model="form.invoiceNo" clearable style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="6">
           <el-form-item label="PO">
-            <el-input v-model="form.po" clearable style="width:130px;"></el-input>
+            <el-input v-model="form.po" clearable style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="channel">
-            <el-input v-model="form.channel" clearable style="width:130px;"></el-input>
+            <el-input v-model="form.channel" clearable style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="24">
           <el-form-item label="comment">
             <el-input
