@@ -66,7 +66,7 @@ export default {
       travelKindList: [{code: 'TravelHotel', name: '差旅住宿费'},
         {code: 'TravelMeal', name: '差旅餐饭'}],
       communicationKindList: [{code: 'Communication', name: '通讯费'}],
-      officeKindList: [{code: 'Training', name: '培训费'}, {code: 'Print', name: '打印费'},
+      officeKindList: [{code: 'OfficeRent', name: '办公室租金'}, {code: 'Training', name: '培训费'}, {code: 'Print', name: '打印费'},
         {code: 'Tool', name: '文具费'}, {code: 'Postage', name: '快递费'}],
       serviceKindList: [{code: 'Candidate', name: '候选人招待费'}, {code: 'Client', name: '客户招待费'},
         {code: 'Employee', name: '员工内部招待费'}, {code: 'Consultant', name: '外包员工招待费'},

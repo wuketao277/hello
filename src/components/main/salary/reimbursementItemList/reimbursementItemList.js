@@ -229,6 +229,8 @@ export default {
         return '差旅餐饭'
       } else if (row.kind === 'Communication') {
         return '通讯费'
+      } else if (row.kind === 'OfficeRent') {
+        return '办公室租金'
       } else if (row.kind === 'Training') {
         return '培训费'
       } else if (row.kind === 'Print') {
