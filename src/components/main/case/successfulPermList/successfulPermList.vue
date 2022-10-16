@@ -27,15 +27,16 @@
         @current-change="rowChange"
         @row-dblclick="handleRowDblClick"
       >
-        <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="clientName" width="120" label="客户" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="title" width="120" label="职位名称" show-overflow-tooltip></el-table-column>
+        <el-table-column type="index" width="50" label="序号" show-overflow-tooltip fixed></el-table-column>
         <el-table-column
           prop="candidateChineseName"
           width="100"
           label="候选人姓名"
           show-overflow-tooltip
+          fixed
         ></el-table-column>
+        <el-table-column prop="clientName" width="120" label="客户" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="title" width="120" label="职位名称" show-overflow-tooltip></el-table-column>
         <el-table-column prop="gp" width="100" label="GP" show-overflow-tooltip></el-table-column>
         <el-table-column prop="billing" width="100" label="Billing" show-overflow-tooltip></el-table-column>
         <el-table-column prop="base" width="100" label="Base" show-overflow-tooltip></el-table-column>
