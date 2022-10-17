@@ -217,7 +217,9 @@ export default {
     },
     // 报销转换器
     kindFormatter (row) {
-      if (row.kind === 'InternalAirTicket') {
+      if (row.kind === 'Parking') {
+        return '停车费'
+      } else if (row.kind === 'InternalAirTicket') {
         return '国内机票'
       } else if (row.kind === 'InternalTrainTicket') {
         return '国内高铁/火车'
@@ -239,6 +241,8 @@ export default {
         return '文具费'
       } else if (row.kind === 'Postage') {
         return '快递费'
+      } else if (row.kind === 'Drug') {
+        return '药品'
       } else if (row.kind === 'Candidate') {
         return '候选人招待费'
       } else if (row.kind === 'Client') {
