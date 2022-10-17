@@ -18,7 +18,7 @@ export default {
       form: {
         id: null,
         clientId: '', // 公司id
-        approveStatus: '', // 审批状态，apply表示申请状态，approved表示审批通过，denied表示审批否决
+        approveStatus: 'applied', // 审批状态，apply表示申请状态，approved表示审批通过，denied表示审批否决
         caseId: '', // 职位id
         title: '', // 职位名称
         candidateId: '', // 候选人id
