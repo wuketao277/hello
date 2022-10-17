@@ -162,7 +162,9 @@ export default {
         this.$message.error('请先选择要计算的日期')
         return
       }
-      commentApi.downloadKPI(this.startDate, this.endDate)
+      let start = this.startDate.getFullYear() + '-' + (1 + this.startDate.getMonth()) + '-' + this.startDate.getDate()
+      let end = this.endDate.getFullYear() + '-' + (1 + this.endDate.getMonth()) + '-' + this.endDate.getDate()
+      commentApi.downloadKPI(start, end)
     },
     // 计算KPI
     calcKPI () {
