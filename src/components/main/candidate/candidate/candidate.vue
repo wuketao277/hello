@@ -15,6 +15,13 @@
         icon="el-icon-upload"
         @click="openUploadFileDialog"
       >上传文件</el-button>
+      <el-switch
+        v-model="attention"
+        inactive-text="不关注"
+        active-text="关注"
+        active-color="#13ce66"
+        @change="updateCandidateAttention"
+      ></el-switch>
     </div>
     <el-form
       ref="form"
@@ -159,11 +166,7 @@
             >推荐职位</el-button>
           </el-tooltip>
         </div>
-        <el-table
-          :data="candidateForCaseList"
-          :border="true"
-          style="width: 100%"
-        >
+        <el-table :data="candidateForCaseList" :border="true" style="width: 100%">
           <el-table-column type="index" width="50" label="序号"></el-table-column>
           <el-table-column width="320" label="操作">
             <template slot-scope="scope">

@@ -2,6 +2,16 @@
   <div class="blockdiv">
     <div class="blockdiv2" v-if="!showControl('/')"></div>
     <el-tabs type="border-card" v-if="showControl('/')">
+      <el-tab-pane label="关注候选人" v-if="showControl('/candidateAttention')">
+        <el-button
+          type="primary"
+          plain
+          shadow="hover"
+          v-for="(candidateAttention,index) in candidateAttentionList"
+          :key="index"
+          @click="detailCandidate(candidateAttention.candidateId)"
+        >{{candidateAttention.candidateChineseName}}</el-button>
+      </el-tab-pane>
       <el-tab-pane label="关注职位" style="text-align:left;" v-if="showControl('/focus')">
         <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
           <el-button
@@ -142,9 +152,21 @@
       </el-tab-pane>
       <el-tab-pane label="KPI" v-if="showControl('/kpi')">
         <div>
-          <el-date-picker type="date" value-format="yyyy-MM-dd" placeholder="开始日期" v-model="startDate" style="width:180px;"></el-date-picker>
+          <el-date-picker
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="开始日期"
+            v-model="startDate"
+            style="width:180px;"
+          ></el-date-picker>
           <span>-</span>
-          <el-date-picker type="date" value-format="yyyy-MM-dd" placeholder="结束日期" v-model="endDate" style="width:180px;"></el-date-picker>&nbsp;&nbsp;
+          <el-date-picker
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="结束日期"
+            v-model="endDate"
+            style="width:180px;"
+          ></el-date-picker>&nbsp;&nbsp;
           <el-button type="success" size="medium" icon="el-icon-setting" @click="calcKPI()">计算KPI</el-button>
           <el-button type="success" plain size="medium" @click="calcDate('today')">今天</el-button>
           <el-button type="success" plain size="medium" @click="calcDate('week')">本周</el-button>

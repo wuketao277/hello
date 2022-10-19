@@ -16,6 +16,7 @@ export default {
   },
   data () {
     return {
+      attention: false,
       selectCaseDialogShow: false, // 选择职位对话框
       candidateForCaseList: [], // 候选人推荐职位列表
       mode: 'add', // 默认操作模式为新建
@@ -166,6 +167,36 @@ export default {
     }
   },
   methods: {
+    // 更新关注列表
+    updateCandidateAttention () {
+      let params = {
+        attention: this.attention,
+        candidateId: this.form.id
+      }
+      candidateApi.updateCandidateAttention(params).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '系统异常，请联系管理员！'
+          })
+        } else {
+          this.$message({
+            message: '更新成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
+    },
+    // 查询候选人关注情况
+    queryCandidateAttentionByCandidateId () {
+      if (this.form.id !== null) {
+        candidateApi.queryCandidateAttentionByCandidateId(this.form.id).then(res => {
+          if (res.status === 200) {
+            this.attention = res.data
+          }
+        })
+      }
+    },
     showCommentDeleteButton (username) {
       return commonJS.isAdmin() || commonJS.getUserName() === username
     },
@@ -508,6 +539,8 @@ export default {
       this.queryResume()
       // 查询当前候选人推荐职位信息
       this.queryCandidateForCaseList()
+      // 查询关注情况
+      this.queryCandidateAttentionByCandidateId()
     },
     // “推荐职位”对话框返回
     sureSelectCaseDialog (val) {
@@ -534,6 +567,7 @@ export default {
       this.mode = this.$route.query.mode
       // 获取候选人数据
       // 如果没有候选人对象，就获取候选人id然后从数据库中查询候选人对象
+      debugger
       if (typeof (this.$route.query.candidate) === 'undefined') {
         let params = {
           'id': this.$route.query.candidateId

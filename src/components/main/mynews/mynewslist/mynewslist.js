@@ -23,8 +23,10 @@ export default {
   },
   methods: {
     // 显示控制
-    showControl () {
-      return commonJS.isAdmin()
+    showControl (url) {
+      if (url === 'delete') {
+        return commonJS.isAdmin()
+      }
     },
     // 添加新闻
     addNews () {
@@ -54,6 +56,34 @@ export default {
       if (this.checkSelectRow()) {
         this.$router.push({path: '/mynews/mynews',
           query: {mode: 'modify', news: this.currentRow}})
+      }
+    },
+    // 通过id删除新闻
+    deleteById () {
+      if (this.checkSelectRow()) {
+        this.$confirm('确认要删除新闻 ' + this.currentRow.title + ' 吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          mynewsApi.deleteById(this.currentRow.id).then(res => {
+            if (res.status === 200) {
+              if (res.data.length > 0) {
+                this.$message.error(res.data)
+              } else {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                // 删除后刷新列表
+                this.query()
+              }
+            } else {
+              this.$message.error('删除失败！')
+            }
+          })
+        })
       }
     },
     // 搜索按钮

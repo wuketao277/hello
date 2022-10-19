@@ -8,6 +8,13 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addNews">新增</el-button>
       <el-button type="primary" size="small" icon="el-icon-zoom-in" @click="detailNews">查看</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyNews">修改</el-button>
+      <el-button
+        type="danger"
+        size="small"
+        icon="el-icon-delete"
+        @click="deleteById"
+        v-if="showControl('delete')"
+      >删 除</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label style="mergin-bottom:0px;">
           <el-input
@@ -35,7 +42,7 @@
       style="width: 100%"
     >
       <el-table-column type="index" width="50" label="序号"></el-table-column>
-      <el-table-column prop="createUserName" label="创建人" width="100" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="createUserName" label="作者" width="100" show-overflow-tooltip></el-table-column>
       <el-table-column prop="title" label="标题" width="180" show-overflow-tooltip></el-table-column>
       <el-table-column prop="content" label="内容" show-overflow-tooltip></el-table-column>
     </el-table>

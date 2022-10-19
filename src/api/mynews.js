@@ -12,5 +12,9 @@ export default {
   // 获取前100条新闻
   findTop100 () {
     return axios.get('/mynews/findTop100')
+  },
+  // 通过id删除信息
+  deleteById (params) {
+    return axios.get('/mynews/deleteById?id=' + params)
   }
 }

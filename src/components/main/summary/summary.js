@@ -3,6 +3,7 @@ import myNewsApi from '@/api/mynews'
 import commentApi from '@/api/comment'
 import caseApi from '@/api/case'
 import commonJs from '@/common/common'
+import candidateApi from '@/api/candidate'
 
 export default {
   data () {
@@ -18,10 +19,21 @@ export default {
       activeNames: ['1'],
       caseAttention4ClientVOArray: [],
       cwCaseArray: [],
-      newsCurrentRow: null
+      newsCurrentRow: null,
+      candidateAttentionList: []
     }
   },
   methods: {
+    // 查看候选人信息
+    detailCandidate (candidateId) {
+      this.$router.push({
+        path: '/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: candidateId
+        }
+      })
+    },
     // 计算开始日期和结束日期
     calcDate (type) {
       if (type === 'today') {
@@ -79,7 +91,7 @@ export default {
         // 主页内容显示给非外包人员
         return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType())
       }
-      if (url === '/focus' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi') {
+      if (url === '/candidateAttention' || url === '/focus' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi') {
         // 关注职位显示给非外包人员
         return !commonJs.isConsultantJobType()
       }
@@ -273,6 +285,12 @@ export default {
     }
   },
   created () {
+    // 查询关注候选人列表
+    candidateApi.queryCandidateAttentionListByUser().then(res => {
+      if (res.status === 200) {
+        this.candidateAttentionList = res.data
+      }
+    })
     // 获取今日任务
     myTaskApi.queryTodayTaskForMe().then(res => {
       if (res.status === 200) {

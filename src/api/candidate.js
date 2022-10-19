@@ -32,5 +32,17 @@ export default {
   // 查找后台数据
   queryCandidate (params) {
     return axios.get('/candidate/queryCandidate', {params: params})
+  },
+  // 更新关注信息
+  updateCandidateAttention (params) {
+    return axios.post('/candidate/updateCandidateAttention', params)
+  },
+  // 查询候选人关注情况
+  queryCandidateAttentionByCandidateId (params) {
+    return axios.get('/candidate/queryCandidateAttentionByCandidateId?candidateId=' + params)
+  },
+  // 查询当前用户关注的候选人
+  queryCandidateAttentionListByUser () {
+    return axios.get('/candidate/queryCandidateAttentionListByUser')
   }
 }
