@@ -16,7 +16,9 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent()
+      search: this.getSearchContent(),
+      needReimbursementSum: null,
+      totalReimbursementSum: null
     }
   },
   methods: {
@@ -136,6 +138,16 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
+      })
+      reimbursementApi.queryStatistics(query).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '查询失败，请联系管理员！'
+          })
+          return
+        }
+        this.needReimbursementSum = res.data.needReimbursementSum
+        this.totalReimbursementSum = res.data.totalReimbursementSum
       })
     },
     // 行变化

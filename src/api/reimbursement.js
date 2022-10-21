@@ -13,6 +13,10 @@ export default {
   queryPage (params) {
     return axios.get('/reimbursement/queryPage', {params: params})
   },
+  // 查找后台统计
+  queryStatistics (params) {
+    return axios.get('/reimbursement/queryStatistics', {params: params})
+  },
   // 查找后台数据
   query (params) {
     return axios.get('/reimbursement/query', {params: params})

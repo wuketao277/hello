@@ -13,6 +13,10 @@ export default {
   queryPage (params) {
     return axios.post('/successfulPerm/queryPage', params)
   },
+  // 查找后台统计
+  queryStatistics (params) {
+    return axios.post('/successfulPerm/queryStatistics', params)
+  },
   // 查找后台数据
   query (params) {
     return axios.get('/successfulPerm/query', {params: params})

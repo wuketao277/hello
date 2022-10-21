@@ -26,7 +26,9 @@ export default {
       bds: [],
       cws: [],
       approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}],
-      search: this.getSearchContent()
+      search: this.getSearchContent(),
+      billingSum: null,
+      gpSum: null
     }
   },
   methods: {
@@ -147,6 +149,16 @@ export default {
         }
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
+      })
+      successfulPermApi.queryStatistics(query).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '查询失败，请联系管理员！'
+          })
+          return
+        }
+        this.billingSum = res.data.billingSum
+        this.gpSum = res.data.gpSum
       })
     },
     // 行变化

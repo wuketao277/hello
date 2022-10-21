@@ -32,6 +32,8 @@
           ></el-input>
         </el-form-item>
       </el-form>
+      <span>总报销:{{totalReimbursementSum}}</span>&nbsp;&nbsp;
+      <span>应报销:{{needReimbursementSum}}</span>
     </div>
     <template>
       <el-table
@@ -46,13 +48,25 @@
         <el-table-column type="index" width="50" label="序号"></el-table-column>
         <el-table-column prop="date" width="100" label="发生日期"></el-table-column>
         <el-table-column prop="location" width="50" label="地点" :formatter="locationFormatter"></el-table-column>
-        <el-table-column prop="company" width="220" label="报销公司" :formatter="companyFormatter" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          prop="company"
+          width="220"
+          label="报销公司"
+          :formatter="companyFormatter"
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column prop="userName" width="100" label="登录名"></el-table-column>
         <el-table-column prop="paymentMonth" width="100" label="报销月"></el-table-column>
         <el-table-column prop="needPay" width="80" label="是否报销" :formatter="needPayFormatter"></el-table-column>
         <el-table-column prop="type" width="50" label="类别" :formatter="typeFormatter"></el-table-column>
-        <el-table-column prop="kind" width="150" label="项目" :formatter="kindFormatter"></el-table-column>
-        <el-table-column prop="invoiceNo" width="200" label="发票号"></el-table-column>
+        <el-table-column
+          prop="kind"
+          width="180"
+          label="项目"
+          :formatter="kindFormatter"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column prop="invoiceNo" width="200" label="发票号" show-overflow-tooltip></el-table-column>
         <el-table-column prop="price" width="80" label="单价"></el-table-column>
         <el-table-column prop="count" width="80" label="数量"></el-table-column>
         <el-table-column prop="sum" width="100" label="金额"></el-table-column>
