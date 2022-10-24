@@ -2,16 +2,6 @@
   <div class="blockdiv">
     <div class="blockdiv2" v-if="!showControl('/')"></div>
     <el-tabs type="border-card" v-if="showControl('/')">
-      <el-tab-pane label="关注候选人" v-if="showControl('/candidateAttention')">
-        <el-button
-          type="primary"
-          plain
-          shadow="hover"
-          v-for="(candidateAttention,index) in candidateAttentionList"
-          :key="index"
-          @click="detailCandidate(candidateAttention.candidateId)"
-        >{{candidateAttention.candidateChineseName}}</el-button>
-      </el-tab-pane>
       <el-tab-pane label="关注职位" style="text-align:left;" v-if="showControl('/focus')">
         <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
           <el-button
@@ -119,6 +109,16 @@
             </div>
           </div>
         </div>
+      </el-tab-pane>
+      <el-tab-pane label="关注候选人" v-if="showControl('/candidateAttention')">
+        <el-button
+          type="primary"
+          plain
+          shadow="hover"
+          v-for="(candidateAttention,index) in candidateAttentionList"
+          :key="index"
+          @click="detailCandidate(candidateAttention.candidateId)"
+        >{{candidateAttention.candidateChineseName}}</el-button>
       </el-tab-pane>
       <el-tab-pane label="我的新闻" v-if="showControl('/news')">
         <el-table
