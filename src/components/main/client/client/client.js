@@ -193,6 +193,10 @@ export default {
     clientContractTableRowChange (val) {
       this.clientContractTableCurRow = val
     },
+    // 客户合同表双击事件
+    handleRowDblClickForClientContractTable () {
+      this.detailClientContract()
+    },
     // 添加客户合同
     addClientContract () {
       if (this.checkId()) {
@@ -201,46 +205,64 @@ export default {
           query: {
             mode: 'add',
             clientId: this.form.id,
-            clientName: this.form.chineseName
+            clientChineseName: this.form.chineseName,
+            clientEnglishName: this.form.englishName
           }
         })
       }
     },
     // 修改客户合同
     modifyClientContract () {
-      if (this.checkId()) {
-        this.$router.push({
-          path: '/client/clientContract',
-          query: {
-            mode: 'modify',
-            clientContract: this.clientContractTableCurRow
-          }
-        })
-      }
+      this.$router.push({
+        path: '/client/clientContract',
+        query: {
+          mode: 'modify',
+          clientContract: this.clientContractTableCurRow
+        }
+      })
     },
     // 查看客户合同
     detailClientContract () {
-      if (this.checkId()) {
-        this.$router.push({
-          path: '/client/clientContract',
-          query: {
-            mode: 'detail',
-            clientContract: this.clientContractTableCurRow
-          }
-        })
-      }
+      this.$router.push({
+        path: '/client/clientContract',
+        query: {
+          mode: 'detail',
+          clientContract: this.clientContractTableCurRow
+        }
+      })
     },
     // 查询客户合同
     queryClientContract () {
-      let params = {
-        'clientId': this.form.id
-      }
-      clientApi.findContractByClientId(params).then(
+      clientApi.findContractByClientId(this.form.id).then(
         res => {
           if (res.status === 200) {
             this.clientContractTable = res.data
           }
         })
+    },
+    formatDate (row, column, cellvalue, index) {
+      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
+        return cellvalue.substr(0, 10)
+      }
+      return ''
+    },
+    // 公司转换器
+    formatCompany (row, column, cellvalue, index) {
+      if (cellvalue === 'Shanghaihailuorencaifuwu') {
+        return '上海海罗人才服务有限公司'
+      } else if (cellvalue === 'Shanghaihailuorencaikeji') {
+        return '上海海罗人才科技有限公司'
+      } else if (cellvalue === 'Shenyanghailuorencaifuwu') {
+        return '沈阳海罗人才服务有限公司'
+      }
+    },
+    // 转换器
+    formatContainTax (row, column, cellvalue, index) {
+      if (cellvalue) {
+        return '含税'
+      } else {
+        return '未税'
+      }
     }
   },
   created () {

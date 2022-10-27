@@ -26,7 +26,6 @@ export default {
   methods: {
     // 显示控制
     showControl (val) {
-      debugger
       if (val === 'addClient' || val === 'modifyClient') {
         return commonJs.isFullTimeJobType() && commonJs.isAdmin()
       }

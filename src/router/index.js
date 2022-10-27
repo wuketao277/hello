@@ -19,6 +19,7 @@ import Holiday from '@/components/main/my/holiday/holiday/holiday.vue'
 import Role from '@/components/main/role/role/role.vue'
 import RoleList from '@/components/main/role/rolelist/rolelist.vue'
 import ClientLinkMan from '@/components/main/client/clientlinkman/clientlinkman.vue'
+import ClientContract from '@/components/main/client/clientcontract/clientcontract.vue'
 import Case from '@/components/main/case/case/case.vue'
 import CaseList from '@/components/main/case/caselist/caselist.vue'
 import FileList from '@/components/main/file/filelist.vue'
@@ -146,6 +147,12 @@ const router = new Router({
           path: '/client/clientlinkman',
           name: 'clientlinkman',
           component: ClientLinkMan
+        },
+        {
+          // 客户合同
+          path: '/client/clientcontract',
+          name: 'clientcontract',
+          component: ClientContract
         },
         {
           // 职位列表

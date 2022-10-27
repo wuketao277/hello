@@ -79,9 +79,7 @@ export default {
         {code: 'Beijing', name: '北京'},
         {code: 'Shenyang', name: '沈阳'},
         {code: 'Enshi', name: '恩施'}],
-      companyList: [{code: 'Shanghaihailuorencaifuwu', name: '上海海罗人才服务有限公司'},
-        {code: 'Shanghaihailuorencaikeji', name: '上海海罗人才科技有限公司'},
-        {code: 'Shenyanghailuorencaifuwu', name: '沈阳海罗人才服务有限公司'}],
+      companyList: commonJS.companyList,
       yesOrNoList: commonJS.yesOrNoList
     }
   },
@@ -235,7 +233,6 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       if (typeof (this.$route.query.reimbursementItem) !== 'undefined') {
-        debugger
         // 先准备数据
         this.typeChange(this.$route.query.reimbursementItem.type)
         // 在给表单赋值

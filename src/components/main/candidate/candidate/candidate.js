@@ -567,7 +567,6 @@ export default {
       this.mode = this.$route.query.mode
       // 获取候选人数据
       // 如果没有候选人对象，就获取候选人id然后从数据库中查询候选人对象
-      debugger
       if (typeof (this.$route.query.candidate) === 'undefined') {
         let params = {
           'id': this.$route.query.candidateId

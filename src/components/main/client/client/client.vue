@@ -87,6 +87,8 @@
             :border="true"
             style="width: 100%"
             @current-change="linkManRowChange"
+            :highlight-current-row="true"
+            :stripe="true"
           >
             <el-table-column type="index" width="50" label="序号"></el-table-column>
             <el-table-column prop="chineseName" label="联系人中文名"></el-table-column>
@@ -130,25 +132,68 @@
             :border="true"
             style="width: 100%"
             @current-change="clientContractTableRowChange"
+            :highlight-current-row="true"
+            :stripe="true"
+            @row-dblclick="handleRowDblClickForClientContractTable"
           >
             <el-table-column type="index" width="50" label="序号"></el-table-column>
             <el-table-column prop="id" label="Id"></el-table-column>
-            <el-table-column prop="category" label="Category"></el-table-column>
-            <el-table-column prop="effectiveDate" label="Effective Date"></el-table-column>
-            <el-table-column prop="expireDate" label="Expire Date"></el-table-column>
-            <el-table-column prop="industry" label="Industry"></el-table-column>
-            <el-table-column prop="type" label="Type"></el-table-column>
-            <el-table-column prop="feeRate" label="Fee Rate"></el-table-column>
-            <el-table-column prop="guaranteePeriod" label="Guarantee Period"></el-table-column>
-            <el-table-column prop="paymentPeriod" label="Payment Period"></el-table-column>
-            <el-table-column prop="bdUserName" label="BD"></el-table-column>
-            <el-table-column prop="location" label="Location"></el-table-column>
-            <el-table-column prop="note" label="Note"></el-table-column>
-            <el-table-column prop="comments" label="Comments"></el-table-column>
-            <el-table-column prop="forbid" label="Forbid"></el-table-column>
-            <el-table-column prop="receiveDate" label="Receive Date"></el-table-column>
-            <el-table-column prop="containTax" label="Contain Tax"></el-table-column>
-            <el-table-column prop="company" label="Company"></el-table-column>
+            <el-table-column
+              prop="company"
+              width="200"
+              label="Company"
+              :formatter="formatCompany"
+              show-overflow-tooltip
+            ></el-table-column>
+            <el-table-column prop="category" width="100" label="Category" show-overflow-tooltip></el-table-column>
+            <el-table-column
+              prop="effectiveDate"
+              width="120"
+              label="Effective Date"
+              :formatter="formatDate"
+              show-overflow-tooltip
+            ></el-table-column>
+            <el-table-column
+              prop="expireDate"
+              width="120"
+              label="Expire Date"
+              :formatter="formatDate"
+              show-overflow-tooltip
+            ></el-table-column>
+            <el-table-column prop="feeRate" width="100" label="Fee Rate" show-overflow-tooltip></el-table-column>
+            <el-table-column
+              prop="guaranteePeriod"
+              width="150"
+              label="Guarantee Period"
+              show-overflow-tooltip
+            ></el-table-column>
+            <el-table-column
+              prop="paymentPeriod"
+              width="150"
+              label="Payment Period"
+              show-overflow-tooltip
+            ></el-table-column>
+            <el-table-column
+              prop="containTax"
+              width="100"
+              label="Contain Tax"
+              :formatter="formatContainTax"
+              show-overflow-tooltip
+            ></el-table-column>
+            <el-table-column prop="industry" width="120" label="Industry" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="type" width="100" label="Type" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="bdUserName" width="100" label="BD" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="location" width="100" label="Location" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="note" width="100" label="Note" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="comments" width="100" label="Comments" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="forbid" width="100" label="Forbid" show-overflow-tooltip></el-table-column>
+            <el-table-column
+              prop="receiveDate"
+              width="120"
+              label="Receive Date"
+              :formatter="formatDate"
+              show-overflow-tooltip
+            ></el-table-column>
           </el-table>
         </template>
       </el-tab-pane>

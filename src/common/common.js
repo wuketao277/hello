@@ -110,5 +110,9 @@ export default {
   // 性别
   genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}],
   // 是否列表
-  yesOrNoList: [{code: 'YES', name: '是'}, {code: 'NO', name: '否'}]
+  yesOrNoList: [{code: 'YES', name: '是'}, {code: 'NO', name: '否'}],
+  // 公司列表
+  companyList: [{code: 'Shanghaihailuorencaifuwu', name: '上海海罗人才服务有限公司'},
+    {code: 'Shanghaihailuorencaikeji', name: '上海海罗人才科技有限公司'},
+    {code: 'Shenyanghailuorencaifuwu', name: '沈阳海罗人才服务有限公司'}]
 }
