@@ -14,6 +14,11 @@ export default {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('RECRUITER', 0)
   },
+  // 是否拥有BD角色
+  isBD () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.roles.includes('BD', 0)
+  },
   // 是否是全职员工
   isFullTimeJobType () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])

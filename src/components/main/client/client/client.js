@@ -3,6 +3,7 @@ import clientLinkManApi from '@/api/clientlinkman'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
+import commonJs from '@/common/common'
 
 export default {
   components: {
@@ -43,10 +44,21 @@ export default {
       clientLinkManTableCurRow: null,
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
-      uploadFiles: [] // 上传文件集合
+      uploadFiles: [], // 上传文件集合
+      clientContractTable: [], // 客户合同列表
+      // 客户合同表格 当前行
+      clientContractTableCurRow: null
     }
   },
   methods: {
+    // 显示控制
+    showControl (url) {
+      if (url === 'clientContract') {
+        // 客户合同列表，只有Admin，BD角色展示
+        return commonJs.isAdmin() || commonJs.isBD()
+      }
+      return false
+    },
     // 取消
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {
@@ -87,7 +99,7 @@ export default {
       })
     },
     // 联系人表格行变化
-    rowChange (val) {
+    linkManRowChange (val) {
       this.clientLinkManTableCurRow = val
     },
     // 检查id
@@ -176,6 +188,59 @@ export default {
           }
         })
       }
+    },
+    // 客户合同表格行变化
+    clientContractTableRowChange (val) {
+      this.clientContractTableCurRow = val
+    },
+    // 添加客户合同
+    addClientContract () {
+      if (this.checkId()) {
+        this.$router.push({
+          path: '/client/clientContract',
+          query: {
+            mode: 'add',
+            clientId: this.form.id,
+            clientName: this.form.chineseName
+          }
+        })
+      }
+    },
+    // 修改客户合同
+    modifyClientContract () {
+      if (this.checkId()) {
+        this.$router.push({
+          path: '/client/clientContract',
+          query: {
+            mode: 'modify',
+            clientContract: this.clientContractTableCurRow
+          }
+        })
+      }
+    },
+    // 查看客户合同
+    detailClientContract () {
+      if (this.checkId()) {
+        this.$router.push({
+          path: '/client/clientContract',
+          query: {
+            mode: 'detail',
+            clientContract: this.clientContractTableCurRow
+          }
+        })
+      }
+    },
+    // 查询客户合同
+    queryClientContract () {
+      let params = {
+        'clientId': this.form.id
+      }
+      clientApi.findContractByClientId(params).then(
+        res => {
+          if (res.status === 200) {
+            this.clientContractTable = res.data
+          }
+        })
     }
   },
   created () {
@@ -189,6 +254,8 @@ export default {
         this.queryLinkMan()
         // 查询上传文件
         this.queryUploadFiles()
+        // 查询客户合同
+        this.queryClientContract()
       } else if (typeof (this.$route.query.clientId) !== 'undefined') {
         clientApi.queryById(this.$route.query.clientId).then(res => {
           if (res.status === 200) {
@@ -197,6 +264,8 @@ export default {
             this.queryLinkMan()
             // 查询上传文件
             this.queryUploadFiles()
+            // 查询客户合同
+            this.queryClientContract()
           }
         })
       }

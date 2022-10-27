@@ -19,7 +19,7 @@ export default {
         remainHolidayThing: 0,
         remainHolidayIll: 0
       },
-      roleList: ['ADMIN', 'AM', 'RECRUITER'],
+      roleList: ['ADMIN', 'AM', 'RECRUITER', 'BD'],
       rules: {},
       // 工资卡银行
       banks: commonJs.banks,
@@ -95,7 +95,6 @@ export default {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
-      debugger
       this.mode = this.$route.query.mode
       this.form = this.$route.query.user
     }

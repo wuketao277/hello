@@ -36,7 +36,9 @@ export default {
         description: '',
         location: '',
         salaryScope: '',
-        cwUserName: ''
+        cwUserName: '',
+        headCount: null,
+        pipeline: ''
       },
       attention: false,
       rules: {
@@ -240,6 +242,8 @@ export default {
         this.form.salaryScope = ''
         this.form.location = ''
         this.form.cwUserName = ''
+        this.form.headCount = null
+        this.form.pipeline = ''
       }
     },
     // 保存

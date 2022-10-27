@@ -136,7 +136,17 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col>
+        <el-col :span="8">
+          <el-form-item label="HC">
+            <el-input v-model="form.headCount" clearable placeholder="只能填数字"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="Pipeline">
+            <el-input v-model="form.pipeline" clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
           <el-form-item label="面试流程">
             <el-input v-model="form.interviewProcess" clearable></el-input>
           </el-form-item>

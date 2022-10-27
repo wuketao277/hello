@@ -20,5 +20,13 @@ export default {
   // 查找所有
   findAll () {
     return axios.get('/client/findAll')
+  },
+  // 保存客户合同
+  saveContract (params) {
+    return axios.post('/client/saveContract', params)
+  },
+  // 查询客户合同信息
+  findContractByClientId (params) {
+    return axios.get('/client/findContractByClientId?clientId=' + params)
   }
 }
