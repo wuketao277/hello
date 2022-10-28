@@ -57,6 +57,12 @@ export default {
         })
       })
     },
+    // 搜索对话框，确定按钮
+    sureSearchDialog () {
+      this.table.pageable.pageNumber = 1
+      this.table.pageable.pageSize = 10
+      this.query()
+    },
     // 处理选中行时间
     handleCurrentChange (val) {
       this.currentRow = val
