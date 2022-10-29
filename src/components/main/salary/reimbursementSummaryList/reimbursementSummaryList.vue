@@ -5,6 +5,16 @@
       <el-breadcrumb-item>报销列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
+      <el-date-picker
+        v-model="reimbursementMonth"
+        type="month"
+        placeholder="请选择报销月份"
+        format="yyyy-MM"
+        value-format="yyyy-MM"
+        style="width:180px;"
+        clearable
+        v-show="showControl('generateReimbursementSummary')"
+      ></el-date-picker>
       <el-button
         type="danger"
         size="small"

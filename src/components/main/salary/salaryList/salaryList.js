@@ -21,7 +21,8 @@ export default {
       search: commonJS.getSearchContent('salaryList.search'),
       showWorkingDays: true,
       showHistoryDebt: !commonJS.isConsultantJobType(),
-      showLoginName: true
+      showLoginName: true,
+      salaryMonth: commonJS.getYYYY_MM(new Date()) // 工资月份，默认是当月
     }
   },
   methods: {
@@ -81,28 +82,37 @@ export default {
     },
     // 生成工资
     generateSalary () {
-      this.$confirm('确定要生成当月工资吗?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-        center: true
-      }).then(() => {
-        let month = {}
-        salaryApi.generateSalary(month).then(
-          res => {
-            if (res.status === 200) {
-              this.$message({
-                message: '生成成功！',
-                type: 'success',
-                showClose: true
-              })
-              this.query()
-              this.getSalaryStatisticsInfo()
-            } else {
-              this.$message.error('生成失败！')
-            }
-          })
-      })
+      if (this.salaryMonth === null || this.salaryMonth === '') {
+        this.$message({
+          message: '请选择月份',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        let msg = '确定要生成' + this.salaryMonth + '月的工资吗？'
+        this.$confirm(msg, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          let request = {month: this.salaryMonth}
+          salaryApi.generateSalary(request).then(
+            res => {
+              if (res.status === 200) {
+                this.$message({
+                  message: '生成成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                this.query()
+                this.getSalaryStatisticsInfo()
+              } else {
+                this.$message.error('生成失败！')
+              }
+            })
+        })
+      }
     },
     // 查询后台数据
     query () {

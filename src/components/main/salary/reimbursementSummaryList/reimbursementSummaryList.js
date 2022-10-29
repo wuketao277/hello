@@ -20,7 +20,8 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: ''
+      search: '',
+      reimbursementMonth: commonJS.getYYYY_MM(new Date()) // 报销月份，默认是当月
     }
   },
   methods: {
@@ -34,28 +35,38 @@ export default {
     },
     // 生成报销摘要
     generateReimbursementSummary () {
-      this.$confirm('确定要生成报销摘要吗?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-        center: true
-      }).then(() => {
-        reimbursementApi.generateReimbursementSummary().then(
-          res => {
-            if (res.status === 200) {
-              this.$message({
-                message: '生成成功！',
-                type: 'success',
-                showClose: true
-              })
-              this.query()
-              // 重新生成报销汇总后，再次查询当月总报销金额
-              this.getCurrentMonthSumReimbursement()
-            } else {
-              this.$message.error('生成失败！')
-            }
-          })
-      })
+      if (this.reimbursementMonth === null || this.reimbursementMonth === '') {
+        this.$message({
+          message: '请选择月份',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        let msg = '确定要生成' + this.reimbursementMonth + '月的报销吗？'
+        this.$confirm(msg, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          let request = {month: this.reimbursementMonth}
+          reimbursementApi.generateReimbursementSummary(request).then(
+            res => {
+              if (res.status === 200) {
+                this.$message({
+                  message: '生成成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                this.query()
+                // 重新生成报销汇总后，再次查询当月总报销金额
+                this.getCurrentMonthSumReimbursement()
+              } else {
+                this.$message.error('生成失败！')
+              }
+            })
+        })
+      }
     },
     // 查询后台数据
     query () {

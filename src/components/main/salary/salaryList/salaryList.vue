@@ -13,6 +13,16 @@
         v-show="showControl('modifySalary')"
       >修 改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
+      <el-date-picker
+        v-model="salaryMonth"
+        type="month"
+        placeholder="请选择工资月份"
+        format="yyyy-MM"
+        value-format="yyyy-MM"
+        style="width:180px;"
+        clearable
+        v-show="showControl('generateSalary')"
+      ></el-date-picker>
       <el-button
         type="danger"
         size="small"
@@ -20,6 +30,7 @@
         @click="generateSalary"
         v-show="showControl('generateSalary')"
       >生成工资</el-button>
+      <br>
       <el-form
         @submit.native.prevent
         style="display:inline-block;width:250px;"

@@ -90,6 +90,12 @@ export default {
     let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
     return year + '-' + month + '-' + day
   },
+  // 获取YYYY-MM格式的年月
+  getYYYY_MM (d) {
+    let year = d.getFullYear()
+    let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
+    return year + '-' + month
+  },
   // 工资卡银行
   banks: [
     {code: 'ICBC', name: '工商银行'},
