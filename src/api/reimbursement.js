@@ -36,5 +36,9 @@ export default {
   // 通过主键删除
   deleteById (params) {
     return axios.delete('/reimbursement/deleteById?id=' + params)
+  },
+  // 审批通过选中行
+  approveSelection (params) {
+    return axios.post('/reimbursement/approveSelection', params)
   }
 }

@@ -21,10 +21,6 @@ export default {
     }
   },
   methods: {
-    // 表格双击处理
-    handleRowDblClick (row, column, event) {
-      this.detail()
-    },
     // 日期格式化
     formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {

@@ -52,7 +52,7 @@
         :stripe="true"
         style="width: 100%"
         @current-change="rowChange"
-        @row-dblclick="handleRowDblClick"
+        @row-dblclick="modify"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
         <el-table-column prop="consultantUserName" width="100" label="登录名"></el-table-column>

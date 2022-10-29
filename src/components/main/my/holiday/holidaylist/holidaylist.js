@@ -15,7 +15,8 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent()
+      search: this.getSearchContent(),
+      multipleSelection: []
     }
   },
   methods: {
@@ -23,10 +24,6 @@ export default {
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
       this.query()
-    },
-    // 表格双击处理
-    handleRowDblClick (row, column, event) {
-      this.detail()
     },
     // 日期格式化
     formatDate (row, column, cellvalue, index) {
@@ -146,6 +143,38 @@ export default {
         return 10
       } else {
         return window.localStorage['holidaylist.pageSize']
+      }
+    },
+    // 处理行选择变更
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+    },
+    // 选中项审批通过
+    approveSelection () {
+      if (this.multipleSelection.size === 0) {
+        this.$message({
+          message: '请先选择要审批的记录！',
+          type: 'info',
+          showClose: true
+        })
+      } else {
+        this.$confirm('确认要审批通过选中项吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          holidayApi.approveSelection(this.multipleSelection).then(res => {
+            if (res.status === 200) {
+              // 刷新列表
+              this.query()
+              this.$message({
+                message: '审批成功！',
+                type: 'success',
+                showClose: true
+              })
+            }
+          })
+        })
       }
     }
   },

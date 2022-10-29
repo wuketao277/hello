@@ -21,6 +21,7 @@
       >修 改</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById">删 除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
+      <el-button type="warning" size="small" icon="el-icon-s-check" @click="approveSelection">审批通过</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:260px;">
         <el-form-item style="margin-bottom:0px;">
           <el-input
@@ -43,20 +44,23 @@
         :stripe="true"
         style="width: 100%"
         @current-change="rowChange"
-        @row-dblclick="handleRowDblClick"
+        @row-dblclick="modify"
+        @selection-change="handleSelectionChange"
       >
-        <el-table-column type="index" width="50" label="序号"></el-table-column>
-        <el-table-column prop="date" width="100" label="发生日期"></el-table-column>
-        <el-table-column prop="location" width="50" label="地点" :formatter="locationFormatter"></el-table-column>
+        <el-table-column type="index" width="50" label="序号" fixed></el-table-column>
+        <el-table-column type="selection" width="50" fixed></el-table-column>
         <el-table-column
           prop="company"
           width="220"
           label="报销公司"
           :formatter="companyFormatter"
           show-overflow-tooltip
+          fixed
         ></el-table-column>
-        <el-table-column prop="userName" width="100" label="登录名"></el-table-column>
-        <el-table-column prop="paymentMonth" width="100" label="报销月"></el-table-column>
+        <el-table-column prop="userName" width="100" label="登录名" fixed></el-table-column>
+        <el-table-column prop="paymentMonth" width="100" label="报销月" fixed></el-table-column>
+        <el-table-column prop="date" width="100" label="发生日期"></el-table-column>
+        <el-table-column prop="location" width="50" label="地点" :formatter="locationFormatter"></el-table-column>
         <el-table-column prop="needPay" width="80" label="是否报销" :formatter="needPayFormatter"></el-table-column>
         <el-table-column prop="type" width="50" label="类别" :formatter="typeFormatter"></el-table-column>
         <el-table-column

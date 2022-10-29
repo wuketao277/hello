@@ -39,6 +39,7 @@
       :highlight-current-row="true"
       :stripe="true"
       @current-change="handleCurrentChange"
+      @row-dblclick="modifyNews"
       style="width: 100%"
     >
       <el-table-column type="index" width="50" label="序号"></el-table-column>

@@ -8,6 +8,7 @@
       <el-button type="success" size="small" icon="el-icon-circle-plus" @click="add">新 增</el-button>
       <el-button type="warning" size="small" icon="el-icon-edit" @click="modify">修 改</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
+      <el-button type="warning" size="small" icon="el-icon-s-check" @click="approveSelection">审批通过</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:250px;">
         <el-form-item label style="margin-bottom:0px;">
           <el-input
@@ -23,13 +24,15 @@
     <el-table
       :data="table.content"
       @current-change="handleCurrentChange"
-      @row-dblclick="handleRowDblClick"
+      @row-dblclick="modify"
+      @selection-change="handleSelectionChange"
       :border="true"
       :highlight-current-row="true"
       :stripe="true"
       style="width: 100%"
     >
       <el-table-column type="index" width="50" label="序号"></el-table-column>
+      <el-table-column type="selection" width="50"></el-table-column>
       <el-table-column prop="userId" label="用户id" width="80"></el-table-column>
       <el-table-column prop="userName" label="登录名" width="100"></el-table-column>
       <el-table-column prop="userRealName" label="用户姓名" width="100"></el-table-column>

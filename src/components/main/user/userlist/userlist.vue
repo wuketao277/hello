@@ -23,7 +23,7 @@
     <el-table
       :data="table.content"
       @current-change="handleCurrentChange"
-      @row-dblclick="handleRowDblClick"
+      @row-dblclick="modify"
       :border="true"
       :highlight-current-row="true"
       :stripe="true"

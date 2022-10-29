@@ -41,10 +41,6 @@ export default {
         return '6%普票'
       }
     },
-    // 表格双击处理
-    handleRowDblClick (row, column, event) {
-      this.detail()
-    },
     // 通过id发票信息
     deleteById () {
       if (this.checkSelectRow()) {

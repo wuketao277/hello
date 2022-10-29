@@ -87,6 +87,7 @@
             :border="true"
             style="width: 100%"
             @current-change="linkManRowChange"
+            @row-dblclick="modifyLinkMan"
             :highlight-current-row="true"
             :stripe="true"
           >
@@ -134,7 +135,7 @@
             @current-change="clientContractTableRowChange"
             :highlight-current-row="true"
             :stripe="true"
-            @row-dblclick="handleRowDblClickForClientContractTable"
+            @row-dblclick="modifyClientContract"
           >
             <el-table-column type="index" width="50" label="序号"></el-table-column>
             <el-table-column prop="id" label="Id"></el-table-column>

@@ -53,7 +53,7 @@
         :stripe="true"
         style="width: 100%"
         @current-change="rowChange"
-        @row-dblclick="handleRowDblClick"
+        @row-dblclick="modify"
       >
         <el-table-column type="index" width="50" label="序号" show-overflow-tooltip></el-table-column>
         <el-table-column prop="id" width="100" label="职位id" show-overflow-tooltip></el-table-column>

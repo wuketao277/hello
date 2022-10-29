@@ -18,7 +18,8 @@ export default {
       currentRow: null,
       search: this.getSearchContent(),
       needReimbursementSum: null,
-      totalReimbursementSum: null
+      totalReimbursementSum: null,
+      multipleSelection: []
     }
   },
   methods: {
@@ -42,10 +43,6 @@ export default {
       } else {
         return window.localStorage['reimbursementItemList.pageSize']
       }
-    },
-    // 表格双击处理
-    handleRowDblClick (row, column, event) {
-      this.detail()
     },
     // 显示控制
     showControl (key) {
@@ -269,6 +266,38 @@ export default {
         return '招聘费'
       } else if (row.kind === 'Other') {
         return '其他'
+      }
+    },
+    // 处理行选择变更
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+    },
+    // 选中项审批通过
+    approveSelection () {
+      if (this.multipleSelection.size === 0) {
+        this.$message({
+          message: '请先选择要审批的记录！',
+          type: 'info',
+          showClose: true
+        })
+      } else {
+        this.$confirm('确认要审批通过选中项吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+          reimbursementApi.approveSelection(this.multipleSelection).then(res => {
+            if (res.status === 200) {
+              // 刷新列表
+              this.query()
+              this.$message({
+                message: '审批成功！',
+                type: 'success',
+                showClose: true
+              })
+            }
+          })
+        })
       }
     }
   },

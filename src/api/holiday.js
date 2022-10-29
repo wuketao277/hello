@@ -16,5 +16,9 @@ export default {
   // 查找后台数据
   queryPage (params) {
     return axios.get('/holiday/queryPage', {params: params})
+  },
+  // 审批通过选中行
+  approveSelection (params) {
+    return axios.post('/holiday/approveSelection', params)
   }
 }

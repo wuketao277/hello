@@ -32,10 +32,6 @@ export default {
     }
   },
   methods: {
-    // 表格双击处理
-    handleRowDblClick (row, column, event) {
-      this.detail()
-    },
     // 通过id删除成功case
     deleteById () {
       if (this.checkSelectRow()) {

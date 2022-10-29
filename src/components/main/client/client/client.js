@@ -193,10 +193,6 @@ export default {
     clientContractTableRowChange (val) {
       this.clientContractTableCurRow = val
     },
-    // 客户合同表双击事件
-    handleRowDblClickForClientContractTable () {
-      this.detailClientContract()
-    },
     // 添加客户合同
     addClientContract () {
       if (this.checkId()) {
