@@ -25,6 +25,14 @@ export default {
     }
   },
   methods: {
+    // 行双击
+    rowDblClick () {
+      if (commonJS.isAdmin()) {
+        this.modify()
+      } else {
+        this.detail()
+      }
+    },
     // 查看
     detail () {
       if (this.checkSelectRow()) {

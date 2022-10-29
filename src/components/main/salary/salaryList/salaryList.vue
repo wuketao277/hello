@@ -91,7 +91,7 @@
         :stripe="true"
         style="width: 100%"
         @current-change="rowChange"
-        @row-dblclick="modify"
+        @row-dblclick="rowDblClick"
       >
         <el-table-column type="index" width="45" label="No."></el-table-column>
         <el-table-column

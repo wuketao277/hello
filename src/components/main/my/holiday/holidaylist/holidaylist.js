@@ -1,4 +1,5 @@
 import holidayApi from '@/api/holiday'
+import commonJS from '@/common/common'
 
 export default {
   data () {
@@ -20,6 +21,14 @@ export default {
     }
   },
   methods: {
+    // 显示控制
+    showControl (key) {
+      if (key === 'selectionColumn' || key === 'approveButton') {
+        return commonJS.isAdmin()
+      }
+      // 没有特殊要求的不需要角色
+      return true
+    },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1

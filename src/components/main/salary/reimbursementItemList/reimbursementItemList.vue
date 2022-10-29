@@ -21,7 +21,7 @@
       >修 改</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById">删 除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
-      <el-button type="warning" size="small" icon="el-icon-s-check" @click="approveSelection">审批通过</el-button>
+      <el-button type="warning" size="small" icon="el-icon-s-check" @click="approveSelection" v-if="showControl('approveButton')">审批通过</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:260px;">
         <el-form-item style="margin-bottom:0px;">
           <el-input
@@ -48,7 +48,7 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="index" width="50" label="序号" fixed></el-table-column>
-        <el-table-column type="selection" width="50" fixed></el-table-column>
+        <el-table-column type="selection" width="50" fixed v-if="showControl('selectionColumn')"></el-table-column>
         <el-table-column
           prop="company"
           width="220"

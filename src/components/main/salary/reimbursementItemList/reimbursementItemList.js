@@ -46,7 +46,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'generateReimbursementSummary') {
+      if (key === 'generateReimbursementSummary' || key === 'selectionColumn' || key === 'approveButton') {
         return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色

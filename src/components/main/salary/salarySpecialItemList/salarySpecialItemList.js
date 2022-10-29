@@ -20,6 +20,14 @@ export default {
     }
   },
   methods: {
+    // 行双击
+    rowDblClick () {
+      if (commonJS.isAdmin()) {
+        this.modify()
+      } else {
+        this.detail()
+      }
+    },
     // 显示控制
     showControl (key) {
       if (key === 'add' || key === 'edit' || key === 'search' || key === 'delete') {
