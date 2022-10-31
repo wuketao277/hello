@@ -27,6 +27,7 @@
       ref="form"
       :model="form"
       label-width="80px"
+      label-position="left"
       size="small"
       style="margin-top:10px;text-align:left;"
     >
@@ -48,6 +49,9 @@
       </el-form-item>
       <el-form-item label="座机">
         <el-input v-model="form.phoneNo"></el-input>
+      </el-form-item>
+      <el-form-item label="备注">
+        <el-input v-model="form.comments"></el-input>
       </el-form-item>
     </el-form>
   </div>

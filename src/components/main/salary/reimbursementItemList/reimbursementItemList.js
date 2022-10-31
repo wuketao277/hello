@@ -299,6 +299,23 @@ export default {
           })
         })
       }
+    },
+    // 下载报销项
+    downloadReimbursementItem () {
+      let query = {
+        'currentPage': this.table.pageable.pageNumber,
+        'pageSize': this.table.pageable.pageSize,
+        'search': this.search
+      }
+      reimbursementApi.downloadReimbursementItem(query).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
     }
   },
   created () {

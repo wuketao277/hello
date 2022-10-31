@@ -13,6 +13,11 @@ export default {
   queryPage (params) {
     return axios.get('/salary/queryPage', {params: params})
   },
+  // 下载薪资
+  downloadSalary (params) {
+    let urls = 'http://localhost:8080/salary/downloadSalary?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
+    window.open(urls, '_blank')
+  },
   // 更新
   update (params) {
     return axios.post('/salary/update', params)

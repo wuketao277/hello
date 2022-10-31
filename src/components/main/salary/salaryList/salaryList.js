@@ -173,6 +173,23 @@ export default {
           this.curMonthPreTaxSum = res.data.curMonthPreTaxSum
         }
       })
+    },
+    // 下载薪资
+    downloadSalary () {
+      let query = {
+        'currentPage': this.table.pageable.pageNumber,
+        'pageSize': this.table.pageable.pageSize,
+        'search': this.search
+      }
+      salaryApi.downloadSalary(query).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
     }
   },
   created () {

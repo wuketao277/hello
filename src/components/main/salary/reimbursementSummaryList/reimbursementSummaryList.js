@@ -145,6 +145,23 @@ export default {
       } else if (row.company === 'Shenyanghailuorencaifuwu') {
         return 'row2'
       }
+    },
+    // 下载报销项
+    downloadReimbursementSummary () {
+      let query = {
+        'currentPage': this.table.pageable.pageNumber,
+        'pageSize': this.table.pageable.pageSize,
+        'search': this.search
+      }
+      reimbursementApi.downloadReimbursementSummary(query).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
     }
   },
   created () {

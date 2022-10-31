@@ -92,12 +92,13 @@
             :stripe="true"
           >
             <el-table-column type="index" width="50" label="序号"></el-table-column>
-            <el-table-column prop="chineseName" label="联系人中文名"></el-table-column>
-            <el-table-column prop="englishName" label="联系人英文名"></el-table-column>
-            <el-table-column prop="mobileNo" label="手机号"></el-table-column>
-            <el-table-column prop="phoneNo" label="座机号"></el-table-column>
-            <el-table-column prop="email" label="邮箱"></el-table-column>
-            <el-table-column prop="address" label="地址"></el-table-column>
+            <el-table-column prop="chineseName" width="120" label="联系人中文名"></el-table-column>
+            <el-table-column prop="englishName" width="120" label="联系人英文名"></el-table-column>
+            <el-table-column prop="mobileNo" width="120" label="手机号"></el-table-column>
+            <el-table-column prop="phoneNo" width="120" label="座机号"></el-table-column>
+            <el-table-column prop="email" width="120" label="邮箱" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="address" width="250" label="地址" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="comments" label="备注" show-overflow-tooltip></el-table-column>
           </el-table>
         </template>
       </el-tab-pane>

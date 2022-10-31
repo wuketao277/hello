@@ -89,6 +89,12 @@
         v-if="showHistoryDebt"
         v-show="showControl('historyDebt')"
       >隐藏History Debt</el-button>
+      <el-button
+        type="primary"
+        size="medium"
+        icon="el-icon-download"
+        @click="downloadSalary()"
+      >下载薪资</el-button>
     </div>
     <div v-show="showControl('statistics')" style="text-align:left;">
       <span>当月税前总金额：{{curMonthPreTaxSum}}</span>&nbsp;&nbsp;&nbsp;&nbsp;

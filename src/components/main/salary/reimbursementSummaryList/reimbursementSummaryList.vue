@@ -33,6 +33,12 @@
           ></el-input>
         </el-form-item>
       </el-form>
+      <el-button
+        type="primary"
+        size="medium"
+        icon="el-icon-download"
+        @click="downloadReimbursementSummary()"
+      >下载报销</el-button>
     </div>
     <div v-show="showControl('statistics')" style="text-align:left;">
       <span>当月报销总金额：{{currentMonthSumReimbursement}}</span>
@@ -48,11 +54,16 @@
         @current-change="rowChange"
       >
         <el-table-column type="index" width="50" label="序号"></el-table-column>
+        <el-table-column
+          prop="company"
+          width="250"
+          label="报销公司"
+          :formatter="companyFormatter"
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column prop="userName" label="登录名"></el-table-column>
-        <el-table-column prop="realName" label="用户姓名"></el-table-column>
         <el-table-column prop="paymentMonth" label="报销月份"></el-table-column>
-        <el-table-column prop="company" width="250" label="报销公司" :formatter="companyFormatter" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="sum" label="报销总金额"></el-table-column>
+        <el-table-column prop="sum" label="报销金额"></el-table-column>
       </el-table>
       <el-pagination
         background
@@ -70,11 +81,11 @@
   </div>
 </template>
 <style>
-  .row1 {
-    color: red;
-  }
-  .row2 {
-    color: blue;
-  }
+.row1 {
+  color: red;
+}
+.row2 {
+  color: blue;
+}
 </style>
 <script src="./reimbursementSummaryList.js"></script>

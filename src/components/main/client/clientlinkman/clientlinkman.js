@@ -14,7 +14,8 @@ export default {
         address: '',
         phoneNo: '',
         mobileNo: '',
-        email: ''
+        email: '',
+        comments: ''
       },
       rules: {
         chineseName: [
@@ -80,6 +81,7 @@ export default {
         this.form.phoneNo = ''
         this.form.mobileNo = ''
         this.form.email = ''
+        this.form.comments = ''
       }
     },
     // 保存

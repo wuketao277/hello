@@ -21,7 +21,13 @@
       >修 改</el-button>
       <el-button type="danger" size="small" icon="el-icon-delete" @click="deleteById">删 除</el-button>
       <el-button type="primary" size="small" icon="el-icon-share" @click="detail">查 看</el-button>
-      <el-button type="warning" size="small" icon="el-icon-s-check" @click="approveSelection" v-if="showControl('approveButton')">审批通过</el-button>
+      <el-button
+        type="warning"
+        size="small"
+        icon="el-icon-s-check"
+        @click="approveSelection"
+        v-if="showControl('approveButton')"
+      >审批通过</el-button>
       <el-form @submit.native.prevent style="display:inline-block;width:260px;">
         <el-form-item style="margin-bottom:0px;">
           <el-input
@@ -33,6 +39,7 @@
           ></el-input>
         </el-form-item>
       </el-form>
+      <el-button type="primary" size="medium" icon="el-icon-download" @click="downloadReimbursementItem()">下载报销项</el-button>
       <span>总报销:{{totalReimbursementSum}}</span>&nbsp;&nbsp;
       <span>应报销:{{needReimbursementSum}}</span>
     </div>

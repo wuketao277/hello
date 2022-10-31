@@ -13,6 +13,16 @@ export default {
   queryPage (params) {
     return axios.get('/reimbursement/queryPage', {params: params})
   },
+  // 下载报销项详情
+  downloadReimbursementItem (params) {
+    let urls = 'http://localhost:8080/reimbursement/downloadReimbursementItem?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
+    window.open(urls, '_blank')
+  },
+  // 下载报销
+  downloadReimbursementSummary (params) {
+    let urls = 'http://localhost:8080/reimbursement/downloadReimbursementSummary?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
+    window.open(urls, '_blank')
+  },
   // 查找后台统计
   queryStatistics (params) {
     return axios.get('/reimbursement/queryStatistics', {params: params})
