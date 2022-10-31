@@ -15,7 +15,7 @@ export default {
   },
   // 下载薪资
   downloadSalary (params) {
-    let urls = 'http://localhost:8080/salary/downloadSalary?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
+    let urls = 'http://www.helloapplicant.com/salary/downloadSalary?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
     window.open(urls, '_blank')
   },
   // 更新
