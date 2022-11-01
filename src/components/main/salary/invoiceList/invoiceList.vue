@@ -37,13 +37,13 @@
           show-overflow-tooltip
           :formatter="formatType"
         ></el-table-column>
-        <el-table-column prop="clientChineseName" width="300" label="客户名称"></el-table-column>
+        <el-table-column prop="clientChineseName" width="300" label="客户名称" show-overflow-tooltip></el-table-column>
         <el-table-column prop="kind" width="100" label="品类" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="po" width="100" label="PO"></el-table-column>
-        <el-table-column prop="contact" width="300" label="联系信息"></el-table-column>
+        <el-table-column prop="po" width="100" label="PO" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="contact" width="300" label="联系信息" show-overflow-tooltip></el-table-column>
         <el-table-column prop="amName" width="100" label="AM" show-overflow-tooltip></el-table-column>
         <el-table-column prop="candidateChineseName" width="100" label="候选人" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="remark" width="300" label="备注"></el-table-column>
+        <el-table-column prop="remark" width="300" label="备注" show-overflow-tooltip></el-table-column>
         <el-table-column
           prop="sendDate"
           :formatter="formatDate"
@@ -124,7 +124,7 @@
             <el-col :span="6">
               <el-form-item label="AM">
                 <el-select
-                  v-model="search.consultantId"
+                  v-model="search.amId"
                   placeholder="请选择顾问"
                   clearable
                   style="width:100%;"

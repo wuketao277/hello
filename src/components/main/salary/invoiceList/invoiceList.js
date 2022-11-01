@@ -23,7 +23,7 @@ export default {
       },
       currentRow: null,
       searchDialog: false,
-      search: {clientId: null, userId: null, candidateId: null, type: null, status: true, createDateStart: null, createDateEnd: null},
+      search: {clientId: null, amId: null, candidateId: null, type: null, status: true, createDateStart: null, createDateEnd: null},
       clients: [],
       consultants: []
     }
