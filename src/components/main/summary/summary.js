@@ -21,10 +21,38 @@ export default {
       cwCaseArray: [],
       newsCurrentRow: null,
       candidateAttentionList: [],
-      tabIndex: this.getTabIndex()
+      tabIndex: this.getTabIndex(), // 首页当前页签
+      attentionCaseShowCandidate: this.getAttentionCaseShowCandidate(), // 关注职位页面是否显示候选人信息
+      cwCaseShowCandidate: true // 对接职位页面是否显示候选人信息
     }
   },
   methods: {
+    // 切换候选人信息显示状态
+    switchCWCaseShowCandidate (v) {
+      window.localStorage['summary.cwCaseShowCandidate'] = v
+      this.cwCaseShowCandidate = v
+    },
+    // 切换候选人信息显示状态
+    switchAttentionCaseShowCandidate (v) {
+      window.localStorage['summary.attentionCaseShowCandidate'] = v
+      this.attentionCaseShowCandidate = v
+    },
+    // 查询关注职位列表中候选人显示状态
+    getAttentionCaseShowCandidate () {
+      if (typeof (window.localStorage['summary.attentionCaseShowCandidate']) === 'undefined') {
+        return true
+      } else {
+        return window.localStorage['summary.attentionCaseShowCandidate']
+      }
+    },
+    // 查询对接职位中候选人显示状态
+    getCWCaseShowCandidate () {
+      if (typeof (window.localStorage['summary.cwCaseShowCandidate']) === 'undefined') {
+        return true
+      } else {
+        return window.localStorage['summary.cwCaseShowCandidate']
+      }
+    },
     // 获取页签选择
     getTabIndex () {
       if (typeof (window.localStorage['summary.tabIndex']) === 'undefined') {

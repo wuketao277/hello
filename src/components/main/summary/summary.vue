@@ -3,6 +3,10 @@
     <div class="blockdiv2" v-if="!showControl('/')"></div>
     <el-tabs type="border-card" v-if="showControl('/')" @tab-click="tabClick" :value="tabIndex">
       <el-tab-pane label="关注职位" style="text-align:left;" v-if="showControl('/focus')" name="0">
+        <div class="toolbar">
+          <el-button type="warning" size="mini" v-if="!attentionCaseShowCandidate" @click="switchAttentionCaseShowCandidate(true)">显示候选人信息</el-button>
+          <el-button type="primary" size="mini" v-if="attentionCaseShowCandidate" @click="switchAttentionCaseShowCandidate(false)">隐藏候选人信息</el-button>
+        </div>
         <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
           <el-button
             type="text"
@@ -24,7 +28,7 @@
                   @current-change="rowChange"
                   :show-header="false"
                   :cell-style="{padding: '0'}"
-                  v-show="clientCase.candidateList.length > 0"
+                  v-show="attentionCaseShowCandidate && clientCase.candidateList.length > 0"
                 >
                   <el-table-column width="80" label="操作">
                     <template slot-scope="scope">
@@ -57,6 +61,10 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="对接职位" v-if="showControl('/cw')" name="1">
+        <div class="toolbar">
+          <el-button type="warning" size="mini" v-if="!cwCaseShowCandidate" @click="switchCWCaseShowCandidate(true)">显示候选人信息</el-button>
+          <el-button type="primary" size="mini" v-if="cwCaseShowCandidate" @click="switchCWCaseShowCandidate(false)">隐藏候选人信息</el-button>
+        </div>
         <div v-for="(client,index) in cwCaseArray" :key="index">
           <el-button
             type="text"
@@ -78,7 +86,7 @@
                   @current-change="rowChange"
                   :show-header="false"
                   :cell-style="{padding: '0'}"
-                  v-show="clientCase.candidateList.length > 0"
+                  v-show="cwCaseShowCandidate && clientCase.candidateList.length > 0"
                 >
                   <el-table-column width="80" label="操作">
                     <template slot-scope="scope">
