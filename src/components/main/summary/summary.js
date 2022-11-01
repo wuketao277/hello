@@ -20,10 +20,24 @@ export default {
       caseAttention4ClientVOArray: [],
       cwCaseArray: [],
       newsCurrentRow: null,
-      candidateAttentionList: []
+      candidateAttentionList: [],
+      tabIndex: this.getTabIndex()
     }
   },
   methods: {
+    // 获取页签选择
+    getTabIndex () {
+      if (typeof (window.localStorage['summary.tabIndex']) === 'undefined') {
+        return '0'
+      } else {
+        return window.localStorage['summary.tabIndex']
+      }
+    },
+    // 页签点击
+    tabClick (tab) {
+      // 将新页签索引号保存起来
+      window.localStorage['summary.tabIndex'] = tab.index
+    },
     // 查看候选人信息
     detailCandidate (candidateId) {
       this.$router.push({
@@ -37,50 +51,50 @@ export default {
     // 计算开始日期和结束日期
     calcDate (type) {
       if (type === 'today') {
-        this.startDate = new Date()
-        this.endDate = new Date()
+        this.startDate = commonJs.getYYYY_MM_dd(new Date())
+        this.endDate = commonJs.getYYYY_MM_dd(new Date())
       } else if (type === 'week') {
         let now = new Date()
         if (now.getDay() === 0) {
-          this.startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000)
+          this.startDate = commonJs.getYYYY_MM_dd(new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000))
         } else {
-          this.startDate = new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000)
+          this.startDate = commonJs.getYYYY_MM_dd(new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000))
         }
-        this.endDate = new Date(this.startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+        this.endDate = commonJs.getYYYY_MM_dd(new Date(this.startDate.getTime() + 6 * 24 * 60 * 60 * 1000))
       } else if (type === 'month') {
         let month = new Date().getMonth() + 1
-        this.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01', 'yyyy-MM-dd'))
+        this.startDate = new Date().getFullYear() + '-' + month + '-01'
         if (month === 2) {
           // 2 月
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28', 'yyyy-MM-dd'))
+          this.endDate = new Date().getFullYear() + '-' + month + '-28'
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31', 'yyyy-MM-dd'))
+          this.endDate = new Date().getFullYear() + '-' + month + '-31'
         } else {
           // 4 6 9 11月
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30', 'yyyy-MM-dd'))
+          this.endDate = new Date().getFullYear() + '-' + month + '-30'
         }
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
         if (month === 1 || month === 2 || month === 3) {
-          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-03-31', 'yyyy-MM-dd'))
+          this.startDate = new Date().getFullYear() + '-01-01'
+          this.endDate = new Date().getFullYear() + '-03-31'
         } else if (month === 4 || month === 5 || month === 6) {
-          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-04-01', 'yyyy-MM-dd'))
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-06-30', 'yyyy-MM-dd'))
+          this.startDate = new Date().getFullYear() + '-04-01'
+          this.endDate = new Date().getFullYear() + '-06-30'
         } else if (month === 7 || month === 8 || month === 9) {
-          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-07-01', 'yyyy-MM-dd'))
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-09-30', 'yyyy-MM-dd'))
+          this.startDate = new Date().getFullYear() + '-07-01'
+          this.endDate = new Date().getFullYear() + '-09-30'
         } else if (month === 10 || month === 11 || month === 12) {
-          this.startDate = new Date(Date.parse(new Date().getFullYear() + '-10-01', 'yyyy-MM-dd'))
-          this.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+          this.startDate = new Date().getFullYear() + '-10-01'
+          this.endDate = new Date().getFullYear() + '-12-31'
         }
       } else if (type === 'year') {
-        this.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
-        this.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+        this.startDate = new Date().getFullYear() + '-01-01'
+        this.endDate = new Date().getFullYear() + '-12-31'
       } else if (type === 'tonow') {
-        this.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
-        this.endDate = new Date()
+        this.startDate = new Date().getFullYear() + '-01-01'
+        this.endDate = commonJs.getYYYY_MM_dd(new Date())
       }
       // 计算kpi
       this.calcKPI()
@@ -174,9 +188,7 @@ export default {
         this.$message.error('请先选择要计算的日期')
         return
       }
-      let start = this.startDate.getFullYear() + '-' + (1 + this.startDate.getMonth()) + '-' + this.startDate.getDate()
-      let end = this.endDate.getFullYear() + '-' + (1 + this.endDate.getMonth()) + '-' + this.endDate.getDate()
-      commentApi.downloadKPI(start, end)
+      commentApi.downloadKPI(this.startDate, this.endDate)
     },
     // 计算KPI
     calcKPI () {

@@ -1,8 +1,8 @@
 <template>
   <div class="blockdiv">
     <div class="blockdiv2" v-if="!showControl('/')"></div>
-    <el-tabs type="border-card" v-if="showControl('/')">
-      <el-tab-pane label="关注职位" style="text-align:left;" v-if="showControl('/focus')">
+    <el-tabs type="border-card" v-if="showControl('/')" @tab-click="tabClick" :value="tabIndex">
+      <el-tab-pane label="关注职位" style="text-align:left;" v-if="showControl('/focus')" name="0">
         <div v-for="(client,index) in caseAttention4ClientVOArray" :key="index">
           <el-button
             type="text"
@@ -56,7 +56,7 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="对接职位" v-if="showControl('/cw')">
+      <el-tab-pane label="对接职位" v-if="showControl('/cw')" name="1">
         <div v-for="(client,index) in cwCaseArray" :key="index">
           <el-button
             type="text"
@@ -110,7 +110,7 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="关注候选人" v-if="showControl('/candidateAttention')">
+      <el-tab-pane label="关注候选人" v-if="showControl('/candidateAttention')" name="2">
         <el-button
           type="primary"
           plain
@@ -120,7 +120,7 @@
           @click="detailCandidate(candidateAttention.candidateId)"
         >{{candidateAttention.candidateChineseName}}</el-button>
       </el-tab-pane>
-      <el-tab-pane label="我的新闻" v-if="showControl('/news')">
+      <el-tab-pane label="我的新闻" v-if="showControl('/news')" name="3">
         <el-table
           :data="myNewsList"
           :border="true"
@@ -135,7 +135,7 @@
           <el-table-column prop="content" label="内容" show-overflow-tooltip></el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="我的任务" v-if="showControl('/task')">
+      <el-tab-pane label="我的任务" v-if="showControl('/task')" name="4">
         <el-table
           :data="myTasks"
           :border="true"
@@ -150,7 +150,7 @@
           <el-table-column prop="taskContent" label="内容" show-overflow-tooltip></el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="KPI" v-if="showControl('/kpi')">
+      <el-tab-pane label="KPI" v-if="showControl('/kpi')" name="5">
         <div>
           <el-date-picker
             type="date"
