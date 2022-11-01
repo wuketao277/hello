@@ -23,7 +23,7 @@ export default {
       candidateAttentionList: [],
       tabIndex: this.getTabIndex(), // 首页当前页签
       attentionCaseShowCandidate: this.getAttentionCaseShowCandidate(), // 关注职位页面是否显示候选人信息
-      cwCaseShowCandidate: true // 对接职位页面是否显示候选人信息
+      cwCaseShowCandidate: this.getCWCaseShowCandidate() // 对接职位页面是否显示候选人信息
     }
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
       if (typeof (window.localStorage['summary.attentionCaseShowCandidate']) === 'undefined') {
         return true
       } else {
-        return window.localStorage['summary.attentionCaseShowCandidate']
+        return window.localStorage['summary.attentionCaseShowCandidate'] === 'true'
       }
     },
     // 查询对接职位中候选人显示状态
@@ -50,7 +50,7 @@ export default {
       if (typeof (window.localStorage['summary.cwCaseShowCandidate']) === 'undefined') {
         return true
       } else {
-        return window.localStorage['summary.cwCaseShowCandidate']
+        return window.localStorage['summary.cwCaseShowCandidate'] === 'true'
       }
     },
     // 获取页签选择
