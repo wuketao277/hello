@@ -234,6 +234,10 @@ export default {
         return '国内高铁/火车'
       } else if (row.kind === 'TaxiSubway') {
         return '出租车/地铁/其他市内交通'
+      } else if (row.kind === 'DriveTheFare') {
+        return '自驾车费'
+      } else if (row.kind === 'NationalAirTicket') {
+        return '国际机票'
       } else if (row.kind === 'TravelHotel') {
         return '差旅住宿费'
       } else if (row.kind === 'TravelMeal') {
@@ -242,6 +246,8 @@ export default {
         return '通讯费'
       } else if (row.kind === 'OfficeRent') {
         return '办公室租金'
+      } else if (row.kind === 'ITFee') {
+        return 'IT费用'
       } else if (row.kind === 'Training') {
         return '培训费'
       } else if (row.kind === 'Print') {
@@ -264,6 +270,12 @@ export default {
         return '体检费'
       } else if (row.kind === 'Recruit') {
         return '招聘费'
+      } else if (row.kind === 'InsuranceAndHousefund') {
+        return '五险一金'
+      } else if (row.kind === 'Insurance') {
+        return '各类保险'
+      } else if (row.kind === 'Tax') {
+        return '各类税收'
       } else if (row.kind === 'Other') {
         return '其他'
       }
