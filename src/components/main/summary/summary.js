@@ -88,7 +88,7 @@ export default {
         } else {
           this.startDate = commonJs.getYYYY_MM_dd(new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000))
         }
-        this.endDate = commonJs.getYYYY_MM_dd(new Date(this.startDate.getTime() + 6 * 24 * 60 * 60 * 1000))
+        this.endDate = commonJs.getYYYY_MM_dd(new Date(Date.parse(this.startDate) + 6 * 24 * 60 * 60 * 1000))
       } else if (type === 'month') {
         let month = new Date().getMonth() + 1
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
