@@ -204,6 +204,8 @@ export default {
         return '是'
       } else if (row.needPay === 'NO') {
         return '否'
+      } else if (row.needPay === 'BANK') {
+        return '银行'
       }
     },
     // 报销类别转换器

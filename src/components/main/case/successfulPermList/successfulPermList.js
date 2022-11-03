@@ -210,7 +210,7 @@ export default {
   },
   created () {
     // 获取所有“客户”信息
-    clientApi.findAll().then(res => {
+    clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {
         this.clients = res.data
       }

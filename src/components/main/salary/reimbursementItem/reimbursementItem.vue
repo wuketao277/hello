@@ -49,7 +49,7 @@
         <el-col :span="6">
           <el-form-item label="NEED PAY" v-show="showControl('needPay')">
             <el-select v-model="form.needPay" placeholder="请选择" style="max-width:100%;" clearable>
-              <el-option v-for="v in yesOrNoList" :key="v.code" :value="v.code" :label="v.name"></el-option>
+              <el-option v-for="v in reimbursementNeedPay" :key="v.code" :value="v.code" :label="v.name"></el-option>
             </el-select>
           </el-form-item>
         </el-col>

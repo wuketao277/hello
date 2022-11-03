@@ -84,7 +84,8 @@ export default {
         {code: 'Shenyang', name: '沈阳'},
         {code: 'Enshi', name: '恩施'}],
       companyList: commonJS.companyList,
-      yesOrNoList: commonJS.yesOrNoList
+      yesOrNoList: commonJS.yesOrNoList,
+      reimbursementNeedPay: [{code: 'YES', name: '是'}, {code: 'NO', name: '否'}, {code: 'BANK', name: '银行'}]
     }
   },
   methods: {

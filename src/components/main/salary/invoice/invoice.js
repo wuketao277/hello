@@ -188,7 +188,7 @@ export default {
         this.form = this.$route.query.invoice
       }
     }
-    clientApi.findAll().then(
+    clientApi.findAllOrderByChineseName().then(
       res => {
         if (res.status === 200) {
           // 将从服务端获取的id赋值给前端显示

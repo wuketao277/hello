@@ -21,6 +21,10 @@ export default {
   findAll () {
     return axios.get('/client/findAll')
   },
+  // 查找所有
+  findAllOrderByChineseName () {
+    return axios.get('/client/findAllOrderByChineseName')
+  },
   // 保存客户合同
   saveContract (params) {
     return axios.post('/client/saveContract', params)
