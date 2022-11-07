@@ -96,7 +96,9 @@ export default {
           type: 'warning',
           center: true
         }).then(() => {
-          let request = {month: this.salaryMonth}
+          let request = {
+            month: this.salaryMonth
+          }
           salaryApi.generateSalary(request).then(
             res => {
               if (res.status === 200) {
@@ -167,7 +169,15 @@ export default {
     },
     // 获取薪资统计信息
     getSalaryStatisticsInfo () {
-      salaryApi.getSalaryStatisticsInfo().then(res => {
+      window.localStorage['salaryList.search'] = this.search
+      window.localStorage['salaryList.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['salaryList.pageSize'] = this.table.pageable.pageSize
+      let query = {
+        'currentPage': this.table.pageable.pageNumber,
+        'pageSize': this.table.pageable.pageSize,
+        'search': this.search
+      }
+      salaryApi.getSalaryStatisticsInfo(query).then(res => {
         if (res.status === 200) {
           this.curMonthAfterTaxSum = res.data.curMonthAfterTaxSum
           this.curMonthPreTaxSum = res.data.curMonthPreTaxSum

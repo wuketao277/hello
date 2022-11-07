@@ -2,6 +2,7 @@ import successfulPermApi from '@/api/successfulPerm'
 import clientApi from '@/api/client'
 import userApi from '@/api/user'
 import commonJS from '@/common/common'
+import configApi from '@/api/config'
 
 export default {
   data () {
@@ -25,10 +26,20 @@ export default {
       consultants: [],
       bds: [],
       cws: [],
-      approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}],
+      approveStatusList: [{
+        'id': 'applied',
+        'name': '申请状态'
+      }, {
+        'id': 'approved',
+        'name': '审批通过'
+      }, {
+        'id': 'denied',
+        'name': '审批否决'
+      }],
       search: this.getSearchContent(),
       billingSum: null,
-      gpSum: null
+      gpSum: null,
+      typeList: []
     }
   },
   methods: {
@@ -40,7 +51,9 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          let params = {'id': this.currentRow.id}
+          let params = {
+            'id': this.currentRow.id
+          }
           successfulPermApi.deleteById(params).then(res => {
             if (res.status === 200) {
               if (res.data.length > 0) {
@@ -220,6 +233,14 @@ export default {
         this.consultants = res.data
         this.cws = res.data
         this.bds = res.data
+      }
+    })
+    // 查询成功case类型列表
+    configApi.findAllByCategory({
+      category: 'SuccessfulCaseType'
+    }).then(res => {
+      if (res.status === 200) {
+        this.typeList = res.data
       }
     })
     this.query()

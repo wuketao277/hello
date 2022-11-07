@@ -3,6 +3,7 @@ import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
 import clientApi from '@/api/client'
+import configApi from '@/api/config'
 import commonJS from '@/common/common'
 
 export default {
@@ -80,8 +81,18 @@ export default {
       selectConsultantDialogShow: false,
       selectCWDialogShow: false,
       selectBDDialogShow: false,
-      approveStatusList: [{'id': 'applied', 'name': '申请状态'}, {'id': 'approved', 'name': '审批通过'}, {'id': 'denied', 'name': '审批否决'}],
-      typeList: [{'id': 'perm', 'name': 'perm'}, {'id': 'contracting', 'name': 'contracting'}]
+      approveStatusList: [{
+        'id': 'applied',
+        'name': '申请状态'
+      }, {
+        'id': 'approved',
+        'name': '审批通过'
+      }, {
+        'id': 'denied',
+        'name': '审批否决'
+      }],
+      typeList: []
+      // [{'id': 'perm', 'name': 'perm'}, {'id': 'contracting', 'name': 'contracting'}]
     }
   },
   methods: {
@@ -379,7 +390,7 @@ export default {
       }
     },
     getGP: function () {
-      if (this.form.type === 'perm') {
+      if (this.form.type !== 'contracting') {
         // perm情况下，gp是通过billing计算出来的
         if (typeof (this.form.billing) === 'undefined') {
           this.form.gp = 0
@@ -407,5 +418,13 @@ export default {
           this.clients = res.data
         }
       })
+    // 查询成功case类型列表
+    configApi.findAllByCategory({
+      category: 'SuccessfulCaseType'
+    }).then(res => {
+      if (res.status === 200) {
+        this.typeList = res.data
+      }
+    })
   }
 }

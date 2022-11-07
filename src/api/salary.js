@@ -7,11 +7,15 @@ export default {
   },
   // 通过主键查找工资信息
   findById (params) {
-    return axios.get('/salary/findById', {params: params})
+    return axios.get('/salary/findById', {
+      params: params
+    })
   },
   // 查找后台数据
   queryPage (params) {
-    return axios.get('/salary/queryPage', {params: params})
+    return axios.get('/salary/queryPage', {
+      params: params
+    })
   },
   // 下载薪资
   downloadSalary (params) {
@@ -24,6 +28,8 @@ export default {
   },
   // 获取薪资统计信息
   getSalaryStatisticsInfo (params) {
-    return axios.get('/salary/getSalaryStatisticsInfo')
+    return axios.get('/salary/getSalaryStatisticsInfo', {
+      params: params
+    })
   }
 }
