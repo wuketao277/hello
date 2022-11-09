@@ -108,7 +108,6 @@ export default {
                   showClose: true
                 })
                 this.query()
-                this.getSalaryStatisticsInfo()
               } else {
                 this.$message.error('生成失败！')
               }
@@ -133,7 +132,9 @@ export default {
           })
           return
         }
-        this.table = res.data
+        this.table = res.data.page
+        this.curMonthAfterTaxSum = res.data.curMonthAfterTaxSum
+        this.curMonthPreTaxSum = res.data.curMonthPreTaxSum
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
       })
     },
@@ -164,25 +165,7 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
-    },
-    // 获取薪资统计信息
-    getSalaryStatisticsInfo () {
-      window.localStorage['salaryList.search'] = this.search
-      window.localStorage['salaryList.pageNumber'] = this.table.pageable.pageNumber
-      window.localStorage['salaryList.pageSize'] = this.table.pageable.pageSize
-      let query = {
-        'currentPage': this.table.pageable.pageNumber,
-        'pageSize': this.table.pageable.pageSize,
-        'search': this.search
-      }
-      salaryApi.getSalaryStatisticsInfo(query).then(res => {
-        if (res.status === 200) {
-          this.curMonthAfterTaxSum = res.data.curMonthAfterTaxSum
-          this.curMonthPreTaxSum = res.data.curMonthPreTaxSum
-        }
-      })
     },
     // 下载薪资
     downloadSalary () {
@@ -204,6 +187,5 @@ export default {
   },
   created () {
     this.query()
-    this.getSalaryStatisticsInfo()
   }
 }

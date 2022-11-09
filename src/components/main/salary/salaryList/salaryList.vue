@@ -73,7 +73,7 @@
                  v-if="showHistoryDebt"
                  v-show="showControl('historyDebt')">隐藏History Debt</el-button>
       <el-button type="primary"
-                 size="medium"
+                 size="small"
                  icon="el-icon-download"
                  @click="downloadSalary()">下载薪资</el-button>
     </div>

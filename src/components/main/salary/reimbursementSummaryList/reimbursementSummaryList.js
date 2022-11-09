@@ -4,8 +4,8 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
-      // 当月总报销金额
-      currentMonthSumReimbursement: 10,
+      // 总报销金额
+      reimbursementSum: 10,
       // 显示搜索结果
       showSearchResult: false,
       table: {
@@ -49,7 +49,9 @@ export default {
           type: 'warning',
           center: true
         }).then(() => {
-          let request = {month: this.reimbursementMonth}
+          let request = {
+            month: this.reimbursementMonth
+          }
           reimbursementApi.generateReimbursementSummary(request).then(
             res => {
               if (res.status === 200) {
@@ -59,8 +61,6 @@ export default {
                   showClose: true
                 })
                 this.query()
-                // 重新生成报销汇总后，再次查询当月总报销金额
-                this.getCurrentMonthSumReimbursement()
               } else {
                 this.$message.error('生成失败！')
               }
@@ -87,7 +87,8 @@ export default {
           })
           return
         }
-        this.table = res.data
+        this.table = res.data.page
+        this.reimbursementSum = res.data.sum
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
       })
     },
@@ -120,14 +121,6 @@ export default {
       this.table.pageable.pageNumber = 1
       this.query()
     },
-    // 查询当月总报销金额
-    getCurrentMonthSumReimbursement () {
-      reimbursementApi.getCurrentMonthSumReimbursement().then(res => {
-        if (res.status === 200) {
-          this.currentMonthSumReimbursement = res.data
-        }
-      })
-    },
     // 公司转换器
     companyFormatter (row) {
       if (row.company === 'Shanghaihailuorencaifuwu') {
@@ -139,7 +132,10 @@ export default {
       }
     },
     // 设置行样式
-    setRowClassName ({row, index}) {
+    setRowClassName ({
+      row,
+      index
+    }) {
       if (row.company === 'Shanghaihailuorencaikeji') {
         return 'row1'
       } else if (row.company === 'Shenyanghailuorencaifuwu') {
@@ -166,6 +162,5 @@ export default {
   },
   created () {
     this.query()
-    this.getCurrentMonthSumReimbursement()
   }
 }

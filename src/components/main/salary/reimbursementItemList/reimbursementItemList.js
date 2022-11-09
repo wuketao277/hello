@@ -17,9 +17,20 @@ export default {
       },
       currentRow: null,
       search: this.getSearchContent(),
+      needPay: '',
       needReimbursementSum: null,
       totalReimbursementSum: null,
-      multipleSelection: []
+      multipleSelection: [],
+      reimbursementNeedPay: [{
+        code: 'YES',
+        name: '是'
+      }, {
+        code: 'NO',
+        name: '否'
+      }, {
+        code: 'BANK',
+        name: '银行'
+      }]
     }
   },
   methods: {
@@ -124,7 +135,8 @@ export default {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'search': this.search,
+        'needPay': this.needPay
       }
       reimbursementApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -319,7 +331,8 @@ export default {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'search': this.search,
+        'needPay': this.needPay
       }
       reimbursementApi.downloadReimbursementItem(query).then(res => {
         if (res.status === 200) {

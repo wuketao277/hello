@@ -7,15 +7,19 @@ export default {
   },
   // 通过主键查找用户信息
   findById (params) {
-    return axios.get('/reimbursement/findById', {params: params})
+    return axios.get('/reimbursement/findById', {
+      params: params
+    })
   },
   // 查找后台数据
   queryPage (params) {
-    return axios.get('/reimbursement/queryPage', {params: params})
+    return axios.get('/reimbursement/queryPage', {
+      params: params
+    })
   },
   // 下载报销项详情
   downloadReimbursementItem (params) {
-    let urls = 'http://www.helloapplicant.com/reimbursement/downloadReimbursementItem?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
+    let urls = 'http://www.helloapplicant.com/reimbursement/downloadReimbursementItem?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search'] + '&needPay=' + params['needPay']
     window.open(urls, '_blank')
   },
   // 下载报销
@@ -25,15 +29,21 @@ export default {
   },
   // 查找后台统计
   queryStatistics (params) {
-    return axios.get('/reimbursement/queryStatistics', {params: params})
+    return axios.get('/reimbursement/queryStatistics', {
+      params: params
+    })
   },
   // 查找后台数据
   query (params) {
-    return axios.get('/reimbursement/query', {params: params})
+    return axios.get('/reimbursement/query', {
+      params: params
+    })
   },
   // 查找后台数据
   querySummaryPage (params) {
-    return axios.get('/reimbursement/querySummaryPage', {params: params})
+    return axios.get('/reimbursement/querySummaryPage', {
+      params: params
+    })
   },
   // 生成报销摘要
   generateReimbursementSummary (params) {
