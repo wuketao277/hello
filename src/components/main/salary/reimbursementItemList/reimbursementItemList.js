@@ -113,7 +113,7 @@ export default {
     },
     // 查询后台数据
     query () {
-      window.localStorage['reimbursementItemList.search'] = JSON.stringify(typeof (this.search) === 'undefined' ? {} : this.search)
+      window.localStorage['reimbursementItemList.search'] = JSON.stringify((typeof (this.search) === 'undefined' || typeof (this.search) !== 'object') ? {} : this.search)
       window.localStorage['reimbursementItemList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['reimbursementItemList.pageSize'] = this.table.pageable.pageSize
       let query = {
