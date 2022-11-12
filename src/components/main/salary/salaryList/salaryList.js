@@ -18,10 +18,11 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getSearchContent('salaryList.search'),
+      search: commonJS.getSearchContentObject('salaryList.search'),
       showWorkingDays: true,
       showHistoryDebt: !commonJS.isConsultantJobType(),
       showLoginName: true,
+      searchDialog: false,
       salaryMonth: commonJS.getYYYY_MM(new Date()) // 工资月份，默认是当月
     }
   },
@@ -117,13 +118,18 @@ export default {
     },
     // 查询后台数据
     query () {
-      window.localStorage['salaryList.search'] = this.search
+      window.localStorage['salaryList.search'] = JSON.stringify(typeof (this.search) === 'undefined' ? {} : this.search)
       window.localStorage['salaryList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['salaryList.pageSize'] = this.table.pageable.pageSize
+      this.searchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'loginName': this.search.loginName,
+        'userName': this.search.userName,
+        'month': this.search.month,
+        'pretaxIncome': this.search.pretaxIncome,
+        'netPay': this.search.netPay
       }
       salaryApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -167,12 +173,21 @@ export default {
       this.table.pageable.pageNumber = 1
       this.query()
     },
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['salaryList.search'] = {}
+    },
     // 下载薪资
     downloadSalary () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'loginName': this.search.loginName,
+        'userName': this.search.userName,
+        'month': this.search.month,
+        'pretaxIncome': this.search.pretaxIncome,
+        'netPay': this.search.netPay
       }
       salaryApi.downloadSalary(query).then(res => {
         if (res.status === 200) {

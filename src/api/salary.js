@@ -19,7 +19,22 @@ export default {
   },
   // 下载薪资
   downloadSalary (params) {
-    let urls = 'http://www.helloapplicant.com/salary/downloadSalary?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize'] + '&search=' + params['search']
+    let urls = 'http://www.helloapplicant.com/salary/downloadSalary?currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize']
+    if (typeof (params['loginName']) !== 'undefined') {
+      urls = urls + '&loginName=' + params['loginName']
+    }
+    if (typeof (params['userName']) !== 'undefined') {
+      urls = urls + '&userName=' + params['userName']
+    }
+    if (typeof (params['month']) !== 'undefined') {
+      urls = urls + '&month=' + params['month']
+    }
+    if (typeof (params['pretaxIncome']) !== 'undefined') {
+      urls = urls + '&pretaxIncome=' + params['pretaxIncome']
+    }
+    if (typeof (params['netPay']) !== 'undefined') {
+      urls = urls + '&netPay=' + params['netPay']
+    }
     window.open(urls, '_blank')
   },
   // 更新

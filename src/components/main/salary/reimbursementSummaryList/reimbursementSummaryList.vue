@@ -19,16 +19,10 @@
                  icon="el-icon-share"
                  @click="generateReimbursementSummary"
                  v-show="showControl('generateReimbursementSummary')">生成报销</el-button>
-      <el-form @submit.native.prevent
-               style="display:inline-block;width:260px;">
-        <el-form-item style="margin-bottom:0px;">
-          <el-input v-model="search"
-                    autocomplete="off"
-                    @keyup.enter.native="sureSearchDialog"
-                    placeholder="可通过登录名、姓名、月份来查询"
-                    clearable></el-input>
-        </el-form-item>
-      </el-form>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-share"
+                 @click="searchDialog = true">搜 索</el-button>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-download"
@@ -72,6 +66,66 @@
                      @prev-click="prevClick"
                      @next-click="nextClick"></el-pagination>
     </template>
+    <el-dialog title="搜索"
+               :visible="searchDialog"
+               :show-close="false"
+               width="80%">
+      <div>
+        <el-form label-position="left"
+                 label-width="110px">
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="报销公司">
+                <el-select v-model="search.company"
+                           placeholder="请选择公司"
+                           style="width:100%;"
+                           clearable>
+                  <el-option v-for="company in companyList"
+                             :key="company.code"
+                             :value="company.code"
+                             :label="company.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="登录名">
+                <el-input v-model="search.userName"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="报销月份">
+                <el-date-picker v-model="search.paymentMonth"
+                                type="month"
+                                placeholder="请选择月份"
+                                format="yyyy-MM"
+                                value-format="yyyy-MM"
+                                style="width:100%;"
+                                clearable></el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="报销金额">
+                <el-input v-model="search.sum"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <span slot="footer"
+              class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
+          <el-button @click="searchDialog = false">取 消</el-button>
+          <el-button type="primary"
+                     @click="sureSearchDialog">查 询</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <style>

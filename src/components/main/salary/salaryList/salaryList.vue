@@ -28,20 +28,10 @@
                  icon="el-icon-share"
                  @click="generateSalary"
                  v-show="showControl('generateSalary')">生成工资</el-button>
-      <br>
-      <el-form @submit.native.prevent
-               style="display:inline-block;width:250px;"
-               v-show="showControl('search')">
-        <el-form-item label
-                      style="margin-bottom:0px;">
-          <el-input v-model="search"
-                    autocomplete="off"
-                    @keyup.enter.native="sureSearchDialog"
-                    placeholder="可通过登录名、姓名、月份来查询"
-                    clearable
-                    style="width:260px;"></el-input>
-        </el-form-item>
-      </el-form>&nbsp;&nbsp;&nbsp;
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-share"
+                 @click="searchDialog = true">搜 索</el-button>
       <el-button type="primary"
                  size="small"
                  @click="showLoginName=!showLoginName"
@@ -124,6 +114,7 @@
                          width="140"
                          label="Social Insurance"></el-table-column>
         <el-table-column prop="gongjijin"
+                         width="200"
                          label="Housing Provident Fund"></el-table-column>
       </el-table>
       <el-pagination background
@@ -137,6 +128,63 @@
                      @prev-click="prevClick"
                      @next-click="nextClick"></el-pagination>
     </template>
+    <el-dialog title="搜索"
+               :visible="searchDialog"
+               :show-close="false"
+               width="80%">
+      <div>
+        <el-form label-position="left"
+                 label-width="110px">
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Login Name">
+                <el-input v-model="search.loginName"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="User Name">
+                <el-input v-model="search.userName"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="Month">
+                <el-input v-model="search.month"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="Pretax Income">
+                <el-input v-model="search.pretaxIncome"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Net Pay">
+                <el-input v-model="search.netPay"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <span slot="footer"
+              class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
+          <el-button @click="searchDialog = false">取 消</el-button>
+          <el-button type="primary"
+                     @click="sureSearchDialog">查 询</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script src="./salaryList.js"></script>

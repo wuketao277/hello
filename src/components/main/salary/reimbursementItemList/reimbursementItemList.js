@@ -8,16 +8,17 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: this.getPageNumber(),
-          pageSize: this.getPageSize()
+          pageNumber: commonJS.getPageNumber('reimbursementItemList.pageNumber'),
+          pageSize: commonJS.getPageSize('reimbursementItemList.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
+      companyList: commonJS.companyList,
       currentRow: null,
-      search: this.getSearchContent(),
-      needPay: '',
+      searchDialog: false,
+      search: commonJS.getSearchContentObject('reimbursementItemList.search'),
       needReimbursementSum: null,
       totalReimbursementSum: null,
       multipleSelection: [],
@@ -30,31 +31,14 @@ export default {
       }, {
         code: 'BANK',
         name: '银行'
-      }]
+      }],
+      locationList: commonJS.locationList,
+      approveStatusList: commonJS.approveStatusList,
+      currentKindList: [],
+      typeList: commonJS.typeList
     }
   },
   methods: {
-    getSearchContent () {
-      if (typeof (window.localStorage['reimbursementItemList.search']) === 'undefined') {
-        return ''
-      } else {
-        return window.localStorage['reimbursementItemList.search']
-      }
-    },
-    getPageNumber () {
-      if (typeof (window.localStorage['reimbursementItemList.pageNumber']) === 'undefined') {
-        return 1
-      } else {
-        return window.localStorage['reimbursementItemList.pageNumber']
-      }
-    },
-    getPageSize () {
-      if (typeof (window.localStorage['reimbursementItemList.pageSize']) === 'undefined') {
-        return 10
-      } else {
-        return window.localStorage['reimbursementItemList.pageSize']
-      }
-    },
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'selectionColumn' || key === 'approveButton') {
@@ -129,14 +113,24 @@ export default {
     },
     // 查询后台数据
     query () {
-      window.localStorage['reimbursementItemList.search'] = this.search
+      window.localStorage['reimbursementItemList.search'] = JSON.stringify(typeof (this.search) === 'undefined' ? {} : this.search)
       window.localStorage['reimbursementItemList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['reimbursementItemList.pageSize'] = this.table.pageable.pageSize
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search,
-        'needPay': this.needPay
+        'userName': this.search.userName,
+        'approveStatus': this.search.approveStatus,
+        'needPay': this.search.needPay,
+        'date': this.search.date,
+        'location': this.search.location,
+        'company': this.search.company,
+        'paymentMonth': this.search.paymentMonth,
+        'type': this.search.type,
+        'kind': this.search.kind,
+        'invoiceNo': this.search.invoiceNo,
+        'sum': this.search.sum,
+        'description': this.search.description
       }
       reimbursementApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -145,18 +139,11 @@ export default {
           })
           return
         }
-        this.table = res.data
-        this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
-      })
-      reimbursementApi.queryStatistics(query).then(res => {
-        if (res.status !== 200) {
-          this.$message.error({
-            message: '查询失败，请联系管理员！'
-          })
-          return
-        }
-        this.needReimbursementSum = res.data.needReimbursementSum
+        this.table = res.data.page
         this.totalReimbursementSum = res.data.totalReimbursementSum
+        this.needReimbursementSum = res.data.needReimbursementSum
+        this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
+        this.searchDialog = false
       })
     },
     // 行变化
@@ -326,13 +313,28 @@ export default {
         })
       }
     },
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['reimbursementItemList.search'] = {}
+    },
     // 下载报销项
     downloadReimbursementItem () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search,
-        'needPay': this.needPay
+        'userName': this.search.userName,
+        'approveStatus': this.search.approveStatus,
+        'needPay': this.search.needPay,
+        'date': this.search.date,
+        'location': this.search.location,
+        'company': this.search.company,
+        'paymentMonth': this.search.paymentMonth,
+        'type': this.search.type,
+        'kind': this.search.kind,
+        'invoiceNo': this.search.invoiceNo,
+        'sum': this.search.sum,
+        'description': this.search.description
       }
       reimbursementApi.downloadReimbursementItem(query).then(res => {
         if (res.status === 200) {
@@ -343,6 +345,26 @@ export default {
           })
         }
       })
+    },
+    // 类别变更事件
+    typeChange (value) {
+      debugger
+      this.search.kind = ''
+      if (value === 'Transportation') {
+        this.currentKindList = commonJS.transportationKindList
+      } else if (value === 'Travel') {
+        this.currentKindList = commonJS.travelKindList
+      } else if (value === 'Communication') {
+        this.currentKindList = commonJS.communicationKindList
+      } else if (value === 'Office') {
+        this.currentKindList = commonJS.officeKindList
+      } else if (value === 'Service') {
+        this.currentKindList = commonJS.serviceKindList
+      } else if (value === 'Recruit') {
+        this.currentKindList = commonJS.recruitKindList
+      } else if (value === 'Other') {
+        this.currentKindList = commonJS.otherKindList
+      }
     }
   },
   created () {

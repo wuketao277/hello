@@ -385,9 +385,11 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
           <el-button @click="searchDialog = false">取 消</el-button>
           <el-button type="primary"
-                     @click="sureSearchDialog">确 定</el-button>
+                     @click="sureSearchDialog">查 询</el-button>
         </span>
       </div>
     </el-dialog>

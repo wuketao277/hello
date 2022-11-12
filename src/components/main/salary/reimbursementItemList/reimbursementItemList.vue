@@ -31,31 +31,13 @@
                  v-if="showControl('approveButton')">审批通过</el-button>
       <el-button type="primary"
                  size="small"
+                 icon="el-icon-share"
+                 @click="searchDialog = true">搜 索</el-button>
+      <el-button type="primary"
+                 size="small"
                  icon="el-icon-download"
                  @click="downloadReimbursementItem()">下载报销项</el-button>
       <br />
-      <el-form @submit.native.prevent
-               style="display:inline-block;width:440px;">
-        <el-form-item style="margin-bottom:0px;">
-          <span>是否报销</span>
-          <el-select v-model="needPay"
-                     placeholder="请选择"
-                     style="width:100px;"
-                     @change="sureSearchDialog"
-                     clearable>
-            <el-option v-for="v in reimbursementNeedPay"
-                       :key="v.code"
-                       :value="v.code"
-                       :label="v.name"></el-option>
-          </el-select>
-          <el-input v-model="search"
-                    autocomplete="off"
-                    @keyup.enter.native="sureSearchDialog"
-                    placeholder="可通过登录名、姓名、月份来查询"
-                    style="width:260px;"
-                    clearable></el-input>
-        </el-form-item>
-      </el-form>
       <span>总报销:{{totalReimbursementSum}}</span>&nbsp;&nbsp;
       <span>应报销:{{needReimbursementSum}}</span>
     </div>
@@ -139,10 +121,169 @@
                      :page-size="table.pageable.pageSize"
                      @size-change="sizeChange"
                      @current-change="currentChange"
-                     @row-dblclick="handleRowDblClick"
                      @prev-click="prevClick"
                      @next-click="nextClick"></el-pagination>
     </template>
+    <el-dialog title="搜索"
+               :visible="searchDialog"
+               :show-close="false"
+               width="80%">
+      <div>
+        <el-form label-position="left"
+                 label-width="110px">
+          <el-row :gutter="12">
+            <el-col :span="6">
+              <el-form-item label="User Name">
+                <el-input v-model="search.userName"
+                          size="small"
+                          style="width:100%;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="STATUS">
+                <el-select v-model="search.approveStatus"
+                           placeholder="STATUS"
+                           style="max-width:100%;"
+                           clearable>
+                  <el-option v-for="status in approveStatusList"
+                             :key="status.code"
+                             :value="status.code"
+                             :label="status.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="NEED PAY">
+                <el-select v-model="search.needPay"
+                           placeholder="请选择"
+                           style="max-width:100%;"
+                           clearable>
+                  <el-option v-for="v in reimbursementNeedPay"
+                             :key="v.code"
+                             :value="v.code"
+                             :label="v.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="12">
+            <el-col :span="6">
+              <el-form-item label="DATE">
+                <el-date-picker v-model="search.date"
+                                type="date"
+                                placeholder="发生日期"
+                                value-format="yyyy-MM-dd"
+                                style="width:100%;"
+                                clearable></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="LOCATION">
+                <el-select v-model="search.location"
+                           placeholder="发生地点"
+                           style="width:100%;"
+                           clearable>
+                  <el-option v-for="location in locationList"
+                             :key="location.code"
+                             :value="location.code"
+                             :label="location.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="COMPANY">
+                <el-select v-model="search.company"
+                           style="width:100%;"
+                           clearable>
+                  <el-option v-for="company in companyList"
+                             :key="company.code"
+                             :value="company.code"
+                             :label="company.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="12">
+            <el-col :span="6">
+              <el-form-item label="MONTH">
+                <el-date-picker v-model="search.paymentMonth"
+                                type="month"
+                                placeholder="选择报销月份"
+                                format="yyyy-MM"
+                                value-format="yyyy-MM"
+                                style="width:100%;"
+                                clearable></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="TYPE">
+                <el-select v-model="search.type"
+                           @change="typeChange"
+                           placeholder="类别"
+                           style="width:100%;"
+                           clearable>
+                  <el-option v-for="type in typeList"
+                             :key="type.code"
+                             :value="type.code"
+                             :label="type.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="KIND">
+                <el-select v-model="search.kind"
+                           placeholder="项目"
+                           style="width:100%;"
+                           clearable>
+                  <el-option v-for="kind in currentKindList"
+                             :key="kind.code"
+                             :value="kind.code"
+                             :label="kind.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="INVOICE NO.">
+                <el-input v-model="search.invoiceNo"
+                          size="small"
+                          clearable
+                          placeholder="发票号"
+                          style="width:100%;"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="12">
+            <el-col :span="6">
+              <el-form-item label="SUM">
+                <el-input v-model="search.sum"
+                          size="small"
+                          clearable
+                          placeholder="总金额"
+                          style="width:100%;"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="18">
+              <el-form-item label="DESCRIPTION">
+                <el-input v-model="search.description"
+                          size="small"
+                          style="width:100%;"
+                          clearable
+                          placeholder="描述"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <span slot="footer"
+              class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
+          <el-button @click="searchDialog = false">取 消</el-button>
+          <el-button type="primary"
+                     @click="sureSearchDialog">查 询</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script src="./reimbursementItemList.js"></script>

@@ -59,7 +59,11 @@ export default {
   // 获取当前登录用户
   getUser () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
-    let user = {'id': loginInfo.id, 'userName': loginInfo.username, 'realName': loginInfo.realname}
+    let user = {
+      'id': loginInfo.id,
+      'userName': loginInfo.username,
+      'realName': loginInfo.realname
+    }
     return user
   },
   getSearchContent (searchContent) {
@@ -69,18 +73,25 @@ export default {
       return window.localStorage[searchContent]
     }
   },
+  getSearchContentObject (searchContent) {
+    if (typeof (window.localStorage[searchContent]) === 'undefined') {
+      return {}
+    } else {
+      return JSON.parse(window.localStorage[searchContent])
+    }
+  },
   getPageNumber (pageNumber) {
     if (typeof (window.localStorage[pageNumber]) === 'undefined') {
       return 1
     } else {
-      return window.localStorage[pageNumber]
+      return Number(window.localStorage[pageNumber])
     }
   },
   getPageSize (pageSize) {
     if (typeof (window.localStorage[pageSize]) === 'undefined') {
       return 10
     } else {
-      return window.localStorage[pageSize]
+      return Number(window.localStorage[pageSize])
     }
   },
   // 获取YYYY-MM-dd格式的年月日
@@ -97,28 +108,247 @@ export default {
     return year + '-' + month
   },
   // 工资卡银行
-  banks: [
-    {code: 'ICBC', name: '工商银行'},
-    {code: 'ABC', name: '农业银行'},
-    {code: 'CMB', name: '招商银行'},
-    {code: 'CCB', name: '建设银行'},
-    {code: 'BCM', name: '交通银行'},
-    {code: 'PAB', name: '平安银行'},
-    {code: 'CEB', name: '光大银行'},
-    {code: 'BOC', name: '中国银行'},
-    {code: 'SPDB', name: '浦发银行'},
-    {code: 'CITIC', name: '中信银行'},
-    {code: 'BOS', name: '上海银行'},
-    {code: 'CMBC', name: '民生银行'},
-    {code: 'CIB', name: '兴业银行'},
-    {code: 'HB', name: '华夏银行'}
+  banks: [{
+    code: 'ICBC',
+    name: '工商银行'
+  },
+  {
+    code: 'ABC',
+    name: '农业银行'
+  },
+  {
+    code: 'CMB',
+    name: '招商银行'
+  },
+  {
+    code: 'CCB',
+    name: '建设银行'
+  },
+  {
+    code: 'BCM',
+    name: '交通银行'
+  },
+  {
+    code: 'PAB',
+    name: '平安银行'
+  },
+  {
+    code: 'CEB',
+    name: '光大银行'
+  },
+  {
+    code: 'BOC',
+    name: '中国银行'
+  },
+  {
+    code: 'SPDB',
+    name: '浦发银行'
+  },
+  {
+    code: 'CITIC',
+    name: '中信银行'
+  },
+  {
+    code: 'BOS',
+    name: '上海银行'
+  },
+  {
+    code: 'CMBC',
+    name: '民生银行'
+  },
+  {
+    code: 'CIB',
+    name: '兴业银行'
+  },
+  {
+    code: 'HB',
+    name: '华夏银行'
+  }
   ],
   // 性别
-  genders: [{code: 'MALE', describe: '男'}, {code: 'FEMALE', describe: '女'}],
+  genders: [{
+    code: 'MALE',
+    describe: '男'
+  }, {
+    code: 'FEMALE',
+    describe: '女'
+  }],
   // 是否列表
-  yesOrNoList: [{code: 'YES', name: '是'}, {code: 'NO', name: '否'}],
+  yesOrNoList: [{
+    code: 'YES',
+    name: '是'
+  }, {
+    code: 'NO',
+    name: '否'
+  }],
   // 公司列表
-  companyList: [{code: 'Shanghaihailuorencaifuwu', name: '上海海罗人才服务有限公司'},
-    {code: 'Shanghaihailuorencaikeji', name: '上海海罗人才科技有限公司'},
-    {code: 'Shenyanghailuorencaifuwu', name: '沈阳海罗人才服务有限公司'}]
+  companyList: [{
+    code: 'Shanghaihailuorencaifuwu',
+    name: '上海海罗人才服务有限公司'
+  },
+  {
+    code: 'Shanghaihailuorencaikeji',
+    name: '上海海罗人才科技有限公司'
+  },
+  {
+    code: 'Shenyanghailuorencaifuwu',
+    name: '沈阳海罗人才服务有限公司'
+  }
+  ],
+  locationList: [{
+    code: 'Shanghai',
+    name: '上海'
+  }, {
+    code: 'Beijing',
+    name: '北京'
+  }, {
+    code: 'Shenyang',
+    name: '沈阳'
+  }, {
+    code: 'Enshi',
+    name: '恩施'
+  }],
+  approveStatusList: [{
+    code: 'Apply',
+    name: 'Apply'
+  }, {
+    code: 'Approved',
+    name: 'Approved'
+  }, {
+    code: 'Denied',
+    name: 'Denied'
+  }],
+  typeList: [{
+    code: 'Transportation',
+    name: '交通'
+  }, {
+    code: 'Travel',
+    name: '差旅'
+  }, {
+    code: 'Communication',
+    name: '通讯'
+  }, {
+    code: 'Office',
+    name: '办公'
+  }, {
+    code: 'Service',
+    name: '服务'
+  }, {
+    code: 'Recruit',
+    name: '招聘'
+  }, {
+    code: 'Other',
+    name: '其他'
+  }],
+  transportationKindList: [{
+    code: 'Parking',
+    name: '停车费'
+  },
+  {
+    code: 'InternalAirTicket',
+    name: '国内机票'
+  },
+  {
+    code: 'InternalTrainTicket',
+    name: '国内高铁/火车'
+  },
+  {
+    code: 'TaxiSubway',
+    name: '出租车/地铁/其他市内交通'
+  },
+  {
+    code: 'DriveTheFare',
+    name: '自驾车费'
+  },
+  {
+    code: 'NationalAirTicket',
+    name: '国际机票'
+  }
+  ],
+  travelKindList: [{
+    code: 'TravelHotel',
+    name: '差旅住宿费'
+  },
+  {
+    code: 'TravelMeal',
+    name: '差旅餐饭'
+  }
+  ],
+  communicationKindList: [{
+    code: 'Communication',
+    name: '通讯费'
+  }],
+  officeKindList: [{
+    code: 'OfficeRent',
+    name: '办公室租金'
+  }, {
+    code: 'Training',
+    name: '培训费'
+  }, {
+    code: 'Print',
+    name: '打印费'
+  },
+  {
+    code: 'Tool',
+    name: '文具费'
+  }, {
+    code: 'Postage',
+    name: '快递费'
+  }, {
+    code: 'Drug',
+    name: '药品'
+  },
+  {
+    code: 'ITFee',
+    name: 'IT费用'
+  }
+  ],
+  serviceKindList: [{
+    code: 'Candidate',
+    name: '候选人招待费'
+  }, {
+    code: 'Client',
+    name: '客户招待费'
+  },
+  {
+    code: 'Employee',
+    name: '员工内部招待费'
+  }, {
+    code: 'Consultant',
+    name: '外包员工招待费'
+  },
+  {
+    code: 'BodyCheck',
+    name: '体检费'
+  }
+  ],
+  recruitKindList: [{
+    code: 'Recruit',
+    name: '招聘费'
+  }],
+  otherKindList: [{
+    code: 'InsuranceAndHousefund',
+    name: '五险一金'
+  },
+  {
+    code: 'Insurance',
+    name: '各类保险'
+  }, {
+    code: 'Tax',
+    name: '各类税收'
+  }, {
+    code: 'Other',
+    name: '其他'
+  }
+  ],
+  reimbursementNeedPay: [{
+    code: 'YES',
+    name: '是'
+  }, {
+    code: 'NO',
+    name: '否'
+  }, {
+    code: 'BANK',
+    name: '银行'
+  }]
 }

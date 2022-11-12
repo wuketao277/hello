@@ -29,63 +29,12 @@ export default {
         description: '' // 备注
       },
       selectUserDialogShow: false,
-      approveStatusList: [{
-        code: 'Apply',
-        name: 'Apply'
-      }, {
-        code: 'Approved',
-        name: 'Approved'
-      }, {
-        code: 'Denied',
-        name: 'Denied'}],
-      typeList: [{
-        code: 'Transportation',
-        name: '交通'
-      }, {
-        code: 'Travel',
-        name: '差旅'
-      }, {
-        code: 'Communication',
-        name: '通讯'
-      }, {
-        code: 'Office',
-        name: '办公'
-      }, {
-        code: 'Service',
-        name: '服务'
-      }, {
-        code: 'Recruit',
-        name: '招聘'
-      }, {
-        code: 'Other',
-        name: '其他'
-      }],
-      transportationKindList: [{code: 'Parking', name: '停车费'},
-        {code: 'InternalAirTicket', name: '国内机票'},
-        {code: 'InternalTrainTicket', name: '国内高铁/火车'},
-        {code: 'TaxiSubway', name: '出租车/地铁/其他市内交通'},
-        {code: 'DriveTheFare', name: '自驾车费'},
-        {code: 'NationalAirTicket', name: '国际机票'}],
-      travelKindList: [{code: 'TravelHotel', name: '差旅住宿费'},
-        {code: 'TravelMeal', name: '差旅餐饭'}],
-      communicationKindList: [{code: 'Communication', name: '通讯费'}],
-      officeKindList: [{code: 'OfficeRent', name: '办公室租金'}, {code: 'Training', name: '培训费'}, {code: 'Print', name: '打印费'},
-        {code: 'Tool', name: '文具费'}, {code: 'Postage', name: '快递费'}, {code: 'Drug', name: '药品'},
-        {code: 'ITFee', name: 'IT费用'}],
-      serviceKindList: [{code: 'Candidate', name: '候选人招待费'}, {code: 'Client', name: '客户招待费'},
-        {code: 'Employee', name: '员工内部招待费'}, {code: 'Consultant', name: '外包员工招待费'},
-        {code: 'BodyCheck', name: '体检费'}],
-      recruitKindList: [{code: 'Recruit', name: '招聘费'}],
-      otherKindList: [{code: 'InsuranceAndHousefund', name: '五险一金'},
-        {code: 'Insurance', name: '各类保险'}, {code: 'Tax', name: '各类税收'}, {code: 'Other', name: '其他'}],
+      approveStatusList: commonJS.approveStatusList,
       currentKindList: [],
-      locationList: [{code: 'Shanghai', name: '上海'},
-        {code: 'Beijing', name: '北京'},
-        {code: 'Shenyang', name: '沈阳'},
-        {code: 'Enshi', name: '恩施'}],
+      locationList: commonJS.locationList,
       companyList: commonJS.companyList,
       yesOrNoList: commonJS.yesOrNoList,
-      reimbursementNeedPay: [{code: 'YES', name: '是'}, {code: 'NO', name: '否'}, {code: 'BANK', name: '银行'}]
+      reimbursementNeedPay: commonJS.reimbursementNeedPay
     }
   },
   methods: {
@@ -209,19 +158,19 @@ export default {
     typeChange (value) {
       this.form.kind = ''
       if (value === 'Transportation') {
-        this.currentKindList = this.transportationKindList
+        this.currentKindList = commonJS.transportationKindList
       } else if (value === 'Travel') {
-        this.currentKindList = this.travelKindList
+        this.currentKindList = commonJS.travelKindList
       } else if (value === 'Communication') {
-        this.currentKindList = this.communicationKindList
+        this.currentKindList = commonJS.communicationKindList
       } else if (value === 'Office') {
-        this.currentKindList = this.officeKindList
+        this.currentKindList = commonJS.officeKindList
       } else if (value === 'Service') {
-        this.currentKindList = this.serviceKindList
+        this.currentKindList = commonJS.serviceKindList
       } else if (value === 'Recruit') {
-        this.currentKindList = this.recruitKindList
+        this.currentKindList = commonJS.recruitKindList
       } else if (value === 'Other') {
-        this.currentKindList = this.otherKindList
+        this.currentKindList = commonJS.otherKindList
       }
     }
   },

@@ -13,8 +13,8 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: this.getPageNumber(),
-          pageSize: this.getPageSize()
+          pageNumber: commonJS.getPageNumber('successfulPermList.pageNumber'),
+          pageSize: commonJS.getPageNumber('successfulPermList.pageSize')
         }
       },
       page: {
@@ -36,7 +36,7 @@ export default {
         'id': 'denied',
         'name': '审批否决'
       }],
-      search: this.getSearchContent(),
+      search: commonJS.getSearchContentObject('successfulPermList.search'),
       billingSum: null,
       gpSum: null,
       typeList: []
@@ -199,26 +199,10 @@ export default {
       this.table.pageable.pageNumber = 1
       this.query()
     },
-    getSearchContent () {
-      if (typeof (window.localStorage['successfulPermList.search']) === 'undefined') {
-        return {}
-      } else {
-        return JSON.parse(window.localStorage['successfulPermList.search'])
-      }
-    },
-    getPageNumber () {
-      if (typeof (window.localStorage['successfulPermList.pageNumber']) === 'undefined') {
-        return 1
-      } else {
-        return window.localStorage['successfulPermList.pageNumber']
-      }
-    },
-    getPageSize () {
-      if (typeof (window.localStorage['successfulPermList.pageSize']) === 'undefined') {
-        return 10
-      } else {
-        return window.localStorage['successfulPermList.pageSize']
-      }
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['successfulPermList.search'] = {}
     }
   },
   created () {

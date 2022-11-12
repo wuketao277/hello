@@ -12,15 +12,17 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: 1,
-          pageSize: 10
+          pageNumber: commonJS.getPageNumber('reimbursementSummaryList.pageNumber'),
+          pageSize: commonJS.getPageSize('reimbursementSummaryList.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: '',
+      companyList: commonJS.companyList,
+      searchDialog: false,
+      search: commonJS.getSearchContentObject('reimbursementSummaryList.search'),
       reimbursementMonth: commonJS.getYYYY_MM(new Date()) // 报销月份，默认是当月
     }
   },
@@ -70,15 +72,17 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['reimbursementSummaryList.search'] = JSON.stringify(typeof (this.search) === 'undefined' ? {} : this.search)
+      window.localStorage['reimbursementSummaryList.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['reimbursementSummaryList.pageSize'] = this.table.pageable.pageSize
+      this.searchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'company': this.search.company,
+        'userName': this.search.userName,
+        'paymentMonth': this.search.paymentMonth,
+        'sum': this.search.sum
       }
       reimbursementApi.querySummaryPage(query).then(res => {
         if (res.status !== 200) {
@@ -121,6 +125,11 @@ export default {
       this.table.pageable.pageNumber = 1
       this.query()
     },
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['reimbursementSummaryList.search'] = {}
+    },
     // 公司转换器
     companyFormatter (row) {
       if (row.company === 'Shanghaihailuorencaifuwu') {
@@ -147,7 +156,10 @@ export default {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search
+        'company': this.search.company,
+        'userName': this.search.userName,
+        'paymentMonth': this.search.paymentMonth,
+        'sum': this.search.sum
       }
       reimbursementApi.downloadReimbursementSummary(query).then(res => {
         if (res.status === 200) {
