@@ -107,25 +107,23 @@ export default {
               tooltip: {
                 trigger: 'item'
               },
-              series: [
-                {
-                  type: 'pie',
-                  radius: '70%',
-                  data: res.data.offerDateData,
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b} {c}'
-                    }
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.offerDateData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
                   }
                 }
-              ]
+              }]
             })
             let paymentDateChart = this.$echarts.init(document.getElementById('paymentDateChart'))
             paymentDateChart.setOption({
@@ -136,25 +134,23 @@ export default {
               tooltip: {
                 trigger: 'item'
               },
-              series: [
-                {
-                  type: 'pie',
-                  radius: '70%',
-                  data: res.data.paymentDateData,
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b} {c}'
-                    }
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.paymentDateData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
                   }
                 }
-              ]
+              }]
             })
             let actualPaymentDateChart = this.$echarts.init(document.getElementById('actualPaymentDateChart'))
             actualPaymentDateChart.setOption({
@@ -165,25 +161,23 @@ export default {
               tooltip: {
                 trigger: 'item'
               },
-              series: [
-                {
-                  type: 'pie',
-                  radius: '70%',
-                  data: res.data.actualPaymentDateData,
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b} {c}'
-                    }
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.actualPaymentDateData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
                   }
                 }
-              ]
+              }]
             })
             let unactualPaymentDateChart = this.$echarts.init(document.getElementById('unactualPaymentDateChart'))
             unactualPaymentDateChart.setOption({
@@ -194,25 +188,23 @@ export default {
               tooltip: {
                 trigger: 'item'
               },
-              series: [
-                {
-                  type: 'pie',
-                  radius: '70%',
-                  data: res.data.unactualPaymentDateData,
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b} {c}'
-                    }
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.unactualPaymentDateData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
                   }
                 }
-              ]
+              }]
             })
             let personalOfferDataChart = this.$echarts.init(document.getElementById('personalOfferDataChart'))
             personalOfferDataChart.setOption({
@@ -223,25 +215,23 @@ export default {
               tooltip: {
                 trigger: 'item'
               },
-              series: [
-                {
-                  type: 'pie',
-                  radius: '70%',
-                  data: res.data.personalOfferData,
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b} {c}'
-                    }
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.personalOfferData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
                   }
                 }
-              ]
+              }]
             })
             let invoiceDateDataChart = this.$echarts.init(document.getElementById('invoiceDateDataChart'))
             invoiceDateDataChart.setOption({
@@ -252,25 +242,50 @@ export default {
               tooltip: {
                 trigger: 'item'
               },
-              series: [
-                {
-                  type: 'pie',
-                  radius: '70%',
-                  data: res.data.invoiceDateData,
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b} {c}'
-                    }
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.invoiceDateData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
                   }
                 }
-              ]
+              }]
+            })
+            let personalReceiveDataChart = this.$echarts.init(document.getElementById('personalReceiveDataChart'))
+            personalReceiveDataChart.setOption({
+              title: {
+                text: 'personal receive data',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.personalReceiveData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
+                  }
+                }
+              }]
             })
           }
         })

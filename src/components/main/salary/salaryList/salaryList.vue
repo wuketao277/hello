@@ -152,9 +152,13 @@
             </el-col>
             <el-col :span="6">
               <el-form-item label="Month">
-                <el-input v-model="search.month"
-                          style="width:100%;"
-                          clearable></el-input>
+                <el-date-picker v-model="search.month"
+                                type="month"
+                                placeholder="请选择月份"
+                                format="yyyy-MM"
+                                value-format="yyyy-MM"
+                                style="width:100%;"
+                                clearable></el-date-picker>
               </el-form-item>
             </el-col>
             <el-col :span="6">

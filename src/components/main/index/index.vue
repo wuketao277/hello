@@ -4,8 +4,8 @@
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
         <img src="/static/Logo-4.png">
       </div>
-      <div style="float:left;height:100%;text-align:left;padding-left:30px;padding-top:20px;">
-        <span>海罗人才</span>
+      <div style="float:left;height:100%;text-align:left;padding-left:50px;padding-top:20px;">
+        <span>Hello Applicant</span>
       </div>
       <div style="float:right;width:40px;margin-top:10px;">
         <el-button size="mini"
@@ -19,7 +19,7 @@
       </div>
     </el-header>
     <el-container>
-      <el-aside style="width:160px;">
+      <el-aside style="width:180px;">
         <el-menu default-active="2"
                  class="el-menu-vertical-demo"
                  @open="handleOpen"

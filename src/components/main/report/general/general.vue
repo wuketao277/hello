@@ -1,24 +1,55 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
+    <el-breadcrumb separator-class="el-icon-arrow-right"
+                   style="margin-bottom:20px;">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>总报表</el-breadcrumb-item>
     </el-breadcrumb>
     <div>
-      <el-form ref="form" :model="form">
+      <el-form ref="form"
+               :model="form">
         <el-form-item>
           <el-row>
-            <el-col :span="24" style="text-align:left;">
-              <el-date-picker type="date" placeholder="开始日期" v-model="form.startDate"></el-date-picker>
+            <el-col :span="24"
+                    style="text-align:left;">
+              <el-date-picker type="date"
+                              value-format="yyyy-MM-dd"
+                              format="yyyy-MM-dd"
+                              placeholder="开始日期"
+                              v-model="form.startDate"></el-date-picker>
               <span>-</span>
-              <el-date-picker type="date" placeholder="结束日期" v-model="form.endDate"></el-date-picker>&nbsp;&nbsp;
-              <el-button type="primary" size="medium" @click="drawChart">查询</el-button>
-              <el-button type="success" plain size="medium" @click="calcDate('week')">本周</el-button>
-              <el-button type="success" plain size="medium" @click="calcDate('month')">本月</el-button>
-              <el-button type="success" plain size="medium" @click="calcDate('nextmonth')">下月</el-button>
-              <el-button type="success" plain size="medium" @click="calcDate('season')">本季度</el-button>
-              <el-button type="success" plain size="medium" @click="calcDate('tonow')">截止目前</el-button>
-              <el-button type="success" plain size="medium" @click="calcDate('year')">本年</el-button>
+              <el-date-picker type="date"
+                              placeholder="结束日期"
+                              value-format="yyyy-MM-dd"
+                              format="yyyy-MM-dd"
+                              v-model="form.endDate"></el-date-picker>&nbsp;&nbsp;
+              <el-button type="primary"
+                         size="medium"
+                         @click="drawChart">查询</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('week')">本周</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('month')">本月</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('nextmonth')">下月</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('season')">本季度</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('tonow')">截止目前</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('year')">本年</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -27,46 +58,67 @@
     <div style="text-align:left;">
       <el-row style="margin-bottom:30px;">
         <el-col :span="24">
-          <div id="offerDate" :style="{width: '48%', height: '400px', float: 'left'}">
+          <div id="offerDate"
+               :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">offer Billing Sum：{{offerDateBilling}}</el-col>
             </el-row>
-            <div id="offerDateChart" :style="{width: '100%', height: '400px'}"></div>
+            <div id="offerDateChart"
+                 :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <div id="paymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
+          <div id="paymentDate"
+               :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">payment Billing Sum：{{paymentDateBilling}}</el-col>
             </el-row>
-            <div id="paymentDateChart" :style="{width: '100%', height: '400px'}"></div>
+            <div id="paymentDateChart"
+                 :style="{width: '100%', height: '400px'}"></div>
           </div>
         </el-col>
       </el-row>
       <el-row style="margin-bottom:30px;">
         <el-col :span="24">
-          <div id="actualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
+          <div id="actualPaymentDate"
+               :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">已付 Billing Sum：{{actualPaymentDateBilling}}</el-col>
             </el-row>
-            <div id="actualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
+            <div id="actualPaymentDateChart"
+                 :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <div id="unactualPaymentDate" :style="{width: '48%', height: '400px', float: 'left'}">
+          <div id="unactualPaymentDate"
+               :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">未付 Billing Sum：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
-            <div id="unactualPaymentDateChart" :style="{width: '100%', height: '400px'}"></div>
+            <div id="unactualPaymentDateChart"
+                 :style="{width: '100%', height: '400px'}"></div>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
-          <div id="personalOfferData" :style="{width: '48%', height: '400px', float: 'left'}">
-            <div id="personalOfferDataChart" :style="{width: '100%', height: '400px'}"></div>
+          <div id="personalOfferData"
+               :style="{width: '48%', height: '400px', float: 'left'}">
+            <div id="personalOfferDataChart"
+                 :style="{width: '100%', height: '400px'}"></div>
           </div>
-          <div id="invoiceDateData" :style="{width: '48%', height: '400px', float: 'left'}">
+          <div id="invoiceDateData"
+               :style="{width: '48%', height: '400px', float: 'left'}">
             <el-row>
               <el-col :span="12">Invoice Sum：{{invoiceDateBilling}}</el-col>
             </el-row>
-            <div id="invoiceDateDataChart" :style="{width: '100%', height: '400px'}"></div>
+            <div id="invoiceDateDataChart"
+                 :style="{width: '100%', height: '400px'}"></div>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <div id="personalReceiveData"
+               :style="{width: '48%', height: '400px', float: 'left'}">
+            <div id="personalReceiveDataChart"
+                 :style="{width: '100%', height: '400px'}"></div>
           </div>
         </el-col>
       </el-row>
