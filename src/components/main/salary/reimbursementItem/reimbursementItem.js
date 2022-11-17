@@ -30,6 +30,7 @@ export default {
       },
       selectUserDialogShow: false,
       approveStatusList: commonJS.approveStatusList,
+      typeList: commonJS.typeList,
       currentKindList: [],
       locationList: commonJS.locationList,
       companyList: commonJS.companyList,
