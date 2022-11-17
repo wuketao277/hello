@@ -79,6 +79,11 @@
                          width="120"
                          label="On Board Date"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="invoiceDate"
+                         :formatter="formatDate"
+                         width="120"
+                         label="Invoice Date"
+                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="paymentDate"
                          :formatter="formatDate"
                          width="120"
@@ -149,11 +154,6 @@
         <el-table-column prop="consultantCommissionPercent5"
                          width="120"
                          label="R5 Rate"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="invoiceDate"
-                         :formatter="formatDate"
-                         width="120"
-                         label="Invoice Date"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="commissionDate"
                          :formatter="formatDate"
