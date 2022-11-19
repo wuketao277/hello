@@ -6,10 +6,23 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
-      types: [{code: 'Z3', name: '3%专票'},
-        {code: 'Z6', name: '6%专票'},
-        {code: 'P3', name: '3%普票'},
-        {code: 'P6', name: '6%普票'}],
+      types: [{
+        code: 'Z3',
+        name: '3%专票'
+      },
+      {
+        code: 'Z6',
+        name: '6%专票'
+      },
+      {
+        code: 'P3',
+        name: '3%普票'
+      },
+      {
+        code: 'P6',
+        name: '6%普票'
+      }
+      ],
       table: {
         content: [],
         totalElements: 0,
@@ -23,7 +36,15 @@ export default {
       },
       currentRow: null,
       searchDialog: false,
-      search: {clientId: null, amId: null, candidateId: null, type: null, status: true, createDateStart: null, createDateEnd: null},
+      search: {
+        clientId: null,
+        amId: null,
+        candidateId: null,
+        type: null,
+        status: true,
+        createDateStart: null,
+        createDateEnd: null
+      },
       clients: [],
       consultants: []
     }
@@ -97,13 +118,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/salary/invoice')
+      this.$router.push('/background.html/salary/invoice')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/invoice',
+          path: '/background.html/salary/invoice',
           query: {
             mode: 'modify',
             invoice: this.currentRow
@@ -115,7 +136,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/invoice',
+          path: '/background.html/salary/invoice',
           query: {
             mode: 'detail',
             invoice: this.currentRow

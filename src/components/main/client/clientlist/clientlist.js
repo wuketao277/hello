@@ -57,13 +57,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/client/client')
+      this.$router.push('/background.html/client/client')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/client/client',
+          path: '/background.html/client/client',
           query: {
             mode: 'modify',
             client: this.currentRow
@@ -75,7 +75,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/client/client',
+          path: '/background.html/client/client',
           query: {
             mode: 'detail',
             client: this.currentRow

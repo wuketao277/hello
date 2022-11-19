@@ -116,7 +116,7 @@ export default {
     // 编辑候选人
     editCandidate (index, row) {
       this.$router.push({
-        path: '/candidate/candidate',
+        path: '/background.html/candidate/candidate',
         query: {
           mode: 'modify',
           candidateId: row.candidateId

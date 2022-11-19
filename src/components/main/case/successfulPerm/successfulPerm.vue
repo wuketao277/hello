@@ -2,8 +2,8 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right"
                    style="margin-bottom:20px;">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/case/successfulPermList'}">成功职位列表</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/background.html' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/background.html/case/successfulPermList'}">成功职位列表</el-breadcrumb-item>
       <el-breadcrumb-item>功能职位</el-breadcrumb-item>
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->

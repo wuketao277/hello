@@ -42,13 +42,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/training/lesson')
+      this.$router.push('/background.html/training/lesson')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/training/lesson',
+          path: '/background.html/training/lesson',
           query: {
             mode: 'modify',
             lesson: this.currentRow
@@ -60,7 +60,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/training/lesson',
+          path: '/background.html/training/lesson',
           query: {
             mode: 'detail',
             lesson: this.currentRow
@@ -72,7 +72,7 @@ export default {
     study () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/training/lesson',
+          path: '/background.html/training/lesson',
           query: {
             mode: 'study',
             lesson: this.currentRow

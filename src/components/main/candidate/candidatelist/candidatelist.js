@@ -62,7 +62,7 @@ export default {
     // 添加候选人
     addCandidate () {
       this.$router.push({
-        path: '/candidate/candidate'
+        path: '/background.html/candidate/candidate'
       })
     },
     // 检查是否选择了一条记录
@@ -81,7 +81,7 @@ export default {
     detailCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/candidate',
+          path: '/background.html/candidate/candidate',
           query: {
             mode: 'detail',
             candidate: this.currentRow
@@ -93,7 +93,7 @@ export default {
     modifyCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/candidate',
+          path: '/background.html/candidate/candidate',
           query: {
             mode: 'modify',
             candidate: this.currentRow
@@ -153,7 +153,9 @@ export default {
       })
       // 如果存在查询条件就通过查询条件从评论中搜索候选人
       if (this.search !== '') {
-        let query = {'search': this.search}
+        let query = {
+          'search': this.search
+        }
         comment.queryCandidateByCommentLimit100(query).then(res => {
           if (res.status !== 200) {
             this.$message.error({

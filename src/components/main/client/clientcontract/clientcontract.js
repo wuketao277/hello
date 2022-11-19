@@ -34,12 +34,44 @@ export default {
         company: null
       },
       categoryList: ['Perm', 'Contracting'],
-      industryList: [{code: 'Automotive', name: 'Automotive'}, {code: 'AutoParts', name: 'Auto Parts'},
-        {code: 'Internet', name: 'Internet'}, {code: 'Other', name: 'Other'}],
+      industryList: [{
+        code: 'Automotive',
+        name: 'Automotive'
+      }, {
+        code: 'AutoParts',
+        name: 'Auto Parts'
+      },
+      {
+        code: 'Internet',
+        name: 'Internet'
+      }, {
+        code: 'Other',
+        name: 'Other'
+      }
+      ],
       typeList: [],
-      permTypeList: [{code: 'TOB', name: 'TOB'}, {code: 'OneOff', name: 'One Off'}],
-      contractingTypeList: [{code: 'MSA', name: 'MSA'}, {code: 'SOW', name: 'SOW'},
-        {code: 'PO', name: 'PO'}, {code: 'CO', name: 'CO'}],
+      permTypeList: [{
+        code: 'TOB',
+        name: 'TOB'
+      }, {
+        code: 'OneOff',
+        name: 'One Off'
+      }],
+      contractingTypeList: [{
+        code: 'MSA',
+        name: 'MSA'
+      }, {
+        code: 'SOW',
+        name: 'SOW'
+      },
+      {
+        code: 'PO',
+        name: 'PO'
+      }, {
+        code: 'CO',
+        name: 'CO'
+      }
+      ],
       selectBDDialogShow: false,
       companyList: commonJS.companyList
     }
@@ -132,7 +164,7 @@ export default {
           if (res.status === 200) {
             let client = res.data
             this.$router.push({
-              path: '/client/client',
+              path: '/background.html/client/client',
               query: {
                 mode: 'modify',
                 client: client

@@ -102,7 +102,7 @@ export default {
             })
             // 清空本地存储
             window.localStorage['loginInfo'] = null
-            this.$router.push('/login')
+            this.$router.push('/background.html/login')
           } else {
             this.$message.error('退出失败！')
           }

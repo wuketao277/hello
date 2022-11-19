@@ -20,17 +20,16 @@ export default {
         remark: ''
       },
       rules: {
-        chineseName: [
-          {
-            required: true,
-            message: '中文名必填',
-            trigger: 'blur'
-          },
-          {
-            max: 200,
-            message: '中文名长度不能大于200个字符',
-            trigger: 'blur'
-          }
+        chineseName: [{
+          required: true,
+          message: '中文名必填',
+          trigger: 'blur'
+        },
+        {
+          max: 200,
+          message: '中文名长度不能大于200个字符',
+          trigger: 'blur'
+        }
         ],
         englishName: [{
           max: 200,
@@ -118,7 +117,7 @@ export default {
     addLinkMan () {
       if (this.checkId()) {
         this.$router.push({
-          path: '/client/clientlinkman',
+          path: '/background.html/client/clientlinkman',
           query: {
             mode: 'add',
             clientId: this.form.id,
@@ -131,7 +130,7 @@ export default {
     modifyLinkMan () {
       if (this.checkId()) {
         this.$router.push({
-          path: '/client/clientlinkman',
+          path: '/background.html/client/clientlinkman',
           query: {
             mode: 'modify',
             clientLinkMan: this.clientLinkManTableCurRow,
@@ -144,7 +143,7 @@ export default {
     detailLinkMan () {
       if (this.checkId()) {
         this.$router.push({
-          path: '/client/clientlinkman',
+          path: '/background.html/client/clientlinkman',
           query: {
             mode: 'detail',
             clientLinkMan: this.clientLinkManTableCurRow,
@@ -174,14 +173,20 @@ export default {
           showClose: true
         })
       } else {
-        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'client'}
+        this.uploadFileData = {
+          'tableId': this.form.id,
+          'tableName': 'client'
+        }
         this.showUploadFileDialog = true
       }
     },
     // 查询上传文件集合
     queryUploadFiles () {
       if (this.form.id !== null) {
-        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'client'}
+        let params = {
+          'relativeTableId': this.form.id,
+          'relativeTableName': 'client'
+        }
         uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
           if (res.status === 200) {
             this.uploadFiles = res.data
@@ -197,7 +202,7 @@ export default {
     addClientContract () {
       if (this.checkId()) {
         this.$router.push({
-          path: '/client/clientContract',
+          path: '/background.html/client/clientContract',
           query: {
             mode: 'add',
             clientId: this.form.id,
@@ -210,7 +215,7 @@ export default {
     // 修改客户合同
     modifyClientContract () {
       this.$router.push({
-        path: '/client/clientContract',
+        path: '/background.html/client/clientContract',
         query: {
           mode: 'modify',
           clientContract: this.clientContractTableCurRow
@@ -220,7 +225,7 @@ export default {
     // 查看客户合同
     detailClientContract () {
       this.$router.push({
-        path: '/client/clientContract',
+        path: '/background.html/client/clientContract',
         query: {
           mode: 'detail',
           clientContract: this.clientContractTableCurRow

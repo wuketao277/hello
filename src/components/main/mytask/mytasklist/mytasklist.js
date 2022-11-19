@@ -45,14 +45,14 @@ export default {
     // 新增任务
     addTask () {
       this.$router.push({
-        path: '/mytask/mytask'
+        path: '/background.html/mytask/mytask'
       })
     },
     // 查看任务
     detailTask () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/mytask/mytask',
+          path: '/background.html/mytask/mytask',
           query: {
             mode: 'view',
             task: this.currentRow
@@ -132,8 +132,7 @@ export default {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {
-    },
+    switchSearchDialog () {},
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1

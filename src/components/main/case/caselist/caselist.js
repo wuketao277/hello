@@ -39,7 +39,9 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          let params = {'id': this.currentRow.id}
+          let params = {
+            'id': this.currentRow.id
+          }
           caseApi.deleteById(params).then(res => {
             if (res.status === 200) {
               if (res.data.length > 0) {
@@ -93,13 +95,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/case/case')
+      this.$router.push('/background.html/case/case')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/case',
+          path: '/background.html/case/case',
           query: {
             mode: 'modify',
             case: this.currentRow
@@ -111,7 +113,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/case',
+          path: '/background.html/case/case',
           query: {
             mode: 'detail',
             case: this.currentRow

@@ -10,7 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable:  null,
+    proxyTable: null,
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -46,6 +46,7 @@ module.exports = {
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
+    background: path.resolve(__dirname, '../dist/background.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),

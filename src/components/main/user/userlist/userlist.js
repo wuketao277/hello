@@ -31,7 +31,7 @@ export default {
     // 添加用户
     add () {
       this.$router.push({
-        path: '/user/user'
+        path: '/background.html/user/user'
       })
     },
     // 检查是否选择了一条记录
@@ -50,7 +50,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/user/user',
+          path: '/background.html/user/user',
           query: {
             mode: 'detail',
             user: this.currentRow
@@ -62,7 +62,7 @@ export default {
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/user/user',
+          path: '/background.html/user/user',
           query: {
             mode: 'modify',
             user: this.currentRow

@@ -44,7 +44,7 @@ export default {
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/training/studyrecord',
+          path: '/background.html/training/studyrecord',
           query: {
             mode: 'modify',
             studyrecord: this.currentRow
@@ -56,7 +56,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/training/studyrecord',
+          path: '/background.html/training/studyrecord',
           query: {
             mode: 'detail',
             studyrecord: this.currentRow

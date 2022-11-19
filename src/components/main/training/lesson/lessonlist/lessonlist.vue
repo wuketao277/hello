@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom:20px;">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/background.html' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>课程列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">

@@ -69,7 +69,7 @@ export default {
     // 查看候选人信息
     detailCandidate (candidateId) {
       this.$router.push({
-        path: '/candidate/candidate',
+        path: '/background.html/candidate/candidate',
         query: {
           mode: 'modify',
           candidateId: candidateId
@@ -143,7 +143,7 @@ export default {
     // 跳转到客户
     toClient (id) {
       this.$router.push({
-        path: '/client/client',
+        path: '/background.html/client/client',
         query: {
           mode: 'modify',
           clientId: id
@@ -153,7 +153,7 @@ export default {
     // 跳转到职位
     toCase (id) {
       this.$router.push({
-        path: '/case/case',
+        path: '/background.html/case/case',
         query: {
           mode: 'modify',
           caseId: id
@@ -163,7 +163,7 @@ export default {
     // 跳转到候选人
     toCandidate (row) {
       this.$router.push({
-        path: '/candidate/candidate',
+        path: '/background.html/candidate/candidate',
         query: {
           mode: 'modify',
           candidateId: row.candidateId
@@ -173,7 +173,7 @@ export default {
     // 编辑候选人
     editCandidate (index, row) {
       this.$router.push({
-        path: '/candidate/candidate',
+        path: '/background.html/candidate/candidate',
         query: {
           mode: 'modify',
           candidateId: row.candidateId
@@ -243,23 +243,8 @@ export default {
     },
     // 查看任务详情
     viewMyTaskDetail (task) {
-      // if (task.relativeCandidateId !== null) {
-      //   // 如果关联候选人id不为空，就调用后台查询候选人信息，并跳转到候选人页面
-      //   candidateApi.findById(task.relativeCandidateId).then(res => {
-      //     if (res.status === 200) {
-      //       this.$router.push({
-      //         path: '/candidate/candidate',
-      //         query: {
-      //           mode: 'modify',
-      //           candidate: res.data
-      //         }
-      //       })
-      //     }
-      //   })
-      // } else {
-      // 否则就跳转到任务详情页
       this.$router.push({
-        path: '/mytask/mytask',
+        path: '/background.html/mytask/mytask',
         query: {
           mode: 'modify',
           task: task
@@ -302,7 +287,7 @@ export default {
     // 查看新闻详情
     handleNewsDblClick () {
       this.$router.push({
-        path: '/mynews/mynews',
+        path: '/background.html/mynews/mynews',
         query: {
           mode: 'detail',
           news: this.newsCurrentRow
@@ -316,7 +301,7 @@ export default {
     // 查看任务详情
     handleTaskDblClick () {
       this.$router.push({
-        path: '/mytask/mytask',
+        path: '/background.html/mytask/mytask',
         query: {
           mode: 'detail',
           task: this.taskCurrentRow

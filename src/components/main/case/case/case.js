@@ -47,17 +47,16 @@ export default {
           message: '客户必填',
           trigger: 'blur'
         }],
-        title: [
-          {
-            required: true,
-            message: '职位名称必填',
-            trigger: 'blur'
-          },
-          {
-            max: 200,
-            message: '职位名称长度不能大于200个字符',
-            trigger: 'blur'
-          }
+        title: [{
+          required: true,
+          message: '职位名称必填',
+          trigger: 'blur'
+        },
+        {
+          max: 200,
+          message: '职位名称长度不能大于200个字符',
+          trigger: 'blur'
+        }
         ],
         status: [{
           required: true,
@@ -186,7 +185,7 @@ export default {
     // 编辑候选人
     editCandidate (index, row) {
       this.$router.push({
-        path: '/candidate/candidate',
+        path: '/background.html/candidate/candidate',
         query: {
           mode: 'modify',
           candidateId: row.candidateId
@@ -310,7 +309,12 @@ export default {
         })
       } else {
         // 添加候选人到职位
-        let candidate = {'candidateId': val.id, 'caseId': this.form.id, 'clientId': this.form.clientId, 'title': this.form.title}
+        let candidate = {
+          'candidateId': val.id,
+          'caseId': this.form.id,
+          'clientId': this.form.clientId,
+          'title': this.form.title
+        }
         candidateForCaseApi.save(candidate).then(res => {
           if (res.status === 200) {
             // 获取该职位所有候选人信息
@@ -328,7 +332,10 @@ export default {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       // 添加候选人到职位
-      let o = {'curCaseId': this.form.id, 'oldCaseId': val.id}
+      let o = {
+        'curCaseId': this.form.id,
+        'oldCaseId': val.id
+      }
       candidateForCaseApi.copyFromOldCase(o).then(res => {
         if (res.status === 200) {
           // 获取该职位所有候选人信息
@@ -373,14 +380,20 @@ export default {
           showClose: true
         })
       } else {
-        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'case'}
+        this.uploadFileData = {
+          'tableId': this.form.id,
+          'tableName': 'case'
+        }
         this.showUploadFileDialog = true
       }
     },
     // 查询上传文件集合
     queryUploadFiles () {
       if (this.form.id !== null) {
-        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'case'}
+        let params = {
+          'relativeTableId': this.form.id,
+          'relativeTableName': 'case'
+        }
         uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
           if (res.status === 200) {
             this.uploadFiles = res.data

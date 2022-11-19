@@ -44,28 +44,90 @@ export default {
         createUserName: null,
         createRealName: null
       },
-      phaseOptions: [
-        {value: 'SL', lable: 'SL'},
-        {value: 'TI', lable: 'TI'},
-        {value: 'VI', lable: 'VI'},
-        {value: 'IOI', lable: 'IOI'},
-        {value: 'CVO', lable: 'CVO'},
-        {value: '1st Interview', lable: '1st Interview'},
-        {value: '2nd Interview', lable: '2nd Interview'},
-        {value: '3rd Interview', lable: '3rd Interview'},
-        {value: '4th Interview', lable: '4th Interview'},
-        {value: 'Final Interview', lable: 'Final Interview'},
-        {value: 'Offer Signed', lable: 'Offer Signed'},
-        {value: 'On Board', lable: 'On Board'},
-        {value: 'Pre. Service', lable: 'Pre. Service'},
-        {value: 'On Service', lable: 'On Service'},
-        {value: 'Week Service', lable: 'Week Service'},
-        {value: 'Month Service', lable: 'Month Service'},
-        {value: '2Month Service', lable: '2Month Service'},
-        {value: '3Month Service', lable: '3Month Service'},
-        {value: '4Month Service', lable: '4Month Service'},
-        {value: '5Month Service', lable: '5Month Service'},
-        {value: '6Month Service', lable: '6Month Service'}
+      phaseOptions: [{
+        value: 'SL',
+        lable: 'SL'
+      },
+      {
+        value: 'TI',
+        lable: 'TI'
+      },
+      {
+        value: 'VI',
+        lable: 'VI'
+      },
+      {
+        value: 'IOI',
+        lable: 'IOI'
+      },
+      {
+        value: 'CVO',
+        lable: 'CVO'
+      },
+      {
+        value: '1st Interview',
+        lable: '1st Interview'
+      },
+      {
+        value: '2nd Interview',
+        lable: '2nd Interview'
+      },
+      {
+        value: '3rd Interview',
+        lable: '3rd Interview'
+      },
+      {
+        value: '4th Interview',
+        lable: '4th Interview'
+      },
+      {
+        value: 'Final Interview',
+        lable: 'Final Interview'
+      },
+      {
+        value: 'Offer Signed',
+        lable: 'Offer Signed'
+      },
+      {
+        value: 'On Board',
+        lable: 'On Board'
+      },
+      {
+        value: 'Pre. Service',
+        lable: 'Pre. Service'
+      },
+      {
+        value: 'On Service',
+        lable: 'On Service'
+      },
+      {
+        value: 'Week Service',
+        lable: 'Week Service'
+      },
+      {
+        value: 'Month Service',
+        lable: 'Month Service'
+      },
+      {
+        value: '2Month Service',
+        lable: '2Month Service'
+      },
+      {
+        value: '3Month Service',
+        lable: '3Month Service'
+      },
+      {
+        value: '4Month Service',
+        lable: '4Month Service'
+      },
+      {
+        value: '5Month Service',
+        lable: '5Month Service'
+      },
+      {
+        value: '6Month Service',
+        lable: '6Month Service'
+      }
       ],
       // 新评论
       newComment: {
@@ -75,17 +137,16 @@ export default {
       // 历史评论
       comments: [],
       rules: {
-        chineseName: [
-          {
-            required: true,
-            message: '中文名必填',
-            trigger: 'blur'
-          },
-          {
-            max: 25,
-            message: '中文名长度不能大于25个字符',
-            trigger: 'blur'
-          }
+        chineseName: [{
+          required: true,
+          message: '中文名必填',
+          trigger: 'blur'
+        },
+        {
+          max: 25,
+          message: '中文名长度不能大于25个字符',
+          trigger: 'blur'
+        }
         ],
         englishName: [{
           max: 100,
@@ -149,7 +210,8 @@ export default {
           max: 200,
           message: '任务标题长度不能大于200个字符',
           trigger: 'blur'
-        }],
+        }
+        ],
         taskContent: [{
           required: true,
           message: '任务内容必填',
@@ -159,7 +221,8 @@ export default {
           max: 2000,
           message: '任务内容长度不能大于2000个字符',
           trigger: 'blur'
-        }]
+        }
+        ]
       },
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
@@ -290,7 +353,7 @@ export default {
     // 编辑职位
     editCase (index, row) {
       this.$router.push({
-        path: '/case/case',
+        path: '/background.html/case/case',
         query: {
           mode: 'modify',
           caseId: row.caseId
@@ -410,7 +473,10 @@ export default {
               })
             } else {
               // 如果简历栏中有内容，就保存简历内容
-              let resumeObj = {'candidateId': this.form.id, 'content': this.resume}
+              let resumeObj = {
+                'candidateId': this.form.id,
+                'content': this.resume
+              }
               candidateApi.saveResume(resumeObj).then(
                 res => {
                   if (res.status === 200) {
@@ -513,14 +579,20 @@ export default {
           showClose: true
         })
       } else {
-        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'candidate'}
+        this.uploadFileData = {
+          'tableId': this.form.id,
+          'tableName': 'candidate'
+        }
         this.showUploadFileDialog = true
       }
     },
     // 查询上传文件集合
     queryUploadFiles () {
       if (this.form.id !== null) {
-        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'candidate'}
+        let params = {
+          'relativeTableId': this.form.id,
+          'relativeTableName': 'candidate'
+        }
         uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
           if (res.status === 200) {
             this.uploadFiles = res.data

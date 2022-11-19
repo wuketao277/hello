@@ -22,7 +22,7 @@ export default {
     // 添加角色
     addRole () {
       this.$router.push({
-        path: '/role/role'
+        path: '/background.html/role/role'
       })
     },
     // 检查是否选择了一条记录
@@ -41,7 +41,7 @@ export default {
     detailRole () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/role/role',
+          path: '/background.html/role/role',
           query: {
             mode: 'detail',
             role: this.currentRow
@@ -53,7 +53,7 @@ export default {
     modifyRole () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/role/role',
+          path: '/background.html/role/role',
           query: {
             mode: 'modify',
             role: this.currentRow

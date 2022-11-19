@@ -44,7 +44,7 @@ export default {
     // 添加
     add () {
       this.$router.push({
-        path: '/holiday/holiday'
+        path: '/background.html/holiday/holiday'
       })
     },
     // 检查是否选择了一条记录
@@ -63,7 +63,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/holiday/holiday',
+          path: '/background.html/holiday/holiday',
           query: {
             mode: 'detail',
             holiday: this.currentRow
@@ -75,7 +75,7 @@ export default {
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/holiday/holiday',
+          path: '/background.html/holiday/holiday',
           query: {
             mode: 'modify',
             holiday: this.currentRow

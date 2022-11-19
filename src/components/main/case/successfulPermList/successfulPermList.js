@@ -112,13 +112,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/case/successfulPerm')
+      this.$router.push('/background.html/case/successfulPerm')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/successfulPerm',
+          path: '/background.html/case/successfulPerm',
           query: {
             mode: 'modify',
             successfulPerm: this.currentRow
@@ -130,7 +130,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/case/successfulPerm',
+          path: '/background.html/case/successfulPerm',
           query: {
             mode: 'detail',
             successfulPerm: this.currentRow

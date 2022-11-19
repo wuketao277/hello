@@ -50,13 +50,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/salary/salarySpecialItem')
+      this.$router.push('/background.html/salary/salarySpecialItem')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/salarySpecialItem',
+          path: '/background.html/salary/salarySpecialItem',
           query: {
             mode: 'modify',
             salarySpecialItem: this.currentRow
@@ -92,7 +92,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/salarySpecialItem',
+          path: '/background.html/salary/salarySpecialItem',
           query: {
             mode: 'detail',
             salarySpecialItem: this.currentRow

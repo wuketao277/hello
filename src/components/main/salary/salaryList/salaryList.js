@@ -39,7 +39,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/salary',
+          path: '/background.html/salary/salary',
           query: {
             mode: 'detail',
             salary: this.currentRow
@@ -51,7 +51,7 @@ export default {
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/salary',
+          path: '/background.html/salary/salary',
           query: {
             mode: 'modify',
             salary: this.currentRow

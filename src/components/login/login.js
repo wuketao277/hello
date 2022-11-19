@@ -62,7 +62,7 @@ export default {
           window.localStorage['loginInfo'] = JSON.stringify(resData['data'])
           // 菜单保存后，刷新页面
           // window.location.reload()
-          this.jump('/')
+          this.jump('/background.html')
         } else {
           this.$message({
             message: '登录失败！',

@@ -61,13 +61,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/salary/reimbursementItem')
+      this.$router.push('/background.html/salary/reimbursementItem')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/reimbursementItem',
+          path: '/background.html/salary/reimbursementItem',
           query: {
             mode: 'modify',
             reimbursementItem: this.currentRow
@@ -103,7 +103,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/reimbursementItem',
+          path: '/background.html/salary/reimbursementItem',
           query: {
             mode: 'detail',
             reimbursementItem: this.currentRow

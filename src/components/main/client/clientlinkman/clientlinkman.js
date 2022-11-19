@@ -18,17 +18,16 @@ export default {
         comments: ''
       },
       rules: {
-        chineseName: [
-          {
-            required: true,
-            message: '中文名必填',
-            trigger: 'blur'
-          },
-          {
-            max: 25,
-            message: '中文名长度不能大于25个字符',
-            trigger: 'blur'
-          }
+        chineseName: [{
+          required: true,
+          message: '中文名必填',
+          trigger: 'blur'
+        },
+        {
+          max: 25,
+          message: '中文名长度不能大于25个字符',
+          trigger: 'blur'
+        }
         ],
         englishName: [{
           max: 100,
@@ -121,7 +120,7 @@ export default {
           if (res.status === 200) {
             let client = res.data
             this.$router.push({
-              path: '/client/client',
+              path: '/background.html/client/client',
               query: {
                 mode: 'modify',
                 client: client
