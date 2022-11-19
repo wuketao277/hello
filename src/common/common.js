@@ -341,6 +341,7 @@ export default {
     name: '其他'
   }
   ],
+  // 报销是否需要支付
   reimbursementNeedPay: [{
     code: 'YES',
     name: '是'
