@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height:100%;min-width:1400px;">
+  <el-container style="height:100%;min-width:1400px;padding:10px;">
     <el-header style="height:60px;padding:0px;text-align:left;font-size:25px;color:#fff;">
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
         <img src="/static/white-logo.png"
@@ -24,9 +24,7 @@
         <router-view></router-view>
       </el-main>
     </el-container>
-    <el-footer style="height:150px;padding-top:5px;">
-      <p style="text-align:center;color:white;">全国办公室：上海 北京 沈阳</p>
-      <br />
+    <el-footer style="height:100px;padding-top:5px;">
       <p>
         <el-link type="success"
                  target="_blank"
