@@ -65,7 +65,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       inject: true,
-      chunks: ['app']
+      chunks: ['web']
     }),
     new HtmlWebpackPlugin({
       filename: 'background.html',

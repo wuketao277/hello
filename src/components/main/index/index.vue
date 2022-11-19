@@ -2,7 +2,8 @@
   <el-container style="height:100%;">
     <el-header style="background-color:#545c64;height:60px;padding:0px;text-align:left;font-size:25px;color:#fff;">
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
-        <img src="/static/Logo-4.png">
+        <img src="/static/white-logo.png"
+             style="width:120px;height:60px;">
       </div>
       <div style="float:left;height:100%;text-align:left;padding-left:50px;padding-top:20px;">
         <span>Hello Applicant</span>

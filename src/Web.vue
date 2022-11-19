@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1>官网</h1>
     <router-view />
   </div>
 </template>
@@ -17,7 +16,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ebeff3;
+  background-color: #261151;
   height: 100%;
 }
 .toolbar {
