@@ -14,7 +14,7 @@ export default {
         totalElements: 0,
         pageable: {
           pageNumber: commonJS.getPageNumber('successfulPermList.pageNumber'),
-          pageSize: commonJS.getPageNumber('successfulPermList.pageSize')
+          pageSize: commonJS.getPageSize('successfulPermList.pageSize')
         }
       },
       page: {
