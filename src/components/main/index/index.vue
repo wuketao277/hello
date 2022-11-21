@@ -2,9 +2,10 @@
   <el-container style="height:100%;">
     <el-header style="background-color:#545c64;height:60px;padding:0px;text-align:left;font-size:25px;color:#fff;">
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
-        <img src="/static/Logo-4.png">
+        <img src="/static/white-logo.png"
+             style="width:100px;height:55px;">
       </div>
-      <div style="float:left;height:100%;text-align:left;padding-left:50px;padding-top:20px;">
+      <div style="float:left;height:100%;text-align:left;padding-left:65px;padding-top:20px;">
         <span>Hello Applicant</span>
       </div>
       <div style="float:right;width:40px;margin-top:10px;">
