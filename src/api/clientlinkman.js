@@ -11,6 +11,16 @@ export default {
   },
   // 查找后台数据
   queryByClientId (params) {
-    return axios.get('/clientlinkman/queryByClientId', {params: params})
+    return axios.get('/clientlinkman/queryByClientId', {
+      params: params
+    })
+  },
+  // 查找所有联系人
+  queryAll () {
+    return axios.get('/clientlinkman/queryAll')
+  },
+  // 查找所有联系人
+  queryAllForSimple () {
+    return axios.get('/clientlinkman/queryAllForSimple')
   }
 }

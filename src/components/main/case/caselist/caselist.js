@@ -1,5 +1,7 @@
 import caseApi from '@/api/case'
 import commonJS from '@/common/common'
+import clientApi from '@/api/client'
+import clientlinkmanApi from '@/api/clientlinkman'
 
 export default {
   data () {
@@ -10,16 +12,18 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: this.getPageNumber(),
-          pageSize: this.getPageSize()
+          pageNumber: commonJS.getPageNumber('caselist.pageNumber'),
+          pageSize: commonJS.getPageSize('caselist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent(),
-      searchStatus: this.getSearchStatusContent()
+      searchDialog: false,
+      search: commonJS.getSearchContentObject('caselist.search'),
+      clients: [],
+      hrs: []
     }
   },
   methods: {
@@ -39,7 +43,9 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          let params = {'id': this.currentRow.id}
+          let params = {
+            'id': this.currentRow.id
+          }
           caseApi.deleteById(params).then(res => {
             if (res.status === 200) {
               if (res.data.length > 0) {
@@ -121,15 +127,14 @@ export default {
     },
     // 查询后台数据
     query () {
-      window.localStorage['caselist.search'] = this.search
-      window.localStorage['caselist.searchStatus'] = this.searchStatus
+      window.localStorage['caselist.search'] = JSON.stringify(this.search)
       window.localStorage['caselist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['caselist.pageSize'] = this.table.pageable.pageSize
+      this.searchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
-        'search': this.search,
-        'searchStatus': this.searchStatus
+        'search': this.search
       }
       caseApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -172,36 +177,24 @@ export default {
       this.table.pageable.pageSize = 10
       this.query()
     },
-    getSearchContent () {
-      if (typeof (window.localStorage['caselist.search']) === 'undefined') {
-        return ''
-      } else {
-        return window.localStorage['caselist.search']
-      }
-    },
-    getSearchStatusContent () {
-      if (typeof (window.localStorage['caselist.searchStatus']) === 'undefined') {
-        return 'ALL'
-      } else {
-        return window.localStorage['caselist.searchStatus']
-      }
-    },
-    getPageNumber () {
-      if (typeof (window.localStorage['caselist.pageNumber']) === 'undefined') {
-        return 1
-      } else {
-        return window.localStorage['caselist.pageNumber']
-      }
-    },
-    getPageSize () {
-      if (typeof (window.localStorage['caselist.pageSize']) === 'undefined') {
-        return 10
-      } else {
-        return window.localStorage['caselist.pageSize']
-      }
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['caselist.search'] = {}
     }
   },
   created () {
+    // 获取所有“客户”信息
+    clientApi.findAllOrderByChineseName().then(res => {
+      if (res.status === 200) {
+        this.clients = res.data
+      }
+    })
+    clientlinkmanApi.queryAllForSimple().then(res => {
+      if (res.status === 200) {
+        this.hrs = res.data
+      }
+    })
     this.query()
   }
 }

@@ -85,6 +85,14 @@
                      style="width:85px;">候选人</el-button>
           <span>{{form.candidateChineseName}}</span>
         </el-col>
+        <el-col :span="6">
+          <el-button type="primary"
+                     size="small"
+                     icon="el-icon-share"
+                     @click="selectHRDialogShow = true"
+                     style="width:85px;">HR</el-button>
+          <span>{{form.hrEnglishName}}&nbsp;-&nbsp;{{form.hrChineseName}}</span>
+        </el-col>
         <el-col :span="4">
           <el-button type="primary"
                      size="small"
@@ -102,6 +110,9 @@
                     placeholder="提成"></el-input>
           <span>%</span>
         </el-col>
+      </el-row>
+      <br>
+      <el-row :gutter="12">
         <el-col :span="4">
           <el-button type="primary"
                      size="small"
@@ -118,9 +129,6 @@
                     placeholder="提成"></el-input>
           <span>%</span>
         </el-col>
-      </el-row>
-      <br>
-      <el-row :gutter="12">
         <el-col :span="4">
           <el-button type="primary"
                      size="small"
@@ -184,6 +192,9 @@
                     placeholder="提成"></el-input>
           <span>%</span>
         </el-col>
+      </el-row>
+      <br>
+      <el-row :gutter="12">
         <el-col :span="4">
           <el-button type="primary"
                      size="small"
@@ -205,9 +216,6 @@
                     placeholder="提成"></el-input>
           <span>%</span>
         </el-col>
-      </el-row>
-      <br>
-      <el-row :gutter="12">
         <el-col :span="4">
           <el-button type="primary"
                      size="small"
@@ -386,6 +394,11 @@
                :visible.sync="selectBDDialogShow">
       <selectUser v-on:cancel-dialog="selectBDDialogShow = false"
                   v-on:sure-dialog="sureSelectBDDialog"></selectUser>
+    </el-dialog>
+    <el-dialog title="选择HR"
+               :visible.sync="selectHRDialogShow">
+      <selectHr v-on:cancel-dialog="selectHRDialogShow = false"
+                v-on:sure-dialog="sureSelectHRDialog"></selectHr>
     </el-dialog>
   </div>
 </template>

@@ -2,6 +2,7 @@ import successfulPermApi from '@/api/successfulPerm'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
+import selectHr from '@/components/main/dialog/selectHr/selectHr.vue'
 import clientApi from '@/api/client'
 import configApi from '@/api/config'
 import commonJS from '@/common/common'
@@ -10,7 +11,8 @@ export default {
   components: {
     'selectCandidate': selectCandidate,
     'selectCase': selectCase,
-    'selectUser': selectUser
+    'selectUser': selectUser,
+    'selectHr': selectHr
   },
   data () {
     return {
@@ -25,6 +27,9 @@ export default {
         candidateId: '', // 候选人id
         candidateEnglishName: '', // 候选人英文名字
         candidateChineseName: '', // 候选人中文名字
+        hrId: '',
+        hrChineseName: '',
+        hrEnglishName: '',
         cwId: '', // CWid
         cwUserName: '', // CW登录名
         cwRealName: '', // CW真实姓名
@@ -78,6 +83,7 @@ export default {
       selectCandidateDialogShow: false,
       // 选择职位对话框是否显示
       selectCaseDialogShow: false,
+      selectHRDialogShow: false,
       selectConsultantDialogShow: false,
       selectCWDialogShow: false,
       selectBDDialogShow: false,
@@ -137,6 +143,9 @@ export default {
         this.form.candidateId = '' // 候选人id
         this.form.candidateEnglishName = '' // 候选人英文名字
         this.form.candidateChineseName = '' // 候选人中文名字
+        this.form.hrId = ''
+        this.form.hrChineseName = ''
+        this.form.hrEnglishName = ''
         this.form.cwId = '' // CWid
         this.form.cwUserName = '' // CW登录名
         this.form.cwRealName = '' // CW真实姓名
@@ -371,6 +380,14 @@ export default {
       this.form.bdId = val.id
       this.form.bdUserName = val.username
       this.form.bdRealName = val.realname
+    },
+    // “选择hr”对话框返回
+    sureSelectHRDialog (val) {
+      // 首先关闭对话框
+      this.selectHRDialogShow = false
+      this.form.hrId = val.id
+      this.form.hrChineseName = val.chineseName
+      this.form.hrEnglishName = val.englishName
     }
   },
   computed: {

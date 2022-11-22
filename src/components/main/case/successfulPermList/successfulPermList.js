@@ -3,6 +3,7 @@ import clientApi from '@/api/client'
 import userApi from '@/api/user'
 import commonJS from '@/common/common'
 import configApi from '@/api/config'
+import clientlinkmanApi from '@/api/clientlinkman'
 
 export default {
   data () {
@@ -23,6 +24,7 @@ export default {
       currentRow: null,
       searchDialog: false,
       clients: [],
+      hrs: [],
       consultants: [],
       bds: [],
       cws: [],
@@ -217,6 +219,11 @@ export default {
         this.consultants = res.data
         this.cws = res.data
         this.bds = res.data
+      }
+    })
+    clientlinkmanApi.queryAllForSimple().then(res => {
+      if (res.status === 200) {
+        this.hrs = res.data
       }
     })
     // 查询成功case类型列表
