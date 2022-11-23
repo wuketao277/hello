@@ -13,9 +13,9 @@
                  style="background-color:transparent;border-bottom:solid 1px transparent;"
                  :router="true">
           <el-menu-item index="/"
-                        style="width:200px;text-align:center;font-size:20px;color:white;">首页</el-menu-item>
+                        style="background-color: #261151;width:200px;text-align:center;font-size:20px;color:white;">首页</el-menu-item>
           <el-menu-item index="/us"
-                        style="width:200px;text-align:center;font-size:20px;color:white;">关于我们</el-menu-item>
+                        style="background-color: #261151;width:200px;text-align:center;font-size:20px;color:white;">关于我们</el-menu-item>
         </el-menu>
       </div>
     </el-header>
