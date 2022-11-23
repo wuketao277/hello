@@ -7,15 +7,19 @@ export default {
   },
   // 查找后台数据
   queryPage (params) {
-    return axios.get('/case/queryPage', {params: params})
+    return axios.post('/case/queryPage', params)
   },
   // 查找后台数据
   query (params) {
-    return axios.get('/case/query', {params: params})
+    return axios.get('/case/query', {
+      params: params
+    })
   },
   // 通过id查询
   queryById (params) {
-    return axios.get('/case/queryById', {params: params})
+    return axios.get('/case/queryById', {
+      params: params
+    })
   },
   // 更新关注
   updateCaseAttention (params) {

@@ -5,6 +5,7 @@ import candidateForCaseApi from '@/api/candidateForCase'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
+import selectHr from '@/components/main/dialog/selectHr/selectHr.vue'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
@@ -15,7 +16,8 @@ export default {
     'selectCase': selectCase,
     'uploadFile': uploadFile,
     'downloadFile': downloadFile,
-    'selectUser': selectUser
+    'selectUser': selectUser,
+    'selectHr': selectHr
   },
   data () {
     return {
@@ -23,6 +25,9 @@ export default {
       form: {
         id: null,
         clientId: '',
+        hrId: '',
+        hrChineseName: '',
+        hrEnglishName: '',
         title: '',
         level: '',
         department: '',
@@ -116,6 +121,8 @@ export default {
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
       selectCandidateDialogShow: false,
+      // 选择hr对话框是否显示
+      selectHRDialogShow: false,
       // 选择职位对话框是否显示
       selectCaseDialogShow: false,
       showUploadFileDialog: false, // 上传文件对话框
@@ -227,6 +234,9 @@ export default {
         this.form.id = ''
         this.form.clientId = ''
         this.form.clientName = ''
+        this.form.hrId = ''
+        this.form.hrChineseName = ''
+        this.form.hrEnglishName = ''
         this.form.title = ''
         this.form.level = ''
         this.form.department = ''
@@ -432,6 +442,14 @@ export default {
       // 首先关闭对话框
       this.selectCWDialogShow = false
       this.form.cwUserName = val.username
+    },
+    // “选择hr”对话框返回
+    sureSelectHRDialog (val) {
+      // 首先关闭对话框
+      this.selectHRDialogShow = false
+      this.form.hrId = val.id
+      this.form.hrChineseName = val.chineseName
+      this.form.hrEnglishName = val.englishName
     }
   },
   created () {

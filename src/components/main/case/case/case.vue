@@ -83,13 +83,21 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
+          <el-button type="primary"
+                     size="small"
+                     icon="el-icon-share"
+                     @click="selectHRDialogShow = true"
+                     style="width:85px;">HR</el-button>
+          <span>{{form.hrEnglishName}}&nbsp;-&nbsp;{{form.hrChineseName}}</span>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="8">
           <el-form-item label="职级">
             <el-input v-model="form.level"
                       clearable></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="部门">
             <el-input v-model="form.department"
@@ -102,14 +110,14 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="薪资范围">
             <el-input v-model="form.salaryScope"
                       clearable></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="是否带人">
             <el-input v-model="form.subordinates"
@@ -122,14 +130,14 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="工作经验">
             <el-input v-model="form.experience"
                       clearable></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="年龄要求">
             <el-input v-model="form.age"
@@ -142,14 +150,14 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="学历要求">
             <el-input v-model="form.school"
                       clearable></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="HC">
             <el-input v-model="form.headCount"
@@ -163,6 +171,8 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="面试流程">
             <el-input v-model="form.interviewProcess"
@@ -275,6 +285,11 @@
                :visible.sync="selectCWDialogShow">
       <selectUser v-on:cancel-dialog="selectCWDialogShow = false"
                   v-on:sure-dialog="sureSelectCWDialog"></selectUser>
+    </el-dialog>
+    <el-dialog title="选择HR"
+               :visible.sync="selectHRDialogShow">
+      <selectHr v-on:cancel-dialog="selectHRDialogShow = false"
+                v-on:sure-dialog="sureSelectHRDialog"></selectHr>
     </el-dialog>
   </div>
 </template>

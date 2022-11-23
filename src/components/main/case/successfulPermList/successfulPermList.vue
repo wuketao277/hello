@@ -188,11 +188,12 @@
         <el-form label-position="left"
                  label-width="160px">
           <el-row :gutter="20">
-            <el-col :span="6">
+            <el-col :span="12">
               <el-form-item label="Client"
                             label-width="80px">
                 <el-select v-model="search.clientId"
                            placeholder="请选择客户"
+                           style="width:100%;"
                            clearable>
                   <el-option v-for="client in clients"
                              :key="client.id"
@@ -201,6 +202,21 @@
                 </el-select>
               </el-form-item>
             </el-col>
+            <el-col :span="6">
+              <el-form-item label="HR"
+                            label-width="80px">
+                <el-select v-model="search.hrId"
+                           placeholder="请选择hr"
+                           clearable>
+                  <el-option v-for="hr in hrs"
+                             :key="hr.id"
+                             :value="hr.id"
+                             :label="hr.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
             <el-col :span="6">
               <el-form-item label="Consultant"
                             label-width="80px">

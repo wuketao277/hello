@@ -23,35 +23,10 @@
                  icon="el-icon-delete"
                  @click="deleteById"
                  v-if="showControl('delete')">删 除</el-button>
-    </div>
-    <div>
-      <el-form @submit.native.prevent>
-        <el-row :gutter="40">
-          <el-col :span="8">
-            <el-form-item label
-                          style="margin-bottom:0px;">
-              <el-input v-model="search"
-                        autocomplete="off"
-                        @keyup.enter.native="sureSearchDialog"
-                        placeholder="输入关键字后，回车即可搜索。"
-                        clearable></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item style="margin-bottom:0px;">
-              <el-radio-group v-model="searchStatus"
-                              @change="sureSearchDialog">
-                <el-radio label="ALL">全部</el-radio>
-                <el-radio label="PREPARE">准备</el-radio>
-                <el-radio label="DOING">进行中</el-radio>
-                <el-radio label="FINISH">完成</el-radio>
-                <el-radio label="PAUSE">暂停</el-radio>
-                <el-radio label="CLOSE">关闭</el-radio>
-              </el-radio-group>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-share"
+                 @click="searchDialog = true">搜 索</el-button>
     </div>
     <template>
       <el-table :data="table.content"
@@ -97,6 +72,70 @@
                      @prev-click="prevClick"
                      @next-click="nextClick"></el-pagination>
     </template>
+    <el-dialog title="搜索"
+               :visible="searchDialog"
+               :show-close="false"
+               width="80%">
+      <div>
+        <el-form label-position="left"
+                 label-width="80px">
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="Client">
+                <el-select v-model="search.clientId"
+                           placeholder="请选择客户"
+                           style="width:100%;"
+                           clearable>
+                  <el-option v-for="client in clients"
+                             :key="client.id"
+                             :value="client.id"
+                             :label="client.chineseName"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="Status">
+                <el-radio-group v-model="search.status">
+                  <el-radio label="PREPARE">准备</el-radio>
+                  <el-radio label="DOING">进行中</el-radio>
+                  <el-radio label="FINISH">完成</el-radio>
+                  <el-radio label="PAUSE">暂停</el-radio>
+                  <el-radio label="CLOSE">关闭</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8">
+              <el-form-item label="title">
+                <el-input v-model="search.title"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="HR">
+                <el-select v-model="search.hrId"
+                           placeholder="请选择hr"
+                           clearable>
+                  <el-option v-for="hr in hrs"
+                             :key="hr.id"
+                             :value="hr.id"
+                             :label="hr.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <span slot="footer"
+              class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
+          <el-button @click="searchDialog = false">取 消</el-button>
+          <el-button type="primary"
+                     @click="sureSearchDialog">查 询</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script src="./caselist.js"></script>
