@@ -9,8 +9,8 @@ export default {
     return axios.get('/comment/deleteById?id=' + id)
   },
   // 查找后台数据
-  findAllByCandidateId (params) {
-    return axios.get('/comment/findAllByCandidateId', {
+  findAllByCandidateIdOrderByDesc (params) {
+    return axios.get('/comment/findAllByCandidateIdOrderByDesc', {
       params: params
     })
   },

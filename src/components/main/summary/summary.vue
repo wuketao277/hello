@@ -261,7 +261,7 @@
                      @click="sortUsers">排 序</el-button>
           <el-button type="warning"
                      size="small"
-                     icon="el-icon-circle-check"
+                     icon="el-icon-delete"
                      @click="clearSelectUsers">清 空</el-button>
         </div>
         <el-checkbox-group v-model="selectUsers"
