@@ -4,6 +4,7 @@ import commentApi from '@/api/comment'
 import caseApi from '@/api/case'
 import commonJs from '@/common/common'
 import candidateApi from '@/api/candidate'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -23,7 +24,10 @@ export default {
       candidateAttentionList: [],
       tabIndex: this.getTabIndex(), // 首页当前页签
       attentionCaseShowCandidate: this.getAttentionCaseShowCandidate(), // 关注职位页面是否显示候选人信息
-      cwCaseShowCandidate: this.getCWCaseShowCandidate() // 对接职位页面是否显示候选人信息
+      cwCaseShowCandidate: this.getCWCaseShowCandidate(), // 对接职位页面是否显示候选人信息
+      selectUsers: [], // 任务执行人集合
+      sortSelectUsers: [], // 排序后的执行人
+      users: []
     }
   },
   methods: {
@@ -243,21 +247,6 @@ export default {
     },
     // 查看任务详情
     viewMyTaskDetail (task) {
-      // if (task.relativeCandidateId !== null) {
-      //   // 如果关联候选人id不为空，就调用后台查询候选人信息，并跳转到候选人页面
-      //   candidateApi.findById(task.relativeCandidateId).then(res => {
-      //     if (res.status === 200) {
-      //       this.$router.push({
-      //         path: '/candidate/candidate',
-      //         query: {
-      //           mode: 'modify',
-      //           candidate: res.data
-      //         }
-      //       })
-      //     }
-      //   })
-      // } else {
-      // 否则就跳转到任务详情页
       this.$router.push({
         path: '/mytask/mytask',
         query: {
@@ -322,6 +311,18 @@ export default {
           task: this.taskCurrentRow
         }
       })
+    },
+    // 用户排序
+    sortUsers () {
+      this.selectUsers.sort(function () {
+        return Math.random() - 0.5
+      })
+      this.sortSelectUsers = this.selectUsers
+    },
+    // 清空
+    clearSelectUsers () {
+      this.selectUsers = []
+      this.sortSelectUsers = []
     }
   },
   created () {
@@ -347,5 +348,10 @@ export default {
     this.queryAllCaseAttention()
     // 查询当前用户所有对接的职位
     this.queryCWCaseArray()
+    userApi.findAllEnabled().then(res => {
+      if (res.status === 200) {
+        this.users = res.data
+      }
+    })
   }
 }
