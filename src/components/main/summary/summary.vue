@@ -252,17 +252,20 @@
           </el-table>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="随机排序"
+      <el-tab-pane label="抽签"
                    name="6">
-        <el-button type="success"
-                   size="small"
-                   icon="el-icon-circle-check"
-                   @click="sortUsers">排 序</el-button>
-        <el-button type="warning"
-                   size="small"
-                   icon="el-icon-circle-check"
-                   @click="clearSelectUsers">清 空</el-button>
-        <el-checkbox-group v-model="selectUsers">
+        <div class="toolbar">
+          <el-button type="success"
+                     size="small"
+                     icon="el-icon-circle-check"
+                     @click="sortUsers">排 序</el-button>
+          <el-button type="warning"
+                     size="small"
+                     icon="el-icon-circle-check"
+                     @click="clearSelectUsers">清 空</el-button>
+        </div>
+        <el-checkbox-group v-model="selectUsers"
+                           style="margin-top:10px;margin-bottom:10px;">
           <el-checkbox v-for="user in users"
                        :key="user"
                        :label="user">{{user.username}}</el-checkbox>
@@ -276,7 +279,9 @@
                            label="序号"
                            width="50"></el-table-column>
           <el-table-column prop="username"
-                           label="userName"></el-table-column>
+                           label="登录名"></el-table-column>
+          <el-table-column prop="realname"
+                           label="姓名"></el-table-column>
         </el-table>
       </el-tab-pane>
     </el-tabs>
