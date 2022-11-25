@@ -38,7 +38,7 @@ export default {
         'id': 'denied',
         'name': '审批否决'
       }],
-      search: commonJS.getSearchContentObject('successfulPermList.search'),
+      search: commonJS.getStorageContentObject('successfulPermList.search'),
       billingSum: null,
       gpSum: null,
       typeList: []

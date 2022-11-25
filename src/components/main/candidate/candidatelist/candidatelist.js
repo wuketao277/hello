@@ -18,7 +18,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent(),
+      search: this.getStorageContent(),
       fileList: []
     }
   },
@@ -153,7 +153,9 @@ export default {
       })
       // 如果存在查询条件就通过查询条件从评论中搜索候选人
       if (this.search !== '') {
-        let query = {'search': this.search}
+        let query = {
+          'search': this.search
+        }
         comment.queryCandidateByCommentLimit100(query).then(res => {
           if (res.status !== 200) {
             this.$message.error({
@@ -221,7 +223,7 @@ export default {
       this.table.pageable.pageNumber = 1
       this.query()
     },
-    getSearchContent () {
+    getStorageContent () {
       if (typeof (window.localStorage['candidatelist.search']) === 'undefined') {
         return ''
       } else {

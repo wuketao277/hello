@@ -20,7 +20,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJs.getSearchContent('clientlist.search')
+      search: commonJs.getStorageContent('clientlist.search')
     }
   },
   methods: {

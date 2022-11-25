@@ -18,7 +18,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getSearchContent('mynewslist.search')
+      search: commonJS.getStorageContent('mynewslist.search')
     }
   },
   methods: {
@@ -30,7 +30,9 @@ export default {
     },
     // 添加新闻
     addNews () {
-      this.$router.push({path: '/mynews/mynews'})
+      this.$router.push({
+        path: '/mynews/mynews'
+      })
     },
     // 检查是否选择了一条记录
     checkSelectRow () {
@@ -47,15 +49,25 @@ export default {
     // 查看新闻
     detailNews () {
       if (this.checkSelectRow()) {
-        this.$router.push({path: '/mynews/mynews',
-          query: {mode: 'detail', news: this.currentRow}})
+        this.$router.push({
+          path: '/mynews/mynews',
+          query: {
+            mode: 'detail',
+            news: this.currentRow
+          }
+        })
       }
     },
     // 修改新闻
     modifyNews () {
       if (this.checkSelectRow()) {
-        this.$router.push({path: '/mynews/mynews',
-          query: {mode: 'modify', news: this.currentRow}})
+        this.$router.push({
+          path: '/mynews/mynews',
+          query: {
+            mode: 'modify',
+            news: this.currentRow
+          }
+        })
       }
     },
     // 通过id删除新闻

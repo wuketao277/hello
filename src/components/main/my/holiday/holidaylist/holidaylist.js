@@ -16,7 +16,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent(),
+      search: this.getStorageContent(),
       multipleSelection: []
     }
   },
@@ -133,7 +133,7 @@ export default {
       this.table.pageable.pageSize = 10
       this.query()
     },
-    getSearchContent () {
+    getStorageContent () {
       if (typeof (window.localStorage['holidaylist.search']) === 'undefined') {
         return ''
       } else {

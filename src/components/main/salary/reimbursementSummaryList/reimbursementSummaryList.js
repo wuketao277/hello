@@ -22,7 +22,7 @@ export default {
       currentRow: null,
       companyList: commonJS.companyList,
       searchDialog: false,
-      search: commonJS.getSearchContentObject('reimbursementSummaryList.search'),
+      search: commonJS.getStorageContentObject('reimbursementSummaryList.search'),
       reimbursementMonth: commonJS.getYYYY_MM(new Date()) // 报销月份，默认是当月
     }
   },

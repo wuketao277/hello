@@ -16,7 +16,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getSearchContent('salarySpecialItemList.search')
+      search: commonJS.getStorageContent('salarySpecialItemList.search')
     }
   },
   methods: {

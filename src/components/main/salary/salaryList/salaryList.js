@@ -18,7 +18,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getSearchContentObject('salaryList.search'),
+      search: commonJS.getStorageContentObject('salaryList.search'),
       showWorkingDays: true,
       showHistoryDebt: !commonJS.isConsultantJobType(),
       showLoginName: true,

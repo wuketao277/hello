@@ -16,7 +16,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonApi.getSearchContent('userlist.search'),
+      search: commonApi.getStorageContent('userlist.search'),
       fileList: []
     }
   },

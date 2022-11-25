@@ -18,7 +18,7 @@ export default {
       companyList: commonJS.companyList,
       currentRow: null,
       searchDialog: false,
-      search: commonJS.getSearchContentObject('reimbursementItemList.search'),
+      search: commonJS.getStorageContentObject('reimbursementItemList.search'),
       needReimbursementSum: null,
       totalReimbursementSum: null,
       multipleSelection: [],

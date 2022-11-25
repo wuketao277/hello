@@ -22,7 +22,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent(),
+      search: this.getStorageContent(),
       showUploadFileDialog: false,
       uploadFileData: {}
     }
@@ -90,9 +90,8 @@ export default {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {
-    },
-    getSearchContent () {
+    switchSearchDialog () {},
+    getStorageContent () {
       if (typeof (window.localStorage['filelist.search']) === 'undefined') {
         return ''
       } else {

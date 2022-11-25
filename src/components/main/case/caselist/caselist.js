@@ -21,7 +21,7 @@ export default {
       },
       currentRow: null,
       searchDialog: false,
-      search: commonJS.getSearchContentObject('caselist.search'),
+      search: commonJS.getStorageContentObject('caselist.search'),
       clients: [],
       hrs: []
     }

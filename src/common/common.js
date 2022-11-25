@@ -66,14 +66,14 @@ export default {
     }
     return user
   },
-  getSearchContent (searchContent) {
+  getStorageContent (searchContent, defaultValue) {
     if (typeof (window.localStorage[searchContent]) === 'undefined') {
-      return ''
+      return typeof (defaultValue) === 'undefined' ? '' : defaultValue
     } else {
       return window.localStorage[searchContent]
     }
   },
-  getSearchContentObject (searchContent) {
+  getStorageContentObject (searchContent) {
     if (typeof (window.localStorage[searchContent]) === 'undefined') {
       return {}
     } else {

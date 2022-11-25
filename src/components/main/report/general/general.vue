@@ -50,6 +50,14 @@
                          plain
                          size="medium"
                          @click="calcDate('year')">本年</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="changeChartSize('big')">大图</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="changeChartSize('small')">小图</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -59,66 +67,72 @@
       <el-row style="margin-bottom:30px;">
         <el-col :span="24">
           <div id="offerDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">offer Billing Sum：{{offerDateBilling}}</el-col>
             </el-row>
             <div id="offerDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
           <div id="paymentDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">payment Billing Sum：{{paymentDateBilling}}</el-col>
             </el-row>
             <div id="paymentDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
       <el-row style="margin-bottom:30px;">
         <el-col :span="24">
           <div id="actualPaymentDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">已付 Billing Sum：{{actualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="actualPaymentDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
           <div id="unactualPaymentDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">未付 Billing Sum：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="unactualPaymentDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
           <div id="personalOfferData"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Personal Offer Data</el-col>
+            </el-row>
             <div id="personalOfferDataChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
           <div id="invoiceDateData"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">Invoice Sum：{{invoiceDateBilling}}</el-col>
             </el-row>
             <div id="invoiceDateDataChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
           <div id="personalReceiveData"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Personal Receive Data</el-col>
+            </el-row>
             <div id="personalReceiveDataChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
@@ -126,3 +140,21 @@
   </div>
 </template>
 <script src="./general.js"></script>
+<style>
+.divBig {
+  width: 98%;
+  height: 600px;
+  float: left;
+}
+.divSmall {
+  width: 48%;
+  height: 400px;
+  float: left;
+}
+.chartBig {
+  height: 600px;
+}
+.chartSmall {
+  height: 400px;
+}
+</style>

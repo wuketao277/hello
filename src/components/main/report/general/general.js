@@ -1,4 +1,5 @@
 import report from '@/api/report'
+import commonJS from '@/common/common'
 
 export default {
   name: 'hello',
@@ -12,15 +13,33 @@ export default {
       paymentDateBilling: 0,
       actualPaymentDateBilling: 0,
       unactualPaymentDateBilling: 0,
-      invoiceDateBilling: 0
+      invoiceDateBilling: 0,
+      divClass: commonJS.getStorageContent('generalDivClass', 'divBig'),
+      chartClass: commonJS.getStorageContent('generalChartClass', 'chartBig'),
+      period: commonJS.getStorageContent('generalPeriod', 'month')
     }
   },
   mounted () {
-    this.calcDate('month')
+    this.calcDate(this.period)
   },
   methods: {
+    // 图表尺寸变更时间
+    changeChartSize (size) {
+      if (size === 'big') {
+        this.divClass = 'divBig'
+        this.chartClass = 'chartBig'
+        window.localStorage['generalDivClass'] = 'divBig'
+        window.localStorage['generalChartClass'] = 'chartBig'
+      } else {
+        this.divClass = 'divSmall'
+        this.chartClass = 'chartSmall'
+        window.localStorage['generalDivClass'] = 'divSmall'
+        window.localStorage['generalChartClass'] = 'chartSmall'
+      }
+    },
     // 计算开始日期和结束日期
     calcDate (type) {
+      window.localStorage['generalPeriod'] = type
       if (type === 'week') {
         let now = new Date()
         let startDate
@@ -101,7 +120,7 @@ export default {
             let offerDateChart = this.$echarts.init(document.getElementById('offerDateChart'))
             offerDateChart.setOption({
               title: {
-                text: 'offer signed',
+                text: '',
                 left: 'center'
               },
               tooltip: {
@@ -128,7 +147,7 @@ export default {
             let paymentDateChart = this.$echarts.init(document.getElementById('paymentDateChart'))
             paymentDateChart.setOption({
               title: {
-                text: 'payment',
+                text: '',
                 left: 'center'
               },
               tooltip: {
@@ -155,7 +174,7 @@ export default {
             let actualPaymentDateChart = this.$echarts.init(document.getElementById('actualPaymentDateChart'))
             actualPaymentDateChart.setOption({
               title: {
-                text: '已付款',
+                text: '',
                 left: 'center'
               },
               tooltip: {
@@ -182,7 +201,7 @@ export default {
             let unactualPaymentDateChart = this.$echarts.init(document.getElementById('unactualPaymentDateChart'))
             unactualPaymentDateChart.setOption({
               title: {
-                text: '未付款',
+                text: '',
                 left: 'center'
               },
               tooltip: {
@@ -209,7 +228,7 @@ export default {
             let personalOfferDataChart = this.$echarts.init(document.getElementById('personalOfferDataChart'))
             personalOfferDataChart.setOption({
               title: {
-                text: 'personal offer data',
+                text: '',
                 left: 'center'
               },
               tooltip: {
@@ -236,7 +255,7 @@ export default {
             let invoiceDateDataChart = this.$echarts.init(document.getElementById('invoiceDateDataChart'))
             invoiceDateDataChart.setOption({
               title: {
-                text: 'invoice data',
+                text: '',
                 left: 'center'
               },
               tooltip: {
@@ -263,7 +282,7 @@ export default {
             let personalReceiveDataChart = this.$echarts.init(document.getElementById('personalReceiveDataChart'))
             personalReceiveDataChart.setOption({
               title: {
-                text: 'personal receive data',
+                text: '',
                 left: 'center'
               },
               tooltip: {
