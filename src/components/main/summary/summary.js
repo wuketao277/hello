@@ -17,6 +17,7 @@ export default {
       KPIDashboard: [],
       commentsDetailTableVisible: false,
       commentsDetailTable: [],
+      commentsDetailTableBackup: [], // 备份数据
       activeNames: ['1'],
       caseAttention4ClientVOArray: [],
       cwCaseArray: [],
@@ -27,7 +28,10 @@ export default {
       cwCaseShowCandidate: this.getCWCaseShowCandidate(), // 对接职位页面是否显示候选人信息
       selectUsers: [], // 任务执行人集合
       sortSelectUsers: [], // 排序后的执行人
-      users: []
+      kpiOrderType: 'phase', // kpi排序类型，默认按阶段排序
+      users: [],
+      phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
+      selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'] // 选择的阶段
     }
   },
   methods: {
@@ -199,6 +203,8 @@ export default {
           // 评论详情
           this.commentsDetailTableVisible = true
           this.commentsDetailTable = res.data
+          this.commentsDetailTableBackup = this.commentsDetailTable
+          this.filerAndSortKpi()
         } else {
           this.$message({
             message: '查询异常，请联系管理员！',
@@ -323,6 +329,95 @@ export default {
     clearSelectUsers () {
       this.selectUsers = []
       this.sortSelectUsers = []
+    },
+    // 转换阶段名称为数字
+    phaseConvertToInt (phase) {
+      let result = 0
+      if (phase === 'TI') {
+        result = 1
+      } else if (phase === 'VI') {
+        result = 2
+      } else if (phase === 'IOI') {
+        result = 3
+      } else if (phase === 'CVO') {
+        result = 4
+      } else if (phase === '1st Interview') {
+        result = 5
+      } else if (phase === 'Offer Signed') {
+        result = 6
+      } else if (phase === 'On Board') {
+        result = 7
+      }
+      return result
+    },
+    // KPI选择全部阶段
+    selectAllPhase () {
+      this.selectedPhases = this.phaseList
+      this.handlePhaseChange(this.selectedPhases)
+    },
+    // 清空选择的阶段
+    clearPhaseSelected () {
+      this.selectedPhases = []
+      this.handlePhaseChange(this.selectedPhases)
+    },
+    // 筛选并排序KPI数据
+    filerAndSortKpi () {
+      // 筛选
+      this.commentsDetailTable = []
+      // 过滤选中的阶段
+      for (let c of this.commentsDetailTableBackup) {
+        if (this.selectedPhases.includes(c['phase'])) {
+          this.commentsDetailTable.push(c)
+        }
+      }
+      // 排序
+      if (this.kpiOrderType === 'phase') {
+        // 按阶段排序
+        let that = this
+        this.commentsDetailTable.sort(function (a, b) {
+          let result = 0
+          if (that.phaseConvertToInt(a['phase']) === that.phaseConvertToInt(b['phase'])) {
+            // 阶段相同按姓名排序
+            if (a['chineseName'] === b['chineseName']) {
+              // 姓名相同按时间排序
+              result = a['inputTime'] >= b['inputTime'] ? 1 : -1
+            } else if (a['chineseName'] > b['chineseName']) {
+              result = 1
+            } else if (a['chineseName'] < b['chineseName']) {
+              result = -1
+            }
+          } else if (that.phaseConvertToInt(a['phase']) > that.phaseConvertToInt(b['phase'])) {
+            result = -1
+          } else if (that.phaseConvertToInt(a['phase']) < that.phaseConvertToInt(b['phase'])) {
+            result = 1
+          }
+          return result
+        })
+      } else if (this.kpiOrderType === 'candidate') {
+        // 姓名排序
+        this.commentsDetailTable.sort(function (a, b) {
+          let result = 0
+          if (a['chineseName'] === b['chineseName']) {
+            // 姓名相同按时间排序
+            result = a['inputTime'] >= b['inputTime'] ? 1 : -1
+          } else if (a['chineseName'] > b['chineseName']) {
+            result = 1
+          } else if (a['chineseName'] < b['chineseName']) {
+            result = -1
+          }
+          return result
+        })
+      }
+    },
+    // 处理阶段变更
+    handlePhaseChange (value) {
+      this.selectedPhases = value
+      this.filerAndSortKpi()
+    },
+    // 排序评论
+    orderComment (type) {
+      this.kpiOrderType = type
+      this.filerAndSortKpi()
     }
   },
   created () {

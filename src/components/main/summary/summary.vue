@@ -217,6 +217,7 @@
                      icon="el-icon-download"
                      @click="downloadKPI()">下载KPI</el-button>
         </div>
+        <br />
         <div>
           <el-table :data="KPIDashboard"
                     :border="true"
@@ -287,9 +288,28 @@
     </el-tabs>
     <el-dialog title="评论详情"
                :visible.sync="commentsDetailTableVisible"
-               width="70%">
+               width="80%">
+      <el-button size="small"
+                 type="primary"
+                 @click="orderComment('phase')">按阶段排序</el-button>
+      <el-button size="small"
+                 type="primary"
+                 @click="orderComment('candidate')">按候选人排序</el-button>
+      <br /><span>筛选阶段：</span>
+      <el-button type="text"
+                 @click="selectAllPhase">全选</el-button>
+      <el-button type="text"
+                 @click="clearPhaseSelected">清空</el-button>&nbsp;&nbsp;
+      <el-checkbox-group v-model="selectedPhases"
+                         @change="handlePhaseChange"
+                         style="margin-top:10px;margin-bottom:10px;display:inline;">
+        <el-checkbox v-for="phase in phaseList"
+                     :key="phase"
+                     :label="phase">{{phase}}</el-checkbox>
+      </el-checkbox-group>
       <el-table :data="commentsDetailTable"
                 :highlight-current-row="true"
+                :border="true"
                 max-height="500">
         <el-table-column label="操作"
                          width="130">
