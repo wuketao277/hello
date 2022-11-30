@@ -31,7 +31,7 @@
              label-position="left"
              size="small"
              :model="form"
-             label-width="80px"
+             label-width="100px"
              style="text-align:left;"
              :rules="rules">
       <el-row :gutter="12">
@@ -43,13 +43,15 @@
         <el-col :span="8">
           <el-form-item label="中文名"
                         prop="chineseName">
-            <el-input v-model="form.chineseName"></el-input>
+            <el-input v-model="form.chineseName"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="英文名"
                         prop="englishName">
-            <el-input v-model="form.englishName"></el-input>
+            <el-input v-model="form.englishName"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -62,21 +64,26 @@
         </el-col>
         <el-col :span="5">
           <el-form-item label="生日"
-                        prop="birthDay">
+                        prop="birthDay"
+                        label-width="80px">
             <el-input v-model="form.birthDay"
-                      placeholder="例如：1999-01-01"></el-input>
+                      placeholder="例如：1999-01-01"
+                      style="width:100%"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="手机号"
                         prop="phoneNo">
-            <el-input v-model="form.phoneNo"></el-input>
+            <el-input v-model="form.phoneNo"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="邮箱"
                         prop="email">
-            <el-input v-model="form.email"></el-input>
+            <el-input v-model="form.email"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -84,19 +91,22 @@
         <el-col :span="8">
           <el-form-item label="公司名称"
                         prop="companyName">
-            <el-input v-model="form.companyName"></el-input>
+            <el-input v-model="form.companyName"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="部门"
                         prop="department">
-            <el-input v-model="form.department"></el-input>
+            <el-input v-model="form.department"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="职位"
                         prop="title">
-            <el-input v-model="form.title"></el-input>
+            <el-input v-model="form.title"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -104,19 +114,22 @@
         <el-col :span="8">
           <el-form-item label="学校"
                         prop="schoolName">
-            <el-input v-model="form.schoolName"></el-input>
+            <el-input v-model="form.schoolName"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="现地"
                         prop="currentAddress">
-            <el-input v-model="form.currentAddress"></el-input>
+            <el-input v-model="form.currentAddress"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="期地"
                         prop="futureAddress">
-            <el-input v-model="form.futureAddress"></el-input>
+            <el-input v-model="form.futureAddress"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -124,26 +137,45 @@
         <el-col :span="8">
           <el-form-item label="现薪"
                         prop="currentMoney">
-            <el-input v-model="form.currentMoney"></el-input>
+            <el-input v-model="form.currentMoney"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="期薪"
                         prop="futureMoney">
-            <el-input v-model="form.futureMoney"></el-input>
+            <el-input v-model="form.futureMoney"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="日期">
-            <el-input v-model="form.date"></el-input>
+          <el-form-item label="英文水平"
+                        prop="englishLevel">
+            <el-input v-model="form.englishLevel"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="英文水平"
-                        prop="englishLevel">
-            <el-input v-model="form.englishLevel"></el-input>
+          <el-form-item label="不匹配原因"
+                        prop="notMatchReason">
+            <el-select v-model="form.notMatchReason"
+                       placeholder="请选择"
+                       style="width:100%"
+                       clearable>
+              <el-option v-for="reaseon in notMatchReasonList"
+                         :key="reaseon.code"
+                         :value="reaseon.code"
+                         :label="reaseon.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="16">
+          <el-form-item label="原因详情"
+                        prop="notMatchReasonDetail">
+            <el-input v-model="form.notMatchReasonDetail"
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>

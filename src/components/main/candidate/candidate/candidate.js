@@ -42,7 +42,9 @@ export default {
         remark: '',
         createUserId: null,
         createUserName: null,
-        createRealName: null
+        createRealName: null,
+        notMatchReason: 'NO',
+        notMatchReasonDetail: ''
       },
       phaseOptions: [{
         value: 'SL',
@@ -226,7 +228,8 @@ export default {
       },
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
-      uploadFiles: [] // 上传文件集合
+      uploadFiles: [], // 上传文件集合
+      notMatchReasonList: commonJS.notMatchReasonList
     }
   },
   methods: {
@@ -451,6 +454,8 @@ export default {
         this.form.createUserId = null
         this.form.createUserName = null
         this.form.createRealName = null
+        this.form.notMatchReason = 'NO'
+        this.form.notMatchReasonDetail = ''
       }
     },
     // 保存候选人-子方法

@@ -350,5 +350,21 @@ export default {
   }, {
     code: 'BANK',
     name: '银行'
+  }],
+  notMatchReasonList: [{
+    code: 'NO',
+    name: '无'
+  }, {
+    code: 'LANGUAGE',
+    name: '语言'
+  }, {
+    code: 'LOCATION',
+    name: '地点'
+  }, {
+    code: 'PACKAGE',
+    name: '薪资'
+  }, {
+    code: 'ABILITY',
+    name: '能力'
   }]
 }
