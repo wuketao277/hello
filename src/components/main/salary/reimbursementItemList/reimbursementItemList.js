@@ -348,7 +348,6 @@ export default {
     },
     // 类别变更事件
     typeChange (value) {
-      debugger
       this.search.kind = ''
       if (value === 'Transportation') {
         this.currentKindList = commonJS.transportationKindList

@@ -137,7 +137,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'deleteRecommend') {
+      if (key === 'deleteRecommend' || key === 'delete') {
         return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色
@@ -450,6 +450,27 @@ export default {
       this.form.hrId = val.id
       this.form.hrChineseName = val.chineseName
       this.form.hrEnglishName = val.englishName
+    },
+    // 通过id删除职位
+    deleteById () {
+      this.$confirm('确认要删除职位 ' + this.form.title + ' 吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        let params = {
+          'id': this.form.id
+        }
+        caseApi.deleteById(params).then(res => {
+          if (res.status === 200) {
+            this.$router.push({
+              path: '/case/caselist'
+            })
+          } else {
+            this.$message.error('删除失败！')
+          }
+        })
+      })
     }
   },
   created () {

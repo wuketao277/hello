@@ -17,6 +17,11 @@
                  size="small"
                  icon="el-icon-circle-close"
                  @click="cancel">取 消</el-button>
+      <el-button type="danger"
+                 size="small"
+                 icon="el-icon-delete"
+                 @click="deleteById"
+                 v-if="showControl('delete')">删 除</el-button>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-upload"

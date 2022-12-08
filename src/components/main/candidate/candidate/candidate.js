@@ -297,7 +297,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'deleteRecommend') {
+      if (key === 'deleteRecommend' || key === 'delete') {
         return commonJS.isAdmin()
       }
       // 没有特殊要求的不需要角色
@@ -634,6 +634,24 @@ export default {
             this.queryCandidateForCaseList()
           }
         })
+    },
+    // 通过id删除候选人
+    deleteById () {
+      this.$confirm('确认要删除候选人 ' + this.form.chineseName + ' 吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        candidateApi.deleteById(this.form.id).then(res => {
+          if (res.status === 200) {
+            this.$router.push({
+              path: '/candidate/candidatelist'
+            })
+          } else {
+            this.$message.error('删除失败！')
+          }
+        })
+      })
     }
   },
   computed: {},

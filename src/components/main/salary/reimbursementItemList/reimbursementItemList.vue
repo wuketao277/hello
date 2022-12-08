@@ -112,6 +112,13 @@
                          width="250"
                          label="描述"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="createUser"
+                         width="100"
+                         label="创建者"></el-table-column>
+        <el-table-column prop="createTime"
+                         width="200"
+                         label="创建时间"
+                         show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination background
                      layout="prev, pager, next, sizes"

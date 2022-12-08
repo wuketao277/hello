@@ -26,7 +26,9 @@ export default {
         price: 0, // 单价
         count: 0, // 数量
         sum: 0, // 总金额
-        description: '' // 备注
+        description: '', // 备注
+        createUser: '',
+        createTime: ''
       },
       selectUserDialogShow: false,
       approveStatusList: commonJS.approveStatusList,
@@ -68,6 +70,8 @@ export default {
         this.form.sum = 0 // 报销金额
         this.form.count = 0 // 数量
         this.form.description = '' // 说明
+        this.form.createUser = ''
+        this.form.createTime = ''
       }
     },
     // 保存
@@ -123,7 +127,7 @@ export default {
             res => {
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
+                this.form = res.data
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
@@ -173,6 +177,10 @@ export default {
       } else if (value === 'Other') {
         this.currentKindList = commonJS.otherKindList
       }
+    },
+    // 格式化时间到字符串
+    timeStrFormate1 (d) {
+      return commonJS.timeStrFormate1(d)
     }
   },
   computed: {

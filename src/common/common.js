@@ -96,16 +96,32 @@ export default {
   },
   // 获取YYYY-MM-dd格式的年月日
   getYYYY_MM_dd (d) {
-    let year = d.getFullYear()
-    let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
-    let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
-    return year + '-' + month + '-' + day
+    if (typeof (d) === 'object') {
+      let year = d.getFullYear()
+      let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
+      let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+      return year + '-' + month + '-' + day
+    } else {
+      return ''
+    }
   },
   // 获取YYYY-MM格式的年月
   getYYYY_MM (d) {
-    let year = d.getFullYear()
-    let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
-    return year + '-' + month
+    if (typeof (d) === 'object') {
+      let year = d.getFullYear()
+      let month = d.getMonth() + 1 < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1
+      return year + '-' + month
+    } else {
+      return ''
+    }
+  },
+  // 日期字符串格式化
+  timeStrFormate1 (d) {
+    if (d !== null && d !== '') {
+      return d.substr(0, 19).replace('T', ' ')
+    } else {
+      return ''
+    }
   },
   // 工资卡银行
   banks: [{
