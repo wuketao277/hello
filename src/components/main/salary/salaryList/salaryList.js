@@ -61,8 +61,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'generateSalary' || key === 'search' ||
-        key === 'modifySalary' || key === 'statistics' ||
+      if (key === 'generateSalary' || key === 'modifySalary' ||
         key === 'loginName' || key === 'workingDays' || key === 'historyDebt') {
         return commonJS.isAdmin()
       }

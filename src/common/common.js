@@ -4,6 +4,11 @@ export default {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('ADMIN', 0)
   },
+  // 是否拥有admin_company角色
+  isAdminCompany () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.roles.includes('ADMIN_COMPANY', 0)
+  },
   // 是否拥有AM角色
   isAM () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
@@ -122,6 +127,16 @@ export default {
     } else {
       return ''
     }
+  },
+  // 从公司编码转公司名称
+  getCompanyName (code) {
+    debugger
+    for (let c of this.companyList) {
+      if (c['code'] === code) {
+        return c['name']
+      }
+    }
+    return ''
   },
   // 工资卡银行
   banks: [{

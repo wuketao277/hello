@@ -7,6 +7,7 @@ export default {
       mode: 'add', // 默认操作模式为新建
       form: {
         id: null,
+        company: '',
         realName: '',
         userName: '',
         password: '',
@@ -19,12 +20,13 @@ export default {
         remainHolidayThing: 0,
         remainHolidayIll: 0
       },
-      roleList: ['ADMIN', 'AM', 'RECRUITER', 'BD'],
+      roleList: ['ADMIN', 'AM', 'RECRUITER', 'BD', 'ADMIN_COMPANY'],
       rules: {},
       // 工资卡银行
       banks: commonJs.banks,
       // 性别
-      genders: commonJs.genders
+      genders: commonJs.genders,
+      companyList: commonJs.companyList
     }
   },
   methods: {
@@ -35,6 +37,7 @@ export default {
         this.form = this.$route.query.user
       } else {
         this.form.id = ''
+        this.form.company = ''
         this.form.realname = ''
         this.form.username = ''
         this.form.password = ''

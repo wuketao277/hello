@@ -1,5 +1,5 @@
 import userApi from '@/api/user'
-import commonApi from '@/common/common'
+import commonJs from '@/common/common'
 
 export default {
   data () {
@@ -8,19 +8,23 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: commonApi.getPageNumber('userlist.pageNumber'),
-          pageSize: commonApi.getPageSize('userlist.pageSize')
+          pageNumber: commonJs.getPageNumber('userlist.pageNumber'),
+          pageSize: commonJs.getPageSize('userlist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonApi.getStorageContent('userlist.search'),
+      search: commonJs.getStorageContent('userlist.search'),
       fileList: []
     }
   },
   methods: {
+    // 从公司编码转公司名称
+    getCompanyName (val) {
+      return commonJs.getCompanyName(val['company'])
+    },
     // 日期格式化
     formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
