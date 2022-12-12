@@ -260,7 +260,6 @@ export default {
           task: task
         }
       })
-      // }
     },
     // 查询当前用户所有职位关注
     queryAllCaseAttention () {
