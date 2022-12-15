@@ -6,10 +6,23 @@ import commonJS from '@/common/common'
 export default {
   data () {
     return {
-      types: [{code: 'Z3', name: '3%专票'},
-        {code: 'Z6', name: '6%专票'},
-        {code: 'P3', name: '3%普票'},
-        {code: 'P6', name: '6%普票'}],
+      types: [{
+        code: 'Z3',
+        name: '3%专票'
+      },
+      {
+        code: 'Z6',
+        name: '6%专票'
+      },
+      {
+        code: 'P3',
+        name: '3%普票'
+      },
+      {
+        code: 'P6',
+        name: '6%普票'
+      }
+      ],
       table: {
         content: [],
         totalElements: 0,
@@ -23,12 +36,32 @@ export default {
       },
       currentRow: null,
       searchDialog: false,
-      search: {clientId: null, amId: null, candidateId: null, type: null, status: true, createDateStart: null, createDateEnd: null},
+      search: {
+        clientId: null,
+        amId: null,
+        candidateChineseName: null,
+        type: null,
+        status: true,
+        createDateStart: null,
+        createDateEnd: null
+      },
       clients: [],
       consultants: []
     }
   },
   methods: {
+    // 清空搜索条件
+    clearQueryCondition () {
+      this.search = {
+        clientId: null,
+        amId: null,
+        candidateChineseName: null,
+        type: null,
+        status: true,
+        createDateStart: null,
+        createDateEnd: null
+      }
+    },
     // 格式化开票类型
     formatType (row, column, cellvalue, index) {
       if (cellvalue === 'Z3') {
