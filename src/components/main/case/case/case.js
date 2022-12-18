@@ -117,6 +117,8 @@ export default {
       clients: [],
       // 职位候选人集合
       candidateForCaseList: [],
+      // 候选人列表加载中
+      candidateTableLoading: true,
       // 当前选中职位对应候选人
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
@@ -415,8 +417,12 @@ export default {
     queryCandidateForCaseList () {
       // 获取该职位所有候选人信息
       if (this.form.id !== null) {
+        // 显示加载中
+        this.candidateTableLoading = true
         candidateForCaseApi.findByCaseId(this.form.id).then(res => {
           if (res.status === 200) {
+            // 隐藏加载中
+            this.candidateTableLoading = false
             this.candidateForCaseList = res.data
           }
         })

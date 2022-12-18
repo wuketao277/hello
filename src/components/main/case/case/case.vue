@@ -220,7 +220,11 @@
                        @click="openSelectCaseDialog">拷贝候选人</el-button>
           </el-tooltip>
         </div>
-        <el-table :data="candidateForCaseList"
+        <el-table v-loading="candidateTableLoading"
+                  element-loading-text="拼命加载中"
+                  element-loading-spinner="el-icon-loading"
+                  element-loading-background="rgba(0, 0, 0, 0.8)"
+                  :data="candidateForCaseList"
                   :border="true"
                   style="width: 100%"
                   @current-change="rowChange">
