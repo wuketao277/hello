@@ -21,7 +21,7 @@
                  v-show="showControl('generateReimbursementSummary')">生成报销</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
+                 icon="el-icon-search"
                  @click="searchDialog = true">搜 索</el-button>
       <el-button type="primary"
                  size="small"

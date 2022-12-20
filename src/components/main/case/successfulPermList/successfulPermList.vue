@@ -25,7 +25,7 @@
                  v-if="showControl('delete')">删 除</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
+                 icon="el-icon-search"
                  @click="searchDialog = true">搜 索</el-button>&nbsp;&nbsp;&nbsp;&nbsp;
       <span>总GP:{{gpSum}}</span>
       &nbsp;&nbsp;
