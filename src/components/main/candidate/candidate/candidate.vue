@@ -263,7 +263,7 @@
             <el-col :span="3">
               <el-button type="success"
                          size="small"
-                         icon="el-icon-circle-check"
+                         icon="el-icon-chat-dot-round"
                          @click="saveComment">保存评论</el-button>
             </el-col>
             <el-col :span="6">

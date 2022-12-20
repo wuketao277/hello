@@ -8,7 +8,7 @@
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar"
-         v-show="(mode === 'add' || mode === 'modify')">
+         v-show="(mode === 'add' || mode === 'modify') && showControl('save')">
       <el-button type="success"
                  size="small"
                  icon="el-icon-circle-check"
@@ -56,8 +56,7 @@
                         required>
             <el-select v-model="form.type"
                        placeholder="类型"
-                       style="width:100%;"
-                       @change="typeChange">
+                       style="width:100%;">
               <el-option v-for="type in typeList"
                          :key="type.code"
                          :value="type.code"
@@ -237,9 +236,6 @@
                     placeholder="提成"></el-input>
           <span>%</span>
         </el-col>
-      </el-row>
-      <br>
-      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Location">
             <el-input v-model="form.location"
@@ -247,6 +243,8 @@
                       style="width:100%"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Base"
                         required>
@@ -259,8 +257,7 @@
           <el-form-item label="Billing"
                         required>
             <el-input v-model="form.billing"
-                      style="width:70%"
-                      @change="getGP"></el-input>
+                      style="width:70%"></el-input>
             <span>{{formatBilling}}</span>
           </el-form-item>
         </el-col>
@@ -268,10 +265,16 @@
           <el-form-item label="GP"
                         required>
             <el-input v-model="form.gp"
-                      :readonly="form.type !== 'contracting' ? true : false"
+                      :readonly="gpReadonly()"
                       style="width:70%"></el-input>
             <span>{{formatGp}}</span>
           </el-form-item>
+        </el-col>
+        <el-col :span="6"
+                v-show="showControl('calcGP')">
+          <el-button size="mini"
+                     type="primary"
+                     @click="getGP()">计算GP</el-button>
         </el-col>
       </el-row>
       <el-row :gutter="12">

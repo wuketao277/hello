@@ -102,10 +102,6 @@ export default {
     }
   },
   methods: {
-    // 类型修改事件
-    typeChange () {
-      this.form.gp = 0
-    },
     // 获取日期部分
     getDateStr (dateStr) {
       if (typeof (dateStr) !== 'undefined' && dateStr !== null && dateStr.length > 10) {
@@ -115,8 +111,14 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate') {
+      if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate' || key === 'calcGP') {
         return commonJS.isAdmin()
+      } else if (key === 'save') {
+        // 保持按钮。如果已经是审批状态，只有管理员显示保存按钮
+        if (this.form.approveStatus === 'approved') {
+          return commonJS.isAdmin()
+        }
+        return true
       }
     },
     // 编辑候选人
@@ -388,6 +390,24 @@ export default {
       this.form.hrId = val.id
       this.form.hrChineseName = val.chineseName
       this.form.hrEnglishName = val.englishName
+    },
+    // gp只读控制方法
+    gpReadonly: function () {
+      // 管理员可以修改GP
+      return !commonJS.isAdmin()
+    },
+    // 通过billing计算GP
+    getGP: function () {
+      if (this.form.type !== 'contracting') {
+        // perm情况下，gp是通过billing计算出来的
+        if (typeof (this.form.billing) === 'undefined') {
+          this.form.gp = 0
+        }
+        if (this.form.billing === 0) {
+          this.form.gp = 0
+        }
+        this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
+      }
     }
   },
   computed: {
@@ -404,18 +424,6 @@ export default {
     formatBilling: function () {
       if (this.form.billing !== '') {
         return parseInt(this.form.billing / 10000) + 'w'
-      }
-    },
-    getGP: function () {
-      if (this.form.type !== 'contracting') {
-        // perm情况下，gp是通过billing计算出来的
-        if (typeof (this.form.billing) === 'undefined') {
-          this.form.gp = 0
-        }
-        if (this.form.billing === 0) {
-          this.form.gp = 0
-        }
-        this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
       }
     }
   },
