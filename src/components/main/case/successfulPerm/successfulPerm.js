@@ -18,6 +18,26 @@ export default {
     return {
       mode: 'add', // 默认操作模式为新建
       consultantIndex: 1, // 顾问索引
+      consultantColumnShow1: true, // 顾问列显示控制
+      consultantColumnShow2: false, // 顾问列显示控制
+      consultantColumnShow3: false, // 顾问列显示控制
+      consultantColumnShow4: false, // 顾问列显示控制
+      consultantColumnShow5: false, // 顾问列显示控制
+      consultantColumnShow6: false, // 顾问列显示控制
+      consultantColumnShow7: false, // 顾问列显示控制
+      consultantColumnShow8: false, // 顾问列显示控制
+      consultantColumnShow9: false, // 顾问列显示控制
+      consultantColumnShow10: false, // 顾问列显示控制
+      consultantColumnShow11: false, // 顾问列显示控制
+      consultantColumnShow12: false, // 顾问列显示控制
+      consultantColumnShow13: false, // 顾问列显示控制
+      consultantColumnShow14: false, // 顾问列显示控制
+      consultantColumnShow15: false, // 顾问列显示控制
+      consultantColumnShow16: false, // 顾问列显示控制
+      consultantColumnShow17: false, // 顾问列显示控制
+      consultantColumnShow18: false, // 顾问列显示控制
+      consultantColumnShow19: false, // 顾问列显示控制
+      consultantColumnShow20: false, // 顾问列显示控制
       form: {
         id: null,
         clientId: '', // 公司id
@@ -58,6 +78,66 @@ export default {
         consultantUserName5: '', // 顾问登录名5
         consultantRealName5: '', // 顾问真实姓名5
         consultantCommissionPercent5: '', // 顾问提成比例5
+        consultantId6: '', // 顾问id6
+        consultantUserName6: '', // 顾问登录名6
+        consultantRealName6: '', // 顾问真实姓名6
+        consultantCommissionPercent6: '', // 顾问提成比例6
+        consultantId7: '', // 顾问id7
+        consultantUserName7: '', // 顾问登录名7
+        consultantRealName7: '', // 顾问真实姓名7
+        consultantCommissionPercent7: '', // 顾问提成比例7
+        consultantId8: '', // 顾问id8
+        consultantUserName8: '', // 顾问登录名8
+        consultantRealName8: '', // 顾问真实姓名8
+        consultantCommissionPercent8: '', // 顾问提成比例8
+        consultantId9: '', // 顾问id9
+        consultantUserName9: '', // 顾问登录名9
+        consultantRealName9: '', // 顾问真实姓名9
+        consultantCommissionPercent9: '', // 顾问提成比例9
+        consultantId10: '', // 顾问id10
+        consultantUserName10: '', // 顾问登录名10
+        consultantRealName10: '', // 顾问真实姓名10
+        consultantCommissionPercent10: '', // 顾问提成比例10
+        consultantId11: '', // 顾问id11
+        consultantUserName11: '', // 顾问登录名11
+        consultantRealName11: '', // 顾问真实姓名11
+        consultantCommissionPercent11: '', // 顾问提成比例11
+        consultantId12: '', // 顾问id12
+        consultantUserName12: '', // 顾问登录名12
+        consultantRealName12: '', // 顾问真实姓名12
+        consultantCommissionPercent12: '', // 顾问提成比例12
+        consultantId13: '', // 顾问id13
+        consultantUserName13: '', // 顾问登录名13
+        consultantRealName13: '', // 顾问真实姓名13
+        consultantCommissionPercent13: '', // 顾问提成比例13
+        consultantId14: '', // 顾问id4
+        consultantUserName14: '', // 顾问登录名14
+        consultantRealName14: '', // 顾问真实姓名14
+        consultantCommissionPercent14: '', // 顾问提成比例14
+        consultantId15: '', // 顾问id15
+        consultantUserName15: '', // 顾问登录名15
+        consultantRealName15: '', // 顾问真实姓名15
+        consultantCommissionPercent15: '', // 顾问提成比例15
+        consultantId16: '', // 顾问id16
+        consultantUserName16: '', // 顾问登录名16
+        consultantRealName16: '', // 顾问真实姓名16
+        consultantCommissionPercent16: '', // 顾问提成比例16
+        consultantId17: '', // 顾问id17
+        consultantUserName17: '', // 顾问登录名17
+        consultantRealName17: '', // 顾问真实姓名17
+        consultantCommissionPercent17: '', // 顾问提成比例17
+        consultantId18: '', // 顾问id18
+        consultantUserName18: '', // 顾问登录名18
+        consultantRealName18: '', // 顾问真实姓名18
+        consultantCommissionPercent18: '', // 顾问提成比例18
+        consultantId19: '', // 顾问id19
+        consultantUserName19: '', // 顾问登录名19
+        consultantRealName19: '', // 顾问真实姓名19
+        consultantCommissionPercent19: '', // 顾问提成比例19
+        consultantId20: '', // 顾问id20
+        consultantUserName20: '', // 顾问登录名20
+        consultantRealName20: '', // 顾问真实姓名20
+        consultantCommissionPercent20: '', // 顾问提成比例20
         location: '', // 地点
         base: 0,
         gp: 0,
@@ -102,6 +182,50 @@ export default {
     }
   },
   methods: {
+    // 增加顾问
+    addConsultant () {
+      if (!this.consultantColumnShow1) {
+        this.consultantColumnShow1 = true
+      } else if (!this.consultantColumnShow2) {
+        this.consultantColumnShow2 = true
+      } else if (!this.consultantColumnShow3) {
+        this.consultantColumnShow3 = true
+      } else if (!this.consultantColumnShow4) {
+        this.consultantColumnShow4 = true
+      } else if (!this.consultantColumnShow5) {
+        this.consultantColumnShow5 = true
+      } else if (!this.consultantColumnShow6) {
+        this.consultantColumnShow6 = true
+      } else if (!this.consultantColumnShow7) {
+        this.consultantColumnShow7 = true
+      } else if (!this.consultantColumnShow8) {
+        this.consultantColumnShow8 = true
+      } else if (!this.consultantColumnShow9) {
+        this.consultantColumnShow9 = true
+      } else if (!this.consultantColumnShow10) {
+        this.consultantColumnShow10 = true
+      } else if (!this.consultantColumnShow11) {
+        this.consultantColumnShow11 = true
+      } else if (!this.consultantColumnShow12) {
+        this.consultantColumnShow12 = true
+      } else if (!this.consultantColumnShow13) {
+        this.consultantColumnShow13 = true
+      } else if (!this.consultantColumnShow14) {
+        this.consultantColumnShow14 = true
+      } else if (!this.consultantColumnShow15) {
+        this.consultantColumnShow15 = true
+      } else if (!this.consultantColumnShow16) {
+        this.consultantColumnShow16 = true
+      } else if (!this.consultantColumnShow17) {
+        this.consultantColumnShow17 = true
+      } else if (!this.consultantColumnShow18) {
+        this.consultantColumnShow18 = true
+      } else if (!this.consultantColumnShow19) {
+        this.consultantColumnShow19 = true
+      } else if (!this.consultantColumnShow20) {
+        this.consultantColumnShow20 = true
+      }
+    },
     // 获取日期部分
     getDateStr (dateStr) {
       if (typeof (dateStr) !== 'undefined' && dateStr !== null && dateStr.length > 10) {
@@ -311,26 +435,120 @@ export default {
     },
     // 删除“选择顾问”
     deleteConsultant (val) {
-      if (val === '1') {
+      if (val === 'cw') {
+        this.form.cwId = ''
+        this.form.cwUserName = ''
+        this.form.cwRealName = ''
+        this.form.cwCommissionPercent = null
+      } else if (val === 'bd') {
+        this.form.bdId = ''
+        this.form.bdUserName = ''
+        this.form.bdRealName = ''
+        this.form.bdCommissionPercent = null
+      } else if (val === '1') {
         this.form.consultantId = ''
         this.form.consultantUserName = ''
         this.form.consultantRealName = ''
+        this.form.consultantCommissionPercent = null
+        this.consultantColumnShow1 = false
       } else if (val === '2') {
         this.form.consultantId2 = ''
         this.form.consultantUserName2 = ''
         this.form.consultantRealName2 = ''
+        this.form.consultantCommissionPercent2 = null
+        this.consultantColumnShow2 = false
       } else if (val === '3') {
         this.form.consultantId3 = ''
         this.form.consultantUserName3 = ''
         this.form.consultantRealName3 = ''
+        this.form.consultantCommissionPercent3 = null
+        this.consultantColumnShow3 = false
       } else if (val === '4') {
         this.form.consultantId4 = ''
         this.form.consultantUserName4 = ''
         this.form.consultantRealName4 = ''
+        this.form.consultantCommissionPercent4 = null
+        this.consultantColumnShow4 = false
       } else if (val === '5') {
         this.form.consultantId5 = ''
         this.form.consultantUserName5 = ''
         this.form.consultantRealName5 = ''
+        this.form.consultantCommissionPercent5 = null
+      } else if (val === '6') {
+        this.form.consultantId6 = ''
+        this.form.consultantUserName6 = ''
+        this.form.consultantRealName6 = ''
+        this.form.consultantCommissionPercent6 = null
+      } else if (val === '7') {
+        this.form.consultantId7 = ''
+        this.form.consultantUserName7 = ''
+        this.form.consultantRealName7 = ''
+        this.form.consultantCommissionPercent7 = null
+      } else if (val === '8') {
+        this.form.consultantId8 = ''
+        this.form.consultantUserName8 = ''
+        this.form.consultantRealName8 = ''
+        this.form.consultantCommissionPercent8 = null
+      } else if (val === '9') {
+        this.form.consultantId9 = ''
+        this.form.consultantUserName9 = ''
+        this.form.consultantRealName9 = ''
+        this.form.consultantCommissionPercent9 = null
+      } else if (val === '10') {
+        this.form.consultantId10 = ''
+        this.form.consultantUserName10 = ''
+        this.form.consultantRealName10 = ''
+        this.form.consultantCommissionPercent10 = null
+      } else if (val === '11') {
+        this.form.consultantId11 = ''
+        this.form.consultantUserName11 = ''
+        this.form.consultantRealName11 = ''
+        this.form.consultantCommissionPercent11 = null
+      } else if (val === '12') {
+        this.form.consultantId12 = ''
+        this.form.consultantUserName12 = ''
+        this.form.consultantRealName12 = ''
+        this.form.consultantCommissionPercent12 = null
+      } else if (val === '13') {
+        this.form.consultantId13 = ''
+        this.form.consultantUserName13 = ''
+        this.form.consultantRealName13 = ''
+        this.form.consultantCommissionPercent13 = null
+      } else if (val === '14') {
+        this.form.consultantId14 = ''
+        this.form.consultantUserName14 = ''
+        this.form.consultantRealName14 = ''
+        this.form.consultantCommissionPercent14 = null
+      } else if (val === '15') {
+        this.form.consultantId15 = ''
+        this.form.consultantUserName15 = ''
+        this.form.consultantRealName15 = ''
+        this.form.consultantCommissionPercent15 = null
+      } else if (val === '16') {
+        this.form.consultantId16 = ''
+        this.form.consultantUserName16 = ''
+        this.form.consultantRealName16 = ''
+        this.form.consultantCommissionPercent16 = null
+      } else if (val === '17') {
+        this.form.consultantId17 = ''
+        this.form.consultantUserName17 = ''
+        this.form.consultantRealName17 = ''
+        this.form.consultantCommissionPercent17 = null
+      } else if (val === '18') {
+        this.form.consultantId18 = ''
+        this.form.consultantUserName18 = ''
+        this.form.consultantRealName18 = ''
+        this.form.consultantCommissionPercent18 = null
+      } else if (val === '19') {
+        this.form.consultantId19 = ''
+        this.form.consultantUserName19 = ''
+        this.form.consultantRealName19 = ''
+        this.form.consultantCommissionPercent19 = null
+      } else if (val === '20') {
+        this.form.consultantId20 = ''
+        this.form.consultantUserName20 = ''
+        this.form.consultantRealName20 = ''
+        this.form.consultantCommissionPercent20 = null
       }
     },
     // “选择顾问”对话框返回
@@ -357,6 +575,66 @@ export default {
         this.form.consultantId5 = val.id
         this.form.consultantUserName5 = val.username
         this.form.consultantRealName5 = val.realname
+      } else if (this.consultantIndex === '6') {
+        this.form.consultantId6 = val.id
+        this.form.consultantUserName6 = val.username
+        this.form.consultantRealName6 = val.realname
+      } else if (this.consultantIndex === '7') {
+        this.form.consultantId7 = val.id
+        this.form.consultantUserName7 = val.username
+        this.form.consultantRealName7 = val.realname
+      } else if (this.consultantIndex === '8') {
+        this.form.consultantId8 = val.id
+        this.form.consultantUserName8 = val.username
+        this.form.consultantRealName8 = val.realname
+      } else if (this.consultantIndex === '9') {
+        this.form.consultantId9 = val.id
+        this.form.consultantUserName9 = val.username
+        this.form.consultantRealName9 = val.realname
+      } else if (this.consultantIndex === '10') {
+        this.form.consultantId10 = val.id
+        this.form.consultantUserName10 = val.username
+        this.form.consultantRealName10 = val.realname
+      } else if (this.consultantIndex === '11') {
+        this.form.consultantId11 = val.id
+        this.form.consultantUserName11 = val.username
+        this.form.consultantRealName11 = val.realname
+      } else if (this.consultantIndex === '12') {
+        this.form.consultantId12 = val.id
+        this.form.consultantUserName12 = val.username
+        this.form.consultantRealName12 = val.realname
+      } else if (this.consultantIndex === '13') {
+        this.form.consultantId13 = val.id
+        this.form.consultantUserName13 = val.username
+        this.form.consultantRealName13 = val.realname
+      } else if (this.consultantIndex === '14') {
+        this.form.consultantId14 = val.id
+        this.form.consultantUserName14 = val.username
+        this.form.consultantRealName14 = val.realname
+      } else if (this.consultantIndex === '15') {
+        this.form.consultantId15 = val.id
+        this.form.consultantUserName15 = val.username
+        this.form.consultantRealName15 = val.realname
+      } else if (this.consultantIndex === '16') {
+        this.form.consultantId16 = val.id
+        this.form.consultantUserName16 = val.username
+        this.form.consultantRealName16 = val.realname
+      } else if (this.consultantIndex === '17') {
+        this.form.consultantId17 = val.id
+        this.form.consultantUserName17 = val.username
+        this.form.consultantRealName17 = val.realname
+      } else if (this.consultantIndex === '18') {
+        this.form.consultantId18 = val.id
+        this.form.consultantUserName18 = val.username
+        this.form.consultantRealName18 = val.realname
+      } else if (this.consultantIndex === '19') {
+        this.form.consultantId19 = val.id
+        this.form.consultantUserName19 = val.username
+        this.form.consultantRealName19 = val.realname
+      } else if (this.consultantIndex === '20') {
+        this.form.consultantId20 = val.id
+        this.form.consultantUserName20 = val.username
+        this.form.consultantRealName20 = val.realname
       }
     },
     // 打开“选择CW”对话框
@@ -434,6 +712,67 @@ export default {
       this.mode = this.$route.query.mode
       if (typeof (this.$route.query.successfulPerm) !== 'undefined') {
         this.form = this.$route.query.successfulPerm
+        // 通过顾问id不为空，控制顾问按钮显示
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId)) {
+          this.consultantColumnShow1 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId2)) {
+          this.consultantColumnShow2 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId3)) {
+          this.consultantColumnShow3 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId4)) {
+          this.consultantColumnShow4 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId5)) {
+          this.consultantColumnShow5 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId6)) {
+          this.consultantColumnShow6 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId7)) {
+          this.consultantColumnShow7 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId8)) {
+          this.consultantColumnShow8 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId9)) {
+          this.consultantColumnShow9 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId10)) {
+          this.consultantColumnShow10 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId11)) {
+          this.consultantColumnShow11 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId12)) {
+          this.consultantColumnShow12 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId13)) {
+          this.consultantColumnShow13 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId14)) {
+          this.consultantColumnShow14 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId15)) {
+          this.consultantColumnShow15 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId16)) {
+          this.consultantColumnShow16 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId17)) {
+          this.consultantColumnShow17 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId18)) {
+          this.consultantColumnShow18 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId19)) {
+          this.consultantColumnShow19 = true
+        }
+        if (commonJS.judgeStrIsNotNull(this.form.consultantId20)) {
+          this.consultantColumnShow20 = true
+        }
       }
     }
     clientApi.findAllOrderByChineseName().then(

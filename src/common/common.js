@@ -1,4 +1,18 @@
 export default {
+  // 判断字符串非空
+  judgeStrIsNotNull (str) {
+    if (typeof (str) === 'undefined') {
+      // 未定义判定为空
+      return false
+    } else if (str === null) {
+      // 空对象判定为空
+      return false
+    } else if (str === '') {
+      // 空字符串判定为空
+      return false
+    }
+    return true
+  },
   // 是否拥有admin角色
   isAdmin () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])

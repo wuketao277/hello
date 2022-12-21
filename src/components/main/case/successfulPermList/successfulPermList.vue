@@ -99,22 +99,6 @@
                          width="150"
                          label="Approve Status"
                          show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantUserName"
-                         width="100"
-                         label="AM"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantCommissionPercent"
-                         width="80"
-                         label="AM Rate"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantUserName2"
-                         width="100"
-                         label="R2"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantCommissionPercent2"
-                         width="80"
-                         label="R2 Rate"
-                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="cwUserName"
                          width="100"
                          label="CW"
@@ -130,6 +114,22 @@
         <el-table-column prop="bdCommissionPercent"
                          width="120"
                          label="BD Rate"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantUserName"
+                         width="100"
+                         label="AM"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantCommissionPercent"
+                         width="80"
+                         label="AM Rate"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantUserName2"
+                         width="100"
+                         label="R2"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantCommissionPercent2"
+                         width="80"
+                         label="R2 Rate"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="consultantUserName3"
                          width="100"

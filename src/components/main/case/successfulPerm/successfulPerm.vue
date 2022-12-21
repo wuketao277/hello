@@ -17,6 +17,10 @@
                  size="small"
                  icon="el-icon-circle-close"
                  @click="cancel">取 消</el-button>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-circle-plus-outline"
+                 @click="addConsultant">增加顾问</el-button>
     </div>
     <el-form ref="form"
              :model="form"
@@ -65,183 +69,494 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="12">
+      <el-row :gutter="12"
+              style="margin-bottom:10px;">
         <el-col :span="6">
-          <span style="color:red;">*</span>
           <el-button type="primary"
-                     size="small"
+                     size="mini"
                      icon="el-icon-share"
                      @click="openSelectCaseDialog"
-                     style="width:85px;">职位</el-button>
+                     style="width:80px;">职位</el-button>
           <span>{{form.title}}</span>
         </el-col>
         <el-col :span="6">
-          <span style="color:red;">*</span>
           <el-button type="primary"
-                     size="small"
+                     size="mini"
                      icon="el-icon-share"
                      @click="openSelectCandidateDialog"
-                     style="width:85px;">候选人</el-button>
+                     style="width:80px;">候选人</el-button>
           <span>{{form.candidateChineseName}}</span>
         </el-col>
         <el-col :span="6">
           <el-button type="primary"
-                     size="small"
+                     size="mini"
                      icon="el-icon-share"
                      @click="selectHRDialogShow = true"
-                     style="width:85px;">HR</el-button>
+                     style="width:80px;">HR</el-button>
           <span>{{form.hrEnglishName}}&nbsp;-&nbsp;{{form.hrChineseName}}</span>
         </el-col>
-        <el-col :span="4">
+      </el-row>
+      <el-row :gutter="12"
+              style="margin-top:10px;margin-bottom:10px;">
+        <el-col :span="6">
           <el-button type="primary"
-                     size="small"
+                     size="mini"
                      icon="el-icon-share"
                      @click="openSelectCWDialog"
-                     style="width:85px;">CW</el-button>
-          <span>{{form.cwUserName}}</span>
-        </el-col>
-        <el-col :span="2"
-                label-suffix="%">
-          <el-input v-model="form.cwCommissionPercent"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
-        </el-col>
-      </el-row>
-      <br>
-      <el-row :gutter="12">
-        <el-col :span="4">
-          <el-button type="primary"
-                     size="small"
-                     icon="el-icon-share"
-                     @click="openSelectBDDialog"
-                     style="width:85px;">BD</el-button>
-          <span>{{form.bdUserName}}</span>
-        </el-col>
-        <el-col :span="2">
-          <el-input v-model="form.bdCommissionPercent"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
-        </el-col>
-        <el-col :span="4">
-          <el-button type="primary"
-                     size="small"
-                     icon="el-icon-share"
-                     @click="openSelectConsultantDialog('1')"
-                     style="width:85px;">顾问</el-button>
-          <span>{{form.consultantUserName}}</span>
-          <el-button icon="el-icon-delete"
-                     size="mini"
-                     circle
-                     @click="deleteConsultant('1')"
-                     v-show="this.form.consultantUserName !== ''"></el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-input v-model="form.consultantCommissionPercent"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
-        </el-col>
-        <el-col :span="4">
-          <el-button type="primary"
-                     size="small"
-                     icon="el-icon-share"
-                     @click="openSelectConsultantDialog('2')"
-                     style="width:85px;">顾问2</el-button>
-          <span>{{form.consultantUserName2}}</span>
-          <el-button icon="el-icon-delete"
-                     size="mini"
-                     circle
-                     @click="deleteConsultant('2')"
-                     v-show="this.form.consultantUserName2 !== ''"></el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-input v-model="form.consultantCommissionPercent2"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
-        </el-col>
-        <el-col :span="4">
-          <el-button type="primary"
-                     size="small"
-                     icon="el-icon-share"
-                     @click="openSelectConsultantDialog('3')"
-                     style="width:85px;">顾问3</el-button>
-          <span>{{form.consultantUserName3}}</span>
-          <el-button icon="el-icon-delete"
-                     size="mini"
-                     circle
-                     @click="deleteConsultant('3')"
-                     v-show="this.form.consultantUserName3 !== ''"></el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-input v-model="form.consultantCommissionPercent3"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
-        </el-col>
-      </el-row>
-      <br>
-      <el-row :gutter="12">
-        <el-col :span="4">
-          <el-button type="primary"
-                     size="small"
-                     icon="el-icon-share"
-                     @click="openSelectConsultantDialog('4')"
-                     style="width:85px;">顾问4</el-button>
-          <span>{{form.consultantUserName4}}</span>
-          <el-button icon="el-icon-delete"
-                     size="mini"
-                     circle
-                     @click="deleteConsultant('4')"
-                     v-show="this.form.consultantUserName4 !== ''"></el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-input v-model="form.consultantCommissionPercent4"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
-        </el-col>
-        <el-col :span="4">
-          <el-button type="primary"
-                     size="small"
-                     icon="el-icon-share"
-                     @click="openSelectConsultantDialog('5')"
-                     style="width:85px;">顾问5</el-button>
-          <span>{{form.consultantUserName5}}</span>
-          <el-button icon="el-icon-delete"
-                     size="mini"
-                     circle
-                     v-show="this.form.consultantUserName5 !== ''"
-                     @click="deleteConsultant('5')"></el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-input v-model="form.consultantCommissionPercent5"
-                    size="small"
-                    clearable
-                    style="width:70%;"
-                    placeholder="提成"></el-input>
-          <span>%</span>
+                     style="width:80px;">CW</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.cwUserName !== ''">
+            <span>{{form.cwUserName}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('cw')"></el-button>
+            <el-input v-model="form.cwCommissionPercent"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="Location">
-            <el-input v-model="form.location"
-                      clearable
-                      style="width:100%"></el-input>
-          </el-form-item>
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectBDDialog"
+                     style="width:80px;">BD</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.bdUserName !== ''">
+            <span>{{form.bdUserName}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('bd')"></el-button>
+            <el-input v-model="form.bdCommissionPercent"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow1">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('1')"
+                     style="width:80px;">顾问1</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName !== ''">
+            <span>{{form.consultantUserName}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('1')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow2">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('2')"
+                     style="width:80px;">顾问2</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName2 !== ''">
+            <span>{{form.consultantUserName2}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('2')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent2"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow3">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('3')"
+                     style="width:80px;">顾问3</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName3 !== ''">
+            <span>{{form.consultantUserName3}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('3')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent3"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow4">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('4')"
+                     style="width:80px;">顾问4</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName4 !== ''">
+            <span>{{form.consultantUserName4}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('4')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent4"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow5">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('5')"
+                     style="width:80px;">顾问5</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName5 !== ''">
+            <span>{{form.consultantUserName5}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('5')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent5"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow6">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('6')"
+                     style="width:80px;">顾问6</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName6 !== ''">
+            <span>{{form.consultantUserName6}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('6')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent6"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow7">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('7')"
+                     style="width:80px;">顾问7</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName7 !== ''">
+            <span>{{form.consultantUserName7}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('7')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent7"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow8">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('8')"
+                     style="width:80px;">顾问8</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName8 !== ''">
+            <span>{{form.consultantUserName8}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('8')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent8"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow9">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('9')"
+                     style="width:80px;">顾问9</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName9 !== ''">
+            <span>{{form.consultantUserName9}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('9')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent9"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow10">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('10')"
+                     style="width:80px;">顾问10</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName10 !== ''">
+            <span>{{form.consultantUserName10}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('10')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent10"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow11">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('11')"
+                     style="width:80px;">顾问11</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName11 !== ''">
+            <span>{{form.consultantUserName11}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('11')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent11"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow12">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('12')"
+                     style="width:80px;">顾问12</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName12 !== ''">
+            <span>{{form.consultantUserName12}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('12')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent12"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow13">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('13')"
+                     style="width:80px;">顾问13</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName13 !== ''">
+            <span>{{form.consultantUserName13}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('13')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent13"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow14">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('14')"
+                     style="width:80px;">顾问14</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName14 !== ''">
+            <span>{{form.consultantUserName14}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('14')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent14"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow15">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('15')"
+                     style="width:80px;">顾问15</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName15 !== ''">
+            <span>{{form.consultantUserName15}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('15')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent15"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow16">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('16')"
+                     style="width:80px;">顾问16</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName16 !== ''">
+            <span>{{form.consultantUserName16}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('16')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent16"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow17">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('17')"
+                     style="width:80px;">顾问17</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName17 !== ''">
+            <span>{{form.consultantUserName17}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('17')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent17"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow18">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('18')"
+                     style="width:80px;">顾问18</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName18 !== ''">
+            <span>{{form.consultantUserName18}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('18')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent18"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow19">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('19')"
+                     style="width:80px;">顾问19</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName19 !== ''">
+            <span>{{form.consultantUserName19}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('19')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent19"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
+        <el-col :span="6"
+                v-show="this.consultantColumnShow20">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectConsultantDialog('20')"
+                     style="width:80px;">顾问20</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.consultantUserName20 !== ''">
+            <span>{{form.consultantUserName20}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('20')"></el-button>
+            <el-input v-model="form.consultantCommissionPercent20"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
         </el-col>
       </el-row>
       <el-row :gutter="12">
@@ -354,6 +669,13 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
+        <el-col :span="6">
+          <el-form-item label="Location">
+            <el-input v-model="form.location"
+                      clearable
+                      style="width:100%"></el-input>
+          </el-form-item>
+        </el-col>
         <el-col :span="6">
           <el-form-item label="channel">
             <el-input v-model="form.channel"
