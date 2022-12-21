@@ -32,7 +32,11 @@
       <span>总Billing:{{billingSum}}</span>
     </div>
     <template>
-      <el-table :data="table.content"
+      <el-table v-loading="table.loading"
+                element-loading-text="拼命加载中"
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="rgba(0, 0, 0, 0.8)"
+                :data="table.content"
                 :border="true"
                 :highlight-current-row="true"
                 :stripe="true"

@@ -11,6 +11,7 @@ export default {
       // 显示搜索结果
       showSearchResult: false,
       table: {
+        loading: true,
         content: [],
         totalElements: 0,
         pageable: {
@@ -151,6 +152,9 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
+      // 显示加载中
+      this.table.loading = true
+      // 调用接口获取数据
       successfulPermApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
@@ -158,6 +162,8 @@ export default {
           })
           return
         }
+        // 显示加载中
+        this.table.loading = false
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
       })
