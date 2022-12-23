@@ -612,6 +612,15 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
+          <el-form-item label="Invoice Date">
+            <el-date-picker v-model="form.invoiceDate"
+                            type="date"
+                            placeholder="选择日期"
+                            style="width:100%;"
+                            value-format="yyyy-MM-dd"></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
           <el-form-item label="Payment Date">
             <el-date-picker v-model="form.paymentDate"
                             type="date"
@@ -620,6 +629,8 @@
                             value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Actual Payment Date">
             <el-date-picker v-model="form.actualPaymentDate"
@@ -628,17 +639,6 @@
                             style="width:100%;"
                             value-format="yyyy-MM-dd"
                             v-show="showControl('actualPaymentDate')"></el-date-picker>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="6">
-          <el-form-item label="Invoice Date">
-            <el-date-picker v-model="form.invoiceDate"
-                            type="date"
-                            placeholder="选择日期"
-                            style="width:100%;"
-                            value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="6">
