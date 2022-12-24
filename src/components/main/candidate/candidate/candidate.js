@@ -363,6 +363,17 @@ export default {
         }
       })
     },
+    // 编辑客户
+    editClient (index, row) {
+      debugger
+      this.$router.push({
+        path: '/client/client',
+        query: {
+          mode: 'modify',
+          clientId: row.clientId
+        }
+      })
+    },
     // 打开职位选择对话框
     openSelectCaseDialog () {
       // 候选人必须先保存

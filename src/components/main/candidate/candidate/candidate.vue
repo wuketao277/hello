@@ -246,7 +246,11 @@
             </template>
           </el-table-column>
           <el-table-column prop="clientName"
-                           label="公司名称"></el-table-column>
+                           label="公司名称">
+            <template slot-scope="scope">
+              <el-button type="text"
+                         @click="editClient(scope.$index, scope.row)">{{scope.row.clientName}}</el-button>
+            </template></el-table-column>
           <el-table-column prop="title"
                            label="职位名称">
             <template slot-scope="scope">
