@@ -45,6 +45,10 @@
               <el-button type="success"
                          plain
                          size="medium"
+                         @click="calcDate('nextseason')">下季度</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
                          @click="calcDate('tonow')">截止目前</el-button>
               <el-button type="success"
                          plain
