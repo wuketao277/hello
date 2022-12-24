@@ -232,11 +232,8 @@
                            width="50"
                            label="序号"></el-table-column>
           <el-table-column label="操作"
-                           width="320">
+                           width="200">
             <template slot-scope="scope">
-              <el-button size="mini"
-                         type="primary"
-                         @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
               <el-button v-if="!isAttention(scope.row)"
                          size="mini"
                          type="success"
@@ -251,9 +248,13 @@
                          v-show="showControl('deleteRecommend')">删除推荐</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="chineseName"
-                           width="120"
-                           label="中文名"></el-table-column>
+          <el-table-column width="120"
+                           label="中文名">
+            <template slot-scope="scope">
+              <el-button type="text"
+                         @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
+            </template>
+          </el-table-column>
           <el-table-column prop="latestCommentUsername"
                            width="120"
                            label="评论人"></el-table-column>

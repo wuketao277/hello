@@ -39,17 +39,14 @@
                           :show-header="false"
                           :cell-style="{padding: '0'}"
                           v-show="attentionCaseShowCandidate && clientCase.candidateList.length > 0">
-                  <el-table-column width="80"
-                                   label="操作">
+                  <el-table-column width="70"
+                                   label="候选人姓名"
+                                   show-overflow-tooltip>
                     <template slot-scope="scope">
                       <el-button type="text"
-                                 @click="toCandidate(scope.row)">编辑候选人</el-button>
+                                 @click="jumpToCandidate(scope.row)">{{scope.row.candidateChineseName}}</el-button>
                     </template>
                   </el-table-column>
-                  <el-table-column width="70"
-                                   prop="candidateChineseName"
-                                   label="候选人姓名"
-                                   show-overflow-tooltip></el-table-column>
                   <el-table-column width="90"
                                    prop="latestCommentUsername"
                                    label="顾问"
@@ -99,17 +96,13 @@
                           :show-header="false"
                           :cell-style="{padding: '0'}"
                           v-show="cwCaseShowCandidate && clientCase.candidateList.length > 0">
-                  <el-table-column width="80"
-                                   label="操作">
+                  <el-table-column width="70"
+                                   label="候选人姓名"
+                                   show-overflow-tooltip>
                     <template slot-scope="scope">
                       <el-button type="text"
-                                 @click="toCandidate(scope.row)">编辑候选人</el-button>
-                    </template>
-                  </el-table-column>
-                  <el-table-column width="70"
-                                   prop="candidateChineseName"
-                                   label="候选人姓名"
-                                   show-overflow-tooltip></el-table-column>
+                                 @click="jumpToCandidate(scope.row)">{{scope.row.candidateChineseName}}</el-button>
+                    </template></el-table-column>
                   <el-table-column width="90"
                                    prop="latestCommentUsername"
                                    label="顾问"

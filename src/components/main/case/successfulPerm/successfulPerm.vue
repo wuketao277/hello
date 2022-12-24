@@ -77,7 +77,10 @@
                      icon="el-icon-share"
                      @click="openSelectCaseDialog"
                      style="width:80px;">职位</el-button>
-          <span>{{form.title}}</span>
+          <el-button type="text"
+                     style="font-size:15px;color:#409EFF;"
+                     @click="jumpToTitle"
+                     v-show="this.form.title !== ''">{{form.title}}</el-button>
         </el-col>
         <el-col :span="6">
           <el-button type="primary"
@@ -85,7 +88,10 @@
                      icon="el-icon-share"
                      @click="openSelectCandidateDialog"
                      style="width:80px;">候选人</el-button>
-          <span>{{form.candidateChineseName}}</span>
+          <el-button type="text"
+                     style="font-size:15px;color:#409EFF;"
+                     @click="jumpToCandidate"
+                     v-show="this.form.candidateChineseName !== ''">{{form.candidateChineseName}}</el-button>
         </el-col>
         <el-col :span="6">
           <el-button type="primary"

@@ -144,7 +144,6 @@ export default {
   },
   // 从公司编码转公司名称
   getCompanyName (code) {
-    debugger
     for (let c of this.companyList) {
       if (c['code'] === code) {
         return c['name']

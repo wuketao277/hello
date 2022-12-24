@@ -35,6 +35,16 @@ export default {
     }
   },
   methods: {
+    // 跳转到候选人
+    jumpToCandidate (row) {
+      this.$router.push({
+        path: '/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: row.candidateId
+        }
+      })
+    },
     // 切换候选人信息显示状态
     switchCWCaseShowCandidate (v) {
       window.localStorage['summary.cwCaseShowCandidate'] = v

@@ -219,6 +219,13 @@
                 </el-select>
               </el-form-item>
             </el-col>
+            <el-col :span="6">
+              <el-form-item label="Billing"
+                            label-width="80px">
+                <el-input v-model="search.billing"
+                          style="width:100%"></el-input>
+              </el-form-item>
+            </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="6">

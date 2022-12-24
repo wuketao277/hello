@@ -1,5 +1,6 @@
 import userApi from '@/api/user'
 import commonJs from '@/common/common'
+import clientApi from '@/api/client'
 
 export default {
   data () {
@@ -12,6 +13,7 @@ export default {
         userName: '',
         password: '',
         jobType: 'FULLTIME',
+        clientCompanyId: '', // 客户公司ID
         salarybase: 0,
         coverbase: false,
         enabled: false,
@@ -26,7 +28,8 @@ export default {
       banks: commonJs.banks,
       // 性别
       genders: commonJs.genders,
-      companyList: commonJs.companyList
+      companyList: commonJs.companyList,
+      clients: [] // 客户公司列表
     }
   },
   methods: {
@@ -101,5 +104,11 @@ export default {
       this.mode = this.$route.query.mode
       this.form = this.$route.query.user
     }
+    // 获取所有“客户公司”信息
+    clientApi.findAllOrderByChineseName().then(res => {
+      if (res.status === 200) {
+        this.clients = res.data
+      }
+    })
   }
 }

@@ -24,16 +24,16 @@
              size="small"
              style="margin-top:10px;text-align:left;">
       <el-row :gutter="12">
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="序号">{{form.id}}</el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="姓名"
                         required>
             <el-input v-model="form.realname"></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="登录名"
                         required>
             <el-input v-model="form.username"></el-input>
@@ -81,7 +81,7 @@
                        inactive-text="不考核"></el-switch>
           </el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="底薪"
                         required>
             <el-input v-model="form.salarybase"
@@ -93,7 +93,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="24">
+        <el-col :span="12">
           <el-form-item label="工作类型">
             <el-radio v-model="form.jobType"
                       label="FULLTIME">全职</el-radio>
@@ -105,6 +105,20 @@
                       label="CONSULTANT">外包</el-radio>
             <el-radio v-model="form.jobType"
                       label="EXPERIENCE">体验</el-radio>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12"
+                v-show="form.jobType === 'CONSULTANT'">
+          <el-form-item label="客户公司"
+                        prop="clientCompanyId">
+            <el-select v-model="form.clientCompanyId"
+                       placeholder="请选择客户公司"
+                       style="width:100%">
+              <el-option v-for="client in clients"
+                         :key="client.id"
+                         :value="client.id"
+                         :label="client.chineseName"></el-option>
+            </el-select>
           </el-form-item>
         </el-col>
       </el-row>
@@ -138,13 +152,13 @@
                             value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="剩余年假">
             <el-input v-model="form.remainHolidayThing"
                       style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="剩余病假">
             <el-input v-model="form.remainHolidayIll"
                       style="width:100%;"></el-input>

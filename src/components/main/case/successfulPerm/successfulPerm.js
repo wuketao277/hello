@@ -182,6 +182,30 @@ export default {
     }
   },
   methods: {
+    // 跳转到编辑职位
+    jumpToTitle () {
+      if (this.form.caseId !== '') {
+        this.$router.push({
+          path: '/case/case',
+          query: {
+            mode: 'modify',
+            caseId: this.form.caseId
+          }
+        })
+      }
+    },
+    // 跳转到编辑候选人
+    jumpToCandidate () {
+      if (this.form.candidateId !== '') {
+        this.$router.push({
+          path: '/candidate/candidate',
+          query: {
+            mode: 'modify',
+            candidateId: this.form.candidateId
+          }
+        })
+      }
+    },
     // 增加顾问
     addConsultant () {
       if (!this.consultantColumnShow1) {
