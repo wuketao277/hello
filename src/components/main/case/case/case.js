@@ -118,7 +118,7 @@ export default {
       // 职位候选人集合
       candidateForCaseList: [],
       // 候选人列表加载中
-      candidateTableLoading: true,
+      candidateTableLoading: false,
       // 当前选中职位对应候选人
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
@@ -415,6 +415,7 @@ export default {
     },
     // 查询推荐候选人列表
     queryCandidateForCaseList () {
+      debugger
       // 获取该职位所有候选人信息
       if (this.form.id !== null) {
         // 显示加载中
@@ -480,6 +481,7 @@ export default {
     }
   },
   created () {
+    debugger
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

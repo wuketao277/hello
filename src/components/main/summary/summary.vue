@@ -304,17 +304,14 @@
                 :highlight-current-row="true"
                 :border="true"
                 max-height="500">
-        <el-table-column label="操作"
-                         width="130">
-          <template slot-scope="scope">
-            <el-button size="mini"
-                       type="primary"
-                       @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
-          </template>
-        </el-table-column>
         <el-table-column property="chineseName"
                          label="候选人姓名"
-                         width="100"></el-table-column>
+                         width="100">
+          <template slot-scope="scope">
+            <el-button type="text"
+                       @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column property="phase"
                          label="阶段"
                          width="100"></el-table-column>
