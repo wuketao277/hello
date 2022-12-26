@@ -172,6 +172,18 @@
                          width="200"
                          label="PO"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="type"
+                         width="100"
+                         label="TYPE"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="hrEnglishName"
+                         width="100"
+                         label="HR-En"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="hrChineseName"
+                         width="100"
+                         label="HR-Ch"
+                         show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination background
                      layout="prev, pager, next, sizes"
