@@ -3,8 +3,8 @@ import myTaskApi from '@/api/myTask'
 export default {
   data () {
     return {
-      // 显示搜索结果
-      showSearchResult: false,
+      // 显示搜索对话框
+      searchDialog: false,
       table: {
         content: [],
         totalElements: 0,
@@ -48,6 +48,18 @@ export default {
         path: '/mytask/mytask'
       })
     },
+    // 修改任务
+    modifyTask () {
+      if (this.checkSelectRow()) {
+        this.$router.push({
+          path: '/mytask/mytask',
+          query: {
+            mode: 'modify',
+            task: this.currentRow
+          }
+        })
+      }
+    },
     // 查看任务
     detailTask () {
       if (this.checkSelectRow()) {
@@ -88,11 +100,6 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -132,8 +139,7 @@ export default {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {
-    },
+    switchSearchDialog () {},
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1

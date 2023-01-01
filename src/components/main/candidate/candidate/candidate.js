@@ -129,6 +129,10 @@ export default {
       {
         value: '6Month Service',
         lable: '6Month Service'
+      },
+      {
+        value: 'END',
+        lable: 'END'
       }
       ],
       // 新评论
@@ -226,6 +230,8 @@ export default {
         }
         ]
       },
+      // 性别
+      genders: commonJS.genders,
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合

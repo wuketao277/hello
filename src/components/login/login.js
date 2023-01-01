@@ -1,4 +1,5 @@
 import basic from '@/api/basic'
+import commonJS from '@/common/common'
 
 export default {
   name: 'login',
@@ -54,6 +55,8 @@ export default {
           type: 'warning'
         })
       }
+      // 前端版本检查
+      commonJS.versionCheck()
       // 调用后台登录接口
       basic.login(this.loginUser).then(res => {
         let resData = res.data

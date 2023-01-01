@@ -94,6 +94,35 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
+          <el-form-item label="性别">
+            <el-select v-model="form.gender"
+                       placeholder="请选择"
+                       clearable
+                       style="width:100%;">
+              <el-option v-for="gender in genders"
+                         :key="gender.code"
+                         :value="gender.code"
+                         :label="gender.describe"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="学校"
+                        prop="schoolName">
+            <el-input v-model="form.schoolName"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="英文水平"
+                        prop="englishLevel">
+            <el-input v-model="form.englishLevel"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="8">
           <el-form-item label="公司名称"
                         prop="companyName">
             <el-input v-model="form.companyName"
@@ -117,13 +146,6 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="学校"
-                        prop="schoolName">
-            <el-input v-model="form.schoolName"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
           <el-form-item label="现地"
                         prop="currentAddress">
             <el-input v-model="form.currentAddress"
@@ -137,8 +159,6 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="现薪"
                         prop="currentMoney">
@@ -146,6 +166,8 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="期薪"
                         prop="futureMoney">
@@ -153,15 +175,6 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
-          <el-form-item label="英文水平"
-                        prop="englishLevel">
-            <el-input v-model="form.englishLevel"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="不匹配原因"
                         prop="notMatchReason">
@@ -176,7 +189,7 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="16">
+        <el-col :span="8">
           <el-form-item label="原因详情"
                         prop="notMatchReasonDetail">
             <el-input v-model="form.notMatchReasonDetail"

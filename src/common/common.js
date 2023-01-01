@@ -1,4 +1,17 @@
 export default {
+  // 前端版本
+  version: '1',
+  versionCheck () {
+    debugger
+    // 先获取本地版本
+    let localVersion = window.localStorage['version']
+    // 如果本地版本未定义或与最新前端版本不一致，就删除前端本地数据，并重新保存最新版本
+    if (typeof (localVersion) === 'undefined' || localVersion === null ||
+      localVersion === '' || localVersion !== this.version) {
+      window.localStorage.clear()
+      window.localStorage['version'] = this.version
+    }
+  },
   // 判断字符串非空
   judgeStrIsNotNull (str) {
     if (typeof (str) === 'undefined') {
@@ -410,5 +423,11 @@ export default {
   }, {
     code: 'ABILITY',
     name: '能力'
+  }, {
+    code: 'NOCONSIDER',
+    name: '不考虑'
+  }, {
+    code: 'OTHER',
+    name: '其他'
   }]
 }
