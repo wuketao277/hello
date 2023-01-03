@@ -120,6 +120,9 @@ export default {
         this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
         this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
       } else if (type === 'tonow') {
+        this.form.startDate = new Date(Date.parse('2019-01-01', 'yyyy-MM-dd'))
+        this.form.endDate = new Date()
+      } else if (type === 'tonowyear') {
         this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
         this.form.endDate = new Date()
       }

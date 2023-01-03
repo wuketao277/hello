@@ -2,7 +2,6 @@ export default {
   // 前端版本
   version: '1',
   versionCheck () {
-    debugger
     // 先获取本地版本
     let localVersion = window.localStorage['version']
     // 如果本地版本未定义或与最新前端版本不一致，就删除前端本地数据，并重新保存最新版本
