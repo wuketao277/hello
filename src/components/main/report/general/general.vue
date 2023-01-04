@@ -49,15 +49,15 @@
               <el-button type="success"
                          plain
                          size="medium"
-                         @click="calcDate('tonow')">全部</el-button>
-              <el-button type="success"
-                         plain
-                         size="medium"
                          @click="calcDate('tonowyear')">今年到现在</el-button>
               <el-button type="success"
                          plain
                          size="medium"
                          @click="calcDate('year')">本年</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('tonow')">全部</el-button>
               <el-button type="success"
                          plain
                          size="medium"
