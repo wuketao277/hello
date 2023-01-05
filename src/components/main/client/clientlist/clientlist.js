@@ -1,5 +1,6 @@
 import clientApi from '@/api/client'
 import commonJs from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -20,14 +21,15 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJs.getStorageContent('clientlist.search')
+      search: commonJs.getStorageContent('clientlist.search'),
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (val) {
       if (val === 'addClient' || val === 'modifyClient') {
-        return commonJs.isFullTimeJobType() && commonJs.isAdmin()
+        return commonJs.isFullTimeJobType() && commonJs.isAdminInArray(this.roles)
       }
       return false
     },
@@ -135,6 +137,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

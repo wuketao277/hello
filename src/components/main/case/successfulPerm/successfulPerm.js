@@ -6,6 +6,7 @@ import selectHr from '@/components/main/dialog/selectHr/selectHr.vue'
 import clientApi from '@/api/client'
 import configApi from '@/api/config'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -177,8 +178,9 @@ export default {
         'id': 'denied',
         'name': '审批否决'
       }],
-      typeList: []
+      typeList: [],
       // [{'id': 'perm', 'name': 'perm'}, {'id': 'contracting', 'name': 'contracting'}]
+      roles: []
     }
   },
   methods: {
@@ -260,11 +262,11 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate' || key === 'calcGP') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       } else if (key === 'save') {
         // 保持按钮。如果已经是审批状态，只有管理员显示保存按钮
         if (this.form.approveStatus === 'approved') {
-          return commonJS.isAdmin()
+          return commonJS.isAdminInArray(this.roles)
         }
         return true
       }
@@ -730,6 +732,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

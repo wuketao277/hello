@@ -42,7 +42,8 @@ export default {
       search: commonJS.getStorageContentObject('successfulPermList.search'),
       billingSum: null,
       gpSum: null,
-      typeList: []
+      typeList: [],
+      roles: []
     }
   },
   methods: {
@@ -96,7 +97,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'add' || key === 'edit' || key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -214,6 +215,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     // 获取所有“客户”信息
     clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {

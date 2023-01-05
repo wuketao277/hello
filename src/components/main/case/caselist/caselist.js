@@ -1,4 +1,5 @@
 import caseApi from '@/api/case'
+import userApi from '@/api/user'
 import commonJS from '@/common/common'
 import clientApi from '@/api/client'
 import clientlinkmanApi from '@/api/clientlinkman'
@@ -23,14 +24,15 @@ export default {
       searchDialog: false,
       search: commonJS.getStorageContentObject('caselist.search'),
       clients: [],
-      hrs: []
+      hrs: [],
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'add' || key === 'edit' || key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -193,6 +195,12 @@ export default {
     clientlinkmanApi.queryAllForSimple().then(res => {
       if (res.status === 200) {
         this.hrs = res.data
+      }
+    })
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
       }
     })
     this.query()

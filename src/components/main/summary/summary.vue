@@ -20,14 +20,14 @@
                      v-if="attentionCaseShowCandidate"
                      @click="switchAttentionCaseShowCandidate(false)">隐藏候选人信息</el-button>
         </div>
-        <div v-for="(client,index) in caseAttention4ClientVOArray"
-             :key="index">
+        <div v-for="client in caseAttention4ClientVOArray"
+             :key="client.clientId">
           <el-button type="text"
                      @click="toClient(client.clientId)"
                      style="font-size:22px;padding-top:0px;padding-bottom:0px;">{{client.clientChineseName}}</el-button>
           <div style="margin-left:30px;">
-            <div v-for="(clientCase,index2) in client.caseList"
-                 :key="index2">
+            <div v-for="clientCase in client.caseList"
+                 :key="clientCase.caseId">
               <el-button type="text"
                          @click="toCase(clientCase.caseId)"
                          style="font-size:18px;padding-top:0px;padding-bottom:0px;color:#67C23A;">{{clientCase.caseTitle}}</el-button>
@@ -77,14 +77,14 @@
                      v-if="cwCaseShowCandidate"
                      @click="switchCWCaseShowCandidate(false)">隐藏候选人信息</el-button>
         </div>
-        <div v-for="(client,index) in cwCaseArray"
-             :key="index">
+        <div v-for="client in cwCaseArray"
+             :key="client.clientId">
           <el-button type="text"
                      @click="toClient(client.clientId)"
                      style="font-size:22px;padding-top:0px;padding-bottom:0px;">{{client.clientChineseName}}</el-button>
           <div style="margin-left:30px;">
-            <div v-for="(clientCase,index2) in client.caseList"
-                 :key="index2">
+            <div v-for="clientCase in client.caseList"
+                 :key="clientCase.caseId">
               <el-button type="text"
                          @click="toCase(clientCase.caseId)"
                          style="font-size:18px;padding-top:0px;padding-bottom:0px;color:#67C23A;">{{clientCase.caseTitle}}</el-button>
@@ -126,8 +126,8 @@
         <el-button type="primary"
                    plain
                    shadow="hover"
-                   v-for="(candidateAttention,index) in candidateAttentionList"
-                   :key="index"
+                   v-for="candidateAttention in candidateAttentionList"
+                   :key="candidateAttention.candidateId"
                    @click="detailCandidate(candidateAttention.candidateId)">{{candidateAttention.candidateChineseName}}</el-button>
       </el-tab-pane>
       <el-tab-pane label="我的新闻"
@@ -261,7 +261,7 @@
         <el-checkbox-group v-model="selectUsers"
                            style="margin-top:10px;margin-bottom:10px;">
           <el-checkbox v-for="user in users"
-                       :key="user"
+                       :key="user.id"
                        :label="user">{{user.username}}</el-checkbox>
         </el-checkbox-group>
         <el-table :data="sortSelectUsers"

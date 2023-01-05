@@ -1,5 +1,6 @@
 import mynewsApi from '@/api/mynews'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -18,14 +19,15 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getStorageContent('mynewslist.search')
+      search: commonJS.getStorageContent('mynewslist.search'),
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (url) {
       if (url === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
     },
     // 添加新闻
@@ -151,6 +153,12 @@ export default {
   },
   computed: {},
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

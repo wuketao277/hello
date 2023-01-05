@@ -44,5 +44,9 @@ export default {
     return axios.get('/user/roleCheck', {
       params: params
     })
+  },
+  // 获取当前用户的角色列表
+  getCurrentUserRoleList () {
+    return axios.get('/user/getCurrentUserRoleList')
   }
 }

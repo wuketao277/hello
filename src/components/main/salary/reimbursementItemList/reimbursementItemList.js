@@ -1,5 +1,6 @@
 import reimbursementApi from '@/api/reimbursement'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -35,14 +36,15 @@ export default {
       locationList: commonJS.locationList,
       approveStatusList: commonJS.approveStatusList,
       currentKindList: [],
-      typeList: commonJS.typeList
+      typeList: commonJS.typeList,
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'selectionColumn' || key === 'approveButton') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -367,6 +369,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

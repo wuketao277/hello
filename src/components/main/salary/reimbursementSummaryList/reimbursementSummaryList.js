@@ -1,5 +1,6 @@
 import reimbursementApi from '@/api/reimbursement'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -23,14 +24,15 @@ export default {
       companyList: commonJS.companyList,
       searchDialog: false,
       search: commonJS.getStorageContentObject('reimbursementSummaryList.search'),
-      reimbursementMonth: commonJS.getYYYY_MM(new Date()) // 报销月份，默认是当月
+      reimbursementMonth: commonJS.getYYYY_MM(new Date()), // 报销月份，默认是当月
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'edit' || key === 'statistics') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -173,6 +175,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

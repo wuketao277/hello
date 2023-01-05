@@ -1,5 +1,6 @@
 import salarySpecialItemApi from '@/api/salarySpecialItem'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -16,7 +17,8 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getStorageContent('salarySpecialItemList.search')
+      search: commonJS.getStorageContent('salarySpecialItemList.search'),
+      roles: []
     }
   },
   methods: {
@@ -31,7 +33,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'add' || key === 'edit' || key === 'search' || key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -153,6 +155,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

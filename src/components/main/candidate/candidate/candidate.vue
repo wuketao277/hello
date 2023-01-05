@@ -331,7 +331,7 @@
             </el-col>
           </el-row>
           <el-row v-for="comment in comments"
-                  :key="comment"
+                  :key="comment.id"
                   style="text-align:left;">
             <el-col :span="2">
               <div class="grid-content bg-purple">{{comment.username}}</div>

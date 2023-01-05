@@ -1,12 +1,14 @@
 import basic from '@/api/basic'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
     return {
       isCollapse: true,
       realname: '',
-      username: ''
+      username: '',
+      roles: []
     }
   },
   methods: {
@@ -58,7 +60,7 @@ export default {
     showControl (url) {
       if (url === '/user/userlist' || url === '/salary/salarySpecialItem' ||
         url === '/report' || url === '/salary/invoiceList' || url === '/training') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的菜单不需要角色
       return true
@@ -111,6 +113,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     const loginInfo = JSON.parse(window.localStorage['loginInfo'])
     this.realname = loginInfo['realname']
     this.username = loginInfo['username']

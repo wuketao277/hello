@@ -1,6 +1,7 @@
 import candidate from '@/api/candidate'
 import comment from '@/api/comment'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -11,23 +12,24 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: this.getPageNumber(),
-          pageSize: this.getPageSize()
+          pageNumber: commonJS.getPageNumber('candidatelist.pageNumber'),
+          pageSize: commonJS.getPageSize('candidatelist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getStorageContent(),
-      fileList: []
+      search: commonJS.getStorageContent('candidatelist.search'),
+      fileList: [],
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -227,31 +229,16 @@ export default {
     searchCandidate () {
       this.table.pageable.pageNumber = 1
       this.query()
-    },
-    getStorageContent () {
-      if (typeof (window.localStorage['candidatelist.search']) === 'undefined') {
-        return ''
-      } else {
-        return window.localStorage['candidatelist.search']
-      }
-    },
-    getPageNumber () {
-      if (typeof (window.localStorage['candidatelist.pageNumber']) === 'undefined') {
-        return 1
-      } else {
-        return window.localStorage['candidatelist.pageNumber']
-      }
-    },
-    getPageSize () {
-      if (typeof (window.localStorage['candidatelist.pageSize']) === 'undefined') {
-        return 10
-      } else {
-        return window.localStorage['candidatelist.pageSize']
-      }
     }
   },
   computed: {},
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

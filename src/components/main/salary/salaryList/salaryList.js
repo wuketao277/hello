@@ -1,5 +1,6 @@
 import salaryApi from '@/api/salary'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -23,7 +24,8 @@ export default {
       showHistoryDebt: !commonJS.isConsultantJobType(),
       showLoginName: true,
       searchDialog: false,
-      salaryMonth: commonJS.getYYYY_MM(new Date()) // 工资月份，默认是当月
+      salaryMonth: commonJS.getYYYY_MM(new Date()), // 工资月份，默认是当月
+      roles: []
     }
   },
   methods: {
@@ -63,7 +65,7 @@ export default {
     showControl (key) {
       if (key === 'generateSalary' || key === 'modifySalary' ||
         key === 'loginName' || key === 'workingDays' || key === 'historyDebt') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -200,6 +202,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

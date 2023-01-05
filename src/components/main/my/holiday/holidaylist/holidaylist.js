@@ -1,5 +1,6 @@
 import holidayApi from '@/api/holiday'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -17,14 +18,15 @@ export default {
       },
       currentRow: null,
       search: this.getStorageContent(),
-      multipleSelection: []
+      multipleSelection: [],
+      roles: []
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'selectionColumn' || key === 'approveButton') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -189,6 +191,12 @@ export default {
   },
   computed: {},
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     this.query()
   }
 }

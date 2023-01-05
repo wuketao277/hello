@@ -4,6 +4,7 @@ import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import commonJs from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -20,17 +21,16 @@ export default {
         remark: ''
       },
       rules: {
-        chineseName: [
-          {
-            required: true,
-            message: '中文名必填',
-            trigger: 'blur'
-          },
-          {
-            max: 200,
-            message: '中文名长度不能大于200个字符',
-            trigger: 'blur'
-          }
+        chineseName: [{
+          required: true,
+          message: '中文名必填',
+          trigger: 'blur'
+        },
+        {
+          max: 200,
+          message: '中文名长度不能大于200个字符',
+          trigger: 'blur'
+        }
         ],
         englishName: [{
           max: 200,
@@ -47,7 +47,8 @@ export default {
       uploadFiles: [], // 上传文件集合
       clientContractTable: [], // 客户合同列表
       // 客户合同表格 当前行
-      clientContractTableCurRow: null
+      clientContractTableCurRow: null,
+      roles: []
     }
   },
   methods: {
@@ -55,7 +56,7 @@ export default {
     showControl (url) {
       if (url === 'clientContract') {
         // 客户合同列表，只有Admin，BD角色展示
-        return commonJs.isAdmin() || commonJs.isBD()
+        return commonJs.isAdminInArray(this.roles) || commonJs.isBDInArray(this.roles)
       }
       return false
     },
@@ -174,14 +175,20 @@ export default {
           showClose: true
         })
       } else {
-        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'client'}
+        this.uploadFileData = {
+          'tableId': this.form.id,
+          'tableName': 'client'
+        }
         this.showUploadFileDialog = true
       }
     },
     // 查询上传文件集合
     queryUploadFiles () {
       if (this.form.id !== null) {
-        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'client'}
+        let params = {
+          'relativeTableId': this.form.id,
+          'relativeTableName': 'client'
+        }
         uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
           if (res.status === 200) {
             this.uploadFiles = res.data
@@ -262,6 +269,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

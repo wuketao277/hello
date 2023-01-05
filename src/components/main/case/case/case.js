@@ -9,6 +9,7 @@ import selectHr from '@/components/main/dialog/selectHr/selectHr.vue'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -130,7 +131,8 @@ export default {
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合
-      selectCWDialogShow: false
+      selectCWDialogShow: false,
+      roles: []
     }
   },
   methods: {
@@ -140,7 +142,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'deleteRecommend' || key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -415,7 +417,6 @@ export default {
     },
     // 查询推荐候选人列表
     queryCandidateForCaseList () {
-      debugger
       // 获取该职位所有候选人信息
       if (this.form.id !== null) {
         // 显示加载中
@@ -481,7 +482,12 @@ export default {
     }
   },
   created () {
-    debugger
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

@@ -30,25 +30,45 @@ export default {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('ADMIN', 0)
   },
+  // 是否拥有admin角色
+  isAdminInArray (arr) {
+    return arr.includes('ADMIN', 0)
+  },
   // 是否拥有admin_company角色
   isAdminCompany () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('ADMIN_COMPANY', 0)
+  },
+  // 是否拥有admin_company角色
+  isAdminCompanyInArray (arr) {
+    return arr.includes('ADMIN_COMPANY', 0)
   },
   // 是否拥有AM角色
   isAM () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('AM', 0)
   },
+  // 是否拥有AM角色
+  isAMInArray (arr) {
+    return arr.includes('AM', 0)
+  },
   // 是否拥有RECRUITER角色
   isRECRUITER () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('RECRUITER', 0)
   },
+  // 是否拥有RECRUITER角色
+  isRECRUITERInArray (arr) {
+    return arr.includes('RECRUITER', 0)
+  },
   // 是否拥有BD角色
   isBD () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
     return loginInfo.roles.includes('BD', 0)
+  },
+  // 是否拥有BD角色
+  isBDInArray (arr) {
+    return arr.includes('BD', 0)
   },
   // 是否是全职员工
   isFullTimeJobType () {

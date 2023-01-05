@@ -7,6 +7,7 @@ import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -235,7 +236,8 @@ export default {
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合
-      notMatchReasonList: commonJS.notMatchReasonList
+      notMatchReasonList: commonJS.notMatchReasonList,
+      roles: []
     }
   },
   methods: {
@@ -304,7 +306,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'deleteRecommend' || key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -371,7 +373,6 @@ export default {
     },
     // 编辑客户
     editClient (index, row) {
-      debugger
       this.$router.push({
         path: '/client/client',
         query: {
@@ -673,6 +674,12 @@ export default {
   },
   computed: {},
   created () {
+    // 获取当前用户的角色列表
+    userApi.getCurrentUserRoleList().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
