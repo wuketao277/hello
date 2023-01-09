@@ -40,9 +40,14 @@
              size="small"
              style="margin-top:10px;text-align:left;">
       <el-row :gutter="12">
-        <el-col :span="8">
+        <el-col :span="4">
           <el-form-item label="职位id">
             <span>{{form.id}}</span>
+          </el-form-item>
+        </el-col>
+        <el-col :span="4">
+          <el-form-item label="创建时间">
+            <span>{{formatDate(form.createTime)}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="10">

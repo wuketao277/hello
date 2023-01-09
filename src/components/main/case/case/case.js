@@ -136,6 +136,13 @@ export default {
     }
   },
   methods: {
+    // 获取YYYY-MM-dd格式的年月日
+    formatDate (d) {
+      if (typeof (d) !== 'undefined' && d !== null && d !== '') {
+        return d.substr(0, 10)
+      }
+      return ''
+    },
     openSelectCWDialog () {
       this.selectCWDialogShow = true
     },
@@ -268,7 +275,7 @@ export default {
             res => {
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
+                this.form = res.data
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
