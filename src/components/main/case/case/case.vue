@@ -200,6 +200,18 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="12"
+              v-if="showControl('extMsg')">
+        <el-col>
+          <el-form-item label="可见性">
+            <el-checkbox-group v-model="form.show4JobType">
+              <el-checkbox v-for="jobType in jobTypeList"
+                           :label="jobType.code"
+                           :key="jobType.code">{{jobType.name}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-tabs type="border-card">
       <el-tab-pane label="候选人">

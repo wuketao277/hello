@@ -44,7 +44,8 @@ export default {
         salaryScope: '',
         cwUserName: '',
         headCount: null,
-        pipeline: ''
+        pipeline: '',
+        show4JobType: []
       },
       attention: false,
       rules: {
@@ -132,7 +133,8 @@ export default {
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合
       selectCWDialogShow: false,
-      roles: []
+      roles: [],
+      jobTypeList: commonJS.jobTypeList
     }
   },
   methods: {
@@ -148,7 +150,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'deleteRecommend' || key === 'delete') {
+      if (key === 'deleteRecommend' || key === 'delete' || key === 'extMsg') {
         return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
@@ -264,6 +266,7 @@ export default {
         this.form.cwUserName = ''
         this.form.headCount = null
         this.form.pipeline = ''
+        this.form.show4JobType = []
       }
     },
     // 保存

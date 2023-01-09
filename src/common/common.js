@@ -177,8 +177,8 @@ export default {
   // 从公司编码转公司名称
   getCompanyName (code) {
     for (let c of this.companyList) {
-      if (c['code'] === code) {
-        return c['name']
+      if (c[code] === code) {
+        return c[name]
       }
     }
     return ''
@@ -448,5 +448,21 @@ export default {
   }, {
     code: 'OTHER',
     name: '其他'
+  }],
+  jobTypeList: [{
+    code: 'FULLTIME',
+    name: '全职'
+  }, {
+    code: 'PARTTIME',
+    name: '兼职'
+  }, {
+    code: 'INTERN',
+    name: '实习'
+  }, {
+    code: 'CONSULTANT',
+    name: '外包'
+  }, {
+    code: 'EXPERIENCE',
+    name: '体验'
   }]
 }

@@ -21,7 +21,7 @@ export default {
       if (url === '/client/clientlist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
-      if (url === '/case/caselist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+      if (url === '/case/caselist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
         return true
       }
       if (url === '/candidate/candidatelist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
