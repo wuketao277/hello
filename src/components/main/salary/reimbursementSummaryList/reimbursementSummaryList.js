@@ -25,7 +25,8 @@ export default {
       searchDialog: false,
       search: commonJS.getStorageContentObject('reimbursementSummaryList.search'),
       reimbursementMonth: commonJS.getYYYY_MM(new Date()), // 报销月份，默认是当月
-      roles: []
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
@@ -176,9 +177,10 @@ export default {
   },
   created () {
     // 获取当前用户的角色列表
-    userApi.getCurrentUserRoleList().then(res => {
+    userApi.findSelf().then(res => {
       if (res.status === 200) {
-        this.roles = res.data
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     this.query()

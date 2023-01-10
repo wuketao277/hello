@@ -34,7 +34,7 @@
                         v-if="jobTypeControlShow('/')">
             <template slot="title">
               <i class="el-icon-menu"></i>
-              <span slot="title">主页</span>
+              <span slot="title">首页</span>
             </template>
           </el-menu-item>
           <el-menu-item index="/report/general"

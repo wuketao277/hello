@@ -43,7 +43,8 @@ export default {
       billingSum: null,
       gpSum: null,
       typeList: [],
-      roles: []
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
@@ -216,9 +217,10 @@ export default {
   },
   created () {
     // 获取当前用户的角色列表
-    userApi.getCurrentUserRoleList().then(res => {
+    userApi.findSelf().then(res => {
       if (res.status === 200) {
-        this.roles = res.data
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     // 获取所有“客户”信息

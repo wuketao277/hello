@@ -22,14 +22,15 @@ export default {
       },
       currentRow: null,
       search: commonJs.getStorageContent('clientlist.search'),
-      roles: []
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
     // 显示控制
     showControl (val) {
       if (val === 'addClient' || val === 'modifyClient') {
-        return commonJs.isFullTimeJobType() && commonJs.isAdminInArray(this.roles)
+        return this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)
       }
       return false
     },
@@ -138,9 +139,10 @@ export default {
   },
   created () {
     // 获取当前用户的角色列表
-    userApi.getCurrentUserRoleList().then(res => {
+    userApi.findSelf().then(res => {
       if (res.status === 200) {
-        this.roles = res.data
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     this.query()

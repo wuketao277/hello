@@ -70,11 +70,6 @@ export default {
   isBDInArray (arr) {
     return arr.includes('BD', 0)
   },
-  // 是否是全职员工
-  isFullTimeJobType () {
-    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
-    return loginInfo.jobType === 'FULLTIME'
-  },
   // 是否是外包员工
   isConsultantJobType () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
@@ -442,6 +437,9 @@ export default {
   }, {
     code: 'ABILITY',
     name: '能力'
+  }, {
+    code: 'EDUCATION_BACKGROUND',
+    name: '学历'
   }, {
     code: 'NOCONSIDER',
     name: '不考虑'

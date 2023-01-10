@@ -237,7 +237,8 @@ export default {
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合
       notMatchReasonList: commonJS.notMatchReasonList,
-      roles: []
+      roles: [],
+      jobType: '' // 工作类型
     }
   },
   methods: {
@@ -675,9 +676,10 @@ export default {
   computed: {},
   created () {
     // 获取当前用户的角色列表
-    userApi.getCurrentUserRoleList().then(res => {
+    userApi.findSelf().then(res => {
       if (res.status === 200) {
-        this.roles = res.data
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     // 通过入参获取当前操作模式

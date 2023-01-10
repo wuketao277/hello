@@ -180,7 +180,8 @@ export default {
       }],
       typeList: [],
       // [{'id': 'perm', 'name': 'perm'}, {'id': 'contracting', 'name': 'contracting'}]
-      roles: []
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
@@ -733,9 +734,10 @@ export default {
   },
   created () {
     // 获取当前用户的角色列表
-    userApi.getCurrentUserRoleList().then(res => {
+    userApi.findSelf().then(res => {
       if (res.status === 200) {
-        this.roles = res.data
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     // 通过入参获取当前操作模式

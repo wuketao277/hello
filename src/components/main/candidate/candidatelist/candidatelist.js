@@ -22,7 +22,8 @@ export default {
       currentRow: null,
       search: commonJS.getStorageContent('candidatelist.search'),
       fileList: [],
-      roles: []
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
@@ -234,9 +235,10 @@ export default {
   computed: {},
   created () {
     // 获取当前用户的角色列表
-    userApi.getCurrentUserRoleList().then(res => {
+    userApi.findSelf().then(res => {
       if (res.status === 200) {
-        this.roles = res.data
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     this.query()

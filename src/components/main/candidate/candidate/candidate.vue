@@ -107,13 +107,6 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="学校"
-                        prop="schoolName">
-            <el-input v-model="form.schoolName"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
           <el-form-item label="英文水平"
                         prop="englishLevel">
             <el-input v-model="form.englishLevel"
@@ -193,6 +186,17 @@
           <el-form-item label="原因详情"
                         prop="notMatchReasonDetail">
             <el-input v-model="form.notMatchReasonDetail"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="学校"
+                        prop="schoolName">
+            <el-input v-model="form.schoolName"
+                      type="textarea"
+                      :autosize="{ minRows: 1, maxRows: 10}"
                       clearable></el-input>
           </el-form-item>
         </el-col>
