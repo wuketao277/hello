@@ -241,6 +241,7 @@
                   element-loading-text="拼命加载中"
                   element-loading-spinner="el-icon-loading"
                   element-loading-background="rgba(0, 0, 0, 0.8)"
+                  :row-class-name="setCandidateRowClassName"
                   :data="candidateForCaseList"
                   :border="true"
                   style="width: 100%"
@@ -272,6 +273,9 @@
                          @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
             </template>
           </el-table-column>
+          <el-table-column prop="farthestPhase"
+                           width="120"
+                           label="最远阶段"></el-table-column>
           <el-table-column prop="latestCommentUsername"
                            width="120"
                            label="评论人"></el-table-column>
@@ -320,4 +324,38 @@
     </el-dialog>
   </div>
 </template>
+<style>
+.rowOnBoard {
+  color: #67c23a;
+  font-weight: bolder;
+}
+.rowOfferSigned {
+  color: rgb(134, 190, 106);
+  font-weight: bolder;
+}
+.rowFinalInterview {
+  color: #409eff;
+  font-weight: bolder;
+}
+.row4thInterview {
+  color: #409eff;
+  font-weight: bolder;
+}
+.row3rdInterview {
+  color: #409eff;
+  font-weight: bolder;
+}
+.row2ndInterview {
+  color: #409eff;
+  font-weight: bolder;
+}
+.row1stInterview {
+  color: #409eff;
+  font-weight: bolder;
+}
+.rowCVO {
+  color: #409eff;
+  font-weight: bolder;
+}
+</style>
 <script src="./case.js"></script>

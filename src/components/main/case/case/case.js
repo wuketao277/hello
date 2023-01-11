@@ -139,6 +139,29 @@ export default {
     }
   },
   methods: {
+    // 设置行样式
+    setCandidateRowClassName ({
+      row,
+      index
+    }) {
+      if (row.farthestPhase === 'On Board') {
+        return 'rowOnBoard'
+      } else if (row.farthestPhase === 'Offer Signed') {
+        return 'rowOfferSigned'
+      } else if (row.farthestPhase === 'Final Interview') {
+        return 'rowFinalInterview'
+      } else if (row.farthestPhase === '4th Interview') {
+        return 'row4thInterview'
+      } else if (row.farthestPhase === '3rd Interview') {
+        return 'row3rdInterview'
+      } else if (row.farthestPhase === '2nd Interview') {
+        return 'row2ndInterview'
+      } else if (row.farthestPhase === '1st Interview') {
+        return 'row1stInterview'
+      } else if (row.farthestPhase === 'CVO') {
+        return 'rowCVO'
+      }
+    },
     // 获取YYYY-MM-dd格式的年月日
     formatDate (d) {
       if (typeof (d) !== 'undefined' && d !== null && d !== '') {

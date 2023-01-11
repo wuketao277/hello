@@ -30,6 +30,16 @@ export default {
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.$router.push({
+        path: '/salary/reimbursementItemList',
+        query: {
+          mode: 'query',
+          row: row
+        }
+      })
+    },
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'edit' || key === 'statistics') {

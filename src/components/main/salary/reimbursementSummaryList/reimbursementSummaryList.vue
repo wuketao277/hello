@@ -39,7 +39,8 @@
                 :stripe="true"
                 :row-class-name="setRowClassName"
                 style="width: 100%"
-                @current-change="rowChange">
+                @current-change="rowChange"
+                @row-dblclick="handleRowDblClick">
         <el-table-column type="index"
                          width="50"
                          label="序号"></el-table-column>
