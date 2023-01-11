@@ -7,7 +7,7 @@ import candidateApi from '@/api/candidate'
 import userApi from '@/api/user'
 
 export default {
-  data () {
+  data() {
     return {
       calendarValue: new Date(),
       myTasks: [],
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     // 跳转到候选人
-    jumpToCandidate (row) {
+    jumpToCandidate(row) {
       this.$router.push({
         path: '/candidate/candidate',
         query: {
@@ -46,17 +46,17 @@ export default {
       })
     },
     // 切换候选人信息显示状态
-    switchCWCaseShowCandidate (v) {
+    switchCWCaseShowCandidate(v) {
       window.localStorage['summary.cwCaseShowCandidate'] = v
       this.cwCaseShowCandidate = v
     },
     // 切换候选人信息显示状态
-    switchAttentionCaseShowCandidate (v) {
+    switchAttentionCaseShowCandidate(v) {
       window.localStorage['summary.attentionCaseShowCandidate'] = v
       this.attentionCaseShowCandidate = v
     },
     // 查询关注职位列表中候选人显示状态
-    getAttentionCaseShowCandidate () {
+    getAttentionCaseShowCandidate() {
       if (typeof (window.localStorage['summary.attentionCaseShowCandidate']) === 'undefined') {
         return true
       } else {
@@ -64,7 +64,7 @@ export default {
       }
     },
     // 查询对接职位中候选人显示状态
-    getCWCaseShowCandidate () {
+    getCWCaseShowCandidate() {
       if (typeof (window.localStorage['summary.cwCaseShowCandidate']) === 'undefined') {
         return true
       } else {
@@ -72,7 +72,7 @@ export default {
       }
     },
     // 获取页签选择
-    getTabIndex () {
+    getTabIndex() {
       if (typeof (window.localStorage['summary.tabIndex']) === 'undefined') {
         return '0'
       } else {
@@ -80,12 +80,12 @@ export default {
       }
     },
     // 页签点击
-    tabClick (tab) {
+    tabClick(tab) {
       // 将新页签索引号保存起来
       window.localStorage['summary.tabIndex'] = tab.index
     },
     // 查看候选人信息
-    detailCandidate (candidateId) {
+    detailCandidate(candidateId) {
       this.$router.push({
         path: '/candidate/candidate',
         query: {
@@ -95,7 +95,7 @@ export default {
       })
     },
     // 计算开始日期和结束日期
-    calcDate (type) {
+    calcDate(type) {
       if (type === 'today') {
         this.startDate = commonJs.getYYYY_MM_dd(new Date())
         this.endDate = commonJs.getYYYY_MM_dd(new Date())
@@ -109,6 +109,7 @@ export default {
         this.endDate = commonJs.getYYYY_MM_dd(new Date(Date.parse(this.startDate) + 6 * 24 * 60 * 60 * 1000))
       } else if (type === 'month') {
         let month = new Date().getMonth() + 1
+        month = month < 10 ? '0' + month : month
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
         if (month === 2) {
           // 2 月
@@ -146,7 +147,7 @@ export default {
       this.calcKPI()
     },
     // 显示控制
-    showControl (url) {
+    showControl(url) {
       if (url === '/') {
         // 主页内容显示给非外包人员
         return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType())
@@ -157,9 +158,9 @@ export default {
       }
       return false
     },
-    rowChange () {},
+    rowChange() {},
     // 跳转到客户
-    toClient (id) {
+    toClient(id) {
       this.$router.push({
         path: '/client/client',
         query: {
@@ -169,7 +170,7 @@ export default {
       })
     },
     // 跳转到职位
-    toCase (id) {
+    toCase(id) {
       this.$router.push({
         path: '/case/case',
         query: {
@@ -179,7 +180,7 @@ export default {
       })
     },
     // 跳转到候选人
-    toCandidate (row) {
+    toCandidate(row) {
       this.$router.push({
         path: '/candidate/candidate',
         query: {
@@ -189,7 +190,7 @@ export default {
       })
     },
     // 编辑候选人
-    editCandidate (index, row) {
+    editCandidate(index, row) {
       this.$router.push({
         path: '/candidate/candidate',
         query: {
@@ -198,7 +199,7 @@ export default {
         }
       })
     },
-    kpiDetail (index, row) {
+    kpiDetail(index, row) {
       if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
         return
@@ -224,14 +225,14 @@ export default {
         }
       })
     },
-    openView (path) {
+    openView(path) {
       this.$router.push({
         path: path,
         query: {}
       })
     },
     // 下载KPI
-    downloadKPI () {
+    downloadKPI() {
       if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
         return
@@ -239,7 +240,7 @@ export default {
       commentApi.downloadKPI(this.startDate, this.endDate)
     },
     // 计算KPI
-    calcKPI () {
+    calcKPI() {
       if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
         return
@@ -262,7 +263,7 @@ export default {
       })
     },
     // 查看任务详情
-    viewMyTaskDetail (task) {
+    viewMyTaskDetail(task) {
       this.$router.push({
         path: '/mytask/mytask',
         query: {
@@ -272,7 +273,7 @@ export default {
       })
     },
     // 查询当前用户所有职位关注
-    queryAllCaseAttention () {
+    queryAllCaseAttention() {
       caseApi.queryAllCaseAttention().then(res => {
         if (res.status === 200) {
           this.caseAttention4ClientVOArray = res.data
@@ -286,7 +287,7 @@ export default {
       })
     },
     // 查询当前用户所有对接的职位
-    queryCWCaseArray () {
+    queryCWCaseArray() {
       caseApi.queryAllCWCase().then(res => {
         if (res.status === 200) {
           this.cwCaseArray = res.data
@@ -300,11 +301,11 @@ export default {
       })
     },
     // 新闻列表行变化
-    newsRowChange (val) {
+    newsRowChange(val) {
       this.newsCurrentRow = val
     },
     // 查看新闻详情
-    handleNewsDblClick () {
+    handleNewsDblClick() {
       this.$router.push({
         path: '/mynews/mynews',
         query: {
@@ -314,11 +315,11 @@ export default {
       })
     },
     // 任务列表行变化
-    taskRowChange (val) {
+    taskRowChange(val) {
       this.taskCurrentRow = val
     },
     // 查看任务详情
-    handleTaskDblClick () {
+    handleTaskDblClick() {
       this.$router.push({
         path: '/mytask/mytask',
         query: {
@@ -328,19 +329,19 @@ export default {
       })
     },
     // 用户排序
-    sortUsers () {
+    sortUsers() {
       this.selectUsers.sort(function () {
         return Math.random() - 0.5
       })
       this.sortSelectUsers = this.selectUsers
     },
     // 清空
-    clearSelectUsers () {
+    clearSelectUsers() {
       this.selectUsers = []
       this.sortSelectUsers = []
     },
     // 转换阶段名称为数字
-    phaseConvertToInt (phase) {
+    phaseConvertToInt(phase) {
       let result = 0
       if (phase === 'TI') {
         result = 1
@@ -360,17 +361,17 @@ export default {
       return result
     },
     // KPI选择全部阶段
-    selectAllPhase () {
+    selectAllPhase() {
       this.selectedPhases = this.phaseList
       this.handlePhaseChange(this.selectedPhases)
     },
     // 清空选择的阶段
-    clearPhaseSelected () {
+    clearPhaseSelected() {
       this.selectedPhases = []
       this.handlePhaseChange(this.selectedPhases)
     },
     // 筛选并排序KPI数据
-    filerAndSortKpi () {
+    filerAndSortKpi() {
       // 筛选
       this.commentsDetailTable = []
       // 过滤选中的阶段
@@ -419,17 +420,17 @@ export default {
       }
     },
     // 处理阶段变更
-    handlePhaseChange (value) {
+    handlePhaseChange(value) {
       this.selectedPhases = value
       this.filerAndSortKpi()
     },
     // 排序评论
-    orderComment (type) {
+    orderComment(type) {
       this.kpiOrderType = type
       this.filerAndSortKpi()
     }
   },
-  created () {
+  created() {
     // 查询关注候选人列表
     candidateApi.queryCandidateAttentionListByUser().then(res => {
       if (res.status === 200) {
