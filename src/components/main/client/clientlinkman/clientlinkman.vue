@@ -7,30 +7,24 @@
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar">
-      <el-button
-        v-show="(mode === 'add' || mode === 'modify')"
-        type="success"
-        size="small"
-        icon="el-icon-circle-check"
-        @click="save"
-      >保 存</el-button>
-      <el-button
-        v-show="(mode === 'add' || mode === 'modify')"
-        type="warning"
-        size="small"
-        icon="el-icon-delete"
-        @click="cancel"
-      >取 消</el-button>
-      <el-button type="primary" size="small" icon="el-icon-back" @click="returnClient">返回</el-button>
+      <el-button v-show="(mode === 'add' || mode === 'modify')"
+                 type="success"
+                 size="small"
+                 icon="el-icon-circle-check"
+                 @click="save">保 存</el-button>
+      <el-button v-show="(mode === 'add' || mode === 'modify')"
+                 type="warning"
+                 size="small"
+                 icon="el-icon-delete"
+                 @click="cancel">取 消</el-button>
+      <!-- <el-button type="primary" size="small" icon="el-icon-back" @click="returnClient">返回</el-button> -->
     </div>
-    <el-form
-      ref="form"
-      :model="form"
-      label-width="80px"
-      label-position="left"
-      size="small"
-      style="margin-top:10px;text-align:left;"
-    >
+    <el-form ref="form"
+             :model="form"
+             label-width="80px"
+             label-position="left"
+             size="small"
+             style="margin-top:10px;text-align:left;">
       <el-form-item label="客户名称">{{form.clientName}}</el-form-item>
       <el-form-item label="中文名">
         <el-input v-model="form.chineseName"></el-input>

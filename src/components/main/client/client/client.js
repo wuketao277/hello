@@ -129,6 +129,16 @@ export default {
         })
       }
     },
+    // 联系人列表双击
+    handleLinkManDBClick () {
+      if (this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)) {
+        // 管理员可以修改
+        this.modifyLinkMan()
+      } else {
+        // 非管理员只读
+        this.detailLinkMan()
+      }
+    },
     // 修改联系人
     modifyLinkMan () {
       if (this.checkId()) {
