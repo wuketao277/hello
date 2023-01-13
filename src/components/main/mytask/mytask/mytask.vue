@@ -21,8 +21,8 @@
       <el-button type="success"
                  size="small"
                  icon="el-icon-circle-check"
-                 v-show="mode === 'modify'"
-                 @click="update">完 成</el-button>
+                 v-show="showUpdateButton()"
+                 @click="update">更 新</el-button>
     </div>
     <el-form ref="form"
              label-position="left"
@@ -31,6 +31,13 @@
              label-width="80px"
              style="text-align:left;"
              :rules="rules">
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="执行人">
+            {{form.executeUserName}}
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="任务标题"

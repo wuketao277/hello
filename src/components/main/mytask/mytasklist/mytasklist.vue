@@ -34,16 +34,18 @@
                        width="50"></el-table-column>
       <el-table-column prop="id"
                        label="id"
-                       width="50"></el-table-column>
+                       width="100"></el-table-column>
+      <el-table-column prop="executeUserName"
+                       label="执行人"
+                       width="120"></el-table-column>
       <el-table-column prop="taskTitle"
-                       label="任务的标题"
-                       width="200"></el-table-column>
+                       label="任务标题"
+                       width="200"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="taskContent"
                        label="任务内容"
-                       width="360"></el-table-column>
-      <el-table-column prop="executeRealName"
-                       label="执行人"
-                       width="80"></el-table-column>
+                       width="360"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="executeDate"
                        label="执行日期"
                        width="100"></el-table-column>
@@ -51,9 +53,9 @@
                        :formatter="getFinishedName"
                        label="状态"
                        width="100"></el-table-column>
-      <el-table-column prop="createRealName"
+      <el-table-column prop="createUserName"
                        label="创建人"
-                       width="80"></el-table-column>
+                       width="180"></el-table-column>
       <el-table-column prop="createDateTime"
                        label="创建时间"
                        width="180"></el-table-column>
@@ -71,6 +73,57 @@
                    @current-change="currentChange"
                    @prev-click="prevClick"
                    @next-click="nextClick"></el-pagination>
+    <el-dialog title="搜索"
+               :visible="searchDialog"
+               :show-close="false"
+               width="80%">
+      <div>
+        <el-form label-position="left"
+                 size="small"
+                 style="text-align:left;"
+                 label-width="100px">
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="执行人">
+                <el-input v-model="search.executeUserName"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="完成状态">
+                <el-radio-group v-model="search.finished">
+                  <el-radio label="NONE">非</el-radio>
+                  <el-radio label="FINISHED">已完成</el-radio>
+                  <el-radio label="UNFINISHED">未完成</el-radio>
+                </el-radio-group>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="任务标题">
+                <el-input v-model="search.taskTitle"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="任务内容">
+                <el-input v-model="search.taskContent"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <span slot="footer"
+              class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
+          <el-button @click="searchDialog = false">取 消</el-button>
+          <el-button type="primary"
+                     @click="sureSearchDialog">查 询</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script src="./mytasklist.js"></script>

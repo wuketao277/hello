@@ -142,11 +142,11 @@
                   @current-change="newsRowChange"
                   style="width: 100%">
           <el-table-column prop="title"
-                           label="标题"
+                           label="新闻标题"
                            width="180"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="content"
-                           label="内容"
+                           label="新闻内容"
                            show-overflow-tooltip></el-table-column>
         </el-table>
       </el-tab-pane>
@@ -157,16 +157,16 @@
                   :border="true"
                   :highlight-current-row="true"
                   :stripe="true"
-                  :show-header="false"
+                  :show-header="true"
                   @row-dblclick="handleTaskDblClick"
                   @current-change="taskRowChange"
                   style="width: 100%">
           <el-table-column prop="taskTitle"
-                           label="标题"
+                           label="任务标题"
                            width="180"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="taskContent"
-                           label="内容"
+                           label="任务内容"
                            show-overflow-tooltip></el-table-column>
         </el-table>
       </el-tab-pane>

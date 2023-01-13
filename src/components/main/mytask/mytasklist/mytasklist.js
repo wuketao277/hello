@@ -1,4 +1,5 @@
 import myTaskApi from '@/api/myTask'
+import commonJS from '@/common/common'
 
 export default {
   data () {
@@ -17,7 +18,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: '',
+      search: commonJS.getStorageContentObject('mytasklist.search'),
       fileList: []
     }
   },
@@ -100,6 +101,10 @@ export default {
     },
     // 查询后台数据
     query () {
+      window.localStorage['mytasklist.search'] = JSON.stringify(this.search)
+      window.localStorage['mytasklist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['mytasklist.pageSize'] = this.table.pageable.pageSize
+      this.searchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -143,9 +148,12 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
-      this.search = ''
+    },
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['mytasklist.search'] = {}
     }
   },
   computed: {},
