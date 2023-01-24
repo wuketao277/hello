@@ -25,6 +25,7 @@
     <el-table :data="table.content"
               @current-change="handleCurrentChange"
               @row-dblclick="modifyTask"
+              :cell-class-name="setCellClassName"
               :border="true"
               :highlight-current-row="true"
               :stripe="true"
@@ -131,5 +132,11 @@
 .el-form-item {
   margin-bottom: 0px;
   margin-top: 0px;
+}
+.cellGreen {
+  color: green;
+}
+.cellRed {
+  color: red;
 }
 </style>

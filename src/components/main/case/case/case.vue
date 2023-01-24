@@ -273,7 +273,7 @@
                          @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="farthestPhase"
+          <el-table-column prop="lastPhase"
                            width="120"
                            label="最远阶段"></el-table-column>
           <el-table-column prop="latestCommentUsername"
@@ -325,35 +325,11 @@
   </div>
 </template>
 <style>
-.rowOnBoard {
-  color: #67c23a;
-  font-weight: bolder;
-}
-.rowOfferSigned {
+.rowGreen {
   color: rgb(134, 190, 106);
   font-weight: bolder;
 }
-.rowFinalInterview {
-  color: #409eff;
-  font-weight: bolder;
-}
-.row4thInterview {
-  color: #409eff;
-  font-weight: bolder;
-}
-.row3rdInterview {
-  color: #409eff;
-  font-weight: bolder;
-}
-.row2ndInterview {
-  color: #409eff;
-  font-weight: bolder;
-}
-.row1stInterview {
-  color: #409eff;
-  font-weight: bolder;
-}
-.rowCVO {
+.rowBlue {
   color: #409eff;
   font-weight: bolder;
 }

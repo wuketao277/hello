@@ -38,16 +38,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
-    overlay: config.dev.errorOverlay ?
-      {
-        warnings: false,
-        errors: true
-      } :
-      false,
+    overlay: config.dev.errorOverlay ? {
+      warnings: false,
+      errors: true
+    } : false,
     publicPath: config.dev.assetsPublicPath,
     proxy: [{
       changeOrigin: true,
-      context: ["/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**"],
+      context: ["/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**"],
       target: "http://localhost:8000"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin
@@ -94,8 +92,7 @@ module.exports = new Promise((resolve, reject) => {
           messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
         },
         onErrors: config.dev.notifyOnErrors ?
-          utils.createNotifierCallback() :
-          undefined
+          utils.createNotifierCallback() : undefined
       }))
 
       resolve(devWebpackConfig)

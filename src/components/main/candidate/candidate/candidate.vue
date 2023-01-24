@@ -113,6 +113,13 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="8">
+          <el-form-item label="日文水平"
+                        prop="japaneseLevel">
+            <el-input v-model="form.japaneseLevel"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
@@ -225,7 +232,7 @@
       </el-row>
     </el-form>
     <el-tabs type="border-card">
-      <!--职位列表-->
+      <!--职位列表开始-->
       <el-tab-pane label="推荐职位/评论">
         <div class="toolbar"
              v-show="(mode === 'add' || mode === 'modify')">
@@ -239,7 +246,9 @@
                        @click="openSelectCaseDialog">推荐职位</el-button>
           </el-tooltip>
         </div>
-        <el-table :data="candidateForCaseList"
+        <el-table highlight-current-row
+                  @current-change="handleSelectCaseChange"
+                  :data="candidateForCaseList"
                   :border="true"
                   style="width: 100%">
           <el-table-column type="index"
@@ -276,6 +285,7 @@
             </template>
           </el-table-column>
         </el-table>
+        <!--职位列表结束-->
         <br />
         <el-form ref="newComment"
                  label-position="left"

@@ -5,6 +5,7 @@ import caseApi from '@/api/case'
 import commonJs from '@/common/common'
 import candidateApi from '@/api/candidate'
 import userApi from '@/api/user'
+import summaryApi from '@/api/summary'
 
 export default {
   data () {
@@ -31,10 +32,23 @@ export default {
       kpiOrderType: 'phase', // kpi排序类型，默认按阶段排序
       users: [],
       phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
-      selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'] // 选择的阶段
+      selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 选择的阶段
+      pipelineList: []
     }
   },
   methods: {
+    // 查询pipeline
+    queryPipeline (val) {
+      window.localStorage['summary.pipelineRange'] = val
+      let params = {
+        'range': val
+      }
+      summaryApi.queryPipeline(params).then(res => {
+        if (res.status === 200) {
+          this.pipelineList = res.data
+        }
+      })
+    },
     // 跳转到候选人
     jumpToCandidate (row) {
       this.$router.push({
@@ -42,6 +56,16 @@ export default {
         query: {
           mode: 'modify',
           candidateId: row.candidateId
+        }
+      })
+    },
+    // 跳转到候选人
+    jumpToCandidateById (id) {
+      this.$router.push({
+        path: '/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: id
         }
       })
     },
@@ -458,5 +482,7 @@ export default {
         this.users = res.data
       }
     })
+    // 查询pipeline情况
+    this.queryPipeline(commonJs.getStorageContent('summary.pipelineRange', 'self'))
   }
 }

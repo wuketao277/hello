@@ -154,6 +154,19 @@ export default {
     clearQueryCondition () {
       this.search = {}
       window.localStorage['mytasklist.search'] = {}
+    },
+    // 设置单元格样式
+    setCellClassName ({
+      row,
+      column,
+      rowIndex,
+      columnIndex
+    }) {
+      if (row.finished && column.label === '状态') {
+        return 'cellGreen'
+      } else if (!row.finished && column.label === '状态') {
+        return 'cellRed'
+      }
     }
   },
   computed: {},

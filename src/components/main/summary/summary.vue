@@ -278,6 +278,128 @@
                            label="姓名"></el-table-column>
         </el-table>
       </el-tab-pane>
+      <!--pipeline模块开始-->
+      <el-tab-pane label="Pipeline"
+                   name="7">
+        <div class="toolbar">
+          <el-button type="primary"
+                     size="mini"
+                     @click="queryPipeline('self')">自 己</el-button>
+          <el-button type="primary"
+                     size="mini"
+                     @click="queryPipeline('all')">全 部</el-button>
+          <el-button type="primary"
+                     size="mini"
+                     @click="queryPipeline('shenyang')">沈 阳</el-button>
+          <el-button type="primary"
+                     size="mini"
+                     @click="queryPipeline('shanghai')">上 海</el-button>
+          <el-button type="primary"
+                     size="mini"
+                     @click="queryPipeline('beijing')">北 京</el-button>
+        </div>
+        <div v-for="pipeline in pipelineList"
+             :key="pipeline.user.id"
+             style="clear:both;">
+          <span>{{pipeline.user.username}}</span>
+          <div v-for="pipecase in pipeline.pipelineCaseList"
+               :key="pipecase.id"
+               style="margin-left:30px;clear:both;">
+            <el-row>
+              <el-col :span="8">
+                <el-button type="text"
+                           @click="toClient(pipecase.clientId)"
+                           style="font-size:18px;">{{pipecase.clientChineseName}}</el-button>
+              </el-col>
+              <el-col :span="8">
+                <el-button type="text"
+                           @click="toCase(pipecase.id)"
+                           style="font-size:18px;">{{pipecase.title}}</el-button>
+              </el-col>
+            </el-row>
+            <div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span>Payment</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.paymentCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                </div>
+              </div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span style="width:100%;margin:10px;10px;0px;10px;">Invoice</span><br />
+                </div>
+              </div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span style="width:100%;margin:10px;10px;0px;10px;">Onboard</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.onboardCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                </div>
+              </div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span style="width:100%;margin:10px;10px;0px;10px;">Offer</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.offerCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                </div>
+              </div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span style="width:100%;margin:10px;10px;0px;10px;">Interview</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.interviewCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                </div>
+              </div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span style="width:100%;margin:10px;10px;0px;10px;">CVO</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.cvoCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                </div>
+              </div>
+              <div style="width:14%;float:left;">
+                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                  <span style="width:100%;margin:10px;10px;0px;10px;">VI/IOI</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.viioiCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </el-tab-pane>
+      <!--pipeline模块结束-->
     </el-tabs>
     <el-dialog title="评论详情"
                :visible.sync="commentsDetailTableVisible"

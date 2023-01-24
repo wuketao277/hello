@@ -136,7 +136,8 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
+        <el-form size="small"
+                 label-position="left"
                  label-width="110px">
           <el-row :gutter="12">
             <el-col :span="6">

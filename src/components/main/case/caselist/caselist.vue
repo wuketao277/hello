@@ -77,7 +77,8 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
+        <el-form size="small"
+                 label-position="left"
                  label-width="80px">
           <el-row :gutter="20">
             <el-col :span="12">

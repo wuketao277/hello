@@ -20,6 +20,7 @@ export default {
       attention: false,
       selectCaseDialogShow: false, // 选择职位对话框
       candidateForCaseList: [], // 候选人推荐职位列表
+      selectedCase: null, // 选中职位
       mode: 'add', // 默认操作模式为新建
       resume: '', // 简历
       form: {
@@ -40,6 +41,7 @@ export default {
         currentMoney: '',
         futureMoney: '',
         englishLevel: '',
+        japaneseLevel: '',
         remark: '',
         createUserId: null,
         createUserName: null,
@@ -242,6 +244,10 @@ export default {
     }
   },
   methods: {
+    // 处理选中职位变更事件
+    handleSelectCaseChange (val) {
+      this.selectedCase = val
+    },
     // 更新关注列表
     updateCandidateAttention () {
       let params = {
@@ -396,13 +402,7 @@ export default {
     },
     // 保存 新评论
     saveComment () {
-      if (this.newComment.content === null || this.newComment.content.length === 0) {
-        this.$message({
-          message: '请填写评论内容！',
-          type: 'warning'
-        })
-        return
-      }
+      // 必须先保存候选人
       if (this.form.id === null || this.form.id.length === 0) {
         this.$message({
           message: '请先保存候选人！',
@@ -410,9 +410,35 @@ export default {
         })
         return
       }
+      // 除了END阶段以外，其他阶段必须填写评论内容
+      if (this.newComment.phase !== 'END') {
+        if (this.newComment.content === null || this.newComment.content.length === 0) {
+          this.$message({
+            message: '请填写评论内容！',
+            type: 'warning'
+          })
+          return
+        }
+      }
       // 组装数据
       let comment = this.newComment
       comment['candidateId'] = this.form.id
+      // 如果只有一个关联职位，就作为默认职位
+      if (this.candidateForCaseList.length === 1) {
+        this.selectedCase = this.candidateForCaseList[0]
+      }
+      // 只有SL和TI时可以不选择职位
+      if (this.selectedCase === null && this.newComment.phase !== 'SL' && this.newComment.phase !== 'TI') {
+        this.$message({
+          message: '请选择关联职位！',
+          type: 'warning'
+        })
+        return
+      }
+      comment['clientId'] = this.selectedCase.clientId
+      comment['clientName'] = this.selectedCase.clientName
+      comment['caseId'] = this.selectedCase.caseId
+      comment['caseTitle'] = this.selectedCase.title
       // 调用接口
       commentApi.save(comment).then(res => {
         if (res.status === 200) {

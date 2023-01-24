@@ -144,6 +144,7 @@ export default {
         gp: 0,
         billing: 0,
         onBoardDate: '',
+        guaranteeDate: '',
         offerDate: '',
         paymentDate: '',
         invoiceDate: '',
@@ -332,6 +333,7 @@ export default {
         this.form.gp = 0
         this.form.billing = 0
         this.form.onBoardDate = ''
+        this.form.guaranteeDate = ''
         this.form.offerDate = ''
         this.form.paymentDate = ''
         this.form.invoiceDate = ''
