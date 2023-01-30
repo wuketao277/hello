@@ -263,7 +263,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate' || key === 'calcGP') {
+      if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate' || key === 'calcGP' || key === 'invoiceDate') {
         return commonJS.isAdminInArray(this.roles)
       } else if (key === 'save') {
         // 保持按钮。如果已经是审批状态，只有管理员显示保存按钮

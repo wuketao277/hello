@@ -632,7 +632,8 @@
                             type="date"
                             placeholder="选择日期"
                             style="width:100%;"
-                            value-format="yyyy-MM-dd"></el-date-picker>
+                            value-format="yyyy-MM-dd"
+                            v-show="showControl('invoiceDate')"></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>
