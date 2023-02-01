@@ -62,10 +62,37 @@ export default {
         })
       }
     },
+    // 删除
+    deleteById () {
+      if (this.checkSelectRow()) {
+        this.$confirm('确认要删除该记录吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '放弃'
+        })
+          .then(() => {
+            salaryApi.deleteById(this.currentRow.id).then(res => {
+              if (res.status !== 200) {
+                this.$message.error({
+                  message: '删除失败，请联系管理员！'
+                })
+              } else {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                this.query()
+              }
+            })
+          })
+      }
+    },
     // 显示控制
     showControl (key) {
       if (key === 'generateSalary' || key === 'modifySalary' ||
-        key === 'loginName' || key === 'workingDays' || key === 'historyDebt') {
+        key === 'loginName' || key === 'workingDays' || key === 'historyDebt' ||
+        key === 'delete') {
         return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
