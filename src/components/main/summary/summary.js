@@ -97,6 +97,7 @@ export default {
     },
     // 获取页签选择
     getTabIndex () {
+      debugger
       if (typeof (window.localStorage['summary.tabIndex']) === 'undefined') {
         return '0'
       } else {
@@ -106,6 +107,7 @@ export default {
     // 页签点击
     tabClick (tab) {
       // 将新页签索引号保存起来
+      debugger
       window.localStorage['summary.tabIndex'] = tab.index
     },
     // 查看候选人信息
@@ -431,12 +433,12 @@ export default {
         // 姓名排序
         this.commentsDetailTable.sort(function (a, b) {
           let result = 0
-          if (a['chineseName'] === b['chineseName']) {
+          if (a['candidateName'] === b['candidateName']) {
             // 姓名相同按时间排序
             result = a['inputTime'] >= b['inputTime'] ? 1 : -1
-          } else if (a['chineseName'] > b['chineseName']) {
+          } else if (a['candidateName'] > b['candidateName']) {
             result = 1
-          } else if (a['chineseName'] < b['chineseName']) {
+          } else if (a['candidateName'] < b['candidateName']) {
             result = -1
           }
           return result

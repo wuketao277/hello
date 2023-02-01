@@ -262,8 +262,7 @@
                          @click="updateCandidateForCaseAttention(scope.row, false)">取消关注</el-button>
               <el-button size="mini"
                          type="danger"
-                         @click="deleteRecommend(scope.$index, scope.row)"
-                         v-show="showControl('deleteRecommend')">删除推荐</el-button>
+                         @click="deleteRecommend(scope.$index, scope.row)">删除推荐</el-button>
             </template>
           </el-table-column>
           <el-table-column width="120"

@@ -15,7 +15,7 @@ export default {
     downloadFile,
     selectCase
   },
-  data () {
+  data() {
     return {
       attention: false,
       selectCaseDialogShow: false, // 选择职位对话框
@@ -50,93 +50,93 @@ export default {
         notMatchReasonDetail: ''
       },
       phaseOptions: [{
-        value: 'SL',
-        lable: 'SL'
-      },
-      {
-        value: 'TI',
-        lable: 'TI'
-      },
-      {
-        value: 'VI',
-        lable: 'VI'
-      },
-      {
-        value: 'IOI',
-        lable: 'IOI'
-      },
-      {
-        value: 'CVO',
-        lable: 'CVO'
-      },
-      {
-        value: '1st Interview',
-        lable: '1st Interview'
-      },
-      {
-        value: '2nd Interview',
-        lable: '2nd Interview'
-      },
-      {
-        value: '3rd Interview',
-        lable: '3rd Interview'
-      },
-      {
-        value: '4th Interview',
-        lable: '4th Interview'
-      },
-      {
-        value: 'Final Interview',
-        lable: 'Final Interview'
-      },
-      {
-        value: 'Offer Signed',
-        lable: 'Offer Signed'
-      },
-      {
-        value: 'On Board',
-        lable: 'On Board'
-      },
-      {
-        value: 'Pre. Service',
-        lable: 'Pre. Service'
-      },
-      {
-        value: 'On Service',
-        lable: 'On Service'
-      },
-      {
-        value: 'Week Service',
-        lable: 'Week Service'
-      },
-      {
-        value: 'Month Service',
-        lable: 'Month Service'
-      },
-      {
-        value: '2Month Service',
-        lable: '2Month Service'
-      },
-      {
-        value: '3Month Service',
-        lable: '3Month Service'
-      },
-      {
-        value: '4Month Service',
-        lable: '4Month Service'
-      },
-      {
-        value: '5Month Service',
-        lable: '5Month Service'
-      },
-      {
-        value: '6Month Service',
-        lable: '6Month Service'
-      },
-      {
-        value: 'END',
-        lable: 'END'
-      }
+          value: 'SL',
+          lable: 'SL'
+        },
+        {
+          value: 'TI',
+          lable: 'TI'
+        },
+        {
+          value: 'VI',
+          lable: 'VI'
+        },
+        {
+          value: 'IOI',
+          lable: 'IOI'
+        },
+        {
+          value: 'CVO',
+          lable: 'CVO'
+        },
+        {
+          value: '1st Interview',
+          lable: '1st Interview'
+        },
+        {
+          value: '2nd Interview',
+          lable: '2nd Interview'
+        },
+        {
+          value: '3rd Interview',
+          lable: '3rd Interview'
+        },
+        {
+          value: '4th Interview',
+          lable: '4th Interview'
+        },
+        {
+          value: 'Final Interview',
+          lable: 'Final Interview'
+        },
+        {
+          value: 'Offer Signed',
+          lable: 'Offer Signed'
+        },
+        {
+          value: 'On Board',
+          lable: 'On Board'
+        },
+        {
+          value: 'Pre. Service',
+          lable: 'Pre. Service'
+        },
+        {
+          value: 'On Service',
+          lable: 'On Service'
+        },
+        {
+          value: 'Week Service',
+          lable: 'Week Service'
+        },
+        {
+          value: 'Month Service',
+          lable: 'Month Service'
+        },
+        {
+          value: '2Month Service',
+          lable: '2Month Service'
+        },
+        {
+          value: '3Month Service',
+          lable: '3Month Service'
+        },
+        {
+          value: '4Month Service',
+          lable: '4Month Service'
+        },
+        {
+          value: '5Month Service',
+          lable: '5Month Service'
+        },
+        {
+          value: '6Month Service',
+          lable: '6Month Service'
+        },
+        {
+          value: 'END',
+          lable: 'END'
+        }
       ],
       // 新评论
       newComment: {
@@ -147,15 +147,15 @@ export default {
       comments: [],
       rules: {
         chineseName: [{
-          required: true,
-          message: '中文名必填',
-          trigger: 'blur'
-        },
-        {
-          max: 25,
-          message: '中文名长度不能大于25个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '中文名必填',
+            trigger: 'blur'
+          },
+          {
+            max: 25,
+            message: '中文名长度不能大于25个字符',
+            trigger: 'blur'
+          }
         ],
         englishName: [{
           max: 100,
@@ -211,26 +211,26 @@ export default {
           trigger: 'blur'
         },
         taskTitle: [{
-          required: true,
-          message: '任务标题必填',
-          trigger: 'blur'
-        },
-        {
-          max: 200,
-          message: '任务标题长度不能大于200个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '任务标题必填',
+            trigger: 'blur'
+          },
+          {
+            max: 200,
+            message: '任务标题长度不能大于200个字符',
+            trigger: 'blur'
+          }
         ],
         taskContent: [{
-          required: true,
-          message: '任务内容必填',
-          trigger: 'blur'
-        },
-        {
-          max: 2000,
-          message: '任务内容长度不能大于2000个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '任务内容必填',
+            trigger: 'blur'
+          },
+          {
+            max: 2000,
+            message: '任务内容长度不能大于2000个字符',
+            trigger: 'blur'
+          }
         ]
       },
       // 性别
@@ -245,11 +245,11 @@ export default {
   },
   methods: {
     // 处理选中职位变更事件
-    handleSelectCaseChange (val) {
+    handleSelectCaseChange(val) {
       this.selectedCase = val
     },
     // 更新关注列表
-    updateCandidateAttention () {
+    updateCandidateAttention() {
       let params = {
         attention: this.attention,
         candidateId: this.form.id
@@ -269,7 +269,7 @@ export default {
       })
     },
     // 查询候选人关注情况
-    queryCandidateAttentionByCandidateId () {
+    queryCandidateAttentionByCandidateId() {
       if (this.form.id !== null) {
         candidateApi.queryCandidateAttentionByCandidateId(this.form.id).then(res => {
           if (res.status === 200) {
@@ -278,16 +278,16 @@ export default {
         })
       }
     },
-    showCommentDeleteButton (username) {
+    showCommentDeleteButton(username) {
       return commonJS.isAdmin() || commonJS.getUserName() === username
     },
     // 删除评论
-    deleteComment (id) {
+    deleteComment(id) {
       this.$confirm('确认要评论吗？', '确认信息', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        })
         .then(() => {
           // 调用接口
           commentApi.deleteById(id).then(res => {
@@ -311,7 +311,7 @@ export default {
         })
     },
     // 显示控制
-    showControl (key) {
+    showControl(key) {
       if (key === 'deleteRecommend' || key === 'delete') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -319,11 +319,11 @@ export default {
       return true
     },
     // 是否关注
-    isAttention (row) {
+    isAttention(row) {
       return row.attention
     },
     // 更新候选人职位关注信息
-    updateCandidateForCaseAttention (row, attention) {
+    updateCandidateForCaseAttention(row, attention) {
       let params = {
         id: row.id,
         attention: attention
@@ -345,12 +345,12 @@ export default {
       })
     },
     // 删除推荐
-    deleteRecommend (index, row) {
+    deleteRecommend(index, row) {
       this.$confirm('确认要删除推荐吗？', '确认信息', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        })
         .then(() => {
           candidateForCaseApi.deleteById(row.id).then(res => {
             if (res.status !== 200) {
@@ -369,7 +369,7 @@ export default {
         })
     },
     // 编辑职位
-    editCase (index, row) {
+    editCase(index, row) {
       this.$router.push({
         path: '/case/case',
         query: {
@@ -379,7 +379,7 @@ export default {
       })
     },
     // 编辑客户
-    editClient (index, row) {
+    editClient(index, row) {
       this.$router.push({
         path: '/client/client',
         query: {
@@ -389,7 +389,7 @@ export default {
       })
     },
     // 打开职位选择对话框
-    openSelectCaseDialog () {
+    openSelectCaseDialog() {
       // 候选人必须先保存
       if (this.form.id === null) {
         this.$message({
@@ -401,7 +401,7 @@ export default {
       this.selectCaseDialogShow = true
     },
     // 保存 新评论
-    saveComment () {
+    saveComment() {
       // 必须先保存候选人
       if (this.form.id === null || this.form.id.length === 0) {
         this.$message({
@@ -428,17 +428,20 @@ export default {
         this.selectedCase = this.candidateForCaseList[0]
       }
       // 只有SL和TI时可以不选择职位
-      if (this.selectedCase === null && this.newComment.phase !== 'SL' && this.newComment.phase !== 'TI') {
-        this.$message({
-          message: '请选择关联职位！',
-          type: 'warning'
-        })
-        return
+      if (this.selectedCase === null) {
+        if (this.newComment.phase !== 'SL' && this.newComment.phase !== 'TI') {
+          this.$message({
+            message: '请选择关联职位！',
+            type: 'error'
+          })
+          return
+        }
+      } else {
+        comment['clientId'] = this.selectedCase.clientId
+        comment['clientName'] = this.selectedCase.clientName
+        comment['caseId'] = this.selectedCase.caseId
+        comment['caseTitle'] = this.selectedCase.title
       }
-      comment['clientId'] = this.selectedCase.clientId
-      comment['clientName'] = this.selectedCase.clientName
-      comment['caseId'] = this.selectedCase.caseId
-      comment['caseTitle'] = this.selectedCase.title
       // 调用接口
       commentApi.save(comment).then(res => {
         if (res.status === 200) {
@@ -462,7 +465,7 @@ export default {
       })
     },
     // 查询所有评论
-    queryComment () {
+    queryComment() {
       if (this.form.id !== null) {
         commentApi.findAllByCandidateIdOrderByDesc({
           'candidateId': this.form.id
@@ -474,7 +477,7 @@ export default {
       }
     },
     // 取消
-    cancel () {
+    cancel() {
       if (typeof (this.$route.query.mode) !== 'undefined') {
         this.mode = this.$route.query.mode
         this.form = this.$route.query.candidate
@@ -504,7 +507,7 @@ export default {
       }
     },
     // 保存候选人-子方法
-    saveCandidate () {
+    saveCandidate() {
       // 如果校验通过就调用后端接口
       candidateApi.save(this.form).then(
         res => {
@@ -543,7 +546,7 @@ export default {
         })
     },
     // 保存候选人
-    save () {
+    save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           if (this.form.id === null && this.form.phoneNo !== '' && this.form.phoneNo !== null) {
@@ -574,7 +577,7 @@ export default {
       })
     },
     // 查询当前候选人相关的任务
-    queryTask () {
+    queryTask() {
       if (this.form.id !== null) {
         myTaskApi.findByRelativeCandidateId(this.form.id).then(res => {
           if (res.status === 200) {
@@ -584,7 +587,7 @@ export default {
       }
     },
     // 查询当前候选人简历信息
-    queryResume () {
+    queryResume() {
       if (this.form.id !== null) {
         let params = {
           'candidateId': this.form.id
@@ -597,7 +600,7 @@ export default {
       }
     },
     // 查询当前候选人推荐职位信息
-    queryCandidateForCaseList () {
+    queryCandidateForCaseList() {
       if (this.form.id !== null) {
         let params = {
           'candidateId': this.form.id
@@ -610,7 +613,7 @@ export default {
       }
     },
     // 保存任务
-    saveTask () {
+    saveTask() {
       this.newTask.relativeCandidateId = this.form.id
       myTaskApi.saveTaskToSelf(this.newTask).then(
         res => {
@@ -621,7 +624,7 @@ export default {
         })
     },
     // 打开上传文件对话框
-    openUploadFileDialog () {
+    openUploadFileDialog() {
       if (this.form.id == null) {
         this.$message({
           message: '请先保存候选人信息！',
@@ -637,7 +640,7 @@ export default {
       }
     },
     // 查询上传文件集合
-    queryUploadFiles () {
+    queryUploadFiles() {
       if (this.form.id !== null) {
         let params = {
           'relativeTableId': this.form.id,
@@ -650,7 +653,7 @@ export default {
         })
       }
     },
-    queryOthers () {
+    queryOthers() {
       // 查询comment
       this.queryComment()
       // 查询任务
@@ -665,7 +668,7 @@ export default {
       this.queryCandidateAttentionByCandidateId()
     },
     // “推荐职位”对话框返回
-    sureSelectCaseDialog (val) {
+    sureSelectCaseDialog(val) {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       let params = {
@@ -681,7 +684,7 @@ export default {
         })
     },
     // 通过id删除候选人
-    deleteById () {
+    deleteById() {
       this.$confirm('确认要删除候选人 ' + this.form.chineseName + ' 吗？', '确认信息', {
         distinguishCancelAndClose: true,
         confirmButtonText: '确定',
@@ -700,7 +703,7 @@ export default {
     }
   },
   computed: {},
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {
