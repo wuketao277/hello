@@ -1,6 +1,6 @@
 export default {
   // 前端版本
-  version: '1',
+  version: '2',
   versionCheck () {
     // 先获取本地版本
     let localVersion = window.localStorage['version']
@@ -112,18 +112,21 @@ export default {
     }
     return user
   },
-  getStorageContent (searchContent, defaultValue) {
-    if (typeof (window.localStorage[searchContent]) === 'undefined') {
+  getStorageContent (key, defaultValue) {
+    if (typeof (window.localStorage[key]) === 'undefined') {
       return typeof (defaultValue) === 'undefined' ? '' : defaultValue
     } else {
-      return window.localStorage[searchContent]
+      return window.localStorage[key]
     }
   },
-  getStorageContentObject (searchContent) {
-    if (typeof (window.localStorage[searchContent]) === 'undefined') {
+  setStorageContent (key, value) {
+    window.localStorage[key] = value
+  },
+  getStorageContentObject (key) {
+    if (typeof (window.localStorage[key]) === 'undefined') {
       return {}
     } else {
-      return JSON.parse(window.localStorage[searchContent])
+      return JSON.parse(window.localStorage[key])
     }
   },
   getPageNumber (pageNumber) {

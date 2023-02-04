@@ -11,19 +11,24 @@
                    name="0">
         <div class="toolbar">
           <el-button type="primary"
-                     size="mini"
-                     @click="queryPipeline('self')">自 己</el-button>
+                     plain
+                     size="small"
+                     @click="queryPipeline('myself')">自 己</el-button>
           <el-button type="primary"
-                     size="mini"
+                     plain
+                     size="small"
                      @click="queryPipeline('all')">全 部</el-button>
           <el-button type="primary"
-                     size="mini"
+                     plain
+                     size="small"
                      @click="queryPipeline('shenyang')">沈 阳</el-button>
           <el-button type="primary"
-                     size="mini"
+                     plain
+                     size="small"
                      @click="queryPipeline('shanghai')">上 海</el-button>
           <el-button type="primary"
-                     size="mini"
+                     plain
+                     size="small"
                      @click="queryPipeline('beijing')">北 京</el-button>
         </div>
         <div v-for="pipeline in pipelineList"
@@ -55,12 +60,19 @@
                              :key="candidate.id"
                              type="text"
                              @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
               <div style="width:14%;float:left;">
                 <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
                   <span style="width:100%;margin:10px;10px;0px;10px;">Invoice</span><br />
+                </div>
+                <div style="padding:0px 10px 0px 10px;">
+                  <el-button v-for="candidate in pipecase.invoiceCandidateList"
+                             :key="candidate.id"
+                             type="text"
+                             @click="jumpToCandidateById(candidate.id)"
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
               <div style="width:14%;float:left;">
@@ -72,7 +84,7 @@
                              :key="candidate.id"
                              type="text"
                              @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
               <div style="width:14%;float:left;">
@@ -84,7 +96,7 @@
                              :key="candidate.id"
                              type="text"
                              @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
               <div style="width:14%;float:left;">
@@ -96,7 +108,7 @@
                              :key="candidate.id"
                              type="text"
                              @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
               <div style="width:14%;float:left;">
@@ -108,7 +120,7 @@
                              :key="candidate.id"
                              type="text"
                              @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
               <div style="width:14%;float:left;">
@@ -120,7 +132,7 @@
                              :key="candidate.id"
                              type="text"
                              @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#606266;font-size:16px;">{{candidate.chineseName}}</el-button>
+                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
                 </div>
               </div>
             </div>
@@ -134,11 +146,13 @@
                    name="1">
         <div class="toolbar">
           <el-button type="warning"
-                     size="mini"
+                     size="small"
+                     plain
                      v-if="!attentionCaseShowCandidate"
                      @click="switchAttentionCaseShowCandidate(true)">显示候选人信息</el-button>
           <el-button type="primary"
-                     size="mini"
+                     size="small"
+                     plain
                      v-if="attentionCaseShowCandidate"
                      @click="switchAttentionCaseShowCandidate(false)">隐藏候选人信息</el-button>
         </div>
@@ -191,11 +205,13 @@
                    name="2">
         <div class="toolbar">
           <el-button type="warning"
-                     size="mini"
+                     size="small"
+                     plain
                      v-if="!cwCaseShowCandidate"
                      @click="switchCWCaseShowCandidate(true)">显示候选人信息</el-button>
           <el-button type="primary"
-                     size="mini"
+                     size="small"
+                     plain
                      v-if="cwCaseShowCandidate"
                      @click="switchCWCaseShowCandidate(false)">隐藏候选人信息</el-button>
         </div>
@@ -247,6 +263,7 @@
                    name="3">
         <el-button type="primary"
                    plain
+                   size="small"
                    shadow="hover"
                    v-for="candidateAttention in candidateAttentionList"
                    :key="candidateAttention.candidateId"
@@ -300,45 +317,68 @@
                           value-format="yyyy-MM-dd"
                           placeholder="开始日期"
                           v-model="startDate"
-                          style="width:180px;"></el-date-picker>
+                          size="small"
+                          style="width:130px;"></el-date-picker>
           <span>-</span>
           <el-date-picker type="date"
                           value-format="yyyy-MM-dd"
                           placeholder="结束日期"
                           v-model="endDate"
-                          style="width:180px;"></el-date-picker>&nbsp;&nbsp;
-          <el-button type="success"
-                     size="medium"
-                     icon="el-icon-setting"
-                     @click="calcKPI()">计算KPI</el-button>
-          <el-button type="success"
+                          size="small"
+                          style="width:130px;"></el-date-picker>&nbsp;&nbsp;
+          <el-button type="primary"
                      plain
-                     size="medium"
+                     size="small"
                      @click="calcDate('today')">今天</el-button>
-          <el-button type="success"
+          <el-button type="primary"
                      plain
-                     size="medium"
+                     size="small"
                      @click="calcDate('week')">本周</el-button>
-          <el-button type="success"
+          <el-button type="primary"
                      plain
-                     size="medium"
+                     size="small"
                      @click="calcDate('month')">本月</el-button>
-          <el-button type="success"
+          <el-button type="primary"
+                     size="small"
                      plain
-                     size="medium"
                      @click="calcDate('tonow')">截止目前</el-button>
           <el-button type="primary"
-                     size="medium"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('myself')">自己</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('all')">全部</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('shanghai')">上海</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('beijing')">北京</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('shenyang')">沈阳</el-button>
+          <el-button type="primary"
+                     size="small"
+                     icon="el-icon-setting"
+                     plain
+                     @click="calcKPI()">计算KPI</el-button>
+          <el-button type="primary"
+                     size="small"
                      icon="el-icon-download"
+                     plain
                      @click="downloadKPI()">下载KPI</el-button>
         </div>
-        <br />
         <div>
           <el-table :data="KPIDashboard"
                     :border="true"
                     :highlight-current-row="true"
                     :stripe="true"
-                    style="width: 100%"
+                    style="width: 100%;margin-top:10px;"
                     max-height="2000"
                     @current-change="rowChange">
             <el-table-column label="操作">
@@ -347,7 +387,7 @@
                            @click="kpiDetail(scope.$index, scope.row)">详情</el-button>
               </template>
             </el-table-column>
-            <el-table-column prop="realName"
+            <el-table-column prop="userName"
                              label="姓名"></el-table-column>
             <el-table-column prop="ti"
                              label="TI"></el-table-column>
@@ -373,10 +413,12 @@
         <div class="toolbar">
           <el-button type="success"
                      size="small"
+                     plain
                      icon="el-icon-circle-check"
                      @click="sortUsers">排 序</el-button>
           <el-button type="warning"
                      size="small"
+                     plain
                      icon="el-icon-delete"
                      @click="clearSelectUsers">清 空</el-button>
         </div>

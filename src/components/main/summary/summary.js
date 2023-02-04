@@ -120,6 +120,12 @@ export default {
         }
       })
     },
+    // 设置范围
+    kpiScopeChange (val) {
+      commonJs.setStorageContent('summary.kpiScope', val)
+      // 计算kpi
+      this.calcKPI()
+    },
     // 计算开始日期和结束日期
     calcDate (type) {
       if (type === 'today') {
@@ -263,7 +269,7 @@ export default {
         this.$message.error('请先选择要计算的日期')
         return
       }
-      commentApi.downloadKPI(this.startDate, this.endDate)
+      commentApi.downloadKPI(this.startDate, this.endDate, commonJs.getStorageContent('summary.kpiScope', 'myself'))
     },
     // 计算KPI
     calcKPI () {
@@ -273,15 +279,21 @@ export default {
       }
       let request = {
         'startDate': this.startDate,
-        'endDate': this.endDate
+        'endDate': this.endDate,
+        'scope': commonJs.getStorageContent('summary.kpiScope', 'myself')
       }
       commentApi.calcKPI(request).then(res => {
         if (res.status === 200) {
           // 重新查询全部评论
           this.KPIDashboard = res.data
+          this.$message({
+            message: '查询完成！',
+            type: 'success',
+            showClose: true
+          })
         } else {
           this.$message({
-            message: '保存异常，请联系管理员！',
+            message: '查询异常，请联系管理员！',
             type: 'warning',
             showClose: true
           })

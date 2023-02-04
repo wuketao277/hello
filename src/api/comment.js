@@ -19,8 +19,8 @@ export default {
     return axios.post('/comment/calcKPI', params)
   },
   // 下载KPI
-  downloadKPI (startDate, endDate) {
-    let urls = 'http://www.helloapplicant.com/comment/downloadKPI?startDate=' + startDate + '&endDate=' + endDate
+  downloadKPI (startDate, endDate, scope) {
+    let urls = 'http://www.helloapplicant.com/comment/downloadKPI?startDate=' + startDate + '&endDate=' + endDate + '&scope=' + scope
     window.open(urls, '_blank')
   },
   // 通过开始时间、结束时间、录入人 查找评论
