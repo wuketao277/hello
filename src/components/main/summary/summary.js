@@ -497,6 +497,6 @@ export default {
       }
     })
     // 查询pipeline情况
-    this.queryPipeline(commonJs.getStorageContent('summary.pipelineRange', 'self'))
+    this.queryPipeline(commonJs.getStorageContent('summary.pipelineRange', 'myself'))
   }
 }
