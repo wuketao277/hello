@@ -35,9 +35,20 @@
              :key="pipeline.user.id"
              style="clear:both;">
           <span>{{pipeline.user.username}}</span>
+          <el-button type="text"
+                     plain
+                     size="mini"
+                     @click="openPipeline(pipeline.user.username)"
+                     v-if="!showPipeline(pipeline.user.username)">展开</el-button>
+          <el-button type="text"
+                     plain
+                     size="mini"
+                     @click="closePipeline(pipeline.user.username)"
+                     v-if="showPipeline(pipeline.user.username)">折叠</el-button>
           <div v-for="pipecase in pipeline.pipelineCaseList"
                :key="pipecase.id"
-               style="margin-left:30px;clear:both;">
+               style="margin-left:30px;clear:both;"
+               v-show="showPipeline(pipeline.user.username)">
             <el-row>
               <el-col :span="8">
                 <el-button type="text"

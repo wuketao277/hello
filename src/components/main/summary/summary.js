@@ -33,10 +33,23 @@ export default {
       users: [],
       phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
       selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 选择的阶段
-      pipelineList: []
+      pipelineList: [],
+      pipelineShowControlList: []
     }
   },
   methods: {
+    // 展开pipeline
+    openPipeline (val) {
+      this.pipelineShowControlList.push(val)
+    },
+    // 关闭pipeline
+    closePipeline (val) {
+      this.pipelineShowControlList.pop(val)
+    },
+    // pipeline显示控制
+    showPipeline (val) {
+      return this.pipelineShowControlList.indexOf(val, 0) >= 0
+    },
     // 查询pipeline
     queryPipeline (val) {
       window.localStorage['summary.pipelineRange'] = val
@@ -46,6 +59,11 @@ export default {
       summaryApi.queryPipeline(params).then(res => {
         if (res.status === 200) {
           this.pipelineList = res.data
+          this.$message({
+            message: '查询完成！',
+            type: 'success',
+            showClose: true
+          })
         }
       })
     },
