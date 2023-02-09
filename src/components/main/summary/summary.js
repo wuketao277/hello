@@ -38,17 +38,33 @@ export default {
     }
   },
   methods: {
+    // 展开全部pipeline
+    openAllPipeline () {
+      for (let i = 0; i < this.pipelineList.length; i++) {
+        // 遍历pipeline中所有的用户添加到pipeline的显示控制数组中
+        let name = this.pipelineList[i].user.username
+        if (this.pipelineShowControlList.indexOf(name, 0) === -1) {
+          // 不存在才添加
+          this.pipelineShowControlList.push(name)
+        }
+      }
+    },
+    // 折叠全部pipeline
+    closeAllPipeline () {
+      // 清空pipeline的显示控制数组中所有数据
+      this.pipelineShowControlList = []
+    },
     // 展开pipeline
     openPipeline (val) {
       this.pipelineShowControlList.push(val)
     },
     // 关闭pipeline
     closePipeline (val) {
-      this.pipelineShowControlList.pop(val)
+      this.pipelineShowControlList = this.pipelineShowControlList.filter(item => item !== val)
     },
     // pipeline显示控制
     showPipeline (val) {
-      return this.pipelineShowControlList.indexOf(val, 0) >= 0
+      return this.pipelineShowControlList.indexOf(val, 0) > -1
     },
     // 查询pipeline
     queryPipeline (val) {

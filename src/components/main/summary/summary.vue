@@ -31,6 +31,14 @@
                      size="small"
                      @click="queryPipeline('beijing')">北 京</el-button>
         </div>
+        <el-button type="text"
+                   plain
+                   size="mini"
+                   @click="openAllPipeline()">展开全部</el-button>
+        <el-button type="text"
+                   plain
+                   size="mini"
+                   @click="closeAllPipeline()">折叠全部</el-button>
         <div v-for="pipeline in pipelineList"
              :key="pipeline.user.id"
              style="clear:both;">
