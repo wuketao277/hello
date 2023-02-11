@@ -355,16 +355,20 @@
             <el-col :span="2">
               <div class="grid-content bg-purple">{{comment.phase}}</div>
             </el-col>
-            <el-col :span="15">
+            <el-col :span="14">
               <div class="grid-content bg-purple">{{comment.content}}</div>
             </el-col>
-            <el-col :span="1">
+            <el-col :span="2"
+                    style="text-align:right;">
               <el-button size="mini"
-                         type="danger"
-                         icon="el-icon-delete"
-                         circle
+                         type="text"
+                         v-if="showCommentCFButton(comment.phase)"
+                         @click="addCFModel()">添加CF</el-button>
+              <el-button size="mini"
+                         type="text"
+                         style="color:red;"
                          v-if="showCommentDeleteButton(comment.username)"
-                         @click="deleteComment(comment.id)"></el-button>
+                         @click="deleteComment(comment.id)">删除</el-button>
             </el-col>
           </el-row>
         </div>
