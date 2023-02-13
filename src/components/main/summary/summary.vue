@@ -34,11 +34,23 @@
         <el-button type="text"
                    plain
                    size="mini"
+                   v-if="pipelineShowControlList.length === 0"
                    @click="openAllPipeline()">展开全部</el-button>
         <el-button type="text"
                    plain
                    size="mini"
+                   v-if="pipelineShowControlList.length !== 0"
                    @click="closeAllPipeline()">折叠全部</el-button>
+        <el-button type="text"
+                   plain
+                   size="mini"
+                   v-if="!pipelineCaseShowControlFlag"
+                   @click="pipelineCaseShowControlFlag = true">显示空职位</el-button>
+        <el-button type="text"
+                   plain
+                   size="mini"
+                   v-if="pipelineCaseShowControlFlag"
+                   @click="pipelineCaseShowControlFlag = false">隐藏空职位</el-button>
         <div v-for="pipeline in pipelineList"
              :key="pipeline.user.id"
              style="clear:both;">
@@ -57,101 +69,103 @@
                :key="pipecase.id"
                style="margin-left:30px;clear:both;"
                v-show="showPipeline(pipeline.user.username)">
-            <el-row>
-              <el-col :span="8">
-                <el-button type="text"
-                           @click="toClient(pipecase.clientId)"
-                           style="font-size:18px;">{{pipecase.clientChineseName}}</el-button>
-              </el-col>
-              <el-col :span="8">
-                <el-button type="text"
-                           @click="toCase(pipecase.id)"
-                           style="font-size:18px;">{{pipecase.title}}</el-button>
-              </el-col>
-            </el-row>
-            <div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span>Payment</span><br />
+            <div v-if="pipelineCaseShowControlFlag || pipecase.paymentCandidateList.length !== 0">
+              <el-row>
+                <el-col :span="8">
+                  <el-button type="text"
+                             @click="toClient(pipecase.clientId)"
+                             style="font-size:18px;">{{pipecase.clientChineseName}}</el-button>
+                </el-col>
+                <el-col :span="8">
+                  <el-button type="text"
+                             @click="toCase(pipecase.id)"
+                             style="font-size:18px;">{{pipecase.title}}</el-button>
+                </el-col>
+              </el-row>
+              <div>
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span>Payment</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.paymentCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.paymentCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span style="width:100%;margin:10px;10px;0px;10px;">Invoice</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.invoiceCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
-              </div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span style="width:100%;margin:10px;10px;0px;10px;">Invoice</span><br />
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span style="width:100%;margin:10px;10px;0px;10px;">Onboard</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.onboardCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.invoiceCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span style="width:100%;margin:10px;10px;0px;10px;">Offer</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.offerCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
-              </div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span style="width:100%;margin:10px;10px;0px;10px;">Onboard</span><br />
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span style="width:100%;margin:10px;10px;0px;10px;">Interview</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.interviewCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.onboardCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span style="width:100%;margin:10px;10px;0px;10px;">CVO</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.cvoCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
-              </div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span style="width:100%;margin:10px;10px;0px;10px;">Offer</span><br />
-                </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.offerCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
-                </div>
-              </div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span style="width:100%;margin:10px;10px;0px;10px;">Interview</span><br />
-                </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.interviewCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
-                </div>
-              </div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span style="width:100%;margin:10px;10px;0px;10px;">CVO</span><br />
-                </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.cvoCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
-                </div>
-              </div>
-              <div style="width:14%;float:left;">
-                <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
-                  <span style="width:100%;margin:10px;10px;0px;10px;">VI/IOI</span><br />
-                </div>
-                <div style="padding:0px 10px 0px 10px;">
-                  <el-button v-for="candidate in pipecase.viioiCandidateList"
-                             :key="candidate.id"
-                             type="text"
-                             @click="jumpToCandidateById(candidate.id)"
-                             style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                <div style="width:14%;float:left;">
+                  <div style="background-color:#F2F6FC;padding:0px 10px 0px 10px;">
+                    <span style="width:100%;margin:10px;10px;0px;10px;">VI/IOI</span><br />
+                  </div>
+                  <div style="padding:0px 10px 0px 10px;">
+                    <el-button v-for="candidate in pipecase.viioiCandidateList"
+                               :key="candidate.id"
+                               type="text"
+                               @click="jumpToCandidateById(candidate.id)"
+                               style="margin:0px;padding:0px;color:#67C23A;font-size:16px;">{{candidate.chineseName}}</el-button>
+                  </div>
                 </div>
               </div>
             </div>

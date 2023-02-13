@@ -10,6 +10,7 @@ import summaryApi from '@/api/summary'
 export default {
   data () {
     return {
+      pipelineCaseShowControlFlag: false, // pipeline中空职位的显示控制
       calendarValue: new Date(),
       myTasks: [],
       myNewsList: [],
