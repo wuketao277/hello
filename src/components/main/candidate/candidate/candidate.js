@@ -145,6 +145,7 @@ export default {
       // 新评论
       newComment: {
         phase: 'TI',
+        interviewTime: null,
         content: ''
       },
       // 历史评论
@@ -292,18 +293,19 @@ export default {
         '5、现在还有在面试流程中的其他机会吗？如果都给你offer你怎么选？'
     },
     // Candidate Feedback的显示控制按钮
-    showCommentCFButton (phase) {
+    showCommentCFButton (row) {
+      let phase = row.phase
       if (phase === '1st Interview' || phase === '2nd Interview' || phase === '3rd Interview' || phase === '4th Interview' || phase === 'Final Interview') {
         return true
       }
       return false
     },
     // 评论删除按钮的显示控制
-    showCommentDeleteButton (username) {
-      return commonJS.isAdmin() || commonJS.getUserName() === username
+    showCommentDeleteButton (row) {
+      return commonJS.isAdmin() || commonJS.getUserName() === row.username
     },
     // 删除评论
-    deleteComment (id) {
+    deleteComment (row) {
       this.$confirm('确认要评论吗？', '确认信息', {
         distinguishCancelAndClose: true,
         confirmButtonText: '确定',
@@ -311,7 +313,7 @@ export default {
       })
         .then(() => {
           // 调用接口
-          commentApi.deleteById(id).then(res => {
+          commentApi.deleteById(row.id).then(res => {
             if (res.status === 200) {
               // 删除成功
               this.$message({
@@ -440,6 +442,19 @@ export default {
           })
           return
         }
+      }
+      // 面试阶段需要填写面试时间
+      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === 'Final Interview') {
+        if (this.newComment.interviewTime === null) {
+          this.$message({
+            message: '请填写面试时间',
+            type: 'warning'
+          })
+          return
+        }
+      } else {
+        // 非面试阶段，面试时间为空
+        this.newComment.interviewTime = null
       }
       // 组装数据
       let comment = this.newComment

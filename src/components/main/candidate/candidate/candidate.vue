@@ -316,6 +316,11 @@
               <el-form-item label="评论内容"
                             prop="content"
                             v-show="(mode === 'add' || mode === 'modify')">
+                <el-date-picker v-model="newComment.interviewTime"
+                                v-if="newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === 'Final Interview'"
+                                type="datetime"
+                                placeholder="选择面试时间">
+                </el-date-picker>
                 <el-input type="textarea"
                           v-model="newComment.content"
                           :autosize="{ minRows: 1, maxRows: 30}"></el-input>
@@ -324,54 +329,45 @@
           </el-row>
         </el-form>
         <!--评论开始-->
-        <div v-show="comments.length > 0"
-             style="margin-bottom:20px;">
-          <el-row style="text-align:left;">
-            <el-col :span="2">
-              <span>评论人</span>
-            </el-col>
-            <el-col :span="4">
-              <span>评论时间</span>
-            </el-col>
-            <el-col :span="2">
-              <span>评论阶段</span>
-            </el-col>
-            <el-col :span="15">
-              <span>评论内容</span>
-            </el-col>
-            <el-col :span="1">
-              <span>操作</span>
-            </el-col>
-          </el-row>
-          <el-row v-for="comment in comments"
-                  :key="comment.id"
-                  style="text-align:left;">
-            <el-col :span="2">
-              <div class="grid-content bg-purple">{{comment.username}}</div>
-            </el-col>
-            <el-col :span="4">
-              <div class="grid-content bg-purple">{{comment.inputTime.replace('T',' ')}}</div>
-            </el-col>
-            <el-col :span="2">
-              <div class="grid-content bg-purple">{{comment.phase}}</div>
-            </el-col>
-            <el-col :span="14">
-              <div class="grid-content bg-purple">{{comment.content}}</div>
-            </el-col>
-            <el-col :span="2"
-                    style="text-align:right;">
+        <el-table :data="comments"
+                  :border="true"
+                  :highlight-current-row="true"
+                  :stripe="true"
+                  style="width: 100%">
+          <el-table-column prop="username"
+                           label="评论人"
+                           width="100"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="inputTime"
+                           label="评论时间"
+                           width="180"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="phase"
+                           label="评论阶段"
+                           width="120"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="interviewTime"
+                           label="面试时间"
+                           width="180"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="content"
+                           label="评论内容"></el-table-column>
+          <el-table-column label="操作"
+                           width="120"
+                           show-overflow-tooltip>
+            <template slot-scope="scope">
               <el-button size="mini"
                          type="text"
-                         v-if="showCommentCFButton(comment.phase)"
+                         v-if="showCommentCFButton(scope.row)"
                          @click="addCFModel()">添加CF</el-button>
               <el-button size="mini"
                          type="text"
                          style="color:red;"
-                         v-if="showCommentDeleteButton(comment.username)"
-                         @click="deleteComment(comment.id)">删除</el-button>
-            </el-col>
-          </el-row>
-        </div>
+                         v-if="showCommentDeleteButton(scope.row)"
+                         @click="deleteComment(scope.row)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
         <!--评论结束-->
       </el-tab-pane>
       <el-tab-pane label="任务">
