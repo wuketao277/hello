@@ -10,7 +10,7 @@ import summaryApi from '@/api/summary'
 export default {
   data () {
     return {
-      pipelineCaseShowControlFlag: false, // pipeline中空职位的显示控制
+      pipelineCaseShowControlFlag: true, // pipeline中空职位的显示控制
       calendarValue: new Date(),
       myTasks: [],
       myNewsList: [],
@@ -76,6 +76,7 @@ export default {
       summaryApi.queryPipeline(params).then(res => {
         if (res.status === 200) {
           this.pipelineList = res.data
+          this.openAllPipeline()
           this.$message({
             message: '查询完成！',
             type: 'success',

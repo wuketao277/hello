@@ -69,14 +69,20 @@
                :key="pipecase.id"
                style="margin-left:30px;clear:both;"
                v-show="showPipeline(pipeline.user.username)">
-            <div v-if="pipelineCaseShowControlFlag || pipecase.paymentCandidateList.length !== 0">
+            <div v-if="pipelineCaseShowControlFlag || pipecase.paymentCandidateList.length !== 0
+             || pipecase.invoiceCandidateList.length !== 0
+              || pipecase.onboardCandidateList.length !== 0
+               || pipecase.offerCandidateList.length !== 0
+                || pipecase.interviewCandidateList.length !== 0
+                 || pipecase.cvoCandidateList.length !== 0
+                 || pipecase.viioiCandidateList.length !== 0">
               <el-row>
-                <el-col :span="8">
+                <el-col :span="12">
                   <el-button type="text"
                              @click="toClient(pipecase.clientId)"
                              style="font-size:18px;">{{pipecase.clientChineseName}}</el-button>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="12">
                   <el-button type="text"
                              @click="toCase(pipecase.id)"
                              style="font-size:18px;">{{pipecase.title}}</el-button>
