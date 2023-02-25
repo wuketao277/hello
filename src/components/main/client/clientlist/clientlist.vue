@@ -15,8 +15,7 @@
                  size="small"
                  icon="el-icon-edit"
                  @click="modify">修 改</el-button>
-      <el-button type="
-                 primary"
+      <el-button type="primary"
                  size="small"
                  icon="el-icon-share"
                  @click="detail">查 看</el-button>
