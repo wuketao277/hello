@@ -272,7 +272,7 @@
                          @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="lastPhase"
+          <el-table-column prop="farthestPhase"
                            width="120"
                            label="最远阶段"></el-table-column>
           <el-table-column prop="latestCommentUsername"

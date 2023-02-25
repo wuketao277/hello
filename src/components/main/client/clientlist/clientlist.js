@@ -29,13 +29,14 @@ export default {
   methods: {
     // 处理列表双击事件
     handleDBClick () {
-      if (this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)) {
-        // 管理员可以修改
-        this.modify()
-      } else {
-        // 非管理员只读
-        this.detail()
-      }
+      this.modify()
+      // if (this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)) {
+      //   // 管理员可以修改
+      //   this.modify()
+      // } else {
+      //   // 非管理员只读
+      //   this.detail()
+      // }
     },
     // 显示控制
     showControl (val) {

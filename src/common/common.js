@@ -1,6 +1,6 @@
 export default {
   // 前端版本
-  version: '2',
+  version: '3',
   versionCheck () {
     // 先获取本地版本
     let localVersion = window.localStorage['version']
@@ -465,5 +465,11 @@ export default {
   }, {
     code: 'EXPERIENCE',
     name: '体验'
-  }]
+  }],
+  formatTime (val) {
+    if (typeof (val) !== 'undefined' && val !== null && val !== '') {
+      return val.replace('T', ' ')
+    }
+    return ''
+  }
 }

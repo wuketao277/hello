@@ -18,6 +18,15 @@ export default {
         id: null,
         chineseName: '',
         englishName: '',
+        address: '',
+        information: '',
+        recommendationProcess: '',
+        duplicateCheck: '',
+        resumeStandard: '',
+        salaryStructure: '',
+        recommendationReason: '',
+        interviewPrepare: '',
+        sellingPoint: '',
         remark: ''
       },
       rules: {
@@ -70,6 +79,15 @@ export default {
         this.form.id = ''
         this.form.chineseName = ''
         this.form.englishName = ''
+        this.form.address = ''
+        this.form.information = ''
+        this.form.recommendationProcess = ''
+        this.form.duplicateCheck = ''
+        this.form.resumeStandard = ''
+        this.form.salaryStructure = ''
+        this.form.recommendationReason = ''
+        this.form.interviewPrepare = ''
+        this.form.sellingPoint = ''
         this.form.rules = ''
       }
     },

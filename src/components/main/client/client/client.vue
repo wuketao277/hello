@@ -33,21 +33,135 @@
         <el-col :span="12">
           <el-form-item label="中文名"
                         prop="chineseName">
-            <el-input v-model="form.chineseName"></el-input>
+            <el-input v-model="form.chineseName"
+                      maxlength="100"
+                      show-word-limit
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="英文名">
-            <el-input v-model="form.englishName"></el-input>
+            <el-input v-model="form.englishName"
+                      maxlength="100"
+                      show-word-limit
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col>
-          <el-form-item label="客户备注">
+          <el-form-item label="地址">
+            <el-input v-model="form.address"
+                      maxlength="100"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="客户信息">
+            <el-input type="textarea"
+                      v-model="form.information"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="推荐流程">
+            <el-input type="textarea"
+                      v-model="form.recommendationProcess"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="查重要求">
+            <el-input type="textarea"
+                      v-model="form.duplicateCheck"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="简历标准">
+            <el-input type="textarea"
+                      v-model="form.resumeStandard"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="薪资架构">
+            <el-input type="textarea"
+                      v-model="form.salaryStructure"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="推荐理由">
+            <el-input type="textarea"
+                      v-model="form.recommendationReason"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="面试准备">
+            <el-input type="textarea"
+                      v-model="form.interviewPrepare"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="公司卖点">
+            <el-input type="textarea"
+                      v-model="form.sellingPoint"
+                      :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="500"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="特别说明">
             <el-input type="textarea"
                       v-model="form.remark"
                       :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="2000"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>

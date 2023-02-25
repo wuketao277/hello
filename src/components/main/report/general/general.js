@@ -14,8 +14,8 @@ export default {
       actualPaymentDateBilling: 0,
       unactualPaymentDateBilling: 0,
       invoiceDateBilling: 0,
-      divClass: commonJS.getStorageContent('generalDivClass', 'divBig'),
-      chartClass: commonJS.getStorageContent('generalChartClass', 'chartBig'),
+      divClass: commonJS.getStorageContent('generalDivClass', 'divSmall'),
+      chartClass: commonJS.getStorageContent('generalChartClass', 'chartSmall'),
       period: commonJS.getStorageContent('generalPeriod', 'month')
     }
   },

@@ -144,14 +144,14 @@ export default {
       row,
       index
     }) {
-      if (row.lastPhase === 'Successful' || row.lastPhase === 'Payment' ||
-        row.lastPhase === 'Invoice' || row.lastPhase === 'On Board' ||
-        row.lastPhase === 'Offer Signed') {
+      if (row.farthestPhase === 'Successful' || row.farthestPhase === 'Payment' ||
+        row.farthestPhase === 'Invoice' || row.farthestPhase === 'On Board' ||
+        row.farthestPhase === 'Offer Signed') {
         return 'rowGreen'
-      } else if (row.lastPhase === 'Offer Signed' || row.lastPhase === 'Final Interview' ||
-        row.lastPhase === '4th Interview' || row.lastPhase === '3rd Interview' ||
-        row.lastPhase === '2nd Interview' || row.lastPhase === '1st Interview' ||
-        row.lastPhase === 'CVO') {
+      } else if (row.farthestPhase === 'Offer Signed' || row.farthestPhase === 'Final Interview' ||
+        row.farthestPhase === '4th Interview' || row.farthestPhase === '3rd Interview' ||
+        row.farthestPhase === '2nd Interview' || row.farthestPhase === '1st Interview' ||
+        row.farthestPhase === 'CVO') {
         return 'rowBlue'
       }
     },

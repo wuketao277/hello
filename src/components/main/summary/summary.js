@@ -14,6 +14,7 @@ export default {
       calendarValue: new Date(),
       myTasks: [],
       myNewsList: [],
+      interviewPlan: [], // 面试安排列表
       startDate: null,
       endDate: null,
       KPIDashboard: [],
