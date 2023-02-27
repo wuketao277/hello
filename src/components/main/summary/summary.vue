@@ -214,7 +214,7 @@
       <el-tab-pane label="关注职位"
                    style="text-align:left;"
                    v-if="showControl('/focus')"
-                   name="2">
+                   name="1">
         <div class="toolbar">
           <el-button type="warning"
                      size="small"
@@ -273,7 +273,7 @@
       </el-tab-pane>
       <el-tab-pane label="对接职位"
                    v-if="showControl('/cw')"
-                   name="3">
+                   name="2">
         <div class="toolbar">
           <el-button type="warning"
                      size="small"
@@ -331,7 +331,7 @@
       </el-tab-pane>
       <el-tab-pane label="关注候选人"
                    v-if="showControl('/candidateAttention')"
-                   name="4">
+                   name="3">
         <el-button type="primary"
                    plain
                    size="small"
@@ -342,7 +342,7 @@
       </el-tab-pane>
       <el-tab-pane label="我的新闻"
                    v-if="showControl('/news')"
-                   name="5">
+                   name="4">
         <el-table :data="myNewsList"
                   :border="true"
                   :highlight-current-row="true"
@@ -362,7 +362,7 @@
       </el-tab-pane>
       <el-tab-pane label="我的任务"
                    v-if="showControl('/task')"
-                   name="6">
+                   name="5">
         <el-table :data="myTasks"
                   :border="true"
                   :highlight-current-row="true"
@@ -382,7 +382,7 @@
       </el-tab-pane>
       <el-tab-pane label="KPI"
                    v-if="showControl('/kpi')"
-                   name="7">
+                   name="6">
         <div>
           <el-date-picker type="date"
                           value-format="yyyy-MM-dd"
@@ -480,7 +480,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="抽签"
-                   name="8">
+                   name="7">
         <div class="toolbar">
           <el-button type="success"
                      size="small"
