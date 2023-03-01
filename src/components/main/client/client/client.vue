@@ -53,6 +53,7 @@
           <el-form-item label="地址">
             <el-input type="textarea"
                       v-model="form.address"
+                      :autosize="{ minRows: 2, maxRows: 30}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
