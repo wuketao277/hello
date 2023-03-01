@@ -51,8 +51,9 @@
       <el-row :gutter="12">
         <el-col>
           <el-form-item label="地址">
-            <el-input v-model="form.address"
-                      maxlength="100"
+            <el-input type="textarea"
+                      v-model="form.address"
+                      maxlength="200"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
