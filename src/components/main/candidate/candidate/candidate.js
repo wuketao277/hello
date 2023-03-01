@@ -138,6 +138,14 @@ export default {
         lable: '6Month Service'
       },
       {
+        value: 'Turndown Offer',
+        lable: 'Turndown Offer'
+      },
+      {
+        value: 'Period Failed',
+        lable: 'Period Failed'
+      },
+      {
         value: 'END',
         lable: 'END'
       }
