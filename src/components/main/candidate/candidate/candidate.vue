@@ -49,6 +49,7 @@
           <el-form-item label="中文名"
                         prop="chineseName">
             <el-input v-model="form.chineseName"
+                      maxlength="50"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -56,6 +57,7 @@
           <el-form-item label="英文名"
                         prop="englishName">
             <el-input v-model="form.englishName"
+                      maxlength="100"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -81,6 +83,7 @@
           <el-form-item label="手机号"
                         prop="phoneNo">
             <el-input v-model="form.phoneNo"
+                      maxlength="20"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -88,6 +91,7 @@
           <el-form-item label="邮箱"
                         prop="email">
             <el-input v-model="form.email"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -110,6 +114,7 @@
           <el-form-item label="英文水平"
                         prop="englishLevel">
             <el-input v-model="form.englishLevel"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -117,6 +122,7 @@
           <el-form-item label="日文水平"
                         prop="japaneseLevel">
             <el-input v-model="form.japaneseLevel"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -126,6 +132,7 @@
           <el-form-item label="公司名称"
                         prop="companyName">
             <el-input v-model="form.companyName"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -133,6 +140,7 @@
           <el-form-item label="部门"
                         prop="department">
             <el-input v-model="form.department"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -140,38 +148,51 @@
           <el-form-item label="职位"
                         prop="title">
             <el-input v-model="form.title"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="现地"
+          <el-form-item label="户籍地址"
+                        prop="hometown">
+            <el-input v-model="form.hometown"
+                      maxlength="100"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="现地址"
                         prop="currentAddress">
             <el-input v-model="form.currentAddress"
+                      maxlength="100"
                       clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="期地"
+          <el-form-item label="期望地址"
                         prop="futureAddress">
             <el-input v-model="form.futureAddress"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="现薪"
-                        prop="currentMoney">
-            <el-input v-model="form.currentMoney"
+                      maxlength="100"
                       clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="期薪"
+          <el-form-item label="现薪资"
+                        prop="currentMoney">
+            <el-input v-model="form.currentMoney"
+                      maxlength="100"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="期望薪资"
                         prop="futureMoney">
             <el-input v-model="form.futureMoney"
+                      maxlength="100"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -193,6 +214,7 @@
           <el-form-item label="原因详情"
                         prop="notMatchReasonDetail">
             <el-input v-model="form.notMatchReasonDetail"
+                      maxlength="400"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -203,7 +225,9 @@
                         prop="schoolName">
             <el-input v-model="form.schoolName"
                       type="textarea"
-                      :autosize="{ minRows: 1, maxRows: 10}"
+                      :autosize="{ minRows: 2, maxRows: 10}"
+                      maxlength="200"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -215,7 +239,10 @@
             <el-input v-model="form.remark"
                       type="textarea"
                       :rows="3"
-                      :autosize="{ minRows: 2, maxRows: 10}"></el-input>
+                      :autosize="{ minRows: 2, maxRows: 10}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -226,7 +253,10 @@
             <el-input v-model="resume"
                       type="textarea"
                       :rows="5"
-                      :autosize="{ minRows: 2, maxRows: 10}"></el-input>
+                      :autosize="{ minRows: 2, maxRows: 10}"
+                      maxlength="6000"
+                      show-word-limit
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>

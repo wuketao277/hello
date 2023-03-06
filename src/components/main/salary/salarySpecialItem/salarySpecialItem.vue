@@ -52,12 +52,24 @@
                       placeholder="特殊项金额"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
+          <el-form-item label="处理位置">
+            <el-radio v-model="form.isPre"
+                      label="yes">前置</el-radio>
+            <el-radio v-model="form.isPre"
+                      label="no">后置</el-radio>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
           <el-form-item label="类型">
             <el-radio v-model="form.type"
                       label="SALARY">工资</el-radio>
             <el-radio v-model="form.type"
                       label="COMMISSION">奖金</el-radio>
+            <el-radio v-model="form.type"
+                      label="OTHER">其他</el-radio>
           </el-form-item>
         </el-col>
       </el-row>

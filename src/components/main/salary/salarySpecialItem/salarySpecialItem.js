@@ -17,7 +17,7 @@ export default {
         sum: '', // 特殊项金额
         description: '', // 特殊项说明
         isPre: 'yes', // 是否前置计算
-        type: ''
+        type: 'OTHER'
       },
       selectConsultantDialogShow: false
     }

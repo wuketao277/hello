@@ -36,6 +36,7 @@ export default {
         department: '',
         title: '',
         schoolName: '',
+        hometown: '',
         currentAddress: '',
         futureAddress: '',
         currentMoney: '',
