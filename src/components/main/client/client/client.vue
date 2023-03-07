@@ -102,7 +102,7 @@
             <el-input type="textarea"
                       v-model="form.resumeStandard"
                       :autosize="{ minRows: 2, maxRows: 30}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -114,7 +114,7 @@
             <el-input type="textarea"
                       v-model="form.salaryStructure"
                       :autosize="{ minRows: 2, maxRows: 30}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -150,7 +150,7 @@
             <el-input type="textarea"
                       v-model="form.sellingPoint"
                       :autosize="{ minRows: 2, maxRows: 30}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -174,6 +174,8 @@
             <el-input type="textarea"
                       v-model="form.invoiceContact"
                       :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="400"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -184,6 +186,8 @@
             <el-input type="textarea"
                       v-model="form.invoiceRemark"
                       :autosize="{ minRows: 2, maxRows: 30}"
+                      maxlength="400"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
