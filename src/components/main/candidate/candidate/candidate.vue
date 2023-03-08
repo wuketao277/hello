@@ -76,6 +76,7 @@
             <el-input v-model="form.birthDay"
                       placeholder="例如：1999-01-01"
                       style="width:100%"
+                      @input="birthdayChange"
                       clearable></el-input>
           </el-form-item>
         </el-col>

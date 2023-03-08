@@ -11,7 +11,9 @@ export default {
   },
   // 通过主键查找候选人信息
   findById (params) {
-    return axios.get('/candidate/findById', {params: params})
+    return axios.get('/candidate/findById', {
+      params: params
+    })
   },
   // 通过主键查找候选人信息
   isExist (params) {
@@ -19,7 +21,9 @@ export default {
   },
   // 通过候选人Id，获取简历信息
   findResumeByCandidateId (params) {
-    return axios.get('/candidate/findResumeByCandidateId', {params: params})
+    return axios.get('/candidate/findResumeByCandidateId', {
+      params: params
+    })
   },
   // 删除候选人接口
   deleteById (params) {
@@ -27,11 +31,15 @@ export default {
   },
   // 查找后台数据
   queryCandidatePage (params) {
-    return axios.get('/candidate/queryCandidatePage', {params: params})
+    return axios.get('/candidate/queryCandidatePage', {
+      params: params
+    })
   },
   // 查找后台数据
   queryCandidate (params) {
-    return axios.get('/candidate/queryCandidate', {params: params})
+    return axios.get('/candidate/queryCandidate', {
+      params: params
+    })
   },
   // 更新关注信息
   updateCandidateAttention (params) {
@@ -44,5 +52,9 @@ export default {
   // 查询当前用户关注的候选人
   queryCandidateAttentionListByUser () {
     return axios.get('/candidate/queryCandidateAttentionListByUser')
+  },
+  // 计算候选人年龄
+  calcAge (params) {
+    return axios.get('/candidate/calcAge?birthdayStr=' + params)
   }
 }

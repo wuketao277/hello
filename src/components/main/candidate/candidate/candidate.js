@@ -258,6 +258,20 @@ export default {
     }
   },
   methods: {
+    // 计算候选人年龄
+    birthdayChange (val) {
+      if (typeof (val) !== 'undefined') {
+        candidateApi.calcAge(val).then(res => {
+          if (res.status !== 200) {
+            this.$message.error({
+              message: '系统异常，请联系管理员！'
+            })
+          } else {
+            this.form.age = res.data
+          }
+        })
+      }
+    },
     // 格式化时间
     formatTime (row, column, cellvalue, index) {
       return commonJS.formatTime(cellvalue)
