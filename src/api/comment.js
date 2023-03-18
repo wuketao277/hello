@@ -34,5 +34,9 @@ export default {
     return axios.get('/comment/queryCandidateByCommentLimit100', {
       params: params
     })
+  },
+  // 面试安排列表
+  queryInterviewPlan (params) {
+    return axios.get('/comment/queryInterviewPlan?range=' + params['range'])
   }
 }

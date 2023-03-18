@@ -276,6 +276,10 @@ export default {
     formatTime (row, column, cellvalue, index) {
       return commonJS.formatTime(cellvalue)
     },
+    // 格式化 for 面试时间
+    formatTimeForInterviewTime (row, column, cellvalue, index) {
+      return commonJS.formatTimeToyyyyMMddHHmm(cellvalue)
+    },
     // 处理选中职位变更事件
     handleSelectCaseChange (val) {
       this.selectedCase = val
@@ -471,18 +475,18 @@ export default {
         }
       }
       // 面试阶段需要填写面试时间
-      // if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === 'Final Interview') {
-      //   if (this.newComment.interviewTime === null) {
-      //     this.$message({
-      //       message: '请填写面试时间',
-      //       type: 'warning'
-      //     })
-      //     return
-      //   }
-      // } else {
-      //   // 非面试阶段，面试时间为空
-      //   this.newComment.interviewTime = null
-      // }
+      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === 'Final Interview') {
+        if (this.newComment.interviewTime === null) {
+          this.$message({
+            message: '请填写面试时间',
+            type: 'warning'
+          })
+          return
+        }
+      } else {
+        // 非面试阶段，面试时间为空
+        this.newComment.interviewTime = null
+      }
       // 组装数据
       let comment = this.newComment
       comment['candidateId'] = this.form.id

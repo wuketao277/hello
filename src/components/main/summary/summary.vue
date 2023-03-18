@@ -179,42 +179,92 @@
         </div>
       </el-tab-pane>
       <!--pipeline模块结束-->
-      <!--面试安排开始
+      <!--面试安排开始-->
       <el-tab-pane label="面试安排"
-                   v-show="false"
                    name="1">
+        <div class="toolbar">
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryInterviewPlan('myself')">自 己</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryInterviewPlan('all')">全 部</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryInterviewPlan('shenyang')">沈 阳</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryInterviewPlan('shanghai')">上 海</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryInterviewPlan('beijing')">北 京</el-button>
+        </div>
         <el-table :data="interviewPlan"
                   :border="true"
                   :highlight-current-row="true"
                   :stripe="true"
                   :show-header="true"
+                  :row-class-name="setRowClassNameForInterviewPlan"
                   style="width: 100%">
-          <el-table-column prop="candidateName"
-                           label="候选人"
-                           width="100"
-                           show-overflow-tooltip></el-table-column>
-          <el-table-column prop="interviewTime"
-                           label="面试时间"
-                           width="180"
-                           show-overflow-tooltip></el-table-column>
-          <el-table-column prop="phase"
-                           label="第几轮面试"
-                           width="100"
-                           show-overflow-tooltip></el-table-column>
+          <el-table-column type="index"
+                           width="50"
+                           label="序号"></el-table-column>
           <el-table-column prop="clientName"
                            label="公司名称"
-                           show-overflow-tooltip></el-table-column>
+                           show-overflow-tooltip>
+            <template slot-scope="scope">
+              <el-button type="text"
+                         @click="editClient(scope.$index, scope.row)">{{scope.row.clientName}}</el-button>
+            </template>
+          </el-table-column>
           <el-table-column prop="caseTitle"
                            label="岗位名称"
+                           show-overflow-tooltip>
+            <template slot-scope="scope">
+              <el-button type="text"
+                         @click="editCase(scope.$index, scope.row)">{{scope.row.caseTitle}}</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column prop="candidateName"
+                           label="候选人"
+                           width="80"
+                           show-overflow-tooltip>
+            <template slot-scope="scope">
+              <el-button type="text"
+                         @click="editCandidate(scope.$index, scope.row)">{{scope.row.candidateName}}</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column prop="interviewTime"
+                           label="面试时间"
+                           width="160"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="phase"
+                           label="第几轮"
+                           width="70"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="content"
+                           label="内容"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="username"
+                           label="创建人"
+                           width="80"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="cw"
+                           label="CW"
+                           width="80"
                            show-overflow-tooltip></el-table-column>
         </el-table>
       </el-tab-pane>
-      -->
       <!--面试安排结束-->
       <el-tab-pane label="关注职位"
                    style="text-align:left;"
                    v-if="showControl('/focus')"
-                   name="1">
+                   name="2">
         <div class="toolbar">
           <el-button type="warning"
                      size="small"
@@ -273,7 +323,7 @@
       </el-tab-pane>
       <el-tab-pane label="对接职位"
                    v-if="showControl('/cw')"
-                   name="2">
+                   name="3">
         <div class="toolbar">
           <el-button type="warning"
                      size="small"
@@ -331,7 +381,7 @@
       </el-tab-pane>
       <el-tab-pane label="关注候选人"
                    v-if="showControl('/candidateAttention')"
-                   name="3">
+                   name="4">
         <el-button type="primary"
                    plain
                    size="small"
@@ -342,7 +392,7 @@
       </el-tab-pane>
       <el-tab-pane label="我的新闻"
                    v-if="showControl('/news')"
-                   name="4">
+                   name="5">
         <el-table :data="myNewsList"
                   :border="true"
                   :highlight-current-row="true"
@@ -362,7 +412,7 @@
       </el-tab-pane>
       <el-tab-pane label="我的任务"
                    v-if="showControl('/task')"
-                   name="5">
+                   name="6">
         <el-table :data="myTasks"
                   :border="true"
                   :highlight-current-row="true"
@@ -382,7 +432,7 @@
       </el-tab-pane>
       <el-tab-pane label="KPI"
                    v-if="showControl('/kpi')"
-                   name="6">
+                   name="7">
         <div>
           <el-date-picker type="date"
                           value-format="yyyy-MM-dd"
@@ -480,7 +530,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="抽签"
-                   name="7">
+                   name="8">
         <div class="toolbar">
           <el-button type="success"
                      size="small"
@@ -579,6 +629,15 @@
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+}
+.rowDistanceDay0 {
+  color: red;
+}
+.rowDistanceDay1 {
+  color: #ffbb00;
+}
+.rowDistanceDay2 {
+  color: #006eff;
 }
 </style>
 <script src="./summary.js"></script>

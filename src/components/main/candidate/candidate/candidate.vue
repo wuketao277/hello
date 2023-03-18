@@ -347,9 +347,8 @@
               <el-form-item label="评论内容"
                             prop="content"
                             v-show="(mode === 'add' || mode === 'modify')">
-                <!--newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === 'Final Interview'-->
                 <el-date-picker v-model="newComment.interviewTime"
-                                v-if="false"
+                                v-if="newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === 'Final Interview'"
                                 type="datetime"
                                 placeholder="选择面试时间">
                 </el-date-picker>
@@ -379,13 +378,11 @@
                            label="评论阶段"
                            width="120"
                            show-overflow-tooltip></el-table-column>
-          <!--
           <el-table-column prop="interviewTime"
                            label="面试时间"
                            width="160"
-                           :formatter="formatTime"
+                           :formatter="formatTimeForInterviewTime"
                            show-overflow-tooltip></el-table-column>
-                           -->
           <el-table-column prop="content"
                            label="评论内容"></el-table-column>
           <el-table-column label="操作"

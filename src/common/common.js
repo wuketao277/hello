@@ -471,5 +471,11 @@ export default {
       return val.replace('T', ' ')
     }
     return ''
+  },
+  formatTimeToyyyyMMddHHmm (val) {
+    if (typeof (val) !== 'undefined' && val !== null && val !== '') {
+      return val.replace('T', ' ').substr(0, 16)
+    }
+    return ''
   }
 }

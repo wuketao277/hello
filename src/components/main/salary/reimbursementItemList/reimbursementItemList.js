@@ -372,7 +372,6 @@ export default {
   created () {
     // 通过入参获取查询数据
     if (typeof (this.$route.query.mode) !== 'undefined' && this.$route.query.mode === 'query') {
-      debugger
       let params = this.$route.query.row
       this.search.userName = params.userName
       this.search.currentPage = 1

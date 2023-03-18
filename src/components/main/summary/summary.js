@@ -86,6 +86,53 @@ export default {
         }
       })
     },
+    // 设置行样式for面试计划
+    setRowClassNameForInterviewPlan ({
+      row,
+      index
+    }) {
+      if (row.distanceDays === 0) {
+        return 'rowDistanceDay0'
+      }
+    },
+    // 编辑职位
+    editCase (index, row) {
+      this.$router.push({
+        path: '/case/case',
+        query: {
+          mode: 'modify',
+          caseId: row.caseId
+        }
+      })
+    },
+    // 编辑客户
+    editClient (index, row) {
+      this.$router.push({
+        path: '/client/client',
+        query: {
+          mode: 'modify',
+          clientId: row.clientId
+        }
+      })
+    },
+    // 查询interviewPlan的数据
+    queryInterviewPlan (val) {
+      debugger
+      window.localStorage['summary.interviewPlanRange'] = val
+      let params = {
+        'range': val
+      }
+      commentApi.queryInterviewPlan(params).then(res => {
+        if (res.status === 200) {
+          this.interviewPlan = res.data
+          this.$message({
+            message: '查询完成！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
+    },
     // 跳转到候选人
     jumpToCandidate (row) {
       this.$router.push({
@@ -134,7 +181,6 @@ export default {
     },
     // 获取页签选择
     getTabIndex () {
-      debugger
       if (typeof (window.localStorage['summary.tabIndex']) === 'undefined') {
         return '0'
       } else {
@@ -144,7 +190,6 @@ export default {
     // 页签点击
     tabClick (tab) {
       // 将新页签索引号保存起来
-      debugger
       window.localStorage['summary.tabIndex'] = tab.index
     },
     // 查看候选人信息
@@ -535,5 +580,7 @@ export default {
     })
     // 查询pipeline情况
     this.queryPipeline(commonJs.getStorageContent('summary.pipelineRange', 'myself'))
+    // 查询interviewPlan的数据
+    this.queryInterviewPlan(commonJs.getStorageContent('summary.interviewPlanRange', 'myself'))
   }
 }
