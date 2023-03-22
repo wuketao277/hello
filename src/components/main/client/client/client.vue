@@ -53,7 +53,7 @@
           <el-form-item label="地址">
             <el-input type="textarea"
                       v-model="form.address"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
@@ -65,7 +65,7 @@
           <el-form-item label="客户信息">
             <el-input type="textarea"
                       v-model="form.information"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="500"
                       show-word-limit
                       clearable></el-input>
@@ -77,7 +77,7 @@
           <el-form-item label="推荐流程">
             <el-input type="textarea"
                       v-model="form.recommendationProcess"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="500"
                       show-word-limit
                       clearable></el-input>
@@ -89,7 +89,7 @@
           <el-form-item label="查重要求">
             <el-input type="textarea"
                       v-model="form.duplicateCheck"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="500"
                       show-word-limit
                       clearable></el-input>
@@ -101,7 +101,7 @@
           <el-form-item label="简历标准">
             <el-input type="textarea"
                       v-model="form.resumeStandard"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="1000"
                       show-word-limit
                       clearable></el-input>
@@ -113,7 +113,7 @@
           <el-form-item label="薪资架构">
             <el-input type="textarea"
                       v-model="form.salaryStructure"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="1000"
                       show-word-limit
                       clearable></el-input>
@@ -125,7 +125,7 @@
           <el-form-item label="推荐理由">
             <el-input type="textarea"
                       v-model="form.recommendationReason"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="500"
                       show-word-limit
                       clearable></el-input>
@@ -137,7 +137,7 @@
           <el-form-item label="面试准备">
             <el-input type="textarea"
                       v-model="form.interviewPrepare"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="500"
                       show-word-limit
                       clearable></el-input>
@@ -149,7 +149,7 @@
           <el-form-item label="公司卖点">
             <el-input type="textarea"
                       v-model="form.sellingPoint"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="1000"
                       show-word-limit
                       clearable></el-input>
@@ -161,7 +161,7 @@
           <el-form-item label="特别说明">
             <el-input type="textarea"
                       v-model="form.remark"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="2000"
                       show-word-limit
                       clearable></el-input>
@@ -173,7 +173,7 @@
           <el-form-item label="发票联系信息">
             <el-input type="textarea"
                       v-model="form.invoiceContact"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="400"
                       show-word-limit
                       clearable></el-input>
@@ -185,7 +185,7 @@
           <el-form-item label="发票备注">
             <el-input type="textarea"
                       v-model="form.invoiceRemark"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="400"
                       show-word-limit
                       clearable></el-input>

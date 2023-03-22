@@ -195,7 +195,7 @@
           <el-form-item label="职位描述">
             <el-input type="textarea"
                       v-model="form.description"
-                      :autosize="{ minRows: 2, maxRows: 20}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       clearable></el-input>
           </el-form-item>
         </el-col>

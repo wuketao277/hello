@@ -226,7 +226,7 @@
                         prop="schoolName">
             <el-input v-model="form.schoolName"
                       type="textarea"
-                      :autosize="{ minRows: 2, maxRows: 10}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
@@ -240,7 +240,7 @@
             <el-input v-model="form.remark"
                       type="textarea"
                       :rows="3"
-                      :autosize="{ minRows: 2, maxRows: 10}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="2000"
                       show-word-limit
                       clearable></el-input>
@@ -254,7 +254,7 @@
             <el-input v-model="resume"
                       type="textarea"
                       :rows="5"
-                      :autosize="{ minRows: 2, maxRows: 10}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="6000"
                       show-word-limit
                       clearable></el-input>
