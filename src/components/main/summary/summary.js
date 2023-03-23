@@ -581,6 +581,6 @@ export default {
     // 查询pipeline情况
     this.queryPipeline(commonJs.getStorageContent('summary.pipelineRange', 'myself'))
     // 查询interviewPlan的数据
-    this.queryInterviewPlan(commonJs.getStorageContent('summary.interviewPlanRange', 'myself'))
+    this.queryInterviewPlan(commonJs.getStorageContent('summary.interviewPlanRange', 'all'))
   }
 }
