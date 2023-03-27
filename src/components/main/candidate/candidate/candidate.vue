@@ -130,32 +130,6 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="公司名称"
-                        prop="companyName">
-            <el-input v-model="form.companyName"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="部门"
-                        prop="department">
-            <el-input v-model="form.department"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="职位"
-                        prop="title">
-            <el-input v-model="form.title"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="8">
           <el-form-item label="户籍地址"
                         prop="hometown">
             <el-input v-model="form.hometown"
@@ -181,6 +155,41 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="家庭情况"
+                        prop="family">
+            <el-input v-model="form.family"
+                      placeholder="婚育情况，是否有宝宝，爱人是做什么的在什么公司？房子是买还是租的，距离远不远？"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="8">
+          <el-form-item label="公司"
+                        prop="companyName">
+            <el-input v-model="form.companyName"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="部门"
+                        prop="department">
+            <el-input v-model="form.department"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="职位"
+                        prop="title">
+            <el-input v-model="form.title"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
         <el-col :span="8">
           <el-form-item label="现薪资"
                         prop="currentMoney">
@@ -194,6 +203,48 @@
                         prop="futureMoney">
             <el-input v-model="form.futureMoney"
                       maxlength="100"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">
+          <el-form-item label="组织架构"
+                        prop="companyStructure">
+            <el-input v-model="form.companyStructure"
+                      placeholder="汇报给谁，他的title是什么？和您平级的有几位？您现在带团队吗？带多少个人团队呢？从什么时候开始带团队，下面的团队是怎么分工的呢？工作内容"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="面试历史"
+                        prop="interviewHistory">
+            <el-input v-model="form.interviewHistory"
+                      placeholder="之前有面试过XX公司吗？包括猎头推荐、内部推荐或者公开网站上投过他们的岗位吗（面试宝马职位，不能是宝马的供应商）"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="求职动机"
+                        prop="motivation">
+            <el-input v-model="form.motivation"
+                      placeholder="目前看机会的原因是什么（pull/push factor），对行业和工作内容有要求吗？外企、国企、互联网公司？什么类型的工作？对于这个机会自己打几分，好在哪？不好在哪？手上有其他新的机会吗？这些机会和这个比较起来你更看好哪个？"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="离职分析"
+                        prop="dimissionAnalysis">
+            <el-input v-model="form.dimissionAnalysis"
+                      placeholder="时间要多久，如果您走的时候老板给您升职/加薪/转岗您会怎么决定呢？离职状态的话为什么会裸辞，有赔偿金吗（可以表明是主动离职还是被动离职）什么时候可以上岗？"
+                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -225,11 +276,24 @@
           <el-form-item label="学校"
                         prop="schoolName">
             <el-input v-model="form.schoolName"
+                      placeholder="是统招的吗？学历证、学位证都有吗？学信网可以查到吗？"
                       type="textarea"
                       :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="必要检查"
+                        prop="doubleCheck">
+            <el-checkbox-group v-model="form.doubleCheck">
+              <el-checkbox v-for="check in doubleCheckList"
+                           :label="check.key"
+                           :key="check.key">{{check.name}}</el-checkbox>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
       </el-row>
@@ -392,7 +456,7 @@
               <el-button size="mini"
                          type="text"
                          v-if="showCommentCFButton(scope.row)"
-                         @click="addCFModel()">添加CF</el-button>
+                         @click="addCFModel(scope.row)">添加CF</el-button>
               <el-button size="mini"
                          type="text"
                          style="color:red;"

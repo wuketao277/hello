@@ -48,7 +48,8 @@ export default {
         createUserName: null,
         createRealName: null,
         notMatchReason: 'NO',
-        notMatchReasonDetail: ''
+        notMatchReasonDetail: '',
+        doubleCheck: []
       },
       phaseOptions: [{
         value: 'SL',
@@ -254,7 +255,11 @@ export default {
       uploadFiles: [], // 上传文件集合
       notMatchReasonList: commonJS.notMatchReasonList,
       roles: [],
-      jobType: '' // 工作类型
+      jobType: '', // 工作类型
+      doubleCheckList: [{
+        key: 'RESUME',
+        name: '简历内容真实准确'
+      }] // 必要检查项
     }
   },
   methods: {
@@ -315,9 +320,10 @@ export default {
       }
     },
     // 添加CF阶段的模板
-    addCFModel () {
+    addCFModel (row) {
       this.newComment.phase = 'CF'
-      this.newComment.content = '1、面了多久？面试官是谁？你觉得自己过了吗？为什么？体现在哪儿？\n' +
+      this.newComment.content = this.form.chineseName + '面试' + row.caseTitle + '岗位' + row.phase + '反馈：\n' +
+        '1、面了多久？面试官是谁？你觉得自己过了吗？为什么？体现在哪儿？\n' +
         '2、顾问觉得候选人通过了吗？为什么？' +
         '3、面试官问了哪些问题？你怎么回答的？好在哪里，体现在哪里，不好在哪里，不好的问题怎么回答的？过程中面试官态度怎么样？\n' +
         '4、面试最后怎么结束的？面试官怎么反馈的？有没有介绍他们那边的情况？\n' +
@@ -487,6 +493,16 @@ export default {
       } else {
         // 非面试阶段，面试时间为空
         this.newComment.interviewTime = null
+      }
+      // 如果是保存CVO阶段，必须勾选“必要检查”
+      if (this.newComment.phase === 'CVO') {
+        if (this.form.doubleCheck.length !== this.doubleCheckList.length) {
+          this.$message({
+            message: '请勾选必要检查',
+            type: 'warning'
+          })
+          return
+        }
       }
       // 组装数据
       let comment = this.newComment
