@@ -444,6 +444,12 @@ export default {
     code: 'EDUCATION_BACKGROUND',
     name: '学历'
   }, {
+    code: 'AGE',
+    name: '年龄'
+  }, {
+    code: 'LEVEL',
+    name: '级别'
+  }, {
     code: 'NOCONSIDER',
     name: '不考虑'
   }, {

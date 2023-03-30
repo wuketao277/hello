@@ -29,7 +29,11 @@
                  @click="searchDialog = true">搜 索</el-button>&nbsp;&nbsp;&nbsp;&nbsp;
       <span>总GP:{{gpSum}}</span>
       &nbsp;&nbsp;
+      <span>平均GP:{{gpAvg}}</span>
+      &nbsp;&nbsp;
       <span>总Billing:{{billingSum}}</span>
+      &nbsp;&nbsp;
+      <span>平均Billing:{{billingAvg}}</span>
     </div>
     <template>
       <el-table v-loading="table.loading"

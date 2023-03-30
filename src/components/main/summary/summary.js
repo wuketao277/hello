@@ -117,7 +117,6 @@ export default {
     },
     // 查询interviewPlan的数据
     queryInterviewPlan (val) {
-      debugger
       window.localStorage['summary.interviewPlanRange'] = val
       let params = {
         'range': val

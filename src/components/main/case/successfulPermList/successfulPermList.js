@@ -42,6 +42,8 @@ export default {
       search: commonJS.getStorageContentObject('successfulPermList.search'),
       billingSum: null,
       gpSum: null,
+      billingAvg: null,
+      gpAvg: null,
       typeList: [],
       roles: [],
       jobType: ''
@@ -178,6 +180,8 @@ export default {
         }
         this.billingSum = res.data.billingSum
         this.gpSum = res.data.gpSum
+        this.billingAvg = res.data.billingAvg
+        this.gpAvg = res.data.gpAvg
       })
     },
     // 行变化
