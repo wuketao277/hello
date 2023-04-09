@@ -1,6 +1,6 @@
 export default {
   // 前端版本
-  version: '4',
+  version: '5',
   versionCheck () {
     // 先获取本地版本
     let localVersion = window.localStorage['version']
@@ -123,7 +123,7 @@ export default {
     window.localStorage[key] = value
   },
   getStorageContentObject (key) {
-    if (typeof (window.localStorage[key]) === 'undefined') {
+    if (typeof (window.localStorage[key]) === 'undefined' || window.localStorage[key] === 'undefined') {
       return {}
     } else {
       return JSON.parse(window.localStorage[key])

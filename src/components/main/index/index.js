@@ -104,7 +104,7 @@ export default {
               showClose: true
             })
             // 清空本地存储
-            window.localStorage['loginInfo'] = null
+            window.localStorage.clear()
             this.$router.push('/login')
           } else {
             this.$message.error('退出失败！')
