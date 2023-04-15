@@ -28,6 +28,9 @@ export default {
       if (url === '/candidate/candidatelist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
         return true
       }
+      if (url === '/candidate/searchcandidate' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
+        return true
+      }
       if (url === '/case/successfulPermList' && jobType === 'FULLTIME') {
         return true
       }

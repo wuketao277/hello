@@ -7,6 +7,7 @@ import Client from '@/components/main/client/client/client.vue'
 import UserList from '@/components/main/user/userlist/userlist.vue'
 import User from '@/components/main/user/user/user.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
+import SearchCandidate from '@/components/main/candidate/searchcandidate/searchcandidate.vue'
 import Candidate from '@/components/main/candidate/candidate/candidate.vue'
 import Summary from '@/components/main/summary/summary.vue'
 import MyNewsList from '@/components/main/mynews/mynewslist/mynewslist.vue'
@@ -46,248 +47,252 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
-  routes: [
-    {
+  routes: [{
+    path: '/',
+    name: 'index',
+    component: Index,
+    children: [{
+      // 摘要信息
       path: '/',
-      name: 'index',
-      component: Index,
-      children: [
-        {
-          // 摘要信息
-          path: '/',
-          name: 'summary',
-          component: Summary
-        },
-        {
-          // 总报表
-          path: '/report/general',
-          name: 'GeneralReport',
-          component: GeneralReport
-        },
-        {
-          // 客户列表页
-          path: '/client/clientlist',
-          name: 'clientlist',
-          component: ClientList
-        },
-        {
-          // 新增客户
-          path: '/client/client',
-          name: 'client',
-          component: Client
-        },
-        {
-          // 用户列表页
-          path: '/user/userlist',
-          name: 'userlist',
-          component: UserList
-        },
-        {
-          // 新增用户
-          path: '/user/user',
-          name: 'user',
-          component: User
-        },
-        {
-          // 候选人列表页
-          path: '/candidate/candidatelist',
-          name: 'candidatelist',
-          component: CandidateList
-        },
-        {
-          // 新增候选人
-          path: '/candidate/candidate',
-          name: 'candidate',
-          component: Candidate
-        },
-        {
-          // 我的新闻列表
-          path: '/mynews/mynewslist',
-          name: 'newslist',
-          component: MyNewsList
-        },
-        {
-          // 我的新闻
-          path: '/mynews/mynews',
-          name: 'news',
-          component: MyNews
-        },
-        {
-          // 我的任务
-          path: '/mytask/mytask',
-          name: 'mytask',
-          component: MyTask
-        },
-        {
-          // 我的任务列表
-          path: '/mytask/mytasklist',
-          name: 'mytasklist',
-          component: MyTaskList
-        },
-        {
-          // 我的计划
-          path: '/my/myplan',
-          name: 'myplan',
-          component: MyPlan
-        },
-        {
-          // 角色
-          path: '/role/role',
-          name: 'role',
-          component: Role
-        },
-        {
-          // 角色列表
-          path: '/role/rolelist',
-          name: 'rolelist',
-          component: RoleList
-        },
-        {
-          // 客户联系人
-          path: '/client/clientlinkman',
-          name: 'clientlinkman',
-          component: ClientLinkMan
-        },
-        {
-          // 客户合同
-          path: '/client/clientcontract',
-          name: 'clientcontract',
-          component: ClientContract
-        },
-        {
-          // 职位列表
-          path: '/case/caselist',
-          name: 'caselist',
-          component: CaseList
-        },
-        {
-          // 职位
-          path: '/case/case',
-          name: 'case',
-          component: Case
-        },
-        {
-          // 成功职位列表
-          path: '/case/successfulPermList',
-          name: 'successfulPermList',
-          component: SuccessfulPermList
-        },
-        {
-          // 成功职位
-          path: '/case/successfulPerm',
-          name: 'successfulPerm',
-          component: SuccessfulPerm
-        },
-        {
-          // 文件
-          path: '/file/filelist',
-          name: 'filelist',
-          component: FileList
-        },
-        {
-          // 个人信息
-          path: '/personalInfo',
-          name: 'personalInfo',
-          component: PersonalInfo
-        },
-        {
-          // 工资特殊项
-          path: '/salary/salarySpecialItem',
-          name: 'salarySpecialItem',
-          component: SalarySpecialItem
-        },
-        {
-          // 工资特殊项集合
-          path: '/salary/salarySpecialItemList',
-          name: 'salarySpecialItemList',
-          component: SalarySpecialItemList
-        },
-        {
-          // 工资集合
-          path: '/salary/salaryList',
-          name: 'salaryList',
-          component: SalaryList
-        },
-        {
-          // 工资
-          path: '/salary/salary',
-          name: 'salary',
-          component: Salary
-        },
-        {
-          // 报销项
-          path: '/salary/reimbursementItem',
-          name: 'reimbursementItem',
-          component: ReimbursementItem
-        },
-        {
-          // 报销列表
-          path: '/salary/reimbursementItemList',
-          name: 'reimbursementItemList',
-          component: ReimbursementItemList
-        },
-        {
-          // 报销汇总列表
-          path: '/salary/reimbursementSummaryList',
-          name: 'reimbursementSummaryList',
-          component: ReimbursementSummaryList
-        },
-        {
-          // 发票列表
-          path: '/salary/invoiceList',
-          name: 'invoiceList',
-          component: InvoiceList
-        },
-        {
-          // 发票
-          path: '/salary/invoice',
-          name: 'invoice',
-          component: Invoice
-        },
-        {
-          // 培训课程列表
-          path: '/training/lessonlist',
-          name: 'lessonlist',
-          component: LessonList
-        },
-        {
-          // 培训课程列表
-          path: '/training/lesson',
-          name: 'lesson',
-          component: Lesson
-        },
-        {
-          // 培训课程学习记录列表
-          path: '/training/studyrecordlist',
-          name: 'studyrecordlist',
-          component: StudyRecordList
-        },
-        {
-          // 培训课程学习记录
-          path: '/training/studyrecord',
-          name: 'studyrecord',
-          component: StudyRecord
-        },
-        {
-          // 假期记录
-          path: '/holiday/holiday',
-          name: 'holiday',
-          component: Holiday
-        },
-        {
-          // 假期记录列表
-          path: '/holiday/holidaylist',
-          name: 'holidaylist',
-          component: HolidayList
-        }
-      ]
+      name: 'summary',
+      component: Summary
     },
     {
-      // 登录页
-      path: '/login',
-      name: 'login',
-      component: Login
+      // 总报表
+      path: '/report/general',
+      name: 'GeneralReport',
+      component: GeneralReport
+    },
+    {
+      // 客户列表页
+      path: '/client/clientlist',
+      name: 'clientlist',
+      component: ClientList
+    },
+    {
+      // 新增客户
+      path: '/client/client',
+      name: 'client',
+      component: Client
+    },
+    {
+      // 用户列表页
+      path: '/user/userlist',
+      name: 'userlist',
+      component: UserList
+    },
+    {
+      // 新增用户
+      path: '/user/user',
+      name: 'user',
+      component: User
+    },
+    {
+      // 候选人列表页
+      path: '/candidate/candidatelist',
+      name: 'candidatelist',
+      component: CandidateList
+    },
+    {
+      // 搜索候选人
+      path: '/candidate/searchcandidate',
+      name: 'searchcandidate',
+      component: SearchCandidate
+    },
+    {
+      // 新增候选人
+      path: '/candidate/candidate',
+      name: 'candidate',
+      component: Candidate
+    },
+    {
+      // 我的新闻列表
+      path: '/mynews/mynewslist',
+      name: 'newslist',
+      component: MyNewsList
+    },
+    {
+      // 我的新闻
+      path: '/mynews/mynews',
+      name: 'news',
+      component: MyNews
+    },
+    {
+      // 我的任务
+      path: '/mytask/mytask',
+      name: 'mytask',
+      component: MyTask
+    },
+    {
+      // 我的任务列表
+      path: '/mytask/mytasklist',
+      name: 'mytasklist',
+      component: MyTaskList
+    },
+    {
+      // 我的计划
+      path: '/my/myplan',
+      name: 'myplan',
+      component: MyPlan
+    },
+    {
+      // 角色
+      path: '/role/role',
+      name: 'role',
+      component: Role
+    },
+    {
+      // 角色列表
+      path: '/role/rolelist',
+      name: 'rolelist',
+      component: RoleList
+    },
+    {
+      // 客户联系人
+      path: '/client/clientlinkman',
+      name: 'clientlinkman',
+      component: ClientLinkMan
+    },
+    {
+      // 客户合同
+      path: '/client/clientcontract',
+      name: 'clientcontract',
+      component: ClientContract
+    },
+    {
+      // 职位列表
+      path: '/case/caselist',
+      name: 'caselist',
+      component: CaseList
+    },
+    {
+      // 职位
+      path: '/case/case',
+      name: 'case',
+      component: Case
+    },
+    {
+      // 成功职位列表
+      path: '/case/successfulPermList',
+      name: 'successfulPermList',
+      component: SuccessfulPermList
+    },
+    {
+      // 成功职位
+      path: '/case/successfulPerm',
+      name: 'successfulPerm',
+      component: SuccessfulPerm
+    },
+    {
+      // 文件
+      path: '/file/filelist',
+      name: 'filelist',
+      component: FileList
+    },
+    {
+      // 个人信息
+      path: '/personalInfo',
+      name: 'personalInfo',
+      component: PersonalInfo
+    },
+    {
+      // 工资特殊项
+      path: '/salary/salarySpecialItem',
+      name: 'salarySpecialItem',
+      component: SalarySpecialItem
+    },
+    {
+      // 工资特殊项集合
+      path: '/salary/salarySpecialItemList',
+      name: 'salarySpecialItemList',
+      component: SalarySpecialItemList
+    },
+    {
+      // 工资集合
+      path: '/salary/salaryList',
+      name: 'salaryList',
+      component: SalaryList
+    },
+    {
+      // 工资
+      path: '/salary/salary',
+      name: 'salary',
+      component: Salary
+    },
+    {
+      // 报销项
+      path: '/salary/reimbursementItem',
+      name: 'reimbursementItem',
+      component: ReimbursementItem
+    },
+    {
+      // 报销列表
+      path: '/salary/reimbursementItemList',
+      name: 'reimbursementItemList',
+      component: ReimbursementItemList
+    },
+    {
+      // 报销汇总列表
+      path: '/salary/reimbursementSummaryList',
+      name: 'reimbursementSummaryList',
+      component: ReimbursementSummaryList
+    },
+    {
+      // 发票列表
+      path: '/salary/invoiceList',
+      name: 'invoiceList',
+      component: InvoiceList
+    },
+    {
+      // 发票
+      path: '/salary/invoice',
+      name: 'invoice',
+      component: Invoice
+    },
+    {
+      // 培训课程列表
+      path: '/training/lessonlist',
+      name: 'lessonlist',
+      component: LessonList
+    },
+    {
+      // 培训课程列表
+      path: '/training/lesson',
+      name: 'lesson',
+      component: Lesson
+    },
+    {
+      // 培训课程学习记录列表
+      path: '/training/studyrecordlist',
+      name: 'studyrecordlist',
+      component: StudyRecordList
+    },
+    {
+      // 培训课程学习记录
+      path: '/training/studyrecord',
+      name: 'studyrecord',
+      component: StudyRecord
+    },
+    {
+      // 假期记录
+      path: '/holiday/holiday',
+      name: 'holiday',
+      component: Holiday
+    },
+    {
+      // 假期记录列表
+      path: '/holiday/holidaylist',
+      name: 'holidaylist',
+      component: HolidayList
     }
+    ]
+  },
+  {
+    // 登录页
+    path: '/login',
+    name: 'login',
+    component: Login
+  }
   ]
 })
 // 全局路由守卫

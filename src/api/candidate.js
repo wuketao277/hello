@@ -56,5 +56,9 @@ export default {
   // 计算候选人年龄
   calcAge (params) {
     return axios.get('/candidate/calcAge?birthdayStr=' + params)
+  },
+  // 搜索候选人集合
+  searchCandidateList (params) {
+    return axios.post('/candidate/searchCandidateList', params)
   }
 }

@@ -267,6 +267,14 @@ export default {
   {
     code: 'Shenyanghailuorencaifuwu',
     name: '沈阳海罗人才服务有限公司'
+  },
+  {
+    code: 'Nanjinghailuorencaifuwu',
+    name: '南京海罗人才服务有限公司'
+  },
+  {
+    code: 'Wuhanhailuorencaifuwu',
+    name: '武汉海罗人才服务有限公司'
   }
   ],
   locationList: [{
@@ -483,5 +491,6 @@ export default {
       return val.replace('T', ' ').substr(0, 16)
     }
     return ''
-  }
+  },
+  dateRegExp: new RegExp('/^\\d{4}\\-\\d{2}\\-\\d{2}$/')
 }

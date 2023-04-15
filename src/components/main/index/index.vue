@@ -65,6 +65,13 @@
               <span slot="title">候选人</span>
             </template>
           </el-menu-item>
+          <el-menu-item index="/candidate/searchcandidate"
+                        v-if="jobTypeControlShow('/candidate/searchcandidate')">
+            <template slot="title">
+              <i class="el-icon-search"></i>
+              <span slot="title">搜索候选人</span>
+            </template>
+          </el-menu-item>
           <el-menu-item index="/case/successfulPermList"
                         v-if="jobTypeControlShow('/case/successfulPermList')">
             <template slot="title">
