@@ -502,30 +502,42 @@
                     style="width: 100%;margin-top:10px;"
                     max-height="2000"
                     @current-change="rowChange">
-            <el-table-column label="操作">
+            <el-table-column label="操作"
+                             width="80px">
               <template slot-scope="scope">
                 <el-button size="mini"
                            @click="kpiDetail(scope.$index, scope.row)">详情</el-button>
               </template>
             </el-table-column>
             <el-table-column prop="userName"
-                             label="姓名"></el-table-column>
+                             label="姓名"
+                             width="100px"></el-table-column>
             <el-table-column prop="ti"
-                             label="TI"></el-table-column>
+                             label="TI"
+                             width="80px"></el-table-column>
+            <el-table-column prop="tiif"
+                             label="TI+IF"
+                             width="80px"></el-table-column>
             <el-table-column prop="vi"
-                             label="VI"></el-table-column>
+                             label="VI"
+                             width="80px"></el-table-column>
             <el-table-column prop="ioi"
-                             label="IOI"></el-table-column>
+                             label="IOI"
+                             width="80px"></el-table-column>
             <el-table-column prop="viioi"
-                             label="VI+IOI"></el-table-column>
+                             label="VI+IOI"
+                             width="80px"></el-table-column>
             <el-table-column prop="cvo"
-                             label="CVO"></el-table-column>
+                             label="CVO"
+                             width="80px"></el-table-column>
             <el-table-column prop="interview1st"
                              label="1st Interview"></el-table-column>
             <el-table-column prop="offerSigned"
                              label="Offer Signed"></el-table-column>
             <el-table-column prop="onBoard"
                              label="On Board"></el-table-column>
+            <el-table-column prop="finishRate"
+                             label="完成比例（%）"></el-table-column>
           </el-table>
         </div>
       </el-tab-pane>

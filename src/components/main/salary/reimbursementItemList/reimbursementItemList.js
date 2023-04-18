@@ -186,8 +186,10 @@ export default {
         return '北京'
       } else if (row.location === 'Shenyang') {
         return '沈阳'
-      } else if (row.location === 'Enshi') {
-        return '恩施'
+      } else if (row.location === 'Wuhan') {
+        return '武汉'
+      } else if (row.location === 'Nanjing') {
+        return '南京'
       }
     },
     // 公司转换器

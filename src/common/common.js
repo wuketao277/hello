@@ -287,8 +287,11 @@ export default {
     code: 'Shenyang',
     name: '沈阳'
   }, {
-    code: 'Enshi',
-    name: '恩施'
+    code: 'Nanjing',
+    name: '南京'
+  }, {
+    code: 'Wuhan',
+    name: '武汉'
   }],
   approveStatusList: [{
     code: 'Apply',
