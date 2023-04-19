@@ -292,6 +292,9 @@ export default {
   }, {
     code: 'Wuhan',
     name: '武汉'
+  }, {
+    code: 'Enshi',
+    name: '恩施'
   }],
   approveStatusList: [{
     code: 'Apply',

@@ -190,6 +190,8 @@ export default {
         return '武汉'
       } else if (row.location === 'Nanjing') {
         return '南京'
+      } else if (row.location === 'Enshi') {
+        return '恩施'
       }
     },
     // 公司转换器
