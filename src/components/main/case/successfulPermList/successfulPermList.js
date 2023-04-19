@@ -215,8 +215,10 @@ export default {
     },
     // 清空查询条件
     clearQueryCondition () {
-      this.search = {}
-      window.localStorage['successfulPermList.search'] = {}
+      this.search = {
+        nonPaymentDue: false
+      }
+      window.localStorage['successfulPermList.search'] = this.search
     }
   },
   created () {

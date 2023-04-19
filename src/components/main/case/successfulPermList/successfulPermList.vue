@@ -426,6 +426,14 @@
               </el-form-item>
             </el-col>
           </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Shortcut"
+                            label-width="80px">
+                <el-checkbox v-model="search.nonPaymentDue">到期未付款</el-checkbox>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
         <span slot="footer"
               class="dialog-footer">
