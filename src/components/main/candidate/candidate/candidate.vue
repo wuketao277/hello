@@ -450,8 +450,7 @@
           <el-table-column prop="content"
                            label="评论内容"></el-table-column>
           <el-table-column label="操作"
-                           width="160"
-                           show-overflow-tooltip>
+                           width="100">
             <template slot-scope="scope">
               <el-button size="mini"
                          type="text"
