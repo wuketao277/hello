@@ -512,6 +512,8 @@
             <el-table-column prop="userName"
                              label="姓名"
                              width="100px"></el-table-column>
+            <el-table-column prop="finishRate"
+                             label="完成比例（%）"></el-table-column>
             <el-table-column prop="ti"
                              label="TI"
                              width="80px"></el-table-column>
@@ -536,8 +538,6 @@
                              label="Offer Signed"></el-table-column>
             <el-table-column prop="onBoard"
                              label="On Board"></el-table-column>
-            <el-table-column prop="finishRate"
-                             label="完成比例（%）"></el-table-column>
           </el-table>
         </div>
       </el-tab-pane>
