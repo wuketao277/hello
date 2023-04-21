@@ -154,6 +154,7 @@ export default {
       ],
       // 新评论
       newComment: {
+        id: null,
         phase: 'TI',
         interviewTime: null,
         content: ''
@@ -547,6 +548,14 @@ export default {
           })
         }
       })
+    },
+    // 修改评论
+    modifyComment (row) {
+      debugger
+      this.newComment.id = row.id
+      this.newComment.phase = row.phase
+      this.newComment.interviewTime = row.interviewTime
+      this.newComment.content = row.content
     },
     // 查询所有评论
     queryComment () {

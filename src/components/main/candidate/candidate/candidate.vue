@@ -450,13 +450,17 @@
           <el-table-column prop="content"
                            label="评论内容"></el-table-column>
           <el-table-column label="操作"
-                           width="120"
+                           width="160"
                            show-overflow-tooltip>
             <template slot-scope="scope">
               <el-button size="mini"
                          type="text"
                          v-if="showCommentCFButton(scope.row)"
                          @click="addCFModel(scope.row)">添加CF</el-button>
+              <el-button size="mini"
+                         type="text"
+                         v-if="showCommentCFButton(scope.row)"
+                         @click="modifyComment(scope.row)">修改</el-button>
               <el-button size="mini"
                          type="text"
                          style="color:red;"
