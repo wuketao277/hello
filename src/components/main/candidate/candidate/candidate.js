@@ -8,6 +8,7 @@ import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import labelApi from '@/api/label'
 
 export default {
   components: {
@@ -17,6 +18,7 @@ export default {
   },
   data () {
     return {
+      newLabel: null,
       attention: false,
       selectCaseDialogShow: false, // 选择职位对话框
       candidateForCaseList: [], // 候选人推荐职位列表
@@ -49,7 +51,8 @@ export default {
         createRealName: null,
         notMatchReason: 'NO',
         notMatchReasonDetail: '',
-        doubleCheck: []
+        doubleCheck: [],
+        lables: []
       },
       phaseOptions: [{
         value: 'SL',
@@ -260,7 +263,8 @@ export default {
       doubleCheckList: [{
         key: 'RESUME',
         name: '简历内容真实准确'
-      }] // 必要检查项
+      }], // 必要检查项
+      allLabels: [] // 顾问的全部标签
     }
   },
   methods: {
@@ -551,7 +555,6 @@ export default {
     },
     // 修改评论
     modifyComment (row) {
-      debugger
       this.newComment.id = row.id
       this.newComment.phase = row.phase
       this.newComment.interviewTime = row.interviewTime
@@ -795,6 +798,85 @@ export default {
           }
         })
       })
+    },
+    // 添加新标签
+    addLabel () {
+      if (typeof (this.newLabel) === 'undefined' || this.form.newLabel === null || this.form.newLabel === '') {
+        this.$message({
+          message: '请添加标签名称！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      if (typeof (this.form.id) === 'undefined' || this.form.id === null) {
+        this.$message({
+          message: '请先保存候选人信息！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      if (typeof (this.newLabel) !== 'undefined' && this.newLabel !== null && this.newLabel !== '') {
+        // 检查新标签是否在标签集合中
+        if (this.allLabels.indexOf(this.newLabel) === -1) {
+          // 新标签不在标签集合中，就将新标签添加到数据库中
+          labelApi.save(this.newLabel).then(res => {
+            if (res.status === 200) {
+              this.findAllLabel()
+              // 检查是否在已选择标签集合中
+              if (this.form.labels.indexOf(this.newLabel) === -1) {
+                // 不在已选择标签集合中，就添加进去
+                this.form.labels.push(this.newLabel)
+              }
+            }
+          })
+        } else {
+          // 新标签在标签集合中
+          // 检查是否在已选择标签集合中
+          if (this.form.labels.indexOf(this.newLabel) === -1) {
+            // 不在已选择标签集合中，就添加进去
+            this.form.labels.push(this.newLabel)
+          }
+        }
+      }
+      this.save()
+    },
+    // 删除标签
+    deleteLabel () {
+      if (typeof (this.newLabel) === 'undefined' || this.form.newLabel === null || this.form.newLabel === '') {
+        this.$message({
+          message: '请添加标签名称！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      // 调用后台删除并获取最新
+      labelApi.deleteThenFindAllName(this.newLabel).then(res => {
+        if (res.status === 200) {
+          this.allLabels = res.data
+          this.$message({
+            message: '删除成功',
+            type: 'success',
+            showClose: true
+          })
+          this.save()
+        }
+      })
+    },
+    // 获取所有标签
+    findAllLabel () {
+      labelApi.findAllName().then(res => {
+        if (res.status === 200) {
+          this.allLabels = res.data
+          debugger
+        }
+      })
+    },
+    // 标签变更事件
+    handleLabelsChange () {
+      this.save()
     }
   },
   computed: {},
@@ -806,13 +888,18 @@ export default {
         this.jobType = res.data.jobType
       }
     })
+    // 获取所有标签名称
+    this.findAllLabel()
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       // 获取候选人数据
       // 如果没有候选人对象，就获取候选人id然后从数据库中查询候选人对象
-      if (typeof (this.$route.query.candidate) === 'undefined') {
+      if (typeof (this.$route.query.candidate) !== 'undefined') {
+        this.form = this.$route.query.candidate
+        this.queryOthers()
+      } else if (typeof (this.$route.query.candidateId) !== 'undefined') {
         let params = {
           'id': this.$route.query.candidateId
         }
@@ -823,10 +910,10 @@ export default {
               this.queryOthers()
             }
           })
-      } else {
-        this.form = this.$route.query.candidate
-        this.queryOthers()
       }
     }
+    console.info(this.form)
+    debugger
+    console.info(this.form)
   }
 }

@@ -36,7 +36,8 @@ export default {
       phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
       selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 选择的阶段
       pipelineList: [],
-      pipelineShowControlList: []
+      pipelineShowControlList: [],
+      todoTaskDialog: false
     }
   },
   methods: {
@@ -611,5 +612,14 @@ export default {
     this.endDate = commonJs.getStorageContent('summary.kpiEndDate', commonJs.getYYYY_MM_dd(new Date()))
     // 初始化当前tab
     this.initTab(this.tabIndex)
+    // 获取今日任务，如果有未完成任务就弹出对话框
+    myTaskApi.queryTodayTaskForMe().then(res => {
+      if (res.status === 200) {
+        this.myTasks = res.data
+        if (this.myTasks.length > 0) {
+          this.todoTaskDialog = true
+        }
+      }
+    })
   }
 }

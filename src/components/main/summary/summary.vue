@@ -382,13 +382,15 @@
       <el-tab-pane label="关注候选人"
                    v-if="showControl('/candidateAttention')"
                    name="4">
-        <el-button type="primary"
-                   plain
-                   size="small"
-                   shadow="hover"
-                   v-for="candidateAttention in candidateAttentionList"
-                   :key="candidateAttention.candidateId"
-                   @click="detailCandidate(candidateAttention.candidateId)">{{candidateAttention.candidateChineseName}}</el-button>
+        <div v-for="candidateAttention in candidateAttentionList"
+             :key="candidateAttention.id"
+             style="display:inline-block;width:100px;float:left;margin:5px;border:1px solid #DCDFE6;border-radius: 4px;color:#606266;"
+             @click="detailCandidate(candidateAttention.candidateId)">
+          <div style="text-align:center;margin-top:5px;margin-bottom:5px;font-size:14px;color:#409EFF;">{{candidateAttention.candidateChineseName}}</div>
+          <span v-for="label in candidateAttention.labels"
+                :key="label"
+                style="font-size:10px;margin-left:4px;margin-right:4px;">{{label}}</span>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="我的新闻"
                    v-if="showControl('/news')"
@@ -621,6 +623,26 @@
         <el-table-column property="inputTime"
                          label="录入时间"
                          width="180"></el-table-column>
+      </el-table>
+    </el-dialog>
+    <el-dialog title="代办任务"
+               :visible.sync="todoTaskDialog"
+               width="80%">
+      <el-table :data="myTasks"
+                :border="true"
+                :highlight-current-row="true"
+                :stripe="true"
+                :show-header="true"
+                @row-dblclick="handleTaskDblClick"
+                @current-change="taskRowChange"
+                style="width: 100%">
+        <el-table-column prop="taskTitle"
+                         label="任务标题"
+                         width="180"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="taskContent"
+                         label="任务内容"
+                         show-overflow-tooltip></el-table-column>
       </el-table>
     </el-dialog>
   </div>

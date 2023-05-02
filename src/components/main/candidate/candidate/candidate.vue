@@ -325,6 +325,36 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="12">
+        <el-col :span="8">
+          <el-form-item label="新标签">
+            <el-input v-model="newLabel"
+                      placeholder="输入新标签名称"
+                      maxlength="100"
+                      style="width:250px;"
+                      show-word-limit
+                      clearable></el-input>
+            <el-button type="success"
+                       size="mini"
+                       icon="el-icon-circle-plus"
+                       @click="addLabel">添加</el-button>
+            <el-button type="danger"
+                       size="mini"
+                       icon="el-icon-remove-outline"
+                       @click="deleteLabel">删除</el-button>
+          </el-form-item>
+        </el-col>
+        <el-col :span="16">
+          <el-form-item label="全部标签">
+            <el-checkbox-group v-model="form.labels"
+                               @change="handleLabelsChange">
+              <el-checkbox v-for="label in allLabels"
+                           :label="label"
+                           :key="label">{{label}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-tabs type="border-card">
       <!--职位列表开始-->
