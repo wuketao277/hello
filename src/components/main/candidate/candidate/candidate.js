@@ -830,6 +830,8 @@ export default {
                 this.form.labels.push(this.newLabel)
               }
             }
+            // 保存候选人
+            this.save()
           })
         } else {
           // 新标签在标签集合中
@@ -838,9 +840,10 @@ export default {
             // 不在已选择标签集合中，就添加进去
             this.form.labels.push(this.newLabel)
           }
+          // 保存候选人
+          this.save()
         }
       }
-      this.save()
     },
     // 删除标签
     deleteLabel () {
@@ -870,7 +873,6 @@ export default {
       labelApi.findAllName().then(res => {
         if (res.status === 200) {
           this.allLabels = res.data
-          debugger
         }
       })
     },
@@ -912,8 +914,5 @@ export default {
           })
       }
     }
-    console.info(this.form)
-    debugger
-    console.info(this.form)
   }
 }
