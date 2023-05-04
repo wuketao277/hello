@@ -523,8 +523,8 @@
             <el-table-column prop="ti"
                              label="TI"
                              width="70px"></el-table-column>
-            <el-table-column prop="tiif"
-                             label="TI+IF"
+            <el-table-column prop="ticf"
+                             label="TI+CF"
                              width="70px"></el-table-column>
             <el-table-column prop="vi"
                              label="VI"
