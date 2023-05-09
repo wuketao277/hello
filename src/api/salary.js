@@ -50,5 +50,11 @@ export default {
   // 删除
   deleteById (params) {
     return axios.get('/salary/deleteById?id=' + params)
+  },
+  // 通过客户和base计算billing和gp
+  calcBillingByBaseAndCompany (params) {
+    return axios.get('/salary/getSalaryStatisticsInfo', {
+      params: params
+    })
   }
 }

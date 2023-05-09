@@ -345,14 +345,18 @@
           </el-form-item>
         </el-col>
         <el-col :span="16">
-          <el-form-item label="全部标签">
-            <el-checkbox-group v-model="form.labels"
-                               @change="handleLabelsChange">
-              <el-checkbox v-for="label in allLabels"
-                           :label="label"
-                           :key="label">{{label}}</el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
+          <el-collapse style="border-width:0px;morgin:0px;padding:0px;">
+            <el-collapse-item title="下拉展示所有标签"
+                              name="1"
+                              style="border-width:0px;morgin:0px;padding:0px;">
+              <el-checkbox-group v-model="form.labels"
+                                 @change="handleLabelsChange">
+                <el-checkbox v-for="label in allLabels"
+                             :label="label"
+                             :key="label">{{label}}</el-checkbox>
+              </el-checkbox-group>
+            </el-collapse-item>
+          </el-collapse>
         </el-col>
       </el-row>
     </el-form>

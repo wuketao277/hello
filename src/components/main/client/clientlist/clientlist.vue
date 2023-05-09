@@ -14,7 +14,8 @@
       <el-button type="warning"
                  size="small"
                  icon="el-icon-edit"
-                 @click="modify">修 改</el-button>
+                 @click="modify"
+                 v-if="showControl('modifyClient')">修 改</el-button>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-share"
