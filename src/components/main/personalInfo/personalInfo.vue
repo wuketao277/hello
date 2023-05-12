@@ -45,6 +45,7 @@
               <el-form-item label="性别">
                 <el-select v-model="extInfoForm.gender"
                            placeholder="请选择"
+                           filterable
                            clearable
                            style="width:200px;">
                   <el-option v-for="gender in genders"
@@ -106,6 +107,7 @@
               <el-form-item label="工资卡银行">
                 <el-select v-model="extInfoForm.bank"
                            placeholder="请选择"
+                           filterable
                            clearable
                            style="width:100%;">
                   <el-option v-for="bank in banks"

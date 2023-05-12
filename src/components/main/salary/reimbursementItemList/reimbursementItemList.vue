@@ -153,6 +153,7 @@
                 <el-select v-model="search.approveStatus"
                            placeholder="STATUS"
                            style="max-width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="status in approveStatusList"
                              :key="status.code"
@@ -166,6 +167,7 @@
                 <el-select v-model="search.needPay"
                            placeholder="请选择"
                            style="max-width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="v in reimbursementNeedPay"
                              :key="v.code"
@@ -191,6 +193,7 @@
                 <el-select v-model="search.location"
                            placeholder="发生地点"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="location in locationList"
                              :key="location.code"
@@ -203,6 +206,7 @@
               <el-form-item label="COMPANY">
                 <el-select v-model="search.company"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="company in companyList"
                              :key="company.code"
@@ -230,6 +234,7 @@
                            @change="typeChange"
                            placeholder="类别"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="type in typeList"
                              :key="type.code"
@@ -243,6 +248,7 @@
                 <el-select v-model="search.kind"
                            placeholder="项目"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="kind in currentKindList"
                              :key="kind.code"

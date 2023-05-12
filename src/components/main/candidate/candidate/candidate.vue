@@ -103,6 +103,7 @@
             <el-select v-model="form.gender"
                        placeholder="请选择"
                        clearable
+                       filterable
                        style="width:100%;">
               <el-option v-for="gender in genders"
                          :key="gender.code"
@@ -254,6 +255,7 @@
             <el-select v-model="form.notMatchReason"
                        placeholder="请选择"
                        style="width:100%"
+                       filterable
                        clearable>
               <el-option v-for="reaseon in notMatchReasonList"
                          :key="reaseon.code"
@@ -433,6 +435,7 @@
                             prop="phase"
                             v-show="(mode === 'add' || mode === 'modify')">
                 <el-select v-model="newComment.phase"
+                           filterable
                            placeholder="请选择">
                   <el-option v-for="item in phaseOptions"
                              :key="item.value"

@@ -81,6 +81,7 @@
                 <el-select v-model="search.company"
                            placeholder="请选择公司"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="company in companyList"
                              :key="company.code"

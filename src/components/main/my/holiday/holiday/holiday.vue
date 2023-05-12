@@ -36,6 +36,7 @@
             <el-select v-model="form.approveStatus"
                        placeholder="请选择"
                        style="width:100%;"
+                       filterable
                        clearable>
               <el-option v-for="status in approveStatusList"
                          :key="status.code"

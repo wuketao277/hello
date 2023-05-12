@@ -120,6 +120,7 @@
                 <el-select v-model="search.gender"
                            placeholder="请选择"
                            clearable
+                           filterable
                            style="width:100%;">
                   <el-option v-for="gender in genders"
                              :key="gender.code"

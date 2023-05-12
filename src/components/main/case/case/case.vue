@@ -77,6 +77,7 @@
                         prop="clientId">
             <el-select v-model="form.clientId"
                        placeholder="请选择客户"
+                       filterable
                        style="width:100%">
               <el-option v-for="client in clients"
                          :key="client.id"

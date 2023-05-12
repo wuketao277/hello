@@ -34,6 +34,8 @@
                         required>
             <el-select v-model="form.clientId"
                        placeholder="请选择客户"
+                       filterable
+                       @change="calcBillingAndGp"
                        style="width:100%;">
               <el-option v-for="client in clients"
                          :key="client.id"
@@ -47,6 +49,7 @@
                         v-show="showControl('approveStatus')">
             <el-select v-model="form.approveStatus"
                        placeholder="审批状态"
+                       filterable
                        style="width:100%;">
               <el-option v-for="approveStatus in approveStatusList"
                          :key="approveStatus.id"
@@ -60,6 +63,8 @@
                         required>
             <el-select v-model="form.type"
                        placeholder="类型"
+                       @change="calcBillingAndGp"
+                       filterable
                        style="width:100%;">
               <el-option v-for="type in typeList"
                          :key="type.code"
@@ -590,6 +595,7 @@
           <el-form-item label="Base"
                         required>
             <el-input v-model="form.base"
+                      @change="calcBillingAndGp"
                       style="width:70%"></el-input>
             <span>{{formatBase}}</span>
           </el-form-item>
@@ -598,6 +604,7 @@
           <el-form-item label="Billing"
                         required>
             <el-input v-model="form.billing"
+                      :readonly="billingReadonly()"
                       style="width:70%"></el-input>
             <span>{{formatBilling}}</span>
           </el-form-item>

@@ -44,6 +44,7 @@
                         required>
             <el-select v-model="form.company"
                        style="width:100%;"
+                       filterable
                        clearable>
               <el-option v-for="company in companyList"
                          :key="company.code"
@@ -113,6 +114,7 @@
                         prop="clientCompanyId">
             <el-select v-model="form.clientCompanyId"
                        placeholder="请选择客户公司"
+                       filterable
                        style="width:100%">
               <el-option v-for="client in clients"
                          :key="client.id"
@@ -254,6 +256,7 @@
           <el-form-item label="工资卡银行">
             <el-select v-model="form.bank"
                        placeholder="请选择"
+                       filterable
                        readonly
                        style="width:100%;">
               <el-option v-for="bank in banks"

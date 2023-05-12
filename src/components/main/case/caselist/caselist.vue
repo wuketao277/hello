@@ -86,6 +86,7 @@
                 <el-select v-model="search.clientId"
                            placeholder="请选择客户"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="client in clients"
                              :key="client.id"
@@ -117,6 +118,7 @@
               <el-form-item label="HR">
                 <el-select v-model="search.hrId"
                            placeholder="请选择hr"
+                           filterable
                            clearable>
                   <el-option v-for="hr in hrs"
                              :key="hr.id"

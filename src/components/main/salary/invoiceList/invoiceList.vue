@@ -137,6 +137,7 @@
                 <el-select v-model="search.clientId"
                            placeholder="请选择客户"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="client in clients"
                              :key="client.id"
@@ -151,6 +152,7 @@
               <el-form-item label="AM">
                 <el-select v-model="search.amId"
                            placeholder="请选择顾问"
+                           filterable
                            clearable
                            style="width:100%;">
                   <el-option v-for="consultant in consultants"
@@ -164,6 +166,7 @@
               <el-form-item label="发票类型">
                 <el-select v-model="search.type"
                            placeholder="请选择发票类型"
+                           filterable
                            clearable
                            style="width:100%;">
                   <el-option v-for="type in types"

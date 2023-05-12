@@ -56,5 +56,11 @@ export default {
     return axios.get('/salary/calcBillingByBaseAndClient', {
       params: params
     })
+  },
+  // 通过billing计算gp
+  billingToGp (params) {
+    return axios.get('/salary/billingToGp', {
+      params: params
+    })
   }
 }

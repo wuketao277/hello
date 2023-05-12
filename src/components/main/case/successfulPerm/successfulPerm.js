@@ -721,6 +721,11 @@ export default {
       this.form.hrChineseName = val.chineseName
       this.form.hrEnglishName = val.englishName
     },
+    // billing只读控制方法
+    billingReadonly: function () {
+      // 管理员可以修改Billing
+      return !commonJS.isAdmin()
+    },
     // gp只读控制方法
     gpReadonly: function () {
       // 管理员可以修改GP
@@ -728,15 +733,16 @@ export default {
     },
     // 通过billing计算GP
     getGP: function () {
-      if (this.form.type !== 'contracting') {
-        // perm情况下，gp是通过billing计算出来的
-        if (typeof (this.form.billing) === 'undefined') {
-          this.form.gp = 0
+      if (this.form.type === 'perm' && this.form.billing !== null) {
+        // 猎头业务才计算
+        let params = {
+          'billing': this.form.billing
         }
-        if (this.form.billing === 0) {
-          this.form.gp = 0
-        }
-        this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
+        salaryApi.billingToGp(params).then(res => {
+          if (res.status === 200) {
+            this.form.gp = res.data
+          }
+        })
       }
     },
     // base变化计算billing和gp
