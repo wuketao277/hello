@@ -37,7 +37,9 @@ export default {
       selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 选择的阶段
       pipelineList: [],
       pipelineShowControlList: [],
-      todoTaskDialog: false
+      todoTaskDialog: false,
+      isChouqianAll: true,
+      isChouqianCheckAll: false
     }
   },
   methods: {
@@ -598,11 +600,22 @@ export default {
     orderComment (type) {
       this.kpiOrderType = type
       this.filerAndSortKpi()
+    },
+    // 抽签全选
+    handleChouqianCheckAllChange (val) {
+      if (val) {
+        for (let u of this.users) {
+          this.selectUsers.push(u)
+        }
+      } else {
+        this.selectUsers = []
+      }
+      this.isChouqianAll = false
     }
   },
   created () {
-    // 获取当前用户角色
-    userApi.findAllEnabled().then(res => {
+    // 获取所有正常状态的全职员工
+    userApi.findAllEnabledFullTime().then(res => {
       if (res.status === 200) {
         this.users = res.data
       }

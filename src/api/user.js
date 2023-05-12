@@ -9,6 +9,10 @@ export default {
   findAllEnabled () {
     return axios.get('/user/findAllEnabled')
   },
+  // 获取所有正常状态的全职员工
+  findAllEnabledFullTime () {
+    return axios.get('/user/findAllEnabledFullTime')
+  },
   // 保存用户基本信息接口
   saveBaseInfo (params) {
     return axios.post('/user/saveBaseInfo', params)

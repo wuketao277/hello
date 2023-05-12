@@ -7,6 +7,7 @@ import clientApi from '@/api/client'
 import configApi from '@/api/config'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import salaryApi from '@/api/salary'
 
 export default {
   components: {
@@ -714,6 +715,22 @@ export default {
           this.form.gp = 0
         }
         this.form.gp = parseInt(this.form.billing / 1.06 - (this.form.billing - this.form.billing / 1.06) * 0.07)
+      }
+    },
+    // base变化计算billing和gp
+    calcBillingAndGp: function () {
+      if (this.form.type === 'perm' && this.form.base !== null && this.form.clientId !== null) {
+        // 猎头业务才计算
+        let params = {
+          'base': this.form.base,
+          'clientId': this.form.clientId
+        }
+        salaryApi.calcBillingByBaseAndClient(params).then(res => {
+          if (res.status === 200) {
+            this.form.billing = res.data[0]
+            this.form.gp = res.data[1]
+          }
+        })
       }
     }
   },

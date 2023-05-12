@@ -30,6 +30,10 @@
                      plain
                      size="small"
                      @click="queryPipeline('beijing')">北 京</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryPipeline('wuhan')">武 汉</el-button>
         </div>
         <el-button type="text"
                    plain
@@ -203,6 +207,10 @@
                      plain
                      size="small"
                      @click="queryInterviewPlan('beijing')">北 京</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="queryInterviewPlan('wuhan')">武 汉</el-button>
         </div>
         <el-table :data="interviewPlan"
                   :border="true"
@@ -486,6 +494,10 @@
                      size="small"
                      @click="kpiScopeChange('shenyang')">沈阳</el-button>
           <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('wuhan')">武汉</el-button>
+          <el-button type="primary"
                      size="small"
                      icon="el-icon-setting"
                      plain
@@ -561,6 +573,9 @@
                      icon="el-icon-delete"
                      @click="clearSelectUsers">清 空</el-button>
         </div>
+        <el-checkbox :indeterminate="isChouqianAll"
+                     v-model="isChouqianCheckAll"
+                     @change="handleChouqianCheckAllChange">全选</el-checkbox>
         <el-checkbox-group v-model="selectUsers"
                            style="margin-top:10px;margin-bottom:10px;">
           <el-checkbox v-for="user in users"
