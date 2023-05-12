@@ -144,6 +144,26 @@
             <span>%</span>
           </div>
         </el-col>
+        <el-col :span="6">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectLeaderDialog"
+                     style="width:80px;">Leader</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.leaderUserName !== ''">
+            <span>{{form.leaderUserName}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteConsultant('leader')"></el-button>
+            <el-input v-model="form.leaderCommissionPercent"
+                      size="small"
+                      style="width:70px;"
+                      placeholder="提成"></el-input>
+            <span>%</span>
+          </div>
+        </el-col>
         <el-col :span="6"
                 v-show="this.consultantColumnShow1">
           <el-button type="primary"
@@ -735,6 +755,11 @@
                :visible.sync="selectBDDialogShow">
       <selectUser v-on:cancel-dialog="selectBDDialogShow = false"
                   v-on:sure-dialog="sureSelectBDDialog"></selectUser>
+    </el-dialog>
+    <el-dialog title="选择Leader"
+               :visible.sync="selectLeaderDialogShow">
+      <selectUser v-on:cancel-dialog="selectLeaderDialogShow = false"
+                  v-on:sure-dialog="sureSelectLeaderDialog"></selectUser>
     </el-dialog>
     <el-dialog title="选择HR"
                :visible.sync="selectHRDialogShow">

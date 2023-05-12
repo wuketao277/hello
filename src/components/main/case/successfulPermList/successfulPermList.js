@@ -29,6 +29,7 @@ export default {
       consultants: [],
       bds: [],
       cws: [],
+      leaders: [],
       approveStatusList: [{
         'id': 'applied',
         'name': '申请状态'
@@ -240,6 +241,7 @@ export default {
         this.consultants = res.data
         this.cws = res.data
         this.bds = res.data
+        this.leaders = res.data
       }
     })
     clientlinkmanApi.queryAllForSimple().then(res => {

@@ -123,6 +123,14 @@
                          width="120"
                          label="BD Rate"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="leaderUserName"
+                         width="100"
+                         label="Leader"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="leaderCommissionPercent"
+                         width="120"
+                         label="Leader Rate"
+                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="consultantUserName"
                          width="100"
                          label="AM"
@@ -215,6 +223,7 @@
                 <el-select v-model="search.clientId"
                            placeholder="请选择客户"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="client in clients"
                              :key="client.id"
@@ -228,6 +237,7 @@
                             label-width="80px">
                 <el-select v-model="search.hrId"
                            placeholder="请选择hr"
+                           filterable
                            clearable>
                   <el-option v-for="hr in hrs"
                              :key="hr.id"
@@ -250,6 +260,7 @@
                             label-width="80px">
                 <el-select v-model="search.consultantId"
                            placeholder="请选择顾问"
+                           filterable
                            clearable>
                   <el-option v-for="consultant in consultants"
                              :key="consultant.id"
@@ -263,6 +274,7 @@
                             label-width="80px">
                 <el-select v-model="search.cwId"
                            placeholder="请选择CW"
+                           filterable
                            clearable>
                   <el-option v-for="cw in cws"
                              :key="cw.id"
@@ -276,11 +288,26 @@
                             label-width="80px">
                 <el-select v-model="search.bdId"
                            placeholder="请选择BD"
+                           filterable
                            clearable>
                   <el-option v-for="bd in bds"
                              :key="bd.id"
                              :value="bd.id"
                              :label="bd.username"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="Leader"
+                            label-width="80px">
+                <el-select v-model="search.leaderId"
+                           placeholder="请选择Leader"
+                           filterable
+                           clearable>
+                  <el-option v-for="leader in leaders"
+                             :key="leader.id"
+                             :value="leader.id"
+                             :label="leader.username"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>

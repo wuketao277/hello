@@ -60,6 +60,10 @@ export default {
         bdUserName: '', // BD登录名
         bdRealName: '', // BD真实姓名
         bdCommissionPercent: '', // BD提成比例
+        leaderId: '', // Leaderid
+        leaderUserName: '', // Leader登录名
+        leaderRealName: '', // Leader真实姓名
+        leaderCommissionPercent: '', // Leader提成比例
         consultantId: '', // 顾问id
         consultantUserName: '', // 顾问登录名
         consultantRealName: '', // 顾问真实姓名
@@ -170,6 +174,7 @@ export default {
       selectConsultantDialogShow: false,
       selectCWDialogShow: false,
       selectBDDialogShow: false,
+      selectLeaderDialogShow: false,
       approveStatusList: [{
         'id': 'applied',
         'name': '申请状态'
@@ -475,6 +480,11 @@ export default {
         this.form.bdUserName = ''
         this.form.bdRealName = ''
         this.form.bdCommissionPercent = null
+      } else if (val === 'leader') {
+        this.form.leaderId = ''
+        this.form.leaderUserName = ''
+        this.form.leaderRealName = ''
+        this.form.leaderCommissionPercent = null
       } else if (val === '1') {
         this.form.consultantId = ''
         this.form.consultantUserName = ''
@@ -683,6 +693,10 @@ export default {
     openSelectBDDialog () {
       this.selectBDDialogShow = true
     },
+    // 打开“选择Leader”对话框
+    openSelectLeaderDialog () {
+      this.selectLeaderDialogShow = true
+    },
     // “选择BD”对话框返回
     sureSelectBDDialog (val) {
       // 首先关闭对话框
@@ -690,6 +704,14 @@ export default {
       this.form.bdId = val.id
       this.form.bdUserName = val.username
       this.form.bdRealName = val.realname
+    },
+    // “选择Leader”对话框返回
+    sureSelectLeaderDialog (val) {
+      // 首先关闭对话框
+      this.selectLeaderDialogShow = false
+      this.form.leaderId = val.id
+      this.form.leaderUserName = val.username
+      this.form.leaderRealName = val.realname
     },
     // “选择hr”对话框返回
     sureSelectHRDialog (val) {
