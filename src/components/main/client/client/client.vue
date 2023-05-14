@@ -78,7 +78,7 @@
             <el-input type="textarea"
                       v-model="form.recommendationProcess"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
