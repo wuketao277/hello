@@ -54,7 +54,7 @@
             <el-input type="textarea"
                       v-model="form.address"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="200"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -66,7 +66,7 @@
             <el-input type="textarea"
                       v-model="form.information"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -90,7 +90,7 @@
             <el-input type="textarea"
                       v-model="form.duplicateCheck"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -126,7 +126,7 @@
             <el-input type="textarea"
                       v-model="form.recommendationReason"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -138,7 +138,7 @@
             <el-input type="textarea"
                       v-model="form.interviewPrepare"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="500"
+                      maxlength="1000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
