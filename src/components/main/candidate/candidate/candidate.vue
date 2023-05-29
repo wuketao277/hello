@@ -98,6 +98,30 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="面试历史"
+                        prop="interviewHistory">
+            <el-input v-model="form.interviewHistory"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="求职动机"
+                        prop="motivation">
+            <el-input v-model="form.motivation"
+                      type="textarea"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      placeholder="目前看机会的原因是什么（pull/push factor），对行业和工作内容有要求吗？外企、国企、互联网公司？什么类型的工作？对于这个机会自己打几分，好在哪？不好在哪？手上有其他新的机会吗？这些机会和这个比较起来你更看好哪个？"
+                      maxlength="200"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="性别">
             <el-select v-model="form.gender"
@@ -207,37 +231,6 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="24">
-          <el-form-item label="组织架构"
-                        prop="companyStructure">
-            <el-input v-model="form.companyStructure"
-                      placeholder="汇报给谁，他的title是什么？和您平级的有几位？您现在带团队吗？带多少个人团队呢？从什么时候开始带团队，下面的团队是怎么分工的呢？工作内容"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="24">
-          <el-form-item label="面试历史"
-                        prop="interviewHistory">
-            <el-input v-model="form.interviewHistory"
-                      placeholder="之前有面试过XX公司吗？包括猎头推荐、内部推荐或者公开网站上投过他们的岗位吗（面试宝马职位，不能是宝马的供应商）"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="24">
-          <el-form-item label="求职动机"
-                        prop="motivation">
-            <el-input v-model="form.motivation"
-                      placeholder="目前看机会的原因是什么（pull/push factor），对行业和工作内容有要求吗？外企、国企、互联网公司？什么类型的工作？对于这个机会自己打几分，好在哪？不好在哪？手上有其他新的机会吗？这些机会和这个比较起来你更看好哪个？"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="24">
@@ -273,6 +266,17 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item label="组织架构"
+                        prop="companyStructure">
+            <el-input v-model="form.companyStructure"
+                      placeholder="汇报给谁，他的title是什么？和您平级的有几位？您现在带团队吗？带多少个人团队呢？从什么时候开始带团队，下面的团队是怎么分工的呢？工作内容"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-row :gutter="12">
         <el-col :span="24">
           <el-form-item label="学校"
@@ -292,9 +296,12 @@
           <el-form-item label="必要检查"
                         prop="doubleCheck">
             <el-checkbox-group v-model="form.doubleCheck">
-              <el-checkbox v-for="check in doubleCheckList"
-                           :label="check.key"
-                           :key="check.key">{{check.name}}</el-checkbox>
+              <el-tooltip class="item"
+                          effect="dark"
+                          content="请您认真核对简历中中英所有信息（英文语法），包括学历、工作经历及简历上出现的所有日期、薪资的真实准确，客户的背调很严格，现在有问题我可以帮您解决，如果等到背调的时候就会取消offer并上黑名单。"
+                          placement="top">
+                <el-checkbox label="RESUME">简历内容真实准确</el-checkbox>
+              </el-tooltip>
             </el-checkbox-group>
           </el-form-item>
         </el-col>
@@ -449,7 +456,7 @@
                             prop="content"
                             v-show="(mode === 'add' || mode === 'modify')">
                 <el-date-picker v-model="newComment.interviewTime"
-                                v-if="newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === 'Final Interview'"
+                                v-if="newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === '5th Interview' || newComment.phase === 'Final Interview'"
                                 type="datetime"
                                 placeholder="选择面试时间">
                 </el-date-picker>
@@ -526,7 +533,7 @@
             </el-col>
           </el-row>
           <el-row v-for="task in tasks"
-                  :key="task"
+                  :key="task.id"
                   style="text-align:left;">
             <el-col :span="2">
               <div class="grid-content bg-purple">{{task.executeRealName}}</div>

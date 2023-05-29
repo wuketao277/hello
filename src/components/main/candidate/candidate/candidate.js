@@ -52,7 +52,9 @@ export default {
         notMatchReason: 'NO',
         notMatchReasonDetail: '',
         doubleCheck: [],
-        lables: []
+        lables: [],
+        motivation: '请问您会考虑看机会吗？（什么原因不考虑呢？那您想看哪些品牌呢？）您现在考虑看机会最看重的点是什么呢？想看什么方向的机会？',
+        interviewHistory: '您面过xx吗？什么时候面的（六个月之内面过，我们不能重复推荐）？面下来情况怎么样？面试官是谁？'
       },
       phaseOptions: [{
         value: 'SL',
@@ -89,6 +91,10 @@ export default {
       {
         value: '4th Interview',
         lable: '4th Interview'
+      },
+      {
+        value: '5th Interview',
+        lable: '5th Interview'
       },
       {
         value: 'Final Interview',
@@ -260,10 +266,6 @@ export default {
       notMatchReasonList: commonJS.notMatchReasonList,
       roles: [],
       jobType: '', // 工作类型
-      doubleCheckList: [{
-        key: 'RESUME',
-        name: '简历内容真实准确'
-      }], // 必要检查项
       allLabels: [] // 顾问的全部标签
     }
   },
@@ -338,7 +340,7 @@ export default {
     // Candidate Feedback的显示控制按钮
     showCommentCFButton (row) {
       let phase = row.phase
-      if (phase === '1st Interview' || phase === '2nd Interview' || phase === '3rd Interview' || phase === '4th Interview' || phase === 'Final Interview') {
+      if (phase === '1st Interview' || phase === '2nd Interview' || phase === '3rd Interview' || phase === '4th Interview' || phase === '5th Interview' || phase === 'Final Interview') {
         return true
       }
       return false
@@ -487,7 +489,7 @@ export default {
         }
       }
       // 面试阶段需要填写面试时间
-      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === 'Final Interview') {
+      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === '5th Interview' || this.newComment.phase === 'Final Interview') {
         if (this.newComment.interviewTime === null) {
           this.$message({
             message: '请填写面试时间',
