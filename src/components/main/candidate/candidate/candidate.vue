@@ -102,7 +102,10 @@
           <el-form-item label="面试历史"
                         prop="interviewHistory">
             <el-input v-model="form.interviewHistory"
+                      type="textarea"
+                      :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="200"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -114,7 +117,6 @@
             <el-input v-model="form.motivation"
                       type="textarea"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      placeholder="目前看机会的原因是什么（pull/push factor），对行业和工作内容有要求吗？外企、国企、互联网公司？什么类型的工作？对于这个机会自己打几分，好在哪？不好在哪？手上有其他新的机会吗？这些机会和这个比较起来你更看好哪个？"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
