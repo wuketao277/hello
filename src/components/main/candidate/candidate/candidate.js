@@ -470,6 +470,7 @@ export default {
     },
     // 保存 新评论
     saveComment () {
+      debugger
       // 必须先保存候选人
       if (this.form.id === null || this.form.id.length === 0) {
         this.$message({
@@ -503,7 +504,7 @@ export default {
       }
       // 如果是保存CVO阶段，必须勾选“必要检查”
       if (this.newComment.phase === 'CVO') {
-        if (this.form.doubleCheck.length !== this.doubleCheckList.length) {
+        if (this.form.doubleCheck.length === 0) {
           this.$message({
             message: '请勾选必要检查',
             type: 'warning'
