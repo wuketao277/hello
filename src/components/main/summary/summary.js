@@ -33,6 +33,7 @@ export default {
       sortSelectUsers: [], // 排序后的执行人
       kpiOrderType: 'phase', // kpi排序类型，默认按阶段排序
       users: [],
+      drawusers: [], // 抽签功能使用的用户集合
       phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
       selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 选择的阶段
       pipelineList: [],
@@ -604,7 +605,7 @@ export default {
     // 抽签全选
     handleChouqianCheckAllChange (val) {
       if (val) {
-        for (let u of this.users) {
+        for (let u of this.drawusers) {
           this.selectUsers.push(u)
         }
       } else {
@@ -618,6 +619,12 @@ export default {
     userApi.findAllEnabledFullTime().then(res => {
       if (res.status === 200) {
         this.users = res.data
+      }
+    })
+    // 获取所有正常状态的全职员工和实习生
+    userApi.findAllEnabledFullTimeAndIntern().then(res => {
+      if (res.status === 200) {
+        this.drawusers = res.data
       }
     })
     // kpi初始化开始日期和结束日期

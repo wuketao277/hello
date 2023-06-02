@@ -13,6 +13,10 @@ export default {
   findAllEnabledFullTime () {
     return axios.get('/user/findAllEnabledFullTime')
   },
+  // 获取所有正常状态的全职员工和实习生
+  findAllEnabledFullTimeAndIntern () {
+    return axios.get('/user/findAllEnabledFullTimeAndIntern')
+  },
   // 保存用户基本信息接口
   saveBaseInfo (params) {
     return axios.post('/user/saveBaseInfo', params)

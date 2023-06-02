@@ -578,7 +578,7 @@
                      @change="handleChouqianCheckAllChange">全选</el-checkbox>
         <el-checkbox-group v-model="selectUsers"
                            style="margin-top:10px;margin-bottom:10px;">
-          <el-checkbox v-for="user in users"
+          <el-checkbox v-for="user in drawusers"
                        :key="user.id"
                        :label="user">{{user.username}}</el-checkbox>
         </el-checkbox-group>
