@@ -54,7 +54,8 @@ export default {
         doubleCheck: [],
         lables: [],
         motivation: '请问您会考虑看机会吗？（什么原因不考虑呢？那您想看哪些品牌呢？）您现在考虑看机会最看重的点是什么呢？想看什么方向的机会？',
-        interviewHistory: '您面过xx吗？什么时候面的（六个月之内面过，我们不能重复推荐）？面下来情况怎么样？面试官是谁？'
+        interviewHistory: '您面过xx吗？什么时候面的（六个月之内面过，我们不能重复推荐）？面下来情况怎么样？面试官是谁？',
+        specialItem: []
       },
       phaseOptions: [{
         value: 'SL',

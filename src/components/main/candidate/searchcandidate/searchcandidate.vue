@@ -156,6 +156,16 @@
               </el-form-item>
             </el-col>
           </el-row>
+          <el-row :gutter="12">
+            <el-col :span="24">
+              <el-form-item label="特殊项(或)">
+                <el-checkbox-group v-model="search.specialItem">
+                  <el-checkbox label="OVERSEASTUDENT">海外留学</el-checkbox>
+                  <el-checkbox label="OVERSEAASSIGNMENT">海外工作</el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
         <span slot="footer"
               class="dialog-footer">

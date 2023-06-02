@@ -11,12 +11,13 @@ export default {
       },
       currentRow: null,
       search: {
-        'keyWords': null,
-        'gender': null,
-        'schoolLevel': [],
-        'ageMin': null,
-        'ageMax': null,
-        'farthestPhase': '无'
+        keyWords: null,
+        gender: null,
+        schoolLevel: [],
+        ageMin: null,
+        ageMax: null,
+        farthestPhase: '无',
+        specialItem: []
       },
       // 性别
       genders: commonJS.genders

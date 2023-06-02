@@ -197,6 +197,20 @@
             <el-input type="textarea"
                       v-model="form.description"
                       :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="面试准备题">
+            <el-input type="textarea"
+                      v-model="form.question"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>

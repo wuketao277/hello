@@ -45,7 +45,8 @@ export default {
         cwUserName: '',
         headCount: null,
         pipeline: '',
-        show4JobType: []
+        show4JobType: [],
+        question: ''
       },
       attention: false,
       rules: {
