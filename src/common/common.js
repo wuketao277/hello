@@ -498,5 +498,50 @@ export default {
     }
     return ''
   },
-  dateRegExp: new RegExp('/^\\d{4}\\-\\d{2}\\-\\d{2}$/')
+  dateRegExp: new RegExp('/^\\d{4}\\-\\d{2}\\-\\d{2}$/'),
+  constellations: [{
+    code: 'SHUIPING',
+    name: '水瓶'
+  }, {
+    code: 'SHUANGYU',
+    name: '双鱼'
+  }, {
+    code: 'BAIYANG',
+    name: '白羊'
+  }, {
+    code: 'JINNIU',
+    name: '金牛'
+  }, {
+    code: 'SHUANGZI',
+    name: '双子'
+  },
+  {
+    code: 'JUXIE',
+    name: '巨蟹'
+  },
+  {
+    code: 'SHIZI',
+    name: '狮子'
+  },
+  {
+    code: 'CHUNV',
+    name: '处女'
+  },
+  {
+    code: 'TIANPING',
+    name: '天平'
+  },
+  {
+    code: 'TIANXIE',
+    name: '天蝎'
+  },
+  {
+    code: 'SHESHOU',
+    name: '射手'
+  },
+  {
+    code: 'MOJIE',
+    name: '摩羯'
+  }
+  ]
 }

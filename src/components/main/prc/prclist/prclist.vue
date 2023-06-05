@@ -49,7 +49,7 @@
                        width="50"
                        label="序号"></el-table-column>
       <el-table-column prop="id"
-                       label="PRCid"
+                       label="id"
                        width="80"
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="chineseName"
@@ -67,10 +67,6 @@
       <el-table-column prop="birthDay"
                        label="生日"
                        width="100"
-                       show-overflow-tooltip></el-table-column>
-      <el-table-column prop="age"
-                       label="年龄"
-                       width="60"
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="companyName"
                        label="公司"

@@ -1,4 +1,3 @@
-import candidateApi from '@/api/candidate'
 import prcApi from '@/api/prc'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
@@ -36,6 +35,7 @@ export default {
       rules: {}, // 表单检查
       // 性别
       genders: commonJS.genders,
+      constellations: commonJS.constellations, // 星座
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合
@@ -45,20 +45,6 @@ export default {
     }
   },
   methods: {
-    // 计算候选人年龄
-    birthdayChange (val) {
-      if (typeof (val) !== 'undefined') {
-        candidateApi.calcAge(val).then(res => {
-          if (res.status !== 200) {
-            this.$message.error({
-              message: '系统异常，请联系管理员！'
-            })
-          } else {
-            this.form.age = res.data
-          }
-        })
-      }
-    },
     // 格式化时间
     formatTime (row, column, cellvalue, index) {
       return commonJS.formatTime(cellvalue)
@@ -94,6 +80,7 @@ export default {
           // 已存在的候选人，直接保存修改。
           prcApi.save(this.form).then(res => {
             if (res.status === 200) {
+              this.form = res.data
               // 保存成功
               this.$message({
                 message: '保存成功！',
@@ -165,10 +152,6 @@ export default {
           }
         })
       })
-    },
-    // 标签变更事件
-    handleLabelsChange () {
-      this.save()
     }
   },
   computed: {},

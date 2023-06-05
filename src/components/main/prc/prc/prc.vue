@@ -62,16 +62,9 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="3">
-          <el-form-item label="年龄"
-                        prop="age">
-            <span>{{form.age}}</span>
-          </el-form-item>
-        </el-col>
-        <el-col :span="5">
+        <el-col :span="8">
           <el-form-item label="生日"
-                        prop="birthDay"
-                        label-width="80px">
+                        prop="birthDay">
             <el-input v-model="form.birthDay"
                       placeholder="例如：1999-01-01"
                       style="width:100%"
@@ -79,6 +72,36 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="8">
+          <el-form-item label="星座">
+            <el-select v-model="form.constellation"
+                       placeholder="请选择"
+                       clearable
+                       filterable
+                       style="width:100%;">
+              <el-option v-for="constellation in constellations"
+                         :key="constellation.code"
+                         :value="constellation.code"
+                         :label="constellation.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="性别">
+            <el-select v-model="form.gender"
+                       placeholder="请选择"
+                       clearable
+                       filterable
+                       style="width:100%;">
+              <el-option v-for="gender in genders"
+                         :key="gender.code"
+                         :value="gender.code"
+                         :label="gender.describe"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="手机号"
                         prop="phoneNo">
@@ -93,22 +116,6 @@
             <el-input v-model="form.email"
                       maxlength="200"
                       clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="8">
-          <el-form-item label="性别">
-            <el-select v-model="form.gender"
-                       placeholder="请选择"
-                       clearable
-                       filterable
-                       style="width:100%;">
-              <el-option v-for="gender in genders"
-                         :key="gender.code"
-                         :value="gender.code"
-                         :label="gender.describe"></el-option>
-            </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="8">
