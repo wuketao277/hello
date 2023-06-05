@@ -47,7 +47,7 @@
           <el-menu-item index="/client/clientlist"
                         v-if="jobTypeControlShow('/client/clientlist')">
             <template slot="title">
-              <i class="el-icon-user"></i>
+              <i class="el-icon-s-custom"></i>
               <span slot="title">客户列表</span>
             </template>
           </el-menu-item>
@@ -133,6 +133,13 @@
             <el-menu-item index="/training/lessonlist">课程列表</el-menu-item>
             <el-menu-item index="/training/studyrecordlist">培训列表</el-menu-item>
           </el-submenu>
+          <el-menu-item index="/prc/prclist"
+                        v-if="jobTypeControlShow('/prc/prclist')">
+            <template slot="title">
+              <i class="el-icon-magic-stick"></i>
+              <span slot="title">PRC</span>
+            </template>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>

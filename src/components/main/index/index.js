@@ -58,6 +58,9 @@ export default {
       if (url === '/config' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {
         return true
       }
+      if (url === '/prc/prclist' && (this.username === 'Ramona' || this.username === 'Howard')) {
+        return true
+      }
       return false
     },
     // 菜单显示控制

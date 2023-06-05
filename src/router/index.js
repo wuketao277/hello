@@ -9,6 +9,8 @@ import User from '@/components/main/user/user/user.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
 import SearchCandidate from '@/components/main/candidate/searchcandidate/searchcandidate.vue'
 import Candidate from '@/components/main/candidate/candidate/candidate.vue'
+import PRC from '@/components/main/prc/prc/prc.vue'
+import PRCList from '@/components/main/prc/prclist/prclist.vue'
 import Summary from '@/components/main/summary/summary.vue'
 import MyNewsList from '@/components/main/mynews/mynewslist/mynewslist.vue'
 import MyNews from '@/components/main/mynews/mynews/mynews.vue'
@@ -104,6 +106,18 @@ const router = new Router({
       path: '/candidate/candidate',
       name: 'candidate',
       component: Candidate
+    },
+    {
+      // 新增PRC
+      path: '/prc/prc',
+      name: 'prc',
+      component: PRC
+    },
+    {
+      // PRC列表页
+      path: '/prc/prclist',
+      name: 'prclist',
+      component: PRCList
     },
     {
       // 我的新闻列表
