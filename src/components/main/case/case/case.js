@@ -46,7 +46,8 @@ export default {
         headCount: null,
         pipeline: '',
         show4JobType: [],
-        question: ''
+        question: '',
+        sourcingMap: ''
       },
       attention: false,
       rules: {
@@ -168,7 +169,7 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'deleteRecommend' || key === 'delete' || key === 'extMsg') {
+      if (key === 'deleteRecommend' || key === 'delete' || key === 'visibility') {
         return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
@@ -285,6 +286,7 @@ export default {
         this.form.headCount = null
         this.form.pipeline = ''
         this.form.show4JobType = []
+        this.form.sourcingMap = ''
       }
     },
     // 保存

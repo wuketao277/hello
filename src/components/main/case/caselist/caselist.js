@@ -22,17 +22,24 @@ export default {
       },
       currentRow: null,
       searchDialog: false,
-      search: commonJS.getStorageContentObject('caselist.search'),
+      search: commonJS.getStorageContentObjectDefault('caselist.search', {
+        clientId: null,
+        status: null,
+        title: null,
+        hrId: null,
+        show4JobType: []
+      }),
       clients: [],
       hrs: [],
       roles: [],
-      jobType: ''
+      jobType: '',
+      jobTypeList: commonJS.jobTypeList
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit' || key === 'delete') {
+      if (key === 'add' || key === 'edit' || key === 'delete' || key === 'visibility') {
         return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色

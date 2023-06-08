@@ -34,8 +34,8 @@ export default {
       kpiOrderType: 'phase', // kpi排序类型，默认按阶段排序
       users: [],
       drawusers: [], // 抽签功能使用的用户集合
-      phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
-      selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', 'Offer Signed', 'On Board'], // 选择的阶段
+      phaseList: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', '2nd Interview', '3rd Interview', '4th Interview', '5th Interview', 'Final Interview', 'Offer Signed', 'On Board'], // 评论阶段列表
+      selectedPhases: ['TI', 'VI', 'IOI', 'CVO', '1st Interview', '2nd Interview', '3rd Interview', '4th Interview', '5th Interview', 'Final Interview', 'Offer Signed', 'On Board'], // 选择的阶段
       pipelineList: [],
       pipelineShowControlList: [],
       todoTaskDialog: false,

@@ -79,7 +79,8 @@
       <div>
         <el-form size="small"
                  label-position="left"
-                 label-width="80px">
+                 label-width="80px"
+                 style="text-align:left;">
           <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="Client">
@@ -125,6 +126,18 @@
                              :value="hr.id"
                              :label="hr.name"></el-option>
                 </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="12"
+                  v-if="false">
+            <el-col>
+              <el-form-item label="可见性">
+                <el-checkbox-group v-model="search.show4JobType">
+                  <el-checkbox v-for="jobType in this.jobTypeList"
+                               :label="jobType.code"
+                               :key="jobType.code">{{jobType.name}}</el-checkbox>
+                </el-checkbox-group>
               </el-form-item>
             </el-col>
           </el-row>

@@ -193,6 +193,18 @@
       </el-row>
       <el-row :gutter="12">
         <el-col>
+          <el-form-item label="Source Map">
+            <el-input type="textarea"
+                      v-model="form.sourcingMap"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
           <el-form-item label="职位描述">
             <el-input type="textarea"
                       v-model="form.description"
@@ -216,7 +228,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12"
-              v-if="showControl('extMsg')">
+              v-if="showControl('visibility')">
         <el-col>
           <el-form-item label="可见性">
             <el-checkbox-group v-model="form.show4JobType">

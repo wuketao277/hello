@@ -122,9 +122,18 @@ export default {
   setStorageContent (key, value) {
     window.localStorage[key] = value
   },
+  // 获取本地存储对象，如果没有key，返回空对象
   getStorageContentObject (key) {
     if (typeof (window.localStorage[key]) === 'undefined' || window.localStorage[key] === 'undefined') {
       return {}
+    } else {
+      return JSON.parse(window.localStorage[key])
+    }
+  },
+  // 获取本地存储对象，如果没有key，返回默认值
+  getStorageContentObjectDefault (key, defaultValue) {
+    if (typeof (window.localStorage[key]) === 'undefined' || window.localStorage[key] === 'undefined') {
+      return defaultValue
     } else {
       return JSON.parse(window.localStorage[key])
     }
