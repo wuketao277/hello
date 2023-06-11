@@ -52,16 +52,17 @@ export default {
         this.form.endDate = new Date(startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
       } else if (type === 'month') {
         let month = new Date().getMonth() + 1
-        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01', 'yyyy-MM-dd'))
+        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        console.info(this.form.startDate)
         if (month === 2) {
           // 2 月
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else {
           // 4 6 9 11月
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
       } else if (type === 'nextmonth') {
         let month = new Date().getMonth() + 2
@@ -70,16 +71,16 @@ export default {
           month = 1
           year = year + 1
         }
-        this.form.startDate = new Date(Date.parse(year + '-' + month + '-01', 'yyyy-MM-dd'))
+        this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         if (month === 2) {
           // 2 月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-31', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else {
           // 4 6 9 11月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-30', 'yyyy-MM-dd'))
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
