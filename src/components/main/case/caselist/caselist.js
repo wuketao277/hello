@@ -135,6 +135,18 @@ export default {
         })
       }
     },
+    // 简单搜索
+    easyQuery () {
+      // 清空除title以外的其他条件
+      this.search = {
+        clientId: null,
+        status: null,
+        title: this.search.title,
+        hrId: null,
+        show4JobType: []
+      }
+      this.query()
+    },
     // 查询后台数据
     query () {
       window.localStorage['caselist.search'] = JSON.stringify(this.search)

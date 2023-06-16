@@ -26,7 +26,18 @@
       <el-button type="primary"
                  size="small"
                  icon="el-icon-search"
-                 @click="searchDialog = true">搜 索</el-button>
+                 @click="searchDialog = true">高级搜索</el-button>
+      <el-form @submit.native.prevent
+               style="display:inline-block;width:250px;">
+        <el-form-item label
+                      style="margin-bottom:0px;">
+          <el-input v-model="search.title"
+                    autocomplete="off"
+                    @keyup.enter.native="easyQuery"
+                    placeholder="输入关键字后，回车即可搜索。"
+                    clearable></el-input>
+        </el-form-item>
+      </el-form>
     </div>
     <template>
       <el-table :data="table.content"
