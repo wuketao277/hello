@@ -30,7 +30,7 @@ export default {
       let query = {
         'search': this.search
       }
-      userApi.query(query).then(res => {
+      userApi.queryEnabled(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
             message: '查询失败，请联系管理员！'

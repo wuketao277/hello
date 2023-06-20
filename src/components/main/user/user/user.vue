@@ -167,6 +167,23 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="12">
+        <el-col :span="6">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectTeamLeaderDialogShow"
+                     style="width:80px;">Leader</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.teamLeaderUserName !== null && this.form.teamLeaderUserName !== ''">
+            <span>{{form.teamLeaderUserName}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteTeamLeader"></el-button>
+          </div>
+        </el-col>
+      </el-row>
     </el-form>
     <el-divider content-position="center">下面是扩展信息</el-divider>
     <el-form ref="form"
@@ -308,6 +325,11 @@
         </el-col>
       </el-row>
     </el-form>
+    <el-dialog title="选择Leader"
+               :visible.sync="selectLeaderDialogShow">
+      <selectUser v-on:cancel-dialog="selectLeaderDialogShow = false"
+                  v-on:sure-dialog="sureSelectLeaderDialog"></selectUser>
+    </el-dialog>
   </div>
 </template>
 <script src="./user.js"></script>

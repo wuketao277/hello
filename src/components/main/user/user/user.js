@@ -1,8 +1,12 @@
 import userApi from '@/api/user'
 import commonJs from '@/common/common'
 import clientApi from '@/api/client'
+import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
 
 export default {
+  components: {
+    'selectUser': selectUser
+  },
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
@@ -20,8 +24,10 @@ export default {
         checkKPI: true,
         roles: [],
         remainHolidayThing: 0,
-        remainHolidayIll: 0
+        remainHolidayIll: 0,
+        teamLeaderUserName: ''
       },
+      selectLeaderDialogShow: false, // 选择leader对话框
       roleList: ['ADMIN', 'AM', 'RECRUITER', 'BD', 'ADMIN_COMPANY'],
       rules: {},
       // 工资卡银行
@@ -88,6 +94,20 @@ export default {
           })
         }
       })
+    },
+    // 打开选择team leader对话框
+    openSelectTeamLeaderDialogShow () {
+      this.selectLeaderDialogShow = true
+    },
+    // “选择Leader”对话框返回
+    sureSelectLeaderDialog (val) {
+      // 首先关闭对话框
+      this.form.teamLeaderUserName = val.username
+      this.selectLeaderDialogShow = false
+    },
+    // 删除team leader
+    deleteTeamLeader () {
+      this.form.teamLeaderUserName = null
     }
   },
   computed: {
@@ -103,6 +123,7 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.user
+      debugger
     }
     // 获取所有“客户公司”信息
     clientApi.findAllOrderByChineseName().then(res => {

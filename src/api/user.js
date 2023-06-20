@@ -43,6 +43,12 @@ export default {
       params: params
     })
   },
+  // 查找正常状态的用户
+  queryEnabled (params) {
+    return axios.get('/user/queryEnabled', {
+      params: params
+    })
+  },
   // 更新用户密码接口
   updatePassword (params) {
     return axios.post('/user/updatePassword', params)
