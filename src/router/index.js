@@ -44,6 +44,8 @@ import StudyRecordList from '@/components/main/training/studyrecord/studyrecordl
 import StudyRecord from '@/components/main/training/studyrecord/studyrecord/studyrecord.vue'
 import InvoiceList from '@/components/main/salary/invoiceList/invoiceList.vue'
 import Invoice from '@/components/main/salary/invoice/invoice.vue'
+import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustList/kpiworkdaysadjustList.vue'
+import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
 
 Vue.use(Router)
 
@@ -256,6 +258,18 @@ const router = new Router({
       path: '/salary/invoiceList',
       name: 'invoiceList',
       component: InvoiceList
+    },
+    {
+      // kpi工作日调整
+      path: '/salary/kpiworkdaysadjust',
+      name: 'kpiworkdaysadjust',
+      component: KPIWorkDaysAdjust
+    },
+    {
+      // kpi工作日调整列表
+      path: '/salary/kpiworkdaysadjustList',
+      name: 'kpiworkdaysadjustList',
+      component: KPIWorkDaysAdjustList
     },
     {
       // 发票

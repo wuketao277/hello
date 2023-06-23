@@ -45,7 +45,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     proxy: [{
       changeOrigin: true,
-      context: ["/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**", "/label/**", "/prc/**"],
+      context: ["/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**", "/label/**", "/prc/**", "/kpiWorkDaysAdjust/**"],
       target: "http://localhost:8000"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin

@@ -66,7 +66,7 @@ export default {
     // 菜单显示控制
     showControl (url) {
       if (url === '/user/userlist' || url === '/salary/salarySpecialItem' ||
-        url === '/report' || url === '/salary/invoiceList' || url === '/training') {
+        url === '/report' || url === '/salary/invoiceList' || url === '/training' || url === '/salary/kpiworkdaysadjustList') {
         return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的菜单不需要角色
