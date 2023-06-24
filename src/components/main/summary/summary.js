@@ -526,10 +526,20 @@ export default {
         result = 4
       } else if (phase === '1st Interview') {
         result = 5
-      } else if (phase === 'Offer Signed') {
+      } else if (phase === '2nd Interview') {
         result = 6
-      } else if (phase === 'On Board') {
+      } else if (phase === '3rd Interview') {
         result = 7
+      } else if (phase === '4th Interview') {
+        result = 8
+      } else if (phase === '5th Interview') {
+        result = 9
+      } else if (phase === 'Final Interview') {
+        result = 10
+      } else if (phase === 'Offer Signed') {
+        result = 11
+      } else if (phase === 'On Board') {
+        result = 12
       }
       return result
     },
