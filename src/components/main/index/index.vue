@@ -99,8 +99,7 @@
             <el-menu-item index="/salary/reimbursementItemList">报销项详情列表</el-menu-item>
             <el-menu-item v-if="showControl('/salary/invoiceList')"
                           index="/salary/invoiceList">业务发票</el-menu-item>
-            <el-menu-item v-if="showControl('/salary/kpiworkdaysadjustList')"
-                          index="/salary/kpiworkdaysadjustList">KPI工作日调整列表</el-menu-item>
+            <el-menu-item index="/salary/kpiworkdaysadjustList">KPI工作日调整列表</el-menu-item>
           </el-submenu>
           <el-submenu index="/my"
                       v-if="jobTypeControlShow('/my')">

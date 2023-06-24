@@ -1,5 +1,6 @@
 import kpiworkdaysadjustApi from '@/api/kpiworkdaysadjust'
-import commonJS from '@/common/common'
+import commonJs from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -8,17 +9,25 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: commonJS.getPageNumber('kpiworkdaysadjustList.pageNumber'),
-          pageSize: commonJS.getPageSize('kpiworkdaysadjustList.pageSize')
+          pageNumber: commonJs.getPageNumber('kpiworkdaysadjustList.pageNumber'),
+          pageSize: commonJs.getPageSize('kpiworkdaysadjustList.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
-      currentRow: null
+      currentRow: null,
+      roles: []
     }
   },
   methods: {
+    // 显示控制
+    showControl (val) {
+      if (val === 'add' || val === 'modify' || val === 'delete') {
+        return commonJs.isAdminInArray(this.roles)
+      }
+      return false
+    },
     // 通过id发票信息
     deleteById () {
       if (this.checkSelectRow()) {
@@ -60,6 +69,14 @@ export default {
         return false
       }
       return true
+    },
+    // 双击
+    dblclick () {
+      if (commonJs.isAdminInArray(this.roles)) {
+        this.modify()
+      } else {
+        this.detail()
+      }
     },
     // 新增
     add () {
@@ -142,6 +159,12 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+      }
+    })
     this.query()
   }
 }

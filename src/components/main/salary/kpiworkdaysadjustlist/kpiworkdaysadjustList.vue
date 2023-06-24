@@ -9,11 +9,13 @@
       <el-button type="success"
                  size="small"
                  icon="el-icon-circle-plus"
-                 @click="add">新 增</el-button>
+                 @click="add"
+                 v-if="showControl('add')">新 增</el-button>
       <el-button type="warning"
                  size="small"
                  icon="el-icon-edit"
-                 @click="modify">修 改</el-button>
+                 @click="modify"
+                 v-if="showControl('modify')">修 改</el-button>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-share"
@@ -21,7 +23,8 @@
       <el-button type="danger"
                  size="small"
                  icon="el-icon-delete"
-                 @click="deleteById">删 除</el-button>
+                 @click="deleteById"
+                 v-if="showControl('delete')">删 除</el-button>
     </div>
     <template>
       <el-table :data="table.content"
@@ -30,7 +33,7 @@
                 :stripe="true"
                 style="width: 100%"
                 @current-change="rowChange"
-                @row-dblclick="modify">
+                @row-dblclick="dblclick">
         <el-table-column type="index"
                          width="50"
                          label="序号"
