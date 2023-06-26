@@ -471,7 +471,6 @@ export default {
     },
     // 保存 新评论
     saveComment () {
-      debugger
       // 必须先保存候选人
       if (this.form.id === null || this.form.id.length === 0) {
         this.$message({
@@ -547,7 +546,10 @@ export default {
           // 重新查询全部评论
           this.queryComment()
           // 清空评论区
-          this.newComment.content = ''
+          this.newComment.id = null
+          this.newComment.phase = null
+          this.newComment.interviewTime = null
+          this.newComment.content = null
         } else {
           this.$message({
             message: '保存异常，请联系管理员！',
