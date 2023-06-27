@@ -380,13 +380,22 @@ export default {
         'curCaseId': this.form.id,
         'oldCaseId': val.id
       }
+      // 显示加载中
+      this.candidateTableLoading = true
       candidateForCaseApi.copyFromOldCase(o).then(res => {
         if (res.status === 200) {
           // 获取该职位所有候选人信息
           candidateForCaseApi.findByCaseId(this.form.id).then(res => {
             if (res.status === 200) {
-              this.candidateForCase = res.data
+              this.candidateForCaseList = res.data
+              this.$message({
+                message: '候选人列表已更新',
+                type: 'success',
+                showClose: true
+              })
             }
+            // 隐藏加载中
+            this.candidateTableLoading = false
           })
         }
       })
