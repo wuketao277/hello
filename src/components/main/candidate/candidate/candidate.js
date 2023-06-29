@@ -489,6 +489,14 @@ export default {
           return
         }
       }
+      // 评论阶段必填
+      if (this.newComment.phase === null || this.newComment.phase === '') {
+        this.$message({
+          message: '请评论阶段必选！',
+          type: 'warning'
+        })
+        return
+      }
       // 面试阶段需要填写面试时间
       if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === '5th Interview' || this.newComment.phase === 'Final Interview') {
         if (this.newComment.interviewTime === null) {
@@ -547,7 +555,7 @@ export default {
           this.queryComment()
           // 清空评论区
           this.newComment.id = null
-          this.newComment.phase = null
+          this.newComment.phase = 'TI'
           this.newComment.interviewTime = null
           this.newComment.content = null
         } else {
