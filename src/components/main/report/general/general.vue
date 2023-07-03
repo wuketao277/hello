@@ -33,11 +33,19 @@
               <el-button type="success"
                          plain
                          size="medium"
+                         @click="calcDate('lastmonth')">上月</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
                          @click="calcDate('month')">本月</el-button>
               <el-button type="success"
                          plain
                          size="medium"
                          @click="calcDate('nextmonth')">下月</el-button>
+              <el-button type="success"
+                         plain
+                         size="medium"
+                         @click="calcDate('lastseason')">上季度</el-button>
               <el-button type="success"
                          plain
                          size="medium"

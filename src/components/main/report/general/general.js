@@ -50,6 +50,24 @@ export default {
         }
         this.form.startDate = startDate
         this.form.endDate = new Date(startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+      } else if (type === 'lastmonth') {
+        let month = new Date().getMonth()
+        let year = new Date().getFullYear()
+        if (month === 0) {
+          month = 12
+          year = year - 1
+        }
+        this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        if (month === 2) {
+          // 2 月
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+          // 1 3 5 7 8 10 12月
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else {
+          // 4 6 9 11月
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        }
       } else if (type === 'month') {
         let month = new Date().getMonth() + 1
         this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
@@ -82,20 +100,40 @@ export default {
           // 4 6 9 11月
           this.form.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
+      } else if (type === 'lastseason') {
+        let month = new Date().getMonth() - 2
+        let year = new Date().getFullYear()
+        if (month < 0) {
+          month = 10
+          year = year - 1
+        }
+        if (month === 1 || month === 2 || month === 3) {
+          this.form.startDate = new Date(Date.parse(year + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-03-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else if (month === 4 || month === 5 || month === 6) {
+          this.form.startDate = new Date(Date.parse(year + '-04-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-06-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else if (month === 7 || month === 8 || month === 9) {
+          this.form.startDate = new Date(Date.parse(year + '-07-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-09-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else if (month === 10 || month === 11 || month === 12) {
+          this.form.startDate = new Date(Date.parse(year + '-10-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        }
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
         if (month === 1 || month === 2 || month === 3) {
-          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-03-31', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-03-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 4 || month === 5 || month === 6) {
-          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-04-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-06-30', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-04-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-06-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 7 || month === 8 || month === 9) {
-          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-07-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-09-30', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-07-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-09-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 10 || month === 11 || month === 12) {
-          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-10-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-10-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
       } else if (type === 'nextseason') {
         let month = new Date().getMonth() + 4
@@ -105,26 +143,26 @@ export default {
           year = year + 1
         }
         if (month === 1 || month === 2 || month === 3) {
-          this.form.startDate = new Date(Date.parse(year + '-01-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(year + '-03-31', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(year + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-03-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 4 || month === 5 || month === 6) {
-          this.form.startDate = new Date(Date.parse(year + '-04-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(year + '-06-30', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(year + '-04-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-06-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 7 || month === 8 || month === 9) {
-          this.form.startDate = new Date(Date.parse(year + '-07-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(year + '-09-30', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(year + '-07-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-09-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 10 || month === 11 || month === 12) {
-          this.form.startDate = new Date(Date.parse(year + '-10-01', 'yyyy-MM-dd'))
-          this.form.endDate = new Date(Date.parse(year + '-12-31', 'yyyy-MM-dd'))
+          this.form.startDate = new Date(Date.parse(year + '-10-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(year + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
       } else if (type === 'year') {
-        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
-        this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31', 'yyyy-MM-dd'))
+        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
       } else if (type === 'tonow') {
-        this.form.startDate = new Date(Date.parse('2019-01-01', 'yyyy-MM-dd'))
+        this.form.startDate = new Date(Date.parse('2019-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         this.form.endDate = new Date()
       } else if (type === 'tonowyear') {
-        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01', 'yyyy-MM-dd'))
+        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         this.form.endDate = new Date()
       }
       // 绘制图表
