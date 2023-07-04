@@ -58,7 +58,8 @@ export default {
       // 客户合同表格 当前行
       clientContractTableCurRow: null,
       roles: [],
-      jobType: ''
+      jobType: '',
+      companyList: commonJs.companyList
     }
   },
   methods: {
@@ -280,12 +281,10 @@ export default {
     },
     // 公司转换器
     formatCompany (row, column, cellvalue, index) {
-      if (cellvalue === 'Shanghaihailuorencaifuwu') {
-        return '上海海罗人才服务有限公司'
-      } else if (cellvalue === 'Shanghaihailuorencaikeji') {
-        return '上海海罗人才科技有限公司'
-      } else if (cellvalue === 'Shenyanghailuorencaifuwu') {
-        return '沈阳海罗人才服务有限公司'
+      for (let c of this.companyList) {
+        if (c.code === cellvalue) {
+          return c.name
+        }
       }
     },
     // 转换器

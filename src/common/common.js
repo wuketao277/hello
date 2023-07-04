@@ -283,7 +283,7 @@ export default {
   },
   {
     code: 'Wuhanhailuorencaifuwu',
-    name: '武汉海罗人才服务有限公司'
+    name: '武汉海罗河山人才服务有限公司'
   }
   ],
   locationList: [{
