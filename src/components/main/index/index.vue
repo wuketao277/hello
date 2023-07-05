@@ -37,13 +37,31 @@
               <span slot="title">首页</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/report/general"
-                        v-if="showControl('/report')">
+          <el-submenu index="/admin"
+                      v-if="showControl('/admin')">
             <template slot="title">
-              <i class="el-icon-s-data"></i>
-              <span slot="title">报表</span>
+              <i class="el-icon-s-home"></i>
+              <span slot="title">管理员</span>
             </template>
-          </el-menu-item>
+            <el-menu-item index="/report/general">
+              <template slot="title">
+                <i class="el-icon-s-data"></i>
+                <span slot="title">报表</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="/prc/prclist">
+              <template slot="title">
+                <i class="el-icon-magic-stick"></i>
+                <span slot="title">PRC</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="/interviewlist">
+              <template slot="title">
+                <i class="el-icon-s-operation"></i>
+                <span slot="title">面试安排</span>
+              </template>
+            </el-menu-item>
+          </el-submenu>
           <el-menu-item index="/client/clientlist"
                         v-if="jobTypeControlShow('/client/clientlist')">
             <template slot="title">
@@ -134,13 +152,6 @@
             <el-menu-item index="/training/lessonlist">课程列表</el-menu-item>
             <el-menu-item index="/training/studyrecordlist">培训列表</el-menu-item>
           </el-submenu>
-          <el-menu-item index="/prc/prclist"
-                        v-if="jobTypeControlShow('/prc/prclist')">
-            <template slot="title">
-              <i class="el-icon-magic-stick"></i>
-              <span slot="title">PRC</span>
-            </template>
-          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>

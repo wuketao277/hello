@@ -38,5 +38,11 @@ export default {
   // 面试安排列表
   queryInterviewPlan (params) {
     return axios.get('/comment/queryInterviewPlan?range=' + params['range'])
+  },
+  // 查询面试安排分页
+  queryInterviewPage (params) {
+    return axios.get('/comment/queryInterviewPage', {
+      params: params
+    })
   }
 }

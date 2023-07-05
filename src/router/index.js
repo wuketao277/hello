@@ -46,6 +46,7 @@ import InvoiceList from '@/components/main/salary/invoiceList/invoiceList.vue'
 import Invoice from '@/components/main/salary/invoice/invoice.vue'
 import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustList/kpiworkdaysadjustList.vue'
 import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
+import InterviewList from '@/components/main/interview/interviewList.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,12 @@ const router = new Router({
       path: '/',
       name: 'summary',
       component: Summary
+    },
+    {
+      // 面试列表
+      path: '/interviewlist',
+      name: 'InterviewList',
+      component: InterviewList
     },
     {
       // 总报表
