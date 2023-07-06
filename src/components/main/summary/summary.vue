@@ -240,7 +240,7 @@
           </el-table-column>
           <el-table-column prop="candidateName"
                            label="候选人"
-                           width="80"
+                           width="65"
                            show-overflow-tooltip>
             <template slot-scope="scope">
               <el-button type="text"
@@ -249,22 +249,22 @@
           </el-table-column>
           <el-table-column prop="interviewTime"
                            label="面试时间"
-                           width="160"
+                           width="140"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="phase"
                            label="第几轮"
-                           width="70"
+                           width="65"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="content"
                            label="内容"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="username"
                            label="创建人"
-                           width="80"
+                           width="150"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="cw"
                            label="CW"
-                           width="80"
+                           width="70"
                            show-overflow-tooltip></el-table-column>
         </el-table>
       </el-tab-pane>
