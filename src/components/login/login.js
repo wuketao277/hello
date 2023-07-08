@@ -1,5 +1,6 @@
 import basic from '@/api/basic'
 import commonJS from '@/common/common'
+import SecurityApi from '@/api/security'
 
 export default {
   name: 'login',
@@ -14,7 +15,8 @@ export default {
         password: ''
       },
       userInfo: undefined, // 用户信息
-      backgroundImage: require('../../assets/background-1.jpeg')
+      backgroundImage: require('../../assets/background-1.jpeg'),
+      version: commonJS.version
     }
   },
   methods: {
@@ -61,11 +63,29 @@ export default {
       basic.login(this.loginUser).then(res => {
         let resData = res.data
         if (resData['status']) {
+          // 用户名密码验证成功
           // 保存信息
           window.localStorage['loginInfo'] = JSON.stringify(resData['data'])
           // 菜单保存后，刷新页面
           // window.location.reload()
-          this.jump('/')
+          // 检查签到版本
+          SecurityApi.checkVersion(commonJS.version).then(res => {
+            if (res.status === 200) {
+              if (!res.data) {
+                this.$message.error({
+                  message: '版本不正确，请清空本地缓存！'
+                })
+              } else {
+                // 版本正确，登陆首页
+                this.jump('/')
+              }
+            } else {
+              // 如果服务器登录状态为false，就跳转到登录业务
+              this.$message.error({
+                message: '系统异常，请联系管理员！'
+              })
+            }
+          })
         } else {
           this.$message({
             message: '登录失败！',

@@ -47,6 +47,7 @@ import Invoice from '@/components/main/salary/invoice/invoice.vue'
 import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustList/kpiworkdaysadjustList.vue'
 import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
 import InterviewList from '@/components/main/interview/interviewList.vue'
+import CommonJS from '@/common/common'
 
 Vue.use(Router)
 
@@ -344,6 +345,16 @@ router.beforeEach((to, from, next) => {
         }
       } else {
         // 如果服务器登录状态为false，就跳转到登录业务
+        next('/login')
+      }
+    })
+    // 如果访问的不是登录页面，检查签到版本
+    SecurityApi.checkVersion(CommonJS.version).then(res => {
+      if (res.status === 200) {
+        if (!res.data) {
+          next('/login')
+        }
+      } else {
         next('/login')
       }
     })
