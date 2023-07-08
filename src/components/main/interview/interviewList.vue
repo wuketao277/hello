@@ -57,7 +57,7 @@
       </el-table-column>
       <el-table-column prop="phase"
                        label="面试阶段"
-                       width="120"
+                       width="80"
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="interviewTimeStr"
                        label="面试时间"

@@ -454,6 +454,7 @@
                             prop="phase"
                             v-show="(mode === 'add' || mode === 'modify')">
                 <el-select v-model="newComment.phase"
+                           @change="phaseChange"
                            filterable
                            placeholder="请选择">
                   <el-option v-for="item in phaseOptions"
@@ -467,11 +468,13 @@
               <el-form-item label="评论内容"
                             prop="content"
                             v-show="(mode === 'add' || mode === 'modify')">
-                <el-date-picker v-model="newComment.interviewTime"
-                                v-if="newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === '5th Interview' || newComment.phase === 'Final Interview'"
-                                type="datetime"
-                                placeholder="选择面试时间">
-                </el-date-picker>
+                <div v-if="newComment.phase === '1st Interview' || newComment.phase === '2nd Interview' || newComment.phase === '3rd Interview' || newComment.phase === '4th Interview' || newComment.phase === '5th Interview' || newComment.phase === '6th Interview' || newComment.phase === 'Final Interview'">
+                  <el-date-picker v-model="newComment.interviewTime"
+                                  type="datetime"
+                                  placeholder="选择面试时间">
+                  </el-date-picker>
+                  <el-checkbox v-model="newComment.isFinal">Final</el-checkbox>
+                </div>
                 <el-input type="textarea"
                           v-model="newComment.content"
                           :autosize="{ minRows: 1, maxRows: 30}"></el-input>
@@ -496,11 +499,12 @@
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="phase"
                            label="评论阶段"
-                           width="120"
+                           width="130"
+                           :formatter="formatPhase"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="interviewTime"
                            label="面试时间"
-                           width="160"
+                           width="140"
                            :formatter="formatTimeForInterviewTime"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="content"

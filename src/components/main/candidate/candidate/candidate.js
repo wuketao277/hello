@@ -98,8 +98,8 @@ export default {
         lable: '5th Interview'
       },
       {
-        value: 'Final Interview',
-        lable: 'Final Interview'
+        value: '6th Interview',
+        lable: '6th Interview'
       },
       {
         value: 'CF',
@@ -167,7 +167,8 @@ export default {
         id: null,
         phase: 'TI',
         interviewTime: null,
-        content: ''
+        content: '',
+        isFinal: false
       },
       // 历史评论
       comments: [],
@@ -271,6 +272,12 @@ export default {
     }
   },
   methods: {
+    // 候选人评论中阶段发生变化事件
+    phaseChange (value) {
+      this.newComment.isFinal = false
+      this.newComment.content = null
+      this.newComment.interviewTime = null
+    },
     // 计算候选人年龄
     birthdayChange (val) {
       if (typeof (val) !== 'undefined') {
@@ -285,9 +292,21 @@ export default {
         })
       }
     },
-    // 格式化时间
-    formatTime (row, column, cellvalue, index) {
-      return commonJS.formatTime(cellvalue)
+    // 格式化是否终面
+    formatIsFinal (row, column, cellvalue, index) {
+      if (cellvalue) {
+        return '是'
+      } else {
+        return '否'
+      }
+    },
+    // 格式化阶段
+    formatPhase (row, column, cellvalue, index) {
+      if (row['isFinal']) {
+        return cellvalue + ' (F)'
+      } else {
+        return cellvalue
+      }
     },
     // 格式化 for 面试时间
     formatTimeForInterviewTime (row, column, cellvalue, index) {
@@ -341,7 +360,7 @@ export default {
     // Candidate Feedback的显示控制按钮
     showCommentCFButton (row) {
       let phase = row.phase
-      if (phase === '1st Interview' || phase === '2nd Interview' || phase === '3rd Interview' || phase === '4th Interview' || phase === '5th Interview' || phase === 'Final Interview') {
+      if (phase === '1st Interview' || phase === '2nd Interview' || phase === '3rd Interview' || phase === '4th Interview' || phase === '5th Interview' || phase === '6th Interview') {
         return true
       }
       return false
@@ -498,7 +517,7 @@ export default {
         return
       }
       // 面试阶段需要填写面试时间
-      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === '5th Interview' || this.newComment.phase === 'Final Interview') {
+      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === '5th Interview' || this.newComment.phase === '6th Interview') {
         if (this.newComment.interviewTime === null) {
           this.$message({
             message: '请填写面试时间',
@@ -558,6 +577,7 @@ export default {
           this.newComment.phase = 'TI'
           this.newComment.interviewTime = null
           this.newComment.content = null
+          this.newComment.isFinal = false
         } else {
           this.$message({
             message: '保存异常，请联系管理员！',
@@ -573,6 +593,7 @@ export default {
       this.newComment.phase = row.phase
       this.newComment.interviewTime = row.interviewTime
       this.newComment.content = row.content
+      this.newComment.isFinal = row.isFinal
     },
     // 查询所有评论
     queryComment () {
