@@ -38,6 +38,7 @@ import ReimbursementItem from '@/components/main/salary/reimbursementItem/reimbu
 import ReimbursementItemList from '@/components/main/salary/reimbursementItemList/reimbursementItemList.vue'
 import ReimbursementSummaryList from '@/components/main/salary/reimbursementSummaryList/reimbursementSummaryList.vue'
 import GeneralReport from '@/components/main/report/general/general.vue'
+import PersonalReport from '@/components/main/report/personal/personal.vue'
 import LessonList from '@/components/main/training/lesson/lessonlist/lessonlist.vue'
 import Lesson from '@/components/main/training/lesson/lesson/lesson.vue'
 import StudyRecordList from '@/components/main/training/studyrecord/studyrecordlist/studyrecordlist.vue'
@@ -74,6 +75,12 @@ const router = new Router({
       path: '/report/general',
       name: 'GeneralReport',
       component: GeneralReport
+    },
+    {
+      // 个人报表
+      path: '/report/personal',
+      name: 'PersonalReport',
+      component: PersonalReport
     },
     {
       // 客户列表页

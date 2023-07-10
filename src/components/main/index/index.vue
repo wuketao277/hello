@@ -46,7 +46,13 @@
             <el-menu-item index="/report/general">
               <template slot="title">
                 <i class="el-icon-s-data"></i>
-                <span slot="title">报表</span>
+                <span slot="title">总报表</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="/report/personal">
+              <template slot="title">
+                <i class="el-icon-s-data"></i>
+                <span slot="title">个人报表</span>
               </template>
             </el-menu-item>
             <el-menu-item index="/prc/prclist">
