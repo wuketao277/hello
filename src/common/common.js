@@ -1,6 +1,6 @@
 export default {
   // 前端版本
-  version: '1.0.0',
+  version: '1.0.1',
   versionCheck () {
     // 先获取本地版本
     let localVersion = window.localStorage['version']
