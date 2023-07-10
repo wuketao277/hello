@@ -634,7 +634,12 @@ export default {
     // 获取所有正常状态的全职员工和实习生
     userApi.findAllEnabledFullTimeAndIntern().then(res => {
       if (res.status === 200) {
-        this.drawusers = res.data
+        // 针对Victor和Mike的特殊处理
+        for (let u of res.data) {
+          if (u.username !== 'Victor' && u.username !== 'Mike') {
+            this.drawusers.push(u)
+          }
+        }
       }
     })
     // kpi初始化开始日期和结束日期
