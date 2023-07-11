@@ -249,7 +249,7 @@
           </el-table-column>
           <el-table-column prop="interviewTime"
                            label="面试时间"
-                           width="140"
+                           width="160"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="phase"
                            label="第几轮"
