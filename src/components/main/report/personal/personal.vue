@@ -66,14 +66,6 @@
                          plain
                          size="medium"
                          @click="calcDate('tonow')">全部</el-button>
-              <el-button type="success"
-                         plain
-                         size="medium"
-                         @click="changeChartSize('big')">大图</el-button>
-              <el-button type="success"
-                         plain
-                         size="medium"
-                         @click="changeChartSize('small')">小图</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -86,13 +78,15 @@
             <el-row>
               <el-col :span="12">offer Billing Sum：{{offerDateBilling}}</el-col>
             </el-row>
-            <div id="offerDateChart1"></div>
+            <div id="offerDateChart"
+                 :class="chartClass"></div>
           </div>
           <div id="paymentDate">
             <el-row>
               <el-col :span="12">payment Billing Sum：{{paymentDateBilling}}</el-col>
             </el-row>
-            <div id="paymentDateChart"></div>
+            <div id="paymentDateChart"
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
@@ -102,13 +96,15 @@
             <el-row>
               <el-col :span="12">已付 Billing Sum：{{actualPaymentDateBilling}}</el-col>
             </el-row>
-            <div id="actualPaymentDateChart"></div>
+            <div id="actualPaymentDateChart"
+                 :class="chartClass"></div>
           </div>
           <div id="unactualPaymentDate">
             <el-row>
               <el-col :span="12">未付 Billing Sum：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
-            <div id="unactualPaymentDateChart"></div>
+            <div id="unactualPaymentDateChart"
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
@@ -118,13 +114,15 @@
             <el-row>
               <el-col :span="12">Personal Offer Data</el-col>
             </el-row>
-            <div id="personalOfferDataChart"></div>
+            <div id="personalOfferDataChart"
+                 :class="chartClass"></div>
           </div>
           <div id="invoiceDateData">
             <el-row>
               <el-col :span="12">Invoice Sum：{{invoiceDateBilling}}</el-col>
             </el-row>
-            <div id="invoiceDateDataChart"></div>
+            <div id="invoiceDateDataChart"
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
@@ -134,7 +132,8 @@
             <el-row>
               <el-col :span="12">Personal Receive Data</el-col>
             </el-row>
-            <div id="personalReceiveDataChart"></div>
+            <div id="personalReceiveDataChart"
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
