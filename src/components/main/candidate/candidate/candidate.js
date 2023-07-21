@@ -524,6 +524,12 @@ export default {
             type: 'warning'
           })
           return
+        } else if (new Date() > this.newComment.interviewTime) {
+          this.$message({
+            message: '面试时间不能小于当前时间',
+            type: 'warning'
+          })
+          return
         }
       } else {
         // 非面试阶段，面试时间为空
