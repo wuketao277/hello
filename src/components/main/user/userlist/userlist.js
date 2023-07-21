@@ -21,10 +21,6 @@ export default {
     }
   },
   methods: {
-    // 从公司编码转公司名称
-    getCompanyName (val) {
-      return commonJs.getCompanyName(val['company'])
-    },
     // 日期格式化
     formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
