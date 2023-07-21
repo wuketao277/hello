@@ -152,6 +152,18 @@
           </div>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="24">
+          <div id="recruiterBilling"
+               :class="divClass">
+            <el-row>
+              <el-col :span="24">Recruiter Billing Data</el-col>
+            </el-row>
+            <div id="recruiterBillingChart"
+                 :class="chartClass"></div>
+          </div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
