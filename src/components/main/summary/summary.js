@@ -286,6 +286,11 @@ export default {
           // 4 6 9 11月
           this.endDate = new Date().getFullYear() + '-' + month + '-30'
         }
+      } else if (type === 'monthToNow') {
+        let month = new Date().getMonth() + 1
+        month = month < 10 ? '0' + month : month
+        this.startDate = new Date().getFullYear() + '-' + month + '-01'
+        this.endDate = new Date()
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
         if (month === 1 || month === 2 || month === 3) {

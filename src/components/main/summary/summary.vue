@@ -470,6 +470,10 @@
                      size="small"
                      @click="calcDate('month')">本月</el-button>
           <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="calcDate('monthToNow')">本月至今</el-button>
+          <el-button type="primary"
                      size="small"
                      plain
                      @click="calcDate('tonow')">截止目前</el-button>
