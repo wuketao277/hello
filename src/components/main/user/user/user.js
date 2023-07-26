@@ -123,7 +123,6 @@ export default {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
       this.form = this.$route.query.user
-      debugger
     }
     // 获取所有“客户公司”信息
     clientApi.findAllOrderByChineseName().then(res => {

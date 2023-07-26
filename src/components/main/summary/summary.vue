@@ -457,6 +457,8 @@
                           v-model="endDate"
                           size="small"
                           style="width:130px;"></el-date-picker>&nbsp;&nbsp;
+          <el-checkbox v-model="kpiOnlyShowCheck"
+                       @change="calcKPI()">只看考核人</el-checkbox>
         </div>
         <div style="margin-top:5px;">
           <el-button type="primary"

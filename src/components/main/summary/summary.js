@@ -40,7 +40,8 @@ export default {
       pipelineShowControlList: [],
       todoTaskDialog: false,
       isChouqianAll: true,
-      isChouqianCheckAll: false
+      isChouqianCheckAll: false,
+      kpiOnlyShowCheck: true // kpi只展示考核kpi用户的数据
     }
   },
   methods: {
@@ -290,7 +291,7 @@ export default {
         let month = new Date().getMonth() + 1
         month = month < 10 ? '0' + month : month
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
-        this.endDate = new Date()
+        this.endDate = new Date().getFullYear() + '-' + month + '-' + new Date().getDate()
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
         if (month === 1 || month === 2 || month === 3) {
@@ -407,7 +408,7 @@ export default {
         this.$message.error('请先选择要计算的日期')
         return
       }
-      commentApi.downloadKPI(this.startDate, this.endDate, commonJs.getStorageContent('summary.kpiScope', 'myself'))
+      commentApi.downloadKPI(this.startDate, this.endDate, commonJs.getStorageContent('summary.kpiScope', 'myself'), this.kpiOnlyShowCheck)
     },
     // 计算KPI
     calcKPI () {
@@ -418,7 +419,8 @@ export default {
       let request = {
         'startDate': this.startDate,
         'endDate': this.endDate,
-        'scope': commonJs.getStorageContent('summary.kpiScope', 'myself')
+        'scope': commonJs.getStorageContent('summary.kpiScope', 'myself'),
+        'kpiOnlyShowCheck': this.kpiOnlyShowCheck
       }
       commonJs.setStorageContent('summary.kpiStartDate', this.startDate)
       commonJs.setStorageContent('summary.kpiEndDate', this.endDate)
