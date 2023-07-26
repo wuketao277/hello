@@ -150,16 +150,22 @@
             <div id="personalReceiveDataChart"
                  :class="chartClass"></div>
           </div>
+          <div id="recruiterOfferBillingData"
+               :class="divClass">
+            <span>Recruiter Offer Billing Data</span>
+            <div id="recruiterOfferBillingDataChart"
+                 :class="chartClass"></div>
+          </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
-          <div id="recruiterBilling"
+          <div id="teamOfferGPData"
                :class="divClass">
             <el-row>
-              <el-col :span="24">Recruiter Billing Data</el-col>
+              <el-col :span="12">Team Offer GP Data</el-col>
             </el-row>
-            <div id="recruiterBillingChart"
+            <div id="teamOfferGPDataChart"
                  :class="chartClass"></div>
           </div>
         </el-col>

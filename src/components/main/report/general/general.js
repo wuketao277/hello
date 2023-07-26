@@ -368,35 +368,58 @@ export default {
                 }
               }]
             })
-            let recruiterBillingChart = this.$echarts.init(document.getElementById('recruiterBillingChart'))
-            recruiterBillingChart.setOption({
+            let recruiterOfferBillingDataChart = this.$echarts.init(document.getElementById('recruiterOfferBillingDataChart'))
+            recruiterOfferBillingDataChart.setOption({
+              title: {
+                text: '',
+                left: 'center'
+              },
               tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                  type: 'shadow'
-                }
+                trigger: 'item'
               },
-              grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-              },
-              xAxis: [{
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                axisTick: {
-                  alignWithLabel: true
-                }
-              }],
-              yAxis: [{
-                type: 'value'
-              }],
               series: [{
-                name: 'Direct',
-                type: 'bar',
-                barWidth: '60%',
-                data: [10, 52, 200, 334, 390, 330, 220]
+                type: 'pie',
+                radius: '70%',
+                data: res.data.recruiterOfferBillingData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
+                  }
+                }
+              }]
+            })
+            let teamOfferGPDataChart = this.$echarts.init(document.getElementById('teamOfferGPDataChart'))
+            teamOfferGPDataChart.setOption({
+              title: {
+                text: '',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.teamOfferGPData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
+                  }
+                }
               }]
             })
           }
