@@ -26,7 +26,8 @@ export default {
       searchDialog: false,
       salaryMonth: commonJS.getYYYY_MM(new Date()), // 工资月份，默认是当月
       roles: [],
-      jobType: ''
+      jobType: '',
+      companyList: commonJS.companyList
     }
   },
   methods: {
@@ -158,7 +159,8 @@ export default {
         'userName': this.search.userName,
         'month': this.search.month,
         'pretaxIncome': this.search.pretaxIncome,
-        'netPay': this.search.netPay
+        'netPay': this.search.netPay,
+        'company': this.search.company
       }
       salaryApi.queryPage(query).then(res => {
         if (res.status !== 200) {

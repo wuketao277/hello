@@ -62,9 +62,12 @@
                        label="邮箱"
                        width="250"
                        show-overflow-tooltip></el-table-column>
-      <el-table-column prop="company"
-                       :formatter="getCompanyName"
-                       label="公司"></el-table-column>
+      <el-table-column prop="onBoardDate"
+                       label="入职日期"
+                       :formatter="formatDate"></el-table-column>
+      <el-table-column prop="dimissionDate"
+                       label="离职日期"
+                       :formatter="formatDate"></el-table-column>
     </el-table>
     <el-pagination background
                    layout="prev, pager, next, sizes"

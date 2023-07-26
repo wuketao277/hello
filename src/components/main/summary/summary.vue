@@ -457,6 +457,8 @@
                           v-model="endDate"
                           size="small"
                           style="width:130px;"></el-date-picker>&nbsp;&nbsp;
+        </div>
+        <div style="margin-top:5px;">
           <el-button type="primary"
                      plain
                      size="small"
@@ -469,6 +471,10 @@
                      plain
                      size="small"
                      @click="calcDate('month')">本月</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="calcDate('monthToNow')">本月至今</el-button>
           <el-button type="primary"
                      size="small"
                      plain
@@ -497,6 +503,10 @@
                      plain
                      size="small"
                      @click="kpiScopeChange('wuhan')">武汉</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="kpiScopeChange('nanjing')">南京</el-button>
           <el-button type="primary"
                      size="small"
                      icon="el-icon-setting"

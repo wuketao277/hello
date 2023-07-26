@@ -183,6 +183,19 @@
                           clearable></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="12">
+              <el-form-item label="COMPANY">
+                <el-select v-model="search.company"
+                           style="width:100%;"
+                           filterable
+                           clearable>
+                  <el-option v-for="company in companyList"
+                             :key="company.code"
+                             :value="company.code"
+                             :label="company.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
           </el-row>
         </el-form>
         <span slot="footer"
