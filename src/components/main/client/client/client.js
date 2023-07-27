@@ -70,9 +70,7 @@ export default {
         return commonJs.isAdminInArray(this.roles) || commonJs.isBDInArray(this.roles)
       } else if (url === 'mobileNo' || url === 'phoneNo' || url === 'email') {
         // hr联系信息，只有Admin，Admin_company角色展示
-        let b = commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompany(this.roles)
-        debugger
-        return b
+        return commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompanyInArray(this.roles)
       }
       return false
     },
@@ -155,13 +153,11 @@ export default {
     },
     // 联系人列表双击
     handleLinkManDBClick () {
-      if (this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)) {
+      if (commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompanyInArray(this.roles)) {
         // 管理员可以修改
         this.modifyLinkMan()
-      } else {
-        // 非管理员只读
-        this.detailLinkMan()
       }
+      // 非管理员不可见
     },
     // 修改联系人
     modifyLinkMan () {
