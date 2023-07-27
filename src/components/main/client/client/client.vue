@@ -229,13 +229,16 @@
                              label="联系人英文名"></el-table-column>
             <el-table-column prop="mobileNo"
                              width="120"
-                             label="手机号"></el-table-column>
+                             label="手机号"
+                             v-if="showControl('mobileNo')"></el-table-column>
             <el-table-column prop="phoneNo"
                              width="120"
-                             label="座机号"></el-table-column>
+                             label="座机号"
+                             v-if="showControl('phoneNo')"></el-table-column>
             <el-table-column prop="email"
                              width="120"
                              label="邮箱"
+                             v-if="showControl('email')"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="address"
                              width="250"

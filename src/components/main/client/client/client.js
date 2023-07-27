@@ -68,6 +68,11 @@ export default {
       if (url === 'clientContract') {
         // 客户合同列表，只有Admin，BD角色展示
         return commonJs.isAdminInArray(this.roles) || commonJs.isBDInArray(this.roles)
+      } else if (url === 'mobileNo' || url === 'phoneNo' || url === 'email') {
+        // hr联系信息，只有Admin，Admin_company角色展示
+        let b = commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompany(this.roles)
+        debugger
+        return b
       }
       return false
     },
