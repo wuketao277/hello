@@ -169,8 +169,12 @@ export default {
     },
     // 显示控制
     showControl (key) {
-      if (key === 'deleteRecommend' || key === 'delete' || key === 'visibility') {
+      if (key === 'deleteRecommend' || key === 'delete') {
+        // 只有管理员才能删除
         return commonJS.isAdminInArray(this.roles)
+      } else if (key === 'visibility') {
+        // 管理员和公司管理员可以操作
+        return commonJS.isAdminInArray(this.roles) || commonJS.isAdminCompanyInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
