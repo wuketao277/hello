@@ -529,7 +529,8 @@
                     max-height="2000"
                     @current-change="rowChange">
             <el-table-column label="操作"
-                             width="80px">
+                             width="80px"
+                             fixed>
               <template slot-scope="scope">
                 <el-button size="mini"
                            @click="kpiDetail(scope.$index, scope.row)">详情</el-button>
@@ -537,22 +538,28 @@
             </el-table-column>
             <el-table-column prop="userName"
                              label="姓名"
-                             width="100px"></el-table-column>
+                             width="100px"
+                             fixed></el-table-column>
             <el-table-column prop="finishRate"
                              label="总达成率"
-                             width="70px"></el-table-column>
+                             width="70px"
+                             fixed></el-table-column>
             <el-table-column prop="finishRateTICF"
                              label="TI+CF达成率"
-                             width="70px"></el-table-column>
+                             width="70px"
+                             fixed></el-table-column>
             <el-table-column prop="finishRateVIIOI"
                              label="VI+IOI达成率"
-                             width="70px"></el-table-column>
+                             width="70px"
+                             fixed></el-table-column>
             <el-table-column prop="finishRateCVO"
                              label="CVO达成率"
-                             width="70px"></el-table-column>
+                             width="70px"
+                             fixed></el-table-column>
             <el-table-column prop="finishRateInterview"
                              label="面试达成率"
-                             width="70px"></el-table-column>
+                             width="70px"
+                             fixed></el-table-column>
             <el-table-column prop="cvo"
                              label="CVO"
                              width="60px"></el-table-column>
