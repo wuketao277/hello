@@ -291,7 +291,7 @@ export default {
         let month = new Date().getMonth() + 1
         month = month < 10 ? '0' + month : month
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
-        this.endDate = new Date().getFullYear() + '-' + month + '-' + new Date().getDate()
+        this.endDate = commonJs.getYYYY_MM_dd(new Date())
       } else if (type === 'season') {
         let month = new Date().getMonth() + 1
         if (month === 1 || month === 2 || month === 3) {
