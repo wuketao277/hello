@@ -229,6 +229,21 @@ export default {
           })
         }
       })
+    },
+    // 设置行样式
+    setRowClassName ({
+      row,
+      index
+    }) {
+      if (row.company === 'Shanghaihailuorencaikeji') {
+        return 'row1'
+      } else if (row.company === 'Shenyanghailuorencaifuwu') {
+        return 'row2'
+      } else if (row.company === 'Wuhanhailuorencaifuwu') {
+        return 'row3'
+      } else if (row.company === 'Nanjinghailuorencaifuwu') {
+        return 'row4'
+      }
     }
   },
   created () {

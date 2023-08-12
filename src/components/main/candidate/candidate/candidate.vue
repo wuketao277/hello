@@ -226,12 +226,17 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="期望薪资"
-                        prop="futureMoney">
-            <el-input v-model="form.futureMoney"
-                      maxlength="100"
-                      clearable></el-input>
-          </el-form-item>
+          <el-tooltip class="item"
+                      effect="dark"
+                      content="期望薪资一定和家人商量好。顾问和候选人商量好的薪资，一定要让候选人Verify，并强调一定按照我们沟通好的内容跟HR说。因为HR对我们很信任，如果您面试时跟HR说的不一致，HR会觉得您在薪资上反复变化，可能会不过。"
+                      placement="top">
+            <el-form-item label="期望薪资"
+                          prop="futureMoney">
+              <el-input v-model="form.futureMoney"
+                        maxlength="100"
+                        clearable></el-input>
+            </el-form-item>
+          </el-tooltip>
         </el-col>
       </el-row>
       <el-row :gutter="12">

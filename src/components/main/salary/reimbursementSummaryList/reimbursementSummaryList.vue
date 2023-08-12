@@ -51,6 +51,8 @@
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="userName"
                          label="登录名"></el-table-column>
+        <el-table-column prop="realName"
+                         label="用户名"></el-table-column>
         <el-table-column prop="paymentMonth"
                          label="报销月份"></el-table-column>
         <el-table-column prop="sum"
@@ -137,6 +139,12 @@
 }
 .row2 {
   color: blue;
+}
+.row3 {
+  color: #8304fa;
+}
+.row4 {
+  color: #ef03f7;
 }
 </style>
 <script src="./reimbursementSummaryList.js"></script>

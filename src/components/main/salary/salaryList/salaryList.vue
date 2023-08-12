@@ -82,22 +82,30 @@
                 :border="true"
                 :highlight-current-row="true"
                 :stripe="true"
-                style="width: 100%"
+                :row-class-name="setRowClassName"
                 @current-change="rowChange"
                 @row-dblclick="rowDblClick">
         <el-table-column type="index"
                          width="45"
-                         label="No."></el-table-column>
+                         label="No."
+                         fixed></el-table-column>
+        <el-table-column prop="companyName"
+                         width="250"
+                         label="Company Name"
+                         fixed></el-table-column>
         <el-table-column prop="consultantUserName"
                          width="110"
                          label="Login Name"
-                         v-if="showLoginName"></el-table-column>
+                         v-if="showLoginName"
+                         fixed></el-table-column>
         <el-table-column prop="consultantRealName"
                          width="100"
-                         label="User Name"></el-table-column>
+                         label="User Name"
+                         fixed></el-table-column>
         <el-table-column prop="month"
                          width="90"
-                         label="Month"></el-table-column>
+                         label="Month"
+                         fixed></el-table-column>
         <el-table-column prop="workingDays"
                          width="120"
                          label="Working Days"
@@ -210,4 +218,18 @@
     </el-dialog>
   </div>
 </template>
+<style>
+.row1 {
+  color: red;
+}
+.row2 {
+  color: blue;
+}
+.row3 {
+  color: #8304fa;
+}
+.row4 {
+  color: #ef03f7;
+}
+</style>
 <script src="./salaryList.js"></script>
