@@ -5,60 +5,75 @@
       <el-breadcrumb-item>我的新闻</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success" size="small" icon="el-icon-circle-plus" @click="addNews">新增</el-button>
-      <el-button type="primary" size="small" icon="el-icon-zoom-in" @click="detailNews">查看</el-button>
-      <el-button type="warning" size="small" icon="el-icon-edit" @click="modifyNews">修改</el-button>
-      <el-button
-        type="danger"
-        size="small"
-        icon="el-icon-delete"
-        @click="deleteById"
-        v-if="showControl('delete')"
-      >删 除</el-button>
-      <el-form @submit.native.prevent style="display:inline-block;width:250px;">
-        <el-form-item label style="mergin-bottom:0px;">
-          <el-input
-            v-model="search"
-            autocomplete="off"
-            @keyup.enter.native="sureSearchDialog"
-            placeholder="输入关键字后，回车即可搜索。"
-          ></el-input>
+      <el-button type="success"
+                 size="small"
+                 icon="el-icon-circle-plus"
+                 @click="addNews">新增</el-button>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-zoom-in"
+                 @click="detailNews">查看</el-button>
+      <el-button type="warning"
+                 size="small"
+                 icon="el-icon-edit"
+                 @click="modifyNews">修改</el-button>
+      <el-button type="danger"
+                 size="small"
+                 icon="el-icon-delete"
+                 @click="deleteById"
+                 v-if="showControl('delete')">删 除</el-button>
+      <el-form @submit.native.prevent
+               style="display:inline-block;width:250px;">
+        <el-form-item label
+                      style="mergin-bottom:0px;">
+          <el-input v-model="search"
+                    autocomplete="off"
+                    @keyup.enter.native="sureSearchDialog"
+                    placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
       </el-form>
-      <el-button
-        type="primary"
-        size="small"
-        icon="el-icon-search"
-        v-if="showSearchResult"
-        @click="query()"
-      >取消搜索</el-button>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-search"
+                 v-if="showSearchResult"
+                 @click="query()">取消搜索</el-button>
     </div>
-    <el-table
-      :data="table.content"
-      :border="true"
-      :highlight-current-row="true"
-      :stripe="true"
-      @current-change="handleCurrentChange"
-      @row-dblclick="modifyNews"
-      style="width: 100%"
-    >
-      <el-table-column type="index" width="50" label="序号"></el-table-column>
-      <el-table-column prop="createUserName" label="作者" width="100" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="title" label="标题" width="180" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="content" label="内容" show-overflow-tooltip></el-table-column>
+    <el-table :data="table.content"
+              :border="true"
+              :highlight-current-row="true"
+              :stripe="true"
+              @current-change="handleCurrentChange"
+              @row-dblclick="modifyNews"
+              style="width: 100%">
+      <el-table-column type="index"
+                       width="50"
+                       label="序号"></el-table-column>
+      <el-table-column prop="createUserName"
+                       label="作者"
+                       width="100"
+                       show-overflow-tooltip></el-table-column>
+      <el-table-column prop="title"
+                       label="标题"
+                       width="180"
+                       show-overflow-tooltip></el-table-column>
+      <el-table-column prop="createTime"
+                       label="创建日期"
+                       width="100"
+                       :formatter="formatDate"></el-table-column>
+      <el-table-column prop="content"
+                       label="内容"
+                       show-overflow-tooltip></el-table-column>
     </el-table>
-    <el-pagination
-      background
-      layout="prev, pager, next, sizes"
-      :total="table.totalElements"
-      :current-page="table.pageable.pageNumber"
-      :page-sizes="page.pageSizes"
-      :page-size="table.pageable.pageSize"
-      @size-change="sizeChange"
-      @current-change="currentChange"
-      @prev-click="prevClick"
-      @next-click="nextClick"
-    ></el-pagination>
+    <el-pagination background
+                   layout="prev, pager, next, sizes"
+                   :total="table.totalElements"
+                   :current-page="table.pageable.pageNumber"
+                   :page-sizes="page.pageSizes"
+                   :page-size="table.pageable.pageSize"
+                   @size-change="sizeChange"
+                   @current-change="currentChange"
+                   @prev-click="prevClick"
+                   @next-click="nextClick"></el-pagination>
   </div>
 </template>
 <script src="./mynewslist.js"></script>

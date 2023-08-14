@@ -544,6 +544,83 @@ export default {
           })
           return
         }
+        if (typeof (this.form.birthDay) === 'undefined' || this.form.birthDay === '' || this.form.birthDay === null) {
+          this.$message({
+            message: '生日必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.phoneNo) === 'undefined' || this.form.phoneNo === '' || this.form.phoneNo === null) {
+          this.$message({
+            message: '手机号必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.email) === 'undefined' || this.form.email === '' || this.form.email === null) {
+          this.$message({
+            message: '邮箱必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.hometown) === 'undefined' || this.form.hometown === '' || this.form.hometown === null) {
+          this.$message({
+            message: '户籍地址必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.currentAddress) === 'undefined' || this.form.currentAddress === '' || this.form.currentAddress === null) {
+          this.$message({
+            message: '现地址必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.futureAddress) === 'undefined' || this.form.futureAddress === '' || this.form.futureAddress === null) {
+          this.$message({
+            message: '期望地址必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.companyName) === 'undefined' || this.form.companyName === '' || this.form.companyName === null) {
+          this.$message({
+            message: '公司必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.title) === 'undefined' || this.form.title === '' || this.form.title === null) {
+          this.$message({
+            message: '职位必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.currentMoney) === 'undefined' || this.form.currentMoney === '' || this.form.currentMoney === null) {
+          this.$message({
+            message: '现薪资必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.futureMoney) === 'undefined' || this.form.futureMoney === '' || this.form.futureMoney === null) {
+          this.$message({
+            message: '期望薪资必须填写',
+            type: 'warning'
+          })
+          return
+        }
+        if (typeof (this.form.schoolName) === 'undefined' || this.form.schoolName === '' || this.form.schoolName === null) {
+          this.$message({
+            message: '学校必须填写',
+            type: 'warning'
+          })
+          return
+        }
       }
       // 组装数据
       let comment = this.newComment

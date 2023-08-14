@@ -25,6 +25,12 @@ export default {
     }
   },
   methods: {
+    formatDate (row, column, cellvalue, index) {
+      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
+        return cellvalue.substr(0, 10)
+      }
+      return ''
+    },
     // 显示控制
     showControl (url) {
       if (url === 'delete') {
