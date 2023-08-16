@@ -455,6 +455,15 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="6">
+              <el-form-item label="Title"
+                            label-width="80px">
+                <el-input v-model="search.title"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
               <el-form-item label="Shortcut"
                             label-width="80px">
                 <el-checkbox v-model="search.nonPaymentDue">到期未付款</el-checkbox>
