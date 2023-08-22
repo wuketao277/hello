@@ -6,7 +6,7 @@
              style="width:100px;height:55px;">
       </div>
       <div style="float:left;height:100%;text-align:left;padding-left:65px;padding-top:20px;">
-        <span>Hello Applicant</span>
+        <span>Hello Applicant</span>&nbsp;<span style="font-size:8px;">v{{version}}</span>
       </div>
       <div style="float:right;width:40px;margin-top:10px;">
         <el-button size="mini"

@@ -9,7 +9,8 @@ export default {
       realname: '',
       username: '',
       roles: [],
-      jobType: ''
+      jobType: '',
+      version: commonJS.version
     }
   },
   methods: {

@@ -1,5 +1,6 @@
 import candidate from '@/api/candidate'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -17,10 +18,13 @@ export default {
         ageMin: null,
         ageMax: null,
         farthestPhase: '无',
-        specialItem: []
+        specialItem: [],
+        userName: null
       },
       // 性别
-      genders: commonJS.genders
+      genders: commonJS.genders,
+      // 用户列表
+      userList: null
     }
   },
   methods: {
@@ -111,5 +115,10 @@ export default {
     if (typeof (window.localStorage['searchcandidate.data']) !== 'undefined') {
       this.table.content = commonJS.getStorageContentObject('searchcandidate.data')
     }
+    userApi.findAllEnabled().then(res => {
+      if (res.status === 200) {
+        this.userList = res.data
+      }
+    })
   }
 }

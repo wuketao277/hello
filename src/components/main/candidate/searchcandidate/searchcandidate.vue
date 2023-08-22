@@ -91,13 +91,27 @@
                  label-width="80px"
                  style="text-align:left;">
           <el-row :gutter="20">
-            <el-col :span="12">
+            <el-col :span="16">
               <el-form-item label="关键字"
                             label-width="80px">
                 <el-input v-model="search.keyWords"
                           placeholder="请输入关键字，多个关键字直接可以用AND连接"
                           style="width:100%;"
                           clearable></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="顾问">
+                <el-select v-model="search.userName"
+                           placeholder="请选择顾问"
+                           filterable
+                           clearable
+                           style="width:100%">
+                  <el-option v-for="user in userList"
+                             :key="user.username"
+                             :value="user.username"
+                             :label="user.username"></el-option>
+                </el-select>
               </el-form-item>
             </el-col>
           </el-row>
