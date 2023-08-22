@@ -53,13 +53,21 @@
                          show-overflow-tooltip
                          fixed></el-table-column>
         <el-table-column prop="candidateChineseName"
-                         width="100"
-                         label="候选人姓名"
+                         width="80"
+                         label="姓名"
                          show-overflow-tooltip
                          fixed></el-table-column>
+        <el-table-column prop="gender"
+                         width="50"
+                         label="性别"
+                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientName"
+                         width="200"
+                         label="客户名称"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="department"
                          width="120"
-                         label="客户"
+                         label="部门名称"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="title"
                          width="120"
@@ -76,6 +84,11 @@
         <el-table-column prop="base"
                          width="100"
                          label="Base"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="interviewDate"
+                         :formatter="formatDate"
+                         width="120"
+                         label="Interview Date"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="offerDate"
                          :formatter="formatDate"

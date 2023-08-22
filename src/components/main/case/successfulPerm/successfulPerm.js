@@ -44,6 +44,7 @@ export default {
         id: null,
         clientId: '', // 公司id
         approveStatus: 'applied', // 审批状态，apply表示申请状态，approved表示审批通过，denied表示审批否决
+        department: '', // 部门名称
         caseId: '', // 职位id
         title: '', // 职位名称
         candidateId: '', // 候选人id
@@ -148,6 +149,7 @@ export default {
         base: 0,
         gp: 0,
         billing: 0,
+        interviewDate: '', // 到面日期
         onBoardDate: '',
         guaranteeDate: '',
         offerDate: '',
@@ -298,6 +300,7 @@ export default {
         this.form.id = null
         this.form.clientId = '' // 公司id
         this.form.approveStatus = ''
+        this.form.department = '' // 部门名称
         this.form.caseId = '' // 职位id
         this.form.title = '' // 职位名称
         this.form.candidateId = '' // 候选人id
@@ -338,6 +341,7 @@ export default {
         this.form.base = 0
         this.form.gp = 0
         this.form.billing = 0
+        this.form.interviewDate = ''
         this.form.onBoardDate = ''
         this.form.guaranteeDate = ''
         this.form.offerDate = ''

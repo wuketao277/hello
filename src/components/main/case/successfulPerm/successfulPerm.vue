@@ -77,6 +77,13 @@
       <el-row :gutter="12"
               style="margin-bottom:10px;">
         <el-col :span="6">
+          <el-form-item label="Department">
+            <el-input v-model="form.department"
+                      clearable
+                      style="width:100%;"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
           <el-button type="primary"
                      size="mini"
                      icon="el-icon-share"
@@ -627,6 +634,15 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="6">
+          <el-form-item label="Interview Date">
+            <el-date-picker v-model="form.interviewDate"
+                            type="date"
+                            placeholder="选择日期"
+                            style="width:100%;"
+                            value-format="yyyy-MM-dd"></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
           <el-form-item label="Offer Date">
             <el-date-picker v-model="form.offerDate"
                             type="date"
@@ -653,6 +669,8 @@
                             value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Invoice Date">
             <el-date-picker v-model="form.invoiceDate"
@@ -663,8 +681,6 @@
                             v-show="showControl('invoiceDate')"></el-date-picker>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Payment Date">
             <el-date-picker v-model="form.paymentDate"
@@ -696,6 +712,8 @@
             <span v-show="!showControl('commissionDate')">{{getDateStr(form.commissionDate)}}</span>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="Invoice No.">
             <el-input v-model="form.invoiceNo"
@@ -703,8 +721,6 @@
                       style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="12">
         <el-col :span="6">
           <el-form-item label="PO">
             <el-input v-model="form.po"
@@ -720,7 +736,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="channel">
+          <el-form-item label="Channel">
             <el-input v-model="form.channel"
                       clearable
                       style="width:100%;"></el-input>
