@@ -728,7 +728,15 @@ export default {
     // billing只读控制方法
     billingReadonly: function () {
       // 管理员可以修改Billing
-      return !commonJS.isAdmin()
+      if (commonJS.isAdmin()) {
+        return false
+      } else {
+        if (this.form.clientId === 83128 || this.form.clientId === 116400) {
+          // 一汽奔腾 一汽红旗可以修改billing
+          return false
+        }
+        return true
+      }
     },
     // gp只读控制方法
     gpReadonly: function () {
