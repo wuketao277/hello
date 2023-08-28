@@ -103,7 +103,7 @@
                         prop="interviewHistory">
             <el-input v-model="form.interviewHistory"
                       type="textarea"
-                      :autosize="{ minRows: 2, maxRows: 100}"
+                      :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
@@ -116,7 +116,7 @@
                         prop="motivation">
             <el-input v-model="form.motivation"
                       type="textarea"
-                      :autosize="{ minRows: 2, maxRows: 100}"
+                      :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
@@ -193,11 +193,15 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="8">
+        <el-col :span="24">
           <el-form-item label="公司"
                         prop="companyName">
-            <el-input v-model="form.companyName"
+            <el-input placeholder="填写公司名称、入职离职日期、岗位。多段工作请换行填写。"
+                      v-model="form.companyName"
+                      type="textarea"
+                      :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -291,7 +295,7 @@
             <el-input v-model="form.schoolName"
                       placeholder="是统招的吗？学历证、学位证都有吗？学信网可以查到吗？"
                       type="textarea"
-                      :autosize="{ minRows: 2, maxRows: 100}"
+                      :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
