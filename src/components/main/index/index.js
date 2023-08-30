@@ -17,7 +17,7 @@ export default {
     // 通过工作类型控制显示
     jobTypeControlShow (url) {
       let jobType = commonJS.getJobType()
-      if (url === '/' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+      if (url === '/' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
       if (url === '/client/clientlist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
@@ -38,22 +38,22 @@ export default {
       if (url === '/file/filelist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
-      if (url === '/salary' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'CONSULTANT')) {
+      if (url === '/salary' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {
         return true
       }
       if (url === '/salary/salarySpecialItemList' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
-      if (url === '/my' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'CONSULTANT')) {
+      if (url === '/my' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {
         return true
       }
-      if (url === '/mynews/mynewslist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+      if (url === '/mynews/mynewslist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
-      if (url === '/mytask/mytasklist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+      if (url === '/mytask/mytasklist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
-      if (url === '/holiday/holidaylist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'CONSULTANT')) {
+      if (url === '/holiday/holidaylist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {
         return true
       }
       if (url === '/config' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {
