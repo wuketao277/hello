@@ -320,8 +320,8 @@ export default {
     // 显示控制
     showControl (url) {
       if (url === '/') {
-        // 主页内容显示给非外包人员
-        return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType())
+        // 外包、体验、兼职员工显示背景图片
+        return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType() || commonJs.isParttimeJobType())
       }
       if (url === '/candidateAttention' || url === '/focus' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi') {
         // 关注职位显示给非外包人员
