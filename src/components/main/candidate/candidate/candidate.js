@@ -468,13 +468,16 @@ export default {
     },
     // 编辑客户
     editClient (index, row) {
-      this.$router.push({
-        path: '/client/client',
-        query: {
-          mode: 'modify',
-          clientId: row.clientId
-        }
-      })
+      // 只有全职的同事可以跳转到客户列表
+      if (commonJS.isFulltimeJobType()) {
+        this.$router.push({
+          path: '/client/client',
+          query: {
+            mode: 'modify',
+            clientId: row.clientId
+          }
+        })
+      }
     },
     // 打开职位选择对话框
     openSelectCaseDialog () {

@@ -71,6 +71,9 @@ export default {
       } else if (url === 'mobileNo' || url === 'phoneNo' || url === 'email') {
         // hr联系信息，只有Admin，Admin_company角色展示
         return commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompanyInArray(this.roles)
+      } else if (url === 'toolbar') {
+        // 工具栏，只有Admin角色展示
+        return commonJs.isAdminInArray(this.roles)
       }
       return false
     },

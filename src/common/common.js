@@ -70,6 +70,16 @@ export default {
   isBDInArray (arr) {
     return arr.includes('BD', 0)
   },
+  // 是否是全职
+  isFulltimeJobType () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.jobType === 'FULLTIME'
+  },
+  // 是否是兼职
+  isParttimeJobType () {
+    let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+    return loginInfo.jobType === 'PARTTIME'
+  },
   // 是否是外包员工
   isConsultantJobType () {
     let loginInfo = JSON.parse(window.localStorage['loginInfo'])
