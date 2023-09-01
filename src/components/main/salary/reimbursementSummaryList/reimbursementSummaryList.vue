@@ -144,7 +144,7 @@
   color: #8304fa;
 }
 .row4 {
-  color: #ef03f7;
+  color: #f70361;
 }
 </style>
 <script src="./reimbursementSummaryList.js"></script>
