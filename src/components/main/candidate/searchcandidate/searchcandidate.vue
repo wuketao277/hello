@@ -172,6 +172,15 @@
           </el-row>
           <el-row :gutter="12">
             <el-col :span="24">
+              <el-form-item label="快捷项">
+                <el-checkbox-group v-model="search.quickItem">
+                  <el-checkbox label="HAVETELEPHONE">电话不为空</el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="12">
+            <el-col :span="24">
               <el-form-item label="特殊项(或)">
                 <el-checkbox-group v-model="search.specialItem">
                   <el-checkbox label="OVERSEASTUDENT">海外留学</el-checkbox>

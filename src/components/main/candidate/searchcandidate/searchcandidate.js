@@ -19,6 +19,7 @@ export default {
         ageMax: null,
         farthestPhase: '无',
         specialItem: [],
+        quickItem: [],
         userName: null
       },
       // 性别
