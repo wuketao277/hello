@@ -24,7 +24,8 @@
               style="width: 100%">
       <el-table-column type="index"
                        width="50"
-                       label="序号"></el-table-column>
+                       label="序号"
+                       fixed></el-table-column>
       <el-table-column prop="chineseName"
                        label="中文名称"
                        width="80"
