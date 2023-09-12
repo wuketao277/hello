@@ -731,7 +731,7 @@ export default {
       if (commonJS.isAdmin()) {
         return false
       } else {
-        if (this.form.clientId === 83128 || this.form.clientId === 116400) {
+        if (this.form.clientId === 83128 || this.form.clientId === 116400 || this.form.clientId === 511253 || this.form.clientId === 7487) {
           // 一汽奔腾 一汽红旗可以修改billing
           return false
         }
