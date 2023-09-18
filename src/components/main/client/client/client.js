@@ -72,8 +72,8 @@ export default {
         // hr联系信息，只有Admin，Admin_company角色展示
         return commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompanyInArray(this.roles)
       } else if (url === 'toolbar') {
-        // 工具栏，只有Admin角色展示
-        return commonJs.isAdminInArray(this.roles)
+        // 工具栏，只有Admin ADMIN_COMPANY角色展示
+        return commonJs.isAdmin() || commonJs.isAdminCompany()
       }
       return false
     },

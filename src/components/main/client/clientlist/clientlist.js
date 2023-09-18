@@ -29,7 +29,7 @@ export default {
   methods: {
     // 处理列表双击事件
     handleDBClick () {
-      if (this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)) {
+      if (this.jobType === 'FULLTIME' && (commonJs.isAdmin() || commonJs.isAdminCompany())) {
         // 管理员可以修改
         this.modify()
       } else {
@@ -40,7 +40,7 @@ export default {
     // 显示控制
     showControl (val) {
       if (val === 'addClient' || val === 'modifyClient') {
-        return this.jobType === 'FULLTIME' && commonJs.isAdminInArray(this.roles)
+        return this.jobType === 'FULLTIME' && (commonJs.isAdmin() || commonJs.isAdminCompany())
       }
       return false
     },
