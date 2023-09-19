@@ -56,9 +56,11 @@
                        label="职位id"></el-table-column>
       <el-table-column prop="clientChineseName"
                        width="200"
-                       label="客户名称"></el-table-column>
+                       label="客户名称"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="title"
-                       label="职位名称"></el-table-column>
+                       label="职位名称"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="status"
                        width="100"
                        :formatter="this.getStatusName"
