@@ -146,14 +146,6 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
-          <el-form-item label="日文水平"
-                        prop="japaneseLevel">
-            <el-input v-model="form.japaneseLevel"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
@@ -202,22 +194,6 @@
                       :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="部门"
-                        prop="department">
-            <el-input v-model="form.department"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="职位"
-                        prop="title">
-            <el-input v-model="form.title"
-                      maxlength="200"
                       clearable></el-input>
           </el-form-item>
         </el-col>

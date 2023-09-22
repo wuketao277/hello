@@ -35,8 +35,6 @@ export default {
         phoneNo: '',
         email: '',
         companyName: '',
-        department: '',
-        title: '',
         schoolName: '',
         hometown: '',
         currentAddress: '',
@@ -44,7 +42,6 @@ export default {
         currentMoney: '',
         futureMoney: '',
         englishLevel: '',
-        japaneseLevel: '',
         remark: '',
         createUserId: null,
         createUserName: null,
@@ -202,16 +199,6 @@ export default {
         companyName: [{
           max: 200,
           message: '公司名称长度不能大于200个字符',
-          trigger: 'blur'
-        }],
-        department: [{
-          max: 200,
-          message: '部门名称长度不能大于200个字符',
-          trigger: 'blur'
-        }],
-        title: [{
-          max: 200,
-          message: '职位名称长度不能大于200个字符',
           trigger: 'blur'
         }],
         englishLevel: [{
@@ -596,13 +583,6 @@ export default {
           })
           return
         }
-        if (typeof (this.form.title) === 'undefined' || this.form.title === '' || this.form.title === null) {
-          this.$message({
-            message: '职位必须填写',
-            type: 'warning'
-          })
-          return
-        }
         if (typeof (this.form.currentMoney) === 'undefined' || this.form.currentMoney === '' || this.form.currentMoney === null) {
           this.$message({
             message: '现薪资必须填写',
@@ -707,8 +687,6 @@ export default {
         this.form.phoneNo = ''
         this.form.email = ''
         this.form.companyName = ''
-        this.form.department = ''
-        this.form.title = ''
         this.form.schoolName = ''
         this.form.currentAddress = ''
         this.form.futureAddress = ''
