@@ -136,24 +136,19 @@ export default {
           this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
       } else if (type === 'nextseason') {
-        let month = new Date().getMonth() + 4
-        let year = new Date().getFullYear()
-        if (month > 11) {
-          month = 1
-          year = year + 1
-        }
+        let month = new Date().getMonth() + 1
         if (month === 1 || month === 2 || month === 3) {
-          this.form.startDate = new Date(Date.parse(year + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          this.form.endDate = new Date(Date.parse(year + '-03-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-04-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-06-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 4 || month === 5 || month === 6) {
-          this.form.startDate = new Date(Date.parse(year + '-04-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          this.form.endDate = new Date(Date.parse(year + '-06-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-07-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-09-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 7 || month === 8 || month === 9) {
-          this.form.startDate = new Date(Date.parse(year + '-07-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          this.form.endDate = new Date(Date.parse(year + '-09-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-10-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         } else if (month === 10 || month === 11 || month === 12) {
-          this.form.startDate = new Date(Date.parse(year + '-10-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          this.form.endDate = new Date(Date.parse(year + '-12-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.startDate = new Date(Date.parse(new Date().getFullYear() + 1 + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + 1 + '-03-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         }
       } else if (type === 'year') {
         this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
