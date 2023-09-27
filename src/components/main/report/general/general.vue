@@ -168,6 +168,14 @@
             <div id="teamOfferGPDataChart"
                  :class="chartClass"></div>
           </div>
+          <div id="avgOfferData"
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Average Offer Data</el-col>
+            </el-row>
+            <div id="avgOfferDataChart"
+                 :class="chartClass"></div>
+          </div>
         </el-col>
       </el-row>
     </div>
