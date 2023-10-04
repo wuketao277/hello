@@ -137,7 +137,8 @@ export default {
       selectCWDialogShow: false,
       roles: [],
       jobType: '',
-      jobTypeList: commonJS.jobTypeList
+      jobTypeList: commonJS.jobTypeList,
+      loadAllCandidatesFlag: false // 加载所有候选人标志
     }
   },
   methods: {
@@ -464,14 +465,31 @@ export default {
       if (this.form.id !== null) {
         // 显示加载中
         this.candidateTableLoading = true
-        candidateForCaseApi.findByCaseId(this.form.id).then(res => {
-          if (res.status === 200) {
-            // 隐藏加载中
-            this.candidateTableLoading = false
-            this.candidateForCaseList = res.data
-          }
-        })
+        if (this.loadAllCandidatesFlag) {
+          // 加载所有候选人
+          candidateForCaseApi.findByCaseId(this.form.id).then(res => {
+            if (res.status === 200) {
+              // 隐藏加载中
+              this.candidateTableLoading = false
+              this.candidateForCaseList = res.data
+            }
+          })
+        } else {
+          // 加载关注的候选人
+          candidateForCaseApi.findAttentionByCaseId(this.form.id).then(res => {
+            if (res.status === 200) {
+              // 隐藏加载中
+              this.candidateTableLoading = false
+              this.candidateForCaseList = res.data
+            }
+          })
+        }
       }
+    },
+    // 加载所有候选人
+    loadAllCandidates () {
+      this.loadAllCandidatesFlag = true
+      this.queryCandidateForCaseList()
     },
     // 查询其他数据
     queryOthers () {

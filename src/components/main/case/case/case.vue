@@ -263,6 +263,15 @@
                        icon="el-icon-document-copy"
                        @click="openSelectCaseDialog">拷贝候选人</el-button>
           </el-tooltip>
+          <el-tooltip class="item"
+                      effect="dark"
+                      content="展示该职位下所有关联过的候选人"
+                      placement="top">
+            <el-button type="primary"
+                       size="small"
+                       icon="el-icon-notebook-2"
+                       @click="loadAllCandidates">加载所有候选人</el-button>
+          </el-tooltip>
         </div>
         <el-table v-loading="candidateTableLoading"
                   element-loading-text="拼命加载中"

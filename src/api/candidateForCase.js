@@ -24,6 +24,10 @@ export default {
     return axios.get('/candidateForCase/findByCaseId?caseId=' + params)
   },
   // 查找后台数据
+  findAttentionByCaseId (params) {
+    return axios.get('/candidateForCase/findAttentionByCaseId?caseId=' + params)
+  },
+  // 查找后台数据
   findByCandidateId (params) {
     return axios.get('/candidateForCase/findByCandidateId', {
       params: params
