@@ -687,11 +687,14 @@
         <el-table-column property="phase"
                          label="阶段"
                          width="100"></el-table-column>
+        <el-table-column property="interviewTime"
+                         label="面试时间"
+                         width="160"></el-table-column>
         <el-table-column property="content"
                          label="内容"></el-table-column>
         <el-table-column property="inputTime"
                          label="录入时间"
-                         width="180"></el-table-column>
+                         width="160"></el-table-column>
       </el-table>
     </el-dialog>
     <el-dialog title="候选人详情"
