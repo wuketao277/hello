@@ -244,7 +244,7 @@
                            show-overflow-tooltip>
             <template slot-scope="scope">
               <el-button type="text"
-                         @click="editCandidate(scope.$index, scope.row)">{{scope.row.candidateName}}</el-button>
+                         @click="editCandidate(scope.$index, scope.row.candidateId)">{{scope.row.candidateName}}</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="interviewTime"
@@ -472,6 +472,10 @@
           <el-button type="primary"
                      plain
                      size="small"
+                     @click="calcDate('preMonth')">上月</el-button>
+          <el-button type="primary"
+                     plain
+                     size="small"
                      @click="calcDate('month')">本月</el-button>
           <el-button type="primary"
                      plain
@@ -597,6 +601,15 @@
             <el-table-column prop="workDays"
                              label="工作天数"
                              width="80px"></el-table-column>
+            <el-table-column prop="newCandidates"
+                             label="新增候选人数量"
+                             width="100px">
+              <template slot-scope="scope">
+                {{scope.row.newCandidates}}&nbsp;&nbsp;
+                <el-button size="mini"
+                           @click="candidateDetail(scope.$index, scope.row)">查看</el-button>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </el-tab-pane>
@@ -668,7 +681,7 @@
                          width="100">
           <template slot-scope="scope">
             <el-button type="text"
-                       @click="editCandidate(scope.$index, scope.row)">{{scope.row.candidateName}}</el-button>
+                       @click="editCandidate(scope.$index, scope.row.candidateId)">{{scope.row.candidateName}}</el-button>
           </template>
         </el-table-column>
         <el-table-column property="phase"
@@ -679,6 +692,28 @@
         <el-table-column property="inputTime"
                          label="录入时间"
                          width="180"></el-table-column>
+      </el-table>
+    </el-dialog>
+    <el-dialog title="候选人详情"
+               :visible.sync="candidateDetailTableVisible"
+               width="60%">
+      <el-table :data="candidateDetailTable"
+                :highlight-current-row="true"
+                :border="true"
+                max-height="500">
+        <el-table-column property="chineseName"
+                         label="候选人姓名"
+                         width="100">
+          <template slot-scope="scope">
+            <el-button type="text"
+                       @click="editCandidate(scope.$index, scope.row.id)">{{scope.row.chineseName}}</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column property="informationScore"
+                         label="信息完整性"></el-table-column>
+        <el-table-column property="createTime"
+                         :formatter="formatTime"
+                         label="录入时间"></el-table-column>
       </el-table>
     </el-dialog>
     <el-dialog title="待办任务"

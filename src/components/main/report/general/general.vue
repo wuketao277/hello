@@ -16,63 +16,68 @@
                               value-format="yyyy-MM-dd"
                               format="yyyy-MM-dd"
                               placeholder="开始日期"
+                              size="small"
+                              style="width:130px;"
                               v-model="form.startDate"></el-date-picker>
               <span>-</span>
               <el-date-picker type="date"
                               placeholder="结束日期"
                               value-format="yyyy-MM-dd"
                               format="yyyy-MM-dd"
+                              size="small"
+                              style="width:130px;"
                               v-model="form.endDate"></el-date-picker>&nbsp;&nbsp;
               <el-button type="primary"
-                         size="medium"
+                         plain
+                         size="small"
                          @click="drawChart">查询</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('week')">本周</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('lastmonth')">上月</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('month')">本月</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('nextmonth')">下月</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('lastseason')">上季度</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('season')">本季度</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('nextseason')">下季度</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('tonowyear')">今年到现在</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('year')">本年</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('tonow')">全部</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="changeChartSize('big')">大图</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="changeChartSize('small')">小图</el-button>
             </el-col>
           </el-row>

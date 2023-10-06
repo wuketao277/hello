@@ -40,9 +40,14 @@
              style="text-align:left;"
              :rules="rules">
       <el-row :gutter="12">
-        <el-col :span="8">
+        <el-col :span="4">
           <el-form-item label="候选人id">
             <span>{{form.id}}</span>
+          </el-form-item>
+        </el-col>
+        <el-col :span="4">
+          <el-form-item label="创建人">
+            <span>{{form.createUserName}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="8">

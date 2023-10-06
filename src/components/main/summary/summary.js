@@ -41,7 +41,9 @@ export default {
       todoTaskDialog: false,
       isChouqianAll: true,
       isChouqianCheckAll: false,
-      kpiOnlyShowCheck: true // kpi只展示考核kpi用户的数据
+      kpiOnlyShowCheck: true, // kpi只展示考核kpi用户的数据
+      candidateDetailTableVisible: false, // 候选人详情列表展示控制
+      candidateDetailTable: [] // 候选人详情列表
     }
   },
   methods: {
@@ -287,6 +289,24 @@ export default {
           // 4 6 9 11月
           this.endDate = new Date().getFullYear() + '-' + month + '-30'
         }
+      } else if (type === 'preMonth') {
+        let month = new Date().getMonth()
+        let year = new Date().getFullYear()
+        if (month === 0) {
+          month = 12
+          year = year - 1
+        }
+        this.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        if (month === 2) {
+          // 2 月
+          this.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+          // 1 3 5 7 8 10 12月
+          this.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else {
+          // 4 6 9 11月
+          this.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        }
       } else if (type === 'monthToNow') {
         let month = new Date().getMonth() + 1
         month = month < 10 ? '0' + month : month
@@ -361,15 +381,16 @@ export default {
       })
     },
     // 编辑候选人
-    editCandidate (index, row) {
+    editCandidate (index, candidateId) {
       this.$router.push({
         path: '/candidate/candidate',
         query: {
           mode: 'modify',
-          candidateId: row.candidateId
+          candidateId: candidateId
         }
       })
     },
+    // kpi详情展示
     kpiDetail (index, row) {
       if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {
         this.$message.error('请先选择要计算的日期')
@@ -387,6 +408,27 @@ export default {
           this.commentsDetailTable = res.data
           this.commentsDetailTableBackup = this.commentsDetailTable
           this.filerAndSortKpi()
+        } else {
+          this.$message({
+            message: '查询异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
+    },
+    // 候选人详情展示
+    candidateDetail (index, row) {
+      let request = {
+        'startDate': this.startDate,
+        'endDate': this.endDate,
+        'createUser': row['userName']
+      }
+      candidateApi.queryByCreateTimeAndCreateUser(request).then(res => {
+        if (res.status === 200) {
+          // 候选人详情
+          this.candidateDetailTableVisible = true
+          this.candidateDetailTable = res.data
         } else {
           this.$message({
             message: '查询异常，请联系管理员！',
@@ -629,6 +671,13 @@ export default {
         this.selectUsers = []
       }
       this.isChouqianAll = false
+    },
+    // 时间格式化
+    formatTime (row, column, cellvalue, index) {
+      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
+        return cellvalue.substr(0, 19).replace('T', ' ')
+      }
+      return ''
     }
   },
   created () {

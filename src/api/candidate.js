@@ -60,5 +60,9 @@ export default {
   // 搜索候选人集合
   searchCandidateList (params) {
     return axios.post('/candidate/searchCandidateList', params)
+  },
+  // 通过创建时间和用户查询
+  queryByCreateTimeAndCreateUser (params) {
+    return axios.post('/candidate/queryByCreateTimeAndCreateUser', params)
   }
 }
