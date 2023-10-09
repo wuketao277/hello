@@ -135,16 +135,16 @@
 </template>
 <style>
 .row1 {
-  color: red;
+  color: #267437;
 }
 .row2 {
   color: blue;
 }
 .row3 {
-  color: #8304fa;
+  color: purple;
 }
 .row4 {
-  color: #f70361;
+  color: rgb(59, 23, 53);
 }
 </style>
 <script src="./reimbursementSummaryList.js"></script>
