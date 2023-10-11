@@ -44,5 +44,9 @@ export default {
     return axios.get('/comment/queryInterviewPage', {
       params: params
     })
+  },
+  // 保存KPI
+  saveKPI (params) {
+    return axios.post('/comment/saveKPI', params)
   }
 }

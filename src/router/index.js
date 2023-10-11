@@ -48,6 +48,7 @@ import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustLis
 import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
 import InterviewList from '@/components/main/interview/interviewList.vue'
 import CommonJS from '@/common/common'
+import KPIList from '@/components/main/salary/kpiList/kpiList.vue'
 
 Vue.use(Router)
 
@@ -278,6 +279,12 @@ const router = new Router({
       path: '/salary/kpiworkdaysadjustList',
       name: 'kpiworkdaysadjustList',
       component: KPIWorkDaysAdjustList
+    },
+    {
+      // kpi历史记录列表
+      path: '/salary/kpiList',
+      name: 'kpiList',
+      component: KPIList
     },
     {
       // 发票

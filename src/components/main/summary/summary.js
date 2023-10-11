@@ -43,7 +43,8 @@ export default {
       isChouqianCheckAll: false,
       kpiOnlyShowCheck: true, // kpi只展示考核kpi用户的数据
       candidateDetailTableVisible: false, // 候选人详情列表展示控制
-      candidateDetailTable: [] // 候选人详情列表
+      candidateDetailTable: [], // 候选人详情列表
+      saveKPIMonth: null // KPI保存月
     }
   },
   methods: {
@@ -347,7 +348,35 @@ export default {
         // 关注职位显示给非外包人员
         return !commonJs.isConsultantJobType()
       }
+      if (url === 'saveKPIDate' || url === 'saveKPIButton') {
+        // 保存KPI的日期和按钮只有管理员能看到
+        return commonJs.isAdmin()
+      }
       return false
+    },
+    // 保存KPI
+    saveKPI () {
+      if (this.saveKPIMonth !== null) {
+        let params = {
+          month: this.saveKPIMonth
+        }
+        commentApi.saveKPI(params).then(res => {
+          if (res.status === 200) {
+            // 保存成功
+            this.$message({
+              message: '保存成功！',
+              type: 'success',
+              showClose: true
+            })
+          } else {
+            this.$message({
+              message: '查询异常，请联系管理员！',
+              type: 'warning',
+              showClose: true
+            })
+          }
+        })
+      }
     },
     rowChange () {},
     // 跳转到客户

@@ -459,6 +459,20 @@
                           style="width:130px;"></el-date-picker>&nbsp;&nbsp;
           <el-checkbox v-model="kpiOnlyShowCheck"
                        @change="calcKPI()">只看考核人</el-checkbox>
+          &nbsp;&nbsp;
+          <el-date-picker v-model="saveKPIMonth"
+                          value-format="yyyy-MM-dd"
+                          type="month"
+                          size="small"
+                          style="width:130px;"
+                          placeholder="选择月"
+                          v-if="showControl('saveKPIDate')">
+          </el-date-picker>
+          <el-button type="primary"
+                     plain
+                     size="small"
+                     @click="saveKPI"
+                     v-if="showControl('saveKPIButton')">保存KPI结果</el-button>
         </div>
         <div style="margin-top:5px;">
           <el-button type="primary"
