@@ -41,9 +41,7 @@ export default {
   },
   // 查询面试安排分页
   queryInterviewPage (params) {
-    return axios.get('/comment/queryInterviewPage', {
-      params: params
-    })
+    return axios.post('/comment/queryInterviewPage', params)
   },
   // 保存KPI
   saveKPI (params) {

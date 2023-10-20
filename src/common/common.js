@@ -562,5 +562,110 @@ export default {
     code: 'MOJIE',
     name: '摩羯'
   }
+  ],
+  phaseOptions: [{
+    value: 'SL',
+    lable: 'SL'
+  },
+  {
+    value: 'TI',
+    lable: 'TI'
+  },
+  {
+    value: 'VI',
+    lable: 'VI'
+  },
+  {
+    value: 'IOI',
+    lable: 'IOI'
+  },
+  {
+    value: 'CVO',
+    lable: 'CVO'
+  },
+  {
+    value: '1st Interview',
+    lable: '1st Interview'
+  },
+  {
+    value: '2nd Interview',
+    lable: '2nd Interview'
+  },
+  {
+    value: '3rd Interview',
+    lable: '3rd Interview'
+  },
+  {
+    value: '4th Interview',
+    lable: '4th Interview'
+  },
+  {
+    value: '5th Interview',
+    lable: '5th Interview'
+  },
+  {
+    value: '6th Interview',
+    lable: '6th Interview'
+  },
+  {
+    value: 'CF',
+    lable: 'CF'
+  },
+  {
+    value: 'Offer Signed',
+    lable: 'Offer Signed'
+  },
+  {
+    value: 'On Board',
+    lable: 'On Board'
+  },
+  {
+    value: 'Pre. Service',
+    lable: 'Pre. Service'
+  },
+  {
+    value: 'On Service',
+    lable: 'On Service'
+  },
+  {
+    value: 'Week Service',
+    lable: 'Week Service'
+  },
+  {
+    value: 'Month Service',
+    lable: 'Month Service'
+  },
+  {
+    value: '2Month Service',
+    lable: '2Month Service'
+  },
+  {
+    value: '3Month Service',
+    lable: '3Month Service'
+  },
+  {
+    value: '4Month Service',
+    lable: '4Month Service'
+  },
+  {
+    value: '5Month Service',
+    lable: '5Month Service'
+  },
+  {
+    value: '6Month Service',
+    lable: '6Month Service'
+  },
+  {
+    value: 'Turndown Offer',
+    lable: 'Turndown Offer'
+  },
+  {
+    value: 'Period Failed',
+    lable: 'Period Failed'
+  },
+  {
+    value: 'END',
+    lable: 'END'
+  }
   ]
 }

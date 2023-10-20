@@ -1,6 +1,7 @@
 import commentApi from '@/api/comment'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import clientApi from '@/api/client'
 
 export default {
   data () {
@@ -18,9 +19,12 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getStorageContent('interviewlist.search'),
+      searchDialog: false,
+      search: commonJS.getStorageContentObject('interviewlist.search'),
       roles: [],
-      jobType: ''
+      jobType: '',
+      clientList: [],
+      phaseOptions: commonJS.phaseOptions
     }
   },
   methods: {
@@ -72,7 +76,7 @@ export default {
     },
     // 查询后台数据
     query () {
-      window.localStorage['interviewlist.search'] = this.search
+      window.localStorage['interviewlist.search'] = JSON.stringify(typeof (this.search) === 'undefined' ? {} : this.search)
       window.localStorage['interviewlist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['interviewlist.pageSize'] = this.table.pageable.pageSize
       let query = {
@@ -147,11 +151,18 @@ export default {
     switchSearchDialog () {
       this.$refs['search'].focus()
     },
-    // 按照条件搜索
-    searchPRC () {
-      this.table.pageable.pageNumber = 1
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['interviewList.search'] = {}
+    },
+    // 搜索确认按钮
+    sureSearchDialog () {
+      this.searchDialog = false
       this.query()
-    }
+    },
+    // 下载按钮点击事件
+    download () {}
   },
   computed: {},
   created () {
@@ -163,5 +174,10 @@ export default {
       }
     })
     this.query()
+    clientApi.findAll().then(res => {
+      if (res.status === 200) {
+        this.clientList = res.data
+      }
+    })
   }
 }
