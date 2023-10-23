@@ -31,7 +31,7 @@ export default {
     // 编辑职位
     editCase (index, row) {
       this.$router.push({
-        path: '/case/case',
+        path: '/background.html/case/case',
         query: {
           mode: 'modify',
           caseId: row.caseId
@@ -41,7 +41,7 @@ export default {
     // 编辑客户
     editClient (index, row) {
       this.$router.push({
-        path: '/client/client',
+        path: '/background.html/client/client',
         query: {
           mode: 'modify',
           clientId: row.clientId

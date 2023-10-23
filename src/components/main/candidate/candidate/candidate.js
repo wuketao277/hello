@@ -356,7 +356,7 @@ export default {
       // 只有全职的同事可以跳转到客户列表
       if (commonJS.isFulltimeJobType()) {
         this.$router.push({
-          path: '/client/client',
+          path: '/background.html/client/client',
           query: {
             mode: 'modify',
             clientId: row.clientId

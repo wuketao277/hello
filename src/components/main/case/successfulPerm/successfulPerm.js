@@ -198,7 +198,7 @@ export default {
     jumpToTitle () {
       if (this.form.caseId !== '') {
         this.$router.push({
-          path: '/case/case',
+          path: '/background.html/case/case',
           query: {
             mode: 'modify',
             caseId: this.form.caseId
