@@ -94,7 +94,7 @@ export default {
     modifyCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/candidate/candidate',
+          path: '/background.html/candidate/candidate',
           query: {
             mode: 'modify',
             candidate: this.currentRow

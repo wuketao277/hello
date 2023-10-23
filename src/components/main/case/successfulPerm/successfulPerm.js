@@ -210,7 +210,7 @@ export default {
     jumpToCandidate () {
       if (this.form.candidateId !== '') {
         this.$router.push({
-          path: '/candidate/candidate',
+          path: '/background.html/candidate/candidate',
           query: {
             mode: 'modify',
             candidateId: this.form.candidateId
