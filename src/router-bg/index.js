@@ -8,6 +8,8 @@ import UserList from '@/components/main/user/userlist/userlist.vue'
 import User from '@/components/main/user/user/user.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
 import Candidate from '@/components/main/candidate/candidate/candidate.vue'
+import PRC from '@/components/main/prc/prc/prc.vue'
+import PRCList from '@/components/main/prc/prclist/prclist.vue'
 import Summary from '@/components/main/summary/summary.vue'
 import MyNewsList from '@/components/main/mynews/mynewslist/mynewslist.vue'
 import MyNews from '@/components/main/mynews/mynews/mynews.vue'
@@ -41,6 +43,11 @@ import StudyRecordList from '@/components/main/training/studyrecord/studyrecordl
 import StudyRecord from '@/components/main/training/studyrecord/studyrecord/studyrecord.vue'
 import InvoiceList from '@/components/main/salary/invoiceList/invoiceList.vue'
 import Invoice from '@/components/main/salary/invoice/invoice.vue'
+import InterviewList from '@/components/main/interview/interviewList.vue'
+import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustList/kpiworkdaysadjustList.vue'
+import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
+import KPIList from '@/components/main/salary/kpiList/kpiList.vue'
+import SearchCandidate from '@/components/main/candidate/searchcandidate/searchcandidate.vue'
 
 Vue.use(Router)
 
@@ -55,6 +62,12 @@ const router = new Router({
       path: '/background.html',
       name: 'summary',
       component: Summary
+    },
+    {
+      // 面试列表
+      path: '/background.html/interviewlist',
+      name: 'InterviewList',
+      component: InterviewList
     },
     {
       // 总报表
@@ -97,6 +110,18 @@ const router = new Router({
       path: '/background.html/candidate/candidate',
       name: 'candidate',
       component: Candidate
+    },
+    {
+      // 新增PRC
+      path: '/background.html/prc/prc',
+      name: 'prc',
+      component: PRC
+    },
+    {
+      // PRC列表页
+      path: '/background.html/prc/prclist',
+      name: 'prclist',
+      component: PRCList
     },
     {
       // 我的新闻列表
@@ -265,6 +290,29 @@ const router = new Router({
       path: '/background.html/training/studyrecord',
       name: 'studyrecord',
       component: StudyRecord
+    }, {
+      // kpi工作日调整
+      path: '/background.html/salary/kpiworkdaysadjust',
+      name: 'kpiworkdaysadjust',
+      component: KPIWorkDaysAdjust
+    },
+    {
+      // kpi工作日调整列表
+      path: '/background.html/salary/kpiworkdaysadjustList',
+      name: 'kpiworkdaysadjustList',
+      component: KPIWorkDaysAdjustList
+    },
+    {
+      // kpi历史记录列表
+      path: '/background.html/salary/kpiList',
+      name: 'kpiList',
+      component: KPIList
+    },
+    {
+      // 搜索候选人
+      path: '/background.html/candidate/searchcandidate',
+      name: 'searchcandidate',
+      component: SearchCandidate
     },
     {
       // 假期记录
@@ -290,7 +338,6 @@ const router = new Router({
 })
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
-  debugger
   if (to.name !== 'login') {
     // 如果访问的不是登录页面，就通过接口检查服务器登录状态
     SecurityApi.checkLogin().then(res => {

@@ -49,20 +49,20 @@
                 <span slot="title">报表</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="/prc/prclist">
+            <el-menu-item index="/background.html/prc/prclist">
               <template slot="title">
                 <i class="el-icon-magic-stick"></i>
                 <span slot="title">PRC</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="/interviewlist">
+            <el-menu-item index="/background.html/interviewlist">
               <template slot="title">
                 <i class="el-icon-s-operation"></i>
                 <span slot="title">面试安排</span>
               </template>
             </el-menu-item>
           </el-submenu>
-          <el-menu-item index="/client/clientlist"
+          <el-menu-item index="/background.html/client/clientlist"
                         v-if="jobTypeControlShow('/client/clientlist')">
             <template slot="title">
               <i class="el-icon-s-custom"></i>
@@ -90,7 +90,7 @@
               <span slot="title">搜索候选人</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/case/successfulPermList"
+          <el-menu-item index="/background.html/case/successfulPermList"
                         v-if="jobTypeControlShow('/case/successfulPermList')">
             <template slot="title">
               <i class="el-icon-star-on"></i>
@@ -117,8 +117,8 @@
             <el-menu-item index="/background.html/salary/reimbursementItemList">报销项详情列表</el-menu-item>
             <el-menu-item v-if="showControl('/salary/invoiceList')"
                           index="/background.html/salary/invoiceList">业务发票</el-menu-item>
-            <el-menu-item index="/salary/kpiworkdaysadjustList">KPI工作日调整列表</el-menu-item>
-            <el-menu-item index="/salary/kpiList">KPI历史记录</el-menu-item>
+            <el-menu-item index="/background.html/salary/kpiworkdaysadjustList">KPI工作日调整列表</el-menu-item>
+            <el-menu-item index="/background.html/salary/kpiList">KPI历史记录</el-menu-item>
           </el-submenu>
           <el-submenu index="/background.html/my"
                       v-if="jobTypeControlShow('/my')">
