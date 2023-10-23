@@ -24,6 +24,7 @@
                  @click="deleteById">删 除</el-button>
       <el-button type="primary"
                  size="small"
+                 HEAD
                  icon="el-icon-share"
                  @click="searchDialog = true">搜 索</el-button>
     </div>
@@ -113,8 +114,9 @@
                :show-close="false"
                width="60%">
       <div>
-        <el-form label-position="left"
-                 label-width="70px">
+        <el-form size="small"
+                 label-position="left"
+                 label-width="90px">
           <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="开票日期">
@@ -146,7 +148,7 @@
             </el-col>
           </el-row>
           <el-row :gutter="20">
-            <el-col :span="6">
+            <el-col :span="12">
               <el-form-item label="AM">
                 <el-select v-model="search.amId"
                            placeholder="请选择顾问"
@@ -159,7 +161,7 @@
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="12">
               <el-form-item label="发票类型">
                 <el-select v-model="search.type"
                            placeholder="请选择发票类型"
@@ -170,6 +172,15 @@
                              :value="type.code"
                              :label="type.name"></el-option>
                 </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="候选人">
+                <el-input v-model="search.candidateChineseName"
+                          clearable
+                          style="width:100%;"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -185,6 +196,8 @@
         </el-form>
         <span slot="footer"
               class="dialog-footer">
+          <el-button type="warning"
+                     @click="clearQueryCondition">清 空</el-button>
           <el-button @click="searchDialog = false">取 消</el-button>
           <el-button type="primary"
                      @click="query">确 定</el-button>

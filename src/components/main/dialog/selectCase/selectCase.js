@@ -7,7 +7,8 @@ export default {
       caseList: [],
       currentRow: null,
       search: '',
-      status: 'DOING'
+      status: 'DOING',
+      loading: false // 不显示加载中
     }
   },
   methods: {
@@ -57,6 +58,8 @@ export default {
         'search': this.search,
         'status': this.status
       }
+      // 查询前显示加载中
+      this.loading = true
       caseApi.query(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
@@ -65,6 +68,8 @@ export default {
           return
         }
         this.caseList = res.data
+        // 隐藏加载中
+        this.loading = false
         if (showDialog) {
           this.$message({
             message: '查询完成！',

@@ -9,6 +9,7 @@ import selectHr from '@/components/main/dialog/selectHr/selectHr.vue'
 import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -43,7 +44,10 @@ export default {
         salaryScope: '',
         cwUserName: '',
         headCount: null,
-        pipeline: ''
+        pipeline: '',
+        show4JobType: [],
+        question: '',
+        sourcingMap: ''
       },
       attention: false,
       rules: {
@@ -117,6 +121,8 @@ export default {
       clients: [],
       // 职位候选人集合
       candidateForCaseList: [],
+      // 候选人列表加载中
+      candidateTableLoading: false,
       // 当前选中职位对应候选人
       curCandidateForCase: null,
       // 选择候选人对话框是否显示
@@ -128,17 +134,48 @@ export default {
       showUploadFileDialog: false, // 上传文件对话框
       uploadFileData: null, // 上传文件附加数据
       uploadFiles: [], // 上传文件集合
-      selectCWDialogShow: false
+      selectCWDialogShow: false,
+      roles: [],
+      jobType: '',
+      jobTypeList: commonJS.jobTypeList,
+      loadAllCandidatesFlag: false // 加载所有候选人标志
     }
   },
   methods: {
+    // 设置行样式
+    setCandidateRowClassName ({
+      row,
+      index
+    }) {
+      if (row.farthestPhase === 'Successful' || row.farthestPhase === 'Payment' ||
+        row.farthestPhase === 'Invoice' || row.farthestPhase === 'On Board' ||
+        row.farthestPhase === 'Offer Signed') {
+        return 'rowGreen'
+      } else if (row.farthestPhase === 'Offer Signed' || row.farthestPhase === 'Final Interview' ||
+        row.farthestPhase === '4th Interview' || row.farthestPhase === '3rd Interview' ||
+        row.farthestPhase === '2nd Interview' || row.farthestPhase === '1st Interview' ||
+        row.farthestPhase === 'CVO') {
+        return 'rowBlue'
+      }
+    },
+    // 获取YYYY-MM-dd格式的年月日
+    formatDate (d) {
+      if (typeof (d) !== 'undefined' && d !== null && d !== '') {
+        return d.substr(0, 10)
+      }
+      return ''
+    },
     openSelectCWDialog () {
       this.selectCWDialogShow = true
     },
     // 显示控制
     showControl (key) {
-      if (key === 'deleteRecommend') {
-        return commonJS.isAdmin()
+      if (key === 'deleteRecommend' || key === 'delete') {
+        // 只有管理员才能删除
+        return commonJS.isAdminInArray(this.roles)
+      } else if (key === 'visibility') {
+        // 管理员和公司管理员可以操作
+        return commonJS.isAdminInArray(this.roles) || commonJS.isAdminCompanyInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -253,6 +290,8 @@ export default {
         this.form.cwUserName = ''
         this.form.headCount = null
         this.form.pipeline = ''
+        this.form.show4JobType = []
+        this.form.sourcingMap = ''
       }
     },
     // 保存
@@ -264,7 +303,7 @@ export default {
             res => {
               if (res.status === 200) {
                 // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
+                this.form = res.data
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
@@ -346,13 +385,22 @@ export default {
         'curCaseId': this.form.id,
         'oldCaseId': val.id
       }
+      // 显示加载中
+      this.candidateTableLoading = true
       candidateForCaseApi.copyFromOldCase(o).then(res => {
         if (res.status === 200) {
           // 获取该职位所有候选人信息
           candidateForCaseApi.findByCaseId(this.form.id).then(res => {
             if (res.status === 200) {
-              this.candidateForCase = res.data
+              this.candidateForCaseList = res.data
+              this.$message({
+                message: '候选人列表已更新',
+                type: 'success',
+                showClose: true
+              })
             }
+            // 隐藏加载中
+            this.candidateTableLoading = false
           })
         }
       })
@@ -415,12 +463,33 @@ export default {
     queryCandidateForCaseList () {
       // 获取该职位所有候选人信息
       if (this.form.id !== null) {
-        candidateForCaseApi.findByCaseId(this.form.id).then(res => {
-          if (res.status === 200) {
-            this.candidateForCaseList = res.data
-          }
-        })
+        // 显示加载中
+        this.candidateTableLoading = true
+        if (this.loadAllCandidatesFlag) {
+          // 加载所有候选人
+          candidateForCaseApi.findByCaseId(this.form.id).then(res => {
+            if (res.status === 200) {
+              // 隐藏加载中
+              this.candidateTableLoading = false
+              this.candidateForCaseList = res.data
+            }
+          })
+        } else {
+          // 加载关注的候选人
+          candidateForCaseApi.findAttentionByCaseId(this.form.id).then(res => {
+            if (res.status === 200) {
+              // 隐藏加载中
+              this.candidateTableLoading = false
+              this.candidateForCaseList = res.data
+            }
+          })
+        }
       }
+    },
+    // 加载所有候选人
+    loadAllCandidates () {
+      this.loadAllCandidatesFlag = true
+      this.queryCandidateForCaseList()
     },
     // 查询其他数据
     queryOthers () {
@@ -450,9 +519,37 @@ export default {
       this.form.hrId = val.id
       this.form.hrChineseName = val.chineseName
       this.form.hrEnglishName = val.englishName
+    },
+    // 通过id删除职位
+    deleteById () {
+      this.$confirm('确认要删除职位 ' + this.form.title + ' 吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        let params = {
+          'id': this.form.id
+        }
+        caseApi.deleteById(params).then(res => {
+          if (res.status === 200) {
+            this.$router.push({
+              path: '/case/caselist'
+            })
+          } else {
+            this.$message.error('删除失败！')
+          }
+        })
+      })
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

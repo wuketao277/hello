@@ -1,4 +1,5 @@
 import caseApi from '@/api/case'
+import userApi from '@/api/user'
 import commonJS from '@/common/common'
 import clientApi from '@/api/client'
 import clientlinkmanApi from '@/api/clientlinkman'
@@ -21,16 +22,25 @@ export default {
       },
       currentRow: null,
       searchDialog: false,
-      search: commonJS.getSearchContentObject('caselist.search'),
+      search: commonJS.getStorageContentObjectDefault('caselist.search', {
+        clientId: null,
+        status: null,
+        title: null,
+        hrId: null,
+        show4JobType: []
+      }),
       clients: [],
-      hrs: []
+      hrs: [],
+      roles: [],
+      jobType: '',
+      jobTypeList: commonJS.jobTypeList
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit' || key === 'delete') {
-        return commonJS.isAdmin()
+      if (key === 'add' || key === 'edit' || key === 'delete' || key === 'visibility') {
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -125,6 +135,18 @@ export default {
         })
       }
     },
+    // 简单搜索
+    easyQuery () {
+      // 清空除title以外的其他条件
+      this.search = {
+        clientId: null,
+        status: null,
+        title: this.search.title,
+        hrId: null,
+        show4JobType: []
+      }
+      this.query()
+    },
     // 查询后台数据
     query () {
       window.localStorage['caselist.search'] = JSON.stringify(this.search)
@@ -193,6 +215,13 @@ export default {
     clientlinkmanApi.queryAllForSimple().then(res => {
       if (res.status === 200) {
         this.hrs = res.data
+      }
+    })
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
       }
     })
     this.query()

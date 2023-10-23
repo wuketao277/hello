@@ -28,9 +28,14 @@
                  icon="el-icon-share"
                  @click="generateSalary"
                  v-show="showControl('generateSalary')">生成工资</el-button>
+      <el-button type="danger"
+                 size="small"
+                 icon="el-icon-delete"
+                 @click="deleteById"
+                 v-if="showControl('delete')">删 除</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
+                 icon="el-icon-search"
                  @click="searchDialog = true">搜 索</el-button>
       <el-button type="primary"
                  size="small"
@@ -77,22 +82,30 @@
                 :border="true"
                 :highlight-current-row="true"
                 :stripe="true"
-                style="width: 100%"
+                :row-class-name="setRowClassName"
                 @current-change="rowChange"
                 @row-dblclick="rowDblClick">
         <el-table-column type="index"
                          width="45"
-                         label="No."></el-table-column>
+                         label="No."
+                         fixed></el-table-column>
+        <el-table-column prop="companyName"
+                         width="250"
+                         label="Company Name"
+                         fixed></el-table-column>
         <el-table-column prop="consultantUserName"
                          width="110"
                          label="Login Name"
-                         v-if="showLoginName"></el-table-column>
+                         v-if="showLoginName"
+                         fixed></el-table-column>
         <el-table-column prop="consultantRealName"
                          width="100"
-                         label="User Name"></el-table-column>
+                         label="User Name"
+                         fixed></el-table-column>
         <el-table-column prop="month"
                          width="90"
-                         label="Month"></el-table-column>
+                         label="Month"
+                         fixed></el-table-column>
         <el-table-column prop="workingDays"
                          width="120"
                          label="Working Days"
@@ -133,7 +146,8 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
+        <el-form size="small"
+                 label-position="left"
                  label-width="110px">
           <el-row :gutter="20">
             <el-col :span="6">
@@ -177,6 +191,19 @@
                           clearable></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="12">
+              <el-form-item label="COMPANY">
+                <el-select v-model="search.company"
+                           style="width:100%;"
+                           filterable
+                           clearable>
+                  <el-option v-for="company in companyList"
+                             :key="company.code"
+                             :value="company.code"
+                             :label="company.name"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
           </el-row>
         </el-form>
         <span slot="footer"
@@ -191,4 +218,18 @@
     </el-dialog>
   </div>
 </template>
+<style>
+.row1 {
+  color: #267437;
+}
+.row2 {
+  color: blue;
+}
+.row3 {
+  color: purple;
+}
+.row4 {
+  color: rgb(59, 23, 53);
+}
+</style>
 <script src="./salaryList.js"></script>

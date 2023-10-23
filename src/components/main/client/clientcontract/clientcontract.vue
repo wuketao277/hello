@@ -31,6 +31,7 @@
           <el-form-item label="Company">
             <el-select v-model="form.company"
                        style="width:100%;"
+                       filterable
                        clearable>
               <el-option v-for="company in companyList"
                          :key="company.code"
@@ -55,6 +56,7 @@
                        placeholder="请选择"
                        style="width:100%;"
                        @change="categoryChange"
+                       filterable
                        clearable>
               <el-option v-for="category in categoryList"
                          :key="category"
@@ -68,6 +70,7 @@
             <el-select v-model="form.type"
                        placeholder="请选择"
                        style="width:100%;"
+                       filterable
                        clearable>
               <el-option v-for="type in typeList"
                          :key="type.code"
@@ -136,6 +139,7 @@
             <el-select v-model="form.industry"
                        placeholder="请选择"
                        style="width:100%;"
+                       filterable
                        clearable>
               <el-option v-for="industry in industryList"
                          :key="industry.code"

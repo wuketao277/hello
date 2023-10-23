@@ -1,5 +1,5 @@
 import userApi from '@/api/user'
-import commonApi from '@/common/common'
+import commonJs from '@/common/common'
 
 export default {
   data () {
@@ -8,15 +8,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: commonApi.getPageNumber('userlist.pageNumber'),
-          pageSize: commonApi.getPageSize('userlist.pageSize')
+          pageNumber: commonJs.getPageNumber('userlist.pageNumber'),
+          pageSize: commonJs.getPageSize('userlist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonApi.getSearchContent('userlist.search'),
+      search: commonJs.getStorageContent('userlist.search'),
       fileList: []
     }
   },

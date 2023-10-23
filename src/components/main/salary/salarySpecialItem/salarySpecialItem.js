@@ -16,7 +16,8 @@ export default {
         month: '', // 所属月份
         sum: '', // 特殊项金额
         description: '', // 特殊项说明
-        isPre: 'yes' // 是否前置计算
+        isPre: 'yes', // 是否前置计算
+        type: 'OTHER'
       },
       selectConsultantDialogShow: false
     }
@@ -35,7 +36,7 @@ export default {
         this.form.month = '' // 月份
         this.form.sum = 0 // 金额
         this.form.description = '' // 说明
-        this.form.isPre = 'yes' // 是否前置计算
+        this.form.type = ''
       }
     },
     // 保存
@@ -80,8 +81,7 @@ export default {
       this.form.consultantRealName = val.realname
     }
   },
-  computed: {
-  },
+  computed: {},
   created () {
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {

@@ -1,6 +1,7 @@
 import uploadFileApi from '@/api/uploadFile'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
+import commonJs from '@/common/common'
 
 export default {
   components: {
@@ -14,15 +15,15 @@ export default {
         content: [],
         totalElements: 0,
         pageable: {
-          pageNumber: this.getPageNumber(),
-          pageSize: this.getPageSize()
+          pageNumber: commonJs.getPageNumber('filelist.pageNumber'),
+          pageSize: commonJs.getPageSize('filelist.pageSize')
         }
       },
       page: {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: this.getSearchContent(),
+      search: commonJs.getStorageContent('filelist.search'),
       showUploadFileDialog: false,
       uploadFileData: {}
     }
@@ -90,29 +91,7 @@ export default {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {
-    },
-    getSearchContent () {
-      if (typeof (window.localStorage['filelist.search']) === 'undefined') {
-        return ''
-      } else {
-        return window.localStorage['filelist.search']
-      }
-    },
-    getPageNumber () {
-      if (typeof (window.localStorage['filelist.pageNumber']) === 'undefined') {
-        return 1
-      } else {
-        return window.localStorage['filelist.pageNumber']
-      }
-    },
-    getPageSize () {
-      if (typeof (window.localStorage['filelist.pageSize']) === 'undefined') {
-        return 10
-      } else {
-        return window.localStorage['filelist.pageSize']
-      }
-    }
+    switchSearchDialog () {}
   },
   computed: {},
   created () {

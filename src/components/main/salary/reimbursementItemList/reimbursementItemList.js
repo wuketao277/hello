@@ -1,5 +1,6 @@
 import reimbursementApi from '@/api/reimbursement'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -18,7 +19,7 @@ export default {
       companyList: commonJS.companyList,
       currentRow: null,
       searchDialog: false,
-      search: commonJS.getSearchContentObject('reimbursementItemList.search'),
+      search: commonJS.getStorageContentObject('reimbursementItemList.search'),
       needReimbursementSum: null,
       totalReimbursementSum: null,
       multipleSelection: [],
@@ -35,14 +36,16 @@ export default {
       locationList: commonJS.locationList,
       approveStatusList: commonJS.approveStatusList,
       currentKindList: [],
-      typeList: commonJS.typeList
+      typeList: commonJS.typeList,
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'selectionColumn' || key === 'approveButton') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -183,18 +186,20 @@ export default {
         return '北京'
       } else if (row.location === 'Shenyang') {
         return '沈阳'
+      } else if (row.location === 'Wuhan') {
+        return '武汉'
+      } else if (row.location === 'Nanjing') {
+        return '南京'
       } else if (row.location === 'Enshi') {
         return '恩施'
       }
     },
     // 公司转换器
     companyFormatter (row) {
-      if (row.company === 'Shanghaihailuorencaifuwu') {
-        return '上海海罗人才服务有限公司'
-      } else if (row.company === 'Shanghaihailuorencaikeji') {
-        return '上海海罗人才科技有限公司'
-      } else if (row.company === 'Shenyanghailuorencaifuwu') {
-        return '沈阳海罗人才服务有限公司'
+      for (let c of commonJS.companyList) {
+        if (c.code === row.company) {
+          return c.name
+        }
       }
     },
     // 是否报销转换器
@@ -348,7 +353,6 @@ export default {
     },
     // 类别变更事件
     typeChange (value) {
-      debugger
       this.search.kind = ''
       if (value === 'Transportation') {
         this.currentKindList = commonJS.transportationKindList
@@ -368,6 +372,24 @@ export default {
     }
   },
   created () {
+    // 通过入参获取查询数据
+    if (typeof (this.$route.query.mode) !== 'undefined' && this.$route.query.mode === 'query') {
+      let params = this.$route.query.row
+      this.search.userName = params.userName
+      this.search.currentPage = 1
+      this.search.pageSize = 10
+      this.search.approveStatus = 'Approved'
+      this.search.needPay = 'YES'
+      this.search.paymentMonth = params.paymentMonth
+      this.query()
+    }
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     this.query()
   }
 }

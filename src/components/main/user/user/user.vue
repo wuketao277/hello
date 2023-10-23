@@ -24,20 +24,65 @@
              size="small"
              style="margin-top:10px;text-align:left;">
       <el-row :gutter="12">
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="序号">{{form.id}}</el-form-item>
         </el-col>
-        <el-col span="6">
-          <el-form-item label="姓名">
+        <el-col :span="6">
+          <el-form-item label="姓名"
+                        required>
             <el-input v-model="form.realname"></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="6">
-          <el-form-item label="登录名">
+        <el-col :span="6">
+          <el-form-item label="登录名"
+                        required>
             <el-input v-model="form.username"></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
+          <el-form-item label="公司"
+                        required>
+            <el-select v-model="form.company"
+                       style="width:100%;"
+                       filterable
+                       clearable>
+              <el-option v-for="company in companyList"
+                         :key="company.code"
+                         :value="company.code"
+                         :label="company.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="6">
+          <el-form-item label="状态">
+            <el-switch v-model="form.enabled"
+                       active-color="#13ce66"
+                       inactive-color="#ff4949"
+                       active-text="正常"
+                       inactive-text="停用"></el-switch>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="cover base">
+            <el-switch v-model="form.coverbase"
+                       active-color="#13ce66"
+                       inactive-color="#ff4949"
+                       active-text="cover"
+                       inactive-text="不cover"></el-switch>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="KPI">
+            <el-switch v-model="form.checkKPI"
+                       active-color="#13ce66"
+                       inactive-color="#ff4949"
+                       active-text="考核"
+                       inactive-text="不考核"></el-switch>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
           <el-form-item label="底薪"
                         required>
             <el-input v-model="form.salarybase"
@@ -63,7 +108,24 @@
                       label="EXPERIENCE">体验</el-radio>
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="12"
+                v-show="form.jobType === 'CONSULTANT'">
+          <el-form-item label="客户公司"
+                        prop="clientCompanyId">
+            <el-select v-model="form.clientCompanyId"
+                       placeholder="请选择客户公司"
+                       filterable
+                       style="width:100%">
+              <el-option v-for="client in clients"
+                         :key="client.id"
+                         :value="client.id"
+                         :label="client.chineseName"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
           <el-form-item label="角色集合">
             <el-checkbox-group v-model="form.roles">
               <el-checkbox v-for="role in roleList"
@@ -110,8 +172,6 @@
                             value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="20">
         <el-col :span="6">
           <el-form-item label="KPI">
             <el-switch v-model="form.checkKPI"
@@ -127,11 +187,28 @@
                       style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
-        <el-col span="6">
+        <el-col :span="6">
           <el-form-item label="剩余病假">
             <el-input v-model="form.remainHolidayIll"
                       style="width:100%;"></el-input>
           </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="6">
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="openSelectTeamLeaderDialogShow"
+                     style="width:80px;">Leader</el-button>
+          <div style="display:inline-block;"
+               v-show="this.form.teamLeaderUserName !== null && this.form.teamLeaderUserName !== ''">
+            <span>{{form.teamLeaderUserName}}</span>
+            <el-button icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       @click="deleteTeamLeader"></el-button>
+          </div>
         </el-col>
       </el-row>
     </el-form>
@@ -274,6 +351,11 @@
         </el-col>
       </el-row>
     </el-form>
+    <el-dialog title="选择Leader"
+               :visible.sync="selectLeaderDialogShow">
+      <selectUser v-on:cancel-dialog="selectLeaderDialogShow = false"
+                  v-on:sure-dialog="sureSelectLeaderDialog"></selectUser>
+    </el-dialog>
   </div>
 </template>
 <script src="./user.js"></script>

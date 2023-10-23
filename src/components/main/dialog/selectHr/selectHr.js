@@ -4,10 +4,23 @@ export default {
   data () {
     return {
       hrList: [],
-      currentRow: null
+      hrListBackup: [],
+      currentRow: null,
+      search: ''
     }
   },
   methods: {
+    // 搜索内容变更
+    searchChange (v) {
+      this.hrList = []
+      for (let m in this.hrListBackup) {
+        let hr = this.hrListBackup[m]
+        if (hr['clientName'].indexOf(v) !== -1 || hr['chineseName'].indexOf(v) !== -1 ||
+          hr['englishName'].indexOf(v) !== -1) {
+          this.hrList.push(hr)
+        }
+      }
+    },
     // 表格双击处理
     handleRowDblClick (row, column, event) {
       this.sureDialog()
@@ -34,6 +47,7 @@ export default {
           return
         }
         this.hrList = res.data
+        this.hrListBackup = res.data
       })
     },
     // 处理选中行时间

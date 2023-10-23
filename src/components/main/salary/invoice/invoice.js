@@ -4,6 +4,7 @@ import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
 import clientApi from '@/api/client'
 import commonJS from '@/common/common'
 import invoiceApi from '@/api/invoice'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -13,10 +14,23 @@ export default {
   },
   data () {
     return {
-      types: [{code: 'Z3', name: '3%专票'},
-        {code: 'Z6', name: '6%专票'},
-        {code: 'P3', name: '3%普票'},
-        {code: 'P6', name: '6%普票'}],
+      types: [{
+        code: 'Z3',
+        name: '3%专票'
+      },
+      {
+        code: 'Z6',
+        name: '6%专票'
+      },
+      {
+        code: 'P3',
+        name: '3%普票'
+      },
+      {
+        code: 'P6',
+        name: '6%普票'
+      }
+      ],
       mode: 'add', // 默认操作模式为新建
       form: {
         id: null,
@@ -41,7 +55,9 @@ export default {
       clients: [],
       // 选择候选人对话框是否显示
       selectCandidateDialogShow: false,
-      selectAMDialogShow: false
+      selectAMDialogShow: false,
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
@@ -65,7 +81,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
     },
     // 取消
@@ -180,6 +196,13 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

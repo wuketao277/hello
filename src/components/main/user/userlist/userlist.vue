@@ -42,22 +42,32 @@
       <el-table-column type="index"
                        width="50"
                        label="序号"></el-table-column>
-      <el-table-column prop="id"
-                       label="用户id"
-                       width="80"></el-table-column>
       <el-table-column prop="username"
+                       width="100"
                        label="登录名"></el-table-column>
       <el-table-column prop="realname"
+                       width="100"
                        label="用户姓名"></el-table-column>
       <el-table-column prop="enabledName"
+                       width="100"
                        label="状态"></el-table-column>
       <el-table-column prop="birthday"
+                       width="100"
                        label="生日"
                        :formatter="formatDate"></el-table-column>
       <el-table-column prop="phoneNo"
+                       width="150"
                        label="电话"></el-table-column>
       <el-table-column prop="email"
-                       label="邮箱"></el-table-column>
+                       label="邮箱"
+                       width="250"
+                       show-overflow-tooltip></el-table-column>
+      <el-table-column prop="onBoardDate"
+                       label="入职日期"
+                       :formatter="formatDate"></el-table-column>
+      <el-table-column prop="dimissionDate"
+                       label="离职日期"
+                       :formatter="formatDate"></el-table-column>
     </el-table>
     <el-pagination background
                    layout="prev, pager, next, sizes"

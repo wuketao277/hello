@@ -4,6 +4,7 @@ import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import commonJs from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   components: {
@@ -17,6 +18,15 @@ export default {
         id: null,
         chineseName: '',
         englishName: '',
+        address: '',
+        information: '',
+        recommendationProcess: '',
+        duplicateCheck: '',
+        resumeStandard: '',
+        salaryStructure: '',
+        recommendationReason: '',
+        interviewPrepare: '',
+        sellingPoint: '',
         remark: ''
       },
       rules: {
@@ -46,7 +56,10 @@ export default {
       uploadFiles: [], // 上传文件集合
       clientContractTable: [], // 客户合同列表
       // 客户合同表格 当前行
-      clientContractTableCurRow: null
+      clientContractTableCurRow: null,
+      roles: [],
+      jobType: '',
+      companyList: commonJs.companyList
     }
   },
   methods: {
@@ -54,7 +67,13 @@ export default {
     showControl (url) {
       if (url === 'clientContract') {
         // 客户合同列表，只有Admin，BD角色展示
-        return commonJs.isAdmin() || commonJs.isBD()
+        return commonJs.isAdminInArray(this.roles) || commonJs.isBDInArray(this.roles)
+      } else if (url === 'mobileNo' || url === 'phoneNo' || url === 'email') {
+        // hr联系信息，只有Admin，Admin_company角色展示
+        return commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompanyInArray(this.roles)
+      } else if (url === 'toolbar') {
+        // 工具栏，只有Admin ADMIN_COMPANY角色展示
+        return commonJs.isAdmin() || commonJs.isAdminCompany()
       }
       return false
     },
@@ -67,6 +86,15 @@ export default {
         this.form.id = ''
         this.form.chineseName = ''
         this.form.englishName = ''
+        this.form.address = ''
+        this.form.information = ''
+        this.form.recommendationProcess = ''
+        this.form.duplicateCheck = ''
+        this.form.resumeStandard = ''
+        this.form.salaryStructure = ''
+        this.form.recommendationReason = ''
+        this.form.interviewPrepare = ''
+        this.form.sellingPoint = ''
         this.form.rules = ''
       }
     },
@@ -125,6 +153,14 @@ export default {
           }
         })
       }
+    },
+    // 联系人列表双击
+    handleLinkManDBClick () {
+      if (commonJs.isAdminInArray(this.roles) || commonJs.isAdminCompanyInArray(this.roles)) {
+        // 管理员可以修改
+        this.modifyLinkMan()
+      }
+      // 非管理员不可见
     },
     // 修改联系人
     modifyLinkMan () {
@@ -249,12 +285,10 @@ export default {
     },
     // 公司转换器
     formatCompany (row, column, cellvalue, index) {
-      if (cellvalue === 'Shanghaihailuorencaifuwu') {
-        return '上海海罗人才服务有限公司'
-      } else if (cellvalue === 'Shanghaihailuorencaikeji') {
-        return '上海海罗人才科技有限公司'
-      } else if (cellvalue === 'Shenyanghailuorencaifuwu') {
-        return '沈阳海罗人才服务有限公司'
+      for (let c of this.companyList) {
+        if (c.code === cellvalue) {
+          return c.name
+        }
       }
     },
     // 转换器
@@ -267,6 +301,13 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

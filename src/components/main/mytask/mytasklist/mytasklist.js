@@ -1,10 +1,11 @@
 import myTaskApi from '@/api/myTask'
+import commonJS from '@/common/common'
 
 export default {
   data () {
     return {
-      // 显示搜索结果
-      showSearchResult: false,
+      // 显示搜索对话框
+      searchDialog: false,
       table: {
         content: [],
         totalElements: 0,
@@ -17,7 +18,7 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: '',
+      search: commonJS.getStorageContentObject('mytasklist.search'),
       fileList: []
     }
   },
@@ -47,6 +48,18 @@ export default {
       this.$router.push({
         path: '/background.html/mytask/mytask'
       })
+    },
+    // 修改任务
+    modifyTask () {
+      if (this.checkSelectRow()) {
+        this.$router.push({
+          path: '/mytask/mytask',
+          query: {
+            mode: 'modify',
+            task: this.currentRow
+          }
+        })
+      }
     },
     // 查看任务
     detailTask () {
@@ -88,11 +101,10 @@ export default {
     },
     // 查询后台数据
     query () {
-      if (this.search === '') {
-        this.showSearchResult = false
-      } else {
-        this.showSearchResult = true
-      }
+      window.localStorage['mytasklist.search'] = JSON.stringify(this.search)
+      window.localStorage['mytasklist.pageNumber'] = this.table.pageable.pageNumber
+      window.localStorage['mytasklist.pageSize'] = this.table.pageable.pageSize
+      this.searchDialog = false
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -136,9 +148,25 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1
-      this.table.pageable.pageSize = 10
       this.query()
-      this.search = ''
+    },
+    // 清空查询条件
+    clearQueryCondition () {
+      this.search = {}
+      window.localStorage['mytasklist.search'] = {}
+    },
+    // 设置单元格样式
+    setCellClassName ({
+      row,
+      column,
+      rowIndex,
+      columnIndex
+    }) {
+      if (row.finished && column.label === '状态') {
+        return 'cellGreen'
+      } else if (!row.finished && column.label === '状态') {
+        return 'cellRed'
+      }
     }
   },
   computed: {},

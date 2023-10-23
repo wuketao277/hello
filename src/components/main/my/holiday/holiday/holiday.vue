@@ -36,6 +36,7 @@
             <el-select v-model="form.approveStatus"
                        placeholder="请选择"
                        style="width:100%;"
+                       filterable
                        clearable>
               <el-option v-for="status in approveStatusList"
                          :key="status.code"
@@ -65,7 +66,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col span="24">
+        <el-col :span="24">
           <el-form-item label="剩余年假">
             <el-input v-model="form.remark"
                       style="width:100%;"></el-input>

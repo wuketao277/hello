@@ -11,6 +11,7 @@ export default {
       // 显示搜索结果
       showSearchResult: false,
       table: {
+        loading: true,
         content: [],
         totalElements: 0,
         pageable: {
@@ -28,6 +29,7 @@ export default {
       consultants: [],
       bds: [],
       cws: [],
+      leaders: [],
       approveStatusList: [{
         'id': 'applied',
         'name': '申请状态'
@@ -38,10 +40,14 @@ export default {
         'id': 'denied',
         'name': '审批否决'
       }],
-      search: commonJS.getSearchContentObject('successfulPermList.search'),
+      search: commonJS.getStorageContentObject('successfulPermList.search'),
       billingSum: null,
       gpSum: null,
-      typeList: []
+      billingAvg: null,
+      gpAvg: null,
+      typeList: [],
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
@@ -95,7 +101,7 @@ export default {
     // 显示控制
     showControl (key) {
       if (key === 'add' || key === 'edit' || key === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -151,6 +157,9 @@ export default {
         'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
+      // 显示加载中
+      this.table.loading = true
+      // 调用接口获取数据
       successfulPermApi.queryPage(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
@@ -158,6 +167,8 @@ export default {
           })
           return
         }
+        // 显示加载中
+        this.table.loading = false
         this.table = res.data
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
       })
@@ -170,6 +181,8 @@ export default {
         }
         this.billingSum = res.data.billingSum
         this.gpSum = res.data.gpSum
+        this.billingAvg = res.data.billingAvg
+        this.gpAvg = res.data.gpAvg
       })
     },
     // 行变化
@@ -203,11 +216,20 @@ export default {
     },
     // 清空查询条件
     clearQueryCondition () {
-      this.search = {}
-      window.localStorage['successfulPermList.search'] = {}
+      this.search = {
+        nonPaymentDue: false
+      }
+      window.localStorage['successfulPermList.search'] = this.search
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     // 获取所有“客户”信息
     clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {
@@ -219,6 +241,7 @@ export default {
         this.consultants = res.data
         this.cws = res.data
         this.bds = res.data
+        this.leaders = res.data
       }
     })
     clientlinkmanApi.queryAllForSimple().then(res => {

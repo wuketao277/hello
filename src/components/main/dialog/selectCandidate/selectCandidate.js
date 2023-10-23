@@ -6,17 +6,7 @@ export default {
       // 显示搜索对话框
       showSearchDialog: false,
       candidateList: [],
-      // table: {
-      //   content: [],
-      //   totalElements: 0,
-      //   pageable: {
-      //     pageNumber: 1,
-      //     pageSize: 10
-      //   }
-      // },
-      // page: {
-      //   pageSizes: [10, 20, 30, 40, 50]
-      // },
+      loading: false, // 不显示加载中
       currentRow: null,
       search: ''
     }
@@ -49,10 +39,10 @@ export default {
         return
       }
       let query = {
-        // 'currentPage': this.table.pageable.pageNumber,
-        // 'pageSize': this.table.pageable.pageSize,
         'search': this.search
       }
+      // 查询前显示加载中
+      this.loading = true
       candidate.queryCandidate(query).then(res => {
         if (res.status !== 200) {
           this.$message.error({
@@ -61,6 +51,8 @@ export default {
           return
         }
         this.candidateList = res.data
+        // 隐藏加载中
+        this.loading = false
         if (showDialog) {
           this.$message({
             message: '查询完成！',

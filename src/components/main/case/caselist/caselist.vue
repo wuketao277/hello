@@ -25,8 +25,19 @@
                  v-if="showControl('delete')">删 除</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
-                 @click="searchDialog = true">搜 索</el-button>
+                 icon="el-icon-search"
+                 @click="searchDialog = true">高级搜索</el-button>
+      <el-form @submit.native.prevent
+               style="display:inline-block;width:250px;">
+        <el-form-item label
+                      style="margin-bottom:0px;">
+          <el-input v-model="search.title"
+                    autocomplete="off"
+                    @keyup.enter.native="easyQuery"
+                    placeholder="输入关键字后，回车即可搜索。"
+                    clearable></el-input>
+        </el-form-item>
+      </el-form>
     </div>
     <template>
       <el-table :data="table.content"
@@ -77,14 +88,17 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
-                 label-width="80px">
+        <el-form size="small"
+                 label-position="left"
+                 label-width="80px"
+                 style="text-align:left;">
           <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="Client">
                 <el-select v-model="search.clientId"
                            placeholder="请选择客户"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="client in clients"
                              :key="client.id"
@@ -116,12 +130,25 @@
               <el-form-item label="HR">
                 <el-select v-model="search.hrId"
                            placeholder="请选择hr"
+                           filterable
                            clearable>
                   <el-option v-for="hr in hrs"
                              :key="hr.id"
                              :value="hr.id"
                              :label="hr.name"></el-option>
                 </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="12"
+                  v-if="false">
+            <el-col>
+              <el-form-item label="可见性">
+                <el-checkbox-group v-model="search.show4JobType">
+                  <el-checkbox v-for="jobType in this.jobTypeList"
+                               :label="jobType.code"
+                               :key="jobType.code">{{jobType.name}}</el-checkbox>
+                </el-checkbox-group>
               </el-form-item>
             </el-col>
           </el-row>

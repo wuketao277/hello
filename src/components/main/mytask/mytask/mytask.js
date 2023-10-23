@@ -20,29 +20,27 @@ export default {
         executeResult: ''
       },
       rules: {
-        taskTitle: [
-          {
-            required: true,
-            message: '任务标题必填',
-            trigger: 'blur'
-          },
-          {
-            max: 100,
-            message: '任务标题长度不能大于100个字符',
-            trigger: 'blur'
-          }
+        taskTitle: [{
+          required: true,
+          message: '任务标题必填',
+          trigger: 'blur'
+        },
+        {
+          max: 100,
+          message: '任务标题长度不能大于100个字符',
+          trigger: 'blur'
+        }
         ],
-        taskContent: [
-          {
-            required: true,
-            message: '任务内容必填',
-            trigger: 'blur'
-          },
-          {
-            max: 2000,
-            message: '任务内容长度不能大于2000个字符',
-            trigger: 'blur'
-          }
+        taskContent: [{
+          required: true,
+          message: '任务内容必填',
+          trigger: 'blur'
+        },
+        {
+          max: 2000,
+          message: '任务内容长度不能大于2000个字符',
+          trigger: 'blur'
+        }
         ],
         executeDate: [{
           required: true,
@@ -53,6 +51,11 @@ export default {
     }
   },
   methods: {
+    // 是否显示更新按钮
+    showUpdateButton () {
+      let loginInfo = JSON.parse(window.localStorage['loginInfo'])
+      return this.mode === 'modify' && this.form.executeUserName === loginInfo.username
+    },
     // 处理全选事件
     handleCheckAllChange (val) {
       this.selectUsers = val ? this.users : []
@@ -120,7 +123,11 @@ export default {
         })
         return
       }
-      let task = {'id': this.form.id, 'finished': this.form.finished, 'executeResult': this.form.executeResult}
+      let task = {
+        'id': this.form.id,
+        'finished': this.form.finished,
+        'executeResult': this.form.executeResult
+      }
       myTaskApi.update(task).then(
         res => {
           if (res.status === 200) {

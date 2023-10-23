@@ -1,30 +1,41 @@
 import userApi from '@/api/user'
 import commonJs from '@/common/common'
+import clientApi from '@/api/client'
+import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
 
 export default {
+  components: {
+    'selectUser': selectUser
+  },
   data () {
     return {
       mode: 'add', // 默认操作模式为新建
       form: {
         id: null,
+        company: '',
         realName: '',
         userName: '',
         password: '',
         jobType: 'FULLTIME',
+        clientCompanyId: '', // 客户公司ID
         salarybase: 0,
         coverbase: false,
         enabled: false,
         checkKPI: true,
         roles: [],
         remainHolidayThing: 0,
-        remainHolidayIll: 0
+        remainHolidayIll: 0,
+        teamLeaderUserName: ''
       },
-      roleList: ['ADMIN', 'AM', 'RECRUITER', 'BD'],
+      selectLeaderDialogShow: false, // 选择leader对话框
+      roleList: ['ADMIN', 'AM', 'RECRUITER', 'BD', 'ADMIN_COMPANY'],
       rules: {},
       // 工资卡银行
       banks: commonJs.banks,
       // 性别
-      genders: commonJs.genders
+      genders: commonJs.genders,
+      companyList: commonJs.companyList,
+      clients: [] // 客户公司列表
     }
   },
   methods: {
@@ -35,6 +46,7 @@ export default {
         this.form = this.$route.query.user
       } else {
         this.form.id = ''
+        this.form.company = ''
         this.form.realname = ''
         this.form.username = ''
         this.form.password = ''
@@ -82,6 +94,20 @@ export default {
           })
         }
       })
+    },
+    // 打开选择team leader对话框
+    openSelectTeamLeaderDialogShow () {
+      this.selectLeaderDialogShow = true
+    },
+    // “选择Leader”对话框返回
+    sureSelectLeaderDialog (val) {
+      // 首先关闭对话框
+      this.form.teamLeaderUserName = val.username
+      this.selectLeaderDialogShow = false
+    },
+    // 删除team leader
+    deleteTeamLeader () {
+      this.form.teamLeaderUserName = null
     }
   },
   computed: {
@@ -98,5 +124,11 @@ export default {
       this.mode = this.$route.query.mode
       this.form = this.$route.query.user
     }
+    // 获取所有“客户公司”信息
+    clientApi.findAllOrderByChineseName().then(res => {
+      if (res.status === 200) {
+        this.clients = res.data
+      }
+    })
   }
 }

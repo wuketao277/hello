@@ -56,6 +56,10 @@
                        label="标题"
                        width="180"
                        show-overflow-tooltip></el-table-column>
+      <el-table-column prop="createTime"
+                       label="创建日期"
+                       width="100"
+                       :formatter="formatDate"></el-table-column>
       <el-table-column prop="content"
                        label="内容"
                        show-overflow-tooltip></el-table-column>

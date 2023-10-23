@@ -6,8 +6,7 @@
     </el-breadcrumb>
     <p></p>
     <el-tabs value="baseInfo"
-             type="card"
-             @tab-click="handleClick">
+             type="card">
       <el-tab-pane label="基本信息"
                    name="baseInfo">
         <div class="toolbar">
@@ -21,7 +20,7 @@
                      @click="cancelChangeBaseInfo">取 消</el-button>
         </div>
         <el-form ref="extInfoForm"
-                 :model="form"
+                 :model="extInfoForm"
                  label-width="100px"
                  size="small"
                  label-position="left"
@@ -46,6 +45,7 @@
               <el-form-item label="性别">
                 <el-select v-model="extInfoForm.gender"
                            placeholder="请选择"
+                           filterable
                            clearable
                            style="width:200px;">
                   <el-option v-for="gender in genders"
@@ -107,6 +107,7 @@
               <el-form-item label="工资卡银行">
                 <el-select v-model="extInfoForm.bank"
                            placeholder="请选择"
+                           filterable
                            clearable
                            style="width:100%;">
                   <el-option v-for="bank in banks"
@@ -174,8 +175,9 @@
                      icon="el-icon-circle-close"
                      @click="changePasswordCancel">取 消</el-button>
         </div>
-        <el-form ref="form"
-                 :model="form"
+
+        <el-form ref="changePasswordForm"
+                 :model="changePasswordForm"
                  label-width="100px"
                  size="small"
                  label-position="left"

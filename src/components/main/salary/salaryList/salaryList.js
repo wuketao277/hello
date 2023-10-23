@@ -1,5 +1,6 @@
 import salaryApi from '@/api/salary'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -18,12 +19,15 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getSearchContentObject('salaryList.search'),
+      search: commonJS.getStorageContentObject('salaryList.search'),
       showWorkingDays: true,
       showHistoryDebt: !commonJS.isConsultantJobType(),
       showLoginName: true,
       searchDialog: false,
-      salaryMonth: commonJS.getYYYY_MM(new Date()) // 工资月份，默认是当月
+      salaryMonth: commonJS.getYYYY_MM(new Date()), // 工资月份，默认是当月
+      roles: [],
+      jobType: '',
+      companyList: commonJS.companyList
     }
   },
   methods: {
@@ -59,12 +63,38 @@ export default {
         })
       }
     },
+    // 删除
+    deleteById () {
+      if (this.checkSelectRow()) {
+        this.$confirm('确认要删除该记录吗？', '确认信息', {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '放弃'
+        })
+          .then(() => {
+            salaryApi.deleteById(this.currentRow.id).then(res => {
+              if (res.status !== 200) {
+                this.$message.error({
+                  message: '删除失败，请联系管理员！'
+                })
+              } else {
+                this.$message({
+                  message: '删除成功！',
+                  type: 'success',
+                  showClose: true
+                })
+                this.query()
+              }
+            })
+          })
+      }
+    },
     // 显示控制
     showControl (key) {
-      if (key === 'generateSalary' || key === 'search' ||
-        key === 'modifySalary' || key === 'statistics' ||
-        key === 'loginName' || key === 'workingDays' || key === 'historyDebt') {
-        return commonJS.isAdmin()
+      if (key === 'generateSalary' || key === 'modifySalary' ||
+        key === 'loginName' || key === 'workingDays' || key === 'historyDebt' ||
+        key === 'delete') {
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -129,7 +159,8 @@ export default {
         'userName': this.search.userName,
         'month': this.search.month,
         'pretaxIncome': this.search.pretaxIncome,
-        'netPay': this.search.netPay
+        'netPay': this.search.netPay,
+        'company': this.search.company
       }
       salaryApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -198,9 +229,31 @@ export default {
           })
         }
       })
+    },
+    // 设置行样式
+    setRowClassName ({
+      row,
+      index
+    }) {
+      if (row.company === 'Shanghaihailuorencaikeji') {
+        return 'row1'
+      } else if (row.company === 'Shenyanghailuorencaifuwu') {
+        return 'row2'
+      } else if (row.company === 'Wuhanhailuorencaifuwu') {
+        return 'row3'
+      } else if (row.company === 'Nanjinghailuorencaifuwu') {
+        return 'row4'
+      }
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     this.query()
   }
 }

@@ -40,6 +40,7 @@ export default {
         clientId: null,
         amId: null,
         candidateId: null,
+        candidateChineseName: null,
         type: null,
         status: true,
         createDateStart: null,
@@ -50,6 +51,18 @@ export default {
     }
   },
   methods: {
+    // 清空搜索条件
+    clearQueryCondition () {
+      this.search = {
+        clientId: null,
+        amId: null,
+        candidateChineseName: null,
+        type: null,
+        status: true,
+        createDateStart: null,
+        createDateEnd: null
+      }
+    },
     // 格式化开票类型
     formatType (row, column, cellvalue, index) {
       if (cellvalue === 'Z3') {

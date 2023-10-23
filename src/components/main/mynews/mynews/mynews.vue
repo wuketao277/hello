@@ -29,6 +29,18 @@
              label-width="80px"
              style="text-align:left;"
              :rules="rules">
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="创建人">
+            {{form.createUserName}}
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="创建时间">
+            {{form.createTime}}
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-form-item label="标题"
                     prop="title">
         <el-input v-model="form.title"></el-input>
@@ -60,6 +72,8 @@
       </el-form-item>
       <el-form-item label="发布状态">
         <el-switch v-model="form.publish"
+                   active-text="发布"
+                   inactive-text="未发布"
                    active-color="#13ce66"
                    inactive-color="#999999"></el-switch>
       </el-form-item>

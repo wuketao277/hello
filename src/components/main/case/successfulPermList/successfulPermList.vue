@@ -25,14 +25,22 @@
                  v-if="showControl('delete')">删 除</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
+                 icon="el-icon-search"
                  @click="searchDialog = true">搜 索</el-button>&nbsp;&nbsp;&nbsp;&nbsp;
       <span>总GP:{{gpSum}}</span>
       &nbsp;&nbsp;
+      <span>平均GP:{{gpAvg}}</span>
+      &nbsp;&nbsp;
       <span>总Billing:{{billingSum}}</span>
+      &nbsp;&nbsp;
+      <span>平均Billing:{{billingAvg}}</span>
     </div>
     <template>
-      <el-table :data="table.content"
+      <el-table v-loading="table.loading"
+                element-loading-text="拼命加载中"
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="rgba(0, 0, 0, 0.8)"
+                :data="table.content"
                 :border="true"
                 :highlight-current-row="true"
                 :stripe="true"
@@ -45,13 +53,21 @@
                          show-overflow-tooltip
                          fixed></el-table-column>
         <el-table-column prop="candidateChineseName"
-                         width="100"
-                         label="候选人姓名"
+                         width="80"
+                         label="姓名"
                          show-overflow-tooltip
                          fixed></el-table-column>
+        <el-table-column prop="gender"
+                         width="50"
+                         label="性别"
+                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientName"
+                         width="200"
+                         label="客户名称"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="department"
                          width="120"
-                         label="客户"
+                         label="部门名称"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="title"
                          width="120"
@@ -68,6 +84,11 @@
         <el-table-column prop="base"
                          width="100"
                          label="Base"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="interviewDate"
+                         :formatter="formatDate"
+                         width="120"
+                         label="Interview Date"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="offerDate"
                          :formatter="formatDate"
@@ -99,22 +120,6 @@
                          width="150"
                          label="Approve Status"
                          show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantUserName"
-                         width="100"
-                         label="AM"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantCommissionPercent"
-                         width="80"
-                         label="AM Rate"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantUserName2"
-                         width="100"
-                         label="R2"
-                         show-overflow-tooltip></el-table-column>
-        <el-table-column prop="consultantCommissionPercent2"
-                         width="80"
-                         label="R2 Rate"
-                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="cwUserName"
                          width="100"
                          label="CW"
@@ -130,6 +135,30 @@
         <el-table-column prop="bdCommissionPercent"
                          width="120"
                          label="BD Rate"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="leaderUserName"
+                         width="100"
+                         label="Leader"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="leaderCommissionPercent"
+                         width="120"
+                         label="Leader Rate"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantUserName"
+                         width="100"
+                         label="AM"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantCommissionPercent"
+                         width="80"
+                         label="AM Rate"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantUserName2"
+                         width="100"
+                         label="R2"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantCommissionPercent2"
+                         width="80"
+                         label="R2 Rate"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="consultantUserName3"
                          width="100"
@@ -168,6 +197,18 @@
                          width="200"
                          label="PO"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="type"
+                         width="100"
+                         label="TYPE"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="hrEnglishName"
+                         width="100"
+                         label="HR-En"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="hrChineseName"
+                         width="100"
+                         label="HR-Ch"
+                         show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination background
                      layout="prev, pager, next, sizes"
@@ -185,7 +226,8 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
+        <el-form size="small"
+                 label-position="left"
                  label-width="160px">
           <el-row :gutter="20">
             <el-col :span="12">
@@ -194,6 +236,7 @@
                 <el-select v-model="search.clientId"
                            placeholder="请选择客户"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="client in clients"
                              :key="client.id"
@@ -207,12 +250,20 @@
                             label-width="80px">
                 <el-select v-model="search.hrId"
                            placeholder="请选择hr"
+                           filterable
                            clearable>
                   <el-option v-for="hr in hrs"
                              :key="hr.id"
                              :value="hr.id"
                              :label="hr.name"></el-option>
                 </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="Billing"
+                            label-width="80px">
+                <el-input v-model="search.billing"
+                          style="width:100%"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -222,6 +273,7 @@
                             label-width="80px">
                 <el-select v-model="search.consultantId"
                            placeholder="请选择顾问"
+                           filterable
                            clearable>
                   <el-option v-for="consultant in consultants"
                              :key="consultant.id"
@@ -235,6 +287,7 @@
                             label-width="80px">
                 <el-select v-model="search.cwId"
                            placeholder="请选择CW"
+                           filterable
                            clearable>
                   <el-option v-for="cw in cws"
                              :key="cw.id"
@@ -248,11 +301,26 @@
                             label-width="80px">
                 <el-select v-model="search.bdId"
                            placeholder="请选择BD"
+                           filterable
                            clearable>
                   <el-option v-for="bd in bds"
                              :key="bd.id"
                              :value="bd.id"
                              :label="bd.username"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="Leader"
+                            label-width="80px">
+                <el-select v-model="search.leaderId"
+                           placeholder="请选择Leader"
+                           filterable
+                           clearable>
+                  <el-option v-for="leader in leaders"
+                             :key="leader.id"
+                             :value="leader.id"
+                             :label="leader.username"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -395,6 +463,23 @@
                              :value="type.code"
                              :label="type.name"></el-option>
                 </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Title"
+                            label-width="80px">
+                <el-input v-model="search.title"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="Shortcut"
+                            label-width="80px">
+                <el-checkbox v-model="search.nonPaymentDue">到期未付款</el-checkbox>
               </el-form-item>
             </el-col>
           </el-row>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Microsoft YaHei", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -24,7 +24,7 @@ export default {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.el-table__body tr.current-row>td {
+.el-table__body tr.current-row > td {
   background: rgb(241, 219, 119) !important;
 }
 </style>

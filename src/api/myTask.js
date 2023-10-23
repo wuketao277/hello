@@ -23,6 +23,6 @@ export default {
   },
   // 查找后台数据
   queryMyTaskPage (params) {
-    return axios.get('/myTask/queryMyTaskPage', {params: params})
+    return axios.post('/myTask/queryMyTaskPage', params)
   }
 }

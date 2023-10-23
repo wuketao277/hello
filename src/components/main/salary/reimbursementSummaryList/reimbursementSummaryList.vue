@@ -21,7 +21,7 @@
                  v-show="showControl('generateReimbursementSummary')">生成报销</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
+                 icon="el-icon-search"
                  @click="searchDialog = true">搜 索</el-button>
       <el-button type="primary"
                  size="small"
@@ -39,7 +39,8 @@
                 :stripe="true"
                 :row-class-name="setRowClassName"
                 style="width: 100%"
-                @current-change="rowChange">
+                @current-change="rowChange"
+                @row-dblclick="handleRowDblClick">
         <el-table-column type="index"
                          width="50"
                          label="序号"></el-table-column>
@@ -50,6 +51,8 @@
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="userName"
                          label="登录名"></el-table-column>
+        <el-table-column prop="realName"
+                         label="用户名"></el-table-column>
         <el-table-column prop="paymentMonth"
                          label="报销月份"></el-table-column>
         <el-table-column prop="sum"
@@ -71,7 +74,8 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
+        <el-form size="small"
+                 label-position="left"
                  label-width="110px">
           <el-row :gutter="20">
             <el-col :span="12">
@@ -79,6 +83,7 @@
                 <el-select v-model="search.company"
                            placeholder="请选择公司"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="company in companyList"
                              :key="company.code"
@@ -130,10 +135,16 @@
 </template>
 <style>
 .row1 {
-  color: red;
+  color: #267437;
 }
 .row2 {
   color: blue;
+}
+.row3 {
+  color: purple;
+}
+.row4 {
+  color: rgb(59, 23, 53);
 }
 </style>
 <script src="./reimbursementSummaryList.js"></script>

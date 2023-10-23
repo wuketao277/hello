@@ -17,6 +17,11 @@
                  size="small"
                  icon="el-icon-circle-close"
                  @click="cancel">取 消</el-button>
+      <el-button type="danger"
+                 size="small"
+                 icon="el-icon-delete"
+                 @click="deleteById"
+                 v-if="showControl('delete')">删 除</el-button>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-upload"
@@ -35,9 +40,14 @@
              size="small"
              style="margin-top:10px;text-align:left;">
       <el-row :gutter="12">
-        <el-col :span="8">
+        <el-col :span="4">
           <el-form-item label="职位id">
             <span>{{form.id}}</span>
+          </el-form-item>
+        </el-col>
+        <el-col :span="4">
+          <el-form-item label="创建时间">
+            <span>{{formatDate(form.createTime)}}</span>
           </el-form-item>
         </el-col>
         <el-col :span="10">
@@ -67,6 +77,7 @@
                         prop="clientId">
             <el-select v-model="form.clientId"
                        placeholder="请选择客户"
+                       filterable
                        style="width:100%">
               <el-option v-for="client in clients"
                          :key="client.id"
@@ -182,11 +193,49 @@
       </el-row>
       <el-row :gutter="12">
         <el-col>
+          <el-form-item label="Source Map">
+            <el-input type="textarea"
+                      v-model="form.sourcingMap"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
           <el-form-item label="职位描述">
             <el-input type="textarea"
                       v-model="form.description"
-                      :autosize="{ minRows: 2, maxRows: 20}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
                       clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="面试准备题">
+            <el-input type="textarea"
+                      v-model="form.question"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12"
+              v-if="showControl('visibility')">
+        <el-col>
+          <el-form-item label="可见性">
+            <el-checkbox-group v-model="form.show4JobType">
+              <el-checkbox v-for="jobType in jobTypeList"
+                           :label="jobType.code"
+                           :key="jobType.code">{{jobType.name}}</el-checkbox>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
       </el-row>
@@ -214,8 +263,22 @@
                        icon="el-icon-document-copy"
                        @click="openSelectCaseDialog">拷贝候选人</el-button>
           </el-tooltip>
+          <el-tooltip class="item"
+                      effect="dark"
+                      content="展示该职位下所有关联过的候选人"
+                      placement="top">
+            <el-button type="primary"
+                       size="small"
+                       icon="el-icon-notebook-2"
+                       @click="loadAllCandidates">加载所有候选人</el-button>
+          </el-tooltip>
         </div>
-        <el-table :data="candidateForCaseList"
+        <el-table v-loading="candidateTableLoading"
+                  element-loading-text="拼命加载中"
+                  element-loading-spinner="el-icon-loading"
+                  element-loading-background="rgba(0, 0, 0, 0.8)"
+                  :row-class-name="setCandidateRowClassName"
+                  :data="candidateForCaseList"
                   :border="true"
                   style="width: 100%"
                   @current-change="rowChange">
@@ -223,11 +286,8 @@
                            width="50"
                            label="序号"></el-table-column>
           <el-table-column label="操作"
-                           width="320">
+                           width="200">
             <template slot-scope="scope">
-              <el-button size="mini"
-                         type="primary"
-                         @click="editCandidate(scope.$index, scope.row)">编辑候选人</el-button>
               <el-button v-if="!isAttention(scope.row)"
                          size="mini"
                          type="success"
@@ -238,13 +298,19 @@
                          @click="updateCandidateForCaseAttention(scope.row, false)">取消关注</el-button>
               <el-button size="mini"
                          type="danger"
-                         @click="deleteRecommend(scope.$index, scope.row)"
-                         v-show="showControl('deleteRecommend')">删除推荐</el-button>
+                         @click="deleteRecommend(scope.$index, scope.row)">删除推荐</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="chineseName"
+          <el-table-column width="120"
+                           label="中文名">
+            <template slot-scope="scope">
+              <el-button type="text"
+                         @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column prop="farthestPhase"
                            width="120"
-                           label="中文名"></el-table-column>
+                           label="最远阶段"></el-table-column>
           <el-table-column prop="latestCommentUsername"
                            width="120"
                            label="评论人"></el-table-column>
@@ -293,4 +359,14 @@
     </el-dialog>
   </div>
 </template>
+<style>
+.rowGreen {
+  color: rgb(134, 190, 106);
+  font-weight: bolder;
+}
+.rowBlue {
+  color: #409eff;
+  font-weight: bolder;
+}
+</style>
 <script src="./case.js"></script>

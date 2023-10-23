@@ -17,10 +17,6 @@
                  size="small"
                  icon="el-icon-delete"
                  @click="cancel">取 消</el-button>
-      <el-button type="primary"
-                 size="small"
-                 icon="el-icon-back"
-                 @click="returnClient">返回</el-button>
     </div>
     <el-form ref="form"
              :model="form"
@@ -48,7 +44,12 @@
         <el-input v-model="form.phoneNo"></el-input>
       </el-form-item>
       <el-form-item label="备注">
-        <el-input v-model="form.comments"></el-input>
+        <el-input v-model="form.comments"
+                  type="textarea"
+                  :autosize="{ minRows: 2, maxRows: 100}"
+                  maxlength="400"
+                  show-word-limit
+                  clearable></el-input>
       </el-form-item>
     </el-form>
   </div>

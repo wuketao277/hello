@@ -6,7 +6,7 @@
              style="width:100px;height:55px;">
       </div>
       <div style="float:left;height:100%;text-align:left;padding-left:65px;padding-top:20px;">
-        <span>Hello Applicant</span>
+        <span>Hello Applicant</span>&nbsp;<span style="font-size:8px;">v{{version}}</span>
       </div>
       <div style="float:right;width:40px;margin-top:10px;">
         <el-button size="mini"
@@ -34,20 +34,38 @@
                         v-if="jobTypeControlShow('/')">
             <template slot="title">
               <i class="el-icon-menu"></i>
-              <span slot="title">主页</span>
+              <span slot="title">首页</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/background.html/report/general"
-                        v-if="showControl('/report')">
+          <el-submenu index="/admin"
+                      v-if="showControl('/admin')">
             <template slot="title">
-              <i class="el-icon-s-data"></i>
-              <span slot="title">报表</span>
+              <i class="el-icon-s-home"></i>
+              <span slot="title">管理员</span>
             </template>
-          </el-menu-item>
-          <el-menu-item index="/background.html/client/clientlist"
+            <el-menu-item index="/background.html/report/general">
+              <template slot="title">
+                <i class="el-icon-s-data"></i>
+                <span slot="title">报表</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="/prc/prclist">
+              <template slot="title">
+                <i class="el-icon-magic-stick"></i>
+                <span slot="title">PRC</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="/interviewlist">
+              <template slot="title">
+                <i class="el-icon-s-operation"></i>
+                <span slot="title">面试安排</span>
+              </template>
+            </el-menu-item>
+          </el-submenu>
+          <el-menu-item index="/client/clientlist"
                         v-if="jobTypeControlShow('/client/clientlist')">
             <template slot="title">
-              <i class="el-icon-user"></i>
+              <i class="el-icon-s-custom"></i>
               <span slot="title">客户列表</span>
             </template>
           </el-menu-item>
@@ -65,7 +83,14 @@
               <span slot="title">候选人</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/background.html/case/successfulPermList"
+          <el-menu-item index="/background.html/candidate/searchcandidate"
+                        v-if="jobTypeControlShow('/candidate/searchcandidate')">
+            <template slot="title">
+              <i class="el-icon-search"></i>
+              <span slot="title">搜索候选人</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="/case/successfulPermList"
                         v-if="jobTypeControlShow('/case/successfulPermList')">
             <template slot="title">
               <i class="el-icon-star-on"></i>
@@ -92,6 +117,8 @@
             <el-menu-item index="/background.html/salary/reimbursementItemList">报销项详情列表</el-menu-item>
             <el-menu-item v-if="showControl('/salary/invoiceList')"
                           index="/background.html/salary/invoiceList">业务发票</el-menu-item>
+            <el-menu-item index="/salary/kpiworkdaysadjustList">KPI工作日调整列表</el-menu-item>
+            <el-menu-item index="/salary/kpiList">KPI历史记录</el-menu-item>
           </el-submenu>
           <el-submenu index="/background.html/my"
                       v-if="jobTypeControlShow('/my')">

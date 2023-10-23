@@ -1,5 +1,6 @@
 import holidayApi from '@/api/holiday'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -18,14 +19,25 @@ export default {
         approveUserName: null,
         approveUserRealName: null
       },
-      approveStatusList: [{code: 'APPLY', name: 'APPLY'}, {code: 'APPROVED', name: 'APPROVED'}, {code: 'DENY', name: 'DENY'}]
+      approveStatusList: [{
+        code: 'APPLY',
+        name: 'APPLY'
+      }, {
+        code: 'APPROVED',
+        name: 'APPROVED'
+      }, {
+        code: 'DENY',
+        name: 'DENY'
+      }],
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
     // 显示控制
     showControl (key) {
       if (key === 'approve') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -89,9 +101,15 @@ export default {
       })
     }
   },
-  computed: {
-  },
+  computed: {},
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

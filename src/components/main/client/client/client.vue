@@ -8,7 +8,7 @@
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
     <div class="toolbar"
-         v-show="(mode === 'add' || mode === 'modify')">
+         v-show="(mode === 'add' || mode === 'modify') && showControl('toolbar')">
       <el-button type="success"
                  size="small"
                  icon="el-icon-circle-check"
@@ -33,21 +33,137 @@
         <el-col :span="12">
           <el-form-item label="中文名"
                         prop="chineseName">
-            <el-input v-model="form.chineseName"></el-input>
+            <el-input v-model="form.chineseName"
+                      maxlength="100"
+                      show-word-limit
+                      clearable></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="英文名">
-            <el-input v-model="form.englishName"></el-input>
+            <el-input v-model="form.englishName"
+                      maxlength="100"
+                      show-word-limit
+                      clearable></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col>
-          <el-form-item label="客户备注">
+          <el-form-item label="地址">
+            <el-input type="textarea"
+                      v-model="form.address"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="客户信息">
+            <el-input type="textarea"
+                      v-model="form.information"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="推荐流程">
+            <el-input type="textarea"
+                      v-model="form.recommendationProcess"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="查重要求">
+            <el-input type="textarea"
+                      v-model="form.duplicateCheck"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="简历标准">
+            <el-input type="textarea"
+                      v-model="form.resumeStandard"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="薪资架构">
+            <el-input type="textarea"
+                      v-model="form.salaryStructure"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="推荐理由">
+            <el-input type="textarea"
+                      v-model="form.recommendationReason"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="面试准备">
+            <el-input type="textarea"
+                      v-model="form.interviewPrepare"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="公司卖点">
+            <el-input type="textarea"
+                      v-model="form.sellingPoint"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="1000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="特别说明">
             <el-input type="textarea"
                       v-model="form.remark"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -57,7 +173,9 @@
           <el-form-item label="发票联系信息">
             <el-input type="textarea"
                       v-model="form.invoiceContact"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="400"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -67,7 +185,9 @@
           <el-form-item label="发票备注">
             <el-input type="textarea"
                       v-model="form.invoiceRemark"
-                      :autosize="{ minRows: 2, maxRows: 30}"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="400"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
@@ -95,7 +215,7 @@
                     :border="true"
                     style="width: 100%"
                     @current-change="linkManRowChange"
-                    @row-dblclick="modifyLinkMan"
+                    @row-dblclick="handleLinkManDBClick"
                     :highlight-current-row="true"
                     :stripe="true">
             <el-table-column type="index"
@@ -109,13 +229,16 @@
                              label="联系人英文名"></el-table-column>
             <el-table-column prop="mobileNo"
                              width="120"
-                             label="手机号"></el-table-column>
+                             label="手机号"
+                             v-if="showControl('mobileNo')"></el-table-column>
             <el-table-column prop="phoneNo"
                              width="120"
-                             label="座机号"></el-table-column>
+                             label="座机号"
+                             v-if="showControl('phoneNo')"></el-table-column>
             <el-table-column prop="email"
                              width="120"
                              label="邮箱"
+                             v-if="showControl('email')"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="address"
                              width="250"

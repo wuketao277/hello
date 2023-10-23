@@ -31,7 +31,7 @@
                  v-if="showControl('approveButton')">审批通过</el-button>
       <el-button type="primary"
                  size="small"
-                 icon="el-icon-share"
+                 icon="el-icon-search"
                  @click="searchDialog = true">搜 索</el-button>
       <el-button type="primary"
                  size="small"
@@ -112,6 +112,13 @@
                          width="250"
                          label="描述"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="createUser"
+                         width="100"
+                         label="创建者"></el-table-column>
+        <el-table-column prop="createTime"
+                         width="200"
+                         label="创建时间"
+                         show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination background
                      layout="prev, pager, next, sizes"
@@ -129,7 +136,8 @@
                :show-close="false"
                width="80%">
       <div>
-        <el-form label-position="left"
+        <el-form size="small"
+                 label-position="left"
                  label-width="110px">
           <el-row :gutter="12">
             <el-col :span="6">
@@ -145,6 +153,7 @@
                 <el-select v-model="search.approveStatus"
                            placeholder="STATUS"
                            style="max-width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="status in approveStatusList"
                              :key="status.code"
@@ -158,6 +167,7 @@
                 <el-select v-model="search.needPay"
                            placeholder="请选择"
                            style="max-width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="v in reimbursementNeedPay"
                              :key="v.code"
@@ -183,6 +193,7 @@
                 <el-select v-model="search.location"
                            placeholder="发生地点"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="location in locationList"
                              :key="location.code"
@@ -195,6 +206,7 @@
               <el-form-item label="COMPANY">
                 <el-select v-model="search.company"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="company in companyList"
                              :key="company.code"
@@ -222,6 +234,7 @@
                            @change="typeChange"
                            placeholder="类别"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="type in typeList"
                              :key="type.code"
@@ -235,6 +248,7 @@
                 <el-select v-model="search.kind"
                            placeholder="项目"
                            style="width:100%;"
+                           filterable
                            clearable>
                   <el-option v-for="kind in currentKindList"
                              :key="kind.code"

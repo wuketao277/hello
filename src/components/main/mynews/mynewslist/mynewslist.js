@@ -1,5 +1,6 @@
 import mynewsApi from '@/api/mynews'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -18,14 +19,22 @@ export default {
         pageSizes: [10, 30, 50, 100, 300]
       },
       currentRow: null,
-      search: commonJS.getSearchContent('mynewslist.search')
+      search: commonJS.getStorageContent('mynewslist.search'),
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
+    formatDate (row, column, cellvalue, index) {
+      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
+        return cellvalue.substr(0, 10)
+      }
+      return ''
+    },
     // 显示控制
     showControl (url) {
       if (url === 'delete') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
     },
     // 添加新闻
@@ -151,6 +160,13 @@ export default {
   },
   computed: {},
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     this.query()
   }
 }

@@ -1,5 +1,6 @@
 import reimbursementApi from '@/api/reimbursement'
 import commonJS from '@/common/common'
+import userApi from '@/api/user'
 
 export default {
   data () {
@@ -22,15 +23,27 @@ export default {
       currentRow: null,
       companyList: commonJS.companyList,
       searchDialog: false,
-      search: commonJS.getSearchContentObject('reimbursementSummaryList.search'),
-      reimbursementMonth: commonJS.getYYYY_MM(new Date()) // 报销月份，默认是当月
+      search: commonJS.getStorageContentObject('reimbursementSummaryList.search'),
+      reimbursementMonth: commonJS.getYYYY_MM(new Date()), // 报销月份，默认是当月
+      roles: [],
+      jobType: ''
     }
   },
   methods: {
+    // 表格双击处理
+    handleRowDblClick (row, column, event) {
+      this.$router.push({
+        path: '/salary/reimbursementItemList',
+        query: {
+          mode: 'query',
+          row: row
+        }
+      })
+    },
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'edit' || key === 'statistics') {
-        return commonJS.isAdmin()
+        return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -132,12 +145,10 @@ export default {
     },
     // 公司转换器
     companyFormatter (row) {
-      if (row.company === 'Shanghaihailuorencaifuwu') {
-        return '上海海罗人才服务有限公司'
-      } else if (row.company === 'Shanghaihailuorencaikeji') {
-        return '上海海罗人才科技有限公司'
-      } else if (row.company === 'Shenyanghailuorencaifuwu') {
-        return '沈阳海罗人才服务有限公司'
+      for (let c of this.companyList) {
+        if (c.code === row.company) {
+          return c.name
+        }
       }
     },
     // 设置行样式
@@ -149,6 +160,10 @@ export default {
         return 'row1'
       } else if (row.company === 'Shenyanghailuorencaifuwu') {
         return 'row2'
+      } else if (row.company === 'Wuhanhailuorencaifuwu') {
+        return 'row3'
+      } else if (row.company === 'Nanjinghailuorencaifuwu') {
+        return 'row4'
       }
     },
     // 下载报销项
@@ -173,6 +188,13 @@ export default {
     }
   },
   created () {
+    // 获取当前用户的角色列表
+    userApi.findSelf().then(res => {
+      if (res.status === 200) {
+        this.roles = res.data.roles
+        this.jobType = res.data.jobType
+      }
+    })
     this.query()
   }
 }

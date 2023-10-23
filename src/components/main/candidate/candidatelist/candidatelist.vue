@@ -35,7 +35,11 @@
         </el-form-item>
       </el-form>
     </div>
-    <el-table :data="table.content"
+    <el-table v-loading="table.loading"
+              element-loading-text="拼命加载中"
+              element-loading-spinner="el-icon-loading"
+              element-loading-background="rgba(0, 0, 0, 0.8)"
+              :data="table.content"
               @current-change="handleCurrentChange"
               @row-dblclick="modifyCandidate"
               :border="true"
@@ -63,7 +67,7 @@
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="birthDay"
                        label="生日"
-                       width="60"
+                       width="100"
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="age"
                        label="年龄"
@@ -115,54 +119,68 @@
     <el-table :data="contentFromComment"
               @current-change="handleCurrentChangeFromComment"
               :border="true"
+              @row-dblclick="modifyCandidate"
               :highlight-current-row="true"
               style="width: 100%">
       <el-table-column type="index"
                        width="50"
-                       label="序号"></el-table-column>
+                       label="序号"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="id"
                        label="候选人id"
-                       width="80"></el-table-column>
+                       width="80"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="chineseName"
                        label="中文名称"
-                       width="80"></el-table-column>
-      <el-table-column prop="englishName"
-                       label="英文名称"
-                       width="80"></el-table-column>
+                       width="80"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="phoneNo"
                        label="手机"
-                       width="120"></el-table-column>
+                       width="120"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="email"
                        label="邮箱"
-                       width="120"></el-table-column>
+                       width="120"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="birthDay"
                        label="生日"
-                       width="60"></el-table-column>
+                       width="100"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="age"
                        label="年龄"
-                       width="60"></el-table-column>
+                       width="60"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="companyName"
                        label="公司"
-                       width="120"></el-table-column>
+                       width="120"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="department"
                        label="部门"
-                       width="120"></el-table-column>
+                       width="120"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="title"
                        label="职位"
-                       width="120"></el-table-column>
+                       width="120"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="schoolName"
-                       label="学校"></el-table-column>
+                       label="学校"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="currentAddress"
-                       label="现地址"></el-table-column>
+                       label="现地址"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="futureAddress"
-                       label="期望地址"></el-table-column>
+                       label="期望地址"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="currentMoney"
-                       label="现薪资"></el-table-column>
+                       label="现薪资"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="futureMoney"
-                       label="期望薪资"></el-table-column>
+                       label="期望薪资"
+                       show-overflow-tooltip></el-table-column>
       <el-table-column prop="date"
                        label="日期"
-                       width="80"></el-table-column>
+                       width="80"
+                       show-overflow-tooltip></el-table-column>
     </el-table>
   </div>
 </template>

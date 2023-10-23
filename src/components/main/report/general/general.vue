@@ -16,40 +16,69 @@
                               value-format="yyyy-MM-dd"
                               format="yyyy-MM-dd"
                               placeholder="开始日期"
+                              size="small"
+                              style="width:130px;"
                               v-model="form.startDate"></el-date-picker>
               <span>-</span>
               <el-date-picker type="date"
                               placeholder="结束日期"
                               value-format="yyyy-MM-dd"
                               format="yyyy-MM-dd"
+                              size="small"
+                              style="width:130px;"
                               v-model="form.endDate"></el-date-picker>&nbsp;&nbsp;
               <el-button type="primary"
-                         size="medium"
+                         plain
+                         size="small"
                          @click="drawChart">查询</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('week')">本周</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
+                         @click="calcDate('lastmonth')">上月</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
                          @click="calcDate('month')">本月</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
                          @click="calcDate('nextmonth')">下月</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
+                         @click="calcDate('lastseason')">上季度</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
                          @click="calcDate('season')">本季度</el-button>
-              <el-button type="success"
+              <el-button type="primary"
                          plain
-                         size="medium"
-                         @click="calcDate('tonow')">截止目前</el-button>
-              <el-button type="success"
+                         size="small"
+                         @click="calcDate('nextseason')">下季度</el-button>
+              <el-button type="primary"
                          plain
-                         size="medium"
+                         size="small"
+                         @click="calcDate('tonowyear')">今年到现在</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
                          @click="calcDate('year')">本年</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="calcDate('tonow')">全部</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="changeChartSize('big')">大图</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="changeChartSize('small')">小图</el-button>
             </el-col>
           </el-row>
         </el-form-item>
@@ -59,66 +88,98 @@
       <el-row style="margin-bottom:30px;">
         <el-col :span="24">
           <div id="offerDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">offer Billing Sum：{{offerDateBilling}}</el-col>
             </el-row>
             <div id="offerDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
           <div id="paymentDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">payment Billing Sum：{{paymentDateBilling}}</el-col>
             </el-row>
             <div id="paymentDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
       <el-row style="margin-bottom:30px;">
         <el-col :span="24">
           <div id="actualPaymentDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">已付 Billing Sum：{{actualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="actualPaymentDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
           <div id="unactualPaymentDate"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">未付 Billing Sum：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="unactualPaymentDateChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
           <div id="personalOfferData"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Personal Offer Data</el-col>
+            </el-row>
             <div id="personalOfferDataChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
           <div id="invoiceDateData"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
             <el-row>
               <el-col :span="12">Invoice Sum：{{invoiceDateBilling}}</el-col>
             </el-row>
             <div id="invoiceDateDataChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
           <div id="personalReceiveData"
-               :style="{width: '48%', height: '400px', float: 'left'}">
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Personal Receive Data</el-col>
+            </el-row>
             <div id="personalReceiveDataChart"
-                 :style="{width: '100%', height: '400px'}"></div>
+                 :class="chartClass"></div>
+          </div>
+          <div id="recruiterOfferBillingData"
+               :class="divClass">
+            <span>Recruiter Offer Billing Data</span>
+            <div id="recruiterOfferBillingDataChart"
+                 :class="chartClass"></div>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <div id="teamOfferGPData"
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Team Offer GP Data</el-col>
+            </el-row>
+            <div id="teamOfferGPDataChart"
+                 :class="chartClass"></div>
+          </div>
+          <div id="avgOfferData"
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">Average Offer Data</el-col>
+            </el-row>
+            <div id="avgOfferDataChart"
+                 :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
@@ -126,3 +187,21 @@
   </div>
 </template>
 <script src="./general.js"></script>
+<style>
+.divBig {
+  width: 98%;
+  height: 600px;
+  float: left;
+}
+.divSmall {
+  width: 48%;
+  height: 400px;
+  float: left;
+}
+.chartBig {
+  height: 600px;
+}
+.chartSmall {
+  height: 400px;
+}
+</style>
