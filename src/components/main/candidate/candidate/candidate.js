@@ -160,6 +160,76 @@ export default {
       this.newComment.isFinal = false
       this.newComment.content = null
       this.newComment.interviewTime = null
+      if (value === 'Pre. Service') {
+        this.newComment.content = '一、离职手续是否办妥\r\n' +
+          '    （前期）要盖章的材料是否都寄出\r\n' +
+          '    （后期）是否有收到盖完章的文件\r\n' +
+          '二、能否按时入职\r\n' +
+          '    房子是不是租好了\r\n' +
+          '    交通方不方便\r\n' +
+          '    清楚入职时间和地点么，找谁对接'
+      } else if (value === 'On Service') {
+        this.newComment.content = '一、 入职办理是否顺利\r\n' +
+          '   1.谁帮忙办的入职\r\n' +
+          '   2.见到了谁\r\n' +
+          '   3.电脑/邮箱等等是否设定好\r\n' +
+          '二、生活\r\n' +
+          '   1.几点到的公司\r\n' +
+          '   2.怎么去的\r\n' +
+          '   3.上班路途是否顺利\r\n' +
+          '   4.几点下班\r\n' +
+          '   5.和谁一起吃饭，同事怎么样\r\n' +
+          '三、工作\r\n' +
+          '   1.工作和自己想象中差别大吗\r\n' +
+          '   2.有没有什么training 或者work plan\r\n' +
+          '   3.Team 氛围如何'
+      } else if (value === 'Week Service') {
+        this.newComment.content = '一、上周的工作情况\r\n' +
+          '   1.接触项目\r\n' +
+          '   2.培训情况\r\n' +
+          '   3.加班情况\r\n' +
+          '二、同事关系\r\n' +
+          '   1.饭搭子\r\n' +
+          '   2.领导的印象\r\n' +
+          '三、对家庭的影响\r\n' +
+          '   1.老婆上班\r\n' +
+          '   2.父母作息\r\n' +
+          '   3.小孩接送\r\n' +
+          '四、现在项目与之前期待的一致吗\r\n' +
+          '   1.区别是？\r\n' +
+          '   2.进展是？\r\n' +
+          '   3.有影响吗？\r\n' +
+          '   4.期待收获什么？\r\n' +
+          '五、觉得自己能够胜任吗（挑战/压力）\r\n' +
+          '六、觉得比较嗨的地方'
+      } else if (value === 'Month Service') {
+        this.newComment.content = '一、工作内容\r\n' +
+          '   1.项目进度\r\n' +
+          '   2.难点、压力与挑战\r\n' +
+          '   3.变动与进展\r\n' +
+          '二、关系\r\n' +
+          '   1.上下沟通\r\n' +
+          '   2.内外沟通\r\n' +
+          '三、工资的落实情况\r\n' +
+          '四、主观体验\r\n' +
+          '   1.工作状态\r\n' +
+          '   2.满意度\r\n' +
+          '   3.与预期的差别\r\n' +
+          '五、生活适应，生活状态的更新，与工作的平衡 \r\n' +
+          '六、未来导向（计划、期望、自我定位）\r\n' +
+          '七、组织架构、老板风格、招聘进度、其他外包人员、推荐 \r\n' +
+          '八、是否被其他猎头联系 \r\n' +
+          '九、反馈客户的评价'
+      } else if (value === '2Month Service' || value === '3Month Service' ||
+        value === '4Month Service' || value === '5Month Service' || value === '6Month Service') {
+        this.newComment.content = '一、General Questions：工作+生活\r\n' +
+          '二、了解公司情况：\r\n' +
+          '   1.公司内部有没有新项目\r\n' +
+          '   2.有没有新的招聘需求\r\n' +
+          '   3.有没有新人进入\r\n' +
+          '   4.用人经理什么风格\r\n' +
+          '   5.公司最近有没有什么变动'
+      }
     },
     // 计算候选人年龄
     birthdayChange (val) {
