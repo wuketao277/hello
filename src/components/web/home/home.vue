@@ -1,6 +1,6 @@
 <template>
-  <div style="margin-left:100px;margin-top:100px;margin-right:100px;">
-    <div style="overflow:auto;height:90%;">
+  <div id="div_home">
+    <div style="overflow:auto;height:90%;padding:100px;">
       <div style="float:left;width:50%;">
         <img :src="backgroundImage"
              width="100%"
@@ -16,7 +16,6 @@
         </p>
       </div>
     </div>
-    <br /><br /><br />
     <p style="text-align:center;color:white;">全国办公室：上海 / 北京 / 南京 / 沈阳 / 武汉</p>
   </div>
 </template>
@@ -33,7 +32,8 @@ export default {
   name: 'webHome',
   data () {
     return {
-      backgroundImage: require('../../../assets/background.jpg')
+      backgroundImage: require('../../../assets/background.jpg'),
+      backgroundImage9: require('../../../assets/background-9.jpg')
     }
   }
 }
