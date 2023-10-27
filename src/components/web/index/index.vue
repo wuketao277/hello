@@ -1,11 +1,11 @@
 <template>
-  <el-container style="height:100%;min-width:1400px;padding:10px;background-color:#481363;">
+  <el-container style="height:100%;min-width:1400px;padding:3px;background-color:#481363;">
     <el-header style="height:60px;padding:0px;text-align:left;font-size:25px;">
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
         <img src="../../../assets/logo.jpg"
-             style="width:120px;height:60px;">
+             style="width:80px;height:60px;">
       </div>
-      <div style="float:center;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
+      <div style="position:absolute;width:400px;left:50%;margin-left:-200px;">
         <el-menu :default-active="activeIndex"
                  class="el-menu-demo"
                  mode="horizontal"

@@ -137,24 +137,6 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="6">
-          <el-form-item label="状态">
-            <el-switch v-model="form.enabled"
-                       active-color="#13ce66"
-                       inactive-color="#ff4949"
-                       active-text="正常"
-                       inactive-text="停用"></el-switch>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="cover base">
-            <el-switch v-model="form.coverbase"
-                       active-color="#13ce66"
-                       inactive-color="#ff4949"
-                       active-text="cover"
-                       inactive-text="不cover"></el-switch>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
           <el-form-item label="入职日期">
             <el-date-picker v-model="form.onBoardDate"
                             type="date"
@@ -170,15 +152,6 @@
                             placeholder="选择日期"
                             style="width:100%"
                             value-format="yyyy-MM-dd"></el-date-picker>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="KPI">
-            <el-switch v-model="form.checkKPI"
-                       active-color="#13ce66"
-                       inactive-color="#ff4949"
-                       active-text="考核"
-                       inactive-text="不考核"></el-switch>
           </el-form-item>
         </el-col>
         <el-col span="6">

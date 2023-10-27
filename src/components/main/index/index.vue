@@ -3,9 +3,9 @@
     <el-header style="background-color:#545c64;height:60px;padding:0px;text-align:left;font-size:25px;color:#fff;">
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
         <img src="../../../assets/logo.jpg"
-             style="width:100px;height:55px;">
+             style="width:72px;height:56px;padding-left:16px;">
       </div>
-      <div style="float:left;height:100%;text-align:left;padding-left:65px;padding-top:20px;">
+      <div style="float:left;height:100%;text-align:left;padding-left:79px;padding-top:20px;">
         <span>Hello Applicant</span>&nbsp;<span style="font-size:8px;">v{{version}}</span>
       </div>
       <div style="float:right;width:40px;margin-top:10px;">

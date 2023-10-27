@@ -1,6 +1,6 @@
 <template>
   <div id="div_home">
-    <div style="overflow:auto;height:90%;padding:100px;">
+    <div style="overflow:auto;height:90%;padding-top:100px;padding-left:100px;padding-right:100px;">
       <div style="float:left;width:50%;">
         <img :src="backgroundImage"
              width="100%"
@@ -16,6 +16,9 @@
         </p>
       </div>
     </div>
+    <br />
+    <br />
+    <br />
     <p style="text-align:center;color:white;">全国办公室：上海 / 北京 / 南京 / 沈阳 / 武汉</p>
   </div>
 </template>
