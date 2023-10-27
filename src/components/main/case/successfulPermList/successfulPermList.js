@@ -234,6 +234,18 @@ export default {
     clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {
         this.clients = res.data
+        this.clients.push({
+          'chineseName': '理想-集团'
+        })
+        this.clients.push({
+          'chineseName': '宝马-集团'
+        })
+        this.clients.push({
+          'chineseName': '一汽-集团'
+        })
+        this.clients.push({
+          'chineseName': '沃尔沃-集团'
+        })
       }
     })
     userApi.findAllEnabled().then(res => {

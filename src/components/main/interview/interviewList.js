@@ -176,7 +176,20 @@ export default {
     this.query()
     clientApi.findAll().then(res => {
       if (res.status === 200) {
+        debugger
         this.clientList = res.data
+        this.clientList.push({
+          'chineseName': '理想-集团'
+        })
+        this.clientList.push({
+          'chineseName': '宝马-集团'
+        })
+        this.clientList.push({
+          'chineseName': '一汽-集团'
+        })
+        this.clientList.push({
+          'chineseName': '沃尔沃-集团'
+        })
       }
     })
   }

@@ -142,7 +142,8 @@
                 <el-select v-model="search.phase"
                            filterable
                            placeholder="请选择"
-                           width="100%">
+                           width="100%"
+                           clearable>
                   <el-option v-for="item in phaseOptions"
                              :key="item.value"
                              :label="item.label"

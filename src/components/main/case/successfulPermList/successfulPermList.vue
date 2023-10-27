@@ -233,14 +233,14 @@
             <el-col :span="12">
               <el-form-item label="Client"
                             label-width="80px">
-                <el-select v-model="search.clientId"
+                <el-select v-model="search.clientName"
                            placeholder="请选择客户"
                            style="width:100%;"
                            filterable
                            clearable>
                   <el-option v-for="client in clients"
-                             :key="client.id"
-                             :value="client.id"
+                             :key="client.chineseName"
+                             :value="client.chineseName"
                              :label="client.chineseName"></el-option>
                 </el-select>
               </el-form-item>
