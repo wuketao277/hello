@@ -281,10 +281,10 @@ export default {
         let month = new Date().getMonth() + 1
         month = month < 10 ? '0' + month : month
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
-        if (month === '02') {
+        if (month === 2) {
           // 2 月
           this.endDate = new Date().getFullYear() + '-' + month + '-28'
-        } else if (month === '01' || month === '03' || month === '05' || month === '07' || month === '08' || month === '10' || month === '12') {
+        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
           this.endDate = new Date().getFullYear() + '-' + month + '-31'
         } else {
