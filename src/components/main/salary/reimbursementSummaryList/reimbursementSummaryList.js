@@ -33,7 +33,7 @@ export default {
     // 表格双击处理
     handleRowDblClick (row, column, event) {
       this.$router.push({
-        path: '/salary/reimbursementItemList',
+        path: '/background.html/salary/reimbursementItemList',
         query: {
           mode: 'query',
           row: row
