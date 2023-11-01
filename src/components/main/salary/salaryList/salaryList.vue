@@ -61,12 +61,12 @@
                  size="small"
                  @click="showHistoryDebt=!showHistoryDebt"
                  v-if="!showHistoryDebt"
-                 v-show="showControl('historyDebt')">显示History Debt</el-button>
+                 v-show="showControl('historyDebt')">显示起提点</el-button>
       <el-button type="primary"
                  size="small"
                  @click="showHistoryDebt=!showHistoryDebt"
                  v-if="showHistoryDebt"
-                 v-show="showControl('historyDebt')">隐藏History Debt</el-button>
+                 v-show="showControl('historyDebt')">隐藏起提点</el-button>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-download"
@@ -111,8 +111,8 @@
                          label="Working Days"
                          v-if="showWorkingDays"></el-table-column>
         <el-table-column prop="historyDebt"
-                         width="110"
-                         label="History Debt"
+                         width="140"
+                         label="Commission Start"
                          v-if="showHistoryDebt"></el-table-column>
         <el-table-column prop="sum"
                          width="120"
