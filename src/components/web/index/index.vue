@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height:100%;min-width:1400px;padding:3px;background-color:#481363;">
+  <el-container style="min-width:1400px;padding:3px;">
     <el-header style="height:60px;padding:0px;text-align:left;font-size:25px;">
       <div style="float:left;height:100%;text-align:left;padding-left:10px;padding-top:5px;">
         <img src="../../../assets/logo.jpg"
