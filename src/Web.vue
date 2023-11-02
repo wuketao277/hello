@@ -19,7 +19,6 @@ export default {
   text-align: center;
   color: #ebeff3;
   background-color: #261151;
-  height: 100%;
 }
 .toolbar {
   text-align: left;
