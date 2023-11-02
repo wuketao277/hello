@@ -40,5 +40,9 @@ export default {
   // 通过主键删除
   deleteById (params) {
     return axios.post('/case/deleteById', params)
+  },
+  // 清空体验岗位
+  clearExperience () {
+    return axios.get('/case/clearExperience')
   }
 }

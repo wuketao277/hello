@@ -37,9 +37,31 @@ export default {
     }
   },
   methods: {
+    // 情况体验岗位
+    clearExperience () {
+      this.$confirm('确认要清空体验岗位吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(() => {
+          caseApi.clearExperience().then(res => {
+            if (res.status !== 200) {
+              this.$message.error({
+                message: '操作失败，请联系管理员！'
+              })
+            } else {
+              this.$message({
+                message: '操作成功！',
+                type: 'success'
+              })
+            }
+          })
+        })
+    },
     // 显示控制
     showControl (key) {
-      if (key === 'add' || key === 'edit' || key === 'delete' || key === 'visibility') {
+      if (key === 'clearExperienceButton') {
         return commonJS.isAdminInArray(this.roles)
       }
       // 没有特殊要求的不需要角色

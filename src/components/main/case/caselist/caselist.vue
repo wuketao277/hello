@@ -38,6 +38,11 @@
                     clearable></el-input>
         </el-form-item>
       </el-form>
+      <el-button type="warning"
+                 size="small"
+                 icon="el-icon-scissors"
+                 v-if="showControl('clearExperienceButton')"
+                 @click="clearExperience">清空体验岗位</el-button>
     </div>
     <template>
       <el-table :data="table.content"
