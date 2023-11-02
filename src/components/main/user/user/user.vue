@@ -183,6 +183,11 @@
                        @click="deleteTeamLeader"></el-button>
           </div>
         </el-col>
+        <el-col :span="6">
+          <el-form-item label="密码">
+            <el-input v-model="form.password"></el-input>
+          </el-form-item>
+        </el-col>
       </el-row>
     </el-form>
     <el-divider content-position="center">下面是扩展信息</el-divider>
