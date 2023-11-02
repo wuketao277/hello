@@ -7,8 +7,10 @@
     <span>
       公司名称：上海海罗人才服务有限公司<br />
       外文名：Shanghai Hello Applicant Talent Service Co.,Ltd.<br />
+      经营范围：汽车、IT/互联网和金融行业的人力资源招聘、业务外包、企业管理咨询及IT项目交付等整体解决方案<br />
       公司类型：人力资源一站式服务提供商<br />
       公司理念：All Embrace<br />
+      总部地点：上海市浦东新区<br />
     </span>
     <br /><br />
     <span style="font-size:20px;">
@@ -18,6 +20,7 @@
     <span>
       公司名称：上海海罗人才科技有限公司<br />
       外文名：Shanghai Hello Applicant Talent Technology Co.,Ltd.<br />
+      经营范围：汽车、IT/互联网和金融行业的人力资源招聘、业务外包、企业管理咨询及IT项目交付等整体解决方案<br />
       公司类型：人力资源一站式服务提供商<br />
       公司理念：All Embrace<br />
       总部地点：上海市浦东新区<br />
@@ -30,6 +33,7 @@
     <span>
       公司名称：沈阳海罗人才服务有限公司<br />
       外文名：Shenyang Hello Applicant Talent Service Co.,Ltd.<br />
+      经营范围：汽车、IT/互联网和金融行业的人力资源招聘、业务外包、企业管理咨询及IT项目交付等整体解决方案<br />
       公司类型：人力资源一站式服务提供商<br />
       公司理念：All Embrace<br />
       沈阳总部地点：辽宁省沈阳市皇姑区<br />
@@ -42,6 +46,7 @@
     <span>
       公司名称：武汉海罗河山人才服务有限公司<br />
       外文名：Wuhan Hello Applicant Talent Service Co.,Ltd.<br />
+      经营范围：汽车、IT/互联网和金融行业的人力资源招聘、业务外包、企业管理咨询及IT项目交付等整体解决方案<br />
       公司类型：人力资源一站式服务提供商<br />
       公司理念：All Embrace<br />
       武汉总部地点：湖北省武汉市武昌区<br />
