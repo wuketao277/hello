@@ -7,7 +7,9 @@ export default {
   },
   // 通过主键查找用户信息
   findById (params) {
-    return axios.get('/successfulPerm/findById', {params: params})
+    return axios.get('/successfulPerm/findById', {
+      params: params
+    })
   },
   // 查找后台数据
   queryPage (params) {
@@ -19,10 +21,18 @@ export default {
   },
   // 查找后台数据
   query (params) {
-    return axios.get('/successfulPerm/query', {params: params})
+    return axios.get('/successfulPerm/query', {
+      params: params
+    })
   },
   // 通过主键删除
   deleteById (params) {
     return axios.post('/successfulPerm/deleteById', params)
+  },
+  // 当日入职列表
+  todayOnboardList (params) {
+    return axios.get('/successfulPerm/todayOnboardList', {
+      params: params
+    })
   }
 }

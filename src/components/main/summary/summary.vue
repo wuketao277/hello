@@ -212,6 +212,50 @@
                      size="small"
                      @click="queryInterviewPlan('wuhan')">武 汉</el-button>
         </div>
+        <div v-if="showTodayOnboardTable()">
+          <h3 style="margin:0px;">当日入职信息</h3>
+          <el-table :data="todayOnboardList"
+                    :border="true"
+                    :highlight-current-row="true"
+                    :stripe="true"
+                    :show-header="true"
+                    :row-class-name="setRowClassNameForInterviewPlan"
+                    style="width: 100%">
+            <el-table-column type="index"
+                             width="50"
+                             label="序号"></el-table-column>
+            <el-table-column prop="clientName"
+                             label="公司名称"
+                             show-overflow-tooltip>
+              <template slot-scope="scope">
+                <el-button type="text"
+                           @click="editClient(scope.$index, scope.row)">{{scope.row.clientName}}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="title"
+                             label="岗位名称"
+                             show-overflow-tooltip>
+              <template slot-scope="scope">
+                <el-button type="text"
+                           @click="editCase(scope.$index, scope.row)">{{scope.row.title}}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="candidateChineseName"
+                             label="候选人"
+                             width="65"
+                             show-overflow-tooltip>
+              <template slot-scope="scope">
+                <el-button type="text"
+                           @click="editCandidate(scope.$index, scope.row.candidateId)">{{scope.row.candidateChineseName}}</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column prop="allUserName"
+                             label="相关人员"
+                             show-overflow-tooltip></el-table-column>
+          </el-table>
+          <br />
+          <h3 style="margin:0px;">当日面试信息</h3>
+        </div>
         <el-table :data="interviewPlan"
                   :border="true"
                   :highlight-current-row="true"

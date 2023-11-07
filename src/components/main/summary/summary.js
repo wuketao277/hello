@@ -6,6 +6,7 @@ import commonJs from '@/common/common'
 import candidateApi from '@/api/candidate'
 import userApi from '@/api/user'
 import summaryApi from '@/api/summary'
+import successfulPermApi from '@/api/successfulPerm'
 
 export default {
   data () {
@@ -44,10 +45,17 @@ export default {
       kpiOnlyShowCheck: true, // kpi只展示考核kpi用户的数据
       candidateDetailTableVisible: false, // 候选人详情列表展示控制
       candidateDetailTable: [], // 候选人详情列表
-      saveKPIMonth: null // KPI保存月
+      saveKPIMonth: null, // KPI保存月
+      todayOnboardList: [] // 当如入职情况列表
     }
   },
   methods: {
+    // 当日入职列表显示控制
+    showTodayOnboardTable () {
+      debugger
+      let v = this.todayOnboardList.length > 0
+      return v
+    },
     // 展开全部pipeline
     openAllPipeline () {
       for (let i = 0; i < this.pipelineList.length; i++) {
@@ -120,6 +128,19 @@ export default {
         query: {
           mode: 'modify',
           clientId: row.clientId
+        }
+      })
+    },
+    // 查询当日入职情况
+    queryTodayOnboardList (val) {
+      successfulPermApi.todayOnboardList().then(res => {
+        if (res.status === 200) {
+          this.todayOnboardList = res.data
+          this.$message({
+            message: '查询完成！',
+            type: 'success',
+            showClose: true
+          })
         }
       })
     },
@@ -200,6 +221,8 @@ export default {
       } else if (index === '1') {
         // 查询interviewPlan的数据
         this.queryInterviewPlan(commonJs.getStorageContent('summary.interviewPlanRange', 'all'))
+        // 查询当日入职数据
+        this.queryTodayOnboardList()
       } else if (index === '2') {
         // 查询当前用户所有职位关注
         this.queryAllCaseAttention()
