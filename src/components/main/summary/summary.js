@@ -745,7 +745,7 @@ export default {
       if (res.status === 200) {
         // 针对Victor和Mike的特殊处理
         for (let u of res.data) {
-          if (u.username !== 'Victor' && u.username !== 'Mike') {
+          if (u.username !== 'Mike') {
             this.drawusers.push(u)
           }
         }
