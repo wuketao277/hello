@@ -130,7 +130,7 @@
           <div id="personalOfferData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Personal Offer Data</el-col>
+              <el-col :span="12">Personal Offer GP Data</el-col>
             </el-row>
             <div id="personalOfferDataChart"
                  :class="chartClass"></div>
@@ -150,7 +150,7 @@
           <div id="personalReceiveData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Personal Receive Data</el-col>
+              <el-col :span="12">Personal Receive GP Data</el-col>
             </el-row>
             <div id="personalReceiveDataChart"
                  :class="chartClass"></div>
@@ -176,7 +176,7 @@
           <div id="avgOfferData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Average Offer Data</el-col>
+              <el-col :span="12">Average Offer GP Data</el-col>
             </el-row>
             <div id="avgOfferDataChart"
                  :class="chartClass"></div>

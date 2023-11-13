@@ -42,7 +42,7 @@ export default {
       todoTaskDialog: false,
       isChouqianAll: true,
       isChouqianCheckAll: false,
-      kpiOnlyShowCheck: true, // kpi只展示考核kpi用户的数据
+      kpiOnlyShowCheck: false, // kpi只展示考核kpi用户的数据
       candidateDetailTableVisible: false, // 候选人详情列表展示控制
       candidateDetailTable: [], // 候选人详情列表
       saveKPIMonth: null, // KPI保存月
