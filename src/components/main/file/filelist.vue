@@ -21,8 +21,46 @@
                  @click="openUploadFileDialog">上传文件</el-button>
     </div>
     <template>
-      <downloadFile :files="table.content"
-                    v-on:delete-file-success="query"></downloadFile>
+      <!-- <downloadFile :files="table.content"
+                    v-on:delete-file-success="query"></downloadFile> -->
+      <el-table :data="table.content"
+                :border="true"
+                :highlight-current-row="true"
+                :stripe="true"
+                :row-class-name="rowStyle"
+                style="width: 100%"
+                @current-change="rowChange"
+                @row-dblclick="handleDBClick">
+        <el-table-column type="index"
+                         width="50"
+                         label="序号"></el-table-column>
+        <el-table-column prop="originalFileName"
+                         label="创建人"></el-table-column>
+        <el-table-column prop="createUserName"
+                         width="100"
+                         label="创建人"></el-table-column>
+        <el-table-column prop="createTime"
+                         width="180"
+                         label="创建时间"></el-table-column>
+        <el-table-column label="操作"
+                         width="120px">
+          <template slot-scope="file">
+            <el-button type="primary"
+                       icon="el-icon-download"
+                       size="mini"
+                       circle
+                       title="下载文件"
+                       @click="downloadFile(file.row)"></el-button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <el-button type="danger"
+                       icon="el-icon-delete"
+                       size="mini"
+                       circle
+                       title="删除文件"
+                       @click="deleteFile(file.row)"></el-button>
+          </template>
+        </el-table-column>
+      </el-table>
       <el-pagination background
                      layout="prev, pager, next, sizes"
                      :total="table.totalElements"

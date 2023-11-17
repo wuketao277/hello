@@ -29,6 +29,50 @@ export default {
     }
   },
   methods: {
+    // 下载文件
+    downloadFile (row) {
+      debugger
+      uploadFileApi.downloadPreCheck(row.uuid).then(res => {
+        if (res.status === 200) {
+          if (res.data.length === 0) {
+            // 返回空表示可以下载
+            uploadFileApi.download(row.uuid)
+          } else {
+            this.$message({
+              type: 'warning',
+              message: res.data
+            })
+          }
+        }
+      })
+    },
+    // 删除文件
+    deleteFile (row) {
+      debugger
+      this.$confirm('确认要删除文件“' + row.originalFileName + '”吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        uploadFileApi.deleteById(row.id).then(res => {
+          if (res.status === 200) {
+            if (res.data.length === 0) {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+              // 触发更新文件操作
+              this.$emit('delete-file-success')
+            } else {
+              this.$message({
+                type: 'warning',
+                message: res.data
+              })
+            }
+          }
+        })
+      }).catch(() => {})
+    },
     // 打开上传文件对话框
     openUploadFileDialog () {
       this.showUploadFileDialog = true
