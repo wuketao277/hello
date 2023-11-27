@@ -76,13 +76,22 @@ export default {
           userApi.saveBaseInfo(this.form).then(
             res => {
               if (res.status === 200) {
-                // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
-                this.$message({
-                  message: '保存成功！',
-                  type: 'success',
-                  showClose: true
-                })
+                // 检查返回结果
+                if (res.data.result) {
+                  // 将从服务端获取的id赋值给前端显示
+                  this.form.id = res.data.userVO.id
+                  this.$message({
+                    message: '保存成功！',
+                    type: 'success',
+                    showClose: true
+                  })
+                } else {
+                  this.$message({
+                    message: res.data.msg,
+                    type: 'warning',
+                    showClose: true
+                  })
+                }
               }
             })
         } else {
