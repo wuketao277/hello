@@ -28,6 +28,7 @@
                     autocomplete="off"
                     @keyup.enter.native="sureSearchDialog"
                     placeholder="输入关键字后，回车即可搜索。"
+                    @clear="sureSearchDialog"
                     clearable></el-input>
         </el-form-item>
       </el-form>

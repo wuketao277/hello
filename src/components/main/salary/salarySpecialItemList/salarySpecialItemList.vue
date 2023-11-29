@@ -32,6 +32,7 @@
           <el-input v-model="search"
                     autocomplete="off"
                     @keyup.enter.native="sureSearchDialog"
+                    @clear="sureSearchDialog"
                     placeholder="可通过登录名、姓名、月份来查询"
                     clearable
                     style="width:260px;"></el-input>

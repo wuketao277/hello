@@ -30,6 +30,7 @@
           <el-input v-model="search"
                     autocomplete="off"
                     @keyup.enter.native="searchCandidate"
+                    @clear="searchCandidate"
                     placeholder="输入关键字后，回车即可搜索。"
                     clearable></el-input>
         </el-form-item>
