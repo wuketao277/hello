@@ -37,21 +37,35 @@
             {{form.executeUserName}}
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item label="任务标题"
-                        prop="taskTitle">
-            <el-input v-model="form.taskTitle"></el-input>
+          <el-form-item label="候选人">
+            <el-button type="text"
+                       @click="editCandidate(null, form.relativeCandidateId)">{{form.relativeCandidateChineseName}}</el-button>
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
           <el-form-item label="执行日期"
                         prop="executeDate">
             <el-date-picker type="date"
                             placeholder="选择日期"
                             v-model="form.executeDate"
                             style="width: 100%;"></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="18">
+          <el-form-item label="任务标题"
+                        prop="taskTitle">
+            <el-input v-model="form.taskTitle"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="24">
+          <el-form-item label="任务内容">
+            <el-input type="textarea"
+                      v-model="form.taskContent"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -67,14 +81,6 @@
                            :key="user"
                            :label="user">{{user.username}}</el-checkbox>
             </el-checkbox-group>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :span="24">
-          <el-form-item label="任务内容">
-            <el-input type="textarea"
-                      v-model="form.taskContent"></el-input>
           </el-form-item>
         </el-col>
       </el-row>

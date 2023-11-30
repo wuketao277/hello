@@ -132,7 +132,6 @@ export default {
       this.query()
     },
     formatBoolean (row) {
-      debugger
       if (row.checkKPI) {
         return '考核'
       }

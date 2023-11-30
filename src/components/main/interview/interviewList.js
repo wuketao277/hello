@@ -176,7 +176,6 @@ export default {
     this.query()
     clientApi.findAll().then(res => {
       if (res.status === 200) {
-        debugger
         this.clientList = res.data
         this.clientList.push({
           'chineseName': '理想-集团'

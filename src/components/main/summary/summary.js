@@ -52,7 +52,6 @@ export default {
   methods: {
     // 当日入职列表显示控制
     showTodayOnboardTable () {
-      debugger
       let v = this.todayOnboardList.length > 0
       return v
     },
@@ -300,7 +299,6 @@ export default {
         }
         this.endDate = commonJs.getYYYY_MM_dd(new Date(Date.parse(this.startDate) + 6 * 24 * 60 * 60 * 1000))
       } else if (type === 'month') {
-        debugger
         let month = new Date().getMonth() + 1
         month = month < 10 ? '0' + month : month
         this.startDate = new Date().getFullYear() + '-' + month + '-01'

@@ -543,7 +543,7 @@
                   :key="task.id"
                   style="text-align:left;">
             <el-col :span="2">
-              <div class="grid-content bg-purple">{{task.executeRealName}}</div>
+              <div class="grid-content bg-purple">{{task.executeUserName}}</div>
             </el-col>
             <el-col :span="4">
               <div class="grid-content bg-purple">{{task.executeDate.substr(0,10)}}</div>

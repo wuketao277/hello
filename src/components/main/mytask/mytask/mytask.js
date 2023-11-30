@@ -17,7 +17,9 @@ export default {
         executeUserName: '',
         executeRealName: '',
         finished: false,
-        executeResult: ''
+        executeResult: '',
+        relativeCandidateId: null,
+        relativeCandidateChineseName: null
       },
       rules: {
         taskTitle: [{
@@ -138,6 +140,16 @@ export default {
             })
           }
         })
+    },
+    // 编辑候选人
+    editCandidate (index, candidateId) {
+      this.$router.push({
+        path: '/background.html/candidate/candidate',
+        query: {
+          mode: 'modify',
+          candidateId: candidateId
+        }
+      })
     }
   },
   computed: {},

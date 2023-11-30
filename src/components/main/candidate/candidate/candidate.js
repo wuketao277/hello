@@ -111,6 +111,7 @@ export default {
         taskTitle: '',
         taskContent: '',
         relativeCandidateId: null,
+        relativeCandidateChineseName: null,
         finished: false,
         executeResult: ''
       },
@@ -777,14 +778,23 @@ export default {
     },
     // 保存任务
     saveTask () {
-      this.newTask.relativeCandidateId = this.form.id
-      myTaskApi.saveTaskToSelf(this.newTask).then(
-        res => {
-          if (res.status === 200) {
-            // 重新获取任务列表
-            this.queryTask()
-          }
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存候选人信息！',
+          type: 'warning',
+          showClose: true
         })
+      } else {
+        this.newTask.relativeCandidateId = this.form.id
+        this.newTask.relativeCandidateChineseName = this.form.chineseName
+        myTaskApi.saveTaskToSelf(this.newTask).then(
+          res => {
+            if (res.status === 200) {
+              // 重新获取任务列表
+              this.queryTask()
+            }
+          })
+      }
     },
     // 打开上传文件对话框
     openUploadFileDialog () {

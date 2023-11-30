@@ -31,7 +31,6 @@ export default {
   methods: {
     // 下载文件
     downloadFile (row) {
-      debugger
       uploadFileApi.downloadPreCheck(row.uuid).then(res => {
         if (res.status === 200) {
           if (res.data.length === 0) {
@@ -48,7 +47,6 @@ export default {
     },
     // 删除文件
     deleteFile (row) {
-      debugger
       this.$confirm('确认要删除文件“' + row.originalFileName + '”吗？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

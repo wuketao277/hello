@@ -17,16 +17,18 @@
                  size="small"
                  icon="el-icon-share"
                  @click="detailTask">查 看</el-button>
-      <el-form @submit.native.prevent
+      <!-- <el-form @submit.native.prevent
                style="display:inline-block;width:250px;">
         <el-form-item label
                       style="mergin-bottom:0px;">
           <el-input v-model="search"
                     autocomplete="off"
                     @keyup.enter.native="sureSearchDialog"
+                    @clear="sureSearchDialog"
+                    clearable
                     placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
-      </el-form>
+      </el-form> -->
       <el-button type="primary"
                  size="small"
                  icon="el-icon-search"
@@ -44,12 +46,17 @@
       <el-table-column type="index"
                        label="序号"
                        width="50"></el-table-column>
-      <el-table-column prop="id"
-                       label="id"
-                       width="100"></el-table-column>
       <el-table-column prop="executeUserName"
                        label="执行人"
-                       width="120"></el-table-column>
+                       width="100"></el-table-column>
+      <el-table-column label="候选人"
+                       width="80"
+                       show-overflow-tooltip>
+        <template slot-scope="scope">
+          <el-button type="text"
+                     @click="editCandidate(scope.$index, scope.row.relativeCandidateId)">{{scope.row.relativeCandidateChineseName}}</el-button>
+        </template>
+      </el-table-column>
       <el-table-column prop="taskTitle"
                        label="任务标题"
                        width="200"

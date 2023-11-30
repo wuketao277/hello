@@ -788,9 +788,17 @@
                 @row-dblclick="handleTaskDblClick"
                 @current-change="taskRowChange"
                 style="width: 100%">
+        <el-table-column label="候选人"
+                         width="80"
+                         show-overflow-tooltip>
+          <template slot-scope="scope">
+            <el-button type="text"
+                       @click="editCandidate(scope.$index, scope.row.relativeCandidateId)">{{scope.row.relativeCandidateChineseName}}</el-button>
+          </template>
+        </el-table-column>
         <el-table-column prop="taskTitle"
                          label="任务标题"
-                         width="180"
+                         width="280"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="taskContent"
                          label="任务内容"
