@@ -56,7 +56,7 @@ export default {
     // 添加PRC
     addPRC () {
       this.$router.push({
-        path: '/prc/prc'
+        path: '/background.html/prc/prc'
       })
     },
     // 检查是否选择了一条记录
@@ -75,7 +75,7 @@ export default {
     detailPRC () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/prc/prc',
+          path: '/background.html/prc/prc',
           query: {
             mode: 'detail',
             prc: this.currentRow
@@ -87,7 +87,7 @@ export default {
     modifyPRC () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/prc/prc',
+          path: '/background.html/prc/prc',
           query: {
             mode: 'modify',
             prc: this.currentRow
