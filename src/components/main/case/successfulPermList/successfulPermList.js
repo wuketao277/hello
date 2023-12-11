@@ -248,7 +248,7 @@ export default {
         })
       }
     })
-    userApi.findAllEnabled().then(res => {
+    userApi.findAll().then(res => {
       if (res.status === 200) {
         this.consultants = res.data
         this.cws = res.data

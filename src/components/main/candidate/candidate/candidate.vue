@@ -294,6 +294,12 @@
                           placement="top">
                 <el-checkbox label="RESUME">简历内容真实准确</el-checkbox>
               </el-tooltip>
+              <el-tooltip class="item"
+                          effect="dark"
+                          content="您有竞业协议吗？您觉得如果您离职了会启用吗？"
+                          placement="top">
+                <el-checkbox label="PROHIBITION">竞业协议检查</el-checkbox>
+              </el-tooltip>
             </el-checkbox-group>
           </el-form-item>
         </el-col>

@@ -5,6 +5,10 @@ export default {
   findSelf () {
     return axios.get('/user/findSelf')
   },
+  // 查找所有用户
+  findAll () {
+    return axios.get('/user/findAll')
+  },
   // 查找所有正常状态下的用户
   findAllEnabled () {
     return axios.get('/user/findAllEnabled')
