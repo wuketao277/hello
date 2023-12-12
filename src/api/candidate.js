@@ -64,5 +64,11 @@ export default {
   // 通过创建时间和用户查询
   queryByCreateTimeAndCreateUser (params) {
     return axios.post('/candidate/queryByCreateTimeAndCreateUser', params)
+  },
+  // 完成所有必要检查
+  finishAllDoubleCheck (params) {
+    return axios.get('/candidate/finishAllDoubleCheck', {
+      params: params
+    })
   }
 }

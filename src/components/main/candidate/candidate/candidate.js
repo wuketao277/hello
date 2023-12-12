@@ -9,6 +9,9 @@ import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
 import labelApi from '@/api/label'
+import {
+  Promise
+} from 'q'
 
 export default {
   components: {
@@ -447,8 +450,8 @@ export default {
       }
       this.selectCaseDialogShow = true
     },
-    // 保存 新评论
-    saveComment () {
+    // 保存 新评论 同步方法
+    async saveComment () {
       // 必须先保存候选人
       if (this.form.id === null || this.form.id.length === 0) {
         this.$message({
@@ -496,7 +499,14 @@ export default {
       }
       // 如果是保存CVO阶段，必须勾选“必要检查”
       if (this.newComment.phase === 'CVO') {
-        if (this.form.doubleCheck.length === 0) {
+        // 调用后台接口查看必要检查是否都完成
+        let params = {
+          'id': this.form.id
+        }
+        let finish = await candidateApi.finishAllDoubleCheck(params).then(res => {
+          return Promise.resolve(res.data)
+        })
+        if (finish === false) {
           this.$message({
             message: '请勾选必要检查',
             type: 'warning'
