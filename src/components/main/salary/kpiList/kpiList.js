@@ -54,13 +54,13 @@ export default {
     },
     // 新增
     add () {
-      this.$router.push('/salary/kpiworkdaysadjust')
+      this.$router.push('/background.html/salary/kpiworkdaysadjust')
     },
     // 修改
     modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/kpiworkdaysadjust',
+          path: '/background.html/salary/kpiworkdaysadjust',
           query: {
             mode: 'modify',
             kpiworkdaysadjust: this.currentRow
@@ -72,7 +72,7 @@ export default {
     detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
-          path: '/salary/kpiworkdaysadjust',
+          path: '/background.html/salary/kpiworkdaysadjust',
           query: {
             mode: 'detail',
             kpiworkdaysadjust: this.currentRow

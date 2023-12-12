@@ -3,7 +3,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right"
                    style="margin-bottom:20px;">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/salary/kpiworkdaysadjustList'}">KPI工作日调整列表</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/background.html/salary/kpiworkdaysadjustList'}">KPI工作日调整列表</el-breadcrumb-item>
       <el-breadcrumb-item>KPI工作日调整</el-breadcrumb-item>
     </el-breadcrumb>
     <!--工具栏，只有模式为新增或修改时才显示-->
