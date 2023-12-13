@@ -85,12 +85,12 @@
       </el-form>
     </div>
     <div style="text-align:left;">
-      <el-row style="margin-bottom:30px;">
+      <el-row style="margin-bottom:60px;">
         <el-col :span="24">
           <div id="offerDate"
                :class="divClass">
             <el-row>
-              <el-col :span="12">offer Billing Sum：{{offerDateBilling}}</el-col>
+              <el-col :span="12">offer Billing 总和：{{offerDateBilling}}</el-col>
             </el-row>
             <div id="offerDateChart"
                  :class="chartClass"></div>
@@ -98,19 +98,19 @@
           <div id="paymentDate"
                :class="divClass">
             <el-row>
-              <el-col :span="12">payment Billing Sum：{{paymentDateBilling}}</el-col>
+              <el-col :span="12">payment Billing 总和：{{paymentDateBilling}}</el-col>
             </el-row>
             <div id="paymentDateChart"
                  :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
-      <el-row style="margin-bottom:30px;">
+      <el-row style="margin-bottom:60px;">
         <el-col :span="24">
           <div id="actualPaymentDate"
                :class="divClass">
             <el-row>
-              <el-col :span="12">已付 Billing Sum：{{actualPaymentDateBilling}}</el-col>
+              <el-col :span="12">已付 Billing 总和：{{actualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="actualPaymentDateChart"
                  :class="chartClass"></div>
@@ -118,19 +118,19 @@
           <div id="unactualPaymentDate"
                :class="divClass">
             <el-row>
-              <el-col :span="12">未付 Billing Sum：{{unactualPaymentDateBilling}}</el-col>
+              <el-col :span="12">未付 Billing 总和：{{unactualPaymentDateBilling}}</el-col>
             </el-row>
             <div id="unactualPaymentDateChart"
                  :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row style="margin-bottom:60px;">
         <el-col :span="24">
           <div id="personalOfferData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Personal Offer GP Data</el-col>
+              <el-col :span="12">个人 Offer GP 总和</el-col>
             </el-row>
             <div id="personalOfferDataChart"
                  :class="chartClass"></div>
@@ -138,37 +138,47 @@
           <div id="invoiceDateData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Invoice Sum：{{invoiceDateBilling}}</el-col>
+              <el-col :span="12">开票总和：{{invoiceDateBilling}}</el-col>
             </el-row>
             <div id="invoiceDateDataChart"
                  :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row style="margin-bottom:60px;">
         <el-col :span="24">
           <div id="personalReceiveData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Personal Receive GP Data</el-col>
+              <el-col :span="12">个人到账 GP 总和</el-col>
             </el-row>
             <div id="personalReceiveDataChart"
                  :class="chartClass"></div>
           </div>
           <div id="recruiterOfferBillingData"
                :class="divClass">
-            <span>Recruiter Offer Billing Data</span>
+            <span>Recruiter Offer Billing 总和</span>
             <div id="recruiterOfferBillingDataChart"
                  :class="chartClass"></div>
           </div>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row style="margin-bottom:60px;">
+        <el-col :span="24">
+          <div id="recruiterMonthlyOfferBilling"
+               :class="divClass">
+            <span>Recruiter 月均 Offer Billing</span>
+            <div id="recruiterMonthlyOfferBillingChart"
+                 :class="chartClass"></div>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row style="margin-bottom:60px;">
         <el-col :span="24">
           <div id="teamOfferGPData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Team Offer GP Data</el-col>
+              <el-col :span="12">Team Offer GP 总和</el-col>
             </el-row>
             <div id="teamOfferGPDataChart"
                  :class="chartClass"></div>
@@ -176,7 +186,7 @@
           <div id="avgOfferData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">Average Offer GP Data</el-col>
+              <el-col :span="12">个人月均 Offer GP</el-col>
             </el-row>
             <div id="avgOfferDataChart"
                  :class="chartClass"></div>

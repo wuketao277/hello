@@ -390,6 +390,33 @@ export default {
                 }
               }]
             })
+            let recruiterMonthlyOfferBillingChart = this.$echarts.init(document.getElementById('recruiterMonthlyOfferBillingChart'))
+            recruiterMonthlyOfferBillingChart.setOption({
+              title: {
+                text: '',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.recruiterMonthlyOfferBillingData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
+                  }
+                }
+              }]
+            })
             let teamOfferGPDataChart = this.$echarts.init(document.getElementById('teamOfferGPDataChart'))
             teamOfferGPDataChart.setOption({
               title: {
