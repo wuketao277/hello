@@ -444,6 +444,33 @@ export default {
                 }
               }]
             })
+            let teamMonthlyOfferGPDataChart = this.$echarts.init(document.getElementById('teamMonthlyOfferGPDataChart'))
+            teamMonthlyOfferGPDataChart.setOption({
+              title: {
+                text: '',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              series: [{
+                type: 'pie',
+                radius: '70%',
+                data: res.data.teamMonthlyOfferGPData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                },
+                label: {
+                  normal: {
+                    formatter: '{b} {c}'
+                  }
+                }
+              }]
+            })
             let avgOfferDataChart = this.$echarts.init(document.getElementById('avgOfferDataChart'))
             avgOfferDataChart.setOption({
               title: {

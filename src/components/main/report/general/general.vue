@@ -171,6 +171,14 @@
             <div id="recruiterMonthlyOfferBillingChart"
                  :class="chartClass"></div>
           </div>
+          <div id="avgOfferData"
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">个人月均 Offer GP</el-col>
+            </el-row>
+            <div id="avgOfferDataChart"
+                 :class="chartClass"></div>
+          </div>
         </el-col>
       </el-row>
       <el-row style="margin-bottom:60px;">
@@ -183,12 +191,12 @@
             <div id="teamOfferGPDataChart"
                  :class="chartClass"></div>
           </div>
-          <div id="avgOfferData"
+          <div id="teamMonthlyOfferGPData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">个人月均 Offer GP</el-col>
+              <el-col :span="12">Team 月均 Offer GP</el-col>
             </el-row>
-            <div id="avgOfferDataChart"
+            <div id="teamMonthlyOfferGPDataChart"
                  :class="chartClass"></div>
           </div>
         </el-col>
