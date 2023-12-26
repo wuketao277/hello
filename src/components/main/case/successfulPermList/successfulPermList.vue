@@ -100,6 +100,11 @@
                          width="120"
                          label="On Board Date"
                          show-overflow-tooltip></el-table-column>
+        <el-table-column prop="guaranteeDate"
+                         :formatter="formatDate"
+                         width="130"
+                         label="Guarantee Date"
+                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="invoiceDate"
                          :formatter="formatDate"
                          width="120"
@@ -476,10 +481,12 @@
             </el-col>
           </el-row>
           <el-row :gutter="20">
-            <el-col :span="6">
+            <el-col :span="10">
               <el-form-item label="Shortcut"
                             label-width="80px">
                 <el-checkbox v-model="search.nonPaymentDue">到期未付款</el-checkbox>
+                <el-checkbox v-model="search.nonOnboard">未入职</el-checkbox>
+                <el-checkbox v-model="search.guaranteePeriod">保证期</el-checkbox>
               </el-form-item>
             </el-col>
           </el-row>

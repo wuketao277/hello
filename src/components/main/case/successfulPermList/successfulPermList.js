@@ -217,7 +217,9 @@ export default {
     // 清空查询条件
     clearQueryCondition () {
       this.search = {
-        nonPaymentDue: false
+        nonPaymentDue: false,
+        nonOnboard: false,
+        guaranteePeriod: false
       }
       window.localStorage['successfulPermList.search'] = this.search
     }
