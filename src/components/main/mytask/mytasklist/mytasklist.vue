@@ -17,7 +17,7 @@
                  size="small"
                  icon="el-icon-share"
                  @click="detailTask">查 看</el-button>
-      <!-- <el-form @submit.native.prevent
+      <el-form @submit.native.prevent
                style="display:inline-block;width:250px;">
         <el-form-item label
                       style="mergin-bottom:0px;">
@@ -28,7 +28,7 @@
                     clearable
                     placeholder="输入关键字后，回车即可搜索。"></el-input>
         </el-form-item>
-      </el-form> -->
+      </el-form>
       <el-button type="primary"
                  size="small"
                  icon="el-icon-search"

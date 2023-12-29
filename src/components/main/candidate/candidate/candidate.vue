@@ -300,6 +300,12 @@
                           placement="top">
                 <el-checkbox label="PROHIBITION">竞业协议检查</el-checkbox>
               </el-tooltip>
+              <el-tooltip class="item"
+                          effect="dark"
+                          content="微信发给候选人岗位信息，候选人回复确认后，发到业务群。"
+                          placement="top">
+                <el-checkbox label="CANDIDATECONFIRM">候选人确认岗位信息</el-checkbox>
+              </el-tooltip>
             </el-checkbox-group>
           </el-form-item>
         </el-col>
