@@ -16,7 +16,7 @@ export default {
     'selectUser': selectUser,
     'selectHr': selectHr
   },
-  data() {
+  data () {
     return {
       mode: 'add', // 默认操作模式为新建
       consultantIndex: 1, // 顾问索引
@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     // 跳转到编辑职位
-    jumpToTitle() {
+    jumpToTitle () {
       if (this.form.caseId !== '') {
         this.$router.push({
           path: '/background.html/case/case',
@@ -207,7 +207,7 @@ export default {
       }
     },
     // 跳转到编辑候选人
-    jumpToCandidate() {
+    jumpToCandidate () {
       if (this.form.candidateId !== '') {
         this.$router.push({
           path: '/background.html/candidate/candidate',
@@ -219,7 +219,7 @@ export default {
       }
     },
     // 增加顾问
-    addConsultant() {
+    addConsultant () {
       if (!this.consultantColumnShow1) {
         this.consultantColumnShow1 = true
       } else if (!this.consultantColumnShow2) {
@@ -263,14 +263,14 @@ export default {
       }
     },
     // 获取日期部分
-    getDateStr(dateStr) {
+    getDateStr (dateStr) {
       if (typeof (dateStr) !== 'undefined' && dateStr !== null && dateStr.length > 10) {
         return dateStr.substr(0, 10)
       }
       return dateStr
     },
     // 显示控制
-    showControl(key) {
+    showControl (key) {
       if (key === 'approveStatus' || key === 'commissionDate' || key === 'actualPaymentDate' || key === 'calcGP' || key === 'invoiceDate') {
         return commonJS.isAdminInArray(this.roles)
       } else if (key === 'save') {
@@ -282,7 +282,7 @@ export default {
       }
     },
     // 编辑候选人
-    editCandidate(index, row) {
+    editCandidate (index, row) {
       this.$router.push({
         path: '/background.html/candidate/candidate',
         query: {
@@ -292,7 +292,7 @@ export default {
       })
     },
     // 取消
-    cancel() {
+    cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {
         this.mode = this.$route.query.mode
         this.form = this.$route.query.successfulPerm
@@ -356,7 +356,7 @@ export default {
       }
     },
     // 保存
-    save() {
+    save () {
       if (this.form.type !== 'coach') {
         if (this.form.clientId === '') {
           this.$message({
@@ -443,15 +443,15 @@ export default {
       })
     },
     // 职位候选人变化
-    rowChange(val) {
+    rowChange (val) {
       this.curCandidateForCase = val
     },
     // 打开“选择候选人”对话框
-    openSelectCandidateDialog() {
+    openSelectCandidateDialog () {
       this.selectCandidateDialogShow = true
     },
     // “选择候选人”对话框返回
-    sureSelectCandidateDialog(val) {
+    sureSelectCandidateDialog (val) {
       // 首先关闭对话框
       this.selectCandidateDialogShow = false
       this.form.candidateId = val.id
@@ -459,23 +459,23 @@ export default {
       this.form.candidateEnglishName = val.englishName
     },
     // 打开“选择职位”对话框
-    openSelectCaseDialog() {
+    openSelectCaseDialog () {
       this.selectCaseDialogShow = true
     },
     // “选择职位”对话框返回
-    sureSelectCaseDialog(val) {
+    sureSelectCaseDialog (val) {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       this.form.caseId = val.id
       this.form.title = val.title
     },
     // 打开“选择顾问”对话框
-    openSelectConsultantDialog(val) {
+    openSelectConsultantDialog (val) {
       this.consultantIndex = val
       this.selectConsultantDialogShow = true
     },
     // 删除“选择顾问”
-    deleteConsultant(val) {
+    deleteConsultant (val) {
       if (val === 'cw') {
         this.form.cwId = ''
         this.form.cwUserName = ''
@@ -598,7 +598,7 @@ export default {
       }
     },
     // “选择顾问”对话框返回
-    sureSelectConsultantDialog(val) {
+    sureSelectConsultantDialog (val) {
       // 首先关闭对话框
       this.selectConsultantDialogShow = false
       if (this.consultantIndex === '1') {
@@ -684,11 +684,11 @@ export default {
       }
     },
     // 打开“选择CW”对话框
-    openSelectCWDialog() {
+    openSelectCWDialog () {
       this.selectCWDialogShow = true
     },
     // “选择CW”对话框返回
-    sureSelectCWDialog(val) {
+    sureSelectCWDialog (val) {
       // 首先关闭对话框
       this.selectCWDialogShow = false
       this.form.cwId = val.id
@@ -696,15 +696,15 @@ export default {
       this.form.cwRealName = val.realname
     },
     // 打开“选择BD”对话框
-    openSelectBDDialog() {
+    openSelectBDDialog () {
       this.selectBDDialogShow = true
     },
     // 打开“选择Leader”对话框
-    openSelectLeaderDialog() {
+    openSelectLeaderDialog () {
       this.selectLeaderDialogShow = true
     },
     // “选择BD”对话框返回
-    sureSelectBDDialog(val) {
+    sureSelectBDDialog (val) {
       // 首先关闭对话框
       this.selectBDDialogShow = false
       this.form.bdId = val.id
@@ -712,7 +712,7 @@ export default {
       this.form.bdRealName = val.realname
     },
     // “选择Leader”对话框返回
-    sureSelectLeaderDialog(val) {
+    sureSelectLeaderDialog (val) {
       // 首先关闭对话框
       this.selectLeaderDialogShow = false
       this.form.leaderId = val.id
@@ -720,7 +720,7 @@ export default {
       this.form.leaderRealName = val.realname
     },
     // “选择hr”对话框返回
-    sureSelectHRDialog(val) {
+    sureSelectHRDialog (val) {
       // 首先关闭对话框
       this.selectHRDialogShow = false
       this.form.hrId = val.id
@@ -810,7 +810,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {
