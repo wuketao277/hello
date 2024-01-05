@@ -263,8 +263,10 @@
           <el-form-item label="组织架构"
                         prop="companyStructure">
             <el-input v-model="form.companyStructure"
-                      placeholder="汇报给谁，他的title是什么？和您平级的有几位？您现在带团队吗？带多少个人团队呢？从什么时候开始带团队，下面的团队是怎么分工的呢？工作内容"
+                      type="textarea"
+                      :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>

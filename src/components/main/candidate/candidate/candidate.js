@@ -55,7 +55,10 @@ export default {
         lables: [],
         motivation: '请问您会考虑看机会吗？（什么原因不考虑呢？那您想看哪些品牌呢？）您现在考虑看机会最看重的点是什么呢？想看什么方向的机会？',
         interviewHistory: '您面过xx吗？什么时候面的（六个月之内面过，我们不能重复推荐）？面下来情况怎么样？面试官是谁？',
-        specialItem: []
+        specialItem: [],
+        companyStructure: '你所在的部门叫什么，现在汇报给谁，他的title是什么负责什么？\r\n' +
+          '和你平级的有几位？他们都负责什么，你们是怎么分工的？\r\n' +
+          '你带多少人，你的下属是如何分工？\r\n' + '和你平级的几位负责的团队有多少人？'
       },
       phaseOptions: commonJS.phaseOptions,
       // 新评论
