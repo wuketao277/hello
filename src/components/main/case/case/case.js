@@ -533,7 +533,7 @@ export default {
         caseApi.deleteById(params).then(res => {
           if (res.status === 200) {
             this.$router.push({
-              path: '/case/caselist'
+              path: '/background.html/case/caselist'
             })
           } else {
             this.$message.error('删除失败！')
