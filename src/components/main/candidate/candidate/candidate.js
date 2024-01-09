@@ -99,8 +99,8 @@ export default {
           trigger: 'blur'
         }],
         companyName: [{
-          max: 200,
-          message: '公司名称长度不能大于200个字符',
+          max: 2000,
+          message: '公司名称长度不能大于2000个字符',
           trigger: 'blur'
         }],
         englishLevel: [{
