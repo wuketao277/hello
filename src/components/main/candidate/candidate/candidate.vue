@@ -290,7 +290,7 @@
                         label-width="0px">
             <el-button type="primary"
                        size="small"
-                       @click="clearupSchool">整理</el-button>
+                       @click="clearupSchool">格式化</el-button>
           </el-form-item>
         </el-col>
       </el-row>

@@ -1010,6 +1010,10 @@ export default {
         }
         this.form.schoolName += schoolList.pop()
       }
+      // 出掉多余的空格
+      while (this.form.schoolName.indexOf('  ') > -1) {
+        this.form.schoolName = this.form.schoolName.replaceAll('  ', ' ')
+      }
     }
   },
   computed: {},
