@@ -272,7 +272,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="24">
+        <el-col :span="22">
           <el-form-item label="学校"
                         prop="schoolName">
             <el-input v-model="form.schoolName"
@@ -282,6 +282,15 @@
                       maxlength="200"
                       show-word-limit
                       clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="2">
+          <el-form-item label=""
+                        prop=""
+                        label-width="0px">
+            <el-button type="primary"
+                       size="small"
+                       @click="clearupSchool">整理</el-button>
           </el-form-item>
         </el-col>
       </el-row>
@@ -500,7 +509,6 @@
           <el-table-column prop="inputTime"
                            label="评论时间"
                            width="160"
-                           :formatter="formatTime"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="phase"
                            label="评论阶段"

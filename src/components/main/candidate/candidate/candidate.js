@@ -969,6 +969,47 @@ export default {
     // 标签变更事件
     handleLabelsChange () {
       this.save()
+    },
+    // 整理学校
+    clearupSchool () {
+      if (this.form.schoolName === null || this.form.schoolName.length === 0) {
+        return
+      }
+      // 把回车换成空格，整理成1行
+      let schoolName = this.form.schoolName.replace(/\r?\n/g, ' ')
+      // 将学历拆分成数组
+      let schoolList = []
+      while (true) {
+        let index = schoolName.lastIndexOf('大学')
+        if (index === -1) {
+          // 没找到关键字，直接把整个字符串放入数组中
+          schoolList.push(schoolName)
+          break
+        } else {
+          while (true) {
+            if (schoolName[index] === ' ') {
+              // 将一段学历放到数组中
+              schoolList.push(schoolName.substr(index + 1))
+              // 将剩余部分赋值给原来的字符串中
+              schoolName = schoolName.substr(0, index)
+              break
+            } else if (index === 0) {
+              schoolList.push(schoolName)
+              schoolName = ''
+              break
+            }
+            index--
+          }
+        }
+      }
+      // 重新拼接学校名称
+      this.form.schoolName = ''
+      while (schoolList.length > 0) {
+        if (this.form.schoolName.length > 0) {
+          this.form.schoolName += '\r\n'
+        }
+        this.form.schoolName += schoolList.pop()
+      }
     }
   },
   computed: {},

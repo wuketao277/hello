@@ -38,11 +38,11 @@
     <el-table :data="table.content"
               @current-change="handleCurrentChange"
               @row-dblclick="modifyTask"
-              :cell-class-name="setCellClassName">
-      :border="true"
-      :highlight-current-row="true"
-      :stripe="true"
-      style="width: 100%">
+              :cell-class-name="setCellClassName"
+              :border="true"
+              :highlight-current-row="true"
+              :stripe="true"
+              style="width: 100%">
       <el-table-column type="index"
                        label="序号"
                        width="50"></el-table-column>
