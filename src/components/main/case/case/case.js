@@ -47,7 +47,8 @@ export default {
         pipeline: '',
         show4JobType: [],
         question: '',
-        sourcingMap: ''
+        sourcingMap: '',
+        top3Skills: ''
       },
       attention: false,
       rules: {
@@ -292,6 +293,7 @@ export default {
         this.form.pipeline = ''
         this.form.show4JobType = []
         this.form.sourcingMap = ''
+        this.form.top3Skills = ''
       }
     },
     // 保存

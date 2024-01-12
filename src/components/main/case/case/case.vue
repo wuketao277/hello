@@ -204,6 +204,18 @@
       </el-row>
       <el-row :gutter="12">
         <el-col>
+          <el-form-item label="Top 3 Skills">
+            <el-input type="textarea"
+                      v-model="form.top3Skills"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
           <el-form-item label="职位描述">
             <el-input type="textarea"
                       v-model="form.description"
