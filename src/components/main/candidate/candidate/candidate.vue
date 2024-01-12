@@ -418,7 +418,7 @@
                            width="50"
                            label="序号"></el-table-column>
 
-          <el-table-column width="200"
+          <el-table-column width="270"
                            label="操作">
             <template slot-scope="scope">
               <el-button v-if="!isAttention(scope.row)"
@@ -432,6 +432,9 @@
               <el-button size="mini"
                          type="danger"
                          @click="deleteRecommend(scope.$index, scope.row)">删除推荐</el-button>
+              <el-button size="mini"
+                         type="primary"
+                         @click="makeConfirmStr(scope.$index, scope.row)">话术</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="clientName"

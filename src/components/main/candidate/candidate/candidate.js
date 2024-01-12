@@ -428,6 +428,21 @@ export default {
         }
       })
     },
+    // 生成确认岗位信息话术
+    makeConfirmStr (index, row) {
+      let s = ''
+      if (this.form.gender === 'MALE') {
+        s = '先生'
+      } else if (this.form.gender === 'FEMALE') {
+        s = '女士'
+      }
+      this.$message({
+        dangerouslyUseHTMLString: true,
+        message: '<span>' + this.form.chineseName + s + '，现在给您推荐的是' + row.clientName + '的' + row.title + '岗位。</br>' +
+          '您的电话是：' + this.form.phoneNo + '</br>' +
+          '您的邮箱是：' + this.form.email + '</br>' + '请确认！</span>'
+      })
+    },
     // 编辑客户
     editClient (index, row) {
       // 只有全职的同事可以跳转到客户列表
