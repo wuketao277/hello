@@ -986,7 +986,7 @@ export default {
       this.save()
     },
     // 整理学校
-    clearupSchool () {
+    formatSchool () {
       if (this.form.schoolName === null || this.form.schoolName.length === 0) {
         return
       }
@@ -1028,6 +1028,51 @@ export default {
       // 出掉多余的空格
       while (this.form.schoolName.indexOf('  ') > -1) {
         this.form.schoolName = this.form.schoolName.replaceAll('  ', ' ')
+      }
+    },
+    // 整理公司
+    formatCompany () {
+      if (this.form.companyName === null || this.form.companyName.length === 0) {
+        return
+      }
+      // 把回车换成空格，整理成1行
+      let companyName = this.form.companyName.replace(/\r?\n/g, ' ')
+      // 拆分成数组
+      let companyList = []
+      while (true) {
+        let index = companyName.lastIndexOf('公司')
+        if (index === -1) {
+          // 没找到关键字，直接把整个字符串放入数组中
+          companyList.push(companyName)
+          break
+        } else {
+          while (true) {
+            if (companyName[index] === ' ') {
+              // 将一段学历放到数组中
+              companyList.push(companyName.substr(index + 1))
+              // 将剩余部分赋值给原来的字符串中
+              companyName = companyName.substr(0, index)
+              break
+            } else if (index === 0) {
+              companyList.push(companyName)
+              companyName = ''
+              break
+            }
+            index--
+          }
+        }
+      }
+      // 重新拼接学校名称
+      this.form.companyName = ''
+      while (companyList.length > 0) {
+        if (this.form.companyName.length > 0) {
+          this.form.companyName += '\r\n'
+        }
+        this.form.companyName += companyList.pop()
+      }
+      // 出掉多余的空格
+      while (this.form.companyName.indexOf('  ') > -1) {
+        this.form.companyName = this.form.companyName.replaceAll('  ', ' ')
       }
     }
   },

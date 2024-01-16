@@ -190,7 +190,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="24">
+        <el-col :span="22">
           <el-form-item label="公司"
                         prop="companyName">
             <el-input placeholder="填写公司名称、入职离职日期、岗位。多段工作请换行填写。"
@@ -202,6 +202,17 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="2">
+          <el-form-item label=""
+                        prop=""
+                        label-width="0px">
+            <el-button type="primary"
+                       size="small"
+                       @click="formatCompany">格式化</el-button>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
         <el-col :span="8">
           <el-form-item label="现薪资"
                         prop="currentMoney">
@@ -290,7 +301,7 @@
                         label-width="0px">
             <el-button type="primary"
                        size="small"
-                       @click="clearupSchool">格式化</el-button>
+                       @click="formatSchool">格式化</el-button>
           </el-form-item>
         </el-col>
       </el-row>
