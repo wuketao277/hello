@@ -212,7 +212,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="8">
           <el-form-item label="现薪资"
                         prop="currentMoney">
@@ -269,7 +269,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row :gutter="12">
         <el-col :span="24">
           <el-form-item label="组织架构"
                         prop="companyStructure">
