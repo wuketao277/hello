@@ -33,6 +33,10 @@ export default {
   queryAllCaseAttention () {
     return axios.get('/case/queryAllCaseAttention')
   },
+  // 查询所有用户的所有关注信息
+  queryAllUserCaseAttention () {
+    return axios.get('/case/queryAllUserCaseAttention')
+  },
   // 查询当前用户的所有对接职位
   queryAllCWCase () {
     return axios.get('/case/queryAllCWCase')

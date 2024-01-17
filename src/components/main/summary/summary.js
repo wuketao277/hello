@@ -374,6 +374,10 @@ export default {
         // 保存KPI的日期和按钮只有管理员能看到
         return commonJs.isAdmin()
       }
+      if (url === '/queryAllUserCaseAttention') {
+        // 查询所有关注职位按钮，只有管理员能看到
+        return commonJs.isAdmin()
+      }
       return false
     },
     // 保存KPI
@@ -548,6 +552,20 @@ export default {
     // 查询当前用户所有职位关注
     queryAllCaseAttention () {
       caseApi.queryAllCaseAttention().then(res => {
+        if (res.status === 200) {
+          this.caseAttention4ClientVOArray = res.data
+        } else {
+          this.$message({
+            message: '查询异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
+    },
+    // 查询所有用户所有职位关注
+    queryAllUserCaseAttention () {
+      caseApi.queryAllUserCaseAttention().then(res => {
         if (res.status === 200) {
           this.caseAttention4ClientVOArray = res.data
         } else {
