@@ -995,7 +995,7 @@ export default {
       // 将学历拆分成数组
       let schoolList = []
       while (true) {
-        let index = schoolName.lastIndexOf('大学')
+        let index = schoolName.lastIndexOf('大学') > schoolName.lastIndexOf('学院') ? schoolName.lastIndexOf('大学') : schoolName.lastIndexOf('学院')
         if (index === -1) {
           // 没找到关键字，直接把整个字符串放入数组中
           schoolList.push(schoolName)
