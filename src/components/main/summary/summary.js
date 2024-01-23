@@ -445,6 +445,16 @@ export default {
         }
       })
     },
+    // 查看用户
+    detailUser (userName) {
+      this.$router.push({
+        path: '/background.html/user/user',
+        query: {
+          mode: 'modify',
+          userName: userName
+        }
+      })
+    },
     // kpi详情展示
     kpiDetail (index, row) {
       if (this.startDate === null || this.endDate === null || this.startDate === '' || this.endDate === '') {

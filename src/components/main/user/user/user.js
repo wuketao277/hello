@@ -131,7 +131,23 @@ export default {
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
       this.mode = this.$route.query.mode
-      this.form = this.$route.query.user
+      if (typeof (this.$route.query.user) !== 'undefined') {
+        this.form = this.$route.query.user
+      } else if (typeof (this.$route.query.userId) !== 'undefined') {
+        userApi.findById(this.$route.query.userId).then(
+          res => {
+            if (res.status === 200) {
+              this.form = res.data
+            }
+          })
+      } else if (typeof (this.$route.query.userName) !== 'undefined') {
+        userApi.findByName(this.$route.query.userName).then(
+          res => {
+            if (res.status === 200) {
+              this.form = res.data
+            }
+          })
+      }
     }
     // 获取所有“客户公司”信息
     clientApi.findAllOrderByChineseName().then(res => {

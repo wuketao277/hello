@@ -35,6 +35,12 @@ export default {
       params: params
     })
   },
+  // 通过姓名查找用户信息
+  findByName (params) {
+    return axios.get('/user/findByName', {
+      params: params
+    })
+  },
   // 查找后台数据
   queryPage (params) {
     return axios.get('/user/queryPage', {
