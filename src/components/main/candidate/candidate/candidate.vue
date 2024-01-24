@@ -237,40 +237,6 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="24">
-          <el-form-item label="离职分析"
-                        prop="dimissionAnalysis">
-            <el-input v-model="form.dimissionAnalysis"
-                      placeholder="时间要多久，如果您走的时候老板给您升职/加薪/转岗您会怎么决定呢？离职状态的话为什么会裸辞，有赔偿金吗（可以表明是主动离职还是被动离职）什么时候可以上岗？"
-                      maxlength="200"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="不匹配原因"
-                        prop="notMatchReason">
-            <el-select v-model="form.notMatchReason"
-                       placeholder="请选择"
-                       style="width:100%"
-                       filterable
-                       clearable>
-              <el-option v-for="reaseon in notMatchReasonList"
-                         :key="reaseon.code"
-                         :value="reaseon.code"
-                         :label="reaseon.name"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="原因详情"
-                        prop="notMatchReasonDetail">
-            <el-input v-model="form.notMatchReasonDetail"
-                      maxlength="400"
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="24">
           <el-form-item label="组织架构"
                         prop="companyStructure">
             <el-input v-model="form.companyStructure"
@@ -356,6 +322,40 @@
                       :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="6000"
                       show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
+          <el-form-item label="离职分析"
+                        prop="dimissionAnalysis">
+            <el-input v-model="form.dimissionAnalysis"
+                      placeholder="时间要多久，如果您走的时候老板给您升职/加薪/转岗您会怎么决定呢？离职状态的话为什么会裸辞，有赔偿金吗（可以表明是主动离职还是被动离职）什么时候可以上岗？"
+                      maxlength="200"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="不匹配原因"
+                        prop="notMatchReason">
+            <el-select v-model="form.notMatchReason"
+                       placeholder="请选择"
+                       style="width:100%"
+                       filterable
+                       clearable>
+              <el-option v-for="reaseon in notMatchReasonList"
+                         :key="reaseon.code"
+                         :value="reaseon.code"
+                         :label="reaseon.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="原因详情"
+                        prop="notMatchReasonDetail">
+            <el-input v-model="form.notMatchReasonDetail"
+                      maxlength="400"
                       clearable></el-input>
           </el-form-item>
         </el-col>
