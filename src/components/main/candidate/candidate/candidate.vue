@@ -490,6 +490,9 @@
                              :label="item.label"
                              :value="item.value"></el-option>
                 </el-select>
+                <el-button type="text"
+                           v-if="showMakeCVOButtonFlag"
+                           @click="makeCVO">生成CVO</el-button>
               </el-form-item>
             </el-col>
             <el-col :span="15">

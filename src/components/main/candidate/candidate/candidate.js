@@ -28,6 +28,7 @@ export default {
       selectedCase: null, // 选中职位
       mode: 'add', // 默认操作模式为新建
       resume: '', // 简历
+      showMakeCVOButtonFlag: false, // 显示生成CVO按钮标志
       form: {
         id: null,
         date: '',
@@ -167,6 +168,7 @@ export default {
       this.newComment.isFinal = false
       this.newComment.content = null
       this.newComment.interviewTime = null
+      this.showMakeCVOButtonFlag = false
       if (value === 'Pre. Service') {
         this.newComment.content = '一、离职手续是否办妥\r\n' +
           '    （前期）要盖章的材料是否都寄出\r\n' +
@@ -236,6 +238,8 @@ export default {
           '   3.有没有新人进入\r\n' +
           '   4.用人经理什么风格\r\n' +
           '   5.公司最近有没有什么变动'
+      } else if (value === 'CVO') {
+        this.showMakeCVOButtonFlag = true
       }
     },
     // 计算候选人年龄
@@ -641,6 +645,7 @@ export default {
           this.newComment.interviewTime = null
           this.newComment.content = null
           this.newComment.isFinal = false
+          this.showMakeCVOButtonFlag = false
         } else {
           this.$message({
             message: '保存异常，请联系管理员！',
@@ -649,6 +654,22 @@ export default {
           })
         }
       })
+    },
+    // 生成CVO内容
+    makeCVO () {
+      // 如果只有一个关联职位，就作为默认职位
+      if (this.candidateForCaseList.length === 1) {
+        this.newComment.content = 'CVO ' + this.candidateForCaseList[0].clientName + ' ' + this.candidateForCaseList[0].title
+      } else if (this.candidateForCaseList.length > 1) {
+        if (this.selectedCase === null) {
+          this.$message({
+            message: '请选择关联职位！',
+            type: 'error'
+          })
+        } else {
+          this.newComment.content = 'CVO ' + this.selectedCase.clientName + ' ' + this.selectedCase.title
+        }
+      }
     },
     // 修改评论
     modifyComment (row) {

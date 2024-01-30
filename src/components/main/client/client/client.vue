@@ -65,8 +65,8 @@
           <el-form-item label="客户信息">
             <el-input type="textarea"
                       v-model="form.information"
-                      :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      :autosize="{ minRows: 2, maxRows: 400}"
+                      maxlength="8000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
