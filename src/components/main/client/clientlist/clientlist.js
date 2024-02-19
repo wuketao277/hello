@@ -3,7 +3,7 @@ import commonJs from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data () {
+  data() {
     return {
       // 显示搜索对话框
       showSearchDialog: false,
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     // 处理列表双击事件
-    handleDBClick () {
+    handleDBClick() {
       if (this.jobType === 'FULLTIME' && (commonJs.isAdmin() || commonJs.isAdminCompany())) {
         // 管理员可以修改
         this.modify()
@@ -38,13 +38,13 @@ export default {
       }
     },
     // 显示控制
-    showControl (val) {
+    showControl(val) {
       if (val === 'addClient' || val === 'modifyClient') {
         return this.jobType === 'FULLTIME' && (commonJs.isAdmin() || commonJs.isAdminCompany())
       }
       return false
     },
-    rowStyle (row, rowIndex) {
+    rowStyle(row, rowIndex) {
       if (this.currentRow === null) {
         return 'unselectedRow'
       }
@@ -53,11 +53,11 @@ export default {
         return 'selectedRow'
       }
     },
-    switchSearch () {
+    switchSearch() {
       this.showSearchDialog = !this.showSearchDialog
     },
     // 检查是否选择了一条记录
-    checkSelectRow () {
+    checkSelectRow() {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -69,11 +69,11 @@ export default {
       return true
     },
     // 新增
-    add () {
+    add() {
       this.$router.push('/background.html/client/client')
     },
     // 修改
-    modify () {
+    modify() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/client/client',
@@ -85,7 +85,7 @@ export default {
       }
     },
     // 查看
-    detail () {
+    detail() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/client/client',
@@ -97,7 +97,7 @@ export default {
       }
     },
     // 查询后台数据
-    query () {
+    query() {
       window.localStorage['clientlist.search'] = this.search
       window.localStorage['clientlist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['clientlist.pageSize'] = this.table.pageable.pageSize
@@ -118,36 +118,36 @@ export default {
       })
     },
     // 行变化
-    rowChange (val) {
+    rowChange(val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange (val) {
+    sizeChange(val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange (val) {
+    currentChange(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick (val) {
+    prevClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick (val) {
+    nextClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog () {
+    sureSearchDialog() {
       this.table.pageable.pageNumber = 1
       this.query()
     }
   },
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

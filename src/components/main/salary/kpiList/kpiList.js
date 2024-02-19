@@ -3,7 +3,7 @@ import commonJs from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data () {
+  data() {
     return {
       table: {
         content: [],
@@ -14,7 +14,7 @@ export default {
         }
       },
       page: {
-        pageSizes: [10, 30, 50, 100, 300]
+        pageSizes: [10, 30, 50, 100, 300, 1000, 10000]
       },
       currentRow: null,
       roles: [],
@@ -23,17 +23,17 @@ export default {
   },
   methods: {
     // 显示控制
-    showControl (val) {
+    showControl(val) {
       return false
     },
-    formatDate (row, column, cellvalue, index) {
+    formatDate(row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
         return cellvalue.substr(0, 10)
       }
       return ''
     },
     // 检查是否选择了一条记录
-    checkSelectRow () {
+    checkSelectRow() {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -45,7 +45,7 @@ export default {
       return true
     },
     // 双击
-    dblclick () {
+    dblclick() {
       if (commonJs.isAdminInArray(this.roles)) {
         this.modify()
       } else {
@@ -53,11 +53,11 @@ export default {
       }
     },
     // 新增
-    add () {
+    add() {
       this.$router.push('/background.html/salary/kpiworkdaysadjust')
     },
     // 修改
-    modify () {
+    modify() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/salary/kpiworkdaysadjust',
@@ -69,7 +69,7 @@ export default {
       }
     },
     // 查看
-    detail () {
+    detail() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/salary/kpiworkdaysadjust',
@@ -81,7 +81,7 @@ export default {
       }
     },
     // 查询后台数据
-    query () {
+    query() {
       window.localStorage['kpiList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['kpiList.pageSize'] = this.table.pageable.pageSize
       this.searchDialog = false
@@ -102,43 +102,43 @@ export default {
       })
     },
     // 行变化
-    rowChange (val) {
+    rowChange(val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange (val) {
+    sizeChange(val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange (val) {
+    currentChange(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick (val) {
+    prevClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick (val) {
+    nextClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog () {
+    sureSearchDialog() {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
     },
-    formatBoolean (row) {
+    formatBoolean(row) {
       if (row.checkKPI) {
         return '考核'
       }
       return '不考核'
     }
   },
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data () {
+  data() {
     return {
       table: {
         loading: true,
@@ -15,7 +15,7 @@ export default {
         }
       },
       page: {
-        pageSizes: [10, 30, 50, 100, 300]
+        pageSizes: [10, 30, 50, 100, 300, 1000, 10000]
       },
       currentRow: null,
       search: commonJS.getStorageContent('prclist.search'),
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     // 通过id删除
-    deleteById () {
+    deleteById() {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除PRC ' + this.currentRow.chineseName + ' 吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -54,13 +54,13 @@ export default {
       }
     },
     // 添加PRC
-    addPRC () {
+    addPRC() {
       this.$router.push({
         path: '/background.html/prc/prc'
       })
     },
     // 检查是否选择了一条记录
-    checkSelectRow () {
+    checkSelectRow() {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -72,7 +72,7 @@ export default {
       return true
     },
     // 查看PRC
-    detailPRC () {
+    detailPRC() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/prc/prc',
@@ -84,7 +84,7 @@ export default {
       }
     },
     // 修改PRC
-    modifyPRC () {
+    modifyPRC() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/prc/prc',
@@ -96,13 +96,13 @@ export default {
       }
     },
     // 删除PRC
-    deletePRC () {
+    deletePRC() {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除该记录吗？', '确认信息', {
-          distinguishCancelAndClose: true,
-          confirmButtonText: '确定',
-          cancelButtonText: '放弃'
-        })
+            distinguishCancelAndClose: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '放弃'
+          })
           .then(() => {
             prcApi.deleteById(this.currentRow.id).then(res => {
               if (res.status !== 200) {
@@ -122,7 +122,7 @@ export default {
       }
     },
     // 查询后台数据
-    query () {
+    query() {
       window.localStorage['prclist.search'] = this.search
       window.localStorage['prclist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['prclist.pageSize'] = this.table.pageable.pageSize
@@ -151,14 +151,14 @@ export default {
       })
     },
     // 处理选中行
-    handleCurrentChange (val) {
+    handleCurrentChange(val) {
       this.currentRow = val
     },
     // 处理选中行
-    handleCurrentChangeFromComment (val) {
+    handleCurrentChangeFromComment(val) {
       this.currentRow = val
     },
-    uploadFileSuccess (response, file, fileList) {
+    uploadFileSuccess(response, file, fileList) {
       if (response.flag) {
         this.$message({
           message: '文件' + file.name + '上传成功',
@@ -176,36 +176,36 @@ export default {
       // 刷新列表
       this.query()
     },
-    handlePreview () {},
-    handleRemove () {},
-    beforeRemove () {},
-    sizeChange (val) {
+    handlePreview() {},
+    handleRemove() {},
+    beforeRemove() {},
+    sizeChange(val) {
       this.table.pageable.pageSize = val
       this.query()
     },
-    currentChange (val) {
+    currentChange(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    prevClick (val) {
+    prevClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    nextClick (val) {
+    nextClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {
+    switchSearchDialog() {
       this.$refs['search'].focus()
     },
     // 按照条件搜索
-    searchPRC () {
+    searchPRC() {
       this.table.pageable.pageNumber = 1
       this.query()
     }
   },
   computed: {},
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

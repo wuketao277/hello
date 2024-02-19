@@ -5,7 +5,7 @@ import clientApi from '@/api/client'
 import clientlinkmanApi from '@/api/clientlinkman'
 
 export default {
-  data () {
+  data() {
     return {
       // 显示搜索结果
       showSearchResult: false,
@@ -18,7 +18,7 @@ export default {
         }
       },
       page: {
-        pageSizes: [10, 30, 50, 100, 300]
+        pageSizes: [10, 30, 50, 100, 300, 1000, 10000]
       },
       currentRow: null,
       searchDialog: false,
@@ -38,12 +38,12 @@ export default {
   },
   methods: {
     // 情况体验岗位
-    clearExperience () {
+    clearExperience() {
       this.$confirm('确认要清空体验岗位吗？', '确认信息', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        })
         .then(() => {
           caseApi.clearExperience().then(res => {
             if (res.status !== 200) {
@@ -60,7 +60,7 @@ export default {
         })
     },
     // 显示控制
-    showControl (key) {
+    showControl(key) {
       if (key === 'clearExperienceButton') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -68,7 +68,7 @@ export default {
       return true
     },
     // 通过id删除成功case
-    deleteById () {
+    deleteById() {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除 ' + this.currentRow.title + ' 职位吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -99,7 +99,7 @@ export default {
       }
     },
     // 获取状态名称
-    getStatusName (row, column) {
+    getStatusName(row, column) {
       if (row.status === 'PREPARE') {
         return '准备'
       } else if (row.status === 'DOING') {
@@ -114,11 +114,11 @@ export default {
         return ''
       }
     },
-    switchSearch () {
+    switchSearch() {
       this.showSearchDialog = !this.showSearchDialog
     },
     // 检查是否选择了一条记录
-    checkSelectRow () {
+    checkSelectRow() {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -130,11 +130,11 @@ export default {
       return true
     },
     // 新增
-    add () {
+    add() {
       this.$router.push('/background.html/case/case')
     },
     // 修改
-    modify () {
+    modify() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/case/case',
@@ -146,7 +146,7 @@ export default {
       }
     },
     // 查看
-    detail () {
+    detail() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/case/case',
@@ -158,7 +158,7 @@ export default {
       }
     },
     // 简单搜索
-    easyQuery () {
+    easyQuery() {
       // 清空除title以外的其他条件
       this.search = {
         clientId: null,
@@ -170,7 +170,7 @@ export default {
       this.query()
     },
     // 查询后台数据
-    query () {
+    query() {
       window.localStorage['caselist.search'] = JSON.stringify(this.search)
       window.localStorage['caselist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['caselist.pageSize'] = this.table.pageable.pageSize
@@ -192,42 +192,42 @@ export default {
       })
     },
     // 行变化
-    rowChange (val) {
+    rowChange(val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange (val) {
+    sizeChange(val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange (val) {
+    currentChange(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick (val) {
+    prevClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick (val) {
+    nextClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog () {
+    sureSearchDialog() {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
     },
     // 清空查询条件
-    clearQueryCondition () {
+    clearQueryCondition() {
       this.search = {}
       window.localStorage['caselist.search'] = {}
     }
   },
-  created () {
+  created() {
     // 获取所有“客户”信息
     clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {
