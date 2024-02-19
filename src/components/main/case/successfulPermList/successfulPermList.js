@@ -222,6 +222,23 @@ export default {
         guaranteePeriod: false
       }
       window.localStorage['successfulPermList.search'] = this.search
+    },
+    // 下载成功case
+    downloadSuccessfulCase () {
+      let query = {
+        'currentPage': this.table.pageable.pageNumber,
+        'pageSize': this.table.pageable.pageSize,
+        'search': this.search
+      }
+      successfulPermApi.downloadSuccessfulCase(query).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
     }
   },
   created () {

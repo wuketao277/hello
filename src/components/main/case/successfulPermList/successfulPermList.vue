@@ -6,27 +6,33 @@
       <el-breadcrumb-item>成功职位列表</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="toolbar">
-      <el-button type="success"
-                 size="small"
-                 icon="el-icon-circle-plus"
-                 @click="add">新 增</el-button>
-      <el-button type="warning"
-                 size="small"
-                 icon="el-icon-edit"
-                 @click="modify">修 改</el-button>
-      <el-button type="primary"
-                 size="small"
-                 icon="el-icon-share"
-                 @click="detail">查 看</el-button>
-      <el-button type="danger"
-                 size="small"
-                 icon="el-icon-delete"
-                 @click="deleteById"
-                 v-if="showControl('delete')">删 除</el-button>
-      <el-button type="primary"
-                 size="small"
-                 icon="el-icon-search"
-                 @click="searchDialog = true">搜 索</el-button>&nbsp;&nbsp;&nbsp;&nbsp;
+      <div>
+        <el-button type="success"
+                   size="small"
+                   icon="el-icon-circle-plus"
+                   @click="add">新 增</el-button>
+        <el-button type="warning"
+                   size="small"
+                   icon="el-icon-edit"
+                   @click="modify">修 改</el-button>
+        <el-button type="primary"
+                   size="small"
+                   icon="el-icon-share"
+                   @click="detail">查 看</el-button>
+        <el-button type="danger"
+                   size="small"
+                   icon="el-icon-delete"
+                   @click="deleteById"
+                   v-if="showControl('delete')">删 除</el-button>
+        <el-button type="primary"
+                   size="small"
+                   icon="el-icon-search"
+                   @click="searchDialog = true">搜 索</el-button>
+        <el-button type="primary"
+                   size="small"
+                   icon="el-icon-download"
+                   @click="downloadSuccessfulCase()">下载成功case</el-button>
+      </div>
       <span>总GP:{{gpSum}}</span>
       &nbsp;&nbsp;
       <span>平均GP:{{gpAvg}}</span>

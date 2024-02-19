@@ -25,6 +25,10 @@ export default {
       params: params
     })
   },
+  // 下载成功case
+  downloadSuccessfulCase (params) {
+    return axios.post('/successfulPerm/downloadSuccessfulCase', params)
+  },
   // 通过主键删除
   deleteById (params) {
     return axios.post('/successfulPerm/deleteById', params)
