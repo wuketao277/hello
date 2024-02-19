@@ -764,8 +764,8 @@ export default {
     },
     // 通过billing计算GP
     getGP: function () {
-      if (this.form.type === 'perm' && this.form.billing !== null) {
-        // 猎头业务才计算
+      if ((this.form.type === 'perm' || this.form.type === 'consultation') && this.form.billing !== null) {
+        // 猎头和咨询业务才计算
         let params = {
           'billing': this.form.billing
         }
