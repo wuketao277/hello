@@ -593,7 +593,7 @@
                     :highlight-current-row="true"
                     :stripe="true"
                     style="width: 100%;margin-top:10px;"
-                    max-height="2000"
+                    height="500px"
                     @current-change="rowChange">
             <el-table-column label="操作"
                              width="80px"
