@@ -189,6 +189,25 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="16">
+          <el-form-item label="目标公司">
+            <el-input v-model="form.targetCompany"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="前任情况">
+            <el-input type="textarea"
+                      v-model="form.predecessor"
+                      :autosize="{ minRows: 2, maxRows: 10}"
+                      maxlength="800"
+                      show-word-limit
+                      placeholder="1.前任的上家公司；2.前任的学历；3.前任的工作描述；"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col>

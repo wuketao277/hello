@@ -20,7 +20,7 @@ export default {
     'selectUser': selectUser,
     'selectHr': selectHr
   },
-  data () {
+  data() {
     return {
       mode: 'add', // 默认操作模式为新建
       form: {
@@ -48,7 +48,9 @@ export default {
         show4JobType: [],
         question: '',
         sourcingMap: '',
-        top3Skills: ''
+        top3Skills: '',
+        targetCompany: '',
+        predecessor: ''
       },
       attention: false,
       rules: {
@@ -58,15 +60,15 @@ export default {
           trigger: 'blur'
         }],
         title: [{
-          required: true,
-          message: '职位名称必填',
-          trigger: 'blur'
-        },
-        {
-          max: 200,
-          message: '职位名称长度不能大于200个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '职位名称必填',
+            trigger: 'blur'
+          },
+          {
+            max: 200,
+            message: '职位名称长度不能大于200个字符',
+            trigger: 'blur'
+          }
         ],
         status: [{
           required: true,
@@ -144,7 +146,7 @@ export default {
   },
   methods: {
     // 设置行样式
-    setCandidateRowClassName ({
+    setCandidateRowClassName({
       row,
       index
     }) {
@@ -160,17 +162,17 @@ export default {
       }
     },
     // 获取YYYY-MM-dd格式的年月日
-    formatDate (d) {
+    formatDate(d) {
       if (typeof (d) !== 'undefined' && d !== null && d !== '') {
         return d.substr(0, 10)
       }
       return ''
     },
-    openSelectCWDialog () {
+    openSelectCWDialog() {
       this.selectCWDialogShow = true
     },
     // 显示控制
-    showControl (key) {
+    showControl(key) {
       if (key === 'deleteRecommend' || key === 'delete') {
         // 只有管理员才能删除
         return commonJS.isAdminInArray(this.roles)
@@ -182,11 +184,11 @@ export default {
       return true
     },
     // 是否关注
-    isAttention (row) {
+    isAttention(row) {
       return row.attention
     },
     // 更新候选人职位关注信息
-    updateCandidateForCaseAttention (row, attention) {
+    updateCandidateForCaseAttention(row, attention) {
       let params = {
         id: row.id,
         attention: attention
@@ -208,7 +210,7 @@ export default {
       })
     },
     // 更新关注列表
-    updateCaseAttention () {
+    updateCaseAttention() {
       let params = {
         attention: this.attention,
         caseId: this.form.id
@@ -228,7 +230,7 @@ export default {
       })
     },
     // 编辑候选人
-    editCandidate (index, row) {
+    editCandidate(index, row) {
       this.$router.push({
         path: '/background.html/candidate/candidate',
         query: {
@@ -238,12 +240,12 @@ export default {
       })
     },
     // 删除推荐
-    deleteRecommend (index, row) {
+    deleteRecommend(index, row) {
       this.$confirm('确认要删除推荐吗？', '确认信息', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        })
         .then(() => {
           candidateForCaseApi.deleteById(row.id).then(res => {
             if (res.status !== 200) {
@@ -262,7 +264,7 @@ export default {
         })
     },
     // 取消
-    cancel () {
+    cancel() {
       if (typeof (this.$route.query.mode) !== 'undefined') {
         this.mode = this.$route.query.mode
         if (typeof (this.$route.query.case) !== 'undefined') {
@@ -294,10 +296,12 @@ export default {
         this.form.show4JobType = []
         this.form.sourcingMap = ''
         this.form.top3Skills = ''
+        this.form.targetCompany = ''
+        this.form.predecessor = ''
       }
     },
     // 保存
-    save () {
+    save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           // 如果校验通过就调用后端接口
@@ -326,7 +330,7 @@ export default {
       })
     },
     // 为Case添加候选人
-    addCandidateForCase () {
+    addCandidateForCase() {
       if (this.form.id == null) {
         this.$message({
           message: '请先保存职位信息！',
@@ -336,11 +340,11 @@ export default {
       }
     },
     // 职位候选人变化
-    rowChange (val) {
+    rowChange(val) {
       this.curCandidateForCase = val
     },
     // “选择候选人”对话框返回
-    sureSelectCandidateDialog (val) {
+    sureSelectCandidateDialog(val) {
       // 首先关闭对话框
       this.selectCandidateDialogShow = false
       // 然后变量当前所有候选人id，判断新选中的候选人是否已经在当前职位的候选人列表中
@@ -379,7 +383,7 @@ export default {
       }
     },
     // “选择职位”对话框返回
-    sureSelectCaseDialog (val) {
+    sureSelectCaseDialog(val) {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       // 添加候选人到职位
@@ -408,7 +412,7 @@ export default {
       })
     },
     // 打开选择候选人对话框
-    openSelectCandidateDialog () {
+    openSelectCandidateDialog() {
       if (this.form.id === null) {
         this.$message({
           message: '请先保存职位信息！',
@@ -420,7 +424,7 @@ export default {
       }
     },
     // 打开选择职位对话框
-    openSelectCaseDialog () {
+    openSelectCaseDialog() {
       if (this.form.id === null) {
         this.$message({
           message: '请先保存职位信息！',
@@ -432,7 +436,7 @@ export default {
       }
     },
     // 打开上次文件对话框
-    openUploadFileDialog () {
+    openUploadFileDialog() {
       if (this.form.id == null) {
         this.$message({
           message: '请先保存职位信息！',
@@ -448,7 +452,7 @@ export default {
       }
     },
     // 查询上传文件集合
-    queryUploadFiles () {
+    queryUploadFiles() {
       if (this.form.id !== null) {
         let params = {
           'relativeTableId': this.form.id,
@@ -462,7 +466,7 @@ export default {
       }
     },
     // 查询推荐候选人列表
-    queryCandidateForCaseList () {
+    queryCandidateForCaseList() {
       // 获取该职位所有候选人信息
       if (this.form.id !== null) {
         // 显示加载中
@@ -489,17 +493,17 @@ export default {
       }
     },
     // 加载所有候选人
-    loadAllCandidates () {
+    loadAllCandidates() {
       this.loadAllCandidatesFlag = true
       this.queryCandidateForCaseList()
     },
     // 查询其他数据
-    queryOthers () {
+    queryOthers() {
       // 查询推荐候选人列表
       this.queryCandidateForCaseList()
     },
     // 查询职位关注情况
-    queryCaseAttentionByCaseId () {
+    queryCaseAttentionByCaseId() {
       if (this.form.id !== null) {
         caseApi.queryCaseAttentionByCaseId(this.form.id).then(res => {
           if (res.status === 200) {
@@ -509,13 +513,13 @@ export default {
       }
     },
     // “选择CW”对话框返回
-    sureSelectCWDialog (val) {
+    sureSelectCWDialog(val) {
       // 首先关闭对话框
       this.selectCWDialogShow = false
       this.form.cwUserName = val.username
     },
     // “选择hr”对话框返回
-    sureSelectHRDialog (val) {
+    sureSelectHRDialog(val) {
       // 首先关闭对话框
       this.selectHRDialogShow = false
       this.form.hrId = val.id
@@ -523,7 +527,7 @@ export default {
       this.form.hrEnglishName = val.englishName
     },
     // 通过id删除职位
-    deleteById () {
+    deleteById() {
       this.$confirm('确认要删除职位 ' + this.form.title + ' 吗？', '确认信息', {
         distinguishCancelAndClose: true,
         confirmButtonText: '确定',
@@ -544,7 +548,7 @@ export default {
       })
     }
   },
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {
