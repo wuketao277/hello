@@ -198,6 +198,31 @@
       </el-row>
       <el-row :gutter="12">
         <el-col>
+          <el-form-item label="Top 3 Skills">
+            <el-input type="textarea"
+                      v-model="form.top3Skills"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="职位描述">
+            <el-input type="textarea"
+                      v-model="form.description"
+                      :autosize="{ minRows: 2, maxRows: 100}"
+                      maxlength="2000"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-divider>上面的信息来自HR；下面的信息需要顾问自己总结</el-divider>
+      <el-row :gutter="12">
+        <el-col>
           <el-form-item label="前任情况">
             <el-input type="textarea"
                       v-model="form.predecessor"
@@ -214,30 +239,6 @@
           <el-form-item label="Source Map">
             <el-input type="textarea"
                       v-model="form.sourcingMap"
-                      :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="2000"
-                      show-word-limit
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col>
-          <el-form-item label="Top 3 Skills">
-            <el-input type="textarea"
-                      v-model="form.top3Skills"
-                      :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="2000"
-                      show-word-limit
-                      clearable></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col>
-          <el-form-item label="职位描述">
-            <el-input type="textarea"
-                      v-model="form.description"
                       :autosize="{ minRows: 2, maxRows: 100}"
                       maxlength="2000"
                       show-word-limit
