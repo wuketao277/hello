@@ -19,7 +19,7 @@ export default {
     downloadFile,
     selectCase
   },
-  data () {
+  data() {
     return {
       newLabel: null,
       attention: false,
@@ -74,15 +74,15 @@ export default {
       comments: [],
       rules: {
         chineseName: [{
-          required: true,
-          message: '中文名必填',
-          trigger: 'blur'
-        },
-        {
-          max: 25,
-          message: '中文名长度不能大于25个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '中文名必填',
+            trigger: 'blur'
+          },
+          {
+            max: 25,
+            message: '中文名长度不能大于25个字符',
+            trigger: 'blur'
+          }
         ],
         englishName: [{
           max: 100,
@@ -129,26 +129,26 @@ export default {
           trigger: 'blur'
         },
         taskTitle: [{
-          required: true,
-          message: '任务标题必填',
-          trigger: 'blur'
-        },
-        {
-          max: 200,
-          message: '任务标题长度不能大于200个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '任务标题必填',
+            trigger: 'blur'
+          },
+          {
+            max: 200,
+            message: '任务标题长度不能大于200个字符',
+            trigger: 'blur'
+          }
         ],
         taskContent: [{
-          required: true,
-          message: '任务内容必填',
-          trigger: 'blur'
-        },
-        {
-          max: 2000,
-          message: '任务内容长度不能大于2000个字符',
-          trigger: 'blur'
-        }
+            required: true,
+            message: '任务内容必填',
+            trigger: 'blur'
+          },
+          {
+            max: 2000,
+            message: '任务内容长度不能大于2000个字符',
+            trigger: 'blur'
+          }
         ]
       },
       // 性别
@@ -164,7 +164,7 @@ export default {
   },
   methods: {
     // 候选人评论中阶段发生变化事件
-    phaseChange (value) {
+    phaseChange(value) {
       this.newComment.isFinal = false
       this.newComment.content = null
       this.newComment.interviewTime = null
@@ -243,7 +243,7 @@ export default {
       }
     },
     // 计算候选人年龄
-    birthdayChange (val) {
+    birthdayChange(val) {
       if (typeof (val) !== 'undefined') {
         candidateApi.calcAge(val).then(res => {
           if (res.status !== 200) {
@@ -257,7 +257,7 @@ export default {
       }
     },
     // 格式化是否终面
-    formatIsFinal (row, column, cellvalue, index) {
+    formatIsFinal(row, column, cellvalue, index) {
       if (cellvalue) {
         return '是'
       } else {
@@ -265,7 +265,7 @@ export default {
       }
     },
     // 格式化阶段
-    formatPhase (row, column, cellvalue, index) {
+    formatPhase(row, column, cellvalue, index) {
       if (row['isFinal']) {
         return cellvalue + ' (F)'
       } else {
@@ -273,15 +273,15 @@ export default {
       }
     },
     // 格式化 for 面试时间
-    formatTimeForInterviewTime (row, column, cellvalue, index) {
+    formatTimeForInterviewTime(row, column, cellvalue, index) {
       return commonJS.formatTimeToyyyyMMddHHmm(cellvalue)
     },
     // 处理选中职位变更事件
-    handleSelectCaseChange (val) {
+    handleSelectCaseChange(val) {
       this.selectedCase = val
     },
     // 更新关注列表
-    updateCandidateAttention () {
+    updateCandidateAttention() {
       let params = {
         attention: this.attention,
         candidateId: this.form.id
@@ -301,7 +301,7 @@ export default {
       })
     },
     // 查询候选人关注情况
-    queryCandidateAttentionByCandidateId () {
+    queryCandidateAttentionByCandidateId() {
       if (this.form.id !== null) {
         candidateApi.queryCandidateAttentionByCandidateId(this.form.id).then(res => {
           if (res.status === 200) {
@@ -311,7 +311,7 @@ export default {
       }
     },
     // 添加CF阶段的模板
-    addCFModel (row) {
+    addCFModel(row) {
       this.newComment.phase = 'CF'
       this.newComment.content = this.form.chineseName + '面试' + row.caseTitle + '岗位' + row.phase + '反馈：\n' +
         '1、你觉得自己过了吗？面了多久？面试官是谁？为什么？体现在哪儿？\n' +
@@ -324,7 +324,7 @@ export default {
         '8、下一轮方便面试的时间是什么？'
     },
     // Candidate Feedback的显示控制按钮
-    showCommentCFButton (row) {
+    showCommentCFButton(row) {
       let phase = row.phase
       if (phase === '1st Interview' || phase === '2nd Interview' || phase === '3rd Interview' || phase === '4th Interview' || phase === '5th Interview' || phase === '6th Interview') {
         return true
@@ -332,16 +332,16 @@ export default {
       return false
     },
     // 评论删除按钮的显示控制
-    showCommentDeleteButton (row) {
+    showCommentDeleteButton(row) {
       return commonJS.isAdmin() || commonJS.getUserName() === row.username
     },
     // 删除评论
-    deleteComment (row) {
+    deleteComment(row) {
       this.$confirm('确认要评论吗？', '确认信息', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        })
         .then(() => {
           // 调用接口
           commentApi.deleteById(row.id).then(res => {
@@ -365,7 +365,7 @@ export default {
         })
     },
     // 显示控制
-    showControl (key) {
+    showControl(key) {
       if (key === 'deleteRecommend' || key === 'delete') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -373,11 +373,11 @@ export default {
       return true
     },
     // 是否关注
-    isAttention (row) {
+    isAttention(row) {
       return row.attention
     },
     // 更新候选人职位关注信息
-    updateCandidateForCaseAttention (row, attention) {
+    updateCandidateForCaseAttention(row, attention) {
       let params = {
         id: row.id,
         attention: attention
@@ -399,12 +399,12 @@ export default {
       })
     },
     // 删除推荐
-    deleteRecommend (index, row) {
+    deleteRecommend(index, row) {
       this.$confirm('确认要删除推荐吗？', '确认信息', {
-        distinguishCancelAndClose: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        })
         .then(() => {
           candidateForCaseApi.deleteById(row.id).then(res => {
             if (res.status !== 200) {
@@ -423,7 +423,7 @@ export default {
         })
     },
     // 编辑职位
-    editCase (index, row) {
+    editCase(index, row) {
       this.$router.push({
         path: '/background.html/case/case',
         query: {
@@ -433,7 +433,7 @@ export default {
       })
     },
     // 生成确认岗位信息话术
-    makeConfirmStr (index, row) {
+    makeConfirmStr(index, row) {
       let s = ''
       if (this.form.gender === 'MALE') {
         s = '先生'
@@ -448,7 +448,7 @@ export default {
       })
     },
     // 编辑客户
-    editClient (index, row) {
+    editClient(index, row) {
       // 只有全职的同事可以跳转到客户列表
       if (commonJS.isFulltimeJobType()) {
         this.$router.push({
@@ -461,7 +461,7 @@ export default {
       }
     },
     // 打开职位选择对话框
-    openSelectCaseDialog () {
+    openSelectCaseDialog() {
       // 候选人必须先保存
       if (this.form.id === null) {
         this.$message({
@@ -473,7 +473,7 @@ export default {
       this.selectCaseDialogShow = true
     },
     // 保存 新评论 同步方法
-    async saveComment () {
+    async saveComment() {
       // 必须先保存候选人
       if (this.form.id === null || this.form.id.length === 0) {
         this.$message({
@@ -656,7 +656,7 @@ export default {
       })
     },
     // 生成CVO内容
-    makeCVO () {
+    makeCVO() {
       // 如果只有一个关联职位，就作为默认职位
       if (this.candidateForCaseList.length === 1) {
         this.newComment.content = 'CVO ' + this.candidateForCaseList[0].clientName + ' ' + this.candidateForCaseList[0].title
@@ -672,7 +672,7 @@ export default {
       }
     },
     // 修改评论
-    modifyComment (row) {
+    modifyComment(row) {
       this.newComment.id = row.id
       this.newComment.phase = row.phase
       this.newComment.interviewTime = row.interviewTime
@@ -680,7 +680,7 @@ export default {
       this.newComment.isFinal = row.isFinal
     },
     // 查询所有评论
-    queryComment () {
+    queryComment() {
       if (this.form.id !== null) {
         commentApi.findAllByCandidateIdOrderByDesc({
           'candidateId': this.form.id
@@ -692,7 +692,7 @@ export default {
       }
     },
     // 取消
-    cancel () {
+    cancel() {
       if (typeof (this.$route.query.mode) !== 'undefined') {
         this.mode = this.$route.query.mode
         this.form = this.$route.query.candidate
@@ -720,7 +720,7 @@ export default {
       }
     },
     // 保存候选人-子方法
-    saveCandidate () {
+    saveCandidate() {
       // 如果校验通过就调用后端接口
       candidateApi.save(this.form).then(
         res => {
@@ -759,7 +759,7 @@ export default {
         })
     },
     // 保存候选人
-    save () {
+    save() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           if (this.form.id === null && this.form.phoneNo !== '' && this.form.phoneNo !== null) {
@@ -790,7 +790,7 @@ export default {
       })
     },
     // 查询当前候选人相关的任务
-    queryTask () {
+    queryTask() {
       if (this.form.id !== null) {
         myTaskApi.findByRelativeCandidateId(this.form.id).then(res => {
           if (res.status === 200) {
@@ -800,7 +800,7 @@ export default {
       }
     },
     // 查询当前候选人简历信息
-    queryResume () {
+    queryResume() {
       if (this.form.id !== null) {
         let params = {
           'candidateId': this.form.id
@@ -813,7 +813,7 @@ export default {
       }
     },
     // 查询当前候选人推荐职位信息
-    queryCandidateForCaseList () {
+    queryCandidateForCaseList() {
       if (this.form.id !== null) {
         let params = {
           'candidateId': this.form.id
@@ -826,7 +826,7 @@ export default {
       }
     },
     // 保存任务
-    saveTask () {
+    saveTask() {
       if (this.form.id == null) {
         this.$message({
           message: '请先保存候选人信息！',
@@ -846,7 +846,7 @@ export default {
       }
     },
     // 打开上传文件对话框
-    openUploadFileDialog () {
+    openUploadFileDialog() {
       if (this.form.id == null) {
         this.$message({
           message: '请先保存候选人信息！',
@@ -862,7 +862,7 @@ export default {
       }
     },
     // 查询上传文件集合
-    queryUploadFiles () {
+    queryUploadFiles() {
       if (this.form.id !== null) {
         let params = {
           'relativeTableId': this.form.id,
@@ -875,7 +875,7 @@ export default {
         })
       }
     },
-    queryOthers () {
+    queryOthers() {
       // 查询comment
       this.queryComment()
       // 查询任务
@@ -890,7 +890,7 @@ export default {
       this.queryCandidateAttentionByCandidateId()
     },
     // “推荐职位”对话框返回
-    sureSelectCaseDialog (val) {
+    sureSelectCaseDialog(val) {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       let params = {
@@ -908,7 +908,7 @@ export default {
         })
     },
     // 通过id删除候选人
-    deleteById () {
+    deleteById() {
       this.$confirm('确认要删除候选人 ' + this.form.chineseName + ' 吗？', '确认信息', {
         distinguishCancelAndClose: true,
         confirmButtonText: '确定',
@@ -917,7 +917,7 @@ export default {
         candidateApi.deleteById(this.form.id).then(res => {
           if (res.status === 200) {
             this.$router.push({
-              path: '/candidate/candidatelist'
+              path: '/background.html/candidate/candidatelist'
             })
           } else {
             this.$message.error('删除失败！')
@@ -926,7 +926,7 @@ export default {
       })
     },
     // 添加新标签
-    addLabel () {
+    addLabel() {
       if (typeof (this.newLabel) === 'undefined' || this.form.newLabel === null || this.form.newLabel === '') {
         this.$message({
           message: '请添加标签名称！',
@@ -972,7 +972,7 @@ export default {
       }
     },
     // 删除标签
-    deleteLabel () {
+    deleteLabel() {
       if (typeof (this.newLabel) === 'undefined' || this.form.newLabel === null || this.form.newLabel === '') {
         this.$message({
           message: '请添加标签名称！',
@@ -995,7 +995,7 @@ export default {
       })
     },
     // 获取所有标签
-    findAllLabel () {
+    findAllLabel() {
       labelApi.findAllName().then(res => {
         if (res.status === 200) {
           this.allLabels = res.data
@@ -1003,11 +1003,11 @@ export default {
       })
     },
     // 标签变更事件
-    handleLabelsChange () {
+    handleLabelsChange() {
       this.save()
     },
     // 整理学校
-    formatSchool () {
+    formatSchool() {
       if (this.form.schoolName === null || this.form.schoolName.length === 0) {
         return
       }
@@ -1052,7 +1052,7 @@ export default {
       }
     },
     // 整理公司
-    formatCompany () {
+    formatCompany() {
       if (this.form.companyName === null || this.form.companyName.length === 0) {
         return
       }
@@ -1098,7 +1098,7 @@ export default {
     }
   },
   computed: {},
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {
