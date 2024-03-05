@@ -189,9 +189,15 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="16">
+      </el-row>
+      <el-row :gutter="12">
+        <el-col :span="24">
           <el-form-item label="目标公司">
-            <el-input v-model="form.targetCompany"
+            <el-input type="textarea"
+                      v-model="form.targetCompany"
+                      :autosize="{ minRows: 1, maxRows: 100}"
+                      maxlength="200"
+                      show-word-limit
                       clearable></el-input>
           </el-form-item>
         </el-col>
