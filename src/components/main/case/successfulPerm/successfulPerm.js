@@ -375,6 +375,15 @@ export default {
         })
         return
       }
+      if (this.form.hrId === '' && (this.form.type === 'perm')) {
+        // 猎头必须选择HR
+        this.$message({
+          message: 'HR必选！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
       if (this.form.base === '' && this.form.type === 'perm') {
         // 猎头，必须选择Base
         this.$message({
