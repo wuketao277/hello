@@ -304,7 +304,14 @@ export default {
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
         if (month === '02') {
           // 2 月
-          this.endDate = new Date().getFullYear() + '-' + month + '-28'
+          debugger
+          if ((new Date().getFullYear()) % 4 === 0) {
+            // 闰年
+            this.endDate = new Date().getFullYear() + '-' + month + '-29'
+          } else {
+            // 非闰年
+            this.endDate = new Date().getFullYear() + '-' + month + '-28'
+          }
         } else if (month === '01' || month === '03' || month === '05' || month === '07' || month === '08' || month === '10' || month === '12') {
           // 1 3 5 7 8 10 12月
           this.endDate = new Date().getFullYear() + '-' + month + '-31'
@@ -322,7 +329,14 @@ export default {
         this.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         if (month === 2) {
           // 2 月
-          this.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          debugger
+          if ((new Date().getFullYear()) % 4 === 0) {
+            // 闰年
+            this.endDate = new Date().getFullYear() + '-' + month + '-29'
+          } else {
+            // 非闰年
+            this.endDate = new Date().getFullYear() + '-' + month + '-28'
+          }
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
           this.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))

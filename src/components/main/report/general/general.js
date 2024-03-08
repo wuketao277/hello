@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 
 export default {
   name: 'hello',
-  data () {
+  data() {
     return {
       form: {
         startDate: null,
@@ -19,12 +19,12 @@ export default {
       period: commonJS.getStorageContent('generalPeriod', 'month')
     }
   },
-  mounted () {
+  mounted() {
     this.calcDate(this.period)
   },
   methods: {
     // 图表尺寸变更时间
-    changeChartSize (size) {
+    changeChartSize(size) {
       if (size === 'big') {
         this.divClass = 'divBig'
         this.chartClass = 'chartBig'
@@ -38,7 +38,7 @@ export default {
       }
     },
     // 计算开始日期和结束日期
-    calcDate (type) {
+    calcDate(type) {
       window.localStorage['generalPeriod'] = type
       if (type === 'week') {
         let now = new Date()
@@ -60,7 +60,13 @@ export default {
         this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         if (month === 2) {
           // 2 月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          if (year % 4 === 0) {
+            // 闰年
+            this.form.endDate = new Date(Date.parse(year + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          } else {
+            // 非闰年
+            this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          }
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
           this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
@@ -74,7 +80,13 @@ export default {
         console.info(this.form.startDate)
         if (month === 2) {
           // 2 月
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          if (new Date().getFullYear() % 4 === 0) {
+            // 闰年
+            this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          } else {
+            // 非闰年
+            this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          }
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
           this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
@@ -92,7 +104,13 @@ export default {
         this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         if (month === 2) {
           // 2 月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          if (year % 4 === 0) {
+            // 闰年
+            this.form.endDate = new Date(Date.parse(year + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          } else {
+            // 非闰年
+            this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+          }
         } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
           // 1 3 5 7 8 10 12月
           this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
@@ -164,7 +182,7 @@ export default {
       this.drawChart()
     },
     // 绘制图表
-    drawChart () {
+    drawChart() {
       report.queryGeneral(this.form).then(
         res => {
           if (res.status === 200) {
