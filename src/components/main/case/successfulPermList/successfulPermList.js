@@ -6,7 +6,7 @@ import configApi from '@/api/config'
 import clientlinkmanApi from '@/api/clientlinkman'
 
 export default {
-  data () {
+  data() {
     return {
       // 显示搜索结果
       showSearchResult: false,
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     // 通过id删除成功case
-    deleteById () {
+    deleteById() {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除 ' + this.currentRow.title + '-' + this.currentRow.candidateChineseName + ' 成功职位吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -82,7 +82,7 @@ export default {
         })
       }
     },
-    formatApproveStatus (row, column, cellvalue, index) {
+    formatApproveStatus(row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined') {
         if (cellvalue === 'approved') {
           return '审批通过'
@@ -92,14 +92,14 @@ export default {
       }
       return '申请状态'
     },
-    formatDate (row, column, cellvalue, index) {
+    formatDate(row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
         return cellvalue.substr(0, 10)
       }
       return ''
     },
     // 显示控制
-    showControl (key) {
+    showControl(key) {
       if (key === 'add' || key === 'edit' || key === 'delete') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -107,7 +107,7 @@ export default {
       return true
     },
     // 检查是否选择了一条记录
-    checkSelectRow () {
+    checkSelectRow() {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -119,11 +119,11 @@ export default {
       return true
     },
     // 新增
-    add () {
+    add() {
       this.$router.push('/background.html/case/successfulPerm')
     },
     // 修改
-    modify () {
+    modify() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/case/successfulPerm',
@@ -135,7 +135,7 @@ export default {
       }
     },
     // 查看
-    detail () {
+    detail() {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/case/successfulPerm',
@@ -147,7 +147,7 @@ export default {
       }
     },
     // 查询后台数据
-    query () {
+    query() {
       window.localStorage['successfulPermList.search'] = JSON.stringify(this.search)
       window.localStorage['successfulPermList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['successfulPermList.pageSize'] = this.table.pageable.pageSize
@@ -186,45 +186,46 @@ export default {
       })
     },
     // 行变化
-    rowChange (val) {
+    rowChange(val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange (val) {
+    sizeChange(val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange (val) {
+    currentChange(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick (val) {
+    prevClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick (val) {
+    nextClick(val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog () {
+    sureSearchDialog() {
       this.table.pageable.pageNumber = 1
       this.query()
     },
     // 清空查询条件
-    clearQueryCondition () {
+    clearQueryCondition() {
       this.search = {
         nonPaymentDue: false,
+        nonPaymentDueExcludeYiQi: false,
         nonOnboard: false,
         guaranteePeriod: false
       }
       window.localStorage['successfulPermList.search'] = this.search
     },
     // 下载成功case
-    downloadSuccessfulCase () {
+    downloadSuccessfulCase() {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -241,7 +242,7 @@ export default {
       })
     }
   },
-  created () {
+  created() {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

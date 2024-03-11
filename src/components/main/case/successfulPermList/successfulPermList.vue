@@ -487,10 +487,12 @@
             </el-col>
           </el-row>
           <el-row :gutter="20">
-            <el-col :span="10">
+            <el-col :span="24"
+                    style="text-align: left;">
               <el-form-item label="Shortcut"
                             label-width="80px">
                 <el-checkbox v-model="search.nonPaymentDue">到期未付款</el-checkbox>
+                <el-checkbox v-model="search.nonPaymentDueExcludeYiQi">到期未付款除一汽外</el-checkbox>
                 <el-checkbox v-model="search.nonOnboard">未入职</el-checkbox>
                 <el-checkbox v-model="search.guaranteePeriod">保证期</el-checkbox>
               </el-form-item>
