@@ -45,6 +45,9 @@
         <el-table-column type="index"
                          width="50"
                          label="序号"></el-table-column>
+        <el-table-column prop="id"
+                         width="100"
+                         label="编号"></el-table-column>
         <el-table-column prop="chineseName"
                          label="中文名称"></el-table-column>
         <el-table-column prop="englishName"
