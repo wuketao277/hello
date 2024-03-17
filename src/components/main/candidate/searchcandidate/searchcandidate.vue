@@ -142,6 +142,18 @@
                 </el-select>
               </el-form-item>
             </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="16">
+              <el-form-item label="教育经历">
+                <el-checkbox-group v-model="search.educationList">
+                  <el-checkbox label="DOCTOR">博士</el-checkbox>
+                  <el-checkbox label="MASTER">硕士</el-checkbox>
+                  <el-checkbox label="BACHELOR">本科</el-checkbox>
+                  <el-checkbox label="JUNIORCOLLEGE">大专</el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+            </el-col>
             <el-col :span="8">
               <el-form-item label="院校级别">
                 <el-checkbox-group v-model="search.schoolLevel">
