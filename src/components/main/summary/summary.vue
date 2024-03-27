@@ -456,7 +456,6 @@
                   :border="true"
                   :highlight-current-row="true"
                   :stripe="true"
-                  :show-header="false"
                   @row-dblclick="handleNewsDblClick"
                   @current-change="newsRowChange"
                   style="width: 100%">
