@@ -217,6 +217,7 @@ export default {
     // 清空查询条件
     clearQueryCondition() {
       this.search = {
+        nonPayment: false,
         nonPaymentDue: false,
         nonPaymentDueExcludeYiQi: false,
         nonOnboard: false,

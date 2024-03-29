@@ -491,6 +491,7 @@
                     style="text-align: left;">
               <el-form-item label="Shortcut"
                             label-width="80px">
+                <el-checkbox v-model="search.nonPayment">未付款</el-checkbox>
                 <el-checkbox v-model="search.nonPaymentDue">到期未付款</el-checkbox>
                 <el-checkbox v-model="search.nonPaymentDueExcludeYiQi">到期未付款除一汽外</el-checkbox>
                 <el-checkbox v-model="search.nonOnboard">未入职</el-checkbox>
