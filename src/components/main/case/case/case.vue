@@ -196,7 +196,7 @@
             <el-input type="textarea"
                       v-model="form.targetCompany"
                       :autosize="{ minRows: 1, maxRows: 100}"
-                      maxlength="200"
+                      maxlength="2000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
