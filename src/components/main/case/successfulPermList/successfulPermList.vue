@@ -31,7 +31,7 @@
         <el-button type="primary"
                    size="small"
                    icon="el-icon-download"
-                   @click="downloadSuccessfulCase()">下载成功case</el-button>
+                   @click="downloadSuccessfulCase()">下载全部成功case</el-button>
       </div>
       <span>总GP:{{gpSum}}</span>
       &nbsp;&nbsp;
