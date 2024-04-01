@@ -465,6 +465,18 @@ export default {
         })
       }
     },
+    // 下载候选人
+    downloadCandidates() {
+      candidateForCaseApi.downloadCandidates(this.form.id).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true
+          })
+        }
+      })
+    },
     // 查询推荐候选人列表
     queryCandidateForCaseList() {
       // 获取该职位所有候选人信息

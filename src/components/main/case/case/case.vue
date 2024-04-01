@@ -309,6 +309,10 @@
                        icon="el-icon-notebook-2"
                        @click="loadAllCandidates">加载所有候选人</el-button>
           </el-tooltip>
+          <el-button type="primary"
+                     size="small"
+                     icon="el-icon-download"
+                     @click="downloadCandidates">下载候选人</el-button>
         </div>
         <el-table v-loading="candidateTableLoading"
                   element-loading-text="拼命加载中"
