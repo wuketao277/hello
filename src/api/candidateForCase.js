@@ -43,7 +43,7 @@ export default {
   },
   // 下载候选人
   downloadCandidates(params) {
-    let urls = 'http://localhost:8080/candidateForCase/downloadCandidates?caseId=' + params
+    let urls = 'http://www.helloapplicant.com/candidateForCase/downloadCandidates?caseId=' + params
     window.open(urls, '_blank')
   }
 }
