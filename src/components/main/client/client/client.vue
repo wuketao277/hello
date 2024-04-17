@@ -54,7 +54,7 @@
             <el-input type="textarea"
                       v-model="form.address"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="2000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -78,7 +78,7 @@
             <el-input type="textarea"
                       v-model="form.recommendationProcess"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="2000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -90,7 +90,7 @@
             <el-input type="textarea"
                       v-model="form.duplicateCheck"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="2000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -102,7 +102,7 @@
             <el-input type="textarea"
                       v-model="form.resumeStandard"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="2000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -114,7 +114,7 @@
             <el-input type="textarea"
                       v-model="form.salaryStructure"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="4000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -126,7 +126,7 @@
             <el-input type="textarea"
                       v-model="form.recommendationReason"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="4000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -138,7 +138,7 @@
             <el-input type="textarea"
                       v-model="form.interviewPrepare"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="4000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -150,7 +150,7 @@
             <el-input type="textarea"
                       v-model="form.sellingPoint"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="1000"
+                      maxlength="4000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
@@ -162,7 +162,7 @@
             <el-input type="textarea"
                       v-model="form.remark"
                       :autosize="{ minRows: 2, maxRows: 100}"
-                      maxlength="2000"
+                      maxlength="4000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
