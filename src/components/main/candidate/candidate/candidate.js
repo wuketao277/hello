@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      tempAge: null,
       newLabel: null,
       attention: false,
       selectCaseDialogShow: false, // 选择职位对话框
@@ -254,6 +255,13 @@ export default {
             this.form.age = res.data
           }
         })
+      }
+    },
+    // 计算候选人生日
+    ageChange(val) {
+      if (typeof (val) !== 'undefined') {
+        this.form.birthDay = new Date().getFullYear() - val + '-01-01'
+        this.birthdayChange(this.form.birthDay)
       }
     },
     // 格式化是否终面

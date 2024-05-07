@@ -68,21 +68,25 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="3">
+        <el-col :span="2">
           <el-form-item label="年龄"
-                        prop="age">
+                        prop="age"
+                        label-width="50px">
             <span>{{form.age}}</span>
           </el-form-item>
         </el-col>
-        <el-col :span="5">
+        <el-col :span="6">
           <el-form-item label="生日"
                         prop="birthDay"
-                        label-width="80px">
+                        label-width="50px">
             <el-input v-model="form.birthDay"
                       placeholder="例如：1999-01-01"
-                      style="width:100%"
+                      style="width:150px"
                       @input="birthdayChange"
                       clearable></el-input>
+            <el-input v-model="tempAge"
+                      style="width:50px"
+                      @input="ageChange"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
