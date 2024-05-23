@@ -51,7 +51,8 @@
             <el-date-picker type="date"
                             placeholder="选择日期"
                             v-model="form.executeDate"
-                            style="width: 100%;"></el-date-picker>
+                            style="width: 100%;"
+                            value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="18">

@@ -117,18 +117,19 @@ export default {
     },
     // 更新
     update () {
-      if (this.form.executeResult === '') {
-        this.$message({
-          message: '请输入执行结果！',
-          type: 'warning',
-          showClose: true
-        })
-        return
-      }
+      // if (this.form.executeResult === '') {
+      //   this.$message({
+      //     message: '请输入执行结果！',
+      //     type: 'warning',
+      //     showClose: true
+      //   })
+      //   return
+      // }
       let task = {
         'id': this.form.id,
         'finished': this.form.finished,
-        'executeResult': this.form.executeResult
+        'executeResult': this.form.executeResult,
+        'executeDate': this.form.executeDate
       }
       myTaskApi.update(task).then(
         res => {
