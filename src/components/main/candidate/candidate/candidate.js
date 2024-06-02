@@ -1141,8 +1141,6 @@ export default {
     },
     // 整理简历
     formatResume() {
-      alert(typeof this.resume)
-      debugger
       if (this.resume === null || this.resume.length === 0) {
         return
       }
