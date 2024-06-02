@@ -7,6 +7,7 @@ import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 import commonJS from '@/common/common'
+import caseApi from '@/api/case'
 import userApi from '@/api/user'
 import labelApi from '@/api/label'
 import {
@@ -24,6 +25,8 @@ export default {
       tempAge: null,
       newLabel: null,
       attention: false,
+      myCaseAttentionDialogShow: false, // 我的职位对话框显示标志
+      myCaseAttentionList: [], // 我的职位列表
       selectCaseDialogShow: false, // 选择职位对话框
       candidateForCaseList: [], // 候选人推荐职位列表
       selectedCase: null, // 选中职位
@@ -468,6 +471,21 @@ export default {
         })
       }
     },
+    // 打开我的职位对话框
+    openMyCaseDialog() {
+      // 候选人必须先保存
+      if (this.form.id === null) {
+        this.$message({
+          message: '请先保存候选人！',
+          type: 'warning'
+        })
+        return
+      }
+      caseApi.queryAllCaseAttention2().then(res=>{
+        this.myCaseAttentionList = res.data
+      })
+      this.myCaseAttentionDialogShow = true
+    },
     // 打开职位选择对话框
     openSelectCaseDialog() {
       // 候选人必须先保存
@@ -896,6 +914,23 @@ export default {
       this.queryCandidateForCaseList()
       // 查询关注情况
       this.queryCandidateAttentionByCandidateId()
+    },
+    // 我的职位列表双击处理事件
+    handleRowDblClickMyCaseAttentionList(row, column, event) {
+      this.myCaseAttentionDialogShow = false
+      let params = {
+        candidateId: this.form.id,
+        caseId: row.caseId
+      }
+      candidateForCaseApi.saveSimple(params).then(
+        res => {
+          if (res.status === 200) {
+            // 重新获取推荐列表
+            this.queryCandidateForCaseList()
+            // 清空列表之前可能存在的选中行
+            this.selectedCase = null
+          }
+        })
     },
     // “推荐职位”对话框返回
     sureSelectCaseDialog(val) {

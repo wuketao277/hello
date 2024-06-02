@@ -423,6 +423,10 @@
                        icon="el-icon-share"
                        @click="openSelectCaseDialog">推荐职位</el-button>
           </el-tooltip>
+          <el-button type="primary"
+                     size="small"
+                     icon="el-icon-user"
+                     @click="openMyCaseDialog">我的职位</el-button>
         </div>
         <el-table highlight-current-row
                   @current-change="handleSelectCaseChange"
@@ -649,6 +653,31 @@
         <!--附件结束-->
       </el-tab-pane>
     </el-tabs>
+    <!--我的职位对话框-->
+    <el-dialog title="我的职位"
+               :visible.sync="myCaseAttentionDialogShow">
+      <el-table :data="myCaseAttentionList"
+                @row-dblclick="handleRowDblClickMyCaseAttentionList"
+                :border="true"
+                :highlight-current-row="true"
+                :stripe="true"
+                style="width: 100%">
+        <el-table-column type="index"
+                         width="50"
+                         label="序号"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="caseId"
+                         width="100"
+                         label="职位id"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="clientChineseName"
+                         label="客户名称"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="caseTitle"
+                         label="职位名称"
+                         show-overflow-tooltip></el-table-column>
+      </el-table>
+    </el-dialog>
     <!--推荐职位对话框-->
     <el-dialog title="推荐职位"
                :visible.sync="selectCaseDialogShow">
