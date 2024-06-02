@@ -63,7 +63,7 @@ export default {
         specialItem: [],
         companyStructure: '你所在的部门叫什么，现在汇报给谁，他的title是什么负责什么？\r\n' +
           '和你平级的有几位？他们都负责什么，你们是怎么分工的？\r\n' +
-          '你带多少人，你的下属是如何分工？\r\n' + '和你平级的几位负责的团队有多少人？'
+          '你带多少人，你的下属是如何分工？\r\n' + '和你平级的几位负责的团队有多少人？',
       },
       phaseOptions: commonJS.phaseOptions,
       // 新评论
@@ -1112,7 +1112,7 @@ export default {
         } else {
           while (true) {
             if (companyName[index] === ' ') {
-              // 将一段学历放到数组中
+              // 将一段工作经历放到数组中
               companyList.push(companyName.substr(index + 1))
               // 将剩余部分赋值给原来的字符串中
               companyName = companyName.substr(0, index)
@@ -1137,6 +1137,53 @@ export default {
       // 出掉多余的空格
       while (this.form.companyName.indexOf('  ') > -1) {
         this.form.companyName = this.form.companyName.replaceAll('  ', ' ')
+      }
+    },
+    // 整理简历
+    formatResume() {
+      alert(typeof this.resume)
+      debugger
+      if (this.resume === null || this.resume.length === 0) {
+        return
+      }
+      // 把回车换成空格，整理成1行
+      let resume = this.resume.replace(/\r?\n/g, ' ')
+      // 拆分成数组
+      let resumeList = []
+      while (true) {
+        let index = resume.lastIndexOf('公司')
+        if (index === -1) {
+          // 没找到关键字，直接把整个字符串放入数组中
+          resumeList.push(resume)
+          break
+        } else {
+          while (true) {
+            if (resume[index] === ' ') {
+              // 将一段工作经历放到数组中
+              resumeList.push(resume.substr(index + 1))
+              // 将剩余部分赋值给原来的字符串中
+              resume = resume.substr(0, index)
+              break
+            } else if (index === 0) {
+              resumeList.push(resume)
+              resume = ''
+              break
+            }
+            index--
+          }
+        }
+      }
+      // 重新拼接学校名称
+      this.resume = ''
+      while (resumeList.length > 0) {
+        if (this.resume.length > 0) {
+          this.resume += '\r\n'
+        }
+        this.resume += resumeList.pop()
+      }
+      // 出掉多余的空格
+      while (this.resume.indexOf('  ') > -1) {
+        this.resume = this.resume.replaceAll('  ', ' ')
       }
     }
   },

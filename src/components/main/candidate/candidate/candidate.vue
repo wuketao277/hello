@@ -207,13 +207,9 @@
           </el-form-item>
         </el-col>
         <el-col :span="2">
-          <el-form-item label=""
-                        prop=""
-                        label-width="0px">
             <el-button type="primary"
-                       size="small"
+                       size="mini"
                        @click="formatCompany">格式化</el-button>
-          </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="12">
@@ -266,13 +262,9 @@
           </el-form-item>
         </el-col>
         <el-col :span="2">
-          <el-form-item label=""
-                        prop=""
-                        label-width="0px">
-            <el-button type="primary"
-                       size="small"
-                       @click="formatSchool">格式化</el-button>
-          </el-form-item>
+          <el-button type="primary"
+                     size="mini"
+                     @click="formatSchool">格式化</el-button>
         </el-col>
       </el-row>
       <el-row :gutter="12">
@@ -317,7 +309,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="24">
+        <el-col :span="22">
           <el-form-item label="简历"
                         prop="resume">
             <el-input v-model="resume"
@@ -328,6 +320,11 @@
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="primary"
+                     size="mini"
+                     @click="formatResume">格式化</el-button>
         </el-col>
       </el-row>
       <el-row :gutter="12">
