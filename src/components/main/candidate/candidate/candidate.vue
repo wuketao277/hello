@@ -466,7 +466,9 @@
                          @click="editCase(scope.$index, scope.row)">{{scope.row.title}}</el-button>
             </template>
           </el-table-column>
-          <el-table-column prop="createTime" label="关联时间" width="160">
+          <el-table-column prop="createTime" label="推荐时间" width="160">
+          </el-table-column>
+          <el-table-column prop="createUserName" label="推荐人" width="80">
           </el-table-column>
         </el-table>
         <!--职位列表结束-->
