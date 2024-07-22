@@ -558,6 +558,28 @@ export default {
           }
         })
       })
+    },
+    // 整理岗位描述
+    formatDescription() {
+      if (this.form.description === null || this.form.description.length === 0) {
+        return
+      }
+      let tempStr = this.form.description
+      // 删除全部空格
+      tempStr = tempStr.replaceAll(' ', '')
+      // 拆分行
+      let tempList = tempStr.split('\n')
+      // 重新组合
+      tempStr = ''
+      for (let index in tempList){
+        if (tempList[index].length > 0) {
+          if (tempStr.length > 0) {
+            tempStr += '\n'
+          }
+          tempStr += tempList[index]
+        }
+      }
+      this.form.description = tempStr
     }
   },
   created() {

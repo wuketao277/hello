@@ -215,7 +215,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col>
+        <el-col :span="22">
           <el-form-item label="职位描述">
             <el-input type="textarea"
                       v-model="form.description"
@@ -224,6 +224,11 @@
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="primary"
+                     size="mini"
+                     @click="formatDescription">格式化</el-button>
         </el-col>
       </el-row>
       <el-divider>上面的信息来自HR；下面的信息需要顾问自己总结</el-divider>
