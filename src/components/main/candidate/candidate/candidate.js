@@ -1142,7 +1142,7 @@ export default {
     },
     // 解析简历
     analysisResume() {
-      if (this.tempResume === null || this.resume.tempResume === 0) {
+      if (this.tempResume === null || this.resume.tempResume.trim().length === 0) {
         return
       }
       // 获取教育部分
