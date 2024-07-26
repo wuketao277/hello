@@ -46,6 +46,7 @@
       </el-form>
           <el-button type="primary"
                      size="mini"
+                     v-if="tempResume != null && tempResume.length > 0"
                      @click="analysisResume">解析简历</el-button>
     </div>
     <el-form ref="form"

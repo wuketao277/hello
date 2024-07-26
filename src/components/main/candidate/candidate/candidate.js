@@ -1142,7 +1142,8 @@ export default {
     },
     // 解析简历
     analysisResume() {
-      if (this.tempResume === null || this.resume.tempResume.trim().length === 0) {
+      debugger
+      if (this.tempResume === null || this.tempResume.trim() === '') {
         return
       }
       // 获取教育部分
@@ -1163,6 +1164,8 @@ export default {
       if (commonJS.strIsBlank(this.form.email)) {
         this.form.email = commonJS.getEmailFromStr(this.tempResume)
       }
+      // 解析完成后，清空临时数据
+      this.tempResume = ''
     },
     // 获取教育经历部分
     analysisEducationPart(resume) {
@@ -1239,7 +1242,7 @@ export default {
       // 获取年龄
       if (commonJS.strIsBlank(this.form.birthDay)) {
         let ages = resume.match(/\d{2}岁/)
-        if (ages.length > 0) {
+        if (ages != null && ages.length > 0) {
           this.ageChange(ages[0].replace('岁', ''))
         }
       }
