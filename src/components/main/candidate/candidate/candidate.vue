@@ -31,6 +31,22 @@
                  active-text="关注"
                  active-color="#13ce66"
                  @change="updateCandidateAttention"></el-switch>
+      <el-form @submit.native.prevent
+               style="display:inline-block;width:250px;">
+        <el-form-item label
+                      style="margin-bottom:0px;">
+          <el-input v-model="tempResume"
+                placeholder="待解析简历"
+                type="textarea"
+                :rows="1"
+                maxlength="60000"
+                @keyup.enter="analysisResume"
+                clearable></el-input>
+        </el-form-item>
+      </el-form>
+          <el-button type="primary"
+                     size="mini"
+                     @click="analysisResume">解析简历</el-button>
     </div>
     <el-form ref="form"
              label-position="left"

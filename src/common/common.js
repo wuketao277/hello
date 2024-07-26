@@ -668,5 +668,46 @@ export default {
       value: 'END',
       lable: 'END'
     }
-  ]
+  ],
+  // 获取关键词数组在原文中最早出现的位置
+  getMinPosition(source, keyWords) {
+    // 默认值
+    let position = -1
+    // 遍历所有关键词，找到最早出现的位置
+    for (let index in keyWords) {
+      let tempP = source.indexOf(keyWords[index])
+      if (position == -1) {
+        position = tempP
+      } else if (tempP > -1 && tempP < position) {
+        position = tempP
+      }
+    }
+    return position
+  },
+  // 判断一个字符串是否为空
+  strIsBlank(str) {
+    if (str == null || str.length == 0 || str.trim() == '') {
+      return true
+    } else {
+      return false
+    }
+  },
+  // 从字符串中提取手机号
+  getPhoneNoFromStr(str) {
+    let phoneNoList = str.match(/(\+?86)?1[3-9]\d{9}/)
+    if (phoneNoList != null && phoneNoList.length > 0) {
+      return phoneNoList[0]
+    } else {
+      return ''
+    }
+  },
+  // 从字符串中提取邮箱
+  getEmailFromStr(str) {
+    let emailList = str.match(/[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/)
+    if (emailList != null && emailList.length > 0) {
+      return emailList[0]
+    } else {
+      return ''
+    }
+  }
 }

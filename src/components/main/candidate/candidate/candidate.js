@@ -22,6 +22,7 @@ export default {
   },
   data() {
     return {
+      tempResume: null, // 临时简历
       tempAge: null,
       newLabel: null,
       attention: false,
@@ -481,7 +482,7 @@ export default {
         })
         return
       }
-      caseApi.queryAllCaseAttention2().then(res=>{
+      caseApi.queryAllCaseAttention2().then(res => {
         this.myCaseAttentionList = res.data
       })
       this.myCaseAttentionDialogShow = true
@@ -1139,6 +1140,131 @@ export default {
         this.form.companyName = this.form.companyName.replaceAll('  ', ' ')
       }
     },
+    // 解析简历
+    analysisResume() {
+      if (this.tempResume === null || this.resume.tempResume === 0) {
+        return
+      }
+      // 获取教育部分
+      this.analysisEducationPart(this.tempResume)
+      // 获取公司部分
+      this.analysisCompanyPart(this.tempResume)
+      // 获取期望薪资
+      this.analysisSalaryPart(this.tempResume)
+      // 获取基础信息
+      this.analysisBasisPart(this.tempResume)
+      // 获取自我评价放到备注中
+      this.analysisSelfEvaluationPart(this.tempResume)
+      // 获取手机号
+      if (commonJS.strIsBlank(this.form.phoneNo)) {
+        this.form.phoneNo = commonJS.getPhoneNoFromStr(this.tempResume)
+      }
+      // 获取邮箱
+      if (commonJS.strIsBlank(this.form.email)) {
+        this.form.email = commonJS.getEmailFromStr(this.tempResume)
+      }
+    },
+    // 获取教育经历部分
+    analysisEducationPart(resume) {
+      if (!commonJS.strIsBlank(this.form.schoolName)) {
+        // 教育经历字段中有内容就直接返回
+        return
+      }
+      let startPosition = resume.indexOf('教育经历')
+      if (startPosition > -1) {
+        // 获取“教育经历”之后的部分
+        resume = resume.substr(startPosition + 4)
+        // 寻找下一个关键词位置
+        let endPosition = commonJS.getMinPosition(resume, ['语言能力', '我的技能', '自我评价'])
+        if (endPosition != -1) {
+          this.form.schoolName = resume.substr(0, endPosition)
+        } else {
+          this.form.schoolName = resume
+        }
+        this.formatSchool()
+      }
+    },
+    // 获取工作经历部分
+    analysisCompanyPart(resume) {
+      if (!commonJS.strIsBlank(this.form.companyName)) {
+        // 工作经历字段中有内容就直接返回
+        return
+      }
+      let startPosition = resume.indexOf('工作经历')
+      if (startPosition > -1) {
+        // 获取“工作经历”之后的部分
+        resume = resume.substr(startPosition + 4)
+        // 寻找下一个关键词位置
+        let endPosition = commonJS.getMinPosition(resume, ['项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
+        if (endPosition != -1) {
+          this.form.companyName = resume.substr(0, endPosition).trim()
+        } else {
+          this.form.companyName = resume.trim()
+        }
+        this.formatCompany()
+      }
+    },
+    // 获取期望薪资
+    analysisSalaryPart(resume) {
+      if (!commonJS.strIsBlank(this.form.futureMoney)) {
+        // 薪资字段中有内容就直接返回
+        return
+      }
+      let startPosition = resume.indexOf('求职意向')
+      if (startPosition > -1) {
+        // 获取“求职意向”之后的部分
+        resume = resume.substr(startPosition + 4)
+        // 寻找下一个关键词位置
+        let endPosition = commonJS.getMinPosition(resume, ['工作经历', '项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
+        if (endPosition != -1) {
+          resume = resume.substr(0, endPosition)
+        }
+        let moneys = resume.match(/\d{1,3}-\d{1,3}k×\d{1,3}薪/)
+        if (moneys.length > 0) {
+          this.form.futureMoney = moneys[0]
+        }
+      }
+    },
+    // 获取基础信息部分
+    analysisBasisPart(resume) {
+      let endPosition = resume.indexOf('求职意向')
+      if (endPosition > -1) {
+        // 获取“求职意向”之前的部分
+        resume = resume.substr(0, endPosition)
+      }
+      // 获取姓名
+      if (commonJS.strIsBlank(this.form.chineseName)) {
+        this.form.chineseName = resume.substr(0, resume.indexOf('\n'))
+      }
+      // 获取年龄
+      if (commonJS.strIsBlank(this.form.birthDay)) {
+        let ages = resume.match(/\d{2}岁/)
+        if (ages.length > 0) {
+          this.ageChange(ages[0].replace('岁', ''))
+        }
+      }
+      // 获取性别
+      if (commonJS.strIsBlank(this.form.gender)) {
+        if (resume.indexOf('男') > -1) {
+          this.form.gender = 'MALE'
+        } else if (resume.indexOf('女') > -1) {
+          this.form.gender = 'FEMALE'
+        }
+      }
+    },
+    // 获取自我评价
+    analysisSelfEvaluationPart(resume) {
+      if (!commonJS.strIsBlank(this.form.remark)) {
+        // 备注字段中有内容就直接返回
+        return
+      }
+      let startPosition = resume.indexOf('自我评价')
+      if (startPosition == -1) {
+        return
+      }
+      // 获取“自我评价”之后的部分，赋给备注
+      this.form.remark = resume.substr(startPosition)
+    },
     // 整理简历
     formatResume() {
       if (this.resume === null || this.resume.length === 0) {
@@ -1171,7 +1297,7 @@ export default {
           }
         }
       }
-      // 重新拼接学校名称
+      // 重新拼接简历名称
       this.resume = ''
       while (resumeList.length > 0) {
         if (this.resume.length > 0) {
