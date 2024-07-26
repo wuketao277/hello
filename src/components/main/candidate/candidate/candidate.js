@@ -1127,13 +1127,18 @@ export default {
           }
         }
       }
-      // 重新拼接学校名称
+      // 重新拼接公司名称
       this.form.companyName = ''
       while (companyList.length > 0) {
         if (this.form.companyName.length > 0) {
-          this.form.companyName += '\r\n'
+          this.form.companyName += '\n\n'
         }
-        this.form.companyName += companyList.pop()
+        let next = companyList.pop()
+        let p = commonJS.getMinPosition(next, ['所在部门','工作地点','下属人数','汇报对象','职责业绩'])
+        if (p != -1) {
+          next = next.substr(0,p) + '\n' + next.substr(p)
+        }
+        this.form.companyName += next
       }
       // 出掉多余的空格
       while (this.form.companyName.indexOf('  ') > -1) {
