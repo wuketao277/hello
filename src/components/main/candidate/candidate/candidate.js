@@ -1134,9 +1134,9 @@ export default {
           this.form.companyName += '\n\n'
         }
         let next = companyList.pop()
-        let p = commonJS.getMinPosition(next, ['所在部门','工作地点','下属人数','汇报对象','职责业绩'])
+        let p = commonJS.getMinPosition(next, ['所在部门', '工作地点', '下属人数', '汇报对象', '职责业绩'])
         if (p != -1) {
-          next = next.substr(0,p) + '\n' + next.substr(p)
+          next = next.substr(0, p) + '\n' + next.substr(p)
         }
         this.form.companyName += next
       }
@@ -1155,8 +1155,8 @@ export default {
       this.analysisEducationPart(this.tempResume)
       // 获取公司部分
       this.analysisCompanyPart(this.tempResume)
-      // 获取期望薪资
-      this.analysisSalaryPart(this.tempResume)
+      // 解析求职意向
+      this.analysisMotivationPart(this.tempResume)
       // 获取基础信息
       this.analysisBasisPart(this.tempResume)
       // 获取自我评价放到备注中
@@ -1212,8 +1212,8 @@ export default {
         this.formatCompany()
       }
     },
-    // 获取期望薪资
-    analysisSalaryPart(resume) {
+    // 解析求职意向
+    analysisMotivationPart(resume) {
       if (!commonJS.strIsBlank(this.form.futureMoney)) {
         // 薪资字段中有内容就直接返回
         return
@@ -1227,9 +1227,18 @@ export default {
         if (endPosition != -1) {
           resume = resume.substr(0, endPosition)
         }
+        // 获取期望薪资
         let moneys = resume.match(/\d{1,3}-\d{1,3}k×\d{1,3}薪/)
         if (moneys.length > 0) {
           this.form.futureMoney = moneys[0]
+        }
+        // 获取期望地点
+        for (let n of commonJS.provinceAndCityName) {
+          let index = resume.indexOf(n)
+          if (index != -1) {
+            this.form.futureAddress = n
+            break
+          }
         }
       }
     },
@@ -1257,6 +1266,15 @@ export default {
           this.form.gender = 'MALE'
         } else if (resume.indexOf('女') > -1) {
           this.form.gender = 'FEMALE'
+        }
+      }
+      // 获取现地址，遍历所有省市名称，位置最靠前的一个就是现地址
+      let defaultIndex = 1000
+      for (let n of commonJS.provinceAndCityName) {
+        let index = resume.indexOf(n)
+        if (index != -1 && index < defaultIndex) {
+          defaultIndex = index
+          this.form.currentAddress = n
         }
       }
     },
