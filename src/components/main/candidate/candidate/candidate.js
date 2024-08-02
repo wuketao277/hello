@@ -1169,6 +1169,10 @@ export default {
       if (commonJS.strIsBlank(this.form.email)) {
         this.form.email = commonJS.getEmailFromStr(this.tempResume)
       }
+       // 获取英文等级
+       if (commonJS.strIsBlank(this.form.englishLevel)) {
+        this.form.englishLevel = commonJS.getEnglishLevelFromStr(this.tempResume)
+      }
       // 解析完成后，清空临时数据
       this.tempResume = ''
     },
