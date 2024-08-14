@@ -1145,22 +1145,42 @@ export default {
         this.form.companyName = this.form.companyName.replaceAll('  ', ' ')
       }
     },
+    // 获取部分数组
+    getSubArray(parts, startIndex, endIndex) {
+      if (startIndex == -1) {
+        if (endIndex == -1) {
+          return parts
+        } else {
+          return parts.slice(0, endIndex)
+        }
+      } else {
+        if (endIndex == -1) {
+          return parts.slice(startIndex)
+        } else {
+          return parts.slice(startIndex, endIndex)
+        }
+      }
+    },
     // 解析简历
     analysisResume() {
-      debugger
       if (this.tempResume === null || this.tempResume.trim() === '') {
         return
       }
-      // 获取教育部分
-      this.analysisEducationPart(this.tempResume)
-      // 获取公司部分
-      this.analysisCompanyPart(this.tempResume)
-      // 解析求职意向
-      this.analysisMotivationPart(this.tempResume)
+      debugger
+      // 简历中的每一行作为一个单独的部分进行处理
+      let resumeParts = this.tempResume.split('\n')
+      resumeParts = this.preAnalysis(resumeParts)
+      this.tempResume = resumeParts.join('\n')
       // 获取基础信息
-      this.analysisBasisPart(this.tempResume)
+      resumeParts = this.analysisBasisPart(resumeParts)
+      // 解析求职意向
+      resumeParts = this.analysisMotivationPart(resumeParts)
+      // 获取公司部分
+      resumeParts = this.analysisCompanyPart(resumeParts)
+      // 获取教育部分
+      resumeParts = this.analysisEducationPart(resumeParts)
       // 获取自我评价放到备注中
-      this.analysisSelfEvaluationPart(this.tempResume)
+      resumeParts = this.analysisSelfEvaluationPart(resumeParts)
       // 获取手机号
       if (commonJS.strIsBlank(this.form.phoneNo)) {
         this.form.phoneNo = commonJS.getPhoneNoFromStr(this.tempResume)
@@ -1169,94 +1189,29 @@ export default {
       if (commonJS.strIsBlank(this.form.email)) {
         this.form.email = commonJS.getEmailFromStr(this.tempResume)
       }
-       // 获取英文等级
-       if (commonJS.strIsBlank(this.form.englishLevel)) {
+      // 获取英文等级
+      if (commonJS.strIsBlank(this.form.englishLevel)) {
         this.form.englishLevel = commonJS.getEnglishLevelFromStr(this.tempResume)
       }
       // 解析完成后，清空临时数据
       this.tempResume = ''
     },
-    // 获取教育经历部分
-    analysisEducationPart(resume) {
-      if (!commonJS.strIsBlank(this.form.schoolName)) {
-        // 教育经历字段中有内容就直接返回
-        return
-      }
-      let startPosition = resume.indexOf('教育经历')
-      if (startPosition > -1) {
-        // 获取“教育经历”之后的部分
-        resume = resume.substr(startPosition + 4)
-        // 寻找下一个关键词位置
-        let endPosition = commonJS.getMinPosition(resume, ['语言能力', '我的技能', '自我评价'])
-        if (endPosition != -1) {
-          this.form.schoolName = resume.substr(0, endPosition)
-        } else {
-          this.form.schoolName = resume
-        }
-        this.formatSchool()
-      }
-    },
-    // 获取工作经历部分
-    analysisCompanyPart(resume) {
-      if (!commonJS.strIsBlank(this.form.companyName)) {
-        // 工作经历字段中有内容就直接返回
-        return
-      }
-      let startPosition = resume.indexOf('工作经历')
-      if (startPosition > -1) {
-        // 获取“工作经历”之后的部分
-        resume = resume.substr(startPosition + 4)
-        // 寻找下一个关键词位置
-        let endPosition = commonJS.getMinPosition(resume, ['项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
-        if (endPosition != -1) {
-          this.form.companyName = resume.substr(0, endPosition).trim()
-        } else {
-          this.form.companyName = resume.trim()
-        }
-        this.formatCompany()
-      }
-    },
-    // 解析求职意向
-    analysisMotivationPart(resume) {
-      if (!commonJS.strIsBlank(this.form.futureMoney)) {
-        // 薪资字段中有内容就直接返回
-        return
-      }
-      let startPosition = resume.indexOf('求职意向')
-      if (startPosition > -1) {
-        // 获取“求职意向”之后的部分
-        resume = resume.substr(startPosition + 4)
-        // 寻找下一个关键词位置
-        let endPosition = commonJS.getMinPosition(resume, ['工作经历', '项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
-        if (endPosition != -1) {
-          resume = resume.substr(0, endPosition)
-        }
-        // 获取期望薪资
-        let moneys = resume.match(/\d{1,3}-\d{1,3}k×\d{1,3}薪/)
-        if (moneys.length > 0) {
-          this.form.futureMoney = moneys[0]
-        }
-        // 获取期望地点
-        for (let n of commonJS.provinceAndCityName) {
-          let index = resume.indexOf(n)
-          if (index != -1) {
-            this.form.futureAddress = n
-            break
-          }
-        }
-      }
+    // 预处理
+    preAnalysis(parts) {
+      // 删除“活跃度”之前，“简历洞察”之后的部分
+      let startIndex = commonJS.getFirstIndexForArray(parts, ['今天活跃', '3天内活跃', '7天内活跃', '30天内活跃', '最近三个月活跃', '最近半年活跃', '最近一年活跃'])
+      let endIndex = commonJS.getFirstIndexForArray(parts, ["简历洞察"]);
+      return this.getSubArray(parts, parseInt(startIndex) + 1, endIndex)
     },
     // 获取基础信息部分
-    analysisBasisPart(resume) {
-      let endPosition = resume.indexOf('求职意向')
-      if (endPosition > -1) {
-        // 获取“求职意向”之前的部分
-        resume = resume.substr(0, endPosition)
-      }
+    analysisBasisPart(parts) {
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['求职意向'])
       // 获取姓名
       if (commonJS.strIsBlank(this.form.chineseName)) {
-        this.form.chineseName = resume.substr(0, resume.indexOf('\n'))
+        this.form.chineseName = parts[0]
       }
+      // 将“求职意向”之前的内容组装在一起
+      let resume = this.getSubArray(parts, -1, endPosition).join('\n')
       // 获取年龄
       if (commonJS.strIsBlank(this.form.birthDay)) {
         let ages = resume.match(/\d{2}岁/)
@@ -1281,19 +1236,84 @@ export default {
           this.form.currentAddress = n
         }
       }
+      // 返回未处理的部分
+      return this.getSubArray(parts, endPosition, -1)
+    },
+    // 解析求职意向
+    analysisMotivationPart(parts) {
+      if (!commonJS.strIsBlank(this.form.futureMoney)) {
+        // 薪资字段中有内容就直接返回
+        return
+      }
+      let startPosition = commonJS.getFirstIndexForArray(parts, ['求职意向'])
+      // 寻找下一个关键词位置
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['工作经历', '项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
+      // 获取“求职意向”部分的简历
+      let resume = this.getSubArray(parts, startPosition, endPosition).join('\n')
+      // 获取期望薪资
+      let moneys = resume.match(/\d{1,3}-\d{1,3}k×\d{1,3}薪/)
+      if (moneys.length > 0) {
+        this.form.futureMoney = moneys[0]
+      }
+      // 获取期望地点
+      for (let n of commonJS.provinceAndCityName) {
+        let index = resume.indexOf(n)
+        if (index != -1) {
+          this.form.futureAddress = n
+          break
+        }
+      }
+      // 返回未处理的部分
+      return this.getSubArray(parts, endPosition, -1)
+    },
+    // 获取教育经历部分
+    analysisEducationPart(parts) {
+      if (!commonJS.strIsBlank(this.form.schoolName)) {
+        // 教育经历字段中有内容就直接返回
+        return
+      }
+      let startPosition = commonJS.getFirstIndexForArray(parts, ['教育经历'])
+      // 寻找下一个关键词位置
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['语言能力', '我的技能', '自我评价', '附加信息', '附件简历/作品'])
+      if (startPosition != -1) {
+        // 获取“教育经历”之后的部分
+        this.form.schoolName = this.getSubArray(parts, parseInt(startPosition) + 1, endPosition).join('\n')
+        this.formatSchool()
+      }
+      // 返回未处理的部分
+      return this.getSubArray(parts, endPosition, -1)
+    },
+    // 获取工作经历部分
+    analysisCompanyPart(parts) {
+      if (!commonJS.strIsBlank(this.form.companyName)) {
+        // 工作经历字段中有内容就直接返回
+        return
+      }
+      let startPosition = commonJS.getFirstIndexForArray(parts, ['工作经历'])
+      // 寻找下一个关键词位置
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
+      if (startPosition != -1) {
+        // 获取“工作经历”之后的部分
+        this.form.companyName = this.getSubArray(parts, parseInt(startPosition) + 1, endPosition).join('\n').trim()
+        this.formatCompany()
+      }
+      // 返回未处理的部分
+      return this.getSubArray(parts, endPosition, -1)
     },
     // 获取自我评价
-    analysisSelfEvaluationPart(resume) {
+    analysisSelfEvaluationPart(parts) {
       if (!commonJS.strIsBlank(this.form.remark)) {
         // 备注字段中有内容就直接返回
         return
       }
-      let startPosition = resume.indexOf('自我评价')
-      if (startPosition == -1) {
-        return
+      // 获取“自我评价”之后到“简历备注”/“附件简历/作品”之前的部分，赋给备注
+      let startPosition = commonJS.getFirstIndexForArray(parts, ['自我评价'])
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['附件简历/作品', '简历备注'])
+      if (startPosition != -1) {
+        this.form.remark = this.getSubArray(parts, startPosition, endPosition).join('\n').trim()
       }
-      // 获取“自我评价”之后的部分，赋给备注
-      this.form.remark = resume.substr(startPosition)
+      // 返回未处理的部分
+      return this.getSubArray(parts, endPosition, -1)
     },
     // 整理简历
     formatResume() {

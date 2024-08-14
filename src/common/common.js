@@ -675,11 +675,41 @@ export default {
     let position = -1
     // 遍历所有关键词，找到最早出现的位置
     for (let index in keyWords) {
+      let word = keyWords[index]
+      let tempP = source.indexOf(word)
+      if (tempP != -1) {
+        if (position == -1) {
+          position = tempP
+        } else if (tempP > -1 && tempP < position) {
+          position = tempP
+        }
+      }
+    }
+    return position
+  },
+  // 获取关键词数组在原文中最早出现的结束位置
+  getStrEndPosition(source, keyWords) {
+    // 默认值
+    let position = -1
+    // 遍历所有关键词，找到最早出现的位置
+    for (let index in keyWords) {
       let tempP = source.indexOf(keyWords[index])
-      if (position == -1) {
-        position = tempP
-      } else if (tempP > -1 && tempP < position) {
-        position = tempP
+      if (tempP != -1) {
+       let tempPend = tempP + keyWords[index].length + 1
+        if (position == -1) {
+          position = tempPend
+          break
+        }
+      }
+    }
+    return position
+  },
+  // 获取数组在keyWords中最早出现的位置
+  getFirstIndexForArray(arr, keyWords) {
+    let position = -1
+    for (let i in arr) {
+      if (keyWords.includes(arr[i])){
+        return i
       }
     }
     return position
