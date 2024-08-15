@@ -1296,6 +1296,8 @@ export default {
         // 获取“工作经历”之后的部分
         this.form.companyName = this.getSubArray(parts, parseInt(startPosition) + 1, endPosition).join('\n').trim()
         this.formatCompany()
+        // 截断超过2000个字符的部分
+        this.form.companyName = this.form.companyName.substr(0, 2000)
       }
       // 返回未处理的部分
       return this.getSubArray(parts, endPosition, -1)
