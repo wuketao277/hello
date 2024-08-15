@@ -1243,7 +1243,7 @@ export default {
     analysisMotivationPart(parts) {
       if (!commonJS.strIsBlank(this.form.futureMoney)) {
         // 薪资字段中有内容就直接返回
-        return
+        return parts
       }
       let startPosition = commonJS.getFirstIndexForArray(parts, ['求职意向'])
       // 寻找下一个关键词位置
@@ -1270,11 +1270,11 @@ export default {
     analysisEducationPart(parts) {
       if (!commonJS.strIsBlank(this.form.schoolName)) {
         // 教育经历字段中有内容就直接返回
-        return
+        return parts
       }
       let startPosition = commonJS.getFirstIndexForArray(parts, ['教育经历'])
       // 寻找下一个关键词位置
-      let endPosition = commonJS.getFirstIndexForArray(parts, ['语言能力', '我的技能', '自我评价', '附加信息', '附件简历/作品'])
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['资格证书','语言能力', '我的技能', '自我评价', '附加信息', '附件简历/作品'])
       if (startPosition != -1) {
         // 获取“教育经历”之后的部分
         this.form.schoolName = this.getSubArray(parts, parseInt(startPosition) + 1, endPosition).join('\n')
@@ -1287,7 +1287,7 @@ export default {
     analysisCompanyPart(parts) {
       if (!commonJS.strIsBlank(this.form.companyName)) {
         // 工作经历字段中有内容就直接返回
-        return
+        return parts
       }
       let startPosition = commonJS.getFirstIndexForArray(parts, ['工作经历'])
       // 寻找下一个关键词位置
@@ -1304,7 +1304,7 @@ export default {
     analysisSelfEvaluationPart(parts) {
       if (!commonJS.strIsBlank(this.form.remark)) {
         // 备注字段中有内容就直接返回
-        return
+        return parts
       }
       // 获取“自我评价”之后到“简历备注”/“附件简历/作品”之前的部分，赋给备注
       let startPosition = commonJS.getFirstIndexForArray(parts, ['自我评价'])
