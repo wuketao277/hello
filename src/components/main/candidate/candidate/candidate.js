@@ -1219,6 +1219,13 @@ export default {
           this.ageChange(ages[0].replace('岁', ''))
         }
       }
+      // 获取当前薪资
+      if (commonJS.strIsBlank(this.form.currentMoney)) {
+        let moneys = resume.match(/\d{1,3}k/)
+        if (moneys != null && moneys.length > 0) {
+          this.form.currentMoney = moneys[0]
+        }
+      }
       // 获取性别
       if (commonJS.strIsBlank(this.form.gender)) {
         if (resume.indexOf('男') > -1) {
@@ -1252,7 +1259,7 @@ export default {
       let resume = this.getSubArray(parts, startPosition, endPosition).join('\n')
       // 获取期望薪资
       let moneys = resume.match(/\d{1,3}-\d{1,3}k×\d{1,3}薪/)
-      if (moneys.length > 0) {
+      if (moneys != null && moneys.length > 0) {
         this.form.futureMoney = moneys[0]
       }
       // 获取期望地点
