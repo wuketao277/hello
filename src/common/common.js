@@ -709,7 +709,8 @@ export default {
     let position = -1
     for (let i in arr) {
       if (keyWords.includes(arr[i])){
-        return i
+        // 因为i是string类型，需要强制转换为number类型
+        return parseInt(i)
       }
     }
     return position

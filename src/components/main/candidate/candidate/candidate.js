@@ -1201,7 +1201,7 @@ export default {
       // 删除“活跃度”之前，“简历洞察”之后的部分
       let startIndex = commonJS.getFirstIndexForArray(parts, ['在线', '今天活跃', '3天内活跃', '7天内活跃', '30天内活跃', '最近三个月活跃', '最近半年活跃', '最近一年活跃'])
       let endIndex = commonJS.getFirstIndexForArray(parts, ["简历洞察"]);
-      return this.getSubArray(parts, parseInt(startIndex) + 1, endIndex)
+      return this.getSubArray(parts, startIndex + 1, endIndex)
     },
     // 获取基础信息部分
     analysisBasisPart(parts) {
@@ -1284,7 +1284,7 @@ export default {
       let endPosition = commonJS.getFirstIndexForArray(parts, ['资格证书','语言能力', '我的技能', '自我评价', '附加信息', '附件简历/作品'])
       if (startPosition != -1) {
         // 获取“教育经历”之后的部分
-        this.form.schoolName = this.getSubArray(parts, parseInt(startPosition) + 1, endPosition).join('\n')
+        this.form.schoolName = this.getSubArray(parts, startPosition + 1, endPosition).join('\n')
         this.formatSchool()
       }
       // 返回未处理的部分
@@ -1301,7 +1301,7 @@ export default {
       let endPosition = commonJS.getFirstIndexForArray(parts, ['项目经历', '教育经历', '语言能力', '我的技能', '自我评价'])
       if (startPosition != -1) {
         // 获取“工作经历”之后的部分
-        this.form.companyName = this.getSubArray(parts, parseInt(startPosition) + 1, endPosition).join('\n').trim()
+        this.form.companyName = this.getSubArray(parts, startPosition + 1, endPosition).join('\n').trim()
         this.formatCompany()
         // 截断超过2000个字符的部分
         this.form.companyName = this.form.companyName.substr(0, 2000)
