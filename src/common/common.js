@@ -707,10 +707,9 @@ export default {
   // 获取数组在keyWords中最早出现的位置
   getFirstIndexForArray(arr, keyWords) {
     let position = -1
-    for (let i=0;i<arr.length;i++) {
+    for (let i=0; i<arr.length; i++) {
       if (keyWords.includes(arr[i])){
-        // 因为i是string类型，需要强制转换为number类型
-        return parseInt(i)
+        return i
       }
     }
     return position
