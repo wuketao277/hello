@@ -1105,7 +1105,10 @@ export default {
       // 拆分成数组
       let companyList = []
       while (true) {
-        let index = companyName.lastIndexOf('公司')
+        let index = companyName.lastIndexOf('有限公司')
+        if (index === -1) {
+          index = companyName.lastIndexOf('有限责任公司')
+        }
         if (index === -1) {
           // 没找到关键字，直接把整个字符串放入数组中
           companyList.push(companyName)
@@ -1326,6 +1329,7 @@ export default {
     },
     // 整理简历
     formatResume() {
+      debugger
       if (this.resume === null || this.resume.length === 0) {
         return
       }
@@ -1334,7 +1338,10 @@ export default {
       // 拆分成数组
       let resumeList = []
       while (true) {
-        let index = resume.lastIndexOf('公司')
+        let index = resume.lastIndexOf('有限公司')
+        if (index === -1) {
+          index = resume.lastIndexOf('有限责任公司')
+        }
         if (index === -1) {
           // 没找到关键字，直接把整个字符串放入数组中
           resumeList.push(resume)
