@@ -5,6 +5,9 @@ import userApi from '@/api/user'
 export default {
   data () {
     return {
+      schoolDialogShowFlag: false, // 学校对话框显示控制标志
+      schoolName: null, // 学校名称
+      schoolCheckResult: '检查结果',
       isCollapse: true,
       realname: '',
       username: '',
@@ -14,6 +17,60 @@ export default {
     }
   },
   methods: {
+    // 学校名称变更事件
+    schoolNameChange () {
+      // 将英文括号转成中文括号
+      let tempName = this.schoolName
+      tempName = tempName.replace('(','（')
+      tempName = tempName.replace(')','）')
+      // 判断是不是指定院校
+      let s985 = false
+      if (commonJS.school985.includes(tempName)){
+        s985 = true
+      }
+      let s211 = false
+      if (commonJS.school211.includes(tempName)){
+        s211 = true
+      }
+      let s11 = false
+      if (commonJS.school11.includes(tempName)){
+        s11 = true
+      }
+      let sBenTeng90 = false
+      if (commonJS.schoolBenTeng90.includes(tempName)){
+        sBenTeng90 = true
+      }
+      // 将结果转换为文字
+      if (!s985 && !s211 && !s11 && !sBenTeng90) {
+        this.schoolCheckResult = '非重点院校'
+        return
+      }
+      this.schoolCheckResult = ''
+      if(s985) {
+        this.schoolCheckResult = '985'
+      }
+      if(s211) {
+        if (this.schoolCheckResult === '') {
+          this.schoolCheckResult = '211'
+        } else {
+          this.schoolCheckResult += ' & 211'
+        }
+      }
+      if(s11) {
+        if (this.schoolCheckResult === '') {
+          this.schoolCheckResult = '双一流'
+        } else {
+          this.schoolCheckResult += ' & 双一流'
+        }
+      }
+      if(sBenTeng90) {
+        if (this.schoolCheckResult === '') {
+          this.schoolCheckResult = '奔腾90所'
+        } else {
+          this.schoolCheckResult += ' & 奔腾90所'
+        }
+      }
+    },
     // 通过工作类型控制显示
     jobTypeControlShow (url) {
       let jobType = commonJS.getJobType()

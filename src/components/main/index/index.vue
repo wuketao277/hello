@@ -164,6 +164,28 @@
                target="_blank"
                href="https://beian.miit.gov.cn">沪ICP备2022003281号-1</el-link>
     </el-footer>
+    <!--悬浮工具栏-->
+    <div style="position: fixed;right:0px;top:60px;height: 100px;">
+      <el-button icon="el-icon-school"
+                 circle
+                 size="mini"
+                 @click="schoolDialogShowFlag = true"></el-button>
+    </div>
+    <el-dialog title="学校名称"
+               :visible.sync="schoolDialogShowFlag"
+               :show-close="true"
+               width="30%">
+      <!--学校查询-->
+      <el-form @submit.native.prevent>
+        <el-input
+          placeholder="请输入学校名称"
+          v-model="schoolName"
+          @change="schoolNameChange"
+          clearable>
+        </el-input>
+        <p>{{schoolCheckResult}}</p>
+      </el-form>
+    </el-dialog>
   </el-container>
 </template>
 <style>
