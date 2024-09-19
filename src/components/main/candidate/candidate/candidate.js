@@ -1320,7 +1320,7 @@ export default {
       }
       // 获取“自我评价”之后到“简历备注”/“附件简历/作品”之前的部分，赋给备注
       let startPosition = commonJS.getFirstIndexForArray(parts, ['自我评价'])
-      let endPosition = commonJS.getFirstIndexForArray(parts, ['附件简历/作品', '简历备注'])
+      let endPosition = commonJS.getFirstIndexForArray(parts, ['本次搜索匹配到的简历不够精准？点击这里进行反馈', '附件简历/作品', '简历备注'])
       if (startPosition != -1) {
         this.form.remark = this.getSubArray(parts, startPosition, endPosition).join('\n').trim()
       }
