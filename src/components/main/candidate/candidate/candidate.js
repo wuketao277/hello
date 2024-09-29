@@ -1203,6 +1203,9 @@ export default {
     preAnalysis(parts) {
       // 删除“活跃度”之前，“简历洞察”之后的部分
       let startIndex = commonJS.getFirstIndexForArray(parts, ['在线', '今天活跃', '3天内活跃', '7天内活跃', '30天内活跃', '最近三个月活跃', '最近半年活跃', '最近一年活跃'])
+      if (startIndex === -1) {
+        startIndex = commonJS.getFirstIndexForArray(parts, ['查看大图'])
+      }
       let endIndex = commonJS.getFirstIndexForArray(parts, ["简历洞察"]);
       return this.getSubArray(parts, startIndex + 1, endIndex)
     },
