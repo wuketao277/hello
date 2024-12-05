@@ -762,8 +762,9 @@ export default {
           this.form.clientId === 567118 ||
           this.form.clientId === 567119 ||
           this.form.clientId === 511253 ||
-          this.form.clientId === 7487) {
-          // 一汽奔腾 一汽红旗 理想的2个公司 可以修改billing
+          this.form.clientId === 511253 ||
+          this.form.clientId === 642943) {
+          // 一汽集团和理想的2个公司 可以修改billing
           return false
         }
         return true
