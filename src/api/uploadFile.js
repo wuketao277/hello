@@ -7,7 +7,10 @@ export default {
   },
   // 下载文件
   download (uuid) {
-    let urls = 'http://www.helloapplicant.com/uploadFile/download?uuid=' + uuid
+    // let urls = 'http://www.helloapplicant.com/uploadFile/download?uuid=' + uuid
+    // let urls = 'http://localhost:8000/uploadFile/download?uuid=' + uuid
+    // 从配置文件中读取下载文件地址
+    let urls = process.env.DOWNLOAD_FILE_URL + uuid
     window.open(urls, '_blank')
   },
   // 通过关联表id和关联表名称查询数据

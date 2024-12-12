@@ -1,7 +1,9 @@
 export default {
   data () {
     return {
-      fileList: []
+      fileList: [],
+      // 从配置文件中读取上传文件地址
+      uploadFileUrl: process.env.UPLOAD_FILE_URL
     }
   },
   // uploadFileData 中定义了上传文件需要的管理信息

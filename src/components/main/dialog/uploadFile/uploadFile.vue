@@ -6,9 +6,10 @@
       <el-radio v-model="uploadFileData.hasSensitiveInfomation" label="N">否</el-radio>
     </template>
     <p/>
+    <!--上传文件地址uploadFileUrl从后台读取-->
     <el-upload
       class="upload-demo"
-      action="http://www.helloapplicant.com/uploadFile/uploadFile"
+      :action="uploadFileUrl"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
