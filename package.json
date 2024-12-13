@@ -11,12 +11,19 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:test": "node build/build.js --mode test"
   },
   "dependencies": {
+    "@vue-office/docx": "^1.6.2",
+    "@vue-office/excel": "^1.7.11",
+    "@vue-office/pdf": "^2.0.9",
+    "@vue/composition-api": "^1.7.2",
+    "ajv": "^5.5.2",
     "echarts": "^5.2.2",
     "element-ui": "^2.15.0",
     "vue": "^2.5.2",
+    "vue-demi": "^0.14.6",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

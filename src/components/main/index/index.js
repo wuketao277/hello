@@ -1,6 +1,7 @@
 import basic from '@/api/basic'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import { env } from 'shelljs'
 
 export default {
   data () {
@@ -13,7 +14,8 @@ export default {
       username: '',
       roles: [],
       jobType: '',
-      version: commonJS.version
+      version: commonJS.version,
+      environment: process.env.NODE_ENV
     }
   },
   methods: {
