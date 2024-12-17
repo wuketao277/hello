@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="background">
       <img :src="backgroundImage"
            width="100%"
@@ -10,7 +10,7 @@
       <el-form ref="form"
                :model="loginUser"
                label-width="0px"
-               style="width:420px;height:280px;position:absolute;left:500px;top:150px;border:2px solid #609EFF;border-radius:10px;background-color:rgba(255,255,255,0.5);">
+               class="login-form">
         <h1>Hello System<span style="margin-top:0px;margin-bottom:10px;font-size:5px;">&nbsp;&nbsp;v{{version}}</span>
         </h1>
 
@@ -40,14 +40,31 @@
 <script src="./login.js">
 </script>
 <style>
+.container {
+  position: relative;
+  height: 100vh; /* 使容器占满整个视口高度 */
+}
+
 .background {
   width: 100%;
-  height: 100%; /**宽高100%是为了图片铺满屏幕 */
+  height: 100%;
   z-index: -1;
   position: absolute;
 }
+
 .front {
   z-index: 1;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-form {
+  width: 420px;
+  height: 280px;
+  border: 2px solid #609eff;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 </style>
