@@ -61,6 +61,12 @@
                 <span slot="title">面试安排</span>
               </template>
             </el-menu-item>
+            <el-menu-item index="/background.html/bigEvent/bigEventList">
+              <template slot="title">
+                <i class="el-icon-s-operation"></i>
+                <span slot="title">大事件列表</span>
+              </template>
+            </el-menu-item>
           </el-submenu>
           <el-menu-item index="/background.html/client/clientlist"
                         v-if="jobTypeControlShow('/client/clientlist')">

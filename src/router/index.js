@@ -44,11 +44,13 @@ import StudyRecordList from '@/components/main/training/studyrecord/studyrecordl
 import StudyRecord from '@/components/main/training/studyrecord/studyrecord/studyrecord.vue'
 import InvoiceList from '@/components/main/salary/invoiceList/invoiceList.vue'
 import Invoice from '@/components/main/salary/invoice/invoice.vue'
-import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustList/kpiworkdaysadjustList.vue'
+import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustlist/kpiworkdaysadjustList.vue'
 import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
 import InterviewList from '@/components/main/interview/interviewList.vue'
 import CommonJS from '@/common/common'
 import KPIList from '@/components/main/salary/kpiList/kpiList.vue'
+import BigEventList from '@/components/main/bigEvent/bigEventList/bigEventList.vue'
+import BigEventInfo from '@/components/main/bigEvent/bigEventInfo/bigEventInfo.vue'
 
 Vue.use(Router)
 
@@ -75,6 +77,18 @@ const router = new Router({
       path: '/report/general',
       name: 'GeneralReport',
       component: GeneralReport
+    },
+    {
+      // 大事件列表
+      path: '/bigEvent/bigEventList',
+      name: 'bigEventList',
+      component: BigEventList
+    },
+    {
+      // 大事件
+      path: '/bigEvent/bigEventInfo',
+      name: 'bigEventInfo',
+      component: BigEventInfo
     },
     {
       // 客户列表页

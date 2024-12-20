@@ -30,7 +30,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       rewrites: [{
         from: /.*/,
         to: path.posix.join(config.dev.assetsPublicPath, 'index.html')
-      }, ],
+      },],
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
@@ -45,7 +45,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     proxy: [{
       changeOrigin: true,
-      context: ["/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**", "/label/**", "/prc/**", "/kpiWorkDaysAdjust/**", "/kpi/**"],
+      context: ["/bigEvent/**", "/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**", "/label/**", "/prc/**", "/kpiWorkDaysAdjust/**", "/kpi/**"],
       target: "http://localhost:8000"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin

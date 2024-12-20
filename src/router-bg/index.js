@@ -44,10 +44,12 @@ import StudyRecord from '@/components/main/training/studyrecord/studyrecord/stud
 import InvoiceList from '@/components/main/salary/invoiceList/invoiceList.vue'
 import Invoice from '@/components/main/salary/invoice/invoice.vue'
 import InterviewList from '@/components/main/interview/interviewList.vue'
-import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustList/kpiworkdaysadjustList.vue'
+import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustlist/kpiworkdaysadjustList.vue'
 import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
 import KPIList from '@/components/main/salary/kpiList/kpiList.vue'
 import SearchCandidate from '@/components/main/candidate/searchcandidate/searchcandidate.vue'
+import BigEventInfo from '@/components/main/bitEvent/bigEventInfo/bigEventInfo.vue'
+import BigEventList from '@/components/main/bitEvent/bigEventList/bigEventList.vue'
 
 Vue.use(Router)
 
@@ -68,6 +70,18 @@ const router = new Router({
       path: '/background.html/interviewlist',
       name: 'InterviewList',
       component: InterviewList
+    },
+    {
+      // 面试列表
+      path: '/background.html/bigEvent/bigEventList',
+      name: 'bigEventList',
+      component: BigEventList
+    },
+    {
+      // 面试列表
+      path: '/background.html/bigEvent/bigEventInfo',
+      name: 'bigEventInfo',
+      component: BigEventInfo
     },
     {
       // 总报表
