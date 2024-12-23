@@ -206,9 +206,16 @@
           <div id="futureReceiveBillingData"
                :class="divClass">
             <el-row>
-              <el-col :span="12">未来到账数据（不含一汽）</el-col>
+              <el-col :span="12">未来到账数据</el-col>
             </el-row>
             <div id="futureReceiveBillingDataChart"
+                 :class="chartClass"></div>
+          </div><div id="futureReceiveBillingData2"
+               :class="divClass">
+            <el-row>
+              <el-col :span="12">未来到账数据（不含一汽）</el-col>
+            </el-row>
+            <div id="futureReceiveBillingDataChart2"
                  :class="chartClass"></div>
           </div>
         </el-col>

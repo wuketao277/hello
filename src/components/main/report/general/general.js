@@ -536,6 +536,26 @@ export default {
                 }
               ]
             })
+            let futureReceiveBillingDataChart2 = this.$echarts.init(document.getElementById('futureReceiveBillingDataChart2'))
+            futureReceiveBillingDataChart2.setOption({
+              xAxis: {
+                type: 'category',
+                data: res.data.futureReceiveBillingDataX2
+              },
+              yAxis: {
+                type: 'value'
+              },
+              series: [
+                {
+                  data: res.data.futureReceiveBillingDataY2,
+                  type: 'bar',
+                  label: {
+                    show: true,
+                    position: 'top' // 可以根据需要调整位置
+                  }
+                }
+              ]
+            })
           }
         })
     }
