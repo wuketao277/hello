@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 
 export default {
   name: 'hello',
-  data() {
+  data () {
     return {
       form: {
         startDate: null,
@@ -19,12 +19,12 @@ export default {
       period: commonJS.getStorageContent('generalPeriod', 'month')
     }
   },
-  mounted() {
+  mounted () {
     this.calcDate(this.period)
   },
   methods: {
     // 图表尺寸变更时间
-    changeChartSize(size) {
+    changeChartSize (size) {
       if (size === 'big') {
         this.divClass = 'divBig'
         this.chartClass = 'chartBig'
@@ -38,7 +38,7 @@ export default {
       }
     },
     // 计算开始日期和结束日期
-    calcDate(type) {
+    calcDate (type) {
       window.localStorage['generalPeriod'] = type
       if (type === 'week') {
         let now = new Date()
@@ -182,7 +182,7 @@ export default {
       this.drawChart()
     },
     // 绘制图表
-    drawChart() {
+    drawChart () {
       report.queryGeneral(this.form).then(
         res => {
           if (res.status === 200) {
@@ -515,6 +515,26 @@ export default {
                   }
                 }
               }]
+            })
+            let futureReceiveBillingDataChart = this.$echarts.init(document.getElementById('futureReceiveBillingDataChart'))
+            futureReceiveBillingDataChart.setOption({
+              xAxis: {
+                type: 'category',
+                data: res.data.futureReceiveBillingDataX
+              },
+              yAxis: {
+                type: 'value'
+              },
+              series: [
+                {
+                  data: res.data.futureReceiveBillingDataY,
+                  type: 'bar',
+                  label: {
+                    show: true,
+                    position: 'top' // 可以根据需要调整位置
+                  }
+                }
+              ]
             })
           }
         })
