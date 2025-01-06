@@ -21,6 +21,11 @@
                  size="small"
                  icon="el-icon-circle-plus-outline"
                  @click="addConsultant">增加顾问</el-button>
+      <el-button type="primary"
+                 size="small"
+                 v-show="this.form.type === 'contracting'"
+                 icon="el-icon-edit"
+                 @click="genNextContracting">生成候选人当月成功case</el-button>
     </div>
     <el-form ref="form"
              :model="form"

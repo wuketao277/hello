@@ -1,41 +1,45 @@
 import axios from 'axios'
 
 export default {
+  // 生成下一个成功case
+  genNextContracting (params) {
+    return axios.get('/successfulPerm/genNextContracting?preId=' + params)
+  },
   // 保存
-  save(params) {
+  save (params) {
     return axios.post('/successfulPerm/save', params)
   },
   // 通过主键查找用户信息
-  findById(params) {
+  findById (params) {
     return axios.get('/successfulPerm/findById', {
       params: params
     })
   },
   // 查找后台数据
-  queryPage(params) {
+  queryPage (params) {
     return axios.post('/successfulPerm/queryPage', params)
   },
   // 查找后台统计
-  queryStatistics(params) {
+  queryStatistics (params) {
     return axios.post('/successfulPerm/queryStatistics', params)
   },
   // 查找后台数据
-  query(params) {
+  query (params) {
     return axios.get('/successfulPerm/query', {
       params: params
     })
   },
   // 下载成功case
-  downloadSuccessfulCase() {
+  downloadSuccessfulCase () {
     let urls = 'http://www.helloapplicant.com/successfulPerm/downloadSuccessfulCase'
     window.open(urls, '_blank')
   },
   // 通过主键删除
-  deleteById(params) {
+  deleteById (params) {
     return axios.post('/successfulPerm/deleteById', params)
   },
   // 当日入职列表
-  todayOnboardList(params) {
+  todayOnboardList (params) {
     return axios.get('/successfulPerm/todayOnboardList', {
       params: params
     })
