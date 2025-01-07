@@ -1303,7 +1303,7 @@ export default {
       let endPosition = commonJS.getFirstIndexForArray(parts, ['查看全部备注'])
       if (startPosition != -1) {
         // 将备注写道评论中
-        this.newComment.content = this.getSubArray(parts, startPosition + 1, endPosition).join('\n')
+        this.newComment.content = this.getSubArray(parts, startPosition + 2, endPosition).join('\n')
       }
     },
     // 获取工作经历部分
