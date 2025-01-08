@@ -4,24 +4,24 @@ import invoiceApi from '@/api/invoice'
 import commonJS from '@/common/common'
 
 export default {
-  data() {
+  data () {
     return {
       types: [{
-          code: 'Z3',
-          name: '3%专票'
-        },
-        {
-          code: 'Z6',
-          name: '6%专票'
-        },
-        {
-          code: 'P3',
-          name: '3%普票'
-        },
-        {
-          code: 'P6',
-          name: '6%普票'
-        }
+        code: 'Z3',
+        name: '3%专票'
+      },
+      {
+        code: 'Z6',
+        name: '6%专票'
+      },
+      {
+        code: 'P3',
+        name: '3%普票'
+      },
+      {
+        code: 'P6',
+        name: '6%普票'
+      }
       ],
       table: {
         content: [],
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     // 清空搜索条件
-    clearQueryCondition() {
+    clearQueryCondition () {
       this.search = {
         clientId: null,
         amId: null,
@@ -64,7 +64,7 @@ export default {
       }
     },
     // 格式化开票类型
-    formatType(row, column, cellvalue, index) {
+    formatType (row, column, cellvalue, index) {
       if (cellvalue === 'Z3') {
         return '3%专票'
       } else if (cellvalue === 'Z6') {
@@ -76,7 +76,7 @@ export default {
       }
     },
     // 通过id发票信息
-    deleteById() {
+    deleteById () {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除 ' + this.currentRow.clientChineseName + '-' + this.currentRow.candidateChineseName + '的发票信息吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -91,7 +91,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 // 删除后刷新列表
                 this.query()
@@ -103,7 +104,7 @@ export default {
         })
       }
     },
-    formatCancel(row, column, cellvalue, index) {
+    formatCancel (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined') {
         if (cellvalue === '1') {
           return '作废'
@@ -111,14 +112,14 @@ export default {
       }
       return '正常'
     },
-    formatDate(row, column, cellvalue, index) {
+    formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
         return cellvalue.substr(0, 10)
       }
       return ''
     },
     // 检查是否选择了一条记录
-    checkSelectRow() {
+    checkSelectRow () {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -130,11 +131,11 @@ export default {
       return true
     },
     // 新增
-    add() {
+    add () {
       this.$router.push('/background.html/salary/invoice')
     },
     // 修改
-    modify() {
+    modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/salary/invoice',
@@ -146,7 +147,7 @@ export default {
       }
     },
     // 查看
-    detail() {
+    detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/salary/invoice',
@@ -158,7 +159,7 @@ export default {
       }
     },
     // 查询后台数据
-    query() {
+    query () {
       window.localStorage['invoiceList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['invoiceList.pageSize'] = this.table.pageable.pageSize
       this.searchDialog = false
@@ -179,37 +180,37 @@ export default {
       })
     },
     // 行变化
-    rowChange(val) {
+    rowChange (val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange(val) {
+    sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange(val) {
+    currentChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick(val) {
+    prevClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick(val) {
+    nextClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog() {
+    sureSearchDialog () {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
     }
   },
-  created() {
+  created () {
     // 获取所有“客户”信息
     clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {

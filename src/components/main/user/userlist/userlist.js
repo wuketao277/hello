@@ -100,7 +100,8 @@ export default {
         this.$message({
           message: '文件' + file.name + '上传成功',
           type: 'success',
-          showClose: true
+          showClose: true,
+          duration: 800
         })
         // 刷新列表
         this.query()
@@ -111,9 +112,9 @@ export default {
         })
       }
     },
-    handlePreview () {},
-    handleRemove () {},
-    beforeRemove () {},
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { },
     sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()

@@ -95,7 +95,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 // 删除后刷新列表
                 this.query()

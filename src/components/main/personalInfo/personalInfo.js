@@ -32,7 +32,8 @@ export default {
             this.$message({
               message: '保存成功！',
               type: 'success',
-              showClose: true
+              showClose: true,
+              duration: 800
             })
           } else {
             this.$message({
@@ -100,7 +101,8 @@ export default {
               this.$message({
                 message: '密码更新成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
             } else {
               this.$message({

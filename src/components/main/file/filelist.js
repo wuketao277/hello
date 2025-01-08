@@ -57,7 +57,8 @@ export default {
             if (res.data.length === 0) {
               this.$message({
                 type: 'success',
-                message: '删除成功!'
+                message: '删除成功!',
+                duration: 800
               })
               // 触发更新文件操作
               this.$emit('delete-file-success')
@@ -69,7 +70,7 @@ export default {
             }
           }
         })
-      }).catch(() => {})
+      }).catch(() => { })
     },
     // 打开上传文件对话框
     openUploadFileDialog () {
@@ -96,7 +97,8 @@ export default {
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
         this.$message({
           type: 'success',
-          message: '查询完成！'
+          message: '查询完成！',
+          duration: 800
         })
       })
     },
@@ -114,9 +116,9 @@ export default {
       // 刷新列表
       this.query()
     },
-    handlePreview () {},
-    handleRemove () {},
-    beforeRemove () {},
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { },
     sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
@@ -133,7 +135,7 @@ export default {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {}
+    switchSearchDialog () { }
   },
   computed: {},
   created () {

@@ -11,11 +11,11 @@ export default {
       },
       rules: {
         roleName: [
-          {required: true, message: '角色名称必填', trigger: 'blur'},
-          {max: 200, message: '长度不能大于200个字符', trigger: 'blur'}
+          { required: true, message: '角色名称必填', trigger: 'blur' },
+          { max: 200, message: '长度不能大于200个字符', trigger: 'blur' }
         ],
         roleDesc: [
-          {max: 200, message: '长度不能大于200个字符', trigger: 'blur'}
+          { max: 200, message: '长度不能大于200个字符', trigger: 'blur' }
         ]
       }
     }
@@ -40,7 +40,8 @@ export default {
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
               }
             })

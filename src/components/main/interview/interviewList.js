@@ -99,7 +99,8 @@ export default {
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
         this.$message({
           type: 'success',
-          message: '查询完成！'
+          message: '查询完成！',
+          duration: 800
         })
       })
     },
@@ -116,7 +117,8 @@ export default {
         this.$message({
           message: '文件' + file.name + '上传成功',
           type: 'success',
-          showClose: true
+          showClose: true,
+          duration: 800
         })
       } else {
         this.$message({
@@ -129,9 +131,9 @@ export default {
       // 刷新列表
       this.query()
     },
-    handlePreview () {},
-    handleRemove () {},
-    beforeRemove () {},
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { },
     sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
@@ -162,7 +164,7 @@ export default {
       this.query()
     },
     // 下载按钮点击事件
-    download () {}
+    download () { }
   },
   computed: {},
   created () {

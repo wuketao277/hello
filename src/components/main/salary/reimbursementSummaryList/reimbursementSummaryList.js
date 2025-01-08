@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data() {
+  data () {
     return {
       // 总报销金额
       reimbursementSum: 10,
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     // 表格双击处理
-    handleRowDblClick(row, column, event) {
+    handleRowDblClick (row, column, event) {
       this.$router.push({
         path: '/background.html/salary/reimbursementItemList',
         query: {
@@ -41,7 +41,7 @@ export default {
       })
     },
     // 显示控制
-    showControl(key) {
+    showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'edit' || key === 'statistics') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -49,7 +49,7 @@ export default {
       return true
     },
     // 生成报销摘要
-    generateReimbursementSummary() {
+    generateReimbursementSummary () {
       if (this.reimbursementMonth === null || this.reimbursementMonth === '') {
         this.$message({
           message: '请选择月份',
@@ -73,7 +73,8 @@ export default {
                 this.$message({
                   message: '生成成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 this.query()
               } else {
@@ -84,7 +85,7 @@ export default {
       }
     },
     // 查询后台数据
-    query() {
+    query () {
       window.localStorage['reimbursementSummaryList.search'] = JSON.stringify((typeof (this.search) === 'undefined' || typeof (this.search) !== 'object') ? {} : this.search)
       window.localStorage['reimbursementSummaryList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['reimbursementSummaryList.pageSize'] = this.table.pageable.pageSize
@@ -110,41 +111,41 @@ export default {
       })
     },
     // 行变化
-    rowChange(val) {
+    rowChange (val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange(val) {
+    sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange(val) {
+    currentChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick(val) {
+    prevClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick(val) {
+    nextClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog() {
+    sureSearchDialog () {
       this.table.pageable.pageNumber = 1
       this.query()
     },
     // 清空查询条件
-    clearQueryCondition() {
+    clearQueryCondition () {
       this.search = {}
       window.localStorage['reimbursementSummaryList.search'] = {}
     },
     // 公司转换器
-    companyFormatter(row) {
+    companyFormatter (row) {
       for (let c of this.companyList) {
         if (c.code === row.company) {
           return c.name
@@ -152,7 +153,7 @@ export default {
       }
     },
     // 设置行样式
-    setRowClassName({
+    setRowClassName ({
       row,
       index
     }) {
@@ -167,7 +168,7 @@ export default {
       }
     },
     // 下载报销项
-    downloadReimbursementSummary() {
+    downloadReimbursementSummary () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -181,13 +182,14 @@ export default {
           this.$message({
             message: '下载成功！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
         }
       })
     }
   },
-  created() {
+  created () {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

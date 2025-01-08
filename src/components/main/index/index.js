@@ -23,23 +23,23 @@ export default {
     schoolNameChange () {
       // 将英文括号转成中文括号
       let tempName = this.schoolName
-      tempName = tempName.replace('(','（')
-      tempName = tempName.replace(')','）')
+      tempName = tempName.replace('(', '（')
+      tempName = tempName.replace(')', '）')
       // 判断是不是指定院校
       let s985 = false
-      if (commonJS.school985.includes(tempName)){
+      if (commonJS.school985.includes(tempName)) {
         s985 = true
       }
       let s211 = false
-      if (commonJS.school211.includes(tempName)){
+      if (commonJS.school211.includes(tempName)) {
         s211 = true
       }
       let s11 = false
-      if (commonJS.school11.includes(tempName)){
+      if (commonJS.school11.includes(tempName)) {
         s11 = true
       }
       let sBenTeng90 = false
-      if (commonJS.schoolBenTeng90.includes(tempName)){
+      if (commonJS.schoolBenTeng90.includes(tempName)) {
         sBenTeng90 = true
       }
       // 将结果转换为文字
@@ -48,24 +48,24 @@ export default {
         return
       }
       this.schoolCheckResult = ''
-      if(s985) {
+      if (s985) {
         this.schoolCheckResult = '985'
       }
-      if(s211) {
+      if (s211) {
         if (this.schoolCheckResult === '') {
           this.schoolCheckResult = '211'
         } else {
           this.schoolCheckResult += ' & 211'
         }
       }
-      if(s11) {
+      if (s11) {
         if (this.schoolCheckResult === '') {
           this.schoolCheckResult = '双一流'
         } else {
           this.schoolCheckResult += ' & 双一流'
         }
       }
-      if(sBenTeng90) {
+      if (sBenTeng90) {
         if (this.schoolCheckResult === '') {
           this.schoolCheckResult = '奔腾90所'
         } else {
@@ -172,7 +172,8 @@ export default {
             this.$message({
               message: '退出成功！',
               type: 'success',
-              showClose: true
+              showClose: true,
+              duration: 800
             })
             // 清空本地存储
             window.localStorage.clear()

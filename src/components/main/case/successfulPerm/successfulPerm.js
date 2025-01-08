@@ -438,7 +438,8 @@ export default {
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
               } else {
                 this.$message.error('保存失败！')
@@ -805,7 +806,8 @@ export default {
             this.$message({
               message: '生成成功！',
               type: 'success',
-              showClose: true
+              showClose: true,
+              duration: 800
             })
           } else {
             this.$message({

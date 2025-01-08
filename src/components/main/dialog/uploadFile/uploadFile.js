@@ -13,16 +13,17 @@ export default {
       this.$message({
         message: '文件上传成功！',
         type: 'success',
-        showClose: true
+        showClose: true,
+        duration: 800
       })
       // 触发上传文件成功方法
       this.$emit('upload_file_success')
       // 情况历史数据
       this.fileList = []
     },
-    handlePreview () {},
-    handleRemove () {},
-    beforeRemove () {}
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { }
   },
   created () {
   }

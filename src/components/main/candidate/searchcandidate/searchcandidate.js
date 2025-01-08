@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data() {
+  data () {
     return {
       searchDialog: false, // 搜索对话框
       table: {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     // 检查是否选择了一条记录
-    checkSelectRow() {
+    checkSelectRow () {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -43,7 +43,7 @@ export default {
       return true
     },
     // 查询后台数据
-    query() {
+    query () {
       if (typeof (this.search.keyWords) === 'undefined' || this.search.keyWords === '' || this.search.keyWords === null) {
         this.$message({
           type: 'warning',
@@ -71,16 +71,17 @@ export default {
         window.localStorage['searchcandidate.data'] = JSON.stringify(this.table.content)
         this.$message({
           type: 'success',
-          message: '查询完成！'
+          message: '查询完成！',
+          duration: 800
         })
       })
     },
     // 处理选中行
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.currentRow = val
     },
     // 清空查询条件
-    clearQueryCondition() {
+    clearQueryCondition () {
       this.search = {
         'keyWords': null,
         'gender': null,
@@ -96,7 +97,7 @@ export default {
       window.localStorage['searchcandidate.search'] = JSON.stringify(this.search)
     },
     // 修改候选人
-    modifyCandidate() {
+    modifyCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/candidate/candidate',
@@ -107,12 +108,12 @@ export default {
         })
       }
     },
-    handlePreview() {},
-    handleRemove() {},
-    beforeRemove() {}
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { }
   },
   computed: {},
-  created() {
+  created () {
     // 如果本地存储中包含搜索条件，就将本地存储覆盖初始值
     if (typeof (window.localStorage['searchcandidate.search']) !== 'undefined') {
       this.search = commonJS.getStorageContentObject('searchcandidate.search')

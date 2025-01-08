@@ -74,7 +74,8 @@ export default {
           this.$message({
             message: '查询完成！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
         }
       })

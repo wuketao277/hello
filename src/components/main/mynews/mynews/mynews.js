@@ -21,14 +21,14 @@ export default {
       },
       rules: {
         title: [
-          {required: true, message: '标题必填', trigger: 'blur'},
-          {max: 200, message: '长度不能大于200个字符', trigger: 'blur'}
+          { required: true, message: '标题必填', trigger: 'blur' },
+          { max: 200, message: '长度不能大于200个字符', trigger: 'blur' }
         ],
         link: [
-          {max: 200, message: '长度不能大于200个字符', trigger: 'blur'}
+          { max: 200, message: '长度不能大于200个字符', trigger: 'blur' }
         ],
         content: [
-          {max: 2000, message: '长度不能大于2000个字符', trigger: 'blur'}
+          { max: 2000, message: '长度不能大于2000个字符', trigger: 'blur' }
         ]
       },
       showUploadFileDialog: false, // 上传文件对话框
@@ -59,7 +59,8 @@ export default {
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
               }
             })
@@ -82,14 +83,14 @@ export default {
           showClose: true
         })
       } else {
-        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'mynews'}
+        this.uploadFileData = { 'tableId': this.form.id, 'tableName': 'mynews' }
         this.showUploadFileDialog = true
       }
     },
     // 查询上传文件集合
     queryUploadFiles () {
       if (this.form.id !== null) {
-        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'mynews'}
+        let params = { 'relativeTableId': this.form.id, 'relativeTableName': 'mynews' }
         uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
           if (res.status === 200) {
             this.uploadFiles = res.data

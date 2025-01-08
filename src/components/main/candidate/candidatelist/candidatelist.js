@@ -4,7 +4,7 @@ import commonJS from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data() {
+  data () {
     return {
       contentFromComment: [],
       table: {
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     // 显示控制
-    showControl(key) {
+    showControl (key) {
       if (key === 'delete') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -36,7 +36,7 @@ export default {
       return true
     },
     // 通过id删除成功case
-    deleteById() {
+    deleteById () {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除候选人 ' + this.currentRow.chineseName + ' 吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -51,7 +51,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 // 删除后刷新列表
                 this.query()
@@ -64,13 +65,13 @@ export default {
       }
     },
     // 添加候选人
-    addCandidate() {
+    addCandidate () {
       this.$router.push({
         path: '/background.html/candidate/candidate'
       })
     },
     // 检查是否选择了一条记录
-    checkSelectRow() {
+    checkSelectRow () {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -82,7 +83,7 @@ export default {
       return true
     },
     // 查看候选人
-    detailCandidate() {
+    detailCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/candidate/candidate',
@@ -94,7 +95,7 @@ export default {
       }
     },
     // 修改候选人
-    modifyCandidate() {
+    modifyCandidate () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/candidate/candidate',
@@ -106,13 +107,13 @@ export default {
       }
     },
     // 删除候选人
-    deleteCandidate() {
+    deleteCandidate () {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除该记录吗？', '确认信息', {
-            distinguishCancelAndClose: true,
-            confirmButtonText: '确定',
-            cancelButtonText: '放弃'
-          })
+          distinguishCancelAndClose: true,
+          confirmButtonText: '确定',
+          cancelButtonText: '放弃'
+        })
           .then(() => {
             candidate.deleteById(this.currentRow.id).then(res => {
               if (res.status !== 200) {
@@ -123,7 +124,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 this.query()
               }
@@ -132,7 +134,7 @@ export default {
       }
     },
     // 查询后台数据
-    query() {
+    query () {
       window.localStorage['candidatelist.search'] = this.search
       window.localStorage['candidatelist.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['candidatelist.pageSize'] = this.table.pageable.pageSize
@@ -156,7 +158,8 @@ export default {
         this.table.pageable.pageNumber = this.table.pageable.pageNumber + 1
         this.$message({
           type: 'success',
-          message: '查询完成！'
+          message: '查询完成！',
+          duration: 800
         })
       })
       // 如果存在查询条件就通过查询条件从评论中搜索候选人
@@ -179,19 +182,20 @@ export default {
       }
     },
     // 处理选中行
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.currentRow = val
     },
     // 处理选中行
-    handleCurrentChangeFromComment(val) {
+    handleCurrentChangeFromComment (val) {
       this.currentRow = val
     },
-    uploadFileSuccess(response, file, fileList) {
+    uploadFileSuccess (response, file, fileList) {
       if (response.flag) {
         this.$message({
           message: '文件' + file.name + '上传成功',
           type: 'success',
-          showClose: true
+          showClose: true,
+          duration: 800
         })
       } else {
         this.$message({
@@ -204,36 +208,36 @@ export default {
       // 刷新列表
       this.query()
     },
-    handlePreview() {},
-    handleRemove() {},
-    beforeRemove() {},
-    sizeChange(val) {
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { },
+    sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
-    currentChange(val) {
+    currentChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    prevClick(val) {
+    prevClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    nextClick(val) {
+    nextClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog() {
+    switchSearchDialog () {
       this.$refs['search'].focus()
     },
     // 按照条件搜索
-    searchCandidate() {
+    searchCandidate () {
       this.table.pageable.pageNumber = 1
       this.query()
     }
   },
   computed: {},
-  created() {
+  created () {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

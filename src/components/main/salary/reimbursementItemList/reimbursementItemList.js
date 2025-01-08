@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data() {
+  data () {
     return {
       table: {
         content: [],
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     // 显示控制
-    showControl(key) {
+    showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'selectionColumn' || key === 'approveButton') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -51,7 +51,7 @@ export default {
       return true
     },
     // 检查是否选择了一条记录
-    checkSelectRow() {
+    checkSelectRow () {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -63,11 +63,11 @@ export default {
       return true
     },
     // 新增
-    add() {
+    add () {
       this.$router.push('/background.html/salary/reimbursementItem')
     },
     // 修改
-    modify() {
+    modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/salary/reimbursementItem',
@@ -79,7 +79,7 @@ export default {
       }
     },
     // 删除选中记录
-    deleteById() {
+    deleteById () {
       if (this.checkSelectRow()) {
         this.$confirm('确认要删除报销吗？', '确认信息', {
           distinguishCancelAndClose: true,
@@ -92,7 +92,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 this.query()
               } else {
@@ -103,7 +104,7 @@ export default {
       }
     },
     // 查看
-    detail() {
+    detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/salary/reimbursementItem',
@@ -115,7 +116,7 @@ export default {
       }
     },
     // 查询后台数据
-    query() {
+    query () {
       window.localStorage['reimbursementItemList.search'] = JSON.stringify((typeof (this.search) === 'undefined' || typeof (this.search) !== 'object') ? {} : this.search)
       window.localStorage['reimbursementItemList.pageNumber'] = this.table.pageable.pageNumber
       window.localStorage['reimbursementItemList.pageSize'] = this.table.pageable.pageSize
@@ -150,36 +151,36 @@ export default {
       })
     },
     // 行变化
-    rowChange(val) {
+    rowChange (val) {
       this.currentRow = val
     },
     // 页尺寸变化
-    sizeChange(val) {
+    sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
     // 当前页变化
-    currentChange(val) {
+    currentChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 上一页 点击
-    prevClick(val) {
+    prevClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 下一页 点击
-    nextClick(val) {
+    nextClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog() {
+    sureSearchDialog () {
       this.table.pageable.pageNumber = 1
       this.query()
     },
     // 发送地点转换器
-    locationFormatter(row) {
+    locationFormatter (row) {
       if (row.location === 'Shanghai') {
         return '上海'
       } else if (row.location === 'Beijing') {
@@ -195,7 +196,7 @@ export default {
       }
     },
     // 公司转换器
-    companyFormatter(row) {
+    companyFormatter (row) {
       for (let c of commonJS.companyList) {
         if (c.code === row.company) {
           return c.name
@@ -203,7 +204,7 @@ export default {
       }
     },
     // 是否报销转换器
-    needPayFormatter(row) {
+    needPayFormatter (row) {
       if (row.needPay === 'YES') {
         return '是'
       } else if (row.needPay === 'NO') {
@@ -213,7 +214,7 @@ export default {
       }
     },
     // 报销类别转换器
-    typeFormatter(row) {
+    typeFormatter (row) {
       if (row.type === 'Transportation') {
         return '交通'
       } else if (row.type === 'Travel') {
@@ -231,7 +232,7 @@ export default {
       }
     },
     // 报销转换器
-    kindFormatter(row) {
+    kindFormatter (row) {
       if (row.kind === 'Parking') {
         return '停车费'
       } else if (row.kind === 'InternalAirTicket') {
@@ -287,11 +288,11 @@ export default {
       }
     },
     // 处理行选择变更
-    handleSelectionChange(val) {
+    handleSelectionChange (val) {
       this.multipleSelection = val
     },
     // 选中项审批通过
-    approveSelection() {
+    approveSelection () {
       if (this.multipleSelection.size === 0) {
         this.$message({
           message: '请先选择要审批的记录！',
@@ -311,7 +312,8 @@ export default {
               this.$message({
                 message: '审批成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
             }
           })
@@ -319,12 +321,12 @@ export default {
       }
     },
     // 清空查询条件
-    clearQueryCondition() {
+    clearQueryCondition () {
       this.search = {}
       window.localStorage['reimbursementItemList.search'] = {}
     },
     // 下载报销项
-    downloadReimbursementItem() {
+    downloadReimbursementItem () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -346,13 +348,14 @@ export default {
           this.$message({
             message: '下载成功！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
         }
       })
     },
     // 类别变更事件
-    typeChange(value) {
+    typeChange (value) {
       this.search.kind = ''
       if (value === 'Transportation') {
         this.currentKindList = commonJS.transportationKindList
@@ -371,7 +374,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     // 通过入参获取查询数据
     if (typeof (this.$route.query.mode) !== 'undefined' && this.$route.query.mode === 'query') {
       let params = this.$route.query.row

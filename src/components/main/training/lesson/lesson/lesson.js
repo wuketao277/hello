@@ -212,7 +212,8 @@ export default {
               this.$message({
                 message: '保存成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
               // 获取最新数据
               this.queryLessonQuestionList()
@@ -253,7 +254,8 @@ export default {
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
               } else {
                 this.$message({
@@ -294,14 +296,14 @@ export default {
           showClose: true
         })
       } else {
-        this.uploadFileData = {'tableId': this.form.id, 'tableName': 'client'}
+        this.uploadFileData = { 'tableId': this.form.id, 'tableName': 'client' }
         this.showUploadFileDialog = true
       }
     },
     // 查询上传文件集合
     queryUploadFiles () {
       if (this.form.id !== null) {
-        let params = {'relativeTableId': this.form.id, 'relativeTableName': 'client'}
+        let params = { 'relativeTableId': this.form.id, 'relativeTableName': 'client' }
         uploadFileApi.findByRelativeTableIdAndRelativeTableName(params).then(res => {
           if (res.status === 200) {
             this.uploadFiles = res.data

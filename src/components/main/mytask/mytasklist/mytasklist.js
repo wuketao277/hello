@@ -91,7 +91,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 this.query()
               }
@@ -125,9 +126,9 @@ export default {
     handleCurrentChange (val) {
       this.currentRow = val
     },
-    handlePreview () {},
-    handleRemove () {},
-    beforeRemove () {},
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { },
     sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
@@ -144,7 +145,7 @@ export default {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog () {},
+    switchSearchDialog () { },
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.table.pageable.pageNumber = 1

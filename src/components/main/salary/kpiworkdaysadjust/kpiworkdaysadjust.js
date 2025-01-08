@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     // 显示控制
-    showControl (key) {},
+    showControl (key) { },
     // 取消
     cancel () {
       if (typeof (this.$route.query.mode) !== 'undefined') {
@@ -69,7 +69,8 @@ export default {
             this.$message({
               message: '保存成功！',
               type: 'success',
-              showClose: true
+              showClose: true,
+              duration: 800
             })
           } else {
             this.$message.error('保存失败！')

@@ -3,7 +3,7 @@ import commonJS from '@/common/common'
 import userApi from '@/api/user'
 
 export default {
-  data() {
+  data () {
     return {
       table: {
         content: [],
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     // 显示控制
-    showControl(key) {
+    showControl (key) {
       if (key === 'selectionColumn' || key === 'approveButton') {
         return commonJS.isAdminInArray(this.roles)
       }
@@ -33,25 +33,25 @@ export default {
       return true
     },
     // 搜索对话框，确定按钮
-    sureSearchDialog() {
+    sureSearchDialog () {
       this.table.pageable.pageNumber = 1
       this.query()
     },
     // 日期格式化
-    formatDate(row, column, cellvalue, index) {
+    formatDate (row, column, cellvalue, index) {
       if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
         return cellvalue.substr(0, 10)
       }
       return ''
     },
     // 添加
-    add() {
+    add () {
       this.$router.push({
         path: '/background.html/holiday/holiday'
       })
     },
     // 检查是否选择了一条记录
-    checkSelectRow() {
+    checkSelectRow () {
       if (this.currentRow === null) {
         this.$message({
           message: '请选择一条记录！',
@@ -63,7 +63,7 @@ export default {
       return true
     },
     // 查看
-    detail() {
+    detail () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/holiday/holiday',
@@ -75,7 +75,7 @@ export default {
       }
     },
     // 修改
-    modify() {
+    modify () {
       if (this.checkSelectRow()) {
         this.$router.push({
           path: '/background.html/holiday/holiday',
@@ -87,7 +87,7 @@ export default {
       }
     },
     // 查询后台数据
-    query() {
+    query () {
       let query = {
         'currentPage': this.table.pageable.pageNumber,
         'pageSize': this.table.pageable.pageSize,
@@ -105,52 +105,52 @@ export default {
       })
     },
     // 处理选中行时间
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       this.currentRow = val
     },
-    handlePreview() {},
-    handleRemove() {},
-    beforeRemove() {},
-    sizeChange(val) {
+    handlePreview () { },
+    handleRemove () { },
+    beforeRemove () { },
+    sizeChange (val) {
       this.table.pageable.pageSize = val
       this.query()
     },
-    currentChange(val) {
+    currentChange (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    prevClick(val) {
+    prevClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    nextClick(val) {
+    nextClick (val) {
       this.table.pageable.pageNumber = val
       this.query()
     },
-    switchSearchDialog() {
+    switchSearchDialog () {
       this.$refs['search'].focus()
     },
     // 按照条件搜索
-    searchCandidate() {
+    searchCandidate () {
       this.table.pageable.pageNumber = 1
       this.table.pageable.pageSize = 10
       this.query()
     },
-    getStorageContent() {
+    getStorageContent () {
       if (typeof (window.localStorage['holidaylist.search']) === 'undefined') {
         return ''
       } else {
         return window.localStorage['holidaylist.search']
       }
     },
-    getPageNumber() {
+    getPageNumber () {
       if (typeof (window.localStorage['holidaylist.pageNumber']) === 'undefined') {
         return 1
       } else {
         return window.localStorage['holidaylist.pageNumber']
       }
     },
-    getPageSize() {
+    getPageSize () {
       if (typeof (window.localStorage['holidaylist.pageSize']) === 'undefined') {
         return 10
       } else {
@@ -158,11 +158,11 @@ export default {
       }
     },
     // 处理行选择变更
-    handleSelectionChange(val) {
+    handleSelectionChange (val) {
       this.multipleSelection = val
     },
     // 选中项审批通过
-    approveSelection() {
+    approveSelection () {
       if (this.multipleSelection.size === 0) {
         this.$message({
           message: '请先选择要审批的记录！',
@@ -182,7 +182,8 @@ export default {
               this.$message({
                 message: '审批成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
             }
           })
@@ -191,7 +192,7 @@ export default {
     }
   },
   computed: {},
-  created() {
+  created () {
     // 获取当前用户的角色列表
     userApi.findSelf().then(res => {
       if (res.status === 200) {

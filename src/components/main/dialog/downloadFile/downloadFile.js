@@ -39,7 +39,8 @@ export default {
             if (res.data.length === 0) {
               this.$message({
                 type: 'success',
-                message: '删除成功!'
+                message: '删除成功!',
+                duration: 800
               })
               // 触发更新文件操作
               this.$emit('delete-file-success')
@@ -51,7 +52,7 @@ export default {
             }
           }
         })
-      }).catch(() => {})
+      }).catch(() => { })
     }
   }
 }

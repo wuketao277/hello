@@ -307,7 +307,8 @@ export default {
           this.$message({
             message: '更新成功！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
         }
       })
@@ -362,7 +363,8 @@ export default {
               this.$message({
                 message: '删除成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
               // 重新查询全部评论
               this.queryComment()
@@ -403,7 +405,8 @@ export default {
           this.$message({
             message: '更新成功！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
           // 刷新推荐列表
           this.queryCandidateForCaseList()
@@ -427,7 +430,8 @@ export default {
               this.$message({
                 message: '删除成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
               this.queryCandidateForCaseList()
             }
@@ -662,7 +666,8 @@ export default {
           this.$message({
             message: '保存成功！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
           // 重新查询全部评论
           this.queryComment()
@@ -762,7 +767,8 @@ export default {
               this.$message({
                 message: '保存成功！',
                 type: 'success',
-                showClose: true
+                showClose: true,
+                duration: 800
               })
             } else {
               // 如果简历栏中有内容，就保存简历内容
@@ -776,7 +782,8 @@ export default {
                     this.$message({
                       message: '保存成功！',
                       type: 'success',
-                      showClose: true
+                      showClose: true,
+                      duration: 800
                     })
                   }
                 }
@@ -1032,7 +1039,8 @@ export default {
           this.$message({
             message: '删除成功',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
           this.save()
         }

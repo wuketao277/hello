@@ -140,7 +140,8 @@ export default {
                 this.$message({
                   message: '保存成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
               }
             })

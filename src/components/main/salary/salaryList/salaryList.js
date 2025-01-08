@@ -81,7 +81,8 @@ export default {
                 this.$message({
                   message: '删除成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 this.query()
               }
@@ -136,7 +137,8 @@ export default {
                 this.$message({
                   message: '生成成功！',
                   type: 'success',
-                  showClose: true
+                  showClose: true,
+                  duration: 800
                 })
                 this.query()
               } else {
@@ -225,7 +227,8 @@ export default {
           this.$message({
             message: '下载成功！',
             type: 'success',
-            showClose: true
+            showClose: true,
+            duration: 800
           })
         }
       })
