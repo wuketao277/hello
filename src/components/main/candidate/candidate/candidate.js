@@ -96,7 +96,7 @@ export default {
         }],
         phoneNo: [{
           max: 20,
-          message: '电话号码长度不能大于20个字符',
+          message: '手机号码长度不能大于20个字符',
           trigger: 'blur'
         }],
         email: [{
@@ -104,16 +104,71 @@ export default {
           message: '邮箱长度不能大于200个字符',
           trigger: 'blur'
         }],
-        companyName: [{
-          max: 2000,
-          message: '公司名称长度不能大于2000个字符',
+        interviewHistory: [{
+          max: 200,
+          message: '面试历史长度不能大于200个字符',
+          trigger: 'blur'
+        }],
+        motivation: [{
+          max: 200,
+          message: '求职动机长度不能大于200个字符',
           trigger: 'blur'
         }],
         englishLevel: [{
           max: 200,
           message: '英文水平长度不能大于100个字符',
           trigger: 'blur'
-        }]
+        }],
+        hometown: [{
+          max: 100,
+          message: '籍贯长度不能大于100个字符',
+          trigger: 'blur'
+        }],
+        currentAddress: [{
+          max: 100,
+          message: '现居住地长度不能大于100个字符',
+          trigger: 'blur'
+        }],
+        futureAddress: [{
+          max: 100,
+          message: '期望工作地长度不能大于100个字符',
+          trigger: 'blur'
+        }],
+        family: [{
+          max: 200,
+          message: '家庭情况长度不能大于200个字符',
+          trigger: 'blur'
+        }],
+        companyName: [{
+          max: 2000,
+          message: '公司名称长度不能大于2000个字符',
+          trigger: 'blur'
+        }],
+        currentMoney: [{
+          max: 100,
+          message: '现薪资长度不能大于100个字符',
+          trigger: 'blur'
+        }],
+        futureMoney: [{
+          max: 100,
+          message: '期望薪资长度不能大于100个字符',
+          trigger: 'blur'
+        }],
+        companyStructure: [{
+          max: 200,
+          message: '公司组织架构长度不能大于200个字符',
+          trigger: 'blur'
+        }],
+        schoolName: [{
+          max: 200,
+          message: '学校长度不能大于200个字符',
+          trigger: 'blur'
+        }],
+        remark: [{
+          max: 2000,
+          message: '备注长度不能大于2000个字符',
+          trigger: 'blur'
+        }],
       },
       // 任务集合
       tasks: [],
