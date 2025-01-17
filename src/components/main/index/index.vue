@@ -182,11 +182,11 @@
                :show-close="true"
                width="30%">
       <!--学校查询-->
-      <el-form @submit.native.prevent>
+      <el-form>
         <el-input
           placeholder="请输入学校名称"
           v-model="schoolName"
-          @change="schoolNameChange"
+          @input="schoolNameChange"
           clearable>
         </el-input>
         <p>{{schoolCheckResult}}</p>
