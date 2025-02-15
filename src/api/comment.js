@@ -46,5 +46,10 @@ export default {
   // 保存KPI
   saveKPI (params) {
     return axios.post('/comment/saveKPI', params)
+  },
+  // 下载所有面试
+  downloadInterviews (params) {
+    let urls = 'http://www.helloapplicant.com/comment/downloadInterviews?loginName=' + params['loginName'] + '&clientName=' + params['clientName'] + '&title=' + params['title'] + '&startDate=' + params['startDate'] + '&endDate=' + params['endDate'] + '&phase=' + params['phase'] + '&currentPage=' + params['currentPage'] + '&pageSize=' + params['pageSize']
+    window.open(urls, '_blank')
   }
 }

@@ -13,7 +13,7 @@
       <el-button type="primary"
                  size="small"
                  icon="el-icon-download"
-                 @click="download">下载</el-button>
+                 @click="downloadInterviews">下载面试</el-button>
     </div>
     <el-table v-loading="table.loading"
               element-loading-text="拼命加载中"

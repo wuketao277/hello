@@ -163,8 +163,30 @@ export default {
       this.searchDialog = false
       this.query()
     },
-    // 下载按钮点击事件
-    download () { }
+    // 下载所有面试按钮点击事件
+    downloadInterviews () {
+      let params = {
+        loginName: this.search['loginName'] === undefined ? '' : this.search['loginName'],
+        clientName: this.search['clientName'] === undefined ? '' : this.search['clientName'],
+        title: this.search['title'] === undefined ? '' : this.search['title'],
+        startDate: this.search['startDate'] === undefined ? '' : this.search['startDate'],
+        endDate: this.search['endDate'] === undefined ? '' : this.search['endDate'],
+        phase: this.search['phase'] === undefined ? '' : this.search['phase'],
+        currentPage: commonJS.getPageNumber('interviewlist.pageNumber'),
+        pageSize: commonJS.getPageSize('interviewlist.pageSize')
+      }
+      debugger
+      commentApi.downloadInterviews(params).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true,
+            duration: 800
+          })
+        }
+      })
+    }
   },
   computed: {},
   created () {
