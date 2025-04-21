@@ -19,6 +19,12 @@ export default {
     }
   },
   methods: {
+    // 跳转新增候选人页面
+    addNewCandidate () {
+      this.$router.push({
+        path: '/background.html/candidate/candidate'
+      })
+    },
     // 学校名称变更事件
     schoolNameChange () {
       // 将英文括号转成中文括号

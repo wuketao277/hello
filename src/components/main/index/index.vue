@@ -172,10 +172,25 @@
     </el-footer>
     <!--悬浮工具栏-->
     <div style="position: fixed;right:0px;top:60px;height: 100px;">
-      <el-button icon="el-icon-school"
-                 circle
-                 size="mini"
-                 @click="schoolDialogShowFlag = true"></el-button>
+      <el-tooltip class="item"
+                  effect="dark"
+                  content="判断学校"
+                  placement="left-start">
+        <el-button icon="el-icon-school"
+                   circle
+                   size="mini"
+                   @click="schoolDialogShowFlag = true"></el-button>
+      </el-tooltip>
+      <br />
+      <el-tooltip class="item"
+                  effect="dark"
+                  content="添加候选人"
+                  placement="left-start">
+        <el-button icon="el-icon-user"
+                   circle
+                   size="mini"
+                   @click="addNewCandidate"></el-button>
+      </el-tooltip>
     </div>
     <el-dialog title="学校名称"
                :visible.sync="schoolDialogShowFlag"
@@ -183,11 +198,10 @@
                width="30%">
       <!--学校查询-->
       <el-form>
-        <el-input
-          placeholder="请输入学校名称"
-          v-model="schoolName"
-          @input="schoolNameChange"
-          clearable>
+        <el-input placeholder="请输入学校名称"
+                  v-model="schoolName"
+                  @input="schoolNameChange"
+                  clearable>
         </el-input>
         <p>{{schoolCheckResult}}</p>
       </el-form>
