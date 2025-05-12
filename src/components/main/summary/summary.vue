@@ -368,6 +368,7 @@
                   <el-table-column width="180"
                                    prop="latestCommentInputtime"
                                    label="评论时间"
+                                   :formatter="formatTime"
                                    show-overflow-tooltip></el-table-column>
                   <el-table-column prop="latestCommentContent"
                                    label="评论内容"

@@ -76,15 +76,7 @@
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="companyName"
                        label="公司"
-                       width="120"
-                       show-overflow-tooltip></el-table-column>
-      <el-table-column prop="department"
-                       label="部门"
-                       width="120"
-                       show-overflow-tooltip></el-table-column>
-      <el-table-column prop="title"
-                       label="职位"
-                       width="120"
+                       width="240"
                        show-overflow-tooltip></el-table-column>
       <el-table-column prop="schoolName"
                        label="学校"
