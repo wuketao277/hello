@@ -30,8 +30,8 @@ export default {
     return axios.get('/case/queryCaseAttentionByCaseId?caseId=' + params)
   },
   // 查询当前用户的所有关注信息
-  queryAllCaseAttention () {
-    return axios.get('/case/queryAllCaseAttention')
+  queryAllCaseAttention (params) {
+    return axios.get('/case/queryAllCaseAttention?onlyShowMyselfCandidate=' + params)
   },
   // 查询当前用户的所有关注信息
   queryAllCaseAttention2 () {

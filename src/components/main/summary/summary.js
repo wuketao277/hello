@@ -46,10 +46,17 @@ export default {
       candidateDetailTableVisible: false, // 候选人详情列表展示控制
       candidateDetailTable: [], // 候选人详情列表
       saveKPIMonth: null, // KPI保存月
-      todayOnboardList: [] // 当如入职情况列表
+      todayOnboardList: [], // 当如入职情况列表
+      onlyShowMyselfCandidate: this.getOnlyShowMyselfCandidate() // 关注候选人列表，只显示自己的候选人
     }
   },
   methods: {
+    // 只显示自己的候选人复选框变更事件
+    onlyShowMyselfCandidateChange (val) {
+      commonJs.setStorageContent('summary.onlyShowMyselfCandidate', val)
+      this.onlyShowMyselfCandidate = val
+      this.queryAllCaseAttention()
+    },
     // 当日入职列表显示控制
     showTodayOnboardTable () {
       let v = this.todayOnboardList.length > 0
@@ -207,6 +214,14 @@ export default {
         return true
       } else {
         return window.localStorage['summary.cwCaseShowCandidate'] === 'true'
+      }
+    },
+    // 查询只显示自己候选人复选框的状态
+    getOnlyShowMyselfCandidate () {
+      if (typeof (window.localStorage['summary.onlyShowMyselfCandidate']) === 'undefined') {
+        return false
+      } else {
+        return window.localStorage['summary.onlyShowMyselfCandidate'] === 'true'
       }
     },
     // 页签点击
@@ -583,7 +598,7 @@ export default {
     },
     // 查询当前用户所有职位关注
     queryAllCaseAttention () {
-      caseApi.queryAllCaseAttention().then(res => {
+      caseApi.queryAllCaseAttention(this.onlyShowMyselfCandidate).then(res => {
         if (res.status === 200) {
           this.caseAttention4ClientVOArray = res.data
         } else {
