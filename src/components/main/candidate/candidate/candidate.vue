@@ -218,7 +218,7 @@
                       v-model="form.companyName"
                       type="textarea"
                       :autosize="{ minRows: 1, maxRows: 100}"
-                      maxlength="2000"
+                      maxlength="4000"
                       show-word-limit
                       clearable></el-input>
           </el-form-item>

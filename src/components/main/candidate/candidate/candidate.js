@@ -140,8 +140,8 @@ export default {
           trigger: 'blur'
         }],
         companyName: [{
-          max: 2000,
-          message: '公司名称长度不能大于2000个字符',
+          max: 4000,
+          message: '公司名称长度不能大于4000个字符',
           trigger: 'blur'
         }],
         currentMoney: [{
