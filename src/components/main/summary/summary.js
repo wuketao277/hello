@@ -131,13 +131,15 @@ export default {
     },
     // 编辑客户
     editClient (index, row) {
-      this.$router.push({
-        path: '/background.html/client/client',
-        query: {
-          mode: 'modify',
-          clientId: row.clientId
-        }
-      })
+      if (commonJs.isFulltimeJobType()) {
+        this.$router.push({
+          path: '/background.html/client/client',
+          query: {
+            mode: 'modify',
+            clientId: row.clientId
+          }
+        })
+      }
     },
     // 查询当日入职情况
     queryTodayOnboardList (val) {
