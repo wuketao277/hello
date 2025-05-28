@@ -5,10 +5,11 @@
     <el-tabs type="border-card"
              v-if="showControl('/')"
              @tab-click="tabClick"
-             :value="tabIndex">
+             :value="tabName">
       <!--pipeline模块开始-->
       <el-tab-pane label="Pipeline"
-                   name="0">
+                   name="pipelineTab"
+                   v-if="showControl('Pipeline')">
         <div class="toolbar">
           <el-button type="primary"
                      plain
@@ -185,7 +186,7 @@
       <!--pipeline模块结束-->
       <!--面试安排开始-->
       <el-tab-pane label="面试安排"
-                   name="1">
+                   name="interviewPlanTab">
         <div class="toolbar">
           <el-button type="primary"
                      plain
@@ -315,7 +316,7 @@
       <!--面试安排结束-->
       <el-tab-pane label="关注职位"
                    style="text-align:left;"
-                   name="2">
+                   name="attentionCaseTab">
         <div class="toolbar">
           <el-button type="warning"
                      size="small"
@@ -382,7 +383,7 @@
       </el-tab-pane>
       <el-tab-pane label="对接职位"
                    v-if="showControl('/cw')"
-                   name="3">
+                   name="cwCaseTab">
         <div class="toolbar">
           <el-button type="warning"
                      size="small"
@@ -440,7 +441,7 @@
       </el-tab-pane>
       <el-tab-pane label="关注候选人"
                    v-if="showControl('/candidateAttention')"
-                   name="4">
+                   name="attentionCandidateTab">
         <div v-for="candidateAttention in candidateAttentionList"
              :key="candidateAttention.id"
              style="display:inline-block;width:100px;float:left;margin:5px;border:1px solid #DCDFE6;border-radius: 4px;color:#606266;"
@@ -453,7 +454,7 @@
       </el-tab-pane>
       <el-tab-pane label="我的新闻"
                    v-if="showControl('/news')"
-                   name="5">
+                   name="myNewsTab">
         <el-table :data="myNewsList"
                   :border="true"
                   :highlight-current-row="true"
@@ -472,7 +473,7 @@
       </el-tab-pane>
       <el-tab-pane label="我的任务"
                    v-if="showControl('/task')"
-                   name="6">
+                   name="myTasksTab">
         <el-table :data="myTasks"
                   :border="true"
                   :highlight-current-row="true"
@@ -492,7 +493,7 @@
       </el-tab-pane>
       <el-tab-pane label="KPI"
                    v-if="showControl('/kpi')"
-                   name="7">
+                   name="kpiTab">
         <div>
           <el-date-picker type="date"
                           value-format="yyyy-MM-dd"
@@ -678,7 +679,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="抽签"
-                   name="8"
+                   name="drawLotsTab"
                    v-if="showControl('drawLots')">
         <div class="toolbar">
           <el-button type="success"

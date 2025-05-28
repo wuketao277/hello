@@ -27,6 +27,7 @@ export default {
       cwCaseArray: [],
       newsCurrentRow: null,
       candidateAttentionList: [],
+      tabName: commonJs.getStorageContent('summary.tabName', 'interviewPlanTab'), // 首页当前页签
       tabIndex: commonJs.getStorageContent('summary.tabIndex', '0'), // 首页当前页签
       attentionCaseShowCandidate: this.getAttentionCaseShowCandidate(), // 关注职位页面是否显示候选人信息
       cwCaseShowCandidate: this.getCWCaseShowCandidate(), // 对接职位页面是否显示候选人信息
@@ -228,25 +229,26 @@ export default {
     tabClick (tab) {
       // 将新页签索引号保存起来
       window.localStorage['summary.tabIndex'] = tab.index
-      this.initTab(tab.index)
+      window.localStorage['summary.tabName'] = tab.name
+      this.initTab(tab.name)
     },
     // 初始化tab
-    initTab (index) {
-      if (index === '0') {
+    initTab (name) {
+      if (name === 'pipelineTab') {
         // 查询pipeline情况
         this.queryPipeline(commonJs.getStorageContent('summary.pipelineRange', 'myself'))
-      } else if (index === '1') {
+      } else if (name === 'interviewPlanTab') {
         // 查询interviewPlan的数据
         this.queryInterviewPlan(commonJs.getStorageContent('summary.interviewPlanRange', 'all'))
         // 查询当日入职数据
         this.queryTodayOnboardList()
-      } else if (index === '2') {
+      } else if (name === 'attentionCaseTab') {
         // 查询当前用户所有职位关注
         this.queryAllCaseAttention()
-      } else if (index === '3') {
+      } else if (name === 'cwCaseTab') {
         // 查询当前用户所有对接的职位
         this.queryCWCaseArray()
-      } else if (index === '4') {
+      } else if (name === 'attentionCandidateTab') {
         // 查询关注候选人列表
         candidateApi.queryCandidateAttentionListByUser().then(res => {
           if (res.status === 200) {
@@ -259,7 +261,7 @@ export default {
             })
           }
         })
-      } else if (index === '5') {
+      } else if (name === 'myNewsTab') {
         // 获取新闻
         myNewsApi.findTop100().then(res => {
           if (res.status === 200) {
@@ -272,7 +274,7 @@ export default {
             })
           }
         })
-      } else if (index === '6') {
+      } else if (name === 'myTasksTab') {
         // 获取今日任务
         myTaskApi.queryTodayTaskForMe().then(res => {
           if (res.status === 200) {
@@ -285,7 +287,7 @@ export default {
             })
           }
         })
-      } else if (index === '7') {
+      } else if (name === 'kpiTab') {
         // kpi初始化
         this.calcKPI()
       }
@@ -401,7 +403,7 @@ export default {
         // 外包、体验显示背景图片
         return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType())
       }
-      if (url === '/candidateAttention' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi' || url === 'drawLots') {
+      if (url === 'Pipeline' || url === '/candidateAttention' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi' || url === 'drawLots') {
         // 这些页面只显示给全职用户
         return commonJs.isFulltimeJobType()
       }
@@ -821,7 +823,7 @@ export default {
     this.startDate = commonJs.getStorageContent('summary.kpiStartDate', commonJs.getYYYY_MM_dd(new Date()))
     this.endDate = commonJs.getStorageContent('summary.kpiEndDate', commonJs.getYYYY_MM_dd(new Date()))
     // 初始化当前tab
-    this.initTab(this.tabIndex)
+    this.initTab(this.tabName)
     // 获取今日任务，如果有未完成任务就弹出对话框
     myTaskApi.queryTodayTaskForMe().then(res => {
       if (res.status === 200) {
