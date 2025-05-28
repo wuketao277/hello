@@ -97,7 +97,7 @@ export default {
       if (url === '/candidate/searchcandidate' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
         return true
       }
-      if (url === '/case/successfulPermList' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+      if (url === '/case/successfulPermList' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
         return true
       }
       if (url === '/file/filelist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
