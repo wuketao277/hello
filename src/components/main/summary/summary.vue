@@ -315,7 +315,6 @@
       <!--面试安排结束-->
       <el-tab-pane label="关注职位"
                    style="text-align:left;"
-                   v-if="showControl('/focus')"
                    name="2">
         <div class="toolbar">
           <el-button type="warning"
@@ -679,7 +678,8 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="抽签"
-                   name="8">
+                   name="8"
+                   v-if="showControl('drawLots')">
         <div class="toolbar">
           <el-button type="success"
                      size="small"

@@ -398,12 +398,12 @@ export default {
     // 显示控制
     showControl (url) {
       if (url === '/') {
-        // 外包、体验、兼职员工显示背景图片
-        return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType() || commonJs.isParttimeJobType())
+        // 外包、体验显示背景图片
+        return !(commonJs.isConsultantJobType() || commonJs.isExperienceJobType())
       }
-      if (url === '/candidateAttention' || url === '/focus' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi') {
-        // 关注职位显示给非外包人员
-        return !commonJs.isConsultantJobType()
+      if (url === '/candidateAttention' || url === '/cw' || url === '/news' || url === '/task' || url === '/kpi' || url === 'drawLots') {
+        // 这些页面只显示给全职用户
+        return commonJs.isFulltimeJobType()
       }
       if (url === 'saveKPIDate' || url === 'saveKPIButton') {
         // 保存KPI的日期和按钮只有管理员能看到
@@ -443,13 +443,16 @@ export default {
     rowChange () { },
     // 跳转到客户
     toClient (id) {
-      this.$router.push({
-        path: '/background.html/client/client',
-        query: {
-          mode: 'modify',
-          clientId: id
-        }
-      })
+      if (commonJs.isFulltimeJobType()) {
+        // 只有全职的同事可以跳转到客户列表
+        this.$router.push({
+          path: '/background.html/client/client',
+          query: {
+            mode: 'modify',
+            clientId: id
+          }
+        })
+      }
     },
     // 跳转到职位
     toCase (id) {
