@@ -183,7 +183,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="8">
+        <el-col :span="24">
           <el-form-item label="面试流程">
             <el-input v-model="form.interviewProcess"
                       clearable></el-input>

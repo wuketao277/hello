@@ -694,6 +694,8 @@ export default {
       }
       // 组装数据
       let comment = this.newComment
+      // 在组件中获取到时间后，手动转为 UTC 时间戳或 ISO 字符串
+      comment['interviewTime'] = new Date(this.newComment.interviewTime).toISOString();
       comment['candidateId'] = this.form.id
       // 如果只有一个关联职位，就作为默认职位
       if (this.candidateForCaseList.length === 1) {

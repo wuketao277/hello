@@ -742,6 +742,7 @@ export default {
     },
     // billing只读控制方法
     billingReadonly: function () {
+      return false
       // 管理员可以修改Billing
       if (commonJS.isAdmin()) {
         return false
