@@ -26,6 +26,8 @@
                  v-show="this.form.type === 'contracting'"
                  icon="el-icon-edit"
                  @click="genNextContracting">生成候选人当月成功case</el-button>
+      &nbsp;&nbsp;
+      <span style="color: brown;">一汽社招billing：3651.81  &nbsp;&nbsp;&nbsp;校招billing：2709.27</span>
     </div>
     <el-form ref="form"
              :model="form"
