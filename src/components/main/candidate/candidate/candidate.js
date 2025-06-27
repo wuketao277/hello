@@ -601,6 +601,8 @@ export default {
           })
           return
         }
+        // 在组件中获取到时间后，手动转为 UTC 时间戳或 ISO 字符串
+        this.newComment.interviewTime = new Date(this.newComment.interviewTime).toISOString();
       } else {
         // 非面试阶段，面试时间为空
         this.newComment.interviewTime = null
@@ -608,19 +610,19 @@ export default {
       // 如果是保存CVO阶段，必须勾选“必要检查”
       if (this.newComment.phase === 'CVO') {
         // 调用后台接口查看必要检查是否都完成
-        let params = {
-          'id': this.form.id
-        }
-        let finish = await candidateApi.finishAllDoubleCheck(params).then(res => {
-          return Promise.resolve(res.data)
-        })
-        if (finish === false) {
-          this.$message({
-            message: '请勾选必要检查',
-            type: 'warning'
-          })
-          return
-        }
+        // let params = {
+        //   'id': this.form.id
+        // }
+        // let finish = await candidateApi.finishAllDoubleCheck(params).then(res => {
+        //   return Promise.resolve(res.data)
+        // })
+        // if (finish === false) {
+        //   this.$message({
+        //     message: '请勾选必要检查',
+        //     type: 'warning'
+        //   })
+        //   return
+        // }
         if (typeof (this.form.birthDay) === 'undefined' || this.form.birthDay === '' || this.form.birthDay === null) {
           this.$message({
             message: '生日必须填写',
@@ -694,8 +696,8 @@ export default {
       }
       // 组装数据
       let comment = this.newComment
-      // 在组件中获取到时间后，手动转为 UTC 时间戳或 ISO 字符串
-      comment['interviewTime'] = new Date(this.newComment.interviewTime).toISOString();
+      // // 在组件中获取到时间后，手动转为 UTC 时间戳或 ISO 字符串
+      // comment['interviewTime'] = new Date(this.newComment.interviewTime).toISOString();
       comment['candidateId'] = this.form.id
       // 如果只有一个关联职位，就作为默认职位
       if (this.candidateForCaseList.length === 1) {
