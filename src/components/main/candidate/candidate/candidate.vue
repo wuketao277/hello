@@ -535,6 +535,10 @@
                 <el-input type="textarea"
                           v-model="newComment.content"
                           :autosize="{ minRows: 1, maxRows: 30}"></el-input>
+                          <br/>
+                <el-button type="text" size="mini" @click="saveCommentMsg('未接')">未接</el-button>
+                <el-button type="text" size="mini" @click="saveCommentMsg('加微信')">加微信</el-button>
+                <el-button type="text" size="mini" @click="saveCommentMsg('等简历')">等简历</el-button>
               </el-form-item>
             </el-col>
           </el-row>

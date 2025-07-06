@@ -558,6 +558,11 @@ export default {
       }
       this.selectCaseDialogShow = true
     },
+    // 保存评论
+    saveCommentMsg (msg) {
+      this.newComment.content = msg
+      this.saveComment()
+    },
     // 保存 新评论 同步方法
     async saveComment () {
       // 必须先保存候选人
