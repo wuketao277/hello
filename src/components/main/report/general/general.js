@@ -37,6 +37,45 @@ export default {
         window.localStorage['generalChartClass'] = 'chartSmall'
       }
     },
+    // 确定结束日期
+    confirmEndDate (year, month) {
+      if (month === 2) {
+        // 2 月
+        if (year % 4 === 0) {
+          // 闰年
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        } else {
+          // 非闰年
+          this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        }
+      } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+        // 1 3 5 7 8 10 12月
+        this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+      } else {
+        // 4 6 9 11月
+        this.form.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+      }
+    },
+    // 向前移动一个月
+    forwardMonth (v) {
+      this.form.startDate.setMonth(this.form.startDate.getMonth() - v)
+      let month = this.form.startDate.getMonth() + 1
+      let year = this.form.startDate.getFullYear()
+      this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+      this.confirmEndDate(year, month)
+      // 绘制图表
+      this.drawChart()
+    },
+    // 向后移动一个月
+    backwardMonth (v) {
+      this.form.startDate.setMonth(this.form.startDate.getMonth() + v)
+      let month = this.form.startDate.getMonth() + 1
+      let year = this.form.startDate.getFullYear()
+      this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+      this.confirmEndDate(year, month)
+      // 绘制图表
+      this.drawChart()
+    },
     // 计算开始日期和结束日期
     calcDate (type) {
       window.localStorage['generalPeriod'] = type
@@ -58,42 +97,12 @@ export default {
           year = year - 1
         }
         this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        if (month === 2) {
-          // 2 月
-          if (year % 4 === 0) {
-            // 闰年
-            this.form.endDate = new Date(Date.parse(year + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          } else {
-            // 非闰年
-            this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          }
-        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
-          // 1 3 5 7 8 10 12月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        } else {
-          // 4 6 9 11月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        }
+        this.confirmEndDate(year, month)
       } else if (type === 'month') {
+        let year = new Date().getFullYear()
         let month = new Date().getMonth() + 1
-        this.form.startDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        console.info(this.form.startDate)
-        if (month === 2) {
-          // 2 月
-          if (new Date().getFullYear() % 4 === 0) {
-            // 闰年
-            this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          } else {
-            // 非闰年
-            this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          }
-        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
-          // 1 3 5 7 8 10 12月
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        } else {
-          // 4 6 9 11月
-          this.form.endDate = new Date(Date.parse(new Date().getFullYear() + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        }
+        this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+        this.confirmEndDate(year, month)
       } else if (type === 'nextmonth') {
         let month = new Date().getMonth() + 2
         let year = new Date().getFullYear()
@@ -102,22 +111,7 @@ export default {
           year = year + 1
         }
         this.form.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        if (month === 2) {
-          // 2 月
-          if (year % 4 === 0) {
-            // 闰年
-            this.form.endDate = new Date(Date.parse(year + '-' + month + '-29 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          } else {
-            // 非闰年
-            this.form.endDate = new Date(Date.parse(year + '-' + month + '-28 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-          }
-        } else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
-          // 1 3 5 7 8 10 12月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-31 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        } else {
-          // 4 6 9 11月
-          this.form.endDate = new Date(Date.parse(year + '-' + month + '-30 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
-        }
+        this.confirmEndDate(year, month)
       } else if (type === 'lastseason') {
         let month = new Date().getMonth() - 2
         let year = new Date().getFullYear()

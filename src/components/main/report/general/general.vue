@@ -79,6 +79,14 @@
                          plain
                          size="small"
                          @click="changeChartSize('small')">小图</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="forwardMonth(1)">向前一个月</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="backwardMonth(1)">向后一个月</el-button>
             </el-col>
           </el-row>
         </el-form-item>
