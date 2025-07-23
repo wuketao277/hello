@@ -27,4 +27,10 @@ export default {
 .el-table__body tr.current-row > td {
   background: rgb(241, 219, 119) !important;
 }
+.el-button--text {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
 </style>
