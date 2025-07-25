@@ -1376,6 +1376,17 @@ export default {
       if (startPosition != -1) {
         // 将备注写道评论中
         this.newComment.content = this.getSubArray(parts, startPosition + 2, endPosition).join('\n')
+        // 尝试在评论中查找真实姓名
+        if (!commonJS.strIsBlank(this.form.chineseName)) {
+          // 拿到候选人的姓
+          let firstName = this.form.chineseName.substr(0, 1)
+          // 通过正则匹配，查找真实姓名
+          let reg = new RegExp(firstName + '[\\u4e00-\\u9fa5]+')
+          let result = this.newComment.content.match(reg)
+          if (result != null && result.length > 0) {
+            this.form.chineseName = result[0]
+          }
+        }
       }
     },
     // 获取工作经历部分
