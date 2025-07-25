@@ -76,19 +76,35 @@ export default {
       // 绘制图表
       this.drawChart()
     },
+    // 向前移动一周
+    forwardWeek (v) {
+      // 调整到this.form.startDate所在周
+      this.form.startDate = new Date(this.form.startDate.getTime() - (this.form.startDate.getDay() - 1) * 24 * 60 * 60 * 1000)
+      this.form.endDate = new Date(this.form.startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+      // 向前移动V周
+      this.form.startDate = new Date(this.form.startDate.getTime() - 7 * 24 * 60 * 60 * 1000)
+      this.form.endDate = new Date(this.form.endDate.getTime() - 7 * 24 * 60 * 60 * 1000)
+      // 绘制图表
+      this.drawChart()
+    },
+    // 向后移动一周
+    backwardWeek (v) {
+      // 调整到this.form.startDate所在周
+      this.form.startDate = new Date(this.form.startDate.getTime() - (this.form.startDate.getDay() - 1) * 24 * 60 * 60 * 1000)
+      this.form.endDate = new Date(this.form.startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+      // 向后移动V周
+      this.form.startDate = new Date(this.form.startDate.getTime() + 7 * 24 * 60 * 60 * 1000)
+      this.form.endDate = new Date(this.form.endDate.getTime() + 7 * 24 * 60 * 60 * 1000)
+      // 绘制图表
+      this.drawChart()
+    },
     // 计算开始日期和结束日期
     calcDate (type) {
       window.localStorage['generalPeriod'] = type
       if (type === 'week') {
         let now = new Date()
-        let startDate
-        if (now.getDay() === 0) {
-          startDate = new Date(now.getTime() - 6 * 24 * 60 * 60 * 1000)
-        } else {
-          startDate = new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000)
-        }
-        this.form.startDate = startDate
-        this.form.endDate = new Date(startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
+        this.form.startDate = new Date(now.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000)
+        this.form.endDate = new Date(this.form.startDate.getTime() + 6 * 24 * 60 * 60 * 1000)
       } else if (type === 'lastmonth') {
         let month = new Date().getMonth()
         let year = new Date().getFullYear()

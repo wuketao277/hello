@@ -62,6 +62,7 @@ export default {
               })
               // 触发更新文件操作
               this.$emit('delete-file-success')
+              this.query()
             } else {
               this.$message({
                 type: 'warning',
