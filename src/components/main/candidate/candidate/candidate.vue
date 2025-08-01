@@ -266,8 +266,8 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="22">
-          <el-form-item label="学校"
+        <el-col :span="18">
+          <el-form-item label="教育经历"
                         prop="schoolName">
             <el-input v-model="form.schoolName"
                       placeholder="是统招的吗？学历证、学位证都有吗？学信网可以查到吗？"
@@ -277,6 +277,10 @@
                       show-word-limit
                       clearable></el-input>
           </el-form-item>
+        </el-col>
+        <el-col :span="4">
+          <span style="color:#F56C6C;" v-show="undergraduateYears != 4">本科{{undergraduateYears}}年；</span>
+          <span style="color:#F56C6C;" v-show="undergraduateStartAge != 18">{{undergraduateStartAge}}岁上大学；</span>
         </el-col>
         <el-col :span="2">
           <el-button type="primary"

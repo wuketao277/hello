@@ -219,7 +219,9 @@ export default {
       notMatchReasonList: commonJS.notMatchReasonList,
       roles: [],
       jobType: '', // 工作类型
-      allLabels: [] // 顾问的全部标签
+      allLabels: [], // 顾问的全部标签
+      undergraduateYears: 4, // 本科消息显示控制
+      undergraduateStartAge: 18, // 本科起始年龄
     }
   },
   methods: {
@@ -886,6 +888,8 @@ export default {
           })
         }
       })
+      // 本科校验
+      this.validateUndergraduate()
     },
     // 查询当前候选人相关的任务
     queryTask () {
@@ -1166,6 +1170,8 @@ export default {
       while (this.form.schoolName.indexOf('  ') > -1) {
         this.form.schoolName = this.form.schoolName.replaceAll('  ', ' ')
       }
+      // 本科校验
+      this.validateUndergraduate()
     },
     // 整理公司
     formatCompany () {
@@ -1471,7 +1477,40 @@ export default {
       while (this.resume.indexOf('  ') > -1) {
         this.resume = this.resume.replaceAll('  ', ' ')
       }
-    }
+    },
+    // 本科信息校验
+    validateUndergraduate () {
+      // 恢复初始值，默认设置本科4年，默认18岁上大学
+      this.undergraduateYears = 4
+      this.undergraduateStartAge = 18
+      // 按行分割文本
+      const lines = this.form.schoolName.split('\n');
+      // 匹配年份的正则表达式（匹配1900-2099之间的年份）
+      const yearRegex = /(19|20)\d{2}/g;
+      // 遍历每一行
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        // 检查是否包含"本科"字样
+        if (line.includes('本科')) {
+          // 查找所有年份
+          const years = line.match(yearRegex);
+          if (years && years.length >= 2) {
+            // 取前两个年份
+            const year1 = parseInt(years[0], 10);
+            const year2 = parseInt(years[1], 10);
+            // 计算大学毕业年份与入学年份的差值付给变量
+            const diff = Math.abs(year2 - year1);
+            this.undergraduateYears = diff
+            // 计算大学入学时的年纪
+            if (this.form.birthDay !== null && this.form.birthDay !== '') {
+              const year3 = parseInt(this.form.birthDay.substr(0, 4), 10);
+              const diff2 = Math.abs(year3 - year1);
+              this.undergraduateStartAge = diff2
+            }
+          }
+        }
+      }
+    },
   },
   computed: {},
   created () {
@@ -1493,6 +1532,8 @@ export default {
       if (typeof (this.$route.query.candidate) !== 'undefined') {
         this.form = this.$route.query.candidate
         this.queryOthers()
+        // 本科信息校验
+        this.validateUndergraduate()
       } else if (typeof (this.$route.query.candidateId) !== 'undefined') {
         let params = {
           'id': this.$route.query.candidateId
@@ -1502,6 +1543,8 @@ export default {
             if (res.status === 200) {
               this.form = res.data
               this.queryOthers()
+              // 本科信息校验
+              this.validateUndergraduate()
             }
           })
       }
