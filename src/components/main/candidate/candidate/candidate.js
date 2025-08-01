@@ -222,6 +222,8 @@ export default {
       allLabels: [], // 顾问的全部标签
       undergraduateYears: 4, // 本科消息显示控制
       undergraduateStartAge: 18, // 本科起始年龄
+      undergraduateName: '', // 大学名称
+      schoolNameGongBanFlag: false, // 公办大学显示控制
     }
   },
   methods: {
@@ -1483,6 +1485,8 @@ export default {
       // 恢复初始值，默认设置本科4年，默认18岁上大学
       this.undergraduateYears = 4
       this.undergraduateStartAge = 18
+      this.schoolNameGongBanFlag = false
+      this.undergraduateName = ''
       // 按行分割文本
       const lines = this.form.schoolName.split('\n');
       // 匹配年份的正则表达式（匹配1900-2099之间的年份）
@@ -1506,6 +1510,16 @@ export default {
               const year3 = parseInt(this.form.birthDay.substr(0, 4), 10);
               const diff2 = Math.abs(year3 - year1);
               this.undergraduateStartAge = diff2
+            }
+          }
+          debugger
+          // 检查本科学校是否是公办
+          const index = line.lastIndexOf('大学') > line.lastIndexOf('学院') ? line.lastIndexOf('大学') : line.lastIndexOf('学院')
+          if (index > -1) {
+            const schoolName = line.substr(0, index + 2)
+            if (!commonJS.schoolGongBan.includes(schoolName)) {
+              this.undergraduateName = schoolName
+              this.schoolNameGongBanFlag = true
             }
           }
         }

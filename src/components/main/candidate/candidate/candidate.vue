@@ -281,6 +281,7 @@
         <el-col :span="4">
           <span style="color:#F56C6C;" v-show="undergraduateYears != 4">本科{{undergraduateYears}}年；</span>
           <span style="color:#F56C6C;" v-show="undergraduateStartAge != 18">{{undergraduateStartAge}}岁上大学；</span>
+          <span style="color:#F56C6C;" v-show="schoolNameGongBanFlag">{{undergraduateName}}不是公办；</span>
         </el-col>
         <el-col :span="2">
           <el-button type="primary"
