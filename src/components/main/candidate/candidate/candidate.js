@@ -1480,8 +1480,13 @@ export default {
         this.resume = this.resume.replaceAll('  ', ' ')
       }
     },
+    // 学校名称变更事件
+    changeSchoolName (val) {
+      this.validateUndergraduate()
+    },
     // 本科信息校验
     validateUndergraduate () {
+      debugger
       // 恢复初始值，默认设置本科4年，默认18岁上大学
       this.undergraduateYears = 4
       this.undergraduateStartAge = 18
@@ -1512,7 +1517,6 @@ export default {
               this.undergraduateStartAge = diff2
             }
           }
-          debugger
           // 检查本科学校是否是公办
           const index = line.lastIndexOf('大学') > line.lastIndexOf('学院') ? line.lastIndexOf('大学') : line.lastIndexOf('学院')
           if (index > -1) {

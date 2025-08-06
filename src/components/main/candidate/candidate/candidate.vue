@@ -275,6 +275,7 @@
                       :autosize="{ minRows: 1, maxRows: 100}"
                       maxlength="200"
                       show-word-limit
+                      @input="changeSchoolName"
                       clearable></el-input>
           </el-form-item>
         </el-col>
