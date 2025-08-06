@@ -48,16 +48,16 @@ export default {
       if (commonJS.schoolBenTeng90.includes(tempName)) {
         sBenTeng90 = true
       }
+      debugger
       let sGongBan = false
       if (commonJS.schoolGongBan.includes(tempName)) {
         sGongBan = true
       }
+      this.schoolCheckResult = ''
       // 将结果转换为文字
       if (!s985 && !s211 && !s11 && !sBenTeng90) {
         this.schoolCheckResult = '非重点院校'
-        return
       }
-      this.schoolCheckResult = ''
       if (s985) {
         this.schoolCheckResult = '985'
       }
@@ -92,7 +92,7 @@ export default {
         if (this.schoolCheckResult === '') {
           this.schoolCheckResult = '民办'
         } else {
-          this.schoolCheckResult += ' & 公办'
+          this.schoolCheckResult += ' & 民办'
         }
       }
     },
