@@ -7,6 +7,9 @@ export default {
   data () {
     return {
       types: [{
+        code: 'Z1',
+        name: '1%专票'
+      }, {
         code: 'Z3',
         name: '3%专票'
       },
@@ -65,7 +68,9 @@ export default {
     },
     // 格式化开票类型
     formatType (row, column, cellvalue, index) {
-      if (cellvalue === 'Z3') {
+      if (cellvalue === 'Z1') {
+        return '1%专票'
+      } else if (cellvalue === 'Z3') {
         return '3%专票'
       } else if (cellvalue === 'Z6') {
         return '6%专票'

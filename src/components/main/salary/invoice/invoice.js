@@ -15,6 +15,9 @@ export default {
   data () {
     return {
       types: [{
+        code: 'Z1',
+        name: '1%专票'
+      }, {
         code: 'Z3',
         name: '3%专票'
       },
