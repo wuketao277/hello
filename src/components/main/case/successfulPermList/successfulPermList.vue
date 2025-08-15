@@ -496,6 +496,8 @@
                 <el-checkbox v-model="search.nonPaymentDueExcludeYiQi">到期未付款除一汽外</el-checkbox>
                 <el-checkbox v-model="search.nonOnboard">未入职</el-checkbox>
                 <el-checkbox v-model="search.guaranteePeriod">保证期</el-checkbox>
+                <el-checkbox v-model="search.nonInvoice">未开票</el-checkbox>
+                <el-checkbox v-model="search.invoicedAndNonPay">已开票未付款</el-checkbox>
               </el-form-item>
             </el-col>
           </el-row>

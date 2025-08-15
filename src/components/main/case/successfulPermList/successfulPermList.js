@@ -222,8 +222,12 @@ export default {
         nonPaymentDue: false,
         nonPaymentDueExcludeYiQi: false,
         nonOnboard: false,
-        guaranteePeriod: false
+        guaranteePeriod: false,
+        nonInvoice: false,
+        invoicedAndNonPay: false
       }
+      // 将分页改到10条/页
+      this.table.pageable.pageSize = 10
       window.localStorage['successfulPermList.search'] = this.search
     },
     // 下载成功case
