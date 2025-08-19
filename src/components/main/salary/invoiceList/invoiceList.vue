@@ -49,7 +49,7 @@
                          width="120"
                          label="发票金额"
                          show-overflow-tooltip></el-table-column>
-        <el-table-column prop="type"
+        <el-table-column prop="invoiceType"
                          width="100"
                          label="发票类型"
                          show-overflow-tooltip

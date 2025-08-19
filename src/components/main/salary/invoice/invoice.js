@@ -39,7 +39,7 @@ export default {
         id: null,
         createDate: null,
         sum: null,
-        type: null,
+        invoiceType: null,
         clientId: null,
         clientChineseName: null,
         kind: '人才咨询费',
@@ -96,7 +96,7 @@ export default {
         this.form.id = null
         this.form.createDate = null
         this.form.sum = null
-        this.form.type = null
+        this.form.invoiceType = null
         this.form.clientId = null
         this.form.clientChineseName = null
         this.form.kind = '人才咨询费'

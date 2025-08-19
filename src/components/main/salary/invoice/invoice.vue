@@ -45,7 +45,7 @@
         <el-col :span="6">
           <el-form-item label="发票类型"
                         required>
-            <el-select v-model="form.type"
+            <el-select v-model="form.invoiceType"
                        placeholder="请选择发票类型"
                        filterable
                        style="width:100%;">
