@@ -42,21 +42,26 @@
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="createDate"
                          :formatter="formatDate"
-                         width="120"
+                         width="110"
                          label="开票日期"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="sum"
-                         width="120"
+                         width="100"
                          label="发票金额"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="invoiceType"
-                         width="100"
+                         width="90"
                          label="发票类型"
                          show-overflow-tooltip
                          :formatter="formatType"></el-table-column>
         <el-table-column prop="clientChineseName"
                          width="300"
                          label="客户名称"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="actualPaymentDate"
+                         :formatter="formatDate"
+                         width="110"
+                         label="实际付款日期"
                          show-overflow-tooltip></el-table-column>
         <el-table-column prop="kind"
                          width="100"

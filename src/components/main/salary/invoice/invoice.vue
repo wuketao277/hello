@@ -155,6 +155,17 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="实际付款日期">
+            <el-date-picker v-model="form.actualPaymentDate"
+                            type="date"
+                            placeholder="选择日期"
+                            style="width:100%;"
+                            value-format="yyyy-MM-dd"></el-date-picker>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-dialog title="选择候选人"
                :visible.sync="selectCandidateDialogShow">

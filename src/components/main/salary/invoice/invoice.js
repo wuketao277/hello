@@ -53,7 +53,8 @@ export default {
         remark: null,
         sendDate: null,
         receiveDate: null,
-        status: true
+        status: true,
+        actualPaymentDate: null,
       },
       clients: [],
       // 选择候选人对话框是否显示
@@ -111,6 +112,7 @@ export default {
         this.form.sendDate = null
         this.form.receiveDate = null
         this.form.status = true
+        this.form.actualPaymentDate = null
       }
     },
     // 保存
