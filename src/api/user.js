@@ -72,5 +72,9 @@ export default {
   // 获取当前用户的角色列表
   getCurrentUserRoleList () {
     return axios.get('/user/getCurrentUserRoleList')
-  }
+  },
+  // 获取所有正常状态的兼职员工姓名
+  getAllEnabledParttimerUserName () {
+    return axios.get('/user/getAllEnabledParttimerUserName')
+  },
 }

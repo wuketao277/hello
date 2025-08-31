@@ -62,7 +62,7 @@
             </el-radio-group>
           </el-form-item>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="6" v-if="showControl('cwControl')">
           <el-button type="primary"
                      size="small"
                      icon="el-icon-share"
@@ -93,7 +93,7 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="8" v-if="showControl('hrControl')">
           <el-button type="primary"
                      size="small"
                      icon="el-icon-share"
@@ -277,6 +277,17 @@
               <el-checkbox v-for="jobType in jobTypeList"
                            :label="jobType.code"
                            :key="jobType.code">{{jobType.name}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12"  v-if="showControl('parttimerControl')">
+        <el-col>
+          <el-form-item label="兼职控制">
+            <el-checkbox-group v-model="form.parttimers">
+                <el-checkbox v-for="parttimer in allParttimer"
+                           :label="parttimer"
+                           :key="parttimer">{{parttimer}}</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
         </el-col>

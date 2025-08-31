@@ -84,7 +84,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="12">
+      <el-row :gutter="12" v-if="showControl('duplicateCheck')">
         <el-col>
           <el-form-item label="查重要求">
             <el-input type="textarea"
@@ -168,7 +168,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="12">
+      <el-row :gutter="12"  v-if="showControl('invoice')">
         <el-col>
           <el-form-item label="发票联系信息">
             <el-input type="textarea"
@@ -180,7 +180,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="12">
+      <el-row :gutter="12"  v-if="showControl('invoice')">
         <el-col>
           <el-form-item label="发票备注">
             <el-input type="textarea"
@@ -192,9 +192,21 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="12"  v-if="showControl('parttimerControl')">
+        <el-col>
+          <el-form-item label="兼职控制">
+            <el-checkbox-group v-model="form.parttimers">
+                <el-checkbox v-for="parttimer in allParttimer"
+                           :label="parttimer"
+                           :key="parttimer">{{parttimer}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <el-tabs type="border-card">
-      <el-tab-pane label="联系人">
+      <el-tab-pane label="联系人"
+                    v-if="showControl('clientHr')">
         <div class="toolbar"
              v-show="(mode === 'add' || mode === 'modify')">
           <el-button type="success"

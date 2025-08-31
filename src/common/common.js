@@ -1,6 +1,6 @@
 export default {
   // 前端版本
-  version: '1.2.2',
+  version: '1.2.3',
   versionCheck () {
     // 先获取本地版本
     let localVersion = window.localStorage['version']
@@ -1557,7 +1557,8 @@ export default {
     "澳门城市大学",
     "澳门理工学院",
     "甘肃政法学院",
-    "西北大学"
+    "西北大学",
+    "上海立信会计学院"
   ]
 
 }

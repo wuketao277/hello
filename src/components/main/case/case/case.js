@@ -50,8 +50,10 @@ export default {
         sourcingMap: '',
         top3Skills: '',
         targetCompany: '',
-        predecessor: ''
+        predecessor: '',
+        parttimers: []
       },
+      allParttimer: [], // 全部兼职
       attention: false,
       rules: {
         clientId: [{
@@ -179,6 +181,15 @@ export default {
       } else if (key === 'visibility') {
         // 管理员和公司管理员可以操作
         return commonJS.isAdminInArray(this.roles) || commonJS.isAdminCompanyInArray(this.roles)
+      } else if (key === 'parttimerControl') {
+        // 兼职控制，只显示给Admin
+        return commonJS.isAdminInArray(this.roles)
+      } else if (key === 'hrControl') {
+        // hr控制，兼职不显示
+        return !commonJS.isParttimeJobType(this.roles)
+      } else if (key === 'cwControl') {
+        // cw控制，兼职不显示
+        return !commonJS.isParttimeJobType(this.roles)
       }
       // 没有特殊要求的不需要角色
       return true
@@ -594,6 +605,12 @@ export default {
       if (res.status === 200) {
         this.roles = res.data.roles
         this.jobType = res.data.jobType
+      }
+    })
+    // 获取全部正常状态的兼职员工
+    userApi.getAllEnabledParttimerUserName().then(res => {
+      if (res.status === 200) {
+        this.allParttimer = res.data
       }
     })
     // 通过入参获取当前操作模式

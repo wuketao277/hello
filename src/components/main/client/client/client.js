@@ -27,8 +27,10 @@ export default {
         recommendationReason: '',
         interviewPrepare: '',
         sellingPoint: '',
-        remark: ''
+        remark: '',
+        parttimers: []
       },
+      allParttimer: [], // 全部兼职
       rules: {
         chineseName: [{
           required: true,
@@ -63,6 +65,8 @@ export default {
     }
   },
   methods: {
+    // 保存客户信息兼职显示控制
+    saveClientPartTimeViewControl () { },
     // 显示控制
     showControl (url) {
       if (url === 'clientContract') {
@@ -74,6 +78,18 @@ export default {
       } else if (url === 'toolbar') {
         // 工具栏，只有Admin ADMIN_COMPANY角色展示
         return commonJs.isAdmin() || commonJs.isAdminCompany()
+      } else if (url === 'clientHr') {
+        // 客户hr信息，只显示给全职员工
+        return commonJs.isFulltimeJobType()
+      } else if (url === 'duplicateCheck') {
+        // 查重信息，只显示给全职员工
+        return commonJs.isFulltimeJobType()
+      } else if (url === 'invoice') {
+        // 发票，只有Admin
+        return commonJs.isAdminInArray(this.roles)
+      } else if (url === 'parttimerControl') {
+        // 兼职控制，只显示给Admin
+        return commonJs.isAdminInArray(this.roles)
       }
       return false
     },
@@ -307,6 +323,12 @@ export default {
       if (res.status === 200) {
         this.roles = res.data.roles
         this.jobType = res.data.jobType
+      }
+    })
+    // 获取全部正常状态的兼职员工
+    userApi.getAllEnabledParttimerUserName().then(res => {
+      if (res.status === 200) {
+        this.allParttimer = res.data
       }
     })
     // 通过入参获取当前操作模式

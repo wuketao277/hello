@@ -102,7 +102,7 @@ export default {
       if (url === '/') {
         return true
       }
-      if (url === '/client/clientlist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+      if (url === '/client/clientlist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
         return true
       }
       if (url === '/case/caselist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
@@ -111,7 +111,7 @@ export default {
       if (url === '/candidate/candidatelist' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
         return true
       }
-      if (url === '/candidate/searchcandidate' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME' || jobType === 'EXPERIENCE')) {
+      if (url === '/candidate/searchcandidate' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'EXPERIENCE')) {
         return true
       }
       if (url === '/case/successfulPermList' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {

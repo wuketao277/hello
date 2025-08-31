@@ -131,15 +131,13 @@ export default {
     },
     // 编辑客户
     editClient (index, row) {
-      if (commonJs.isFulltimeJobType()) {
-        this.$router.push({
-          path: '/background.html/client/client',
-          query: {
-            mode: 'modify',
-            clientId: row.clientId
-          }
-        })
-      }
+      this.$router.push({
+        path: '/background.html/client/client',
+        query: {
+          mode: 'modify',
+          clientId: row.clientId
+        }
+      })
     },
     // 查询当日入职情况
     queryTodayOnboardList (val) {
@@ -447,16 +445,14 @@ export default {
     rowChange () { },
     // 跳转到客户
     toClient (id) {
-      if (commonJs.isFulltimeJobType()) {
-        // 只有全职的同事可以跳转到客户列表
-        this.$router.push({
-          path: '/background.html/client/client',
-          query: {
-            mode: 'modify',
-            clientId: id
-          }
-        })
-      }
+      // 只有全职的同事可以跳转到客户列表
+      this.$router.push({
+        path: '/background.html/client/client',
+        query: {
+          mode: 'modify',
+          clientId: id
+        }
+      })
     },
     // 跳转到职位
     toCase (id) {

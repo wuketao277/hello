@@ -524,16 +524,13 @@ export default {
     },
     // 编辑客户
     editClient (index, row) {
-      // 只有全职的同事可以跳转到客户列表
-      if (commonJS.isFulltimeJobType()) {
-        this.$router.push({
-          path: '/background.html/client/client',
-          query: {
-            mode: 'modify',
-            clientId: row.clientId
-          }
-        })
-      }
+      this.$router.push({
+        path: '/background.html/client/client',
+        query: {
+          mode: 'modify',
+          clientId: row.clientId
+        }
+      })
     },
     // 打开我的职位对话框
     openMyCaseDialog () {
@@ -980,18 +977,20 @@ export default {
       }
     },
     queryOthers () {
-      // 查询comment
-      this.queryComment()
-      // 查询任务
-      this.queryTask()
-      // 查询上传文件
-      this.queryUploadFiles()
-      // 查询简历信息
-      this.queryResume()
-      // 查询当前候选人推荐职位信息
-      this.queryCandidateForCaseList()
-      // 查询关注情况
-      this.queryCandidateAttentionByCandidateId()
+      if (commonJS.judgeStrIsNotNull(this.form.chineseName)) {
+        // 查询comment
+        this.queryComment()
+        // 查询任务
+        this.queryTask()
+        // 查询上传文件
+        this.queryUploadFiles()
+        // 查询简历信息
+        this.queryResume()
+        // 查询当前候选人推荐职位信息
+        this.queryCandidateForCaseList()
+        // 查询关注情况
+        this.queryCandidateAttentionByCandidateId()
+      }
     },
     // 我的职位列表双击处理事件
     handleRowDblClickMyCaseAttentionList (row, column, event) {
