@@ -328,7 +328,8 @@
           <el-button type="primary"
                      size="small"
                      icon="el-icon-download"
-                     @click="downloadCandidates">下载候选人</el-button>
+                     @click="downloadCandidates"
+                      v-if="showControl('downloadCandidatesControl')">下载候选人</el-button>
         </div>
         <el-table v-loading="candidateTableLoading"
                   element-loading-text="拼命加载中"

@@ -184,11 +184,8 @@ export default {
       } else if (key === 'parttimerControl') {
         // 兼职控制，只显示给Admin
         return commonJS.isAdminInArray(this.roles)
-      } else if (key === 'hrControl') {
-        // hr控制，兼职不显示
-        return !commonJS.isParttimeJobType(this.roles)
-      } else if (key === 'cwControl') {
-        // cw控制，兼职不显示
+      } else if (key === 'hrControl' || key === 'cwControl' || key === 'downloadCandidatesControl') {
+        // 兼职不显示
         return !commonJS.isParttimeJobType(this.roles)
       }
       // 没有特殊要求的不需要角色
