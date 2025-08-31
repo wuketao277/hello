@@ -334,7 +334,8 @@
                      v-if="showControl('/queryAllUserCaseAttention')"
                      @click="queryAllUserCaseAttention">全部关注职位</el-button> -->
           &nbsp;
-          <el-checkbox @change="onlyShowMyselfCandidateChange" v-model="onlyShowMyselfCandidate">只看自己的候选人</el-checkbox>
+          <el-checkbox @change="onlyShowMyselfCandidateChange" v-model="onlyShowMyselfCandidate"
+          v-if="showControl('onlyShowMyselfCandidateControl')">只看自己的候选人</el-checkbox>
         </div>
         <div v-for="client in caseAttention4ClientVOArray"
              :key="client.clientId">

@@ -407,13 +407,13 @@ export default {
         // 这些页面只显示给全职用户
         return commonJs.isFulltimeJobType()
       }
-      if (url === 'saveKPIDate' || url === 'saveKPIButton') {
+      if (url === 'saveKPIDate' || url === 'saveKPIButton' || url === '/queryAllUserCaseAttention') {
         // 保存KPI的日期和按钮只有管理员能看到
         return commonJs.isAdmin()
       }
-      if (url === '/queryAllUserCaseAttention') {
-        // 查询所有关注职位按钮，只有管理员能看到
-        return commonJs.isAdmin()
+      if (url === 'onlyShowMyselfCandidateControl') {
+        // 兼职不显示
+        return !commonJs.isParttimeJobType()
       }
       return false
     },
@@ -601,6 +601,10 @@ export default {
     },
     // 查询当前用户所有职位关注
     queryAllCaseAttention () {
+      // 兼职只看自己的候选人
+      if (commonJs.isParttimeJobType()) {
+        this.onlyShowMyselfCandidate = true
+      }
       caseApi.queryAllCaseAttention(this.onlyShowMyselfCandidate).then(res => {
         if (res.status === 200) {
           this.caseAttention4ClientVOArray = res.data
