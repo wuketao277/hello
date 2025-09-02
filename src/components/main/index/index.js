@@ -7,7 +7,7 @@ export default {
   data () {
     return {
       schoolDialogShowFlag: false, // 学校对话框显示控制标志
-      schoolName: null, // 学校名称
+      schoolName: '', // 学校名称
       schoolCheckResult: '检查结果',
       isCollapse: true,
       realname: '',
@@ -28,7 +28,7 @@ export default {
     // 学校名称变更事件
     schoolNameChange () {
       // 将英文括号转成中文括号
-      let tempName = this.schoolName
+      let tempName = this.schoolName.trim()
       tempName = tempName.replace('(', '（')
       tempName = tempName.replace(')', '）')
       // 判断是不是指定院校
