@@ -1,6 +1,6 @@
 export default {
   // 前端版本
-  version: '1.2.3',
+  version: '1.2.4',
   versionCheck () {
     // 先获取本地版本
     let localVersion = window.localStorage['version']
@@ -663,6 +663,10 @@ export default {
   {
     value: 'Period Failed',
     lable: 'Period Failed'
+  },
+  {
+    value: 'Cancel Interview',
+    lable: 'Cancel Interview'
   },
   {
     value: 'END',

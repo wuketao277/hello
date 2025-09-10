@@ -562,6 +562,14 @@ export default {
     // 保存评论
     saveCommentMsg (msg) {
       this.newComment.content = msg
+      if (msg === '测评') {
+        this.newComment.phase = '1st Interview'
+        // 获取当前时间
+        let now = new Date()
+        // 增加10分钟
+        now.setMinutes(now.getMinutes() + 10)
+        this.newComment.interviewTime = now
+      }
       this.saveComment()
     },
     // 保存 新评论 同步方法
@@ -587,13 +595,13 @@ export default {
       // 评论阶段必填
       if (this.newComment.phase === null || this.newComment.phase === '') {
         this.$message({
-          message: '请评论阶段必选！',
+          message: '评论阶段必选！',
           type: 'warning'
         })
         return
       }
       // 面试阶段需要填写面试时间
-      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === '5th Interview' || this.newComment.phase === '6th Interview') {
+      if (this.newComment.phase === '1st Interview' || this.newComment.phase === '2nd Interview' || this.newComment.phase === '3rd Interview' || this.newComment.phase === '4th Interview' || this.newComment.phase === '5th Interview' || this.newComment.phase === '6th Interview' || this.newComment.phase === 'Cancel Interview') {
         if (this.newComment.interviewTime === null) {
           this.$message({
             message: '请填写面试时间',
