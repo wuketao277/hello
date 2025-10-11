@@ -149,6 +149,7 @@
             <el-menu-item index="/background.html/user/userlist"
                           v-show="showControl('/user/userlist')">用户列表</el-menu-item>
             <el-menu-item index="/background.html/personalInfo">个人信息</el-menu-item>
+            <el-menu-item index="/background.html/school/schoolTypeList">学校列表</el-menu-item>
           </el-submenu>
           <el-submenu index="/background.html/training"
                       v-if="showControl('/training')">

@@ -1,6 +1,7 @@
 import basic from '@/api/basic'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import schoolTypeApi from '@/api/schoolType'
 import { env } from 'shelljs'
 
 export default {
@@ -27,6 +28,10 @@ export default {
     },
     // 学校名称变更事件
     schoolNameChange () {
+      if (this.schoolName === null || this.schoolName.length === 0) {
+        this.schoolCheckResult = '检查结果'
+        return
+      }
       // 将英文括号转成中文括号
       let tempName = this.schoolName.trim()
       tempName = tempName.replace('(', '（')
@@ -48,11 +53,7 @@ export default {
       if (commonJS.schoolBenTeng90.includes(tempName)) {
         sBenTeng90 = true
       }
-      debugger
-      let sGongBan = false
-      if (commonJS.schoolGongBan.includes(tempName)) {
-        sGongBan = true
-      }
+
       this.schoolCheckResult = ''
       // 将结果转换为文字
       if (!s985 && !s211 && !s11 && !sBenTeng90) {
@@ -82,19 +83,18 @@ export default {
           this.schoolCheckResult += ' & 奔腾90所'
         }
       }
-      if (sGongBan) {
-        if (this.schoolCheckResult === '') {
-          this.schoolCheckResult = '公办'
-        } else {
-          this.schoolCheckResult += ' & 公办'
+
+      schoolTypeApi.checkIsPublic(tempName).then(
+        res => {
+          if (res.status === 200) {
+            if (this.schoolCheckResult === '') {
+              this.schoolCheckResult = res.data
+            } else {
+              this.schoolCheckResult += ' & ' + res.data
+            }
+          }
         }
-      } else {
-        if (this.schoolCheckResult === '') {
-          this.schoolCheckResult = '民办'
-        } else {
-          this.schoolCheckResult += ' & 民办'
-        }
-      }
+      )
     },
     // 通过工作类型控制显示
     jobTypeControlShow (url) {

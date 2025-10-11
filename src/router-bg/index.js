@@ -4,6 +4,8 @@ import Login from '@/components/login/login.vue'
 import Index from '@/components/main/index/index.vue'
 import ClientList from '@/components/main/client/clientlist/clientlist.vue'
 import Client from '@/components/main/client/client/client.vue'
+import SchoolTypeList from '@/components/main/school/schoolTypeList/schoolTypeList.vue'
+import SchoolType from '@/components/main/school/schoolType/schoolType.vue'
 import UserList from '@/components/main/user/userlist/userlist.vue'
 import User from '@/components/main/user/user/user.vue'
 import CandidateList from '@/components/main/candidate/candidatelist/candidatelist.vue'
@@ -339,7 +341,19 @@ const router = new Router({
       path: '/background.html/holiday/holidaylist',
       name: 'holidaylist',
       component: HolidayList
-    }
+    },
+    {
+      // 学校列表页
+      path: '/background.html/school/schoolTypeList',
+      name: 'schoolTypeList',
+      component: SchoolTypeList
+    },
+    {
+      // 新增学校
+      path: '/background.html/school/schoolType',
+      name: 'schoolType',
+      component: SchoolType
+    },
     ]
   },
   {

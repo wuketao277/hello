@@ -10,6 +10,7 @@ import commonJS from '@/common/common'
 import caseApi from '@/api/case'
 import userApi from '@/api/user'
 import labelApi from '@/api/label'
+import schoolTypeApi from '@/api/schoolType'
 import {
   Promise
 } from 'q'
@@ -223,7 +224,7 @@ export default {
       undergraduateYears: 4, // 本科消息显示控制
       undergraduateStartAge: 18, // 本科起始年龄
       undergraduateName: '', // 大学名称
-      schoolNameGongBanFlag: false, // 公办大学显示控制
+      schoolTypeTag: '公办', // 大学类型提示
     }
   },
   methods: {
@@ -1497,8 +1498,8 @@ export default {
       // 恢复初始值，默认设置本科4年，默认18岁上大学
       this.undergraduateYears = 4
       this.undergraduateStartAge = 18
-      this.schoolNameGongBanFlag = false
       this.undergraduateName = ''
+      this.schoolTypeTag = '公办'
       // 按行分割文本
       const lines = this.form.schoolName.split('\n');
       // 匹配年份的正则表达式（匹配1900-2099之间的年份）
@@ -1525,13 +1526,19 @@ export default {
             }
           }
           // 检查本科学校是否是公办
-          const index = line.lastIndexOf('大学') > line.lastIndexOf('学院') ? line.lastIndexOf('大学') : line.lastIndexOf('学院')
-          if (index > -1) {
-            const schoolName = line.substr(0, index + 2)
-            if (!commonJS.schoolGongBan.includes(schoolName)) {
-              this.undergraduateName = schoolName
-              this.schoolNameGongBanFlag = true
-            }
+          const endIndex = line.lastIndexOf('大学') > line.lastIndexOf('学院') ? line.lastIndexOf('大学') : line.lastIndexOf('学院')
+          if (endIndex > -1) {
+            // 查找第一个汉字的位置
+            const startIndex = line.search(/[\u4e00-\u9fa5]/);
+            let schoolName = line.substr(startIndex, endIndex + 2 - startIndex)
+            this.undergraduateName = schoolName
+            schoolTypeApi.checkIsPublic(schoolName).then(
+              res => {
+                if (res.status === 200) {
+                  this.schoolTypeTag = res.data
+                }
+              }
+            )
           }
         }
       }
