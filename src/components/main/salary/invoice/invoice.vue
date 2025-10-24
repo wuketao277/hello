@@ -42,6 +42,16 @@
                       style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="12">
+          <el-form-item label="发票编号"
+                        required>
+            <el-input v-model="form.invoiceNumber"
+                      clearable
+                      style="width:100%;"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="6">
           <el-form-item label="发票类型"
                         required>
@@ -64,8 +74,6 @@
                       style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="客户"
                         required>
@@ -99,8 +107,6 @@
                      style="width:85px;">AM</el-button>
           <span>{{form.amName}}</span>
         </el-col>
-      </el-row>
-      <el-row :gutter="20">
         <el-col :span="6">
           <el-form-item label="PO">
             <el-input v-model="form.po"
@@ -123,6 +129,15 @@
                             placeholder="选择日期"
                             value-format="yyyy-MM-dd"
                             style="width:100%;"></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="实际付款日期">
+            <el-date-picker v-model="form.actualPaymentDate"
+                            type="date"
+                            placeholder="选择日期"
+                            style="width:100%;"
+                            value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="6">
@@ -152,17 +167,6 @@
                       :autosize="{ minRows: 1, maxRows: 30}"
                       style="width:100%;"
                       readonly></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :span="6">
-          <el-form-item label="实际付款日期">
-            <el-date-picker v-model="form.actualPaymentDate"
-                            type="date"
-                            placeholder="选择日期"
-                            style="width:100%;"
-                            value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>

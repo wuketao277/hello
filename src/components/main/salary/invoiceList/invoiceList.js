@@ -50,7 +50,8 @@ export default {
         createDateEnd: null
       },
       clients: [],
-      consultants: []
+      consultants: [],
+      noPaymentSum: 0, // 待付款金额
     }
   },
   methods: {
@@ -216,6 +217,11 @@ export default {
     }
   },
   created () {
+    invoiceApi.getNoPaymentSum().then(res => {
+      if (res.status === 200) {
+        this.noPaymentSum = res.data
+      }
+    })
     // 获取所有“客户”信息
     clientApi.findAllOrderByChineseName().then(res => {
       if (res.status === 200) {

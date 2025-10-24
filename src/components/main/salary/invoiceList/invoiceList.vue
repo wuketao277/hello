@@ -27,6 +27,8 @@
                  HEAD
                  icon="el-icon-share"
                  @click="searchDialog = true">搜 索</el-button>
+      <br />
+      <span>待付款金额：{{noPaymentSum}}</span>
     </div>
     <template>
       <el-table :data="table.content"
@@ -102,6 +104,10 @@
                          label="是否作废"
                          show-overflow-tooltip
                          :formatter="formatCancel"></el-table-column>
+        <el-table-column prop="invoiceNumber"
+                         width="300"
+                         label="发票编号"
+                         show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination background
                      layout="prev, pager, next, sizes"

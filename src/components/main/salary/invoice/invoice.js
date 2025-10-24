@@ -55,6 +55,7 @@ export default {
         receiveDate: null,
         status: true,
         actualPaymentDate: null,
+        invoiceNumber: null
       },
       clients: [],
       // 选择候选人对话框是否显示
@@ -113,6 +114,7 @@ export default {
         this.form.receiveDate = null
         this.form.status = true
         this.form.actualPaymentDate = null
+        this.form.invoiceNumber = null
       }
     },
     // 保存
