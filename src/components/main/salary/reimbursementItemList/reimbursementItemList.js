@@ -134,7 +134,9 @@ export default {
         'kind': this.search.kind,
         'invoiceNo': this.search.invoiceNo,
         'sum': this.search.sum,
-        'description': this.search.description
+        'description': this.search.description,
+        'paymentMonthStart': this.search.paymentMonthStart,
+        'paymentMonthEnd': this.search.paymentMonthEnd
       }
       reimbursementApi.queryPage(query).then(res => {
         if (res.status !== 200) {
@@ -341,7 +343,9 @@ export default {
         'kind': this.search.kind,
         'invoiceNo': this.search.invoiceNo,
         'sum': this.search.sum,
-        'description': this.search.description
+        'description': this.search.description,
+        'paymentMonthStart': this.search.paymentMonthStart,
+        'paymentMonthEnd': this.search.paymentMonthEnd
       }
       reimbursementApi.downloadReimbursementItem(query).then(res => {
         if (res.status === 200) {

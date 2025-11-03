@@ -287,6 +287,29 @@
               </el-form-item>
             </el-col>
           </el-row>
+          <el-row :gutter="12">
+            <el-col :span="6">
+              <el-form-item label="START MONTH">
+                <el-date-picker v-model="search.paymentMonthStart"
+                                type="month"
+                                placeholder="选择报销月份"
+                                format="yyyy-MM"
+                                value-format="yyyy-MM"
+                                style="width:100%;"
+                                clearable></el-date-picker>
+              </el-form-item>
+            </el-col><el-col :span="6">
+              <el-form-item label="END MONTH">
+                <el-date-picker v-model="search.paymentMonthEnd"
+                                type="month"
+                                placeholder="选择报销月份"
+                                format="yyyy-MM"
+                                value-format="yyyy-MM"
+                                style="width:100%;"
+                                clearable></el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
         <span slot="footer"
               class="dialog-footer">

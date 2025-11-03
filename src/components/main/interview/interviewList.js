@@ -16,7 +16,7 @@ export default {
         }
       },
       page: {
-        pageSizes: [10, 30, 50, 100, 300]
+        pageSizes: [10, 30, 50, 100, 300, 1000]
       },
       currentRow: null,
       searchDialog: false,
