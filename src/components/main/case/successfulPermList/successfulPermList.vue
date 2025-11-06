@@ -485,6 +485,14 @@
                           clearable></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="6">
+              <el-form-item label="Comment"
+                            label-width="80px">
+                <el-input v-model="search.comment"
+                          style="width:180px;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="24"
