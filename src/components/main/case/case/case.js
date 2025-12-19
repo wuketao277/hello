@@ -147,6 +147,16 @@ export default {
     }
   },
   methods: {
+    // 查看客户信息
+    viewClient () {
+      this.$router.push({
+        path: '/background.html/client/client',
+        query: {
+          mode: 'view',
+          clientId: this.form.clientId
+        }
+      })
+    },
     // 设置行样式
     setCandidateRowClassName ({
       row,

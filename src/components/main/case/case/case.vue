@@ -72,7 +72,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="12">
-        <el-col :span="8">
+        <el-col :span="7">
           <el-form-item label="客户"
                         prop="clientId">
             <el-select v-model="form.clientId"
@@ -85,6 +85,12 @@
                          :label="client.chineseName"></el-option>
             </el-select>
           </el-form-item>
+        </el-col>
+        <el-col :span="1">
+          <el-button type="text"
+                 size="mini"
+                 icon="el-icon-zoom-in"
+                 @click="viewClient">查看</el-button>
         </el-col>
         <el-col :span="8">
           <el-form-item label="职位名称"
