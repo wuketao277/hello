@@ -28,7 +28,7 @@
                  icon="el-icon-share"
                  @click="searchDialog = true">搜 索</el-button>
       <br />
-      <span>待付款金额：{{noPaymentSum}}</span>
+      <span>待付款金额：{{noPaymentSum}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>待开票金额：{{noInvoiceSum}}</span>
     </div>
     <template>
       <el-table :data="table.content"

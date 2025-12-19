@@ -2,6 +2,7 @@ import clientApi from '@/api/client'
 import userApi from '@/api/user'
 import invoiceApi from '@/api/invoice'
 import commonJS from '@/common/common'
+import successfulPermApi from '@/api/successfulPerm'
 
 export default {
   data () {
@@ -52,6 +53,7 @@ export default {
       clients: [],
       consultants: [],
       noPaymentSum: 0, // 待付款金额
+      noInvoiceSum: 0, // 待开票金额
     }
   },
   methods: {
@@ -231,6 +233,25 @@ export default {
     userApi.findAllEnabled().then(res => {
       if (res.status === 200) {
         this.consultants = res.data
+      }
+    })
+    // 查询为开票金额总数
+    let requestQueryStatistics = {
+      currentPage: 1,
+      pageSize: 10000,
+      search: {
+        guaranteePeriod: false,
+        invoicedAndNonPay: false,
+        nonInvoice: true,
+        nonOnboard: false,
+        nonPayment: false,
+        nonPaymentDue: false,
+        nonPaymentDueExcludeYiQi: false
+      }
+    }
+    successfulPermApi.queryStatistics(requestQueryStatistics).then(res => {
+      if (res.status === 200) {
+        this.noInvoiceSum = res.data['billingSum']
       }
     })
     this.query()
