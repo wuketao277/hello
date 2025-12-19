@@ -782,7 +782,8 @@ export default {
       if ((this.form.type === 'perm' || this.form.type === 'consultation') && this.form.billing !== null) {
         // 猎头和咨询业务才计算
         let params = {
-          'billing': this.form.billing
+          'billing': this.form.billing,
+          'clientId': this.form.clientId
         }
         salaryApi.billingToGp(params).then(res => {
           if (res.status === 200) {

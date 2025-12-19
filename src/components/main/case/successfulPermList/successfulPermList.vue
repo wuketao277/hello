@@ -63,10 +63,6 @@
                          label="姓名"
                          show-overflow-tooltip
                          fixed></el-table-column>
-        <el-table-column prop="gender"
-                         width="50"
-                         label="性别"
-                         show-overflow-tooltip></el-table-column>
         <el-table-column prop="clientName"
                          width="200"
                          label="客户名称"
@@ -219,6 +215,14 @@
         <el-table-column prop="hrChineseName"
                          width="100"
                          label="HR-Ch"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="gender"
+                         width="50"
+                         label="性别"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="candidateAge"
+                         width="100"
+                         label="候选人年龄"
                          show-overflow-tooltip></el-table-column>
       </el-table>
       <el-pagination background
