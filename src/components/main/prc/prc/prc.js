@@ -4,6 +4,7 @@ import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import prcCommentApi from '@/api/prcComment'
 
 export default {
   components: {
@@ -52,6 +53,51 @@ export default {
     }
   },
   methods: {
+    queryComment () {
+      debugger
+      let para = { 'prcId': this.form.id }
+      prcCommentApi.findAllByPRCIdOrderByDesc(para).then(res => {
+        if (res.status === 200) {
+          // 查询成功
+          this.comments = res.data
+        } else {
+          this.$message({
+            message: '查询异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
+    },
+    // 保存评论
+    saveComment () {
+      let para = {
+        prcId: this.form.id,
+        content: this.newComment.content
+      }
+      prcCommentApi.save(para).then(res => {
+        if (res.status === 200) {
+          // 保存成功
+          this.$message({
+            message: '保存成功！',
+            type: 'success',
+            showClose: true,
+            duration: 800
+          })
+          // 重新查询全部评论
+          this.queryComment()
+          // 清空评论区
+          this.newComment.id = null
+          this.newComment.content = null
+        } else {
+          this.$message({
+            message: '保存异常，请联系管理员！',
+            type: 'warning',
+            showClose: true
+          })
+        }
+      })
+    },
     // 格式化时间
     formatTime (row, column, cellvalue, index) {
       return commonJS.formatTime(cellvalue)
@@ -179,6 +225,8 @@ export default {
       // 如果没有候选人对象，就获取候选人id然后从数据库中查询候选人对象
       if (typeof (this.$route.query.prc) !== 'undefined') {
         this.form = this.$route.query.prc
+        debugger
+        this.queryComment()
       } else if (typeof (this.$route.query.prcId) !== 'undefined') {
         let params = {
           'id': this.$route.query.prcId
@@ -186,7 +234,9 @@ export default {
         prcApi.findById(params).then(
           res => {
             if (res.status === 200) {
+              debugger
               this.form = res.data
+              this.queryComment()
             }
           })
       }

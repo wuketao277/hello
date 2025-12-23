@@ -45,7 +45,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     proxy: [{
       changeOrigin: true,
-      context: ["/bigEvent/**", "/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**", "/label/**", "/prc/**", "/kpiWorkDaysAdjust/**", "/kpi/**", "/schoolType/**"],
+      context: ["/bigEvent/**", "/mynews/**", "/myTask/**", "/myplan/**", "/role/**", "/user/**", "/resource/**", "/candidate/**", "/comment/**", "/security/**", "/successfulPerm/**", "/salarySpecialItem/**", "/salary/**", "/reimbursement/**", "/report/**", "/client/**", "/clientlinkman/**", "/case/**", "/candidateForCase/**", "/uploadFile/**", "/training/**", "/invoice/**", "/holiday/**", "/config/**", "/summary/**", "/label/**", "/prc/**", "/kpiWorkDaysAdjust/**", "/kpi/**", "/schoolType/**", "/prcComment/**"],
       target: "http://localhost:8000"
     }],
     quiet: true, // necessary for FriendlyErrorsPlugin

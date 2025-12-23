@@ -40,7 +40,7 @@
              :rules="rules">
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="候选人id">
+          <el-form-item label="PRC id">
             <span>{{form.id}}</span>
           </el-form-item>
         </el-col>
