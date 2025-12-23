@@ -221,6 +221,53 @@
         </el-col>
       </el-row>
     </el-form>
+     <el-tabs type="border-card">
+      <!--职位列表开始-->
+      <el-tab-pane label="评论">
+        <el-form ref="newComment"
+                 label-position="left"
+                 size="small"
+                 :model="form"
+                 label-width="80px"
+                 style="text-align:left;">
+          <el-row :gutter="20">
+            <el-col :span="3">
+              <el-button type="success"
+                         size="small"
+                         icon="el-icon-chat-dot-round"
+                         @click="saveComment">保存评论</el-button>
+            </el-col>
+            <el-col :span="21">
+              <el-form-item label="评论内容"
+                            prop="content">
+                <el-input type="textarea"
+                          v-model="newComment.content"
+                          :autosize="{ minRows: 1, maxRows: 30}"></el-input>
+                          <br/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <!--评论开始-->
+        <el-table :data="comments"
+                  :border="true"
+                  :highlight-current-row="true"
+                  :stripe="true"
+                  style="width: 100%">
+          <el-table-column prop="username"
+                           label="评论人"
+                           width="100"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="inputTime"
+                           label="评论时间"
+                           width="160"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="content"
+                           label="评论内容"></el-table-column>
+        </el-table>
+        <!--评论结束-->
+      </el-tab-pane>
+    </el-tabs>
     <!--上传文件对话框-->
     <el-dialog title="上传文件"
                :visible.sync="showUploadFileDialog">

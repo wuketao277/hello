@@ -11,7 +11,7 @@ export default {
   },
   // 查找后台数据
   queryPage (params) {
-    return axios.get('/client/queryPage', {params: params})
+    return axios.get('/client/queryPage', { params: params })
   },
   // 通过id查询
   queryById (params) {
@@ -24,6 +24,10 @@ export default {
   // 查找所有
   findAllOrderByChineseName () {
     return axios.get('/client/findAllOrderByChineseName')
+  },
+  // 查找所有，获取简要信息
+  findAllOrderByChineseNameSummary () {
+    return axios.get('/client/findAllOrderByChineseNameSummary')
   },
   // 保存客户合同
   saveContract (params) {

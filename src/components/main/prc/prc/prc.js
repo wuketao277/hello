@@ -41,7 +41,14 @@ export default {
       uploadFiles: [], // 上传文件集合
       roles: [],
       jobType: '', // 工作类型
-      allLabels: [] // 顾问的全部标签
+      allLabels: [], // 顾问的全部标签
+      // 新评论
+      newComment: {
+        id: null,
+        content: '',
+      },
+      // 历史评论
+      comments: [],
     }
   },
   methods: {

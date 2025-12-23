@@ -620,6 +620,12 @@ export default {
         this.allParttimer = res.data
       }
     })
+    // 获取所有“客户”信息
+    clientApi.findAllOrderByChineseNameSummary().then(res => {
+      if (res.status === 200) {
+        this.clients = res.data
+      }
+    })
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数
@@ -641,12 +647,6 @@ export default {
         })
       }
     }
-    // 获取所有“客户”信息
-    clientApi.findAllOrderByChineseName().then(res => {
-      if (res.status === 200) {
-        this.clients = res.data
-      }
-    })
     // 查询上传文件
     this.queryUploadFiles()
   }

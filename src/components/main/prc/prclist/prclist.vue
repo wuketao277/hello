@@ -22,17 +22,18 @@
                  size="small"
                  icon="el-icon-delete"
                  @click="deleteById">删 除</el-button>
-      <!-- <el-form @submit.native.prevent
+      <el-form @submit.native.prevent
                style="display:inline-block;width:250px;">
         <el-form-item label
                       style="margin-bottom:0px;">
           <el-input v-model="search"
                     autocomplete="off"
-                    @keyup.enter.native="searchCandidate"
+                    @keyup.enter.native="query"
+                    @clear="query"
                     placeholder="输入关键字后，回车即可搜索。"
                     clearable></el-input>
         </el-form-item>
-      </el-form> -->
+      </el-form>
     </div>
     <el-table v-loading="table.loading"
               element-loading-text="拼命加载中"
