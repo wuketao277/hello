@@ -53,6 +53,36 @@ export default {
     }
   },
   methods: {
+    // 删除评论
+    deleteComment (row) {
+      this.$confirm('确认要评论吗？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(() => {
+          // 调用接口
+          prcCommentApi.deleteById(row.id).then(res => {
+            if (res.status === 200) {
+              // 删除成功
+              this.$message({
+                message: '删除成功！',
+                type: 'success',
+                showClose: true,
+                duration: 800
+              })
+              // 重新查询全部评论
+              this.queryComment()
+            } else {
+              this.$message({
+                message: '保存异常，请联系管理员！',
+                type: 'warning',
+                showClose: true
+              })
+            }
+          })
+        })
+    },
     queryComment () {
       debugger
       let para = { 'prcId': this.form.id }
