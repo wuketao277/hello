@@ -71,14 +71,24 @@
                          plain
                          size="small"
                          @click="calcDate('tonow')">全部</el-button>
-              <el-button type="primary"
+              <br/>
+              <!-- <el-button type="primary"
                          plain
                          size="small"
                          @click="changeChartSize('big')">大图</el-button>
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="changeChartSize('small')">小图</el-button>
+                         @click="changeChartSize('small')">小图</el-button> -->
+
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="forwardWeek(1)">向前一周</el-button>
+              <el-button type="primary"
+                         plain
+                         size="small"
+                         @click="backwardWeek(1)">向后一周</el-button>
               <el-button type="primary"
                          plain
                          size="small"
@@ -90,11 +100,11 @@
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="forwardWeek(1)">向前一周</el-button>
+                         @click="forwardYear(1)">向前一个年</el-button>
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="backwardWeek(1)">向后一周</el-button>
+                         @click="backwardYear(1)">向后一个年</el-button>
             </el-col>
           </el-row>
         </el-form-item>

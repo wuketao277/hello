@@ -76,6 +76,24 @@ export default {
       // 绘制图表
       this.drawChart()
     },
+    // 向前移动一年
+    forwardYear (v) {
+      debugger
+      let year = this.form.startDate.getFullYear() - 1
+      this.form.startDate = new Date(Date.parse(year + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+      this.confirmEndDate(year, 12)
+      // 绘制图表
+      this.drawChart()
+    },
+    // 向后移动一年
+    backwardYear (v) {
+      debugger
+      let year = this.form.startDate.getFullYear() + 1
+      this.form.startDate = new Date(Date.parse(year + '-01-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
+      this.confirmEndDate(year, 12)
+      // 绘制图表
+      this.drawChart()
+    },
     // 向前移动一周
     forwardWeek (v) {
       // 调整到this.form.startDate所在周
