@@ -217,6 +217,28 @@
           </div>
         </el-col>
       </el-row>
+       <el-row style="margin-bottom:60px;">
+        <el-col :span="24">
+          <div id="groupingByClientOfferData">
+            <el-row>
+              <el-col :span="24">按客户offer分组数据</el-col>
+            </el-row>
+            <div id="groupingByClientOfferDataChart"
+                 :class="chartClass"></div>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row style="margin-bottom:60px;">
+        <el-col :span="24">
+          <div id="groupingByClientReceiveData">
+            <el-row>
+              <el-col :span="24">按客户到账分组数据</el-col>
+            </el-row>
+            <div id="groupingByClientReceiveDataChart"
+                 :class="chartClass"></div>
+          </div>
+        </el-col>
+      </el-row>
       <el-row style="margin-bottom:60px;">
         <el-col :span="24">
           <div id="futureReceiveBillingData"

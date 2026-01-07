@@ -566,6 +566,62 @@ export default {
                 }
               ]
             })
+            let groupingByClientOfferDataChart = this.$echarts.init(document.getElementById('groupingByClientOfferDataChart'))
+            groupingByClientOfferDataChart.setOption({
+              xAxis: {
+                type: 'category',
+                data: res.data.groupingByClientOfferDataX,
+                axisLabel: {
+                  formatter: function (value) {
+                    // 将字符串拆分成字符数组，用换行符连接
+                    return value.split('').join('\n');
+                  },
+                  lineHeight: 12, // 设置行高
+                  align: 'center' // 文字居中对齐
+                }
+              },
+              yAxis: {
+                type: 'value'
+              },
+              series: [
+                {
+                  data: res.data.groupingByClientOfferDataY,
+                  type: 'bar',
+                  label: {
+                    show: true,
+                    position: 'top' // 可以根据需要调整位置
+                  }
+                }
+              ]
+            })
+            let groupingByClientReceiveDataChart = this.$echarts.init(document.getElementById('groupingByClientReceiveDataChart'))
+            groupingByClientReceiveDataChart.setOption({
+              xAxis: {
+                type: 'category',
+                data: res.data.groupingByClientReceiveDataX,
+                axisLabel: {
+                  formatter: function (value) {
+                    // 将字符串拆分成字符数组，用换行符连接
+                    return value.split('').join('\n');
+                  },
+                  lineHeight: 12, // 设置行高
+                  align: 'center' // 文字居中对齐
+                }
+              },
+              yAxis: {
+                type: 'value'
+              },
+              series: [
+                {
+                  data: res.data.groupingByClientReceiveDataY,
+                  type: 'bar',
+                  label: {
+                    show: true,
+                    position: 'top' // 可以根据需要调整位置
+                  }
+                }
+              ]
+            })
           }
         })
     }
