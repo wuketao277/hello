@@ -4,6 +4,7 @@ import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import commonJS from '@/common/common'
 import userApi from '@/api/user'
+import myTaskApi from '@/api/myTask'
 import prcCommentApi from '@/api/prcComment'
 
 export default {
@@ -34,6 +35,47 @@ export default {
         remark: ''
       },
       rules: {}, // 表单检查
+      // 任务集合
+      tasks: [],
+      // 新任务
+      newTask: {
+        executeDate: null,
+        taskTitle: '',
+        taskContent: '',
+        relativeCandidateId: null,
+        relativeCandidateChineseName: null,
+        finished: false,
+        executeResult: ''
+      },
+      rulesTask: {
+        executeDateTime: {
+          required: true,
+          message: '执行时间必填',
+          trigger: 'blur'
+        },
+        taskTitle: [{
+          required: true,
+          message: '任务标题必填',
+          trigger: 'blur'
+        },
+        {
+          max: 200,
+          message: '任务标题长度不能大于200个字符',
+          trigger: 'blur'
+        }
+        ],
+        taskContent: [{
+          required: true,
+          message: '任务内容必填',
+          trigger: 'blur'
+        },
+        {
+          max: 2000,
+          message: '任务内容长度不能大于2000个字符',
+          trigger: 'blur'
+        }
+        ]
+      },
       // 性别
       genders: commonJS.genders,
       constellations: commonJS.constellations, // 星座
@@ -98,6 +140,36 @@ export default {
           })
         }
       })
+    },
+    // 保存任务
+    saveTask () {
+      if (this.form.id == null) {
+        this.$message({
+          message: '请先保存PRC信息！',
+          type: 'warning',
+          showClose: true
+        })
+      } else {
+        this.newTask.relativePRCId = this.form.id
+        this.newTask.relativePRCChineseName = this.form.chineseName
+        myTaskApi.saveTaskToSelf(this.newTask).then(
+          res => {
+            if (res.status === 200) {
+              // 重新获取任务列表
+              this.queryTask()
+            }
+          })
+      }
+    },
+    // 查询当前候选人相关的任务
+    queryTask () {
+      if (this.form.id !== null) {
+        myTaskApi.findByRelativePRCId(this.form.id).then(res => {
+          if (res.status === 200) {
+            this.tasks = res.data
+          }
+        })
+      }
     },
     // 保存评论
     saveComment () {

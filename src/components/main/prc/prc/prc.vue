@@ -276,6 +276,84 @@
         </el-table>
         <!--评论结束-->
       </el-tab-pane>
+      <el-tab-pane label="任务">
+        <!--任务开始-->
+        <div v-show="tasks.length > 0"
+             style="margin-bottom:20px;">
+          <el-row style="text-align:left;">
+            <el-col :span="2">
+              <span>执行人</span>
+            </el-col>
+            <el-col :span="4">
+              <span>执行时间</span>
+            </el-col>
+            <el-col :span="6">
+              <span>任务标题</span>
+            </el-col>
+            <el-col :span="12">
+              <span>任务内容</span>
+            </el-col>
+          </el-row>
+          <el-row v-for="task in tasks"
+                  :key="task.id"
+                  style="text-align:left;">
+            <el-col :span="2">
+              <div class="grid-content bg-purple">{{task.executeUserName}}</div>
+            </el-col>
+            <el-col :span="4">
+              <div class="grid-content bg-purple">{{task.executeDate.substr(0,10)}}</div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple">{{task.taskTitle}}</div>
+            </el-col>
+            <el-col :span="12">
+              <div class="grid-content bg-purple">{{task.taskContent}}</div>
+            </el-col>
+          </el-row>
+        </div>
+        <el-form ref="newTask"
+                 label-position="left"
+                 size="small"
+                 :model="form"
+                 label-width="80px"
+                 style="text-align:left;"
+                 v-show="(mode === 'add' || mode === 'modify')">
+          <el-row :gutter="20">
+            <el-col :span="6">
+              <el-form-item label="执行时间"
+                            prop="executeDate">
+                <el-date-picker type="date"
+                                placeholder="选择日期"
+                                v-model="newTask.executeDate"
+                                style="width: 100%;"></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="18">
+              <el-form-item label="任务标题"
+                            prop="taskTitle">
+                <el-input v-model="newTask.taskTitle"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="24">
+              <el-form-item label="任务内容"
+                            prop="taskContent">
+                <el-input type="textarea"
+                          v-model="newTask.taskContent"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <div class="toolbar"
+             v-show="(mode === 'add' || mode === 'modify')">
+          <el-button type="success"
+                     size="small"
+                     icon="el-icon-circle-check"
+                     @click="saveTask">保存任务</el-button>
+        </div>
+        <!--任务结束-->
+      </el-tab-pane>
     </el-tabs>
     <!--上传文件对话框-->
     <el-dialog title="上传文件"

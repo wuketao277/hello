@@ -17,6 +17,10 @@ export default {
   findByRelativeCandidateId (params) {
     return axios.get('/myTask/findByRelativeCandidateId?relativeCandidateId=' + params)
   },
+  // 通过PRCid查询
+  findByRelativePRCId (params) {
+    return axios.get('/myTask/findByRelativePRCId?relativePRCId=' + params)
+  },
   // 查询本人今日任务
   queryTodayTaskForMe () {
     return axios.get('/myTask/queryTodayTaskForMe')
