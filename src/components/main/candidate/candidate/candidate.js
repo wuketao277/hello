@@ -1100,6 +1100,22 @@ export default {
         }
       }
     },
+    // 下载简历
+    downloadCandidateResume () {
+      let query = {
+        'candidateId': this.form.id
+      }
+      candidateApi.downloadCandidateResume(query).then(res => {
+        if (res.status === 200) {
+          this.$message({
+            message: '下载成功！',
+            type: 'success',
+            showClose: true,
+            duration: 800
+          })
+        }
+      })
+    },
     // 删除标签
     deleteLabel () {
       if (typeof (this.newLabel) === 'undefined' || this.form.newLabel === null || this.form.newLabel === '') {

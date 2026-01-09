@@ -26,6 +26,10 @@
                  size="small"
                  icon="el-icon-upload"
                  @click="openUploadFileDialog">上传文件</el-button>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-download"
+                 @click="downloadCandidateResume">下载简历</el-button>
       <el-switch v-model="attention"
                  inactive-text="不关注"
                  active-text="关注"
