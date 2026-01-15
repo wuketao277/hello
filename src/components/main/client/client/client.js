@@ -88,8 +88,8 @@ export default {
         // 发票，只有Admin
         return commonJs.isAdminInArray(this.roles)
       } else if (url === 'parttimerControl') {
-        // 兼职控制，只显示给Admin
-        return commonJs.isAdminInArray(this.roles)
+        // 兼职控制，给所有全职显示
+        return commonJs.isFulltimeJobType() && (commonJs.isAdmin() || commonJs.isAM())
       }
       return false
     },

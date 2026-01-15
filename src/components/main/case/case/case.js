@@ -192,8 +192,8 @@ export default {
         // 管理员和公司管理员可以操作
         return commonJS.isAdminInArray(this.roles) || commonJS.isAdminCompanyInArray(this.roles)
       } else if (key === 'parttimerControl') {
-        // 兼职控制，只显示给Admin
-        return commonJS.isAdminInArray(this.roles)
+        // 兼职控制，给所有全职看
+        return commonJS.isFulltimeJobType() && (commonJS.isAdmin() || commonJS.isAM())
       } else if (key === 'hrControl' || key === 'cwControl' || key === 'downloadCandidatesControl') {
         // 兼职不显示
         return !commonJS.isParttimeJobType(this.roles)

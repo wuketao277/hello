@@ -73,8 +73,8 @@ export default {
   },
   // 下载简历
   downloadCandidateResume (params) {
-    let urls = 'http://localhost:8000/candidate/downloadCandidateResume?candidateId=' + params['candidateId']
-    // let urls = 'http://www.helloapplicant.com/candidate/downloadCandidateResume?candidateId=' + params['candidateId']
+    // let urls = 'http://localhost:8000/candidate/downloadCandidateResume?candidateId=' + params['candidateId']
+    let urls = 'http://www.helloapplicant.com/candidate/downloadCandidateResume?candidateId=' + params['candidateId']
     window.open(urls, '_blank')
   },
 }
