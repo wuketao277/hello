@@ -197,8 +197,8 @@
           <el-form-item label="兼职控制">
             <el-checkbox-group v-model="form.parttimers">
                 <el-checkbox v-for="parttimer in allParttimer"
-                           :label="parttimer"
-                           :key="parttimer">{{parttimer}}</el-checkbox>
+                           :label="parttimer.username"
+                           :key="parttimer.username">{{parttimer.username}}({{parttimer.realname}})</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
         </el-col>

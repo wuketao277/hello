@@ -77,4 +77,8 @@ export default {
   getAllEnabledParttimerUserName () {
     return axios.get('/user/getAllEnabledParttimerUserName')
   },
+  // 获取所有正常状态的兼职员工
+  getAllEnabledParttimer () {
+    return axios.get('/user/getAllEnabledParttimer')
+  },
 }

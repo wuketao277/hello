@@ -326,7 +326,7 @@ export default {
       }
     })
     // 获取全部正常状态的兼职员工
-    userApi.getAllEnabledParttimerUserName().then(res => {
+    userApi.getAllEnabledParttimer().then(res => {
       if (res.status === 200) {
         this.allParttimer = res.data
       }
