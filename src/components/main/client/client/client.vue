@@ -62,6 +62,42 @@
       </el-row>
       <el-row :gutter="12">
         <el-col>
+          <el-form-item label="语言要求">
+            <el-input type="textarea"
+                      v-model="form.language"
+                      :autosize="{ minRows: 1, maxRows: 5}"
+                      maxlength="400"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="学历要求">
+            <el-input type="textarea"
+                      v-model="form.education"
+                      :autosize="{ minRows: 1, maxRows: 5}"
+                      maxlength="400"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
+          <el-form-item label="一汽测评与视频录制">
+            <el-input type="textarea"
+                      v-model="form.testAndVideo"
+                      :autosize="{ minRows: 1, maxRows: 5}"
+                      maxlength="400"
+                      show-word-limit
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="12">
+        <el-col>
           <el-form-item label="客户信息">
             <el-input type="textarea"
                       v-model="form.information"

@@ -28,7 +28,10 @@ export default {
         interviewPrepare: '',
         sellingPoint: '',
         remark: '',
-        parttimers: []
+        parttimers: [],
+        testAndVideo: '',
+        education: '',
+        language: ''
       },
       allParttimer: [], // 全部兼职
       rules: {
@@ -112,6 +115,9 @@ export default {
         this.form.interviewPrepare = ''
         this.form.sellingPoint = ''
         this.form.rules = ''
+        this.form.education = ''
+        this.form.testAndVideo = ''
+        this.form.language = ''
       }
     },
     // 保存
