@@ -31,7 +31,7 @@
       </el-form>
     </div>
     <el-table :data="table.content"
-              @row-dblclick="detail"
+              @row-dblclick="modify"
               @current-change="handleCurrentChange"
               :border="true"
               :highlight-current-row="true"

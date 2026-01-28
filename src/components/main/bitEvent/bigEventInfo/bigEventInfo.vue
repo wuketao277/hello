@@ -53,7 +53,7 @@
         <el-col :span="24">
           <el-form-item label="内容">
             <el-input type="textarea"
-                      :rows="10"
+                      :rows="30"
                       v-model="form.detail"></el-input>
           </el-form-item>
         </el-col>
