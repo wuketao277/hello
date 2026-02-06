@@ -176,6 +176,14 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
+        <el-col :span="8">
+          <el-form-item label="民族"
+                        prop="nation">
+            <el-input v-model="form.nation"
+                      maxlength="20"
+                      clearable></el-input>
+          </el-form-item>
+        </el-col>
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">

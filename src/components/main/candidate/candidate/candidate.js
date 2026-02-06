@@ -42,6 +42,7 @@ export default {
         englishName: '',
         age: 0,
         birthDay: '',
+        nation: '',
         phoneNo: '',
         email: '',
         companyName: '',
@@ -118,6 +119,11 @@ export default {
         englishLevel: [{
           max: 200,
           message: '英文水平长度不能大于100个字符',
+          trigger: 'blur'
+        }],
+        nation: [{
+          max: 20,
+          message: '民族长度不能大于20个字符',
           trigger: 'blur'
         }],
         hometown: [{
