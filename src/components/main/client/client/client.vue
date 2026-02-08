@@ -336,47 +336,51 @@
                              label="Id"></el-table-column>
             <el-table-column prop="company"
                              width="200"
-                             label="Company"
+                             label="签约公司"
                              :formatter="formatCompany"
+                             show-overflow-tooltip></el-table-column>
+            <el-table-column prop="clientChineseName"
+                             width="200"
+                             label="客户公司名称"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="category"
                              width="100"
-                             label="Category"
+                             label="合同类型"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="effectiveDate"
                              width="120"
-                             label="Effective Date"
+                             label="生效日期"
                              :formatter="formatDate"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="expireDate"
                              width="120"
-                             label="Expire Date"
+                             label="结束日期"
                              :formatter="formatDate"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="feeRate"
                              width="100"
-                             label="Fee Rate"
+                             label="费率"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="guaranteePeriod"
                              width="150"
-                             label="Guarantee Period"
+                             label="保证期"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="paymentPeriod"
                              width="150"
-                             label="Payment Period"
+                             label="付款期"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="containTax"
                              width="100"
-                             label="Contain Tax"
+                             label="是否含税"
                              :formatter="formatContainTax"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="industry"
                              width="120"
-                             label="Industry"
+                             label="行业"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="type"
                              width="100"
-                             label="Type"
+                             label="合同类别"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="bdUserName"
                              width="100"
@@ -384,23 +388,23 @@
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="location"
                              width="100"
-                             label="Location"
+                             label="地点"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="note"
                              width="100"
-                             label="Note"
+                             label="便签"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="comments"
                              width="100"
-                             label="Comments"
+                             label="备注"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="forbid"
                              width="100"
-                             label="Forbid"
+                             label="禁止条款"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="receiveDate"
                              width="120"
-                             label="Receive Date"
+                             label="合同收到日期"
                              :formatter="formatDate"
                              show-overflow-tooltip></el-table-column>
           </el-table>

@@ -12,6 +12,7 @@
           <el-input v-model="search"
                     autocomplete="off"
                     @keyup.enter.native="sureSearchDialog"
+                    @input="sureSearchDialog"
                     @clear="sureSearchDialog"
                     clearable
                     placeholder="输入关键字后，回车即可搜索。"></el-input>

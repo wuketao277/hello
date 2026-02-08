@@ -36,5 +36,9 @@ export default {
   // 查询客户合同信息
   findContractByClientId (params) {
     return axios.get('/client/findContractByClientId?clientId=' + params)
+  },
+  // 排序客户合同信息
+  sortContractView () {
+    return axios.get('/client/sortContractView')
   }
 }
