@@ -135,17 +135,6 @@
           </el-form-item>
         </el-col>
         <el-col :span="24">
-          <el-form-item label="地址">
-            <el-input v-model="form.location"
-                      maxlength="50"
-                      show-word-limit
-                      clearable
-                      style="width:100%;"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="12">
-        <el-col :span="24">
           <el-form-item label="费率">
             <el-input v-model="form.feeRate"
                       type="textarea"
@@ -159,6 +148,17 @@
         <el-col :span="24">
           <el-form-item label="保证期">
             <el-input v-model="form.guaranteePeriod"
+                      type="textarea"
+                      :autosize="{ minRows: 1, maxRows: 10}"
+                      maxlength="200"
+                      show-word-limit
+                      clearable
+                      style="width:100%;"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">
+          <el-form-item label="人选归属期">
+            <el-input v-model="form.candidateOwnPeriod"
                       type="textarea"
                       :autosize="{ minRows: 1, maxRows: 10}"
                       maxlength="200"
@@ -206,6 +206,15 @@
                       type="textarea"
                       :autosize="{ minRows: 1, maxRows: 10}"
                       maxlength="400"
+                      show-word-limit
+                      clearable
+                      style="width:100%;"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="24">
+          <el-form-item label="地址">
+            <el-input v-model="form.location"
+                      maxlength="50"
                       show-word-limit
                       clearable
                       style="width:100%;"></el-input>

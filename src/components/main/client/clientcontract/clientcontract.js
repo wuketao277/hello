@@ -22,6 +22,7 @@ export default {
         feeRate: null,
         guaranteePeriod: null,
         paymentPeriod: null,
+        candidateOwnPeriod: null,
         bdId: null,
         bdUserName: null,
         bdRealName: null,

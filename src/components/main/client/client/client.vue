@@ -332,25 +332,9 @@
             <el-table-column type="index"
                              width="50"
                              label="序号"></el-table-column>
-            <el-table-column prop="id"
-                             label="Id"></el-table-column>
-            <el-table-column prop="company"
-                             width="200"
-                             label="签约公司"
-                             :formatter="formatCompany"
-                             show-overflow-tooltip></el-table-column>
             <el-table-column prop="clientChineseName"
                              width="200"
-                             label="客户公司名称"
-                             show-overflow-tooltip></el-table-column>
-            <el-table-column prop="category"
-                             width="100"
-                             label="合同类型"
-                             show-overflow-tooltip></el-table-column>
-            <el-table-column prop="effectiveDate"
-                             width="120"
-                             label="生效日期"
-                             :formatter="formatDate"
+                             label="客户名称"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="expireDate"
                              width="120"
@@ -365,14 +349,36 @@
                              width="150"
                              label="保证期"
                              show-overflow-tooltip></el-table-column>
-            <el-table-column prop="paymentPeriod"
-                             width="150"
-                             label="付款期"
-                             show-overflow-tooltip></el-table-column>
+          <el-table-column prop="candidateOwnPeriod"
+                           width="100"
+                           label="人选归属期"
+                           show-overflow-tooltip></el-table-column>
             <el-table-column prop="containTax"
                              width="100"
                              label="是否含税"
                              :formatter="formatContainTax"
+                             show-overflow-tooltip></el-table-column>
+            <el-table-column prop="comments"
+                             width="100"
+                             label="备注"
+                             show-overflow-tooltip></el-table-column>
+            <el-table-column prop="company"
+                             width="200"
+                             label="签约公司"
+                             :formatter="formatCompany"
+                             show-overflow-tooltip></el-table-column>
+            <el-table-column prop="category"
+                             width="100"
+                             label="合同类型"
+                             show-overflow-tooltip></el-table-column>
+            <el-table-column prop="effectiveDate"
+                             width="120"
+                             label="生效日期"
+                             :formatter="formatDate"
+                             show-overflow-tooltip></el-table-column>
+            <el-table-column prop="paymentPeriod"
+                             width="150"
+                             label="付款期"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="industry"
                              width="120"
@@ -393,10 +399,6 @@
             <el-table-column prop="note"
                              width="100"
                              label="便签"
-                             show-overflow-tooltip></el-table-column>
-            <el-table-column prop="comments"
-                             width="100"
-                             label="备注"
                              show-overflow-tooltip></el-table-column>
             <el-table-column prop="forbid"
                              width="100"
