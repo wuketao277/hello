@@ -175,7 +175,6 @@ export default {
         currentPage: commonJS.getPageNumber('interviewlist.pageNumber'),
         pageSize: commonJS.getPageSize('interviewlist.pageSize')
       }
-      debugger
       commentApi.downloadInterviews(params).then(res => {
         if (res.status === 200) {
           this.$message({

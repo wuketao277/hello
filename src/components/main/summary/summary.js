@@ -327,7 +327,6 @@ export default {
         this.startDate = new Date().getFullYear() + '-' + month + '-01'
         if (month === '02') {
           // 2 月
-          debugger
           if ((new Date().getFullYear()) % 4 === 0) {
             // 闰年
             this.endDate = new Date().getFullYear() + '-' + month + '-29'
@@ -352,7 +351,6 @@ export default {
         this.startDate = new Date(Date.parse(year + '-' + month + '-01 16:00:00', 'yyyy-MM-dd HH:mm:ss'))
         if (month === 2) {
           // 2 月
-          debugger
           if ((new Date().getFullYear()) % 4 === 0) {
             // 闰年
             this.endDate = new Date().getFullYear() + '-' + month + '-29'

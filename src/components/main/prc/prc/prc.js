@@ -126,7 +126,6 @@ export default {
         })
     },
     queryComment () {
-      debugger
       let para = { 'prcId': this.form.id }
       prcCommentApi.findAllByPRCIdOrderByDesc(para).then(res => {
         if (res.status === 200) {
@@ -327,7 +326,6 @@ export default {
       // 如果没有候选人对象，就获取候选人id然后从数据库中查询候选人对象
       if (typeof (this.$route.query.prc) !== 'undefined') {
         this.form = this.$route.query.prc
-        debugger
         this.queryComment()
       } else if (typeof (this.$route.query.prcId) !== 'undefined') {
         let params = {
@@ -336,7 +334,6 @@ export default {
         prcApi.findById(params).then(
           res => {
             if (res.status === 200) {
-              debugger
               this.form = res.data
               this.queryComment()
             }

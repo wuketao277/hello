@@ -1463,7 +1463,6 @@ export default {
     },
     // 整理简历
     formatResume () {
-      debugger
       if (this.resume === null || this.resume.length === 0) {
         return
       }
@@ -1516,7 +1515,6 @@ export default {
     },
     // 本科信息校验
     validateUndergraduate () {
-      debugger
       // 恢复初始值，默认设置本科4年，默认18岁上大学
       this.undergraduateYears = 4
       this.undergraduateStartAge = 18
