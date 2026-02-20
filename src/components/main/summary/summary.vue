@@ -445,8 +445,9 @@
                    name="attentionCandidateTab">
         <div v-for="candidateAttention in candidateAttentionList"
              :key="candidateAttention.id"
-             style="display:inline-block;width:100px;float:left;margin:5px;border:1px solid #DCDFE6;border-radius: 4px;color:#606266;"
-             @click="detailCandidate(candidateAttention.candidateId)">
+             style="display:inline-block;width:100px;float:left;margin:5px;border:1px solid #DCDFE6;border-radius: 4px;color:#606266;cursor:pointer;"
+             @click="detailCandidate(candidateAttention.candidateId)"
+             >
           <div style="text-align:center;margin-top:5px;margin-bottom:5px;font-size:14px;color:#409EFF;">{{candidateAttention.candidateChineseName}}</div>
           <span v-for="label in candidateAttention.labels"
                 :key="label"
