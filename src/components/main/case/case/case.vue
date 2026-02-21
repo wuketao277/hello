@@ -62,7 +62,8 @@
             </el-radio-group>
           </el-form-item>
         </el-col>
-        <el-col :span="6" v-if="showControl('cwControl')">
+        <el-col :span="6"
+                v-if="showControl('cwControl')">
           <el-button type="primary"
                      size="small"
                      icon="el-icon-share"
@@ -88,9 +89,9 @@
         </el-col>
         <el-col :span="1">
           <el-button type="text"
-                 size="mini"
-                 icon="el-icon-zoom-in"
-                 @click="viewClient">查看</el-button>
+                     size="mini"
+                     icon="el-icon-zoom-in"
+                     @click="viewClient">查看</el-button>
         </el-col>
         <el-col :span="8">
           <el-form-item label="职位名称"
@@ -99,7 +100,8 @@
                       clearable></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="8" v-if="showControl('hrControl')">
+        <el-col :span="8"
+                v-if="showControl('hrControl')">
           <el-button type="primary"
                      size="small"
                      icon="el-icon-share"
@@ -287,11 +289,12 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-row :gutter="12"  v-if="showControl('parttimerControl')">
+      <el-row :gutter="12"
+              v-if="showControl('parttimerControl')">
         <el-col>
           <el-form-item label="兼职控制">
             <el-checkbox-group v-model="form.parttimers">
-                <el-checkbox v-for="parttimer in allParttimer"
+              <el-checkbox v-for="parttimer in allParttimer"
                            :label="parttimer.username"
                            :key="parttimer.username">{{parttimer.username}}({{parttimer.realname}})</el-checkbox>
             </el-checkbox-group>
@@ -335,7 +338,7 @@
                      size="small"
                      icon="el-icon-download"
                      @click="downloadCandidates"
-                      v-if="showControl('downloadCandidatesControl')">下载候选人</el-button>
+                     v-if="showControl('downloadCandidatesControl')">下载候选人</el-button>
         </div>
         <el-table v-loading="candidateTableLoading"
                   element-loading-text="拼命加载中"
@@ -365,25 +368,39 @@
                          @click="deleteRecommend(scope.$index, scope.row)">删除推荐</el-button>
             </template>
           </el-table-column>
-          <el-table-column width="120"
+          <el-table-column width="200"
                            label="中文名">
             <template slot-scope="scope">
-              <el-button type="text"
-                         @click="editCandidate(scope.$index, scope.row)">{{scope.row.chineseName}}</el-button>
+              <div style="display: flex;width: 100%;">
+                <div style="width:80px;">
+                  <el-button type="text"
+                             @click="editCandidate(scope.$index, scope.row)"
+                             style="font-size: 20px;">{{scope.row.chineseName}}</el-button>
+                </div>
+                <div style="flex:1;">
+                  <el-tag type="danger"
+                          size="mini"
+                          style="margin-right: 4px;"
+                          v-for="label in scope.row.candidateClientRepeatedLabels"
+                          :label="label"
+                          :key="label">{{label}}</el-tag>
+                </div>
+              </div>
             </template>
           </el-table-column>
           <el-table-column prop="farthestPhase"
                            width="120"
                            label="最远阶段"></el-table-column>
           <el-table-column prop="latestCommentUsername"
-                           width="120"
+                           width="80"
                            label="评论人"></el-table-column>
           <el-table-column prop="latestCommentContent"
                            label="最后评论内容"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="latestCommentInputtime"
-                           width="160"
+                           width="140"
                            label="最后评论时间"
+                           :formatter="formatTime"
                            show-overflow-tooltip></el-table-column>
         </el-table>
         <!--候选人结束-->

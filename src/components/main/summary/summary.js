@@ -795,10 +795,7 @@ export default {
     },
     // 时间格式化
     formatTime (row, column, cellvalue, index) {
-      if (typeof (cellvalue) !== 'undefined' && cellvalue !== null && cellvalue !== '') {
-        return cellvalue.substr(0, 19).replace('T', ' ')
-      }
-      return ''
+      return commonJs.formatTimeToyyyyMMddHHmm(cellvalue)
     }
   },
   created () {

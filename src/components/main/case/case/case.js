@@ -180,6 +180,9 @@ export default {
       }
       return ''
     },
+    formatTime (row, column, cellvalue, index) {
+      return commonJS.formatTimeToyyyyMMddHHmm(cellvalue)
+    },
     openSelectCWDialog () {
       this.selectCWDialogShow = true
     },

@@ -368,7 +368,7 @@
                                    prop="latestCommentUsername"
                                    label="顾问"
                                    show-overflow-tooltip></el-table-column>
-                  <el-table-column width="180"
+                  <el-table-column width="160"
                                    prop="latestCommentInputtime"
                                    label="评论时间"
                                    :formatter="formatTime"
@@ -427,8 +427,9 @@
                                    prop="latestCommentUsername"
                                    label="顾问"
                                    show-overflow-tooltip></el-table-column>
-                  <el-table-column width="180"
+                  <el-table-column width="160"
                                    prop="latestCommentInputtime"
+                                   :formatter="formatTime"
                                    label="评论时间"
                                    show-overflow-tooltip></el-table-column>
                   <el-table-column prop="latestCommentContent"

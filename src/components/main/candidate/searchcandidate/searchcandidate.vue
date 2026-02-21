@@ -26,11 +26,21 @@
                        width="50"
                        label="序号"
                        fixed></el-table-column>
-      <el-table-column prop="chineseName"
-                       label="中文名称"
-                       width="80"
-                       fixed
-                       show-overflow-tooltip></el-table-column>
+      <el-table-column width="200"
+                       label="中文名"
+                       fixed>
+        <template slot-scope="scope">
+          <div style="display: flex;width: 100%;">
+            <div style="width:60px;">{{scope.row.chineseName}}</div>
+            <div style="flex:1;"><el-tag type="danger"
+                      size="mini"
+                      style="margin-right: 4px;"
+                      v-for="label in scope.row.candidateClientRepeatedLabels"
+                      :label="label"
+                      :key="label">{{label}}</el-tag></div>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="phoneNo"
                        label="手机"
                        width="120"

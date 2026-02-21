@@ -10,6 +10,7 @@ import commonJS from '@/common/common'
 import caseApi from '@/api/case'
 import userApi from '@/api/user'
 import labelApi from '@/api/label'
+import candidateClientRepeatedLabelApi from '@/api/candidateClientRepeatedLabel'
 import schoolTypeApi from '@/api/schoolType'
 import {
   Promise
@@ -25,7 +26,8 @@ export default {
     return {
       tempResume: null, // 临时简历
       tempAge: null,
-      newLabel: null,
+      newLabel: null, // 新标签
+      newCandidateClientRepeatedLabel: null, // 新候选人客户重复标签
       attention: false,
       myCaseAttentionDialogShow: false, // 我的职位对话框显示标志
       myCaseAttentionList: [], // 我的职位列表
@@ -61,6 +63,7 @@ export default {
         notMatchReasonDetail: '',
         doubleCheck: [],
         lables: [],
+        candidateClientRepeatedLabels: [],
         motivation: '请问您会考虑看机会吗？（什么原因不考虑呢？那您想看哪些品牌呢？）您现在考虑看机会最看重的点是什么呢？想看什么方向的机会？',
         interviewHistory: '您面过xx吗？什么时候面的（六个月之内面过，我们不能重复推荐）？面下来情况怎么样？面试官是谁？',
         specialItem: [],
@@ -227,6 +230,7 @@ export default {
       roles: [],
       jobType: '', // 工作类型
       allLabels: [], // 顾问的全部标签
+      allCandidateClientRepeatedLabels: [], // 全部候选人客户重复标签
       undergraduateYears: 4, // 本科消息显示控制
       undergraduateStartAge: 18, // 本科起始年龄
       undergraduateName: '', // 大学名称
@@ -1062,7 +1066,7 @@ export default {
     },
     // 添加新标签
     addLabel () {
-      if (typeof (this.newLabel) === 'undefined' || this.form.newLabel === null || this.form.newLabel === '') {
+      if (commonJS.strIsBlank(this.newLabel)) {
         this.$message({
           message: '请添加标签名称！',
           type: 'warning',
@@ -1078,32 +1082,74 @@ export default {
         })
         return
       }
-      if (typeof (this.newLabel) !== 'undefined' && this.newLabel !== null && this.newLabel !== '') {
-        // 检查新标签是否在标签集合中
-        if (this.allLabels.indexOf(this.newLabel) === -1) {
-          // 新标签不在标签集合中，就将新标签添加到数据库中
-          labelApi.save(this.newLabel).then(res => {
-            if (res.status === 200) {
-              this.findAllLabel()
-              // 检查是否在已选择标签集合中
-              if (this.form.labels.indexOf(this.newLabel) === -1) {
-                // 不在已选择标签集合中，就添加进去
-                this.form.labels.push(this.newLabel)
-              }
+      // 检查新标签是否在标签集合中
+      if (this.allLabels.indexOf(this.newLabel) === -1) {
+        // 新标签不在标签集合中，就将新标签添加到数据库中
+        labelApi.save(this.newLabel).then(res => {
+          if (res.status === 200) {
+            this.findAllLabel()
+            // 检查是否在已选择标签集合中
+            if (this.form.labels.indexOf(this.newLabel) === -1) {
+              // 不在已选择标签集合中，就添加进去
+              this.form.labels.push(this.newLabel)
             }
-            // 保存候选人
-            this.save()
-          })
-        } else {
-          // 新标签在标签集合中
-          // 检查是否在已选择标签集合中
-          if (this.form.labels.indexOf(this.newLabel) === -1) {
-            // 不在已选择标签集合中，就添加进去
-            this.form.labels.push(this.newLabel)
           }
           // 保存候选人
           this.save()
+        })
+      } else {
+        // 新标签在标签集合中
+        // 检查是否在已选择标签集合中
+        if (this.form.labels.indexOf(this.newLabel) === -1) {
+          // 不在已选择标签集合中，就添加进去
+          this.form.labels.push(this.newLabel)
         }
+        // 保存候选人
+        this.save()
+      }
+    },
+    // 添加候选人客户重复新标签
+    addCandidateClientRepeatedLabel () {
+      if (commonJS.strIsBlank(this.newCandidateClientRepeatedLabel)) {
+        this.$message({
+          message: '请添加标签名称！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      if (typeof (this.form.id) === 'undefined' || this.form.id === null) {
+        this.$message({
+          message: '请先保存候选人信息！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      // 检查新标签是否在标签集合中
+      if (this.allCandidateClientRepeatedLabels.indexOf(this.newCandidateClientRepeatedLabel) === -1) {
+        // 新标签不在标签集合中，就将新标签添加到数据库中
+        candidateClientRepeatedLabelApi.save(this.newCandidateClientRepeatedLabel).then(res => {
+          if (res.status === 200) {
+            this.findAllCandidateClientRepeatedLabel()
+            // 检查是否在已选择标签集合中
+            if (this.form.candidateClientRepeatedLabels.indexOf(this.newCandidateClientRepeatedLabel) === -1) {
+              // 不在已选择标签集合中，就添加进去
+              this.form.candidateClientRepeatedLabels.push(this.newCandidateClientRepeatedLabel)
+            }
+          }
+          // 保存候选人
+          this.save()
+        })
+      } else {
+        // 新标签在标签集合中
+        // 检查是否在已选择标签集合中
+        if (this.form.candidateClientRepeatedLabels.indexOf(this.newCandidateClientRepeatedLabel) === -1) {
+          // 不在已选择标签集合中，就添加进去
+          this.form.candidateClientRepeatedLabels.push(this.newCandidateClientRepeatedLabel)
+        }
+        // 保存候选人
+        this.save()
       }
     },
     // 下载简历
@@ -1146,6 +1192,30 @@ export default {
         }
       })
     },
+    // 删除候选人客户重复标签
+    deleteCandidateClientRepeatedLabel () {
+      if (commonJS.strIsBlank(this.newCandidateClientRepeatedLabel)) {
+        this.$message({
+          message: '请添加标签名称！',
+          type: 'warning',
+          showClose: true
+        })
+        return
+      }
+      // 调用后台删除并获取最新
+      candidateClientRepeatedLabelApi.deleteThenFindAllName(this.newCandidateClientRepeatedLabel).then(res => {
+        if (res.status === 200) {
+          this.allCandidateClientRepeatedLabels = res.data
+          this.$message({
+            message: '删除成功',
+            type: 'success',
+            showClose: true,
+            duration: 800
+          })
+          this.save()
+        }
+      })
+    },
     // 获取所有标签
     findAllLabel () {
       labelApi.findAllName().then(res => {
@@ -1154,8 +1224,20 @@ export default {
         }
       })
     },
+    // 获取所有候选人客户重复标签
+    findAllCandidateClientRepeatedLabel () {
+      candidateClientRepeatedLabelApi.findAllName().then(res => {
+        if (res.status === 200) {
+          this.allCandidateClientRepeatedLabels = res.data
+        }
+      })
+    },
     // 标签变更事件
     handleLabelsChange () {
+      this.save()
+    },
+    // 候选人客户重复标签变更事件
+    handleCandidateClientRepeatedLabelsChange () {
       this.save()
     },
     // 整理学校
@@ -1575,6 +1657,8 @@ export default {
     })
     // 获取所有标签名称
     this.findAllLabel()
+    // 获取所有候选人重复标签名称
+    this.findAllCandidateClientRepeatedLabel()
     // 通过入参获取当前操作模式
     if (typeof (this.$route.query.mode) !== 'undefined') {
       // 接收list传入的参数

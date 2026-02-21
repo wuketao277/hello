@@ -720,7 +720,7 @@ export default {
   },
   // 判断一个字符串是否为空
   strIsBlank (str) {
-    if (str == null || str.length == 0 || str.trim() == '') {
+    if (typeof (str) == 'undefined' || str == null || str.length == 0 || str.trim() == '') {
       return true
     } else {
       return false
