@@ -120,12 +120,20 @@
             <el-menu-item index="/background.html/salary/salaryList">工资列表</el-menu-item>
             <el-menu-item index="/background.html/salary/salarySpecialItemList"
                           v-if="jobTypeControlShow('/salary/salarySpecialItemList')">工资特殊项列表</el-menu-item>
-            <el-menu-item index="/background.html/salary/reimbursementSummaryList">报销列表</el-menu-item>
-            <el-menu-item index="/background.html/salary/reimbursementItemList">报销项详情列表</el-menu-item>
-            <el-menu-item v-if="showControl('/salary/invoiceList')"
-                          index="/background.html/salary/invoiceList">业务发票</el-menu-item>
-            <el-menu-item index="/background.html/salary/kpiworkdaysadjustList">KPI工作日调整列表</el-menu-item>
-            <el-menu-item index="/background.html/salary/kpiList">KPI历史记录</el-menu-item>
+            <el-menu-item index="/background.html/salary/reimbursementSummaryList"
+                          v-if="jobTypeControlShow('/salary/reimbursementSummaryList')">报销列表</el-menu-item>
+            <el-menu-item index="/background.html/salary/reimbursementItemList"
+                          v-if="jobTypeControlShow('/salary/reimbursementItemList')">报销项详情列表</el-menu-item>
+            <el-menu-item index="/background.html/salary/invoiceList"
+                          v-if="showControl('/salary/invoiceList')">业务发票</el-menu-item>
+            <el-menu-item index="/background.html/salary/costInvoiceList"
+                          v-if="jobTypeControlShow('/salary/costInvoiceList')">成本发票</el-menu-item>
+            <el-menu-item index="/background.html/salary/costInvoiceUsedList"
+                          v-if="jobTypeControlShow('/salary/costInvoiceUsedList')">成本发票使用列表</el-menu-item>
+            <el-menu-item index="/background.html/salary/kpiworkdaysadjustList"
+                          v-if="jobTypeControlShow('/salary/kpiworkdaysadjustList')">KPI工作日调整列表</el-menu-item>
+            <el-menu-item index="/background.html/salary/kpiList"
+                          v-if="jobTypeControlShow('/salary/kpiList')">KPI历史记录</el-menu-item>
           </el-submenu>
           <el-submenu index="/background.html/my"
                       v-if="jobTypeControlShow('/my')">

@@ -177,16 +177,7 @@ export default {
       selectCWDialogShow: false,
       selectBDDialogShow: false,
       selectLeaderDialogShow: false,
-      approveStatusList: [{
-        'id': 'applied',
-        'name': '申请状态'
-      }, {
-        'id': 'approved',
-        'name': '审批通过'
-      }, {
-        'id': 'denied',
-        'name': '审批否决'
-      }],
+      approveStatusList: commonJS.approveStatusList,
       typeList: [],
       // [{'id': 'perm', 'name': 'perm'}, {'id': 'contracting', 'name': 'contracting'}]
       roles: [],

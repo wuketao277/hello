@@ -45,6 +45,10 @@ import StudyRecordList from '@/components/main/training/studyrecord/studyrecordl
 import StudyRecord from '@/components/main/training/studyrecord/studyrecord/studyrecord.vue'
 import InvoiceList from '@/components/main/salary/invoiceList/invoiceList.vue'
 import Invoice from '@/components/main/salary/invoice/invoice.vue'
+import CostInvoiceList from '@/components/main/salary/costInvoiceList/costInvoiceList.vue'
+import CostInvoice from '@/components/main/salary/costInvoice/costInvoice.vue'
+import CostInvoiceUsedList from '@/components/main/salary/costInvoiceUsedList/costInvoiceUsedList.vue'
+import CostInvoiceUsed from '@/components/main/salary/costInvoiceUsed/costInvoiceUsed.vue'
 import InterviewList from '@/components/main/interview/interviewList.vue'
 import KPIWorkDaysAdjustList from '@/components/main/salary/kpiworkdaysadjustlist/kpiworkdaysadjustList.vue'
 import KPIWorkDaysAdjust from '@/components/main/salary/kpiworkdaysadjust/kpiworkdaysadjust.vue'
@@ -282,6 +286,30 @@ const router = new Router({
       path: '/background.html/salary/invoice',
       name: 'invoice',
       component: Invoice
+    },
+    {
+      // 成本发票列表
+      path: '/background.html/salary/costInvoiceList',
+      name: 'costInvoiceList',
+      component: CostInvoiceList
+    },
+    {
+      // 成本发票
+      path: '/background.html/salary/costInvoice',
+      name: 'costInvoice',
+      component: CostInvoice
+    },
+    {
+      // 成本发票使用情况列表
+      path: '/background.html/salary/costInvoiceUsedList',
+      name: 'costInvoiceUsedList',
+      component: CostInvoiceUsedList
+    },
+    {
+      // 成本发票使用情况
+      path: '/background.html/salary/costInvoiceUsed',
+      name: 'costInvoiceUsed',
+      component: CostInvoiceUsed
     },
     {
       // 培训课程列表

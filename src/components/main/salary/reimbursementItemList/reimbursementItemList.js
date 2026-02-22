@@ -42,6 +42,10 @@ export default {
     }
   },
   methods: {
+    // 审批状态转换
+    formatApproveStatus (row, column, cellvalue, index) {
+      return commonJS.formatApproveStatus(cellvalue)
+    },
     // 显示控制
     showControl (key) {
       if (key === 'generateReimbursementSummary' || key === 'selectionColumn' || key === 'approveButton') {
@@ -385,7 +389,7 @@ export default {
       this.search.userName = params.userName
       this.search.currentPage = 1
       this.search.pageSize = 10
-      this.search.approveStatus = 'Approved'
+      this.search.approveStatus = 'approved'
       this.search.needPay = 'YES'
       this.search.paymentMonth = params.paymentMonth
       this.query()

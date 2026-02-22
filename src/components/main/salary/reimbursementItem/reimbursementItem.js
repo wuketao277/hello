@@ -15,7 +15,7 @@ export default {
         userId: '', // 报销人id
         userName: '', // 报销人登录名
         realName: '', // 报销人真实姓名
-        approveStatus: 'Apply', // 审批状态
+        approveStatus: 'applied', // 审批状态
         needPay: 'NO', // 是否报销
         date: '', // 发生日期
         location: '', // 发生地点
@@ -60,7 +60,7 @@ export default {
         this.form.userId = '' // 报销人id
         this.form.userName = '' // 报销人登录名
         this.form.realName = '' // 报销人真实姓名
-        this.form.approveStatus = 'Apply' // 审批状态
+        this.form.approveStatus = 'applied' // 审批状态
         this.form.needPay = 'NO' // 是否报销
         this.form.invoiceNo = '' // 发票号
         this.form.paymentMonth = '' // 报销发放月份

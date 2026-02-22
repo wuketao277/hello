@@ -1,3 +1,5 @@
+import invoice from "@/api/invoice"
+
 export default {
   // 前端版本
   version: '1.2.5',
@@ -315,16 +317,6 @@ export default {
     code: 'Enshi',
     name: '恩施'
   }],
-  approveStatusList: [{
-    code: 'Apply',
-    name: 'Apply'
-  }, {
-    code: 'Approved',
-    name: 'Approved'
-  }, {
-    code: 'Denied',
-    name: 'Denied'
-  }],
   typeList: [{
     code: 'Transportation',
     name: '交通'
@@ -506,6 +498,48 @@ export default {
     code: 'EXPERIENCE',
     name: '体验'
   }],
+  // 发票类型集合
+  invoiceTypeList: [{
+    code: 'Z1',
+    name: '1%专票'
+  }, {
+    code: 'Z3',
+    name: '3%专票'
+  }, {
+    code: 'Z6',
+    name: '6%专票'
+  }, {
+    code: 'P3',
+    name: '3%普票'
+  }, {
+    code: 'P6',
+    name: '6%普票'
+  }
+  ],
+  approveStatusList: [{
+    'id': 'applied',
+    'name': '申请状态'
+  }, {
+    'id': 'approved',
+    'name': '审批通过'
+  }, {
+    'id': 'denied',
+    'name': '审批否决'
+  }],
+  formatApproveStatus (cellvalue) {
+    if (cellvalue === 'approved') {
+      return '审批通过'
+    } else if (cellvalue === 'denied') {
+      return '审批否决'
+    }
+    return '申请状态'
+  },
+  formatDate (val) {
+    if (typeof (val) !== 'undefined' && val !== null && val !== '') {
+      return val.substr(0, 10)
+    }
+    return ''
+  },
   formatTime (val) {
     if (typeof (val) !== 'undefined' && val !== null && val !== '') {
       return val.replace('T', ' ')

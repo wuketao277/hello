@@ -107,7 +107,8 @@
                          label="金额"></el-table-column>
         <el-table-column prop="approveStatus"
                          width="100"
-                         label="审批状态"></el-table-column>
+                         label="审批状态"
+                         :formatter="formatApproveStatus"></el-table-column>
         <el-table-column prop="description"
                          width="250"
                          label="描述"
@@ -156,8 +157,8 @@
                            filterable
                            clearable>
                   <el-option v-for="status in approveStatusList"
-                             :key="status.code"
-                             :value="status.code"
+                             :key="status.id"
+                             :value="status.id"
                              :label="status.name"></el-option>
                 </el-select>
               </el-form-item>

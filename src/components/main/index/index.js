@@ -120,10 +120,28 @@ export default {
       if (url === '/file/filelist' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
         return true
       }
-      if (url === '/salary' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {
+      if (url === '/salary' && jobType !== 'EXPERIENCE') {
         return true
       }
-      if (url === '/salary/salarySpecialItemList' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+      if (url === '/salary/salarySpecialItemList' && (jobType === 'FULLTIME')) {
+        return true
+      }
+      if (url === '/salary/reimbursementSummaryList' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+        return true
+      }
+      if (url === '/salary/reimbursementItemList' && (jobType === 'FULLTIME' || jobType === 'INTERN')) {
+        return true
+      }
+      if (url === '/salary/costInvoiceList' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'PARTTIME')) {
+        return true
+      }
+      if (url === '/salary/costInvoiceUsedList' && commonJS.isAdmin()) {
+        return true
+      }
+      if (url === '/salary/kpiworkdaysadjustList' && (jobType === 'FULLTIME')) {
+        return true
+      }
+      if (url === '/salary/kpiList' && (jobType === 'FULLTIME')) {
         return true
       }
       if (url === '/my' && (jobType === 'FULLTIME' || jobType === 'INTERN' || jobType === 'CONSULTANT')) {

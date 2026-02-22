@@ -42,8 +42,8 @@
                        filterable
                        clearable>
               <el-option v-for="status in approveStatusList"
-                         :key="status.code"
-                         :value="status.code"
+                         :key="status.id"
+                         :value="status.id"
                          :label="status.name"></el-option>
             </el-select>
           </el-form-item>
