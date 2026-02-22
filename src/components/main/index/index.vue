@@ -55,12 +55,6 @@
                 <span slot="title">PRC</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="/background.html/interviewlist">
-              <template slot="title">
-                <i class="el-icon-s-operation"></i>
-                <span slot="title">面试安排</span>
-              </template>
-            </el-menu-item>
             <el-menu-item index="/background.html/bigEvent/bigEventList">
               <template slot="title">
                 <i class="el-icon-s-operation"></i>
@@ -94,6 +88,13 @@
             <template slot="title">
               <i class="el-icon-search"></i>
               <span slot="title">搜索候选人</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="/background.html/interviewlist"
+                      v-if="jobTypeControlShow('/interviewlist')">
+            <template slot="title">
+              <i class="el-icon-s-operation"></i>
+              <span slot="title">面试安排</span>
             </template>
           </el-menu-item>
           <el-menu-item index="/background.html/case/successfulPermList"

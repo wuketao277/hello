@@ -144,6 +144,9 @@ export default {
       if (url === '/prc/prclist' && (this.username === 'Ramona' || this.username === 'Howard')) {
         return true
       }
+      if (url === '/interviewlist' && jobType === 'FULLTIME') {
+        return true
+      }
       return false
     },
     // 菜单显示控制
