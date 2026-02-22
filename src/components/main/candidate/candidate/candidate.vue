@@ -398,7 +398,7 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="候选人标签">
+          <el-form-item label="候选人属性标签">
             <el-input v-model="newLabel"
                       placeholder="输入新标签名称"
                       maxlength="20"
@@ -432,7 +432,7 @@
       </el-row>
       <el-row :gutter="12">
         <el-col :span="8">
-          <el-form-item label="客户重复标签">
+          <el-form-item label="客户属性标签">
             <el-input v-model="newCandidateClientRepeatedLabel"
                       placeholder="输入新标签名称"
                       maxlength="20"

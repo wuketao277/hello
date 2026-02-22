@@ -62,34 +62,80 @@ export default {
     },
     // 保存
     save () {
-      // 通过role进行检查
-      this.$refs['form'].validate((valid) => {
-        if (valid) {
-          // 如果校验通过就调用后端接口
-          costInvoiceApi.save(this.form).then(
-            res => {
-              if (res.status === 200) {
-                // 将从服务端获取的id赋值给前端显示
-                this.form.id = res.data.id
-                this.$message({
-                  message: '保存成功！',
-                  type: 'success',
-                  showClose: true,
-                  duration: 800
-                })
-              } else {
-                this.$message.error('保存失败！')
-              }
+      debugger
+      if (null == this.form.invoiceDate) {
+        this.$message({
+          message: '请选择开票日期！',
+          type: 'warning',
+          showClose: true,
+          duration: 3000
+        })
+        return
+      }
+      if (null == this.form.submitDate) {
+        this.$message({
+          message: '请选择提交日期！',
+          type: 'warning',
+          showClose: true,
+          duration: 3000
+        })
+        return
+      }
+      if (commonJS.strIsBlank(this.form.invoiceNumber)) {
+        this.$message({
+          message: '请填写发票号码！',
+          type: 'warning',
+          showClose: true,
+          duration: 3000
+        })
+        return
+      }
+      if (null == this.form.sum) {
+        this.$message({
+          message: '请填写价税合计！',
+          type: 'warning',
+          showClose: true,
+          duration: 3000
+        })
+        return
+      }
+      if (commonJS.strIsBlank(this.form.type)) {
+        this.$message({
+          message: '请选择发票类型！',
+          type: 'warning',
+          showClose: true,
+          duration: 3000
+        })
+        return
+      }
+      if (commonJS.strIsBlank(this.form.kind)) {
+        this.$message({
+          message: '请填写品名！',
+          type: 'warning',
+          showClose: true,
+          duration: 3000
+        })
+        return
+      }
+      // 如果校验通过就调用后端接口
+      costInvoiceApi.save(this.form).then(
+        res => {
+          if (res.status === 200) {
+            // 将从服务端获取的id赋值给前端显示
+            this.form.id = res.data.id
+            this.form.consultantId = res.data.consultantId
+            this.form.consultantUserName = res.data.consultantUserName
+            this.form.consultantRealName = res.data.consultantRealName
+            this.$message({
+              message: '保存成功！',
+              type: 'success',
+              showClose: true,
+              duration: 800
             })
-        } else {
-          // 如果检查不通过就给出提示
-          this.$message({
-            message: '有错误，请检查！',
-            type: 'warning',
-            showClose: true
-          })
-        }
-      })
+          } else {
+            this.$message.error('保存失败！')
+          }
+        })
     }
   },
   computed: {

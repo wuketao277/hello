@@ -48,11 +48,19 @@ export default {
         approveStatus: null
       },
       consultants: [],
-      noPaymentSum: 0, // 待付款金额
-      noInvoiceSum: 0, // 待开票金额
+      availableAmount: 0, // 成本发票剩余金额
+      dialogAllConsultantAvailableAmountShowControl: false, // 所有顾问剩余金额显示控制
+      allConsultantAvailableAmount: [], // 所有顾问剩余金额
     }
   },
   methods: {
+    // 显示控制
+    showControl (key) {
+      if (key === 'calcAllConsultantAvailableAmount' || key === 'search.consultantUserName') {
+        return commonJS.isAdmin()
+      }
+      return false
+    },
     // 清空搜索条件
     clearQueryCondition () {
       this.search = {
@@ -222,13 +230,24 @@ export default {
       }
       return '申请状态'
     },
+    // 查询所有顾问的剩余金额
+    calcAllConsultantAvailableAmount () {
+      costInvoiceApi.calcAllConsultantAvailableAmount().then(res => {
+        if (res.status === 200) {
+          this.allConsultantAvailableAmount = res.data
+          this.dialogAllConsultantAvailableAmountShowControl = true
+        }
+      })
+    }
   },
   created () {
-    // invoiceApi.getNoPaymentSum().then(res => {
-    //   if (res.status === 200) {
-    //     this.noPaymentSum = res.data
-    //   }
-    // })
+    // 查询剩余金额
+    costInvoiceApi.calcAvailableAmount().then(res => {
+      if (res.status === 200) {
+        this.availableAmount = res.data
+      }
+    })
+    // 查询列表数据
     this.query()
   }
 }

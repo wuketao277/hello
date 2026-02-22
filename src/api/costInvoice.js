@@ -20,5 +20,13 @@ export default {
   // 通过主键删除
   deleteById (params) {
     return axios.get('/costInvoice/deleteById?id=' + params)
+  },
+  // 计算可用金额
+  calcAvailableAmount () {
+    return axios.get('/costInvoice/calcAvailableAmount')
+  },
+  // 计算所有顾问可用金额
+  calcAllConsultantAvailableAmount () {
+    return axios.get('/costInvoice/calcAllConsultantAvailableAmount')
   }
 }

@@ -18,8 +18,13 @@
                  size="small"
                  icon="el-icon-share"
                  @click="searchDialog = true">搜 索</el-button>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-share"
+                 @click="calcAllConsultantAvailableAmount"
+                 v-if="showControl('calcAllConsultantAvailableAmount')">成本票剩余情况</el-button>
       <br />
-      <span>待付款金额：{{noPaymentSum}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>待开票金额：{{noInvoiceSum}}</span>
+      <span>成本发票剩余金额：{{availableAmount}}</span>
     </div>
     <template>
       <el-table :data="table.content"
@@ -91,14 +96,14 @@
       <div>
         <el-form size="small"
                  label-position="left"
-                 label-width="90px">
+                 label-width="80px">
           <el-row :gutter="20">
             <el-col :span="8">
               <el-form-item label="开票日期">
                 <el-date-picker type="date"
                                 placeholder="开票日期"
                                 v-model="search.invoiceDate"
-                                style="width: 140px;"
+                                style="width: 100%;"
                                 value-format="yyyy-MM-dd"></el-date-picker>
               </el-form-item>
             </el-col>
@@ -107,31 +112,18 @@
                 <el-date-picker type="date"
                                 placeholder="提交日期"
                                 v-model="search.submitDate"
-                                style="width: 140px;"
+                                style="width: 100%;"
                                 value-format="yyyy-MM-dd"></el-date-picker>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="用户">
-                <!-- <el-select v-model="search.consultantUserName"
-                           placeholder="请选择用户"
-                           clearable
-                           style="width:100%;">
-                  <el-option v-for="consultant in consultants"
-                             :key="consultant.id"
-                             :value="consultant.id"
-                             :label="consultant.username"></el-option>
-                </el-select> -->
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
               <el-form-item label="发票号码">
                 <el-input v-model="search.invoiceNumber"
                           clearable
                           style="width:100%;"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item label="发票金额">
                 <el-input v-model="search.sum"
                           type="number"
@@ -139,16 +131,23 @@
                           style="width:100%;"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item label="品名">
                 <el-input v-model="search.kind"
                           clearable
                           style="width:100%;"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item label="备注">
                 <el-input v-model="search.remark"
+                          clearable
+                          style="width:100%;"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8" v-if="showControl('search.consultantUserName')">
+              <el-form-item label="用户名">
+                <el-input v-model="search.consultantUserName"
                           clearable
                           style="width:100%;"></el-input>
               </el-form-item>
@@ -158,12 +157,36 @@
         <span slot="footer"
               class="dialog-footer">
           <el-button type="warning"
-                     @click="clearQueryCondition">清 空</el-button>
-          <el-button @click="searchDialog = false">取 消</el-button>
+                     @click="clearQueryCondition"
+                     >清 空</el-button>
+          <el-button @click="searchDialog = false"
+                     >取 消</el-button>
           <el-button type="primary"
-                     @click="query">确 定</el-button>
+                     @click="query"
+                     >确 定</el-button>
         </span>
       </div>
+    </el-dialog>
+    <el-dialog title="所有顾问成本发票剩余情况"
+               :visible.sync="dialogAllConsultantAvailableAmountShowControl"
+               width="600px">
+      <el-table :data="allConsultantAvailableAmount"
+                :border="true"
+                :highlight-current-row="true"
+                :stripe="true"
+                style="width: 100%">
+        <el-table-column type="index"
+                         width="100"
+                         label="序号"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="consultantUserName"
+                         width="200"
+                         label="用户名"
+                         show-overflow-tooltip></el-table-column>
+        <el-table-column prop="sum"
+                         label="可用金额"
+                         show-overflow-tooltip></el-table-column>
+      </el-table>
     </el-dialog>
   </div>
 </template>

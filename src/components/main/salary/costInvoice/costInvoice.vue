@@ -20,7 +20,7 @@
     </div>
     <el-form ref="form"
              :model="form"
-             label-width="100px"
+             label-width="90px"
              label-position="left"
              size="small"
              style="margin-top:10px;text-align:left;">
@@ -50,7 +50,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="开票日期">
+          <el-form-item label="开票日期" required>
             <el-date-picker v-model="form.invoiceDate"
                             type="date"
                             placeholder="选择日期"
@@ -59,7 +59,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="提交日期">
+          <el-form-item label="提交日期" required>
             <el-date-picker v-model="form.submitDate"
                             type="date"
                             placeholder="选择日期"
@@ -98,7 +98,7 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="12">
           <el-form-item label="品名"
                         required>
             <el-input v-model="form.kind"
@@ -106,7 +106,7 @@
                       style="width:100%;"></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="24">
           <el-form-item label="备注">
             <el-input type="textarea"
                       v-model="form.remark"
@@ -117,21 +117,6 @@
         </el-col>
       </el-row>
     </el-form>
-    <el-dialog title="选择候选人"
-               :visible.sync="selectCandidateDialogShow">
-      <selectCandidate v-on:cancel-dialog="selectCandidateDialogShow = false"
-                       v-on:sure-dialog="sureSelectCandidateDialog"></selectCandidate>
-    </el-dialog>
-    <el-dialog title="选择职位"
-               :visible.sync="selectCaseDialogShow">
-      <selectCase v-on:cancel-dialog="selectCaseDialogShow = false"
-                  v-on:sure-dialog="sureSelectCaseDialog"></selectCase>
-    </el-dialog>
-    <el-dialog title="选择顾问"
-               :visible.sync="selectAMDialogShow">
-      <selectUser v-on:cancel-dialog="selectAMDialogShow = false"
-                  v-on:sure-dialog="sureSelectAMDialog"></selectUser>
-    </el-dialog>
   </div>
 </template>
 <script src="./costInvoice.js"></script>

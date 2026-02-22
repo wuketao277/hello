@@ -32,12 +32,12 @@ export default {
     // 通过id发票信息
     deleteById () {
       if (this.checkSelectRow()) {
-        this.$confirm('确认要删除编号:' + this.currentRow.invoiceNumber + ' 金额:' + this.currentRow.sum + '的发票信息吗？', '确认信息', {
+        this.$confirm('确认要删除用户名:' + this.currentRow.consultantUserName + ' 金额:' + this.currentRow.sum + '的信息吗？', '确认信息', {
           distinguishCancelAndClose: true,
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(() => {
-          costInvoiceApi.deleteById(this.currentRow.id).then(res => {
+          costInvoiceUsedApi.deleteById(this.currentRow.id).then(res => {
             if (res.status === 200) {
               if (res.data.length > 0) {
                 this.$message.error(res.data)

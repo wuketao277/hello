@@ -67,9 +67,9 @@
       <div>
         <el-form size="small"
                  label-position="left"
-                 label-width="90px">
+                 label-width="80px">
           <el-row :gutter="20">
-            <el-col :span="12">
+            <el-col :span="8">
               <el-form-item label="用户名">
                 <el-input v-model="search.consultantUserName"
                           clearable
