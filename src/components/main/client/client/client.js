@@ -87,7 +87,7 @@ export default {
       } else if (url === 'duplicateCheck') {
         // 查重信息，只显示给全职员工
         return commonJs.isFulltimeJobType()
-      } else if (url === 'invoice') {
+      } else if (url === 'invoice' || url === 'setContractOrderToMinus1Button') {
         // 发票，只有Admin
         return commonJs.isAdminInArray(this.roles)
       } else if (url === 'parttimerControl') {
@@ -321,6 +321,20 @@ export default {
       } else {
         return '未税'
       }
+    },
+    // 设置客户合同顺序为-1
+    setContractOrderToMinus1 () {
+      clientApi.setContractOrderToMinus1(this.form.id).then(
+        res => {
+          if (res.status === 200) {
+            this.$message({
+              message: '设置成功！',
+              type: 'success',
+              showClose: true,
+              duration: 800
+            })
+          }
+        })
     }
   },
   created () {

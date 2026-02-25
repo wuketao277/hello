@@ -40,5 +40,9 @@ export default {
   // 排序客户合同信息
   sortContractView () {
     return axios.get('/client/sortContractView')
-  }
+  },
+  // 设置客户合同顺序为-1
+  setContractOrderToMinus1 (params) {
+    return axios.get('/client/setContractOrderToMinus1?clientId=' + params)
+  },
 }

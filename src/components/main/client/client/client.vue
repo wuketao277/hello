@@ -21,6 +21,11 @@
                  size="small"
                  icon="el-icon-upload"
                  @click="openUploadFileDialog">上传文件</el-button>
+      <el-button type="success"
+                 size="small"
+                 icon="el-icon-circle-check"
+                 v-if="showControl('setContractOrderToMinus1Button')"
+                 @click="setContractOrderToMinus1">设置合同排序在最下</el-button>
     </div>
     <el-form ref="form"
              :model="form"
