@@ -1287,8 +1287,8 @@ export default {
       // 本科校验
       this.validateUndergraduate()
     },
-    // 整理公司
-    formatCompany () {
+    // 整理公司只在第一次调用
+    formatCompanyFirst () {
       if (this.form.companyName === null || this.form.companyName.length === 0) {
         return
       }
@@ -1304,8 +1304,12 @@ export default {
         }
       }
       this.form.companyName = companyListTemp.join(' ')
-      return
-      // 下面的代码是旧代码，暂时保留
+    },
+    // 整理公司
+    formatCompany () {
+      if (this.form.companyName === null || this.form.companyName.length === 0) {
+        return
+      }
       // 把回车换成空格，整理成1行
       let companyName = this.form.companyName.replace(/\r?\n/g, ' ')
       // 拆分成数组
@@ -1535,7 +1539,7 @@ export default {
       if (startPosition != -1) {
         // 获取“工作经历”之后的部分
         this.form.companyName = this.getSubArray(parts, startPosition + 1, endPosition).join('\n').trim()
-        this.formatCompany()
+        this.formatCompanyFirst()
         // 截断超过4000个字符的部分
         this.form.companyName = this.form.companyName.substr(0, 4000)
       }
