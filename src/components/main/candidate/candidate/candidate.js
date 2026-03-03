@@ -1292,6 +1292,20 @@ export default {
       if (this.form.companyName === null || this.form.companyName.length === 0) {
         return
       }
+
+      let regexDate = /（\d{4}\.\d{2} - (?:至今|\d{4}\.\d{2})[，,]\s*(?:\d+年(?:\d+个月)?|\d+个月)）/g
+      let companyListTemp = this.form.companyName.split('\n')
+      for (let i = 0; i < companyListTemp.length; i++) {
+        if (regexDate.test(companyListTemp[i]) && i > 1) {
+          // 匹配到工作年限数组成员
+          companyListTemp[i - 1] = "\n\n" + companyListTemp[i - 1]
+        } else if ('职责业绩：' === companyListTemp[i]) {
+          companyListTemp[i] = "\n" + companyListTemp[i]
+        }
+      }
+      this.form.companyName = companyListTemp.join(' ')
+      return
+      // 下面的代码是旧代码，暂时保留
       // 把回车换成空格，整理成1行
       let companyName = this.form.companyName.replace(/\r?\n/g, ' ')
       // 拆分成数组
