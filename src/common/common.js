@@ -509,6 +509,9 @@ export default {
     code: 'Z6',
     name: '6%专票'
   }, {
+    code: 'P1',
+    name: '1%普票'
+  }, {
     code: 'P3',
     name: '3%普票'
   }, {

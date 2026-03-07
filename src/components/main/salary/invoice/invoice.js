@@ -14,26 +14,7 @@ export default {
   },
   data () {
     return {
-      types: [{
-        code: 'Z1',
-        name: '1%专票'
-      }, {
-        code: 'Z3',
-        name: '3%专票'
-      },
-      {
-        code: 'Z6',
-        name: '6%专票'
-      },
-      {
-        code: 'P3',
-        name: '3%普票'
-      },
-      {
-        code: 'P6',
-        name: '6%普票'
-      }
-      ],
+      types: commonJS.invoiceTypeList,// 发票类型
       mode: 'add', // 默认操作模式为新建
       form: {
         id: null,

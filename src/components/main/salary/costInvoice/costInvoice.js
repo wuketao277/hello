@@ -4,7 +4,7 @@ import costInvoiceApi from '@/api/costInvoice'
 export default {
   data () {
     return {
-      types: commonJS.invoiceTypeList,
+      types: commonJS.invoiceTypeList,// 发票类型
       mode: 'add', // 默认操作模式为新建
       form: {
         id: null,

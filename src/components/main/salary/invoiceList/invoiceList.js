@@ -7,26 +7,7 @@ import successfulPermApi from '@/api/successfulPerm'
 export default {
   data () {
     return {
-      types: [{
-        code: 'Z1',
-        name: '1%专票'
-      }, {
-        code: 'Z3',
-        name: '3%专票'
-      },
-      {
-        code: 'Z6',
-        name: '6%专票'
-      },
-      {
-        code: 'P3',
-        name: '3%普票'
-      },
-      {
-        code: 'P6',
-        name: '6%普票'
-      }
-      ],
+      types: commonJS.invoiceTypeList,// 发票类型
       table: {
         content: [],
         totalElements: 0,
@@ -71,17 +52,13 @@ export default {
     },
     // 格式化开票类型
     formatType (row, column, cellvalue, index) {
-      if (cellvalue === 'Z1') {
-        return '1%专票'
-      } else if (cellvalue === 'Z3') {
-        return '3%专票'
-      } else if (cellvalue === 'Z6') {
-        return '6%专票'
-      } else if (cellvalue === 'P3') {
-        return '3%普票'
-      } else if (cellvalue === 'P6') {
-        return '6%普票'
+      // 根据发票类型 code 获取 name
+      for (let item of this.types) {
+        if (item.code === cellvalue) {
+          return item.name
+        }
       }
+      return ''
     },
     // 通过id发票信息
     deleteById () {
