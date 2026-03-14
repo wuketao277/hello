@@ -7,7 +7,7 @@ export default {
       caseList: [],
       currentRow: null,
       search: '',
-      status: 'DOING',
+      status: 'ALL',
       loading: false // 不显示加载中
     }
   },

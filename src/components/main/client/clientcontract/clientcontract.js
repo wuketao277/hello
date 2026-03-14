@@ -32,7 +32,8 @@ export default {
         forbid: null,
         receiveDate: null,
         containTax: null,
-        company: null
+        company: null,
+        contractOrder: 0,
       },
       categoryList: ['Perm', 'Contracting'],
       industryList: [{
