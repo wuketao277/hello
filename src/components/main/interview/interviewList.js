@@ -171,6 +171,8 @@ export default {
         title: this.search['title'] === undefined ? '' : this.search['title'],
         startDate: this.search['startDate'] === undefined ? '' : this.search['startDate'],
         endDate: this.search['endDate'] === undefined ? '' : this.search['endDate'],
+        interviewStartDate: this.search['interviewStartDate'] === undefined ? '' : this.search['interviewStartDate'],
+        interviewEndDate: this.search['interviewEndDate'] === undefined ? '' : this.search['interviewEndDate'],
         phase: this.search['phase'] === undefined ? '' : this.search['phase'],
         currentPage: commonJS.getPageNumber('interviewlist.pageNumber'),
         pageSize: commonJS.getPageSize('interviewlist.pageSize')

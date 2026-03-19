@@ -121,7 +121,7 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :span="12">
-              <el-form-item label="日期">
+              <el-form-item label="创建日期">
                 <el-date-picker type="date"
                                 value-format="yyyy-MM-dd"
                                 placeholder="开始日期"
@@ -153,6 +153,25 @@
             </el-col>
             <el-col :span="6">
               <el-checkbox v-model="search.allInterview">所有面试</el-checkbox>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="面试日期">
+                <el-date-picker type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="开始日期"
+                                v-model="search.interviewStartDate"
+                                size="small"
+                                style="width:45%;"></el-date-picker>
+                <span>-</span>
+                <el-date-picker type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="结束日期"
+                                v-model="search.interviewEndDate"
+                                size="small"
+                                style="width:45%;"></el-date-picker>
+              </el-form-item>
             </el-col>
           </el-row>
         </el-form>
