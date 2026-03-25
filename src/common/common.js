@@ -296,7 +296,11 @@ export default {
   {
     code: 'Wuhanhailuorencaifuwu',
     name: '武汉海罗河山人才服务有限公司'
-  }
+  },
+  {
+    code: 'Hailuoshanghaishuzikeji',
+    name: '海络（上海）数字科技有限公司'
+  },
   ],
   locationList: [{
     code: 'Shanghai',
