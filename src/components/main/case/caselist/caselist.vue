@@ -34,6 +34,7 @@
           <el-input v-model="search.title"
                     autocomplete="off"
                     @keyup.enter.native="easyQuery"
+                    @input="easyQuery"
                     @clear="easyQuery"
                     placeholder="输入关键字后，回车即可搜索。"
                     clearable></el-input>

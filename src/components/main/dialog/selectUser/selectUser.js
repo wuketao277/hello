@@ -67,7 +67,6 @@ export default {
     // 搜索对话框，确定按钮
     sureSearchDialog () {
       this.query()
-      this.search = ''
     },
     // 点击“取消”按钮，触发自定义事件
     cancelDialog () {

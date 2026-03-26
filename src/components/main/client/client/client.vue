@@ -236,7 +236,8 @@
       <el-row :gutter="12"  v-if="showControl('parttimerControl')">
         <el-col>
           <el-form-item label="兼职控制">
-            <el-checkbox-group v-model="form.parttimers">
+            <el-checkbox-group v-model="form.parttimers"
+                                @change="save">
                 <el-checkbox v-for="parttimer in allParttimer"
                            :label="parttimer.username"
                            :key="parttimer.username">{{parttimer.username}}({{parttimer.realname}})</el-checkbox>

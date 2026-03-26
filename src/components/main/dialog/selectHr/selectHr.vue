@@ -16,7 +16,7 @@
           <el-input v-model="search"
                     autocomplete="off"
                     placeholder="输入关键字后，回车即可搜索。"
-                    @change="searchChange"
+                    @input="searchChange"
                     clearable></el-input>
         </el-form-item>
       </el-form>

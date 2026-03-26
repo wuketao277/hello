@@ -92,7 +92,6 @@ export default {
     sureSearchDialog () {
       this.showSearchDialog = false
       this.query()
-      this.search = ''
     },
     // 点击“取消”按钮，触发自定义事件
     cancelDialog () {
