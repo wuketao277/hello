@@ -147,6 +147,7 @@
             <el-col :span="12">
               <el-form-item label="客户">
                 <el-select v-model="search.clientId"
+                          filterable
                            placeholder="请选择客户"
                            style="width:100%;"
                            clearable>
@@ -163,6 +164,7 @@
               <el-form-item label="AM">
                 <el-select v-model="search.amId"
                            placeholder="请选择顾问"
+                           filterable
                            clearable
                            style="width:100%;">
                   <el-option v-for="consultant in consultants"
