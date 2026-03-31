@@ -139,7 +139,7 @@
             <el-input v-model="form.feeRate"
                       type="textarea"
                       :autosize="{ minRows: 1, maxRows: 10}"
-                      maxlength="200"
+                      maxlength="1000"
                       show-word-limit
                       clearable
                       style="width:100%;"></el-input>
@@ -150,7 +150,7 @@
             <el-input v-model="form.guaranteePeriod"
                       type="textarea"
                       :autosize="{ minRows: 1, maxRows: 10}"
-                      maxlength="200"
+                      maxlength="1000"
                       show-word-limit
                       clearable
                       style="width:100%;"></el-input>
@@ -172,7 +172,7 @@
             <el-input v-model="form.paymentPeriod"
                       type="textarea"
                       :autosize="{ minRows: 1, maxRows: 10}"
-                      maxlength="200"
+                      maxlength="1000"
                       show-word-limit
                       clearable
                       style="width:100%;"></el-input>
@@ -214,7 +214,7 @@
         <el-col :span="24">
           <el-form-item label="地址">
             <el-input v-model="form.location"
-                      maxlength="50"
+                      maxlength="400"
                       show-word-limit
                       clearable
                       style="width:100%;"></el-input>
