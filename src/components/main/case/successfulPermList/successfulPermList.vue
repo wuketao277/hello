@@ -497,6 +497,14 @@
                           clearable></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="6">
+              <el-form-item label="PO"
+                            label-width="80px">
+                <el-input v-model="search.po"
+                          style="width:180px;"
+                          clearable></el-input>
+              </el-form-item>
+            </el-col>
           </el-row>
           <el-row :gutter="20">
             <el-col :span="24"
