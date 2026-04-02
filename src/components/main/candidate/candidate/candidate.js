@@ -1412,13 +1412,38 @@ export default {
     },
     // 预处理
     preAnalysis (parts) {
-      // 删除“活跃度”之前，“简历洞察”之后的部分
+      // 步骤一：删除“活跃度”之前的内容
       let startIndex = commonJS.getFirstIndexForArray(parts, ['在线', '今天活跃', '3天内活跃', '7天内活跃', '30天内活跃', '最近三个月活跃', '最近半年活跃', '最近一年活跃'])
       if (startIndex === -1) {
         startIndex = commonJS.getFirstIndexForArray(parts, ['查看大图'])
       }
-      let endIndex = commonJS.getFirstIndexForArray(parts, ["简历洞察"]);
-      return this.getSubArray(parts, startIndex + 1, endIndex)
+      parts = this.getSubArray(parts, startIndex + 1, -1)
+
+      // 步骤二：
+      // 统计"简历备注"出现的次数和位置
+      const resumeNoteIndexes = [];
+      parts.forEach((item, index) => {
+        if (item === '简历备注') {
+          resumeNoteIndexes.push(index);
+        }
+      })
+      if (resumeNoteIndexes.length === 2) {
+        // 出现 2 次：删除第一个"简历备注"和第二个"简历备注"之间的所有元素
+        const firstIndex = resumeNoteIndexes[0];
+        const secondIndex = resumeNoteIndexes[1];
+        // 保留第一个"简历备注"之前的元素和第二个"简历备注"及之后的元素
+        parts = [
+          ...parts.slice(0, firstIndex),
+          ...parts.slice(secondIndex)
+        ];
+      } else if (resumeNoteIndexes.length === 1) {
+        // 出现 1 次：删除"简历洞察"元素及之后的所有元素
+        const resumeInsightIndex = parts.findIndex(item => item === '简历洞察');
+        if (resumeInsightIndex !== -1) {
+          parts = parts.slice(0, resumeInsightIndex);
+        }
+      }
+      return parts
     },
     // 获取基础信息部分
     analysisBasisPart (parts) {
