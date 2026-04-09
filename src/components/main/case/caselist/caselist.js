@@ -3,12 +3,17 @@ import userApi from '@/api/user'
 import commonJS from '@/common/common'
 import clientApi from '@/api/client'
 import clientlinkmanApi from '@/api/clientlinkman'
+import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
 
 export default {
+  components: {
+    'selectCase': selectCase,
+  },
   data () {
     return {
       // 显示搜索结果
       showSearchResult: false,
+      selectCaseDialogShow: false,
       table: {
         content: [],
         totalElements: 0,
@@ -37,6 +42,23 @@ export default {
     }
   },
   methods: {
+    // 通过id复制职位
+    copyCaseById (val) {
+      caseApi.copyCaseById(val.id).then(res => {
+        if (res.status !== 200) {
+          this.$message.error({
+            message: '职位复制失败，请联系管理员！'
+          })
+        } else {
+          this.$message({
+            message: '职位复制成功！',
+            type: 'success'
+          })
+          this.query()
+          this.selectCaseDialogShow = false
+        }
+      })
+    },
     // 情况体验岗位
     clearExperience () {
       this.$confirm('确认要清空体验岗位吗？', '确认信息', {

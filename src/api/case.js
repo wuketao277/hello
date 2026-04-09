@@ -52,5 +52,9 @@ export default {
   // 清空体验岗位
   clearExperience () {
     return axios.get('/case/clearExperience')
+  },
+  // 复制职位
+  copyCaseById (params) {
+    return axios.get('/case/copyCaseById?id=' + params)
   }
 }

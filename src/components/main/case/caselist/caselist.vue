@@ -45,6 +45,10 @@
                  icon="el-icon-scissors"
                  v-if="showControl('clearExperienceButton')"
                  @click="clearExperience">清空体验岗位</el-button>
+      <el-button type="primary"
+                 size="small"
+                 icon="el-icon-document-copy"
+                 @click="selectCaseDialogShow = true">复制职位</el-button>
     </div>
     <template>
       <el-table :data="table.content"
@@ -169,6 +173,11 @@
                      @click="sureSearchDialog">查 询</el-button>
         </span>
       </div>
+    </el-dialog>
+    <el-dialog title="选择职位"
+               :visible.sync="selectCaseDialogShow">
+      <selectCase v-on:cancel-dialog="selectCaseDialogShow = false"
+                  v-on:sure-dialog="copyCaseById"></selectCase>
     </el-dialog>
   </div>
 </template>
