@@ -728,7 +728,7 @@
         <!--附件结束-->
       </el-tab-pane>
     </el-tabs>
-    <!--我的职位对话框-->
+    <!--我的职位对话框
     <el-dialog title="我的职位"
                :visible.sync="myCaseAttentionDialogShow">
       <el-table :data="myCaseAttentionList"
@@ -752,6 +752,12 @@
                          label="职位名称"
                          show-overflow-tooltip></el-table-column>
       </el-table>
+    </el-dialog>-->
+    <!--推荐职位对话框-->
+    <el-dialog title="我的职位"
+               :visible.sync="myCaseAttentionDialogShow">
+      <myCase v-on:cancel-dialog="myCaseAttentionDialogShow = false"
+                  v-on:sure-dialog="sureMyCaseDialog"></myCase>
     </el-dialog>
     <!--推荐职位对话框-->
     <el-dialog title="推荐职位"

@@ -94,8 +94,13 @@
           <el-button type="primary"
                      size="mini"
                      icon="el-icon-share"
-                     @click="openSelectCaseDialog"
+                     @click="selectCaseDialogShow = true"
                      style="width:80px;">职位</el-button>
+          <el-button type="primary"
+                     size="mini"
+                     icon="el-icon-share"
+                     @click="myCaseDialogShow = true"
+                     style="width:90px;">我的职位</el-button>
           <el-button type="text"
                      style="font-size:15px;color:#409EFF;"
                      @click="jumpToTitle"
@@ -770,6 +775,11 @@
                :visible.sync="selectCaseDialogShow">
       <selectCase v-on:cancel-dialog="selectCaseDialogShow = false"
                   v-on:sure-dialog="sureSelectCaseDialog"></selectCase>
+    </el-dialog>
+    <el-dialog title="我的职位"
+               :visible.sync="myCaseDialogShow">
+      <myCase v-on:cancel-dialog="myCaseDialogShow = false"
+                  v-on:sure-dialog="sureMyCaseDialog"></myCase>
     </el-dialog>
     <el-dialog title="选择顾问"
                :visible.sync="selectConsultantDialogShow">

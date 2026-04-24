@@ -80,7 +80,7 @@ export default {
         }
       })
     },
-    // 处理选中行时间
+    // 处理选中行事件
     handleCurrentChange (val) {
       this.currentRow = val
     },

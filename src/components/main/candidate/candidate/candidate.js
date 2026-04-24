@@ -6,6 +6,7 @@ import uploadFileApi from '@/api/uploadFile'
 import uploadFile from '@/components/main/dialog/uploadFile/uploadFile.vue'
 import downloadFile from '@/components/main/dialog/downloadFile/downloadFile.vue'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
+import myCase from '@/components/main/dialog/myCase/myCase.vue'
 import commonJS from '@/common/common'
 import caseApi from '@/api/case'
 import userApi from '@/api/user'
@@ -20,7 +21,8 @@ export default {
   components: {
     uploadFile,
     downloadFile,
-    selectCase
+    selectCase,
+    myCase
   },
   data () {
     return {
@@ -1012,11 +1014,11 @@ export default {
       }
     },
     // 我的职位列表双击处理事件
-    handleRowDblClickMyCaseAttentionList (row, column, event) {
+    sureMyCaseDialog (val) {
       this.myCaseAttentionDialogShow = false
       let params = {
         candidateId: this.form.id,
-        caseId: row.caseId
+        caseId: val.caseId
       }
       candidateForCaseApi.saveSimple(params).then(
         res => {

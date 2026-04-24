@@ -66,7 +66,7 @@
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="calcDate('year')">本年</el-button>
+                         @click="calcDate('year')">今年</el-button>
               <el-button type="primary"
                          plain
                          size="small"

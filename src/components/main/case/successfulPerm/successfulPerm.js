@@ -1,5 +1,6 @@
 import successfulPermApi from '@/api/successfulPerm'
 import selectCase from '@/components/main/dialog/selectCase/selectCase.vue'
+import myCase from '@/components/main/dialog/myCase/myCase.vue'
 import selectCandidate from '@/components/main/dialog/selectCandidate/selectCandidate.vue'
 import selectUser from '@/components/main/dialog/selectUser/selectUser.vue'
 import selectHr from '@/components/main/dialog/selectHr/selectHr.vue'
@@ -13,6 +14,7 @@ export default {
   components: {
     'selectCandidate': selectCandidate,
     'selectCase': selectCase,
+    'myCase': myCase,
     'selectUser': selectUser,
     'selectHr': selectHr
   },
@@ -172,6 +174,8 @@ export default {
       selectCandidateDialogShow: false,
       // 选择职位对话框是否显示
       selectCaseDialogShow: false,
+      // 我的职位对话框是否显示
+      myCaseDialogShow: false,
       selectHRDialogShow: false,
       selectConsultantDialogShow: false,
       selectCWDialogShow: false,
@@ -462,16 +466,20 @@ export default {
       this.form.candidateChineseName = val.chineseName
       this.form.candidateEnglishName = val.englishName
     },
-    // 打开“选择职位”对话框
-    openSelectCaseDialog () {
-      this.selectCaseDialogShow = true
-    },
     // “选择职位”对话框返回
     sureSelectCaseDialog (val) {
       // 首先关闭对话框
       this.selectCaseDialogShow = false
       this.form.caseId = val.id
       this.form.title = val.title
+    },
+    // “我的职位”对话框返回
+    sureMyCaseDialog (val) {
+      debugger
+      // 首先关闭对话框
+      this.myCaseDialogShow = false
+      this.form.caseId = val.caseId
+      this.form.title = val.caseTitle
     },
     // 打开“选择顾问”对话框
     openSelectConsultantDialog (val) {
