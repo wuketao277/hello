@@ -92,19 +92,19 @@
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="forwardMonth(1)">向前一个月</el-button>
+                         @click="forwardMonth(1)">向前一月</el-button>
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="backwardMonth(1)">向后一个月</el-button>
+                         @click="backwardMonth(1)">向后一月</el-button>
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="forwardYear(1)">向前一个年</el-button>
+                         @click="forwardYear(1)">向前一年</el-button>
               <el-button type="primary"
                          plain
                          size="small"
-                         @click="backwardYear(1)">向后一个年</el-button>
+                         @click="backwardYear(1)">向后一年</el-button>
             </el-col>
           </el-row>
         </el-form-item>
